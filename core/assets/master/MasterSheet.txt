@@ -1,0 +1,1341 @@
+MasterSheet.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+animations/crosscall/crosscall
+  rotate: false
+  xy: 2, 2
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: 1
+animations/crosscall/crosscall
+  rotate: false
+  xy: 104, 2
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: 2
+animations/crosscall/crosscall
+  rotate: false
+  xy: 206, 2
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: 3
+animations/crosscall/crosscall
+  rotate: false
+  xy: 308, 2
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: 4
+animations/crosscall/crosscall
+  rotate: false
+  xy: 410, 2
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: 5
+animations/crosscall/crosscall
+  rotate: false
+  xy: 512, 2
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: 6
+animations/crosscall/crosscall
+  rotate: false
+  xy: 614, 2
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: 7
+animations/crosscall/crosscall
+  rotate: false
+  xy: 716, 2
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: 8
+animations/crosscall/crosscall
+  rotate: false
+  xy: 818, 2
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: 9
+animations/red_spin/red_spin
+  rotate: false
+  xy: 920, 2
+  size: 156, 156
+  orig: 156, 156
+  offset: 0, 0
+  index: 1
+animations/red_spin/red_spin
+  rotate: false
+  xy: 1078, 2
+  size: 156, 156
+  orig: 156, 156
+  offset: 0, 0
+  index: 2
+animations/red_spin/red_spin
+  rotate: false
+  xy: 1236, 2
+  size: 156, 156
+  orig: 156, 156
+  offset: 0, 0
+  index: 3
+animations/red_spin/red_spin
+  rotate: false
+  xy: 1394, 2
+  size: 156, 156
+  orig: 156, 156
+  offset: 0, 0
+  index: 4
+animations/red_spin/red_spin
+  rotate: false
+  xy: 1552, 2
+  size: 156, 156
+  orig: 156, 156
+  offset: 0, 0
+  index: 5
+animations/spear/spear
+  rotate: false
+  xy: 1710, 2
+  size: 104, 104
+  orig: 104, 104
+  offset: 0, 0
+  index: 1
+animations/spear/spear
+  rotate: false
+  xy: 1816, 2
+  size: 104, 104
+  orig: 104, 104
+  offset: 0, 0
+  index: 2
+animations/spear/spear
+  rotate: false
+  xy: 1922, 2
+  size: 104, 104
+  orig: 104, 104
+  offset: 0, 0
+  index: 3
+animations/spear/spear
+  rotate: false
+  xy: 2, 160
+  size: 104, 104
+  orig: 104, 104
+  offset: 0, 0
+  index: 4
+animations/spear/spear
+  rotate: false
+  xy: 108, 160
+  size: 104, 104
+  orig: 104, 104
+  offset: 0, 0
+  index: 5
+animations/sword/sword
+  rotate: false
+  xy: 214, 160
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 1
+animations/sword/sword
+  rotate: false
+  xy: 268, 160
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 2
+animations/sword/sword
+  rotate: false
+  xy: 322, 160
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 3
+animations/sword/sword
+  rotate: false
+  xy: 376, 160
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 4
+animations/sword/sword
+  rotate: false
+  xy: 430, 160
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 5
+animations/sword/sword
+  rotate: false
+  xy: 484, 160
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 6
+animations/sword/sword
+  rotate: false
+  xy: 538, 160
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 7
+animations/sword/sword
+  rotate: false
+  xy: 592, 160
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 8
+animations/sword_slash/sword_slash
+  rotate: false
+  xy: 646, 160
+  size: 208, 208
+  orig: 208, 208
+  offset: 0, 0
+  index: 1
+animations/sword_slash/sword_slash
+  rotate: false
+  xy: 856, 160
+  size: 208, 208
+  orig: 208, 208
+  offset: 0, 0
+  index: 2
+animations/sword_slash/sword_slash
+  rotate: false
+  xy: 1066, 160
+  size: 208, 208
+  orig: 208, 208
+  offset: 0, 0
+  index: 3
+animations/sword_slash/sword_slash
+  rotate: false
+  xy: 1276, 160
+  size: 208, 208
+  orig: 208, 208
+  offset: 0, 0
+  index: 4
+animations/sword_slash/sword_slash
+  rotate: false
+  xy: 1486, 160
+  size: 208, 208
+  orig: 208, 208
+  offset: 0, 0
+  index: 5
+animations/sword_slash/sword_slash
+  rotate: false
+  xy: 1696, 160
+  size: 208, 208
+  orig: 208, 208
+  offset: 0, 0
+  index: 6
+animations/sword_slash/sword_slash
+  rotate: false
+  xy: 2, 370
+  size: 208, 208
+  orig: 208, 208
+  offset: 0, 0
+  index: 7
+animations/sword_slash/sword_slash
+  rotate: false
+  xy: 212, 370
+  size: 208, 208
+  orig: 208, 208
+  offset: 0, 0
+  index: 8
+animations/wiccan_cross/wiccan_cross
+  rotate: false
+  xy: 422, 370
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 1
+animations/wiccan_cross/wiccan_cross
+  rotate: false
+  xy: 476, 370
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 2
+animations/wiccan_cross/wiccan_cross
+  rotate: false
+  xy: 530, 370
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 3
+animations/wiccan_cross/wiccan_cross
+  rotate: false
+  xy: 584, 370
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 4
+animations/wiccan_cross/wiccan_cross
+  rotate: false
+  xy: 638, 370
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 5
+animations/wiccan_cross/wiccan_cross
+  rotate: false
+  xy: 692, 370
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 6
+animations/wiccan_cross/wiccan_cross
+  rotate: false
+  xy: 746, 370
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 7
+animations/wiccan_cross/wiccan_cross
+  rotate: false
+  xy: 800, 370
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 8
+animations/wiccan_cross/wiccan_cross
+  rotate: false
+  xy: 854, 370
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 9
+animations/wiccan_cross/wiccan_cross
+  rotate: false
+  xy: 908, 370
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 10
+animations/wiccan_cross/wiccan_cross
+  rotate: false
+  xy: 962, 370
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 11
+animations/wiccan_cross/wiccan_cross
+  rotate: false
+  xy: 1016, 370
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 12
+animations/wiccan_cross/wiccan_cross
+  rotate: false
+  xy: 1070, 370
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 13
+animations/wiccan_cross/wiccan_cross
+  rotate: false
+  xy: 1124, 370
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 14
+animations/wiccan_cross/wiccan_cross
+  rotate: false
+  xy: 1178, 370
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 15
+animations/wiccan_cross/wiccan_cross
+  rotate: false
+  xy: 1232, 370
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 16
+animations/wiccan_cross/wiccan_cross
+  rotate: false
+  xy: 1286, 370
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 17
+animations/wiccan_cross/wiccan_cross
+  rotate: false
+  xy: 1340, 370
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 18
+animations/wiccan_cross/wiccan_cross
+  rotate: false
+  xy: 1394, 370
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 19
+animations/wiccan_cross/wiccan_cross
+  rotate: false
+  xy: 1448, 370
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 20
+animations/wiccan_cross/wiccan_cross
+  rotate: false
+  xy: 1502, 370
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 21
+animations/wiccan_cross/wiccan_cross
+  rotate: false
+  xy: 1556, 370
+  size: 52, 16
+  orig: 52, 16
+  offset: 0, 0
+  index: 22
+characters/darth_invader/battler/battler
+  rotate: false
+  xy: 1610, 370
+  size: 82, 237
+  orig: 82, 237
+  offset: 0, 0
+  index: 1
+characters/darth_invader/face/angry
+  rotate: false
+  xy: 1694, 370
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 1
+characters/darth_invader/face/angry
+  rotate: false
+  xy: 1748, 370
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 2
+characters/darth_invader/face/normal
+  rotate: false
+  xy: 1802, 370
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 1
+characters/darth_invader/face/ouch
+  rotate: false
+  xy: 1856, 370
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 1
+characters/darth_invader/field/attack/down
+  rotate: false
+  xy: 1910, 370
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/darth_invader/field/attack/down
+  rotate: false
+  xy: 1951, 370
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/darth_invader/field/attack/down
+  rotate: false
+  xy: 1992, 370
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/darth_invader/field/attack/down
+  rotate: false
+  xy: 2, 609
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/darth_invader/field/attack/left
+  rotate: false
+  xy: 43, 609
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/darth_invader/field/attack/left
+  rotate: false
+  xy: 84, 609
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/darth_invader/field/attack/left
+  rotate: false
+  xy: 125, 609
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/darth_invader/field/attack/left
+  rotate: false
+  xy: 166, 609
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/darth_invader/field/attack/right
+  rotate: false
+  xy: 207, 609
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/darth_invader/field/attack/right
+  rotate: false
+  xy: 248, 609
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/darth_invader/field/attack/right
+  rotate: false
+  xy: 289, 609
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/darth_invader/field/attack/right
+  rotate: false
+  xy: 330, 609
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/darth_invader/field/attack/up
+  rotate: false
+  xy: 371, 609
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/darth_invader/field/attack/up
+  rotate: false
+  xy: 412, 609
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/darth_invader/field/attack/up
+  rotate: false
+  xy: 453, 609
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/darth_invader/field/attack/up
+  rotate: false
+  xy: 494, 609
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/darth_invader/field/cast/down
+  rotate: false
+  xy: 535, 609
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/darth_invader/field/cast/down
+  rotate: false
+  xy: 576, 609
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/darth_invader/field/cast/down
+  rotate: false
+  xy: 617, 609
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/darth_invader/field/cast/down
+  rotate: false
+  xy: 658, 609
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/darth_invader/field/cast/left
+  rotate: false
+  xy: 699, 609
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/darth_invader/field/cast/left
+  rotate: false
+  xy: 740, 609
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/darth_invader/field/cast/left
+  rotate: false
+  xy: 781, 609
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/darth_invader/field/cast/left
+  rotate: false
+  xy: 822, 609
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/darth_invader/field/cast/right
+  rotate: false
+  xy: 863, 609
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/darth_invader/field/cast/right
+  rotate: false
+  xy: 904, 609
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/darth_invader/field/cast/right
+  rotate: false
+  xy: 945, 609
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/darth_invader/field/cast/right
+  rotate: false
+  xy: 986, 609
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/darth_invader/field/cast/up
+  rotate: false
+  xy: 1027, 609
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/darth_invader/field/cast/up
+  rotate: false
+  xy: 1068, 609
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/darth_invader/field/cast/up
+  rotate: false
+  xy: 1109, 609
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/darth_invader/field/cast/up
+  rotate: false
+  xy: 1150, 609
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/darth_invader/field/dead/down
+  rotate: false
+  xy: 1191, 609
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/darth_invader/field/dead/down
+  rotate: false
+  xy: 1232, 609
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/darth_invader/field/dead/down
+  rotate: false
+  xy: 1273, 609
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/darth_invader/field/dead/down
+  rotate: false
+  xy: 1314, 609
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/darth_invader/field/dead/left
+  rotate: false
+  xy: 1355, 609
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/darth_invader/field/dead/left
+  rotate: false
+  xy: 1396, 609
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/darth_invader/field/dead/left
+  rotate: false
+  xy: 1437, 609
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/darth_invader/field/dead/left
+  rotate: false
+  xy: 1478, 609
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/darth_invader/field/dead/right
+  rotate: false
+  xy: 1519, 609
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/darth_invader/field/dead/right
+  rotate: false
+  xy: 1560, 609
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/darth_invader/field/dead/right
+  rotate: false
+  xy: 1601, 609
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/darth_invader/field/dead/right
+  rotate: false
+  xy: 1642, 609
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/darth_invader/field/dead/up
+  rotate: false
+  xy: 1683, 609
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/darth_invader/field/dead/up
+  rotate: false
+  xy: 1724, 609
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/darth_invader/field/dead/up
+  rotate: false
+  xy: 1765, 609
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/darth_invader/field/dead/up
+  rotate: false
+  xy: 1806, 609
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/darth_invader/field/jump/down
+  rotate: false
+  xy: 1847, 609
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/darth_invader/field/jump/down
+  rotate: false
+  xy: 1888, 609
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/darth_invader/field/jump/down
+  rotate: false
+  xy: 1929, 609
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/darth_invader/field/jump/down
+  rotate: false
+  xy: 1970, 609
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/darth_invader/field/jump/left
+  rotate: false
+  xy: 2, 663
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/darth_invader/field/jump/left
+  rotate: false
+  xy: 43, 663
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/darth_invader/field/jump/left
+  rotate: false
+  xy: 84, 663
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/darth_invader/field/jump/left
+  rotate: false
+  xy: 125, 663
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/darth_invader/field/jump/right
+  rotate: false
+  xy: 166, 663
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/darth_invader/field/jump/right
+  rotate: false
+  xy: 207, 663
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/darth_invader/field/jump/right
+  rotate: false
+  xy: 248, 663
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/darth_invader/field/jump/right
+  rotate: false
+  xy: 289, 663
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/darth_invader/field/jump/up
+  rotate: false
+  xy: 330, 663
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/darth_invader/field/jump/up
+  rotate: false
+  xy: 371, 663
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/darth_invader/field/jump/up
+  rotate: false
+  xy: 412, 663
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/darth_invader/field/jump/up
+  rotate: false
+  xy: 453, 663
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/darth_invader/field/ouch/down
+  rotate: false
+  xy: 494, 663
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/darth_invader/field/ouch/down
+  rotate: false
+  xy: 535, 663
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/darth_invader/field/ouch/down
+  rotate: false
+  xy: 576, 663
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/darth_invader/field/ouch/down
+  rotate: false
+  xy: 617, 663
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/darth_invader/field/ouch/left
+  rotate: false
+  xy: 658, 663
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/darth_invader/field/ouch/left
+  rotate: false
+  xy: 699, 663
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/darth_invader/field/ouch/left
+  rotate: false
+  xy: 740, 663
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/darth_invader/field/ouch/left
+  rotate: false
+  xy: 781, 663
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/darth_invader/field/ouch/right
+  rotate: false
+  xy: 822, 663
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/darth_invader/field/ouch/right
+  rotate: false
+  xy: 863, 663
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/darth_invader/field/ouch/right
+  rotate: false
+  xy: 904, 663
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/darth_invader/field/ouch/right
+  rotate: false
+  xy: 945, 663
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/darth_invader/field/ouch/up
+  rotate: false
+  xy: 986, 663
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/darth_invader/field/ouch/up
+  rotate: false
+  xy: 1027, 663
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/darth_invader/field/ouch/up
+  rotate: false
+  xy: 1068, 663
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/darth_invader/field/ouch/up
+  rotate: false
+  xy: 1109, 663
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/darth_invader/field/stand/down
+  rotate: false
+  xy: 1150, 663
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/darth_invader/field/stand/left
+  rotate: false
+  xy: 1191, 663
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/darth_invader/field/stand/right
+  rotate: false
+  xy: 1232, 663
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/darth_invader/field/stand/up
+  rotate: false
+  xy: 1273, 663
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/darth_invader/field/walk/down
+  rotate: false
+  xy: 1314, 663
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/darth_invader/field/walk/down
+  rotate: false
+  xy: 1355, 663
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/darth_invader/field/walk/down
+  rotate: false
+  xy: 1396, 663
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/darth_invader/field/walk/down
+  rotate: false
+  xy: 1437, 663
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/darth_invader/field/walk/left
+  rotate: false
+  xy: 1478, 663
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/darth_invader/field/walk/left
+  rotate: false
+  xy: 1519, 663
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/darth_invader/field/walk/left
+  rotate: false
+  xy: 1560, 663
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/darth_invader/field/walk/left
+  rotate: false
+  xy: 1601, 663
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/darth_invader/field/walk/right
+  rotate: false
+  xy: 1642, 663
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/darth_invader/field/walk/right
+  rotate: false
+  xy: 1683, 663
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/darth_invader/field/walk/right
+  rotate: false
+  xy: 1724, 663
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/darth_invader/field/walk/right
+  rotate: false
+  xy: 1765, 663
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/darth_invader/field/walk/up
+  rotate: false
+  xy: 1806, 663
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/darth_invader/field/walk/up
+  rotate: false
+  xy: 1847, 663
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/darth_invader/field/walk/up
+  rotate: false
+  xy: 1888, 663
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/darth_invader/field/walk/up
+  rotate: false
+  xy: 1929, 663
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/erik_the_red/battler/battler
+  rotate: false
+  xy: 2, 717
+  size: 188, 183
+  orig: 188, 183
+  offset: 0, 0
+  index: 1
+characters/erik_the_red/face/happy
+  rotate: false
+  xy: 192, 717
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 1
+characters/erik_the_red/face/normal
+  rotate: false
+  xy: 246, 717
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 1
+characters/erik_the_red/face/ouch
+  rotate: false
+  xy: 300, 717
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 1
+characters/erik_the_red/face/sad
+  rotate: false
+  xy: 354, 717
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 1
+characters/gladia_macabre/battler/battler
+  rotate: false
+  xy: 408, 717
+  size: 181, 273
+  orig: 181, 273
+  offset: 0, 0
+  index: 1
+characters/gladia_macabre/face/angry
+  rotate: false
+  xy: 591, 717
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 1
+characters/gladia_macabre/face/normal
+  rotate: false
+  xy: 645, 717
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 1
+characters/gladia_macabre/face/ouch
+  rotate: false
+  xy: 699, 717
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 1
+characters/gladia_macabre/face/sad
+  rotate: false
+  xy: 753, 717
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 1
+characters/magia_karnedit/battler/battler
+  rotate: false
+  xy: 807, 717
+  size: 142, 274
+  orig: 142, 274
+  offset: 0, 0
+  index: 1
+characters/magia_karnedit/face/angry
+  rotate: false
+  xy: 951, 717
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 1
+characters/magia_karnedit/face/normal
+  rotate: false
+  xy: 1005, 717
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 1
+characters/magia_karnedit/face/ouch
+  rotate: false
+  xy: 1059, 717
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 1
+characters/magia_karnedit/face/sad
+  rotate: false
+  xy: 1113, 717
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 1
+characters/other/Girl Template
+  rotate: false
+  xy: 1167, 717
+  size: 228, 250
+  orig: 228, 250
+  offset: 0, 0
+  index: -1
+characters/other/HeroTemplate
+  rotate: false
+  xy: 1397, 717
+  size: 126, 250
+  orig: 126, 250
+  offset: 0, 0
+  index: -1
+characters/other/Imjustapoorgirlnobodylovesme
+  rotate: false
+  xy: 1525, 717
+  size: 152, 260
+  orig: 152, 260
+  offset: 0, 0
+  index: -1
+characters/other/Landlord.fw
+  rotate: false
+  xy: 1679, 717
+  size: 228, 222
+  orig: 228, 222
+  offset: 0, 0
+  index: -1
+characters/other/Landlord
+  rotate: false
+  xy: 2, 993
+  size: 228, 222
+  orig: 228, 222
+  offset: 0, 0
+  index: -1
+characters/protox_toxorp/Battler/battler
+  rotate: false
+  xy: 232, 993
+  size: 118, 245
+  orig: 118, 245
+  offset: 0, 0
+  index: -1
+characters/protox_toxorp/Face/angry
+  rotate: false
+  xy: 352, 993
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 1
+characters/protox_toxorp/Face/happy
+  rotate: false
+  xy: 406, 993
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 1
+characters/protox_toxorp/Face/ouch
+  rotate: false
+  xy: 460, 993
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 1
+interface/cursor
+  rotate: false
+  xy: 514, 993
+  size: 29, 37
+  orig: 29, 37
+  offset: 0, 0
+  index: -1
+interface/title
+  rotate: false
+  xy: 545, 993
+  size: 1024, 768
+  orig: 1024, 768
+  offset: 0, 0
+  index: -1
+interface/window
+  rotate: false
+  xy: 1571, 993
+  size: 156, 156
+  orig: 156, 156
+  offset: 0, 0
+  index: -1
+items/potion
+  rotate: false
+  xy: 1729, 993
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: -1
+tilesets/tileset
+  rotate: false
+  xy: 1783, 993
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
