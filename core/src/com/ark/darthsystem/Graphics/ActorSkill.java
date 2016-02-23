@@ -72,8 +72,8 @@ public class ActorSkill extends ActorCollision {
     private float relY;
     private Skill skill;
     private Actor battlerAnimation;
-    private Sound fieldSound = Gdx.audio.newSound(Gdx.files.internal("sound/slash.wav"));
-    private Sound battlerSound = Gdx.audio.newSound(Gdx.files.internal("sound/slash.wav"));
+    private Sound fieldSound = Gdx.audio.newSound(Gdx.files.internal("sounds/slash.wav"));
+    private Sound battlerSound = Gdx.audio.newSound(Gdx.files.internal("sounds/slash.wav"));
     private float translateX;
     private float translateY;
     private Sprite[] originalFieldImage;

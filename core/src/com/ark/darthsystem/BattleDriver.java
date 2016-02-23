@@ -266,8 +266,7 @@ public class BattleDriver {
         boolean loaded = false;
         if (loaded) {
             try {
-                Database1.load(BattleDriver.condition(
-                        "Type in the save file's name."));
+                Database1.load(BattleDriver.condition("Type in the save file's name."));
             } catch (IOException | ClassNotFoundException e) {
                 System.out.println(e);
                 loaded = load();
@@ -321,20 +320,13 @@ public class BattleDriver {
             return;
         }
         party[position] = null;
-        System.arraycopy(tempParty,
-                0,
-                party,
-                0,
-                position);
+        System.arraycopy(tempParty, 0, party, 0, position);
         if (party.length > position + 1) {
             System.arraycopy(tempParty,
                     position,
                     party,
-                    position +
-                    1,
-                    party.length -
-                    position +
-                    1);
+                    position + 1,
+                    party.length - position + 1);
         }
         party = tempParty;
 
@@ -342,11 +334,7 @@ public class BattleDriver {
 
     public static void addMember(Battler[] party, Battler added) {
         Battler[] tempParty = new Battler[party.length + 1];
-        System.arraycopy(tempParty,
-                0,
-                party,
-                0,
-                party.length);
+        System.arraycopy(tempParty, 0, party, 0, party.length);
         tempParty[tempParty.length - 1] = added;
         party = tempParty;
     }

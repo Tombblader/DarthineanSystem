@@ -7,7 +7,7 @@ public class Database1Point5 {
 
     public static OverheadMap testing;
     public Database1Point5() {
-        testing = new OverheadMap("com/ark/darthsystem/Graphics/Map/Testing2.tmx");
+        testing = new OverheadMap("maps/Testing2.tmx");
         Database2.player.setMap(testing, 80 / GraphicsDriver.getPlayerCamera().getConversion(), 80 / GraphicsDriver.getPlayerCamera().getConversion());
         Database2.ErikAI.setMap(testing, 500 / GraphicsDriver.getPlayerCamera().getConversion(), 500 / GraphicsDriver.getPlayerCamera().getConversion());
         Database2.GraphicsPotion.setMap(testing, false);
