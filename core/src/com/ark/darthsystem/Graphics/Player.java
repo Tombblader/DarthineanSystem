@@ -18,6 +18,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -30,7 +31,7 @@ import java.util.Iterator;
  * @author trankt1
  */
 public class Player extends ActorCollision {
-    private static final float SPEED = 20;
+    private static final float SPEED = .5f;
     private static final float DELAY = 6f / 60f;
 
     private int moveUp = Keys.UP;
@@ -83,9 +84,10 @@ public class Player extends ActorCollision {
         FreeTypeFontGenerator gen = new FreeTypeFontGenerator(Gdx.files.internal(
                 "fonts/monofont.ttf"));
         FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
-        parameter.size = (int) (24 / PlayerCamera.PIXELS_TO_METERS);
+        parameter.size = 24;
         parameter.flip = true;
         font = gen.generateFont(parameter);
+        font.setColor(Color.GRAY);
         font.setUseIntegerPositions(false);
         gen.dispose();
         // playerInput = Database2.createInputInstance();
@@ -239,48 +241,45 @@ public class Player extends ActorCollision {
     public void printStats(Batch batch) {
 //        final int STAT_WIDTH = (int) (Gdx.graphics.getWidth() / GraphicsDriver.getCurrentCamera().getConversion());
 //        final int STAT_HEIGHT = (int) (76  / GraphicsDriver.getCurrentCamera().getConversion());
-        final float SUB_WIDTH = (Gdx.graphics.getWidth() / 6f)  / GraphicsDriver.getCurrentCamera().getConversion();
-        final float NAME_X = (52f / GraphicsDriver.getCurrentCamera().getConversion());
-        final float NAME_Y = (10f  / GraphicsDriver.getCurrentCamera().getConversion());
-        final float FONT_SIZE = (GraphicsDriver.getFont().getCapHeight()) / GraphicsDriver.getCurrentCamera().getConversion();
-
+        final float SUB_WIDTH = Gdx.graphics.getWidth() / 6f;
+        final float NAME_X = 52f;
+        final float NAME_Y = 10f;
+        final float FONT_SIZE = GraphicsDriver.getFont().getCapHeight();
+        if (GraphicsDriver.getCurrentCamera() instanceof PlayerCamera) {
+            batch.setProjectionMatrix(GraphicsDriver.getCamera().combined);
+        }
         for (int i = 0; i < getAllActorBattlers().size(); i++) {
             Sprite temp = (Sprite) (getAllActorBattlers().get(i).getSprite().getCurrentFaceAnimation().getKeyFrame(getElapsedTime()));
             batch.draw(temp,
-                    (SUB_WIDTH * i + GraphicsDriver.getCurrentCamera().getScreenPositionX()),
-                    (GraphicsDriver.getCurrentCamera().getScreenPositionY()),
+                    (SUB_WIDTH * i + GraphicsDriver.getCamera().getScreenPositionX()),
+                    (GraphicsDriver.getCamera().getScreenPositionY()),
                     0,
                     0,
                     temp.getRegionWidth(),
                     temp.getRegionHeight(),
-                    temp.getScaleX() / GraphicsDriver.getCurrentCamera().getConversion(),
-                    temp.getScaleY() / GraphicsDriver.getCurrentCamera().getConversion(),
+                    temp.getScaleX(),
+                    temp.getScaleY(),
                     temp.getRotation());
-            GraphicsDriver.drawMessage(batch,
+            GraphicsDriver.drawMessage(batch, font,
                     getAllActorBattlers().get(i).getBattler().getName(),
-                    ((NAME_X + SUB_WIDTH * i)
-                            + GraphicsDriver.getCurrentCamera().getScreenPositionX()),
-                    (NAME_Y
-                            + GraphicsDriver.getCurrentCamera().getScreenPositionY()));
-            GraphicsDriver.drawMessage(batch,
+                    ((NAME_X + SUB_WIDTH * i) + GraphicsDriver.getCamera().getScreenPositionX()),
+                    (NAME_Y + GraphicsDriver.getCamera().getScreenPositionY()));
+            GraphicsDriver.drawMessage(batch, font,
                     "HP:  " + getAllActorBattlers().get(i).getBattler().getHP() + " / " + getAllActorBattlers().get(i).getBattler().getMaxHP(),
-                    ((NAME_X + SUB_WIDTH * i)
-                            + GraphicsDriver.getCurrentCamera().getScreenPositionX()),
-                    ((NAME_Y + FONT_SIZE)
-                            + GraphicsDriver.getCurrentCamera().getScreenPositionY()
+                    ((NAME_X + SUB_WIDTH * i) + GraphicsDriver.getCamera().getScreenPositionX()),
+                    ((NAME_Y + FONT_SIZE) + GraphicsDriver.getCamera().getScreenPositionY()
                             ));
-            GraphicsDriver.drawMessage(batch,
+            GraphicsDriver.drawMessage(batch, font,
                     "MP:  " + getAllActorBattlers().get(i).getBattler().getMP() + " / " + getAllActorBattlers().get(i).getBattler().getMaxMP(),
-                    ((NAME_X + SUB_WIDTH * i)
-                            + GraphicsDriver.getCurrentCamera().getScreenPositionX()),
-                    ((NAME_Y + FONT_SIZE * 2f)
-                            + GraphicsDriver.getCurrentCamera().getScreenPositionY()));
-            GraphicsDriver.drawMessage(batch,
+                    ((NAME_X + SUB_WIDTH * i) + GraphicsDriver.getCamera().getScreenPositionX()),
+                    ((NAME_Y + FONT_SIZE * 2f) + GraphicsDriver.getCamera().getScreenPositionY()));
+            GraphicsDriver.drawMessage(batch, font,
                     getAllActorBattlers().get(i).currentSkill.getSkill().getName(),
-                    ((NAME_X + SUB_WIDTH * i)
-                            + GraphicsDriver.getCurrentCamera().getScreenPositionX()),
-                    ((NAME_Y + FONT_SIZE * 3f)
-                           + GraphicsDriver.getCurrentCamera().getScreenPositionY()));
+                    ((NAME_X + SUB_WIDTH * i) + GraphicsDriver.getCamera().getScreenPositionX()),
+                    ((NAME_Y + FONT_SIZE * 3f) + GraphicsDriver.getCamera().getScreenPositionY()));
+        }
+        if (GraphicsDriver.getCurrentCamera() instanceof PlayerCamera) {
+            batch.setProjectionMatrix(GraphicsDriver.getPlayerCamera().combined);
         }
 
     }

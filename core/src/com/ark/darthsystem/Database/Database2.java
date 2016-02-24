@@ -52,8 +52,8 @@ public class Database2 extends com.ark.darthsystem.Database.Database1 {
                                 toArray(Sprite.class),
                                 (Sprite[]) GraphicsDriver.getMasterSheet().
                                         createSprites("animations/crosscall/crosscall").toArray(Sprite.class),
-                                1,
-                                1,
+                                0,
+                                0,
                                 5.0f / 60.0f,
                                 Database1.Red_Spin,
                                 ActorSkill.Area.SELF));

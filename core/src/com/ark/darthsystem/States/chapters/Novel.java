@@ -56,19 +56,16 @@ public abstract class Novel implements State {
 
     public void render(SpriteBatch batch) {
         State ste = null;
-        if (GraphicsDriver.getCurrentState() instanceof Message) {
-            for (State state : GraphicsDriver.getState()) {
-                if (!(state instanceof Message)
-                        && !(state instanceof Menu)
-                        && !(state instanceof Novel)//&& !(state instanceof Pause)
-                        ) {
-                    ste = state;
-                }
+        for (State state : GraphicsDriver.getState()) {
+            if (!(state instanceof Message)
+                    && !(state instanceof Menu)
+                    && !(state instanceof Novel)//&& !(state instanceof Pause)
+                    ) {
+                ste = state;
             }
-            if (ste != null) {
-                ste.render(batch);
-            }
-            
+        }
+        if (ste != null) {
+            ste.render(batch);
         }
     }
 

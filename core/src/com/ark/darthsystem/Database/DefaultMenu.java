@@ -118,6 +118,7 @@ public class DefaultMenu extends Menu {
             case "Return to Title":
                 GraphicsDriver.getState().clear();
                 GraphicsDriver.getState().add(new Title());
+                GraphicsDriver.setCurrentCamera(GraphicsDriver.getCamera());
                 break;
         }
         return choice;

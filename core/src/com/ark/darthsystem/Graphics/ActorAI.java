@@ -17,7 +17,7 @@ import java.util.ArrayList;
  * @author trankt1
  */
 public class ActorAI extends Player {
-    private float speed = 20;
+    private float speed = .5f;
     private int vision = (int) (300 / PlayerCamera.PIXELS_TO_METERS);
 
     public ActorAI(ArrayList<ActorBattler> getBattlers, float getX, float getY) {
@@ -80,8 +80,8 @@ public class ActorAI extends Player {
     }
 
     public boolean isInRange() {
-        double distance = Math.sqrt(Math.pow(GraphicsDriver.getPlayer().getX() - (this.getX()), 2) + Math.pow((GraphicsDriver.getPlayer().getY() - (this.getY())), 2));
-        return distance < 80 / PlayerCamera.PIXELS_TO_METERS;
+        float distance = (float) Math.sqrt(Math.pow(GraphicsDriver.getPlayer().getX() - (this.getX()), 2) + Math.pow((GraphicsDriver.getPlayer().getY() - (this.getY())), 2));
+        return distance < 80f / PlayerCamera.PIXELS_TO_METERS;
     }
 
     public boolean isInRange(int range) {
@@ -156,8 +156,8 @@ public class ActorAI extends Player {
     public void render(Batch batch) {
         Sprite currentImage = getCurrentImage();
         batch.draw(currentImage,
-                (int) this.getX() - currentImage.getOriginX(),
-                (int) this.getY() - currentImage.getOriginY(),
+                this.getX() - currentImage.getOriginX(),
+                this.getY() - currentImage.getOriginY(),
                 currentImage.getOriginX(),
                 currentImage.getOriginY(),
                 currentImage.getWidth(),

@@ -37,13 +37,12 @@ public class ActorSkill extends ActorCollision {
         private int translateX;
         private int translateY;
 
-        int updateX(int delta,
-                Facing f) {
+        float updateX(float delta, Facing f) {
             switch (this) {
                 case FRONT:
-                    return (int) (translateX * f.getX());
+                    return translateX * f.getX();
                 case LINE:
-                    return (int) f.getX();
+                    return f.getX();
                 case RADIUS:
 
                     break;
@@ -234,7 +233,6 @@ public class ActorSkill extends ActorCollision {
         try {
             fieldSound.stop();
             fieldSound.play();
-            System.out.println("I've been played");
         }
         catch (Exception e) {
             e.printStackTrace();

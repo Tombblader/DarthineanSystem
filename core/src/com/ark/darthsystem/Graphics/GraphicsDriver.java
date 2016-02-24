@@ -198,14 +198,12 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
         playerCamera = new PlayerCamera(w, h);
         currentCamera = camera;
         batch = new SpriteBatch();
-        masterSheet = new TextureAtlas(Gdx.files.internal(
-                "master/MasterSheet.txt"));
+        masterSheet = new TextureAtlas(Gdx.files.internal("master/MasterSheet.txt"));
         for (TextureRegion t : masterSheet.getRegions()) {
             t.flip(false, true);
         }
         
-        FreeTypeFontGenerator gen = new FreeTypeFontGenerator(Gdx.files.internal(
-                "fonts/monofont.ttf"));
+        FreeTypeFontGenerator gen = new FreeTypeFontGenerator(Gdx.files.internal("fonts/monofont.ttf"));
         FreeTypeFontParameter parameter = new FreeTypeFontParameter();
         parameter.size = 24;
         parameter.flip = true;

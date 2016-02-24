@@ -39,10 +39,10 @@ public abstract class Menu implements State {
     private String header;
     private boolean isPause;
     private final int MENU_WIDTH = 200;
-    private final int MENU_X = (int) (700);
+    private final int MENU_X = 700;
     private int x;
     private int y;
-    private final int MENU_Y = (int) (400);
+    private final int MENU_Y = 400;
     private int menuIndex = 0;
     private CopyOnWriteArrayList<Menu> subMenuList;
     private final int UP_BUTTON = Keys.UP;
@@ -184,6 +184,7 @@ public abstract class Menu implements State {
     public void renderMenu(Batch batch) {
         final int PADDING_X = 20;
         final int PADDING = 3;
+//        final int PADDING_Y = 10;
 //        final int MENU_WIDTH = 200;
         final int MENU_HEIGHT = 10 + choices.length * (int) (GraphicsDriver.getFont().getData().capHeight * GraphicsDriver.getFont().getData().scaleY + PADDING);
         boolean isOverhead = false;
@@ -202,43 +203,31 @@ public abstract class Menu implements State {
         
         if (isOverhead) {
             batch.begin();
+            batch.setProjectionMatrix(GraphicsDriver.getCamera().combined);
         }
-        float conversion = 1f;
-        conversion = GraphicsDriver.getCurrentCamera().getConversion();
-        font.getData().scaleX = FONT_SCALE / conversion;
-        font.getData().scaleY = FONT_SCALE / conversion;
         for (int i = 0; i < choices.length; i++) {
             GraphicsDriver.drawMessage(batch, font,
                     choices[i],
-                    ((5 + MENU_X) / conversion + GraphicsDriver.getCurrentCamera().getScreenPositionX()), 
-                    ((MENU_Y + (font.getData().capHeight * font.getData().scaleY * conversion + PADDING)  * (i + 1)) / conversion + GraphicsDriver.getCurrentCamera().getScreenPositionY()));
-//            System.out.println(choices[i] + " " + 
-//                    ((5 + MENU_X) / conversion + GraphicsDriver.getCurrentCamera().getScreenPositionX()) + " " +
-//                    ((MENU_Y + (font.getData().capHeight * font.getData().scaleY * conversion + PADDING)  * (i + 1)) / conversion + GraphicsDriver.getCurrentCamera().getScreenPositionY()));
-
+                    (5 + MENU_X) + GraphicsDriver.getCamera().getScreenPositionX(), 
+                    (MENU_Y + (font.getData().capHeight * font.getData().scaleY + PADDING) * (i + 1)) + GraphicsDriver.getCamera().getScreenPositionY());
         }
         batch.draw(cursorTexture,
-                ((MENU_X - PADDING_X) / conversion + GraphicsDriver.getCurrentCamera().getScreenPositionX()),
-                ((MENU_Y + cursorIndex * (font.getData().capHeight * font.getData().scaleY * conversion + PADDING)) / conversion) + GraphicsDriver.getCurrentCamera().getScreenPositionY(),
+                (MENU_X - PADDING_X) + GraphicsDriver.getCamera().getScreenPositionX(),
+                (MENU_Y + cursorIndex * (font.getData().capHeight * font.getData().scaleY + PADDING)) + GraphicsDriver.getCamera().getScreenPositionY(),
                     0,
                     0,
                     cursorTexture.getRegionWidth(),
                     cursorTexture.getRegionHeight(),
-                    cursorTexture.getScaleX() / conversion,
-                    cursorTexture.getScaleY() / conversion,
+                    cursorTexture.getScaleX(),
+                    cursorTexture.getScaleY(),
                     cursorTexture.getRotation());
         GraphicsDriver.drawMessage(batch, font,
                 header,
-                15 / conversion + GraphicsDriver.getCurrentCamera().getScreenPositionX(),
-                ((HEIGHT - HEIGHT / 4) / conversion + GraphicsDriver.getCurrentCamera().getScreenPositionY()));
-//                System.out.println(header + " " +
-//                    15 / conversion + GraphicsDriver.getCurrentCamera().getScreenPositionX() + " " +
-//                    ((HEIGHT - HEIGHT / 4) / conversion + GraphicsDriver.getCurrentCamera().getScreenPositionY()));
-        
-//        font.getData().scaleX = FONT_SCALE;
-//        font.getData().scaleY = FONT_SCALE;
+                15 + GraphicsDriver.getCamera().getScreenPositionX(),
+                ((HEIGHT - HEIGHT / 4) + GraphicsDriver.getCamera().getScreenPositionY()));
         if (isOverhead) {
             batch.end();
+            batch.setProjectionMatrix(GraphicsDriver.getPlayerCamera().combined);
         }
     }
 

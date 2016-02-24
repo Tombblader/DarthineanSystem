@@ -206,8 +206,8 @@ public class Actor {
     public void render(Batch batch) {
         if (currentImage != null) {
             batch.draw(currentImage,
-                    (int) this.getX() - currentImage.getOriginX(),
-                    (int) this.getY() - currentImage.getOriginY(),
+                    this.getX() - currentImage.getOriginX(),
+                    this.getY() - currentImage.getOriginY(),
                     currentImage.getOriginX(),
                     currentImage.getOriginY(),
                     currentImage.getWidth(),

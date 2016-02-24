@@ -596,8 +596,7 @@ public class Battler implements Serializable {
     }
 
     public boolean isAlive() {
-        return HP >
-                0;
+        return HP > 0;
     }
 
     public boolean isDelaying() {

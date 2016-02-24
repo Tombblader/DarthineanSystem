@@ -285,6 +285,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
         height = prop.get("height", Integer.class) * prop.get("tileheight", Integer.class);        
         playerActors = new CopyOnWriteArrayList<Actor>();
         enemyActors = new CopyOnWriteArrayList<Actor>();
+        World.setVelocityThreshold(1000f);
         world = new World(new Vector2(0, 0), true);
         world.setContactListener(new ContactListener() {
 
@@ -493,8 +494,8 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
     public void render(SpriteBatch batch) {
         GraphicsDriver.setCurrentCamera(GraphicsDriver.getPlayerCamera());
         GraphicsDriver.getPlayerCamera().followPlayer(
-                (int) Database2.player.getX(),
-                (int) Database2.player.getY(),
+                Database2.player.getX(),
+                Database2.player.getY(),
                 width,
                 height);
         GraphicsDriver.getPlayerCamera().update();
@@ -554,6 +555,8 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
     @Override
     public void dispose() {
         super.dispose();
+        world.dispose();
+        batch.dispose();
     }
 
     public void setMap(String mapName) {

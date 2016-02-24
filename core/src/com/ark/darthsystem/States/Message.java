@@ -125,26 +125,25 @@ public class Message implements State {
         
         if (isOverhead) {
             batch.begin();
+            batch.setProjectionMatrix(GraphicsDriver.getCamera().combined);
         }
 
         
         int i = 0;
-        float conversion = GraphicsDriver.getCurrentCamera().getConversion();
-        font.getData().scaleX = FONT_SCALE / conversion;
-        font.getData().scaleY = FONT_SCALE / conversion;
         GraphicsDriver.drawMessage(batch, font, header,
-                conversion,
-                ((HEIGHT - HEIGHT / 4 - 24) / conversion + GraphicsDriver.getCurrentCamera().getScreenPositionY()));
+                15 + GraphicsDriver.getCamera().getScreenPositionX(),
+                ((HEIGHT - HEIGHT / 4 - 24) + GraphicsDriver.getCamera().getScreenPositionY()));
         for (String message : messages) {
             GraphicsDriver.drawMessage(batch, font,
                 message,
-                15 / conversion + GraphicsDriver.getCurrentCamera().getScreenPositionX(),
-                ((HEIGHT - HEIGHT / 4 + font.getCapHeight() * FONT_SCALE * i) / conversion + GraphicsDriver.getCurrentCamera().getScreenPositionY()));
+                15 + GraphicsDriver.getCamera().getScreenPositionX(),
+                ((HEIGHT - HEIGHT / 4 + font.getCapHeight() * FONT_SCALE * i) + GraphicsDriver.getCamera().getScreenPositionY()));
             i++;
         }
 
         if (isOverhead) {
             batch.end();
+            batch.setProjectionMatrix(GraphicsDriver.getPlayerCamera().combined);
         }
     }
 

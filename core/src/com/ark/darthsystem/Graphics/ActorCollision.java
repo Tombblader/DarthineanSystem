@@ -58,7 +58,7 @@ public class ActorCollision extends Actor {
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = new CircleShape() {
             {
-                setRadius(12f);
+                setRadius(24f / GraphicsDriver.getPlayerCamera().getConversion());
             }
         };
         fixtureDef.density = 0.1f; 
@@ -99,8 +99,8 @@ public class ActorCollision extends Actor {
     
     public void update(float delta) {
         super.update(delta);
-        setX(body.getPosition().x);
-        setY(body.getPosition().y);        
+        setX(Math.round(body.getPosition().x * 100f) / 100f);
+        setY(Math.round(body.getPosition().y * 100f) / 100f);        
     }
     
     public void setMap(OverheadMap map, boolean isPlayer) {
