@@ -5,6 +5,7 @@
  */
 package com.ark.darthsystem.States;
 
+import com.ark.darthsystem.Database.InterfaceDatabase;
 import com.ark.darthsystem.Graphics.*;
 import com.ark.darthsystem.States.chapters.Novel;
 import com.badlogic.gdx.Gdx;
@@ -18,6 +19,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 
 /**
  *
@@ -63,12 +65,13 @@ public class Message implements State {
         messages = messageQueue.remove();
         isPause = true;
         destroyOnExit = false;
-        font = new BitmapFont(Gdx.files.internal(
-                "fonts/font.fnt"),
-                true);
-        font.setColor(Color.BLACK);
-        font.getData().scaleX = FONT_SCALE;
-        font.getData().scaleY = FONT_SCALE;
+        FreeTypeFontGenerator gen = new FreeTypeFontGenerator(Gdx.files.internal("fonts/monofont.ttf"));
+        FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+        parameter.size = 24;
+        parameter.flip = true;
+        parameter.borderColor = Color.BLACK;
+        parameter.color = Color.WHITE;
+        font = gen.generateFont(parameter);
     }
     
     public Message(ActorBattler header, ArrayList<String> getMessage) {
@@ -109,6 +112,7 @@ public class Message implements State {
     }
     
     private void renderMessage(Batch batch) {
+        final int PADDING_X = 12;
         boolean isOverhead = false;
         State s = null;
         for (State states : GraphicsDriver.getState()) {
@@ -128,6 +132,7 @@ public class Message implements State {
             batch.setProjectionMatrix(GraphicsDriver.getCamera().combined);
         }
 
+        InterfaceDatabase.TEXT_BOX.draw(batch, GraphicsDriver.getCamera().getScreenPositionX(), HEIGHT - HEIGHT / 4 + GraphicsDriver.getCamera().getScreenPositionY(), WIDTH, HEIGHT / 4);
         
         int i = 0;
         GraphicsDriver.drawMessage(batch, font, header,
@@ -137,7 +142,7 @@ public class Message implements State {
             GraphicsDriver.drawMessage(batch, font,
                 message,
                 15 + GraphicsDriver.getCamera().getScreenPositionX(),
-                ((HEIGHT - HEIGHT / 4 + font.getCapHeight() * FONT_SCALE * i) + GraphicsDriver.getCamera().getScreenPositionY()));
+                ((PADDING_X + HEIGHT - HEIGHT / 4 + font.getCapHeight() * FONT_SCALE * i) + GraphicsDriver.getCamera().getScreenPositionY()));
             i++;
         }
 
@@ -174,5 +179,9 @@ public class Message implements State {
 
     public void appendMessage(ArrayList<String> getMessage) {
         messages.addAll(getMessage);
+    }
+    
+    public String getMusic() {
+        return null;
     }
 }

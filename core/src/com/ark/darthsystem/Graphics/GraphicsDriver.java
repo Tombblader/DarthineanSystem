@@ -111,10 +111,16 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
 
     public static void addState(State getStates) {
         states.add(getStates);
+        if (getStates.getMusic() != null) {
+            playMusic(getStates.getMusic());
+        }
     }
 
     public static void setState(State getState) {
         states.set((states.size() - 1), getState);
+        if (getState.getMusic() != null) {
+            playMusic(getState.getMusic());
+        }
     }
 
     public static void setMessage(ArrayList<String> getMessage) {
@@ -143,10 +149,7 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
             ((Message) (getCurrentState())).appendMessage(getMessage);
         } else if ((getCurrentState() instanceof OverheadMap)) {
 //			((OverheadMap) (getCurrentState())).appendMessage(getMessage);
-        } else if (getMessage != null &&
-                !getMessage.isEmpty() &&
-                !getMessage.get(0).
-                equals("")) {
+        } else if (getMessage != null && !getMessage.isEmpty() && !getMessage.get(0).equals("")) {
             setMessage(getMessage);
         }
     }
@@ -208,15 +211,10 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
         parameter.size = 24;
         parameter.flip = true;
         parameter.borderColor = Color.BLACK;
-        parameter.color = Color.LIGHT_GRAY;
+        parameter.color = Color.WHITE;
         font = gen.generateFont(parameter);
         font.setUseIntegerPositions(false);
         gen.dispose();
-        /*        font = new BitmapFont(Gdx.files.internal(
-                "com/ark/darthsystem/assets/fonts/font.fnt"),
-                true);
-        font.getData().scaleX = FONT_SCALE;
-        font.getData().scaleY = FONT_SCALE;*/
         Gdx.input.setInputProcessor(input);
         new Database2();
         states = new CopyOnWriteArrayList();

@@ -23,5 +23,5 @@ public interface State {
     public void render(SpriteBatch batch);
 
     public void dispose();
-
+    public String getMusic();
 }

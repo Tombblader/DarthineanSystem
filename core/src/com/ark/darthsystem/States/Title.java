@@ -21,6 +21,7 @@ public class Title implements State {
     
     private Menu titleMenu;
     private TextureRegion titleTexture;
+    private final String BGM = null;
     
     public Title() {
         titleTexture = GraphicsDriver.getMasterSheet().
@@ -71,6 +72,11 @@ public class Title implements State {
     @Override
     public void dispose() {
         
+    }
+
+    @Override
+    public String getMusic() {
+        return BGM;
     }
     
 }

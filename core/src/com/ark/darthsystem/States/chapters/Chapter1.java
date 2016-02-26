@@ -41,5 +41,8 @@ public class Chapter1 extends Novel {
             }
         });
     }
+    public String getMusic() {
+        return null;
+    }
     
 }

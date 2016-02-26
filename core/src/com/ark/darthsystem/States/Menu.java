@@ -5,6 +5,7 @@
  */
 package com.ark.darthsystem.States;
 
+import com.ark.darthsystem.Database.InterfaceDatabase;
 import com.ark.darthsystem.GameOverException;
 import com.ark.darthsystem.Graphics.GraphicsDriver;
 import com.ark.darthsystem.Graphics.Input;
@@ -21,6 +22,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 
 /**
  *
@@ -49,8 +51,7 @@ public abstract class Menu implements State {
     private BitmapFont font;
     private final float FONT_SCALE = .25f;
 
-    public Menu(String header,
-            String[] choices) {
+    public Menu(String header, String[] choices) {
         this.choices = choices;
         this.header = header;
         isPause = true;
@@ -58,18 +59,16 @@ public abstract class Menu implements State {
         subMenuList = new CopyOnWriteArrayList<>();
         subMenuList.add(this);
         cursorTexture = GraphicsDriver.getMasterSheet().createSprite("interface/cursor");
-        font = new BitmapFont(Gdx.files.internal(
-                "fonts/font.fnt"),
-                true);
-//        font.setColor(Color.BLACK);
-        font.getData().scaleX = FONT_SCALE;
-        font.getData().scaleY = FONT_SCALE;
+        FreeTypeFontGenerator gen = new FreeTypeFontGenerator(Gdx.files.internal("fonts/monofont.ttf"));
+        FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+        parameter.size = 24;
+        parameter.flip = true;
+        parameter.borderColor = Color.BLACK;
+        parameter.color = Color.WHITE;
+        font = gen.generateFont(parameter);
     }
 
-    public Menu(String header,
-            String[] choices,
-            boolean pause,
-            boolean mutable) {
+    public Menu(String header, String[] choices, boolean pause, boolean mutable) {
         final int MENU_HEIGHT = 10
                 + choices.length
                 * (int) (GraphicsDriver.
@@ -81,12 +80,13 @@ public abstract class Menu implements State {
         destroyOnExit = mutable;
         subMenuList.add(this);
         cursorTexture = GraphicsDriver.getMasterSheet().createSprite("interface/cursor");
-        font = new BitmapFont(Gdx.files.internal(
-                "fonts/font.fnt"),
-                true);
-        font.setColor(Color.BLACK);
-        font.getData().scaleX = FONT_SCALE;
-        font.getData().scaleY = FONT_SCALE;
+        FreeTypeFontGenerator gen = new FreeTypeFontGenerator(Gdx.files.internal("fonts/monofont.ttf"));
+        FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+        parameter.size = 24;
+        parameter.flip = true;
+        parameter.borderColor = Color.BLACK;
+        parameter.color = Color.WHITE;
+        font = gen.generateFont(parameter);
     }
 
     public Menu(String[] choices) {
@@ -102,7 +102,13 @@ public abstract class Menu implements State {
         subMenuList = new CopyOnWriteArrayList<>();
         subMenuList.add(this);
         cursorTexture = GraphicsDriver.getMasterSheet().createSprite("interface/cursor");
-    }
+        FreeTypeFontGenerator gen = new FreeTypeFontGenerator(Gdx.files.internal("fonts/monofont.ttf"));
+        FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+        parameter.size = 24;
+        parameter.flip = true;
+        parameter.borderColor = Color.BLACK;
+        parameter.color = Color.WHITE;
+        font = gen.generateFont(parameter);    }
 
     public void addSubMenu(Menu m) {
         subMenuList.add(m);
@@ -185,8 +191,8 @@ public abstract class Menu implements State {
         final int PADDING_X = 20;
         final int PADDING = 3;
 //        final int PADDING_Y = 10;
-//        final int MENU_WIDTH = 200;
-        final int MENU_HEIGHT = 10 + choices.length * (int) (GraphicsDriver.getFont().getData().capHeight * GraphicsDriver.getFont().getData().scaleY + PADDING);
+        final int MENU_WIDTH = 200;
+        final int MENU_HEIGHT = 24 + choices.length * (int) (GraphicsDriver.getFont().getData().capHeight * GraphicsDriver.getFont().getData().scaleY + PADDING);
         boolean isOverhead = false;
         State s = null;
         for (State states : GraphicsDriver.getState()) {
@@ -205,10 +211,14 @@ public abstract class Menu implements State {
             batch.begin();
             batch.setProjectionMatrix(GraphicsDriver.getCamera().combined);
         }
+
+        InterfaceDatabase.TEXT_BOX.draw(batch, MENU_X, MENU_Y, MENU_WIDTH, MENU_HEIGHT);
+        
+        
         for (int i = 0; i < choices.length; i++) {
             GraphicsDriver.drawMessage(batch, font,
                     choices[i],
-                    (5 + MENU_X) + GraphicsDriver.getCamera().getScreenPositionX(), 
+                    (10 + MENU_X) + GraphicsDriver.getCamera().getScreenPositionX(), 
                     (MENU_Y + (font.getData().capHeight * font.getData().scaleY + PADDING) * (i + 1)) + GraphicsDriver.getCamera().getScreenPositionY());
         }
         batch.draw(cursorTexture,
@@ -277,5 +287,9 @@ public abstract class Menu implements State {
         if (Input.getKeyPressed(Keys.ESCAPE)) {
             throw new GameOverException();
         }
+    }
+    
+    public String getMusic() {
+        return null;
     }
 }

@@ -124,7 +124,7 @@ public class Database2 extends com.ark.darthsystem.Database.Database1 {
     public static Pickup GraphicsPotion;
     public static NovelMode chapter1;
 
-//    public static final TextBox DEFAULT_WINDOW = new TextBox("com.ark.darthsystem/GraphicsPack/assets/Window.png");
+//    public static final TextBox p_WINDOW = new TextBox("com.ark.darthsystem/GraphicsPack/assets/Window.png");
 //    public static final Sprite DEFAULT_CURSOR = new Sprite("com.ark.darthsystem/GraphicsPack/assets/Cursor.png", false);
     public static final ActorSkill Spear = new ActorSkill(
             (Sprite[]) GraphicsDriver.getMasterSheet().

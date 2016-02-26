@@ -66,6 +66,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
     private Fixture boundXMinFixture, boundYMinFixture, boundXMaxFixture, boundYMaxFixture;
     private boolean worldStep;
     private CopyOnWriteArrayList<Body> deleteQueue = new CopyOnWriteArrayList<>();
+    private String bgm;
 
     public float getWidth() {
         return width / PlayerCamera.PIXELS_TO_METERS;
@@ -73,6 +74,10 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
 
     public float getHeight() {
         return height / PlayerCamera.PIXELS_TO_METERS;
+    }
+    
+    public String getMusic() {
+        return bgm;
     }
 
     private void generateBounds() {
@@ -424,6 +429,11 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
         generateBounds();
         generateObjects();
     }
+    
+    public OverheadMap(String mapName, String bgmName) {
+        this(mapName);
+        bgm = bgmName;
+    }
 
     @Override
     public float update(float delta) {
@@ -522,6 +532,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                 }
             }
         }
+        GraphicsDriver.getPlayer().renderGlobalData(batch);
         endRender();
         if (worldStep) {
             world.step(1f/60f, 6, 2);  //Fix the second and third values.

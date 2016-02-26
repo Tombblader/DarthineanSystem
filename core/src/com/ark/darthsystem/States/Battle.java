@@ -15,8 +15,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class Battle implements State {
 
-    private static final String BATTLE_MUSIC
-            = "com/ark/darthsystem/assets/music/ThrillSeeker.midi";
+    private static final String BATTLE_MUSIC = "music/Forbidden Secret Unfolding.mp3";
     private static final String GAME_OVER_MUSIC
             = "com/ark/darthsystem/assets/music/LostBattle.midi";
     private static ArrayList<Battler> party;
@@ -41,6 +40,7 @@ public class Battle implements State {
     private Sprite background;
     private float elapsed = 0;
     private ArrayList<GameTimer> timers;
+    private String bgm;
 
     
     private void renderPersistentActors(SpriteBatch batch) {
@@ -113,7 +113,6 @@ public class Battle implements State {
 
     public void exitBattle() {
         state = State.END;
-        GraphicsDriver.playMusic(previousMusic);
         allAction.clear();
         enemyAction.clear();
         partyAction.clear();
@@ -146,6 +145,11 @@ public class Battle implements State {
             animations.get(animations.size() - 1).setX((float) ((WIDTH + divider * (enemy.indexOf(tempBattler) - 1)) / 2 + divider * enemy.indexOf(tempBattler)));
             animations.get(animations.size() - 1).setY(BATTLER_Y);
         }
+    }
+
+    @Override
+    public String getMusic() {
+        return bgm;
     }
 
     public enum Stats {
@@ -491,6 +495,7 @@ public class Battle implements State {
         partyItems = initializeItems;
         script = initializeScenario;
         turnCount = 1;
+        bgm = BATTLE_MUSIC;
     }
 
     public Battle(ArrayList<ActorBattler> initializeParty,
@@ -498,6 +503,7 @@ public class Battle implements State {
             ArrayList<Item> initializeItems,
             Scenario initializeScenario,
             String initializeMusic) {
+        bgm = initializeMusic;
         partyActors = initializeParty;
         party = new ArrayList<>();
         for (ActorBattler allies : initializeParty) {
@@ -514,8 +520,9 @@ public class Battle implements State {
     }
 
     public Battle start() {
-        previousMusic = BattleDriver.getCurrentMusic();
-        GraphicsDriver.playMusic(BATTLE_MUSIC);
+//        previousMusic = BattleDriver.getCurrentMusic();
+//        GraphicsDriver.playMusic(BATTLE_MUSIC);
+        
         GraphicsDriver.setCurrentCamera(GraphicsDriver.getCamera());
         background = GraphicsDriver.getMasterSheet().createSprite("interface/title");
         updatePersistentActors(0);

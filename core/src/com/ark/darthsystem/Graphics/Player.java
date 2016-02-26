@@ -8,6 +8,7 @@ package com.ark.darthsystem.Graphics;
 import com.ark.darthsystem.Battler;
 import com.ark.darthsystem.Database.Database2;
 import com.ark.darthsystem.Database.DefaultMenu;
+import com.ark.darthsystem.Database.InterfaceDatabase;
 import com.ark.darthsystem.States.OverheadMap;
 import com.ark.darthsystem.Equipment;
 import com.ark.darthsystem.GameOverException;
@@ -87,7 +88,7 @@ public class Player extends ActorCollision {
         parameter.size = 24;
         parameter.flip = true;
         font = gen.generateFont(parameter);
-        font.setColor(Color.GRAY);
+        font.setColor(Color.WHITE);
         font.setUseIntegerPositions(false);
         gen.dispose();
         // playerInput = Database2.createInputInstance();
@@ -239,10 +240,10 @@ public class Player extends ActorCollision {
     }
 
     public void printStats(Batch batch) {
-//        final int STAT_WIDTH = (int) (Gdx.graphics.getWidth() / GraphicsDriver.getCurrentCamera().getConversion());
-//        final int STAT_HEIGHT = (int) (76  / GraphicsDriver.getCurrentCamera().getConversion());
+        final int STAT_WIDTH = (int) (Gdx.graphics.getWidth());
+        final int STAT_HEIGHT = (int) (76);
         final float SUB_WIDTH = Gdx.graphics.getWidth() / 6f;
-        final float NAME_X = 52f;
+        final float NAME_X = 64f;
         final float NAME_Y = 10f;
         final float FONT_SIZE = GraphicsDriver.getFont().getCapHeight();
         if (GraphicsDriver.getCurrentCamera() instanceof PlayerCamera) {
@@ -250,8 +251,10 @@ public class Player extends ActorCollision {
         }
         for (int i = 0; i < getAllActorBattlers().size(); i++) {
             Sprite temp = (Sprite) (getAllActorBattlers().get(i).getSprite().getCurrentFaceAnimation().getKeyFrame(getElapsedTime()));
+            InterfaceDatabase.TEXT_BOX.draw(batch, SUB_WIDTH * i + GraphicsDriver.getCamera().getScreenPositionX(), (GraphicsDriver.getCamera().getScreenPositionY()), SUB_WIDTH,
+                    STAT_HEIGHT);
             batch.draw(temp,
-                    (SUB_WIDTH * i + GraphicsDriver.getCamera().getScreenPositionX()),
+                    (SUB_WIDTH * i + GraphicsDriver.getCamera().getScreenPositionX() + 5),
                     (GraphicsDriver.getCamera().getScreenPositionY()),
                     0,
                     0,
@@ -265,12 +268,12 @@ public class Player extends ActorCollision {
                     ((NAME_X + SUB_WIDTH * i) + GraphicsDriver.getCamera().getScreenPositionX()),
                     (NAME_Y + GraphicsDriver.getCamera().getScreenPositionY()));
             GraphicsDriver.drawMessage(batch, font,
-                    "HP:  " + getAllActorBattlers().get(i).getBattler().getHP() + " / " + getAllActorBattlers().get(i).getBattler().getMaxHP(),
+                    "HP: " + getAllActorBattlers().get(i).getBattler().getHP() + "/" + getAllActorBattlers().get(i).getBattler().getMaxHP(),
                     ((NAME_X + SUB_WIDTH * i) + GraphicsDriver.getCamera().getScreenPositionX()),
                     ((NAME_Y + FONT_SIZE) + GraphicsDriver.getCamera().getScreenPositionY()
                             ));
             GraphicsDriver.drawMessage(batch, font,
-                    "MP:  " + getAllActorBattlers().get(i).getBattler().getMP() + " / " + getAllActorBattlers().get(i).getBattler().getMaxMP(),
+                    "MP: " + getAllActorBattlers().get(i).getBattler().getMP() + "/" + getAllActorBattlers().get(i).getBattler().getMaxMP(),
                     ((NAME_X + SUB_WIDTH * i) + GraphicsDriver.getCamera().getScreenPositionX()),
                     ((NAME_Y + FONT_SIZE * 2f) + GraphicsDriver.getCamera().getScreenPositionY()));
             GraphicsDriver.drawMessage(batch, font,
@@ -380,7 +383,7 @@ public class Player extends ActorCollision {
     
     public void render(Batch batch) {
         super.render(batch);
-        renderGlobalData(batch);
+//        renderGlobalData(batch);
     }
 
     public void renderGlobalData(Batch batch) {

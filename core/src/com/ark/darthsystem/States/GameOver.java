@@ -17,6 +17,7 @@ public class GameOver implements State {
 
     private Menu gameOverMenu;
     private TextureRegion gameOverTexture;
+    private String BGM = null;
     
     public GameOver() {
         gameOverTexture = GraphicsDriver.getMasterSheet().
@@ -62,6 +63,11 @@ public class GameOver implements State {
     @Override
     public void dispose() {
         
+    }
+
+    @Override
+    public String getMusic() {
+        return BGM;
     }
     
 }

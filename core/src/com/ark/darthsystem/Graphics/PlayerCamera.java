@@ -10,8 +10,8 @@ public class PlayerCamera extends Camera {
     }
 
     public void followPlayer(float x, float y, float boundX, float boundY) {
-        final float Y_TOP_OFFSET = 66f;
-        final float Y_BOTTOM_OFFSET = 66f;
+        final float Y_TOP_OFFSET = 72f;
+        final float Y_BOTTOM_OFFSET = 72f;
         float posX = x;
         float posY = y;
 
