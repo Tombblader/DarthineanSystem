@@ -5,12 +5,15 @@
  */
 package com.ark.darthsystem.States.chapters;
 
+import com.ark.darthsystem.Graphics.Actor;
+import com.ark.darthsystem.Graphics.ActorCollision;
 import com.ark.darthsystem.Graphics.GraphicsDriver;
 import com.ark.darthsystem.States.State;
 import com.ark.darthsystem.States.Menu;
 import com.ark.darthsystem.States.Message;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  *
@@ -32,24 +35,57 @@ public abstract class Novel implements State {
             return choice;
         }
     }
+    
     public abstract class Page {
         public abstract void run();
+    }
+    
+    public abstract class TickEvent {
+        private String name;
+        private int frameTime;
+        private int currentFrame;
+        public TickEvent(String name, int frames) {
+            this.name = name;
+            frameTime = frames;
+            currentFrame = 0;
+        }
+        public abstract void run();
+        public void update(float delta) {
+            run();
+            currentFrame++;
+        }
+        public boolean isFinished() {
+            return currentFrame >= frameTime;
+        }
+        public String getName() {
+            return name;
+        }
     }
     
     
     String choices;
     int pageIndex = 0;
     ArrayList<Page> chapters;
+    CopyOnWriteArrayList<TickEvent> timers = new CopyOnWriteArrayList<>();
     
 //    public abstract void run();
 
     public float update(float delta) {
-        if (chapters.size() <= pageIndex) {
-            GraphicsDriver.removeState(this);
-        }
-        else {
-            chapters.get(pageIndex).run();
-            pageIndex++;
+        if (timers.isEmpty()) {
+            if (chapters.size() <= pageIndex) {
+                GraphicsDriver.removeState(this);
+            }
+            else {
+                chapters.get(pageIndex).run();
+                pageIndex++;
+            }
+        } else {
+            for (TickEvent t : timers) {
+                t.update(delta);
+                if (t.isFinished()) {
+                    timers.remove(t);
+                }
+            }
         }
         return delta;
     }
@@ -73,8 +109,8 @@ public abstract class Novel implements State {
 
     }
     
-    
-    
-
+    public void moveActor(float x, float y, float speed, int wait) {
+        
+    }
 
 }

@@ -340,6 +340,10 @@ public class Actor {
         return currentImage;
     }
     
+    public int getCurrentImageIndex() {
+        return animation.getKeyFrameIndex(elapsed);
+    }
+    
     public void setCurrentImage(Sprite s) {
         currentImage = s;
     }

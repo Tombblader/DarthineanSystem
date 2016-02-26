@@ -1,17 +1,20 @@
 package com.ark.darthsystem.Graphics;
 
 import com.ark.darthsystem.Database.Database1;
-import com.ark.darthsystem.Database.Database1Point5;
+import com.ark.darthsystem.Database.MapDatabase;
 import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import com.ark.darthsystem.Database.Database2;
+import com.ark.darthsystem.Database.InterfaceDatabase;
+import com.ark.darthsystem.Database.SoundDatabase;
 import com.ark.darthsystem.GameOverException;
 import com.ark.darthsystem.States.*;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.*;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -33,6 +36,7 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
     private static Music backgroundMusic;
     private static final int WIDTH = 1024, HEIGHT = 768;
     private static com.ark.darthsystem.Graphics.Camera currentCamera;
+    private static String backgroundMusicString = null;
     public static Player getPlayer() {
         return Database2.player;
     }
@@ -66,7 +70,7 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
         states = new CopyOnWriteArrayList<>();
         new Database1();
         new Database2();
-        new Database1Point5();
+        new MapDatabase();
     }
 
     public static void drawMessage(Batch batch, String message, float x, float y) {
@@ -91,14 +95,20 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
         return states;
     }
 
-    public static void removeCurrentState() {
+    public static void removeCurrentState() {        
         states.get(states.size() - 1).dispose();
         states.remove(states.size() - 1);
+        if (getCurrentState().getMusic() != null && !backgroundMusicString.equals(getCurrentState().getMusic())) {
+            playMusic(getCurrentState().getMusic());
+        }
     }
 
     public static void removeState(State state) {
         state.dispose();
         states.remove(state);
+        if (getCurrentState().getMusic() != null && !backgroundMusicString.equals(getCurrentState().getMusic())) {
+            playMusic(getCurrentState().getMusic());
+        }
     }
 
     public static void addMenu(Menu m) {
@@ -123,6 +133,20 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
         }
     }
 
+    public static void setMessage(String header, Animation face, ArrayList<String> getMessage) {
+        if (!(getCurrentState() instanceof Message) 
+                && !(getCurrentState() instanceof OverheadMap)
+                ) {
+            states.add(new Message(header, face, getMessage));
+        } else {
+            if ((getCurrentState() instanceof Message)) {
+                ((Message) (getCurrentState())).addMessage(getMessage);
+            }
+            if ((getCurrentState() instanceof OverheadMap)) {
+//				((OverheadMap) (getCurrentState())).addMessage(getMessage);
+            }
+        }
+    }
     public static void setMessage(ArrayList<String> getMessage) {
         if (!(getCurrentState() instanceof Message) 
                 && !(getCurrentState() instanceof OverheadMap)
@@ -182,6 +206,7 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
                 backgroundMusic.dispose();
             }
             backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal(musicName));
+            backgroundMusicString = musicName;
             backgroundMusic.play();
         } catch (Exception e) {
             e.printStackTrace();
@@ -221,6 +246,10 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
         states.add(new Title());
     }
     public void dispose() {
+        super.dispose();
+        InterfaceDatabase.dispose();
+        SoundDatabase.dispose();
+//        MapDatabase.dispose();
         font.dispose();
         batch.dispose();
         masterSheet.dispose();

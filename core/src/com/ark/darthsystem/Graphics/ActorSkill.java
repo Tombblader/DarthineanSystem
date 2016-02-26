@@ -5,6 +5,7 @@
  */
 package com.ark.darthsystem.Graphics;
 
+import com.ark.darthsystem.Database.SoundDatabase;
 import com.ark.darthsystem.Skill;
 import com.ark.darthsystem.States.OverheadMap;
 import com.badlogic.gdx.Gdx;
@@ -71,8 +72,8 @@ public class ActorSkill extends ActorCollision {
     private float relY;
     private Skill skill;
     private Actor battlerAnimation;
-    private Sound fieldSound = Gdx.audio.newSound(Gdx.files.internal("sounds/slash.wav"));
-    private Sound battlerSound = Gdx.audio.newSound(Gdx.files.internal("sounds/slash.wav"));
+    private Sound fieldSound = SoundDatabase.fieldSwordSound;
+    private Sound battlerSound = SoundDatabase.battlerSwordSound;
     private float translateX;
     private float translateY;
     private Sprite[] originalFieldImage;
@@ -172,9 +173,6 @@ public class ActorSkill extends ActorCollision {
     }
 
     public Player getInvoker() {
-        if (invoker == null) {
-            System.out.println("null invoker");
-        }
         return invoker;
     }
 
@@ -195,22 +193,24 @@ public class ActorSkill extends ActorCollision {
         skill = s;
     }
 
-    public void setX(Actor a) {
-        if (area != Area.SELF) {
-            super.setX((relX + a.getWidth() / PlayerCamera.PIXELS_TO_METERS) * a.getFacing().getX() + a.getX());
-        } else {
-            super.setX((relX) + a.getX());
-        }
+    public void setX(ActorCollision a) {
         super.changeX(a.getFacing().getX());
+        if (area != Area.SELF) {
+            super.setX((relX + (a.getWidth() / 4) / PlayerCamera.PIXELS_TO_METERS) * a.getFacing().getX() + a.getMainBody().getPosition().x);
+        } else {
+            super.setX((relX) + a.getMainBody().getPosition().x);
+        }
     }
 
-    public void setY(Actor a) {
-        if (area != Area.SELF) {
-            super.setY((relY + a.getHeight() / PlayerCamera.PIXELS_TO_METERS) * a.getFacing().getY() + a.getY());
-        } else {
-            super.setY((relY) + a.getY());
-        }
+    public void setY(ActorCollision a) {
         super.changeY(a.getFacing().getY());
+        if (area != Area.SELF) {
+            super.setY((relY + (a.getHeight() / 4)/ PlayerCamera.PIXELS_TO_METERS) * a.getFacing().getY() + a.getMainBody().getPosition().y);
+        } else {
+            super.setY((relY) + a.getMainBody().getPosition().y);
+            System.out.println(((ActorCollision)(a)).getMainBody().getPosition().y);
+            System.out.println(getY());
+        }
     }
 
     public void update(float delta) {
@@ -237,6 +237,10 @@ public class ActorSkill extends ActorCollision {
         catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    
+    public Sound getBattlerSound() {
+        return battlerSound;
     }
     
     public void stopFieldSound() {

@@ -5,10 +5,8 @@
  */
 package com.ark.darthsystem.Database;
 
-import com.ark.darthsystem.Graphics.GraphicsDriver;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.NinePatch;
-import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
 
 /**
  *
@@ -18,4 +16,8 @@ public class InterfaceDatabase {
     private static final int OFFSET = 16;
     public static NinePatch TEXT_BOX = new NinePatch(new Texture("graphics/interface/window.png"), OFFSET, OFFSET, OFFSET, OFFSET);
 //    public static NinePatch TEXT_BOX = new NinePatch(GraphicsDriver.getMasterSheet().createSprite("interface/window"), OFFSET, OFFSET, OFFSET, OFFSET);
+
+    public static void dispose() {
+//        TEXT_BOX.getTexture().dispose();
+    }
 }

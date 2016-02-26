@@ -4,8 +4,10 @@ import com.ark.darthsystem.*;
 import com.ark.darthsystem.Database.Database2;
 import com.ark.darthsystem.Graphics.Actor;
 import com.ark.darthsystem.Graphics.ActorBattler;
+import com.ark.darthsystem.Graphics.ActorSkill;
 import com.ark.darthsystem.Graphics.GameTimer;
 import com.ark.darthsystem.Graphics.GraphicsDriver;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
 import java.util.ArrayList;
@@ -41,6 +43,7 @@ public class Battle implements State {
     private float elapsed = 0;
     private ArrayList<GameTimer> timers;
     private String bgm;
+    private CopyOnWriteArrayList<Sound> sounds = new CopyOnWriteArrayList<>();
 
     
     private void renderPersistentActors(SpriteBatch batch) {
@@ -109,8 +112,21 @@ public class Battle implements State {
                 animations.remove(a);
             } 
         }
+        playSounds();
+    }
+    
+    private void playSounds() {
+        for (Sound s : sounds) {
+            s.stop();
+            s.play();
+            sounds.remove(s);
+        }
     }
 
+    public void addSounds(Sound s) {
+        sounds.add(s);
+    }
+    
     public void exitBattle() {
         state = State.END;
         allAction.clear();
@@ -119,7 +135,7 @@ public class Battle implements State {
         GraphicsDriver.removeState(this);
     }
 
-    private void addAnimation(Action currentAction) {
+    private void addAnimationAndSound(Action currentAction) {
         final float BATTLER_Y = 400;
         int divider = enemyActors.isEmpty() ? 512 / enemyActors.size() : 0;
         Battler tempBattler = currentAction.getTarget();
@@ -127,7 +143,9 @@ public class Battle implements State {
         if (currentAction.getCommand() == Command.Skill && 
                 (currentAction.getTarget() instanceof BattlerAI) &&
                 currentAction.getCaster().getMP() >= currentAction.getSkill().getCost()) {
-            animations.add(Database2.SkillToActor(currentAction.getSkill()).getBattlerAnimation());
+            ActorSkill tempSkill = Database2.SkillToActor(currentAction.getSkill());
+            sounds.add(tempSkill.getBattlerSound());
+            animations.add(tempSkill.getBattlerAnimation());
             animations.get(animations.size() - 1).setX((float) ((WIDTH + divider * (enemy.indexOf(tempBattler) - 1)) / 2 + divider * enemy.indexOf(tempBattler)));
             animations.get(animations.size() - 1).setY(BATTLER_Y);
         }
@@ -135,13 +153,17 @@ public class Battle implements State {
                 (currentAction.getSkill().getAll()) &&
                 (currentAction.getAllTargets().get(0) instanceof BattlerAI) &&
                 currentAction.getCaster().getMP() >= currentAction.getSkill().getCost()) {
-            animations.add(Database2.SkillToActor(currentAction.getSkill()).getBattlerAnimation());
+            ActorSkill tempSkill = Database2.SkillToActor(currentAction.getSkill());
+            sounds.add(tempSkill.getBattlerSound());
+            animations.add(tempSkill.getBattlerAnimation());
             animations.get(animations.size() - 1).setX(GraphicsDriver.getWidth() / 2f);
             animations.get(animations.size() - 1).setY(GraphicsDriver.getHeight() / 2f);
         }
         if (currentAction.getCommand() == Command.Attack && 
                 currentAction.getTarget() instanceof BattlerAI) {
-            animations.add(currentAction.getCaster().getEquipment(Equipment.EquipmentType.LeftArm.getSlot()).getAnimation().getBattlerAnimation());
+            ActorSkill tempSkill = (currentAction.getCaster().getEquipment(Equipment.EquipmentType.LeftArm.getSlot()).getAnimation());
+            sounds.add(tempSkill.getBattlerSound());
+            animations.add(tempSkill.getBattlerAnimation());
             animations.get(animations.size() - 1).setX((float) ((WIDTH + divider * (enemy.indexOf(tempBattler) - 1)) / 2 + divider * enemy.indexOf(tempBattler)));
             animations.get(animations.size() - 1).setY(BATTLER_Y);
         }
@@ -681,7 +703,7 @@ public class Battle implements State {
 
     public float update(float delta) {
         GraphicsDriver.setCurrentCamera(GraphicsDriver.getCamera());
-        updateTemporaryActors(delta);
+        updateTemporaryActors(delta);        
         if (animations.isEmpty()) {
             switch (state) {
                 case START:
@@ -719,7 +741,7 @@ public class Battle implements State {
 //                                        && currentAction.getCommand() == Battle.Command.Skill && 
 //                                        currentAction.getCaster().getMP() >= currentAction.getSkill().getCost()
                                         ) {
-                                        addAnimation(currentAction);
+                                        addAnimationAndSound(currentAction);
 //                                    animations.add(Database2.SkillToActor(allAction.get(State.ACTION.getTicks() / 2).getSkill()).getBattlerAnimation());
                                 }
                             }

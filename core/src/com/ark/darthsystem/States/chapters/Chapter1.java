@@ -6,6 +6,7 @@
 package com.ark.darthsystem.States.chapters;
 
 import com.ark.darthsystem.BattleDriver;
+import com.ark.darthsystem.Database.Database2;
 import com.ark.darthsystem.Graphics.GraphicsDriver;
 
 /**
@@ -17,9 +18,8 @@ public class Chapter1 extends Novel {
         chapters.add(new Page() {
             @Override
             public void run() {
-                BattleDriver.printline("Erik: I AM THE GREATEST I AM THE GREATEST");
-                BattleDriver.printline("Protox: I AM THE GREATEST I AM THE GREATEST");
-                BattleDriver.printline("Darth: Ugh...");
+                BattleDriver.printline(Database2.player.getBattler(0), "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA aAA aAAa aa aaa aa aa aa a a aa a aaaaa  aa aa aaaaaaaaaaaaaa  aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAAAAAAAA");
+                BattleDriver.printline(Database2.player.getBattler(1), "Ugh...");
             }
         });
         chapters.add(new Page() {

@@ -42,8 +42,8 @@ public abstract class Menu implements State {
     private boolean isPause;
     private final int MENU_WIDTH = 200;
     private final int MENU_X = 700;
-    private int x;
-    private int y;
+    private float x;
+    private float y;
     private final int MENU_Y = 400;
     private int menuIndex = 0;
     private CopyOnWriteArrayList<Menu> subMenuList;
@@ -125,8 +125,7 @@ public abstract class Menu implements State {
 
     public void cancelMenu() {
         Menu currentMenu = ((Menu) (GraphicsDriver.getCurrentState()));
-        if (currentMenu.menuIndex
-                > 0) {
+        if (currentMenu.menuIndex > 0) {
             currentMenu.menuIndex--;
         }
     }
@@ -231,10 +230,12 @@ public abstract class Menu implements State {
                     cursorTexture.getScaleX(),
                     cursorTexture.getScaleY(),
                     cursorTexture.getRotation());
+        
+        InterfaceDatabase.TEXT_BOX.draw(batch, GraphicsDriver.getCamera().getScreenPositionX(), HEIGHT - HEIGHT / 4 + GraphicsDriver.getCamera().getScreenPositionY(), WIDTH, HEIGHT / 4);        
         GraphicsDriver.drawMessage(batch, font,
                 header,
                 15 + GraphicsDriver.getCamera().getScreenPositionX(),
-                ((HEIGHT - HEIGHT / 4) + GraphicsDriver.getCamera().getScreenPositionY()));
+                (12 + (HEIGHT - HEIGHT / 4) + GraphicsDriver.getCamera().getScreenPositionY()));
         if (isOverhead) {
             batch.end();
             batch.setProjectionMatrix(GraphicsDriver.getPlayerCamera().combined);

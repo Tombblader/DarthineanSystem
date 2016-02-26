@@ -5,6 +5,7 @@ import com.ark.darthsystem.States.Battle;
 import java.io.Serializable;
 
 import static com.ark.darthsystem.BattleDriver.*;
+import com.ark.darthsystem.Database.SoundDatabase;
 
 import java.util.ArrayList;
 
@@ -253,6 +254,8 @@ public class Action implements Serializable {
             } else {
 //               shakeScreen(DAMAGE_SHAKE);
             }
+            SoundDatabase.ouchSound.stop();
+            SoundDatabase.ouchSound.play();
         }
         String temp = ((actionSkill == null ||
                 actionSkill.getElement() != Battle.Element.Heal) ? target.getName() +

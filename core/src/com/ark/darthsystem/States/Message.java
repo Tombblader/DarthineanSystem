@@ -29,14 +29,14 @@ public class Message implements State {
 
     private final int HEIGHT = GraphicsDriver.getHeight();
     private final int WIDTH = GraphicsDriver.getWidth();
-    private String header = "Testing";
+    private String header = "";
     private boolean isPause;
     private final int CONFIRM_BUTTON = Keys.Z;
     private boolean destroyOnExit;
     private ArrayList<String> messages;
     private LinkedList<ArrayList<String>> messageQueue;
     private final int MESSAGE_FONT_SIZE = 12;
-    private final float FONT_SCALE = .25f;
+//    private final float FONT_SCALE = .25f;
     private BitmapFont font;
     private Animation face = null;
     
@@ -135,14 +135,26 @@ public class Message implements State {
         InterfaceDatabase.TEXT_BOX.draw(batch, GraphicsDriver.getCamera().getScreenPositionX(), HEIGHT - HEIGHT / 4 + GraphicsDriver.getCamera().getScreenPositionY(), WIDTH, HEIGHT / 4);
         
         int i = 0;
-        GraphicsDriver.drawMessage(batch, font, header,
-                15 + GraphicsDriver.getCamera().getScreenPositionX(),
-                ((HEIGHT - HEIGHT / 4 - 24) + GraphicsDriver.getCamera().getScreenPositionY()));
+        if (face != null) {
+            batch.draw(face.getKeyFrame(GraphicsDriver.getCurrentTime()), 0, 
+                 HEIGHT - HEIGHT / 4 - 18 - 64 + GraphicsDriver.getCamera().getScreenPositionY());
+        }
+        
+        if (!header.equals("")) {
+            InterfaceDatabase.TEXT_BOX.draw(batch, 
+                    1 + GraphicsDriver.getCamera().getScreenPositionX(), 
+                    HEIGHT - HEIGHT / 4 - 30 + GraphicsDriver.getCamera().getScreenPositionY(),
+                    header.length() * 14,
+                    font.getCapHeight() + 18);
+            GraphicsDriver.drawMessage(batch, font, header,
+                    15 + GraphicsDriver.getCamera().getScreenPositionX(),
+                    ((HEIGHT - HEIGHT / 4 - 24) + GraphicsDriver.getCamera().getScreenPositionY()));
+        }
         for (String message : messages) {
             GraphicsDriver.drawMessage(batch, font,
                 message,
                 15 + GraphicsDriver.getCamera().getScreenPositionX(),
-                ((PADDING_X + HEIGHT - HEIGHT / 4 + font.getCapHeight() * FONT_SCALE * i) + GraphicsDriver.getCamera().getScreenPositionY()));
+                ((PADDING_X + HEIGHT - HEIGHT / 4 + font.getLineHeight() * font.getScaleY() * i) + GraphicsDriver.getCamera().getScreenPositionY()));
             i++;
         }
 

@@ -10,7 +10,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 import com.ark.darthsystem.GameOverException;
-import com.ark.darthsystem.Database.Database1Point5;
+import com.ark.darthsystem.Database.MapDatabase;
 import com.ark.darthsystem.Graphics.GraphicsDriver;
 
 /**
@@ -33,7 +33,7 @@ public class Title implements State {
                 if (choice.equals("Start")) {
                     GraphicsDriver.newGame();
                     
-                    GraphicsDriver.addState((State) (Database1Point5.testing));
+                    GraphicsDriver.addState((State) (MapDatabase.testing));
                 }
                 if (choice.equals("Continue")) {
                     GraphicsDriver.addMenu(new Menu("Open which slot?",

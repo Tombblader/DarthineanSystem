@@ -99,14 +99,13 @@ public class Database2 extends com.ark.darthsystem.Database.Database1 {
         enemySampleMap.add(GraphicsPotion);
         
 
-        Database2.SampleMap = new GraphicsMap("com.ark.darthsystem/GraphicsPack/assets/tileset.png", "com.ark.darthsystem/GraphicsPack/Map/Map0.txt", enemySampleMap);
         BattleDriver.addItem(Potion);
         BattleDriver.addItem(Potion);
         BattleDriver.addItem(Potion);
         BattleDriver.addItem(Potion);
         BattleDriver.addItem(Potion);
         BattleDriver.addItem(Tonic);*/
-        new Database1Point5();
+        new MapDatabase();
 
     }
 
@@ -124,8 +123,6 @@ public class Database2 extends com.ark.darthsystem.Database.Database1 {
     public static Pickup GraphicsPotion;
     public static NovelMode chapter1;
 
-//    public static final TextBox p_WINDOW = new TextBox("com.ark.darthsystem/GraphicsPack/assets/Window.png");
-//    public static final Sprite DEFAULT_CURSOR = new Sprite("com.ark.darthsystem/GraphicsPack/assets/Cursor.png", false);
     public static final ActorSkill Spear = new ActorSkill(
             (Sprite[]) GraphicsDriver.getMasterSheet().
             createSprites("animations/spear/spear").
