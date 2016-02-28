@@ -5,10 +5,9 @@
  */
 package com.ark.darthsystem.Database;
 
-import com.ark.darthsystem.States.OverheadMap;
 import com.ark.darthsystem.*;
+//import static com.ark.darthsystem.Database.Database1.*;
 import com.ark.darthsystem.Graphics.*;
-import com.ark.darthsystem.States.chapters.*;
 import com.ark.darthsystem.States.events.*;
 
 import java.util.ArrayList;
@@ -21,7 +20,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
  *
  * @author trankt1
  */
-public class Database2 extends com.ark.darthsystem.Database.Database1 {
+public class Database2 extends Database1 {
 
     public static Player player;
 //    private static ActorAI ProtoxAI;
@@ -32,32 +31,22 @@ public class Database2 extends com.ark.darthsystem.Database.Database1 {
         super();
         Database2.SkillToActor = new HashMap<Skill, ActorSkill>() {
             {
-                put(CrossCall,
-                        new ActorSkill((Sprite[]) GraphicsDriver.
-                                getMasterSheet().
-                                createSprites(
-                                        "animations/wiccan_cross/wiccan_cross").
-                                toArray(Sprite.class),
-                                (Sprite[]) GraphicsDriver.getMasterSheet().
-                                        createSprites("animations/crosscall/crosscall").toArray(Sprite.class),
+                put(SkillDatabase.CrossCall,
+                        new ActorSkill((Sprite[]) GraphicsDriver.getMasterSheet().createSprites("animations/wiccan_cross/wiccan_cross").toArray(Sprite.class),
+                                (Sprite[]) GraphicsDriver.getMasterSheet().createSprites("animations/crosscall/crosscall").toArray(Sprite.class),
                                 1,
                                 1,
                                 2.0f / 60.0f,
-                                Database1.CrossCall,
+                                SkillDatabase.CrossCall,
                                 ActorSkill.Area.FRONT));
-                put(Red_Spin,
-                        new ActorSkill((Sprite[]) GraphicsDriver.
-                                getMasterSheet().
-                                createSprites("animations/red_spin/red_spin").
-                                toArray(Sprite.class),
-                                (Sprite[]) GraphicsDriver.getMasterSheet().
-                                        createSprites("animations/crosscall/crosscall").toArray(Sprite.class),
+                put(SkillDatabase.Red_Spin,
+                        new ActorSkill((Sprite[]) GraphicsDriver.getMasterSheet().createSprites("animations/red_spin/red_spin").toArray(Sprite.class),
+                                GraphicsDriver.getMasterSheet().createSprites("animations/crosscall/crosscall").toArray(Sprite.class),
                                 0,
                                 0,
                                 5.0f / 60.0f,
-                                Database1.Red_Spin,
+                                SkillDatabase.Red_Spin,
                                 ActorSkill.Area.SELF));
-//                put(Red_Spin, new ActorSkill(new Sprite("animations/wiccan_cross/red_spin", false, false), 1, 1, 17, Database1.Red_Spin, ActorSkill.Area.SELF));
 //                put(Leg_Sweep, new ActorSkill(new Sprite("com.ark.darthsystem/GraphicsPack/assets/WiccanCross.png", false).getImages(), 1, 0, 17, Database1.Leg_Sweep));
 //                put(Heal, new ActorSkill(new Sprite("com.ark.darthsystem/GraphicsPack/assets/WiccanCross.png", false).getImages(), 0, 0, 30, Database1.Heal, ActorSkill.Area.SELF));
             }
@@ -67,7 +56,6 @@ public class Database2 extends com.ark.darthsystem.Database.Database1 {
 
         Database2.ErikSprite = new ActorSprite("characters/darth_invader");
         Database2.DarthSprite = new ActorSprite("characters/darth_invader");
-//        Sprite tempPotionSprite = new Sprite("com.ark.darthsystem/GraphicsPack/assets/potion.png", false, true);
         Database2.enemies = new ActorBattler[]{new ActorBattler((new BattlerAI(
             "Erik the Red",
             Erik,
@@ -89,27 +77,9 @@ public class Database2 extends com.ark.darthsystem.Database.Database1 {
         ErikAIParty.add(new ActorBattler(temp, ErikSprite));
         ErikAI = new ActorAI(ErikAIParty, 500, 500);
         Database2.battlers = new ActorBattler[]{new ActorBattler(Darth, DarthSprite), new ActorBattler(Erik, ErikSprite)};
-        Database2.GraphicsPotion = new Pickup((Sprite[]) GraphicsDriver.getMasterSheet().
-                                        createSprites("items/potion").toArray(Sprite.class), 350.0f, 350.0f, .1f, Potion);
-        Database2.chapter1 = new NovelMode(new Chapter1(), null, 450.0f, 450.0f, .1f);
         player = new Player(new ArrayList<>(Arrays.asList(battlers)), 0, 0);
-
-        /*        enemySampleMap.add(ProtoxAI);
-        enemySampleMap.add(ErikAI);
-        enemySampleMap.add(GraphicsPotion);
-        
-
-        BattleDriver.addItem(Potion);
-        BattleDriver.addItem(Potion);
-        BattleDriver.addItem(Potion);
-        BattleDriver.addItem(Potion);
-        BattleDriver.addItem(Potion);
-        BattleDriver.addItem(Tonic);*/
-        new MapDatabase();
-
     }
 
-    public static OverheadMap SampleMap;
     public static HashMap<Skill, ActorSkill> SkillToActor;
 
     public static ActorSprite DarthSprite;
@@ -124,20 +94,16 @@ public class Database2 extends com.ark.darthsystem.Database.Database1 {
     public static NovelMode chapter1;
 
     public static final ActorSkill Spear = new ActorSkill(
-            (Sprite[]) GraphicsDriver.getMasterSheet().
-            createSprites("animations/spear/spear").
-            toArray(Sprite.class),
+            GraphicsDriver.getMasterSheet().
+            createSprites("animations/spear/spear").toArray(Sprite.class),
             1,
             1,
             100,
             null);
 
     public static ActorSkill Sword() {
-        return new ActorSkill((Sprite[]) GraphicsDriver.getMasterSheet().
-                createSprites("animations/sword/sword").
-                toArray(Sprite.class),
-                (Sprite[]) GraphicsDriver.getMasterSheet().
-                        createSprites("animations/sword_slash/sword_slash").toArray(Sprite.class),
+        return new ActorSkill(GraphicsDriver.getMasterSheet().createSprites("animations/sword/sword").toArray(Sprite.class),
+                GraphicsDriver.getMasterSheet().createSprites("animations/sword_slash/sword_slash").toArray(Sprite.class),
                 1,
                 1,
                 2.0f / 60.0f,

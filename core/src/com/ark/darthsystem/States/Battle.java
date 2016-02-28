@@ -18,8 +18,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class Battle implements State {
 
     private static final String BATTLE_MUSIC = "music/Forbidden Secret Unfolding.mp3";
-    private static final String GAME_OVER_MUSIC
-            = "com/ark/darthsystem/assets/music/LostBattle.midi";
+    private static final String GAME_OVER_MUSIC = "music/LostBattle.midi";
     private static ArrayList<Battler> party;
     private static ArrayList<Battler> enemy;
     private static ArrayList<ActorBattler> partyActors;
@@ -792,8 +791,8 @@ public class Battle implements State {
                 state = State.END;
             }
             if (hasLost() && state != State.END) {
-                BattleDriver.playMusic(previousMusic);
-                throw new GameOverException();
+                GraphicsDriver.removeAllStates();
+                GraphicsDriver.addState(new GameOver());
             }
         }
         return delta;

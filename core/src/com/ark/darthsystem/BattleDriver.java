@@ -8,6 +8,8 @@ package com.ark.darthsystem;
 import com.ark.darthsystem.Database.Database1;
 import com.ark.darthsystem.States.Battle;
 import static com.ark.darthsystem.BattleDriver.*;
+import com.ark.darthsystem.Database.AIDatabase;
+import com.ark.darthsystem.Database.SystemDatabase;
 import com.ark.darthsystem.Graphics.*;
 
 import java.io.IOException;
@@ -26,22 +28,6 @@ import javax.sound.midi.MidiUnavailableException;
  * @author trankt1
  */
 public class BattleDriver {
-
-    public static void startMusic() {
-        try {
-            midiPlayer = MidiSystem.getSequencer();
-            midiPlayer.open();
-        } catch (MidiUnavailableException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void stopMusic() {
-        try {
-            midiPlayer.close();
-        } catch (Exception e) {
-        }
-    }
 
     public BattleDriver() {
 
@@ -94,7 +80,7 @@ public class BattleDriver {
         int defense;
         int speed;
         int magic;
-        Equipment[] startEquip = Database1.Warrior;
+        Equipment[] startEquip = SystemDatabase.Warrior;
         Skill[] newSkill = new Skill[0];
         BattleDriver.printline("You can create your character here.");
         name = condition("First, state your name.");
@@ -111,34 +97,12 @@ public class BattleDriver {
         return null;
     }
 
-    public static void fullHeal(Battler[] group) {
+    public static void fullHeal(ArrayList<Battler> group) {
         for (Battler group1 : group) {
             if (group1 != null) {
                 group1.fullHeal();
                 group1.changeStatus(Battle.Stats.Normal);
             }
-        }
-    }
-
-    public static void playMusic(String musicName) {
-        try {
-            if (midiPlayer !=
-                    null &&
-                    midiPlayer.isRunning() &&
-                    !musicName.equals(currentMusic)) {
-                midiPlayer.stop();
-            }
-            if (!musicName.equals(currentMusic)) {
-                currentMusic = musicName;
-                Sequence song = MidiSystem.getSequence(ClassLoader.
-                        getSystemResource(musicName));
-                midiPlayer.setSequence(song);
-                midiPlayer.setLoopCount(Sequencer.LOOP_CONTINUOUSLY);
-                midiPlayer.start();
-                currentMusic = musicName;
-            }
-        } catch (InvalidMidiDataException | IOException e) {
-            e.printStackTrace();
         }
     }
 
@@ -240,10 +204,6 @@ public class BattleDriver {
         GraphicsDriver.appendMessage(formattedMessage);
     }
 
-    public static String getCurrentMusic() {
-        return currentMusic;
-    }
-
     public static String condition(String header) {
         printline(header);
         textCondition = "";
@@ -339,19 +299,7 @@ public class BattleDriver {
         party = tempParty;
     }
 
-    public static String currentMusic;
-    public static final String FIELD_MUSIC_1 = "dw3dark.mid";
-    public static final String BATTLE_MUSIC_1 = "secret_of_mana.mid";
-    public static final String HOUSE_MUSIC_1 = "z2house.mid";
-    public static final String FIELD_MUSIC_2 = "wildfields2.mid";
-    public static final String FIELD_MUSIC_3 = "dw4akem3.mid";
-    public static final String HOUSE_MUSIC_2 = "breezin__.mid";
-    public static final String GAME_MUSIC_1 = "lamoblin.mid";
-    public static final String BOSS_MUSIC_1 = "DQ3baramos.mid";
-    public static final String DUNGEON_MUSIC_1 = "z2palspc.mid";
     public static String textCondition = "";
     public static final int WRAP_LENGTH = 55;
-
-    public static Sequencer midiPlayer;
 
 }

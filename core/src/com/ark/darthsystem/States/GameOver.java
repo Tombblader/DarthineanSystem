@@ -20,10 +20,8 @@ public class GameOver implements State {
     private String BGM = null;
     
     public GameOver() {
-        gameOverTexture = GraphicsDriver.getMasterSheet().
-                findRegion("interface/title");
-        gameOverMenu = new Menu("Continue?",
-                new String[]{"Yes", "No"}) {
+        gameOverTexture = GraphicsDriver.getMasterSheet().findRegion("interface/title");
+        gameOverMenu = new Menu("Continue?", new String[]{"Yes", "No"}) {
             @Override
             public String confirm(String choice) {
                 if (choice.equals("No")) {
@@ -32,8 +30,7 @@ public class GameOver implements State {
 //                    GraphicsDriver.addState((State) (Database1Point5.testing));
                 }
                 if (choice.equals("Yes")) {
-                    GraphicsDriver.addMenu(new Menu("Open which slot?",
-                            new String[]{"Slot 1", "Slot 2", "Slot 3"},
+                    GraphicsDriver.addMenu(new Menu("Open which slot?", new String[]{"Slot 1", "Slot 2", "Slot 3"},
                             true,
                             true) {
                         @Override

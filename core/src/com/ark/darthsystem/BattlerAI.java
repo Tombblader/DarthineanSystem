@@ -18,7 +18,6 @@ public class BattlerAI extends Battler {
             Item itemDrop,
             int itemQuantity) {
         super(getName,
-                newBattler.getImageName(),
                 newBattler.getElement(),
                 newBattler.getGender(),
                 newBattler.getLevel(),

@@ -196,7 +196,7 @@ public class ActorSkill extends ActorCollision {
     public void setX(ActorCollision a) {
         super.changeX(a.getFacing().getX());
         if (area != Area.SELF) {
-            super.setX((relX + (a.getWidth() / 4) / PlayerCamera.PIXELS_TO_METERS) * a.getFacing().getX() + a.getMainBody().getPosition().x);
+            super.setX((relX + (a.getWidth() / 4 / (a.getFacing().y != 0 ? (float) Math.sqrt(2.0) : 1)) / PlayerCamera.PIXELS_TO_METERS) * a.getFacing().getX() + a.getMainBody().getPosition().x);
         } else {
             super.setX((relX) + a.getMainBody().getPosition().x);
         }
@@ -205,11 +205,9 @@ public class ActorSkill extends ActorCollision {
     public void setY(ActorCollision a) {
         super.changeY(a.getFacing().getY());
         if (area != Area.SELF) {
-            super.setY((relY + (a.getHeight() / 4)/ PlayerCamera.PIXELS_TO_METERS) * a.getFacing().getY() + a.getMainBody().getPosition().y);
+            super.setY((relY + (a.getHeight() / 4 / (a.getFacing().x != 0 ? (float) Math.sqrt(2.0) : 1)) / PlayerCamera.PIXELS_TO_METERS) * a.getFacing().getY() + a.getMainBody().getPosition().y);
         } else {
             super.setY((relY) + a.getMainBody().getPosition().y);
-            System.out.println(((ActorCollision)(a)).getMainBody().getPosition().y);
-            System.out.println(getY());
         }
     }
 

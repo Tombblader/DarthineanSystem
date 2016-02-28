@@ -24,16 +24,15 @@ public class Title implements State {
     private final String BGM = null;
     
     public Title() {
-        titleTexture = GraphicsDriver.getMasterSheet().
-                findRegion("interface/title");
+        titleTexture = GraphicsDriver.getMasterSheet().findRegion("interface/title");
         titleMenu = new Menu("Adventurer.",
                 new String[]{"Start", "Continue", "Quit"}) {
             @Override
             public String confirm(String choice) {
                 if (choice.equals("Start")) {
                     GraphicsDriver.newGame();
-                    
                     GraphicsDriver.addState((State) (MapDatabase.testing));
+                    GraphicsDriver.transition();
                 }
                 if (choice.equals("Continue")) {
                     GraphicsDriver.addMenu(new Menu("Open which slot?",

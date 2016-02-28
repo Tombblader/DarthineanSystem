@@ -146,12 +146,15 @@ public class Player extends ActorCollision {
     // private float speed = .35;
     public void Moving(float delta) {
         setSpeed(getBaseSpeed());
-
+        if (isJumping) {
+            setSpeed(getBaseSpeed() * 1.5f);
+        }
+            
         if (Input.getKeyRepeat(slowButton)) {
             setSpeed(getBaseSpeed() * 0.5f);
         }
         if (Input.getKeyPressed(jumpButton)) {
-            setSpeed(getBaseSpeed() * 1.5f);
+
             jump();
             // fieldState = ActorSprite.SpriteModeField.JUMP;
         }
@@ -251,8 +254,7 @@ public class Player extends ActorCollision {
         }
         for (int i = 0; i < getAllActorBattlers().size(); i++) {
             Sprite temp = (Sprite) (getAllActorBattlers().get(i).getSprite().getCurrentFaceAnimation().getKeyFrame(getElapsedTime()));
-            InterfaceDatabase.TEXT_BOX.draw(batch, SUB_WIDTH * i + GraphicsDriver.getCamera().getScreenPositionX(), (GraphicsDriver.getCamera().getScreenPositionY()), SUB_WIDTH,
-                    STAT_HEIGHT);
+            InterfaceDatabase.TEXT_BOX.draw(batch, SUB_WIDTH * i + GraphicsDriver.getCamera().getScreenPositionX(), (GraphicsDriver.getCamera().getScreenPositionY()), SUB_WIDTH, STAT_HEIGHT);
             batch.draw(temp,
                     (SUB_WIDTH * i + GraphicsDriver.getCamera().getScreenPositionX() + 5),
                     (GraphicsDriver.getCamera().getScreenPositionY()),
@@ -396,7 +398,7 @@ public class Player extends ActorCollision {
 
     public void jump() {
         GraphicsDriver.setMessage("I believe I can fly!");
-        final int JUMP_TIME = 1550;
+        final int JUMP_TIME = 1050;
         if (!isJumping) {
             GameTimer tempTimer = new GameTimer("Jump", JUMP_TIME) {
                 public void event(Actor a) {

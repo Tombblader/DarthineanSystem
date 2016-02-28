@@ -35,7 +35,6 @@ import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
-import com.badlogic.gdx.maps.tiled.objects.TiledMapTileMapObject;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Rectangle;
@@ -56,7 +55,6 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.Shape;
-import static com.badlogic.gdx.physics.box2d.Shape.Type.Circle;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import java.util.ArrayList;
@@ -454,7 +452,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
             }
         }
         if (Input.getKeyPressed(Keys.ESCAPE)) {
-            GraphicsDriver.getState().clear();
+            GraphicsDriver.clearAllStates();
             GraphicsDriver.addState(new Title());
 
         }
@@ -495,9 +493,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                     encounters.addAll(((ActorAI) (enemyActors2)).getAllActorBattlers());
                 }
             }
-            GraphicsDriver.addState(new Battle(GraphicsDriver.getPlayer()
-                    .getAllActorBattlers(), encounters, Database2.inventory, null)
-                    .start());        
+            GraphicsDriver.addState(new Battle(GraphicsDriver.getPlayer().getAllActorBattlers(), encounters, Database1.inventory, null).start());
     }    
     
     @Override
@@ -567,7 +563,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
     public void dispose() {
         super.dispose();
         world.dispose();
-        batch.dispose();
+//        batch.dispose();
     }
 
     public void setMap(String mapName) {

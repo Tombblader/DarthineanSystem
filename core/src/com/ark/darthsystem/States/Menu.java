@@ -69,10 +69,6 @@ public abstract class Menu implements State {
     }
 
     public Menu(String header, String[] choices, boolean pause, boolean mutable) {
-        final int MENU_HEIGHT = 10
-                + choices.length
-                * (int) (GraphicsDriver.
-                getFont().getCapHeight());
         this.choices = choices;
         this.header = header;
         isPause = pause;
@@ -90,11 +86,6 @@ public abstract class Menu implements State {
     }
 
     public Menu(String[] choices) {
-        final int MENU_HEIGHT = 10
-                + choices.length
-                * (int) (GraphicsDriver.
-                getFont().
-                getCapHeight());
         this.choices = choices;
         header = "";
         isPause = true;
@@ -108,7 +99,8 @@ public abstract class Menu implements State {
         parameter.flip = true;
         parameter.borderColor = Color.BLACK;
         parameter.color = Color.WHITE;
-        font = gen.generateFont(parameter);    }
+        font = gen.generateFont(parameter);
+    }
 
     public void addSubMenu(Menu m) {
         subMenuList.add(m);
@@ -247,14 +239,10 @@ public abstract class Menu implements State {
     }
 
     public float update(float delta) {
-        if (!subMenuList.isEmpty()
-                && menuIndex
-                < subMenuList.size()) {
-            subMenuList.get(menuIndex).
-                    updateMenu(delta);
+        if (!subMenuList.isEmpty() && menuIndex < subMenuList.size()) {
+            subMenuList.get(menuIndex).updateMenu(delta);
         }
-        if (menuIndex
-                >= subMenuList.size()) {
+        if (menuIndex >= subMenuList.size()) {
             subMenuList.clear();
             menuIndex = 0;
             if (getCurrentState() instanceof Menu) {

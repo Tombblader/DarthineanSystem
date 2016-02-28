@@ -12,7 +12,6 @@ public class Battler implements Serializable {
 
     public static final long serialVersionUID = 553786374;
     private static final double DEFEND = 0.25;
-    private String imageName;
     private String name;
     private int HP, maxHP;
     private int MP, maxMP;
@@ -28,30 +27,16 @@ public class Battler implements Serializable {
     private int level;
     private Battle.Element battlerElement = Battle.Element.Physical;
     private Battler.Gender battlerGender;
-    private Action battlerAction;
-    private Battle.Command battlerCommand;
     private boolean isDelaying = false;
     private BattlerClass Class;
     private double damageModifier = 1.0;
     private int experiencePoints = 0;
-    private double hpTier = HP /
-            50.0 /
-            level;
-    private double mpTier = MP /
-            60.0 /
-            level;
-    private double attackTier = attack /
-            8.0 /
-            level;
-    private double defenseTier = defense /
-            8.0 /
-            level;
-    private double speedTier = speed /
-            8.0 /
-            level;
-    private double magicTier = magic /
-            8.0 /
-            level;
+    private double hpTier = HP / 50.0 / level;
+    private double mpTier = MP / 60.0 / level;
+    private double attackTier = attack / 8.0 / level;
+    private double defenseTier = defense / 8.0 / level;
+    private double speedTier = speed / 8.0 / level;
+    private double magicTier = magic / 8.0 / level;
     private int tnl = 50;
 
     public static enum Gender {
@@ -86,28 +71,15 @@ public class Battler implements Serializable {
         defense = initialDefense;
         speed = initialSpeed;
         magic = initialMagic;
-        hpTier = HP /
-                50.0 /
-                level;
-        mpTier = MP /
-                50.0 /
-                level;
-        attackTier = attack /
-                8.0 /
-                level;
-        defenseTier = defense /
-                8.0 /
-                level;
-        speedTier = speed /
-                8.0 /
-                level;
-        magicTier = magic /
-                8.0 /
-                level;
+        hpTier = HP / 50.0 / level;
+        mpTier = MP / 50.0 / level;
+        attackTier = attack / 8.0 / level;
+        defenseTier = defense / 8.0 / level;
+        speedTier = speed / 8.0 / level;
+        magicTier = magic / 8.0 / level;
         Class = initialClass;
         try {
-            skillList = initialClass.getSkillList().
-                    clone();
+            skillList = initialClass.getSkillList().clone();
             equipmentList = initialEquipment.clone();
         } catch (NullPointerException e) {
         }
@@ -115,59 +87,44 @@ public class Battler implements Serializable {
         battlerGender = initializeGender;
     }
 
-    public Battler(String initialName,
-            String initialImageName,
-            Battle.Element initialElement,
-            Battler.Gender initializeGender,
-            int initialLevel,
-            int initialHP,
-            int initialMP,
-            int initialAttack,
-            int initialDefense,
-            int initialSpeed,
-            int initialMagic,
-            BattlerClass initialClass,
-            Equipment[] initialEquipment) {
-        name = initialName;
-        imageName = initialImageName;
-        battlerElement = initialElement;
-        level = initialLevel;
-        maxHP = initialHP;
-        maxMP = initialMP;
-        HP = maxHP;
-        MP = maxMP;
-        attack = initialAttack;
-        defense = initialDefense;
-        speed = initialSpeed;
-        magic = initialMagic;
-        hpTier = HP /
-                50.0 /
-                level;
-        mpTier = MP /
-                50.0 /
-                level;
-        attackTier = attack /
-                8.0 /
-                level;
-        defenseTier = defense /
-                8.0 /
-                level;
-        speedTier = speed /
-                8.0 /
-                level;
-        magicTier = magic /
-                8.0 /
-                level;
-        Class = initialClass;
-        try {
-            skillList = initialClass.getSkillList().
-                    clone();
-            equipmentList = initialEquipment.clone();
-        } catch (NullPointerException e) {
-        }
-//    boolean isAfflicted[] = {false};
-        battlerGender = initializeGender;
-    }
+//    public Battler(String initialName,
+//            Battle.Element initialElement,
+//            Battler.Gender initializeGender,
+//            int initialLevel,
+//            int initialHP,
+//            int initialMP,
+//            int initialAttack,
+//            int initialDefense,
+//            int initialSpeed,
+//            int initialMagic,
+//            BattlerClass initialClass,
+//            Equipment[] initialEquipment) {
+//        name = initialName;
+//        battlerElement = initialElement;
+//        level = initialLevel;
+//        maxHP = initialHP;
+//        maxMP = initialMP;
+//        HP = maxHP;
+//        MP = maxMP;
+//        attack = initialAttack;
+//        defense = initialDefense;
+//        speed = initialSpeed;
+//        magic = initialMagic;
+//        hpTier = HP / 50.0 / level;
+//        mpTier = MP / 50.0 / level;
+//        attackTier = attack / 8.0 / level;
+//        defenseTier = defense / 8.0 / level;
+//        speedTier = speed / 8.0 / level;
+//        magicTier = magic / 8.0 / level;
+//        Class = initialClass;
+//        try {
+//            skillList = initialClass.getSkillList().clone();
+//            equipmentList = initialEquipment.clone();
+//        } catch (NullPointerException e) {
+//        }
+////    boolean isAfflicted[] = {false};
+//        battlerGender = initializeGender;
+//    }
 
     public Battler(String initialName,
             Battle.Element initialElement,
@@ -192,24 +149,12 @@ public class Battler implements Serializable {
         defense = initialDefense;
         speed = initialSpeed;
         magic = initialMagic;
-        hpTier = HP /
-                50.0 /
-                level;
-        mpTier = MP /
-                50.0 /
-                level;
-        attackTier = attack /
-                8.0 /
-                level;
-        defenseTier = defense /
-                8.0 /
-                level;
-        speedTier = speed /
-                8.0 /
-                level;
-        magicTier = magic /
-                8.0 /
-                level;
+        hpTier = HP / 50.0 / level;
+        mpTier = MP / 50.0 / level;
+        attackTier = attack / 8.0 / level;
+        defenseTier = defense / 8.0 / level;
+        speedTier = speed / 8.0 / level;
+        magicTier = magic / 8.0 / level;
         try {
             skillList = initialSkill.clone();
             equipmentList = initialEquipment.clone();
@@ -220,57 +165,44 @@ public class Battler implements Serializable {
         battlerGender = initializeGender;
     }
 
-    public Battler(String initialName,
-            String initialImageName,
-            Battle.Element initialElement,
-            Battler.Gender initializeGender,
-            int initialLevel,
-            int initialHP,
-            int initialMP,
-            int initialAttack,
-            int initialDefense,
-            int initialSpeed,
-            int initialMagic,
-            Skill[] initialSkill,
-            Equipment[] initialEquipment) {
-        name = initialName;
-        imageName = initialImageName;
-        battlerElement = initialElement;
-        level = initialLevel;
-        maxHP = initialHP;
-        maxMP = initialMP;
-        HP = maxHP;
-        MP = maxMP;
-        attack = initialAttack;
-        defense = initialDefense;
-        speed = initialSpeed;
-        magic = initialMagic;
-        hpTier = HP /
-                50.0 /
-                level;
-        mpTier = MP /
-                50.0 /
-                level;
-        attackTier = attack /
-                8.0 /
-                level;
-        defenseTier = defense /
-                8.0 /
-                level;
-        speedTier = speed /
-                8.0 /
-                level;
-        magicTier = magic /
-                8.0 /
-                level;
-        try {
-            skillList = initialSkill.clone();
-            equipmentList = initialEquipment.clone();
-        } catch (NullPointerException e) {
-        }
-//    boolean isAfflicted[] = {false};
-        battlerGender = initializeGender;
-    }
+//    public Battler(String initialName,
+//            Battle.Element initialElement,
+//            Battler.Gender initializeGender,
+//            int initialLevel,
+//            int initialHP,
+//            int initialMP,
+//            int initialAttack,
+//            int initialDefense,
+//            int initialSpeed,
+//            int initialMagic,
+//            Skill[] initialSkill,
+//            Equipment[] initialEquipment) {
+//        name = initialName;
+//        imageName = initialImageName;
+//        battlerElement = initialElement;
+//        level = initialLevel;
+//        maxHP = initialHP;
+//        maxMP = initialMP;
+//        HP = maxHP;
+//        MP = maxMP;
+//        attack = initialAttack;
+//        defense = initialDefense;
+//        speed = initialSpeed;
+//        magic = initialMagic;
+//        hpTier = HP / 50.0 / level;
+//        mpTier = MP / 50.0 / level;
+//        attackTier = attack / 8.0 / level;
+//        defenseTier = defense / 8.0 / level;
+//        speedTier = speed / 8.0 / level;
+//        magicTier = magic / 8.0 / level;
+//        try {
+//            skillList = initialSkill.clone();
+//            equipmentList = initialEquipment.clone();
+//        } catch (NullPointerException e) {
+//        }
+////    boolean isAfflicted[] = {false};
+//        battlerGender = initializeGender;
+//    }
 
     public BattlerClass getBattlerClass() {
         return Class;
@@ -301,8 +233,7 @@ public class Battler implements Serializable {
     }
 
     public int getAttack() {
-        return attack +
-                getEquipmentAttack();
+        return attack + getEquipmentAttack();
     }
 
     public int getBaseAttack() {
@@ -310,8 +241,7 @@ public class Battler implements Serializable {
     }
 
     public int getDefense() {
-        return defense +
-                getEquipmentDefense();
+        return defense + getEquipmentDefense();
     }
 
     public int getBaseDefense() {
@@ -319,8 +249,7 @@ public class Battler implements Serializable {
     }
 
     public int getSpeed() {
-        return isDelaying ? 1 : speed +
-                getEquipmentSpeed();
+        return isDelaying ? 1 : speed + getEquipmentSpeed();
     }
 
     public int getBaseSpeed() {
@@ -328,8 +257,7 @@ public class Battler implements Serializable {
     }
 
     public int getMagic() {
-        return magic +
-                getEquipmentMagic();
+        return magic + getEquipmentMagic();
     }
 
     public int getBaseMagic() {
@@ -355,8 +283,7 @@ public class Battler implements Serializable {
     }
 
     public Skill getSkill(String skill) {
-        return skillList[Arrays.binarySearch(skillList,
-                skill)];
+        return skillList[Arrays.binarySearch(skillList, skill)];
     }
 
     public Equipment getEquipment(int equipmentSlot) {
@@ -384,30 +311,12 @@ public class Battler implements Serializable {
     }
 
     public int levelUp() {
-        hpTier = HP /
-                50.0 /
-                (level +
-                1);
-        mpTier = MP /
-                50.0 /
-                (level +
-                1);
-        attackTier = attack /
-                8.8 /
-                (level +
-                1);
-        defenseTier = defense /
-                8.8 /
-                (level +
-                1);
-        speedTier = speed /
-                8.8 /
-                (level +
-                1);
-        magicTier = magic /
-                8.8 /
-                (level +
-                1);
+        hpTier = HP / 50.0 / (level + 1);
+        mpTier = MP / 50.0 / (level + 1);
+        attackTier = attack / 8.8 / (level + 1);
+        defenseTier = defense / 8.8 / (level + 1);
+        speedTier = speed / 8.8 / (level + 1);
+        magicTier = magic / 8.8 / (level + 1);
 
         maxHP += (int) (0.7 *
                 (1 +
@@ -468,33 +377,14 @@ public class Battler implements Serializable {
     }
 
     public int levelUp(int level) {
-        hpTier = HP /
-                50.0 /
-                (level +
-                1);
-        mpTier = MP /
-                50.0 /
-                (level +
-                1);
-        attackTier = attack /
-                8.8 /
-                (level +
-                1);
-        defenseTier = defense /
-                8.8 /
-                (level +
-                1);
-        speedTier = speed /
-                8.8 /
-                (level +
-                1);
-        magicTier = magic /
-                8.8 /
-                (level +
-                1);
+        hpTier = HP / 50.0 / (level + 1);
+        mpTier = MP / 50.0 / (level + 1);
+        attackTier = attack / 8.8 / (level + 1);
+        defenseTier = defense / 8.8 / (level + 1);
+        speedTier = speed / 8.8 / (level + 1);
+        magicTier = magic / 8.8 / (level + 1);
 
-        for (int i = 0; i <
-                level; i++) {
+        for (int i = 0; i < level; i++) {
 
             maxHP += (int) (0.7 *
                     (1 +
@@ -577,15 +467,11 @@ public class Battler implements Serializable {
 
     public boolean changeHP(int value) {
         boolean isDead;
-        HP -= ((value >
-                0) ? (value *
-                        damageModifier) : value);
-        if (HP >
-                maxHP) {
+        HP -= ((value > 0) ? (value * damageModifier) : value);
+        if (HP > maxHP) {
             HP = maxHP;
         }
-        isDead = HP <=
-                0;
+        isDead = HP <= 0;
         if (isDead) {
             HP = 0;
             resetDefend();
@@ -717,14 +603,6 @@ public class Battler implements Serializable {
                 skillList.length);
         tempList[skillList.length] = newSkill.overrideLevel(overrideLevel);
         skillList = tempList;
-    }
-
-    public String getImageName() {
-        return imageName;
-    }
-
-    public void setImage(String newImage) {
-        imageName = newImage;
     }
 
     public void changeExperiencePoints(int getExperiencePoints) {

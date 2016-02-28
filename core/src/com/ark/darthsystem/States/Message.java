@@ -43,19 +43,6 @@ public class Message implements State {
 
     public Message(String getMessage) {
         this(new ArrayList<String>() {{this.add(getMessage);}});
-//        messageQueue = new LinkedList<>();
-//        messages = new ArrayList<>();
-//        messages.add(getMessage);
-//        messageQueue.add(messages);
-//        messages = messageQueue.remove();
-//        isPause = true;
-//        destroyOnExit = false;
-//        font = new BitmapFont(Gdx.files.internal(
-//                "com/ark/darthsystem/assets/fonts/font.fnt"),
-//                true);
-//        font.setColor(Color.BLACK);
-//        font.getData().scaleX = FONT_SCALE;
-//        font.getData().scaleY = FONT_SCALE;
     }
 
     public Message(ArrayList<String> getMessage) {

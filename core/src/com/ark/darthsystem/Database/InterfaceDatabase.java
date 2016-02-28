@@ -14,7 +14,7 @@ import com.badlogic.gdx.graphics.g2d.NinePatch;
  */
 public class InterfaceDatabase {
     private static final int OFFSET = 16;
-    public static NinePatch TEXT_BOX = new NinePatch(new Texture("graphics/interface/window.png"), OFFSET, OFFSET, OFFSET, OFFSET);
+    public static final NinePatch TEXT_BOX = new NinePatch(new Texture("graphics/interface/window.png"), OFFSET, OFFSET, OFFSET, OFFSET);
 //    public static NinePatch TEXT_BOX = new NinePatch(GraphicsDriver.getMasterSheet().createSprite("interface/window"), OFFSET, OFFSET, OFFSET, OFFSET);
 
     public static void dispose() {

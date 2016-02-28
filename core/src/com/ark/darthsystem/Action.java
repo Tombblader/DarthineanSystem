@@ -15,13 +15,11 @@ public class Action implements Serializable {
     private static final int DEFENSE_CONSTANT = 6;
     private static final int ATTACK_RATIO = 5;
     private Battle.Command actionCommand;
-//    private boolean isAlly;
     private Skill actionSkill;
     private Item actionItem;
     private Battler caster;
     private Battler target;
     private ArrayList<Battler> allTargets;
-//    private Boolean isAll;
     private int damage;
 
     public Action(Battle.Command initializeCommand) {

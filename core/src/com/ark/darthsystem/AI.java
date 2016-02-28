@@ -16,14 +16,14 @@ public class AI implements Serializable {
         MercilessAttack,
         MercilessHeal;
     }
-    static final int NO_FLAG = -1;
-    Type AIType;
-    int priority;
-    double lowHP = NO_FLAG;
-    int turn = NO_FLAG;
-    int turnInterval = NO_FLAG;
-    boolean dead;
-    Battle.Stats checkStatus;
+    private static final int NO_FLAG = -1;
+    private Type AIType;
+    private int priority;
+    private double lowHP = NO_FLAG;
+    private int turn = NO_FLAG;
+    private int turnInterval = NO_FLAG;
+    private boolean dead;
+    private Battle.Stats checkStatus;
 
     AI(Type getType, int setPriority) {
         AIType = getType;

@@ -80,7 +80,10 @@ public class ActorAI extends Player {
     }
 
     public boolean isInRange() {
-        float distance = (float) Math.sqrt(Math.pow(GraphicsDriver.getPlayer().getX() - (this.getX()), 2) + Math.pow((GraphicsDriver.getPlayer().getY() - (this.getY())), 2));
+        float distance = (float) Math.sqrt(
+                Math.pow(GraphicsDriver.getPlayer().getX() - (this.getX()), 2)
+                + Math.pow((GraphicsDriver.getPlayer().getY() - (this.getY())), 2));
+        System.out.println(80f / PlayerCamera.PIXELS_TO_METERS);
         return distance < 80f / PlayerCamera.PIXELS_TO_METERS;
     }
 
@@ -90,26 +93,26 @@ public class ActorAI extends Player {
     }
 
     private void moveTowardsPlayer(float delta) {
-        if ((GraphicsDriver.getPlayer().getX()) > (this.getX()) && (GraphicsDriver.getPlayer().getX()) - (this.getX()) > 4.0) {
-            getMainBody().setLinearVelocity(speed * (float) (delta), getMainBody().getLinearVelocity().y);
+        if ((GraphicsDriver.getPlayer().getX()) > (this.getX()) && (GraphicsDriver.getPlayer().getX()) - (this.getX()) > 4.0 / PlayerCamera.PIXELS_TO_METERS) {
             changeX(1);
-        } else if ((GraphicsDriver.getPlayer().getX()) < (this.getX()) && (this.getX()) - (GraphicsDriver.getPlayer().getX()) > 4.0) {
-            getMainBody().setLinearVelocity(-speed * (float) (delta), getMainBody().getLinearVelocity().y);
+            getMainBody().setLinearVelocity(speed * (float) (delta), getMainBody().getLinearVelocity().y);
+        } else if ((GraphicsDriver.getPlayer().getX()) < (this.getX()) && (this.getX()) - (GraphicsDriver.getPlayer().getX()) > 4.0 / PlayerCamera.PIXELS_TO_METERS) {
             changeX(-1);
+            getMainBody().setLinearVelocity(-speed * (float) (delta), getMainBody().getLinearVelocity().y);
         } else {
-            getMainBody().setLinearVelocity(0, getMainBody().getLinearVelocity().y);
             changeX(0);
+            getMainBody().setLinearVelocity(0, getMainBody().getLinearVelocity().y);
         }
 
-        if ((GraphicsDriver.getPlayer().getY()) > (this.getY()) && (GraphicsDriver.getPlayer().getY()) - (this.getY()) > 4.0) {
-           getMainBody().setLinearVelocity(getMainBody().getLinearVelocity().x, speed * (float) (delta));
+        if ((GraphicsDriver.getPlayer().getY()) > (this.getY()) && (GraphicsDriver.getPlayer().getY()) - (this.getY()) > 4.0 / PlayerCamera.PIXELS_TO_METERS) {
             changeY(1);
-         } else if ((GraphicsDriver.getPlayer().getY()) < (this.getY()) && (this.getY()) - (GraphicsDriver.getPlayer().getY()) > 4.0) {
-            getMainBody().setLinearVelocity(getMainBody().getLinearVelocity().x, -speed * (float) (delta));
+           getMainBody().setLinearVelocity(getMainBody().getLinearVelocity().x, speed * (float) (delta));
+         } else if ((GraphicsDriver.getPlayer().getY()) < (this.getY()) && (this.getY()) - (GraphicsDriver.getPlayer().getY()) > 4.0 / PlayerCamera.PIXELS_TO_METERS) {
             changeY(-1);
+            getMainBody().setLinearVelocity(getMainBody().getLinearVelocity().x, -speed * (float) (delta));
         } else {
-            getMainBody().setLinearVelocity(getMainBody().getLinearVelocity().x, 0);
             changeY(0);
+            getMainBody().setLinearVelocity(getMainBody().getLinearVelocity().x, 0);
         }
         setFacing();
         setFieldState(ActorSprite.SpriteModeField.WALK);
@@ -134,6 +137,52 @@ public class ActorAI extends Player {
         }
         this.setWalking(true);
     }
+    
+    public void moveTowardsPoint(float x, float y, float delta) {
+        if (x > (this.getX()) && x - (this.getX()) > 4.0 / PlayerCamera.PIXELS_TO_METERS) {
+            changeX(1);
+            getMainBody().setLinearVelocity(speed * (float) (delta), getMainBody().getLinearVelocity().y);
+        } else if (x < (this.getX()) && (this.getX()) - x > 4.0 / PlayerCamera.PIXELS_TO_METERS) {
+            changeX(-1);
+            getMainBody().setLinearVelocity(-speed * (float) (delta), getMainBody().getLinearVelocity().y);
+        } else {
+            changeX(0);
+            getMainBody().setLinearVelocity(0, getMainBody().getLinearVelocity().y);
+        }
+
+        if (y > (this.getY()) && y - (this.getY()) > 4.0 / PlayerCamera.PIXELS_TO_METERS) {
+            changeY(1);
+           getMainBody().setLinearVelocity(getMainBody().getLinearVelocity().x, speed * (float) (delta));
+         } else if (y < (this.getY()) && (this.getY()) - y > 4.0 / PlayerCamera.PIXELS_TO_METERS) {
+            changeY(-1);
+            getMainBody().setLinearVelocity(getMainBody().getLinearVelocity().x, -speed * (float) (delta));
+        } else {
+            changeY(0);
+            getMainBody().setLinearVelocity(getMainBody().getLinearVelocity().x, 0);
+        }
+        setFacing();
+        setFieldState(ActorSprite.SpriteModeField.WALK);
+        switch (getFacing()) {
+            case UP:
+            case UP_LEFT:
+            case UP_RIGHT:
+                changeDuringAnimation(getCurrentBattler().getSprite().getFieldAnimation(ActorSprite.SpriteModeField.WALK, Actor.Facing.UP));
+                break;
+            case RIGHT:
+                changeDuringAnimation(getCurrentBattler().getSprite().getFieldAnimation(ActorSprite.SpriteModeField.WALK, Actor.Facing.RIGHT));
+                break;
+            case LEFT:
+                changeDuringAnimation(getCurrentBattler().getSprite().getFieldAnimation(ActorSprite.SpriteModeField.WALK, Actor.Facing.LEFT));
+                break;
+            case DOWN:
+            case DOWN_LEFT:
+            case DOWN_RIGHT:
+                changeDuringAnimation(getCurrentBattler().getSprite().getFieldAnimation(ActorSprite.SpriteModeField.WALK, Actor.Facing.DOWN));
+                break;
+            default:
+        }
+        this.setWalking(true);
+    }    
 
     public ArrayList<BattlerAI> getAllBattlerAI() {
         ArrayList<BattlerAI> allBattlers = new ArrayList<>();

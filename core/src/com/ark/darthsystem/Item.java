@@ -38,8 +38,7 @@ public class Item implements Serializable, Cloneable {
         name = getName;
         invoke = initializeSkill;
         useMP = initializeUseMP;
-        isAll = initializeSkill !=
-                null ? initializeSkill.getAll() : false;
+        isAll = initializeSkill != null ? initializeSkill.getAll() : false;
         expendable = initializeExpendable;
         quantity = 1;
     }
@@ -79,8 +78,7 @@ public class Item implements Serializable, Cloneable {
     public Item decreaseQuantity(int amount) {
         Item thisItem = this;
         quantity -= amount;
-        if (amount <=
-                0) {
+        if (amount <= 0) {
             thisItem = null;
         }
         return thisItem;
@@ -111,8 +109,7 @@ public class Item implements Serializable, Cloneable {
     }
 
     public boolean getAlly() {
-        if (invoke ==
-                null) {
+        if (invoke == null) {
             return true;
         } else {
             return invoke.getAlly();
@@ -138,7 +135,6 @@ public class Item implements Serializable, Cloneable {
     }
 
     public boolean equals(Object o) {
-        return o != null &&
-                ((Item) (o)).getName().equals(this.getName());
+        return o != null && ((Item) (o)).getName().equals(this.getName());
     }
 }
