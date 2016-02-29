@@ -157,10 +157,8 @@ public class Database1 implements Serializable {
         Database1.you = (Battler) objectStream.readObject();
         Database1.inventory = (ArrayList<Item>) objectStream.readObject();
         Database1.karma = objectStream.readInt();
-        Database1.switches = (HashMap<String, Boolean>) objectStream.
-                readObject();
-        Database1.variables = (HashMap<String, Integer>) objectStream.
-                readObject();
+        Database1.switches = (HashMap<String, Boolean>) objectStream.readObject();
+        Database1.variables = (HashMap<String, Integer>) objectStream.readObject();
         objectStream.close();
     }
 

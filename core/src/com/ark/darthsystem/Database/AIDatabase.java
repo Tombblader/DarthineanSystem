@@ -7,12 +7,10 @@ package com.ark.darthsystem.Database;
 
 import com.ark.darthsystem.Battler;
 import com.ark.darthsystem.BattlerAI;
-import com.ark.darthsystem.BattlerClass;
 import com.ark.darthsystem.Equipment;
 import com.ark.darthsystem.Scenario;
 import com.ark.darthsystem.Skill;
 import com.ark.darthsystem.States.Battle;
-import java.util.HashMap;
 
 /**
  *

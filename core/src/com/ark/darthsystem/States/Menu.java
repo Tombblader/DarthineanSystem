@@ -29,10 +29,12 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
  * @author Keven
  */
 public abstract class Menu implements State {
+    private final int PADDING_X = 20;
+    private final int PADDING = 3;
 
     private final int BACK_BUTTON = Keys.X;
     private String[] choices;
-
+    private final int MESSAGE_HEIGHT = HEIGHT / 5;
     private final int CONFIRM_BUTTON = Keys.Z;
     private Sprite cursorTexture;
     private int cursorIndex;
@@ -40,11 +42,10 @@ public abstract class Menu implements State {
     private int DOWN_BUTTON = Keys.DOWN;
     private String header;
     private boolean isPause;
-    private final int MENU_WIDTH = 200;
-    private final int MENU_X = 700;
+    private final int MENU_X;
     private float x;
     private float y;
-    private final int MENU_Y = 400;
+    private final int MENU_Y;
     private int menuIndex = 0;
     private CopyOnWriteArrayList<Menu> subMenuList;
     private final int UP_BUTTON = Keys.UP;
@@ -66,6 +67,9 @@ public abstract class Menu implements State {
         parameter.borderColor = Color.BLACK;
         parameter.color = Color.WHITE;
         font = gen.generateFont(parameter);
+        gen.dispose();
+        MENU_X = WIDTH - 200;
+        MENU_Y = HEIGHT - MESSAGE_HEIGHT - (24 + choices.length * (int) (GraphicsDriver.getFont().getData().capHeight * GraphicsDriver.getFont().getData().scaleY + PADDING));
     }
 
     public Menu(String header, String[] choices, boolean pause, boolean mutable) {
@@ -83,6 +87,9 @@ public abstract class Menu implements State {
         parameter.borderColor = Color.BLACK;
         parameter.color = Color.WHITE;
         font = gen.generateFont(parameter);
+        gen.dispose();
+        MENU_X = WIDTH - 200;
+        MENU_Y = HEIGHT - MESSAGE_HEIGHT - (24 + choices.length * (int) (GraphicsDriver.getFont().getData().capHeight * GraphicsDriver.getFont().getData().scaleY + PADDING));
     }
 
     public Menu(String[] choices) {
@@ -100,6 +107,9 @@ public abstract class Menu implements State {
         parameter.borderColor = Color.BLACK;
         parameter.color = Color.WHITE;
         font = gen.generateFont(parameter);
+        gen.dispose();
+        MENU_X = WIDTH - 200;
+        MENU_Y = HEIGHT - MESSAGE_HEIGHT - (24 + choices.length * (int) (GraphicsDriver.getFont().getData().capHeight * GraphicsDriver.getFont().getData().scaleY + PADDING));
     }
 
     public void addSubMenu(Menu m) {
@@ -179,8 +189,6 @@ public abstract class Menu implements State {
     }
 
     public void renderMenu(Batch batch) {
-        final int PADDING_X = 20;
-        final int PADDING = 3;
 //        final int PADDING_Y = 10;
         final int MENU_WIDTH = 200;
         final int MENU_HEIGHT = 24 + choices.length * (int) (GraphicsDriver.getFont().getData().capHeight * GraphicsDriver.getFont().getData().scaleY + PADDING);
@@ -223,11 +231,11 @@ public abstract class Menu implements State {
                     cursorTexture.getScaleY(),
                     cursorTexture.getRotation());
         
-        InterfaceDatabase.TEXT_BOX.draw(batch, GraphicsDriver.getCamera().getScreenPositionX(), HEIGHT - HEIGHT / 4 + GraphicsDriver.getCamera().getScreenPositionY(), WIDTH, HEIGHT / 4);        
+        InterfaceDatabase.TEXT_BOX.draw(batch, GraphicsDriver.getCamera().getScreenPositionX(), HEIGHT - MESSAGE_HEIGHT + GraphicsDriver.getCamera().getScreenPositionY(), WIDTH, MESSAGE_HEIGHT);        
         GraphicsDriver.drawMessage(batch, font,
                 header,
                 15 + GraphicsDriver.getCamera().getScreenPositionX(),
-                (12 + (HEIGHT - HEIGHT / 4) + GraphicsDriver.getCamera().getScreenPositionY()));
+                (12 + (HEIGHT - MESSAGE_HEIGHT) + GraphicsDriver.getCamera().getScreenPositionY()));
         if (isOverhead) {
             batch.end();
             batch.setProjectionMatrix(GraphicsDriver.getPlayerCamera().combined);
@@ -280,5 +288,12 @@ public abstract class Menu implements State {
     
     public String getMusic() {
         return null;
+    }
+    
+    public void reset() {
+        cursorIndex = 0;
+        menuIndex = 0;
+        subMenuList.clear();
+        subMenuList.add(this);
     }
 }

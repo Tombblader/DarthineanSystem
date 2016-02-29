@@ -121,48 +121,23 @@ public class Action implements Serializable {
                 case Attack:
                     damage = (int) ((caster.getAttack() *
                             ATTACK_CONSTANT -
-                            target.getDefense() *
-                            DEFENSE_CONSTANT) /
+                            target.getDefense() * DEFENSE_CONSTANT) /
                             ATTACK_RATIO *
                             (caster.getEquipment(Equipment.EquipmentType.RightArm.getSlot()) != null &&
                             caster.getEquipment(Equipment.EquipmentType.RightArm.getSlot()).getElement() != Battle.Element.Physical &&
                             caster.getEquipment(Equipment.EquipmentType.RightArm.getSlot()).getElement() ==
                             target.getElement().getWeakness() ? 2 : 1) * (caster.getEquipment(Equipment.EquipmentType.RightArm.getSlot()) != null &&
-                            caster.getEquipment(
-                                    Equipment.EquipmentType.RightArm.getSlot()).
-                            getElement() !=
-                            Battle.Element.Physical &&
-                            caster.getEquipment(
-                                    Equipment.EquipmentType.RightArm.getSlot()).
-                            getElement() ==
+                            caster.getEquipment(Equipment.EquipmentType.RightArm.getSlot()).getElement() != Battle.Element.Physical &&
+                            caster.getEquipment(Equipment.EquipmentType.RightArm.getSlot()).getElement() ==
                             caster.getElement() ? 1.5 : 1) *
-                            (caster.getEquipment(
-                                    Equipment.EquipmentType.RightArm.getSlot()) !=
-                            null &&
-                            caster.getEquipment(
-                                    Equipment.EquipmentType.RightArm.getSlot()).
-                            getElement() !=
-                            Battle.Element.Physical &&
-                            caster.getEquipment(
-                                    Equipment.EquipmentType.RightArm.getSlot()).
-                            getElement() ==
-                            target.getElement() ? -1 : 1) *
-                            (caster.getEquipment(
-                                    Equipment.EquipmentType.RightArm.getSlot()) !=
-                            null &&
-                            caster.getEquipment(
-                                    Equipment.EquipmentType.RightArm.getSlot()).
-                            getElement() !=
-                            Battle.Element.Physical &&
-                            target.getEquipment(
-                                    Equipment.EquipmentType.LeftArm.getSlot()) !=
-                            null &&
-                            caster.getEquipment(
-                                    Equipment.EquipmentType.RightArm.getSlot()).
-                            getElement() ==
-                            target.getEquipment(Equipment.EquipmentType.LeftArm.getSlot()).getElement() ? .5 : 1) * (.9 + Math.random() * .25));
-                    damageStep(b,
-                            damage);
+                            (caster.getEquipment(Equipment.EquipmentType.RightArm.getSlot()) != null &&
+                            caster.getEquipment(Equipment.EquipmentType.RightArm.getSlot()).getElement() != Battle.Element.Physical &&
+                            caster.getEquipment(Equipment.EquipmentType.RightArm.getSlot()).getElement() == target.getElement() ? -1 : 1) * (caster.getEquipment(Equipment.EquipmentType.RightArm.getSlot()) !=null &&
+                            caster.getEquipment(Equipment.EquipmentType.RightArm.getSlot()).getElement() != Battle.Element.Physical &&
+                            target.getEquipment(Equipment.EquipmentType.LeftArm.getSlot()) != null &&
+                            caster.getEquipment(Equipment.EquipmentType.RightArm.getSlot()).getElement() == target.getEquipment(Equipment.EquipmentType.LeftArm.getSlot()).getElement() ? .5 : 1) * (.9 + Math.random() * .25));
+                    setNewTarget();
+                    damageStep(b, damage);
                     break;
                 case Defend:
                     break;

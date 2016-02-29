@@ -8,7 +8,6 @@ package com.ark.darthsystem;
 import com.ark.darthsystem.Database.Database1;
 import com.ark.darthsystem.States.Battle;
 import static com.ark.darthsystem.BattleDriver.*;
-import com.ark.darthsystem.Database.AIDatabase;
 import com.ark.darthsystem.Database.SystemDatabase;
 import com.ark.darthsystem.Graphics.*;
 
@@ -17,11 +16,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
-import javax.sound.midi.InvalidMidiDataException;
-import javax.sound.midi.MidiSystem;
-import javax.sound.midi.Sequence;
-import javax.sound.midi.Sequencer;
-import javax.sound.midi.MidiUnavailableException;
 
 /**
  *

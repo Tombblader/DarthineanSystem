@@ -1,7 +1,6 @@
 package com.ark.darthsystem.Graphics;
 
 import com.ark.darthsystem.BattleDriver;
-import com.ark.darthsystem.Battler;
 import com.ark.darthsystem.Database.Database1;
 import com.ark.darthsystem.Database.MapDatabase;
 import java.util.ArrayList;
@@ -10,7 +9,6 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import com.ark.darthsystem.Database.Database2;
 import com.ark.darthsystem.Database.InterfaceDatabase;
 import com.ark.darthsystem.Database.SoundDatabase;
-import com.ark.darthsystem.GameOverException;
 import com.ark.darthsystem.States.*;
 
 import com.badlogic.gdx.Gdx;
@@ -45,6 +43,7 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
     private static String backgroundMusicString = null;
     private static Sprite screenshot;
     private static float transition = 0;
+    private static ArrayList<Transition> transitions = new ArrayList<>();
     public static Player getPlayer() {
         return Database2.player;
     }
@@ -257,9 +256,9 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
         parameter.size = 24;
         parameter.flip = true;
         parameter.borderColor = Color.BLACK;
+        parameter.borderWidth = .1f;
         parameter.color = Color.WHITE;
         font = gen.generateFont(parameter);
-        font.setUseIntegerPositions(false);
         gen.dispose();
         Gdx.input.setInputProcessor(input);
         new Database2();
@@ -285,8 +284,11 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
         } 
         delta = (Gdx.graphics.getDeltaTime() * 1000.0f);
         currentTime += Gdx.graphics.getDeltaTime();
-        if (transition > 0f) {
-            transition -= Gdx.graphics.getDeltaTime();
+        if (!transitions.isEmpty()) {
+            transitions.get(0).update(Gdx.graphics.getDeltaTime());
+            if (transitions.get(0).isFinished()) {
+                transitions.remove(0);
+            }
         }
         else {
             update(delta);
@@ -297,16 +299,16 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
         batch.setProjectionMatrix(currentCamera.combined);
         batch.begin();
         getCurrentState().render(batch);
-        if (transition > 0f) {
+        if (!transitions.isEmpty()) {
             if (getCurrentState() instanceof OverheadMap) {                
                 SpriteBatch tempBatch = (SpriteBatch) ((OverheadMap)(getCurrentState())).getBatch();
                 tempBatch.setProjectionMatrix(camera.combined);
                 tempBatch.begin();
-                screenshot.draw(tempBatch, transition);
+                transitions.get(0).render(tempBatch);
                 tempBatch.end();
                 tempBatch.setProjectionMatrix(currentCamera.combined);
             } else {
-                screenshot.draw(batch, transition);
+                transitions.get(0).render(batch);
             }
         }
         batch.end();
@@ -331,8 +333,7 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
     }
     
     public static void transition() {
-        screenshot();
-        transition = 1f;
+        transitions.add(new Transition(Transition.TransitionType.FADE_IN_OUT));
     }
     
     public static void transition(Sprite s) {
@@ -359,5 +360,9 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
             }
             start = System.currentTimeMillis();
         }
+    }
+    
+    public static void flashScreen() {
+        screenshot.setColor(1, 1, 1, 1);
     }
 }

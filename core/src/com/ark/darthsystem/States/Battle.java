@@ -11,38 +11,33 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
 import java.util.ArrayList;
-import java.util.concurrent.CopyOnWriteArrayList;
+//import java.util.conArrayList;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import java.util.Iterator;
 
 public class Battle implements State {
 
     private static final String BATTLE_MUSIC = "music/Forbidden Secret Unfolding.mp3";
-    private static final String GAME_OVER_MUSIC = "music/LostBattle.midi";
     private static ArrayList<Battler> party;
     private static ArrayList<Battler> enemy;
     private static ArrayList<ActorBattler> partyActors;
     private static ArrayList<ActorBattler> enemyActors;
     private static ArrayList<Item> partyItems;
     private static boolean inBattle = false;
-    private static CopyOnWriteArrayList<Action> partyAction
-            = new CopyOnWriteArrayList<>();
-    private static CopyOnWriteArrayList<Action> enemyAction
-            = new CopyOnWriteArrayList<>();
-    private static CopyOnWriteArrayList<Action> allAction
-            = new CopyOnWriteArrayList<>();
-    private CopyOnWriteArrayList<Actor> animations =
-            new CopyOnWriteArrayList<>();
+    private static ArrayList<Action> partyAction = new ArrayList<>();
+    private static ArrayList<Action> enemyAction = new ArrayList<>();
+    private static ArrayList<Action> allAction = new ArrayList<>();
+    private ArrayList<Actor> animations = new ArrayList<>();
     
     private int turnCount = 1;
-    private String previousMusic;
     private Scenario script;
     private static State state;
     private Sprite background;
     private float elapsed = 0;
     private ArrayList<GameTimer> timers;
     private String bgm;
-    private CopyOnWriteArrayList<Sound> sounds = new CopyOnWriteArrayList<>();
+    private ArrayList<Sound> sounds = new ArrayList<>();
 
     
     private void renderPersistentActors(SpriteBatch batch) {
@@ -104,21 +99,23 @@ public class Battle implements State {
     
     private void updateTemporaryActors(float delta) {
         elapsed += GraphicsDriver.getRawDelta();
-        for (Actor a : animations) {
+        for (Iterator<Actor> it = animations.iterator(); it.hasNext();) {
+            Actor a = it.next();
             a.update(delta);
             if (a.isFinished()) {
                 a.resetAnimation();
-                animations.remove(a);
+                it.remove();
             } 
         }
         playSounds();
     }
     
     private void playSounds() {
-        for (Sound s : sounds) {
+        for (Iterator<Sound> it = sounds.iterator(); it.hasNext();) {
+            Sound s = it.next();
             s.stop();
             s.play();
-            sounds.remove(s);
+            it.remove();
         }
     }
 
@@ -644,7 +641,7 @@ public class Battle implements State {
         return inBattle;
     }
 
-    public CopyOnWriteArrayList<Action> getActions() {
+    public ArrayList<Action> getActions() {
         return allAction;
     }
 

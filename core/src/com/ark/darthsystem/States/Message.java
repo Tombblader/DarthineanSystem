@@ -28,6 +28,7 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 public class Message implements State {
 
     private final int HEIGHT = GraphicsDriver.getHeight();
+    private final int MESSAGE_HEIGHT = HEIGHT / 5;
     private final int WIDTH = GraphicsDriver.getWidth();
     private String header = "";
     private boolean isPause;
@@ -59,6 +60,7 @@ public class Message implements State {
         parameter.borderColor = Color.BLACK;
         parameter.color = Color.WHITE;
         font = gen.generateFont(parameter);
+        gen.dispose();
     }
     
     public Message(ActorBattler header, ArrayList<String> getMessage) {
@@ -119,29 +121,29 @@ public class Message implements State {
             batch.setProjectionMatrix(GraphicsDriver.getCamera().combined);
         }
 
-        InterfaceDatabase.TEXT_BOX.draw(batch, GraphicsDriver.getCamera().getScreenPositionX(), HEIGHT - HEIGHT / 4 + GraphicsDriver.getCamera().getScreenPositionY(), WIDTH, HEIGHT / 4);
+        InterfaceDatabase.TEXT_BOX.draw(batch, GraphicsDriver.getCamera().getScreenPositionX(), HEIGHT - MESSAGE_HEIGHT + GraphicsDriver.getCamera().getScreenPositionY(), WIDTH, MESSAGE_HEIGHT);
         
         int i = 0;
         if (face != null) {
             batch.draw(face.getKeyFrame(GraphicsDriver.getCurrentTime()), 0, 
-                 HEIGHT - HEIGHT / 4 - 18 - 64 + GraphicsDriver.getCamera().getScreenPositionY());
+                 HEIGHT - MESSAGE_HEIGHT - 18 - 64 + GraphicsDriver.getCamera().getScreenPositionY());
         }
         
         if (!header.equals("")) {
             InterfaceDatabase.TEXT_BOX.draw(batch, 
                     1 + GraphicsDriver.getCamera().getScreenPositionX(), 
-                    HEIGHT - HEIGHT / 4 - 30 + GraphicsDriver.getCamera().getScreenPositionY(),
+                    HEIGHT - MESSAGE_HEIGHT - 30 + GraphicsDriver.getCamera().getScreenPositionY(),
                     header.length() * 14,
                     font.getCapHeight() + 18);
             GraphicsDriver.drawMessage(batch, font, header,
                     15 + GraphicsDriver.getCamera().getScreenPositionX(),
-                    ((HEIGHT - HEIGHT / 4 - 24) + GraphicsDriver.getCamera().getScreenPositionY()));
+                    ((HEIGHT - MESSAGE_HEIGHT - 24) + GraphicsDriver.getCamera().getScreenPositionY()));
         }
         for (String message : messages) {
             GraphicsDriver.drawMessage(batch, font,
                 message,
                 15 + GraphicsDriver.getCamera().getScreenPositionX(),
-                ((PADDING_X + HEIGHT - HEIGHT / 4 + font.getLineHeight() * font.getScaleY() * i) + GraphicsDriver.getCamera().getScreenPositionY()));
+                ((PADDING_X + HEIGHT - MESSAGE_HEIGHT + font.getLineHeight() * font.getScaleY() * i) + GraphicsDriver.getCamera().getScreenPositionY()));
             i++;
         }
 

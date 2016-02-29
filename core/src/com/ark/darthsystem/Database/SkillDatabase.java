@@ -81,7 +81,7 @@ public class SkillDatabase {
             6.0);
 
     public static Skill Heal = new Skill("Heal",
-            2,
+            1,
             3,
             Battle.Element.Heal,
             true,

@@ -8,7 +8,6 @@ package com.ark.darthsystem.Graphics;
 import com.ark.darthsystem.Database.SoundDatabase;
 import com.ark.darthsystem.Skill;
 import com.ark.darthsystem.States.OverheadMap;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
