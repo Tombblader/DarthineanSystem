@@ -112,12 +112,12 @@ public class Player extends ActorCollision {
         Equipment tempEquipment = getCurrentBattler().getBattler().getEquipment(0);
         if (tempEquipment != null) {
             try {
-                attackAnimation = Database2.Sword();
-                // ActorSkill tempAnimation =
-                // tempEquipment.getFieldAnimation().clone();
-                // tempAnimation.setInvoker(this);
-                // attackAnimation = tempAnimation;
+                ActorSkill tempAnimation =
+                 tempEquipment.getAnimation();
+                 tempAnimation.setInvoker(this);
+                 attackAnimation = tempAnimation;
             } catch (Exception e) {
+                attackAnimation = Database2.Sword();
                 e.printStackTrace();
             }
         } else {
@@ -243,8 +243,8 @@ public class Player extends ActorCollision {
     }
 
     public void printStats(Batch batch) {
-        final int STAT_WIDTH = (int) (Gdx.graphics.getWidth());
-        final int STAT_HEIGHT = (int) (76);
+        final int STAT_WIDTH = Gdx.graphics.getWidth();
+        final int STAT_HEIGHT = 78;
         final float SUB_WIDTH = Gdx.graphics.getWidth() / 6f;
         final float NAME_X = 64f;
         final float NAME_Y = 10f;
@@ -256,8 +256,8 @@ public class Player extends ActorCollision {
             Sprite temp = (Sprite) (getAllActorBattlers().get(i).getSprite().getCurrentFaceAnimation().getKeyFrame(getElapsedTime()));
             InterfaceDatabase.TEXT_BOX.draw(batch, SUB_WIDTH * i + GraphicsDriver.getCamera().getScreenPositionX(), (GraphicsDriver.getCamera().getScreenPositionY()), SUB_WIDTH, STAT_HEIGHT);
             batch.draw(temp,
-                    (SUB_WIDTH * i + GraphicsDriver.getCamera().getScreenPositionX() + 5),
-                    (GraphicsDriver.getCamera().getScreenPositionY()),
+                    (SUB_WIDTH * i + GraphicsDriver.getCamera().getScreenPositionX() + 7),
+                    ((STAT_HEIGHT - 64) / 2 + GraphicsDriver.getCamera().getScreenPositionY()),
                     0,
                     0,
                     temp.getRegionWidth(),

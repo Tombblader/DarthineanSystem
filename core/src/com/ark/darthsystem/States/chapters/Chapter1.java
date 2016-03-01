@@ -7,6 +7,7 @@ package com.ark.darthsystem.States.chapters;
 
 import com.ark.darthsystem.BattleDriver;
 import com.ark.darthsystem.Database.Database2;
+import com.ark.darthsystem.Graphics.ActorSprite;
 import com.ark.darthsystem.Graphics.GraphicsDriver;
 
 /**
@@ -18,26 +19,13 @@ public class Chapter1 extends Novel {
         chapters.add(new Page() {
             @Override
             public void run() {
-                BattleDriver.printline(Database2.player.getBattler(0), "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA aAA aAAa aa aaa aa aa aa a a aa a aaaaa  aa aa aaaaaaaaaaaaaa  aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAAAAAAAA");
-                BattleDriver.printline(Database2.player.getBattler(1), "Ugh...");
+                BattleDriver.printline(Database2.player.getBattler(0), ActorSprite.SpriteModeFace.NORMAL, "You should be somewhere about here.");
             }
         });
         chapters.add(new Page() {
             @Override
             public void run() {
-                GraphicsDriver.addMenu(new Condition("Will you cease this foolishness?", new String[]{"Yes", "No"}));
-            }
-        });
-        chapters.add(new Page() {
-            @Override
-            public void run() {
-                if (choices.equals("Yes")) {
-                    BattleDriver.printline("Darth: STOPPPP!!!!");
-                }
-                else {
-                    BattleDriver.printline("Darth: Urge to destroy world... rising...");
-                }
-                
+                BattleDriver.printline(Database2.player.getBattler(0), ActorSprite.SpriteModeFace.HAPPY, "Guide me to you.");
             }
         });
     }

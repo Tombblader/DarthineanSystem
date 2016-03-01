@@ -12,6 +12,8 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.ark.darthsystem.GameOverException;
 import com.ark.darthsystem.Database.MapDatabase;
 import com.ark.darthsystem.Graphics.GraphicsDriver;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
 
 /**
  *
@@ -20,11 +22,14 @@ import com.ark.darthsystem.Graphics.GraphicsDriver;
 public class Title implements State {
     
     private Menu titleMenu;
-    private TextureRegion titleTexture;
+    private static final TextureRegion titleTexture = new TextureRegion(new Texture(Gdx.files.internal("backgrounds/title.png"))) { {
+        this.flip(false, true);
+       }
+    };
     private final String BGM = null;
     
     public Title() {
-        titleTexture = GraphicsDriver.getMasterSheet().findRegion("interface/title");
+//        titleTexture.flip(false, true);
         titleMenu = new Menu("Adventurer.",
                 new String[]{"Start", "Continue", "Quit"}) {
             @Override

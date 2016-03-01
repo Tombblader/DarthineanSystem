@@ -83,11 +83,10 @@ public class ActorAI extends Player {
         float distance = (float) Math.sqrt(
                 Math.pow(GraphicsDriver.getPlayer().getX() - (this.getX()), 2)
                 + Math.pow((GraphicsDriver.getPlayer().getY() - (this.getY())), 2));
-        System.out.println(80f / PlayerCamera.PIXELS_TO_METERS);
         return distance < 80f / PlayerCamera.PIXELS_TO_METERS;
     }
 
-    public boolean isInRange(int range) {
+    public boolean isInRange(float range) {
         double distance = Math.sqrt(Math.pow(GraphicsDriver.getPlayer().getX() - (this.getX()), 2) + Math.pow((GraphicsDriver.getPlayer().getY() - (this.getY())), 2));
         return distance < range;
     }

@@ -7,7 +7,9 @@ import com.ark.darthsystem.Graphics.ActorBattler;
 import com.ark.darthsystem.Graphics.ActorSkill;
 import com.ark.darthsystem.Graphics.GameTimer;
 import com.ark.darthsystem.Graphics.GraphicsDriver;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
 import java.util.ArrayList;
@@ -542,7 +544,8 @@ public class Battle implements State {
 //        GraphicsDriver.playMusic(BATTLE_MUSIC);
         
         GraphicsDriver.setCurrentCamera(GraphicsDriver.getCamera());
-        background = GraphicsDriver.getMasterSheet().createSprite("interface/title");
+        background = new Sprite(new Texture(Gdx.files.internal("backgrounds/title.png")));
+        background.flip(false, true);
         updatePersistentActors(0);
         state = State.START;
         return this;

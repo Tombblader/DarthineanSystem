@@ -32,16 +32,16 @@ public class Database2 extends Database1 {
         Database2.SkillToActor = new HashMap<Skill, ActorSkill>() {
             {
                 put(SkillDatabase.CrossCall,
-                        new ActorSkill((Sprite[]) GraphicsDriver.getMasterSheet().createSprites("animations/wiccan_cross/wiccan_cross").toArray(Sprite.class),
-                                (Sprite[]) GraphicsDriver.getMasterSheet().createSprites("animations/crosscall/crosscall").toArray(Sprite.class),
+                        new ActorSkill((Sprite[]) GraphicsDriver.getMasterSheet().createSprites("skills/wiccan_cross/field/wiccan_cross").toArray(Sprite.class),
+                                (Sprite[]) GraphicsDriver.getMasterSheet().createSprites("skills/crosscall/battler/crosscall").toArray(Sprite.class),
                                 1,
                                 1,
                                 2.0f / 60.0f,
                                 SkillDatabase.CrossCall,
                                 ActorSkill.Area.FRONT));
                 put(SkillDatabase.Red_Spin,
-                        new ActorSkill((Sprite[]) GraphicsDriver.getMasterSheet().createSprites("animations/red_spin/red_spin").toArray(Sprite.class),
-                                GraphicsDriver.getMasterSheet().createSprites("animations/crosscall/crosscall").toArray(Sprite.class),
+                        new ActorSkill((Sprite[]) GraphicsDriver.getMasterSheet().createSprites("skills/red_spin/field/red_spin").toArray(Sprite.class),
+                                GraphicsDriver.getMasterSheet().createSprites("skills/crosscall/battler/crosscall").toArray(Sprite.class),
                                 0,
                                 0,
                                 5.0f / 60.0f,
@@ -56,6 +56,7 @@ public class Database2 extends Database1 {
 
         Database2.ErikSprite = new ActorSprite("characters/darth_invader");
         Database2.DarthSprite = new ActorSprite("characters/darth_invader");
+        Database2.Water_Spirit_Sprite = new ActorSprite("characters/water_spirit");
         Database2.enemies = new ActorBattler[]{new ActorBattler((new BattlerAI(
             "Erik the Red",
             Erik,
@@ -76,7 +77,10 @@ public class Database2 extends Database1 {
         ArrayList<ActorBattler> ErikAIParty = new ArrayList<>();
         ErikAIParty.add(new ActorBattler(temp, ErikSprite));
         ErikAI = new ActorAI(ErikAIParty, 500, 500);
-        Database2.battlers = new ActorBattler[]{new ActorBattler(Darth, DarthSprite), new ActorBattler(Erik, ErikSprite)};
+        Database2.battlers = new ActorBattler[]{
+            new ActorBattler(Water_Spirit, Water_Spirit_Sprite)
+//            new ActorBattler(Darth, DarthSprite), new ActorBattler(Erik, ErikSprite)
+        };
         player = new Player(new ArrayList<>(Arrays.asList(battlers)), 0, 0);
     }
 
@@ -84,6 +88,7 @@ public class Database2 extends Database1 {
 
     public static ActorSprite DarthSprite;
     public static ActorSprite ErikSprite;
+    public static ActorSprite Water_Spirit_Sprite;
 
 //    public static ActorAI DarthQuestionMark;
     public static ActorBattler[] battlers;
@@ -95,15 +100,15 @@ public class Database2 extends Database1 {
 
     public static final ActorSkill Spear = new ActorSkill(
             GraphicsDriver.getMasterSheet().
-            createSprites("animations/spear/spear").toArray(Sprite.class),
+            createSprites("items/equipment/spear/field/spear").toArray(Sprite.class),
             1,
             1,
             100,
             null);
 
     public static ActorSkill Sword() {
-        return new ActorSkill(GraphicsDriver.getMasterSheet().createSprites("animations/sword/sword").toArray(Sprite.class),
-                GraphicsDriver.getMasterSheet().createSprites("animations/sword_slash/sword_slash").toArray(Sprite.class),
+        return new ActorSkill(GraphicsDriver.getMasterSheet().createSprites("items/equipment/sword/field/sword").toArray(Sprite.class),
+                GraphicsDriver.getMasterSheet().createSprites("items/equipment/sword/battler/battler").toArray(Sprite.class),
                 1,
                 1,
                 2.0f / 60.0f,

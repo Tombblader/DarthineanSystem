@@ -17,7 +17,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
  * @author Keven
  */
 public class EventDatabase {
-    public static Pickup GraphicsPotion = new Pickup((Sprite[]) GraphicsDriver.getMasterSheet().createSprites("items/potion").toArray(Sprite.class), 350.0f, 350.0f, .1f, ItemDatabase.Potion);
+    public static Pickup GraphicsPotion = new Pickup((Sprite[]) GraphicsDriver.getMasterSheet().createSprites("items/potion/icon").toArray(Sprite.class), 350.0f, 350.0f, .1f, ItemDatabase.Potion);
     public static NovelMode chapter1 = new NovelMode(new Chapter1(), null, 450.0f, 450.0f, .1f);
     
 }
