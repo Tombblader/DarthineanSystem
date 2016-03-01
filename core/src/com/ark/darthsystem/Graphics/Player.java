@@ -256,7 +256,7 @@ public class Player extends ActorCollision {
             Sprite temp = (Sprite) (getAllActorBattlers().get(i).getSprite().getCurrentFaceAnimation().getKeyFrame(getElapsedTime()));
             InterfaceDatabase.TEXT_BOX.draw(batch, SUB_WIDTH * i + GraphicsDriver.getCamera().getScreenPositionX(), (GraphicsDriver.getCamera().getScreenPositionY()), SUB_WIDTH, STAT_HEIGHT);
             batch.draw(temp,
-                    (SUB_WIDTH * i + GraphicsDriver.getCamera().getScreenPositionX() + 7),
+                    (SUB_WIDTH * i + GraphicsDriver.getCamera().getScreenPositionX() + 5),
                     ((STAT_HEIGHT - 64) / 2 + GraphicsDriver.getCamera().getScreenPositionY()),
                     0,
                     0,

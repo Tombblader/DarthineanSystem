@@ -20,12 +20,13 @@ public class Chapter1 extends Novel {
             @Override
             public void run() {
                 BattleDriver.printline(Database2.player.getBattler(0), ActorSprite.SpriteModeFace.NORMAL, "You should be somewhere about here.");
+                BattleDriver.printline(Database2.player.getBattler(0), ActorSprite.SpriteModeFace.ANGRY, "You should be somewhere about herfdase.");
+                BattleDriver.printline(Database2.player.getBattler(0), ActorSprite.SpriteModeFace.HAPPY, "Guide me to you.");
             }
         });
         chapters.add(new Page() {
             @Override
             public void run() {
-                BattleDriver.printline(Database2.player.getBattler(0), ActorSprite.SpriteModeFace.HAPPY, "Guide me to you.");
             }
         });
     }

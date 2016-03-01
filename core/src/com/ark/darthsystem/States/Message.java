@@ -33,8 +33,8 @@ public class Message implements State {
     private final int CONFIRM_BUTTON = Keys.Z;
     private boolean destroyOnExit;
     private ArrayList<String> currentMessage;
-    private ArrayList<String> messages;
-    private LinkedList<ArrayList<String>> messageQueue;
+    private Message message;
+    private LinkedList<Message> messageQueue;
 //    private final int MESSAGE_FONT_SIZE = 12;
 //    private final float FONT_SCALE = .25f;
     private BitmapFont font;
@@ -45,12 +45,17 @@ public class Message implements State {
     public Message(String getMessage) {
         this(new ArrayList<String>() {{this.add(getMessage);}});
     }
+    
+    public Message() {
+        
+    }
 
     public Message(ArrayList<String> getMessage) {
         messageQueue = new LinkedList<>();
-        messages = new ArrayList<>(getMessage);
-        messageQueue.add(messages);
-        messages = messageQueue.remove();
+        message = new Message();
+        currentMessage = getMessage;
+        messageQueue.add(this);
+        message = messageQueue.remove();
         isPause = true;
         destroyOnExit = false;
         FreeTypeFontGenerator gen = new FreeTypeFontGenerator(Gdx.files.internal("fonts/monofont.ttf"));
@@ -125,25 +130,25 @@ public class Message implements State {
         InterfaceDatabase.TEXT_BOX.draw(batch, GraphicsDriver.getCamera().getScreenPositionX(), HEIGHT - MESSAGE_HEIGHT + GraphicsDriver.getCamera().getScreenPositionY(), WIDTH, MESSAGE_HEIGHT);
         
         int i = 0;
-        if (face != null) {
-            batch.draw(face.getKeyFrame(GraphicsDriver.getCurrentTime() * 1000), (PADDING_X - 64) / 2, 
+        if (message.face != null) {
+            batch.draw(message.face.getKeyFrame(GraphicsDriver.getCurrentTime() * 1000), (PADDING_X - 64) / 2, 
                  HEIGHT - MESSAGE_HEIGHT / 2 - 32 + GraphicsDriver.getCamera().getScreenPositionY());
         }
         
-        if (!header.equals("")) {
+        if (!message.header.equals("")) {
             InterfaceDatabase.TEXT_BOX.draw(batch, 
                     1 + GraphicsDriver.getCamera().getScreenPositionX(), 
                     HEIGHT - MESSAGE_HEIGHT - 30 + GraphicsDriver.getCamera().getScreenPositionY(),
-                    header.length() * 14,
+                    message.header.length() * 14,
                     font.getCapHeight() + 18);
-            GraphicsDriver.drawMessage(batch, font, header,
+            GraphicsDriver.drawMessage(batch, font, message.header,
                     10 + GraphicsDriver.getCamera().getScreenPositionX(),
                     ((HEIGHT - MESSAGE_HEIGHT - 24) + GraphicsDriver.getCamera().getScreenPositionY()));
         }
-        for (String message : messages) {
+        for (String m : message.currentMessage) {
             GraphicsDriver.drawMessage(batch, font,
-                message,
-                PADDING_X + GraphicsDriver.getCamera().getScreenPositionX() - (face == null ? 64 : 0),
+                m,
+                PADDING_X + GraphicsDriver.getCamera().getScreenPositionX() - (message.face == null ? 64 : 0),
                 ((PADDING_Y + HEIGHT - MESSAGE_HEIGHT + font.getLineHeight() * font.getScaleY() * i) + GraphicsDriver.getCamera().getScreenPositionY()));
             i++;
         }
@@ -161,7 +166,8 @@ public class Message implements State {
                 GraphicsDriver.removeState(this);
             }
             else {
-                messages = messageQueue.remove();
+                message = messageQueue.remove();
+                System.out.println(message.currentMessage);
             }
         }
         return 0;
@@ -171,7 +177,11 @@ public class Message implements State {
     }
 
     public void addMessage(ArrayList<String> message) {
-        messageQueue.add(message);
+        messageQueue.add(new Message(message));
+    }
+    
+    public void addMessage(Message m) {
+        messageQueue.add(m);
     }
 
     public void appendMessage(String getMessage) {
@@ -181,7 +191,7 @@ public class Message implements State {
     }
 
     public void appendMessage(ArrayList<String> getMessage) {
-        messages.addAll(getMessage);
+        message.currentMessage.addAll(getMessage);
     }
     
     public String getMusic() {
