@@ -16,6 +16,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
 public class Transition {
 
     private boolean isFinished = false;
+    private float time = 1000;
     public enum TransitionType {
         FADE,
         FADE_IN_OUT,
@@ -23,7 +24,8 @@ public class Transition {
         MOVE_UP,
         MOVE_DOWN,
         MOVE_LEFT,
-        MOVE_RIGHT
+        MOVE_RIGHT,
+        PAUSE
     }
     
     private Sprite screenshot;
@@ -42,6 +44,8 @@ public class Transition {
                 alpha = 0;
                 screenshotClone = screenshot();
                 break;
+            case PAUSE:
+                alpha = 0;
             case FLASH:
                 break;
             case MOVE_UP:
@@ -56,6 +60,11 @@ public class Transition {
                 throw new AssertionError(type.name());
             
         }
+    }
+    
+    public Transition(TransitionType type, float time) {
+        this(type);
+        this.time = time;
     }
     
     private Sprite screenshot() {
@@ -74,15 +83,21 @@ public class Transition {
                 break;
             case FADE_IN_OUT:
                 if (!stepUp) {
-                    alpha += delta;
                     screenshot.setColor(0, 0, 0, alpha);
+                    alpha += delta;
                     stepUp = alpha >= 1;
+                    if (stepUp) {
+                        alpha = 1;
+                    }
                 } else {
-                    alpha -= delta;
                     screenshot.setAlpha(alpha);
+                    alpha -= delta;
                     isFinished = alpha <= 0;
                 }
                 break;
+            case PAUSE:
+                alpha += delta * 1000f;
+                isFinished = alpha >= time;
             case FLASH:
                 break;
             case MOVE_UP:
@@ -101,10 +116,15 @@ public class Transition {
     }
     
     public void render(SpriteBatch batch) {
-        if (type == TransitionType.FADE_IN_OUT && !stepUp) {
+        if (type == TransitionType.FADE_IN_OUT && screenshotClone != null) {
             screenshotClone.draw(batch);
+            if (stepUp) {
+                screenshotClone = null;
+            }
         }
-        screenshot.draw(batch);
+        if (type != TransitionType.PAUSE) {
+            screenshot.draw(batch);
+        }
     }
     
     public boolean isFinished() {

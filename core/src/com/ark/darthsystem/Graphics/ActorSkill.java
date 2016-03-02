@@ -13,8 +13,10 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Filter;
+import com.badlogic.gdx.physics.box2d.Joint;
 import com.badlogic.gdx.physics.box2d.joints.WeldJoint;
 import com.badlogic.gdx.physics.box2d.joints.WeldJointDef;
+import com.badlogic.gdx.utils.Array;
 
 /**
  *
@@ -285,7 +287,9 @@ public class ActorSkill extends ActorCollision {
 
     public void setMap(OverheadMap map, boolean isPlayer) {
         super.setMap(map, isPlayer);
-        if (joint != null) {
+        Array<Joint> temp = new Array<>();
+        map.getPhysicsWorld().getJoints(temp);
+        if (joint != null && temp.contains(joint, true)) {
             map.getPhysicsWorld().destroyJoint(joint);
         }
         Filter filter = new Filter();
@@ -309,7 +313,7 @@ public class ActorSkill extends ActorCollision {
     }
     
     public void dispose() {
-        fieldSound.dispose();
-        battlerSound.dispose();
+//        fieldSound.dispose();
+//        battlerSound.dispose();
     }
 }

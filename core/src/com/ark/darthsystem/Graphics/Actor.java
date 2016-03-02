@@ -304,6 +304,9 @@ public class Actor {
                 timers.remove(t);
             }
         }
+        if (animation != null && elapsed > animation.getAnimationDuration()) {
+            elapsed = 0;
+        }
         setFacing();
     }
 
@@ -383,6 +386,10 @@ public class Actor {
         setX(x);
         setY(y);
         
+    }
+    
+    public void setElapsed(long elapsed) {
+        this.elapsed = elapsed;
     }
 
 }

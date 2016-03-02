@@ -35,13 +35,18 @@ public abstract class GameTimer {
 
     public boolean update(float delta, Actor a) {
         currentTime += delta;
-        if (currentTime >= time) {
+        if (isFinished()) {
             currentTime = 0;
             event(a);
             return true;
         }
         return false;
     }
+    
+    public boolean isFinished() {
+        return currentTime >= time;
+    }
+    
 
     public abstract void event(Actor a);
 }

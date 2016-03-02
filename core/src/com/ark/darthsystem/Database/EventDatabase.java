@@ -7,7 +7,7 @@ package com.ark.darthsystem.Database;
 
 
 import com.ark.darthsystem.Graphics.GraphicsDriver;
-import com.ark.darthsystem.States.chapters.Chapter1;
+import com.ark.darthsystem.States.chapters.*;
 import com.ark.darthsystem.States.events.NovelMode;
 import com.ark.darthsystem.States.events.Pickup;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -18,6 +18,6 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
  */
 public class EventDatabase {
     public static Pickup GraphicsPotion = new Pickup((Sprite[]) GraphicsDriver.getMasterSheet().createSprites("items/potion/icon").toArray(Sprite.class), 350.0f, 350.0f, .1f, ItemDatabase.Potion);
-    public static NovelMode chapter1 = new NovelMode(new Chapter1(), null, 450.0f, 450.0f, .1f);
+    public static NovelMode chapter1 = new NovelMode(new Chapter01(), null, 450.0f, 450.0f, .1f);
     
 }

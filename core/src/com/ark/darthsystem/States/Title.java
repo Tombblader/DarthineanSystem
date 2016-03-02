@@ -21,16 +21,17 @@ import com.badlogic.gdx.graphics.Texture;
  */
 public class Title implements State {
     
-    private Menu titleMenu;
-    private static final TextureRegion titleTexture = new TextureRegion(new Texture(Gdx.files.internal("backgrounds/title.png"))) { {
-        this.flip(false, true);
-       }
-    };
+    private final Menu TITLE_MENU;
+    private final TextureRegion titleTexture;
     private final String BGM = null;
     
     public Title() {
-//        titleTexture.flip(false, true);
-        titleMenu = new Menu("Adventurer.",
+        titleTexture = new TextureRegion(new Texture(Gdx.files.internal("backgrounds/title.png"))) {
+            {
+                this.flip(false, true);
+            }
+        };
+        TITLE_MENU = new Menu("Adventurer.",
                 new String[]{"Start", "Continue", "Quit"}) {
             @Override
             public String confirm(String choice) {
@@ -64,7 +65,7 @@ public class Title implements State {
     @Override
     public float update(float delta) {
         GraphicsDriver.setCurrentCamera(GraphicsDriver.getCamera());
-        GraphicsDriver.addMenu(titleMenu);
+        GraphicsDriver.addMenu(TITLE_MENU);
         return delta;
     }
     
@@ -75,7 +76,7 @@ public class Title implements State {
     
     @Override
     public void dispose() {
-        
+        titleTexture.getTexture().dispose();
     }
 
     @Override

@@ -14,19 +14,25 @@ import com.ark.darthsystem.Graphics.GraphicsDriver;
  *
  * @author Keven
  */
-public class Chapter1 extends Novel {
-    public Chapter1() {
+public class Chapter0 extends Novel {
+    public Chapter0() {
         chapters.add(new Page() {
             @Override
             public void run() {
-                BattleDriver.printline(Database2.player.getBattler(0), ActorSprite.SpriteModeFace.NORMAL, "You should be somewhere about here.");
-                BattleDriver.printline(Database2.player.getBattler(0), ActorSprite.SpriteModeFace.ANGRY, "You should be somewhere about herfdase.");
-                BattleDriver.printline(Database2.player.getBattler(0), ActorSprite.SpriteModeFace.HAPPY, "Guide me to you.");
+                BattleDriver.printline(Database2.player.getBattler(0), ActorSprite.SpriteModeFace.NORMAL, "I am glad you answered our call.\nIt is quite dangerous, so I am going to pick you up.");
+                BattleDriver.printline(Database2.player.getBattler(0), ActorSprite.SpriteModeFace.NORMAL, "I think you are at the end of this dungeon.");
             }
         });
         chapters.add(new Page() {
             @Override
             public void run() {
+                GraphicsDriver.pauseTime(1000);
+            }
+        });
+        chapters.add(new Page() {
+            @Override
+            public void run() {
+                BattleDriver.printline(Database2.player.getBattler(0), ActorSprite.SpriteModeFace.HAPPY, "Guide me to you.  I shall explain the rules of this world along the way.");
             }
         });
     }

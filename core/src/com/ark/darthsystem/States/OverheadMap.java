@@ -11,6 +11,7 @@ import com.ark.darthsystem.Graphics.ActorAI;
 import com.ark.darthsystem.Graphics.ActorBattler;
 import com.ark.darthsystem.Graphics.ActorCollision;
 import com.ark.darthsystem.Graphics.ActorSkill;
+import com.ark.darthsystem.Graphics.GameTimer;
 import com.ark.darthsystem.Graphics.GraphicsDriver;
 import com.ark.darthsystem.Graphics.Input;
 import com.ark.darthsystem.Graphics.Player;
@@ -213,7 +214,6 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
         float[] worldVertices = new float[vertices.length];
 
         for (int i = 0; i < vertices.length; ++i) {
-            System.out.println(vertices[i]);
             worldVertices[i] = vertices[i] / ppt;
         }
 
@@ -380,14 +380,28 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                         removeActor(tempAI, false);
                     }
 
-
+                    //clear certain called events
                     for (Actor actors :  enemyActors) {
                         if (actors instanceof ActorSkill) {
                             if (((ActorSkill)(actors)).getInvoker().equals(tempAI)) {
                                 removeActor(actors, false);
+                                ((ActorSkill)(actors)).stopFieldSound();
                             }
                         }
                     }
+                    for (GameTimer t : tempAI.getTimers()) {
+                        switch (t.getName().toUpperCase()) {
+                            case "ATTACK":
+                            case "SKILL":
+                            case "CHARGE":
+                            case "JUMP":
+                            case "OUCH":
+                                t.event(tempAI);
+                                tempAI.getTimers().remove(t);
+                                break;
+                        }
+                    }
+                    
                 }
                 else {
                     Player tempPlayer = (Player) a.getBody().getUserData();
@@ -409,15 +423,26 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                                 .getCurrentBattler().getBattler(),
                                 tempPlayer.getCurrentBattler().getBattler(),
                                 tempPlayer.getAllBattlers());
-                        action.calculateDamage(new Battle(tempSkill.getInvoker().getAllActorBattlers(),
-                                        tempPlayer.getAllActorBattlers(),
-                                Database1.inventory, null));
+                        action.calculateDamage(new Battle(tempSkill.getInvoker().getAllActorBattlers(), tempPlayer.getAllActorBattlers(), Database1.inventory, null));
                     }                                
                     for (Actor actors:  playerActors) {
                         if (actors instanceof ActorSkill) {
                             if (((ActorSkill)(actors)).getInvoker().equals(tempPlayer)) {
                                 removeActor(actors, true);
+                                ((ActorSkill)(actors)).stopFieldSound();
                             }
+                        }
+                    }
+                    for (GameTimer t : tempPlayer.getTimers()) {
+                        switch (t.getName().toUpperCase()) {
+                            case "ATTACK":
+                            case "SKILL":
+                            case "CHARGE":
+                            case "JUMP":
+                            case "OUCH":
+                                t.event(tempPlayer);
+                                tempPlayer.getTimers().remove(t);
+                                break;
                         }
                     }
                 }
@@ -495,7 +520,6 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
     }
     
     public void removeActor(Actor a, Iterator it) {
-        System.out.println("I've Been called");
         it.remove();
         
         if (!(a instanceof Player)) {
@@ -550,8 +574,9 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                 }
             }
         }
-        GraphicsDriver.getPlayer().renderGlobalData(batch);
+//        GraphicsDriver.getPlayer().renderGlobalData(batch);
         endRender();
+        GraphicsDriver.getPlayer().renderGlobalData(batch);
         if (worldStep) {
             world.step(1f/60f, 6, 2);  //Fix the second and third values.
             for (Body bodies : deleteQueue) {
@@ -585,7 +610,6 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
     public void dispose() {
         super.dispose();
         world.dispose();
-//        batch.dispose();
     }
 
     public void setMap(String mapName) {

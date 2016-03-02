@@ -124,7 +124,6 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
     }
 
     public static void removeAllStates() {
-        states.forEach(s -> System.out.println(s.getClass().getName()));
         states.forEach(s -> s.dispose());
         states.clear();
     }
@@ -274,7 +273,8 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
         batch.dispose();
         masterSheet.dispose();
     }
-    public void pause() {
+    public static void pauseTime(int time) {
+        transitions.add(new Transition(Transition.TransitionType.PAUSE, time));
     }
     public void render() {
         if (getPlayer().totalPartyKill()) {

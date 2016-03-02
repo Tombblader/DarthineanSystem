@@ -79,7 +79,8 @@ public class Database2 extends Database1 {
         ErikAI = new ActorAI(ErikAIParty, 500, 500);
         Database2.battlers = new ActorBattler[]{
             new ActorBattler(Water_Spirit, Water_Spirit_Sprite)
-//            new ActorBattler(Darth, DarthSprite), new ActorBattler(Erik, ErikSprite)
+//            new ActorBattler(Darth, DarthSprite), 
+                , new ActorBattler(Erik, ErikSprite)
         };
         player = new Player(new ArrayList<>(Arrays.asList(battlers)), 0, 0);
     }

@@ -87,45 +87,6 @@ public class Battler implements Serializable {
         battlerGender = initializeGender;
     }
 
-//    public Battler(String initialName,
-//            Battle.Element initialElement,
-//            Battler.Gender initializeGender,
-//            int initialLevel,
-//            int initialHP,
-//            int initialMP,
-//            int initialAttack,
-//            int initialDefense,
-//            int initialSpeed,
-//            int initialMagic,
-//            BattlerClass initialClass,
-//            Equipment[] initialEquipment) {
-//        name = initialName;
-//        battlerElement = initialElement;
-//        level = initialLevel;
-//        maxHP = initialHP;
-//        maxMP = initialMP;
-//        HP = maxHP;
-//        MP = maxMP;
-//        attack = initialAttack;
-//        defense = initialDefense;
-//        speed = initialSpeed;
-//        magic = initialMagic;
-//        hpTier = HP / 50.0 / level;
-//        mpTier = MP / 50.0 / level;
-//        attackTier = attack / 8.0 / level;
-//        defenseTier = defense / 8.0 / level;
-//        speedTier = speed / 8.0 / level;
-//        magicTier = magic / 8.0 / level;
-//        Class = initialClass;
-//        try {
-//            skillList = initialClass.getSkillList().clone();
-//            equipmentList = initialEquipment.clone();
-//        } catch (NullPointerException e) {
-//        }
-////    boolean isAfflicted[] = {false};
-//        battlerGender = initializeGender;
-//    }
-
     public Battler(String initialName,
             Battle.Element initialElement,
             Battler.Gender initializeGender,
@@ -164,45 +125,6 @@ public class Battler implements Serializable {
 //    boolean isAfflicted[] = {false};
         battlerGender = initializeGender;
     }
-
-//    public Battler(String initialName,
-//            Battle.Element initialElement,
-//            Battler.Gender initializeGender,
-//            int initialLevel,
-//            int initialHP,
-//            int initialMP,
-//            int initialAttack,
-//            int initialDefense,
-//            int initialSpeed,
-//            int initialMagic,
-//            Skill[] initialSkill,
-//            Equipment[] initialEquipment) {
-//        name = initialName;
-//        imageName = initialImageName;
-//        battlerElement = initialElement;
-//        level = initialLevel;
-//        maxHP = initialHP;
-//        maxMP = initialMP;
-//        HP = maxHP;
-//        MP = maxMP;
-//        attack = initialAttack;
-//        defense = initialDefense;
-//        speed = initialSpeed;
-//        magic = initialMagic;
-//        hpTier = HP / 50.0 / level;
-//        mpTier = MP / 50.0 / level;
-//        attackTier = attack / 8.0 / level;
-//        defenseTier = defense / 8.0 / level;
-//        speedTier = speed / 8.0 / level;
-//        magicTier = magic / 8.0 / level;
-//        try {
-//            skillList = initialSkill.clone();
-//            equipmentList = initialEquipment.clone();
-//        } catch (NullPointerException e) {
-//        }
-////    boolean isAfflicted[] = {false};
-//        battlerGender = initializeGender;
-//    }
 
     public BattlerClass getBattlerClass() {
         return Class;

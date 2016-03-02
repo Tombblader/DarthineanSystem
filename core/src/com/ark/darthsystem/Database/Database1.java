@@ -5,6 +5,7 @@ import com.ark.darthsystem.BattlerClass;
 import static com.ark.darthsystem.Database.SystemDatabase.*;
 import com.ark.darthsystem.States.Battle;
 import com.ark.darthsystem.Item;
+import com.badlogic.gdx.Gdx;
 
 import java.io.*;
 import java.util.HashMap;
@@ -115,51 +116,48 @@ public class Database1 implements Serializable {
     public static HashMap<String, Integer> variables;
 
     public static void save(String fileName) throws FileNotFoundException, IOException {
-        FileOutputStream fileStream = new FileOutputStream(fileName);
-        ObjectOutputStream objectStream = new ObjectOutputStream(fileStream);
-
-        objectStream.writeObject(Darth);
-        objectStream.writeObject(Erik);
-        objectStream.writeObject(Protox);
-        objectStream.writeObject(Gladia);
-        objectStream.writeObject(Veather);
-        objectStream.writeObject(Magia);
-        objectStream.writeObject(Nairarum);
-        objectStream.writeObject(Fire_Spirit);
-        objectStream.writeObject(Water_Spirit);
-        objectStream.writeObject(Wind_Spirit);
-        objectStream.writeObject(Earth_Spirit);
-        objectStream.writeObject(you);
-        objectStream.writeObject(inventory);
-        objectStream.writeInt(karma);
-        objectStream.writeObject(switches);
-        objectStream.writeObject(variables);
-
-        objectStream.close();
+        try (ObjectOutputStream objectStream =
+                new ObjectOutputStream(Gdx.files.local(fileName).write(false))) {
+            objectStream.writeObject(Darth);
+            objectStream.writeObject(Erik);
+            objectStream.writeObject(Protox);
+            objectStream.writeObject(Gladia);
+            objectStream.writeObject(Veather);
+            objectStream.writeObject(Magia);
+            objectStream.writeObject(Nairarum);
+            objectStream.writeObject(Fire_Spirit);
+            objectStream.writeObject(Water_Spirit);
+            objectStream.writeObject(Wind_Spirit);
+            objectStream.writeObject(Earth_Spirit);
+            objectStream.writeObject(you);
+            objectStream.writeObject(inventory);
+            objectStream.writeInt(karma);
+            objectStream.writeObject(switches);
+            objectStream.writeObject(variables);
+        }
     }
 
     public static void load(String fileName)
             throws FileNotFoundException, IOException, ClassNotFoundException {
-        FileInputStream fileStream = new FileInputStream(fileName);
-        ObjectInputStream objectStream = new ObjectInputStream(fileStream);
-
-        Database1.Darth = (Battler) objectStream.readObject();
-        Database1.Erik = (Battler) objectStream.readObject();
-        Database1.Protox = (Battler) objectStream.readObject();
-        Database1.Gladia = (Battler) objectStream.readObject();
-        Database1.Veather = (Battler) objectStream.readObject();
-        Database1.Magia = (Battler) objectStream.readObject();
-        Database1.Nairarum = (Battler) objectStream.readObject();
-        Database1.Fire_Spirit = (Battler) objectStream.readObject();
-        Database1.Water_Spirit = (Battler) objectStream.readObject();
-        Database1.Wind_Spirit = (Battler) objectStream.readObject();
-        Database1.Earth_Spirit = (Battler) objectStream.readObject();
-        Database1.you = (Battler) objectStream.readObject();
-        Database1.inventory = (ArrayList<Item>) objectStream.readObject();
-        Database1.karma = objectStream.readInt();
-        Database1.switches = (HashMap<String, Boolean>) objectStream.readObject();
-        Database1.variables = (HashMap<String, Integer>) objectStream.readObject();
-        objectStream.close();
+        try (ObjectInputStream objectStream =
+                new ObjectInputStream(Gdx.files.internal(fileName).read())) {
+            Database1.Darth = (Battler) objectStream.readObject();
+            Database1.Erik = (Battler) objectStream.readObject();
+            Database1.Protox = (Battler) objectStream.readObject();
+            Database1.Gladia = (Battler) objectStream.readObject();
+            Database1.Veather = (Battler) objectStream.readObject();
+            Database1.Magia = (Battler) objectStream.readObject();
+            Database1.Nairarum = (Battler) objectStream.readObject();
+            Database1.Fire_Spirit = (Battler) objectStream.readObject();
+            Database1.Water_Spirit = (Battler) objectStream.readObject();
+            Database1.Wind_Spirit = (Battler) objectStream.readObject();
+            Database1.Earth_Spirit = (Battler) objectStream.readObject();
+            Database1.you = (Battler) objectStream.readObject();
+            Database1.inventory = (ArrayList<Item>) objectStream.readObject();
+            Database1.karma = objectStream.readInt();
+            Database1.switches = (HashMap<String, Boolean>) objectStream.readObject();
+            Database1.variables = (HashMap<String, Integer>) objectStream.readObject();
+        }
     }
 
 }

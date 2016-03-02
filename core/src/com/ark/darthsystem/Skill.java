@@ -75,49 +75,8 @@ public class Skill implements Serializable, Cloneable {
         finalizeRatio = ratio;
     }
 
-    public Skill(String initializeName,
-            int initializeLevel,
-            int initializeCost,
-            Battle.Element initializeElement,
-            boolean initializeAlly,
-            boolean initializeAll,
-            Battle.Stats initializeStats,
-            int initializeBase,
-            double levelDifference,
-            double initializeHP,
-            int initializeAttack,
-            int initializeDefense,
-            int initializeSpeed,
-            int initializeMagic,
-            int initializeTargetAttack,
-            int initializeTargetDefense,
-            int initializeTargetSpeed,
-            int initializeTargetMagic,
-            double ratio,
-            String initializeSprite) {
-        this(initializeName,
-                initializeLevel,
-                initializeCost,
-                initializeElement,
-                initializeAlly,
-                initializeAll,
-                initializeStats,
-                initializeBase,
-                levelDifference,
-                initializeHP,
-                initializeAttack,
-                initializeDefense,
-                initializeSpeed,
-                initializeMagic,
-                initializeTargetAttack,
-                initializeTargetDefense,
-                initializeTargetSpeed,
-                initializeTargetMagic,
-                ratio);
-    }
-
     public int calculateDamage(Battler caster, Battler target) {
-        return base +
+        return (int) (base +
                 ((int) (((caster.getLevel() -
                 target.getLevel()) *
                 levelRatio) +
@@ -148,7 +107,7 @@ public class Skill implements Serializable, Cloneable {
                 this.getElement() == target.getElement() ? -1 : 1) * (caster.getEquipment(Equipment.EquipmentType.RightArm.getSlot()) != null &&
                 caster.getEquipment(Equipment.EquipmentType.RightArm.getSlot()).getElement() != Battle.Element.Physical &&
                 target.getEquipment(Equipment.EquipmentType.LeftArm.getSlot()) != null &&
-                this.getElement() == target.getEquipment(Equipment.EquipmentType.LeftArm.getSlot()).getElement() ? .5 : 1) * (.9 + Math.random() * .25)));
+                this.getElement() == target.getEquipment(Equipment.EquipmentType.LeftArm.getSlot()).getElement() ? .5 : 1)) * (.9 + Math.random() * .25)));
     }
 
     public int getCost() {

@@ -177,13 +177,9 @@ public class BattleDriver {
         String temp = "";
         while (st.hasMoreTokens()) {
             temp = st.nextToken();
-            if ((formatted +
-                    temp).length() >
-                    WRAP_LENGTH ||
-                    temp.equals("\n")) {
+            if ((formatted + temp).length() > WRAP_LENGTH || temp.equals("\n")) {
                 formattedMessage.add(formatted);
-                if (temp.equals(" ") ||
-                        temp.equals("\n")) {
+                if (temp.equals(" ") || temp.equals("\n")) {
                     formatted = "";
                 } else {
                     formatted = temp;
@@ -294,6 +290,6 @@ public class BattleDriver {
     }
 
     public static String textCondition = "";
-    public static final int WRAP_LENGTH = 55;
+    public static final int WRAP_LENGTH = 80;
 
 }

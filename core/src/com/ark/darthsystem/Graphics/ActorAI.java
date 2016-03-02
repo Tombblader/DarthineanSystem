@@ -28,46 +28,51 @@ public class ActorAI extends Player {
         setElapsedTime(getElapsedTime() + GraphicsDriver.getRawDelta());
         setCurrentImage((Sprite) getCurrentAnimation().getKeyFrame(getElapsedTime()));
         for (GameTimer t : getTimers()) {
-            if (t.update(delta,
-                    this)) {
+            if (t.update(delta, this)) {
                 getTimers().remove(t);
             }
         }
         if (canMove()) {
-            if (vision()) {
-                moveTowardsPlayer(delta);
-                if (isInRange()) {
-                    attack();
-                }
-            }
+            interpretAI(delta);
         }
         setX(getMainBody().getPosition().x);
         setY(getMainBody().getPosition().y);
 
         if (!isWalking()) {
             getMainBody().setLinearVelocity(0, 0);
-            setFieldState(ActorSprite.SpriteModeField.STAND);
-            switch (getFacing()) {
-                case UP:
-                case UP_LEFT:
-                case UP_RIGHT:
-                    changeAnimation(getCurrentBattler().getSprite().getFieldAnimation(ActorSprite.SpriteModeField.STAND, Actor.Facing.UP));
-                    break;
-                case RIGHT:
-                    changeAnimation(getCurrentBattler().getSprite().getFieldAnimation(ActorSprite.SpriteModeField.STAND, Actor.Facing.RIGHT));
-                    break;
-                case LEFT:
-                    changeAnimation(getCurrentBattler().getSprite().getFieldAnimation(ActorSprite.SpriteModeField.STAND, Actor.Facing.LEFT));
-                    break;
-                case DOWN:
-                case DOWN_LEFT:
-                case DOWN_RIGHT:
-                    changeAnimation(getCurrentBattler().getSprite().getFieldAnimation(ActorSprite.SpriteModeField.STAND, Actor.Facing.DOWN));
-                    break;
-                default:
+            if (!isAttacking()) {
+                setFieldState(ActorSprite.SpriteModeField.STAND);
+                switch (getFacing()) {
+                    case UP:
+                    case UP_LEFT:
+                    case UP_RIGHT:
+                        changeAnimation(getCurrentBattler().getSprite().getFieldAnimation(ActorSprite.SpriteModeField.STAND, Actor.Facing.UP));
+                        break;
+                    case RIGHT:
+                        changeAnimation(getCurrentBattler().getSprite().getFieldAnimation(ActorSprite.SpriteModeField.STAND, Actor.Facing.RIGHT));
+                        break;
+                    case LEFT:
+                        changeAnimation(getCurrentBattler().getSprite().getFieldAnimation(ActorSprite.SpriteModeField.STAND, Actor.Facing.LEFT));
+                        break;
+                    case DOWN:
+                    case DOWN_LEFT:
+                    case DOWN_RIGHT:
+                        changeAnimation(getCurrentBattler().getSprite().getFieldAnimation(ActorSprite.SpriteModeField.STAND, Actor.Facing.DOWN));
+                        break;
+                    default:
+                }
             }
         }
         setWalking(false);
+    }
+    
+    private void interpretAI(float delta) {
+        if (vision()) {
+            moveTowardsPlayer(delta);
+            if (isInRange()) {
+                attack();
+            }
+        }        
     }
 
     public void attack() {
@@ -77,13 +82,49 @@ public class ActorAI extends Player {
         getAttackAnimation().setX(this);
         getAttackAnimation().setY(this);
         getAttackAnimation().setMap(getCurrentMap(), false);
+        getAttackAnimation().playFieldSound();
+        setFieldState(ActorSprite.SpriteModeField.ATTACK);
+        switch (super.getFacing()) {
+            case UP:
+            case UP_LEFT:
+            case UP_RIGHT:
+                changeAnimation(getCurrentBattler().getSprite().
+                        getFieldAnimation(getFieldState(), Actor.Facing.UP));
+                break;
+            case RIGHT:
+                changeAnimation(getCurrentBattler().getSprite().
+                        getFieldAnimation(getFieldState(), Actor.Facing.RIGHT));
+                break;
+            case LEFT:
+                changeAnimation(getCurrentBattler().getSprite().
+                        getFieldAnimation(getFieldState(), Actor.Facing.LEFT));
+                break;
+            case DOWN:
+            case DOWN_LEFT:
+            case DOWN_RIGHT:
+                changeAnimation(getCurrentBattler().getSprite().
+                        getFieldAnimation(getFieldState(), Actor.Facing.DOWN));
+                break;
+            default:
+        }
+        getCurrentAnimation().setFrameDuration(getAttackAnimation().getAnimationDelay() / getCurrentAnimation().getKeyFrames().length);
+        addTimer(new GameTimer("Attack", 10000) {
+            @Override
+            public void event(Actor a) {
+                setFieldState(ActorSprite.SpriteModeField.STAND);
+                setAttacking(false);
+            }
+            public boolean isFinished() {
+                return getCurrentAnimation().isAnimationFinished(getElapsedTime());
+            }
+        });
     }
 
     public boolean isInRange() {
         float distance = (float) Math.sqrt(
                 Math.pow(GraphicsDriver.getPlayer().getX() - (this.getX()), 2)
                 + Math.pow((GraphicsDriver.getPlayer().getY() - (this.getY())), 2));
-        return distance < 80f / PlayerCamera.PIXELS_TO_METERS;
+        return distance < 64f / PlayerCamera.PIXELS_TO_METERS;
     }
 
     public boolean isInRange(float range) {

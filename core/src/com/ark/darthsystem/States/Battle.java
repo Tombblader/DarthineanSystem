@@ -101,6 +101,9 @@ public class Battle implements State {
     
     private void updateTemporaryActors(float delta) {
         elapsed += GraphicsDriver.getRawDelta();
+        if (elapsed >= Float.MAX_VALUE - 10000000000000f) { //Stopgap measure to prevent reaching max value?
+            elapsed = 0;
+        }
         for (Iterator<Actor> it = animations.iterator(); it.hasNext();) {
             Actor a = it.next();
             a.update(delta);

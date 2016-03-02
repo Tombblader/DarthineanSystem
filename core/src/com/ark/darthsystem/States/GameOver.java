@@ -6,6 +6,8 @@
 package com.ark.darthsystem.States;
 
 import com.ark.darthsystem.Graphics.GraphicsDriver;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
@@ -16,11 +18,15 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 public class GameOver implements State {
 
     private Menu gameOverMenu;
-    private TextureRegion gameOverTexture;
+    private final TextureRegion gameOverTexture;
+
     private String BGM = null;
     
     public GameOver() {
-        gameOverTexture = GraphicsDriver.getMasterSheet().findRegion("interface/title");
+        gameOverTexture = new TextureRegion(new Texture(Gdx.files.internal("backgrounds/title.png"))) { {
+                this.flip(false, true);
+               }
+            };        
         gameOverMenu = new Menu("Continue?", new String[]{"Yes", "No"}) {
             @Override
             public String confirm(String choice) {
@@ -59,7 +65,7 @@ public class GameOver implements State {
     
     @Override
     public void dispose() {
-        
+        gameOverTexture.getTexture().dispose();        
     }
 
     @Override

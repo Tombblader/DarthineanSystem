@@ -39,7 +39,9 @@ public class Message implements State {
 //    private final float FONT_SCALE = .25f;
     private BitmapFont font;
     private Animation face = null;
-//    private long elapsed;
+    private float elapsed = 0;
+    private final float MESSAGE_SPEED = 30f;
+    private int messageIndex = 0;
     
 
     public Message(String getMessage) {
@@ -147,7 +149,7 @@ public class Message implements State {
         }
         for (String m : message.currentMessage) {
             GraphicsDriver.drawMessage(batch, font,
-                m,
+                    i == messageIndex ? m.substring(0, (int) (elapsed)) : (i < messageIndex ? m : ""),
                 PADDING_X + GraphicsDriver.getCamera().getScreenPositionX() - (message.face == null ? 64 : 0),
                 ((PADDING_Y + HEIGHT - MESSAGE_HEIGHT + font.getLineHeight() * font.getScaleY() * i) + GraphicsDriver.getCamera().getScreenPositionY()));
             i++;
@@ -160,14 +162,27 @@ public class Message implements State {
     }
 
     public float update(float delta) {
-//        elapsed += delta;
+        if (messageIndex < message.currentMessage.size()) {
+            elapsed += delta / 1000f * MESSAGE_SPEED;
+        }
+        if (message.currentMessage.size() > messageIndex && 
+                elapsed >= message.currentMessage.get(messageIndex).length()) {
+            elapsed = 0;
+            messageIndex++;
+        }
         if (Input.getKeyPressed(CONFIRM_BUTTON)) {
-            if (messageQueue.isEmpty()) {
-                GraphicsDriver.removeState(this);
+            if (messageIndex >= message.currentMessage.size()) {
+                if (messageQueue.isEmpty()) {
+                    GraphicsDriver.removeState(this);
+                }
+                else {
+                    message = messageQueue.remove();
+                    elapsed = 0;
+                    messageIndex = 0;
+                }
             }
             else {
-                message = messageQueue.remove();
-                System.out.println(message.currentMessage);
+                messageIndex = message.currentMessage.size();
             }
         }
         return 0;
