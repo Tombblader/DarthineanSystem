@@ -37,7 +37,7 @@ public class Chapter01 extends Novel {
             @Override
             public void run() {
                 if (choices.equals("Yes")) {
-                    BattleDriver.printline(Database2.player.getBattler(0), ActorSprite.SpriteModeFace.HAPPY, "Good.");
+                    BattleDriver.printline(Database2.player.getBattler(0), ActorSprite.SpriteModeFace.HAPPY, "Good.  Let's continue.");
                 }
                 else {
                     pageIndex = -1;
