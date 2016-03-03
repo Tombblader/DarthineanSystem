@@ -37,7 +37,7 @@ public class Title implements State {
             public String confirm(String choice) {
                 if (choice.equals("Start")) {
                     GraphicsDriver.newGame();
-                    GraphicsDriver.addState((State) (MapDatabase.testing));
+                    GraphicsDriver.addState((State) (MapDatabase.maps.get("nowhere")));
                     GraphicsDriver.transition();
                 }
                 if (choice.equals("Continue")) {

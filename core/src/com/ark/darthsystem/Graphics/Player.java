@@ -290,11 +290,11 @@ public class Player extends ActorCollision {
         final float NAME_X = 64f;
         final float NAME_Y = 10f;
         final float FONT_SIZE = GraphicsDriver.getFont().getCapHeight();
-        if (GraphicsDriver.getCurrentCamera() instanceof PlayerCamera) {
-            batch.end();
-            batch.begin();
-            batch.setProjectionMatrix(GraphicsDriver.getCamera().combined);
-        }
+//        if (GraphicsDriver.getCurrentCamera() instanceof PlayerCamera) {
+//            batch.end();
+//            batch.begin();
+//            batch.setProjectionMatrix(GraphicsDriver.getCamera().combined);
+//        }
         for (int i = 0; i < getAllActorBattlers().size(); i++) {
             Sprite temp = (Sprite) (getAllActorBattlers().get(i).getSprite().getCurrentFaceAnimation().getKeyFrame(getElapsedTime()));
             InterfaceDatabase.TEXT_BOX.draw(batch, SUB_WIDTH * i + GraphicsDriver.getCamera().getScreenPositionX(), (GraphicsDriver.getCamera().getScreenPositionY()), SUB_WIDTH, STAT_HEIGHT);
@@ -326,11 +326,11 @@ public class Player extends ActorCollision {
                     ((NAME_X + SUB_WIDTH * i) + GraphicsDriver.getCamera().getScreenPositionX()),
                     ((NAME_Y + FONT_SIZE * 3f) + GraphicsDriver.getCamera().getScreenPositionY()));
         }
-        if (GraphicsDriver.getCurrentCamera() instanceof PlayerCamera) {
-            batch.end();
-            batch.begin();
-            batch.setProjectionMatrix(GraphicsDriver.getPlayerCamera().combined);
-        }
+//        if (GraphicsDriver.getCurrentCamera() instanceof PlayerCamera) {
+//            batch.end();
+//            batch.begin();
+//            batch.setProjectionMatrix(GraphicsDriver.getPlayerCamera().combined);
+//        }
 
     }
 
@@ -432,7 +432,6 @@ public class Player extends ActorCollision {
     
     public void render(Batch batch) {
         super.render(batch);
-//        renderGlobalData(batch);
     }
 
     public void renderGlobalData(Batch batch) {
@@ -453,7 +452,6 @@ public class Player extends ActorCollision {
                     canAttack = true;
                     setMainFilter(ActorCollision.CATEGORY_PLAYER, (short)(ActorCollision.CATEGORY_WALLS | ActorCollision.CATEGORY_OBSTACLES));
                     setSensorFilter(ActorCollision.CATEGORY_PLAYER, (short) (ActorCollision.CATEGORY_AI | ActorCollision.CATEGORY_AI_SKILL | ActorCollision.CATEGORY_EVENT));
-                    GraphicsDriver.setMessage((ArrayList<String>) (null));
                     fieldState = ActorSprite.SpriteModeField.STAND;
                     switch (getFacing()) {
                         case UP:
@@ -553,5 +551,9 @@ public class Player extends ActorCollision {
             default:
         }
 
+    }
+    
+    public BitmapFont getFont() {
+        return font;
     }
 }

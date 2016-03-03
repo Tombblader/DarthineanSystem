@@ -5,9 +5,11 @@
  */
 package com.ark.darthsystem.States.events;
 
+import com.ark.darthsystem.Database.MapDatabase;
+import com.ark.darthsystem.Graphics.GraphicsDriver;
 import com.ark.darthsystem.Graphics.PlayerCamera;
-import com.ark.darthsystem.Item;
 import com.ark.darthsystem.States.OverheadMap;
+import com.ark.darthsystem.States.State;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
 /**
@@ -16,31 +18,44 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
  */
 public class Teleport extends Event {
 
-    private OverheadMap map;
+    private String map;
     private float newX;
     private float newY;
     
     public Teleport(Sprite[] img, float getX,
             float getY,
-            float getDelay, OverheadMap newMap, float xCoord, float yCoord) {
+            float getDelay, String newMap, float xCoord, float yCoord) {
         super(img, getX, getY, getDelay);
+        map = newMap;
         setTriggerMethod(TriggerMethod.TOUCH);
+        setTriggerMethod(TriggerMethod.TOUCH);
+        setID(2);
     }
     
     public Teleport(Sprite[] img, float getX,
             float getY,
-            float getDelay, OverheadMap newMap, int xCoord, int yCoord) {
+            float getDelay, String newMap, int xCoord, int yCoord) {
         super(img, getX, getY, getDelay);
+        System.out.println("I've been called");
         setTriggerMethod(TriggerMethod.TOUCH);
         map = newMap;
-        newX = xCoord * 32 / PlayerCamera.PIXELS_TO_METERS - 16 / PlayerCamera.PIXELS_TO_METERS;
-        newY = yCoord * 32 / PlayerCamera.PIXELS_TO_METERS - 16 / PlayerCamera.PIXELS_TO_METERS;
+        newX = xCoord * 32 / PlayerCamera.PIXELS_TO_METERS + 16 / PlayerCamera.PIXELS_TO_METERS + GraphicsDriver.getPlayerCamera().getScreenPositionX();
+        newY = yCoord * 32 / PlayerCamera.PIXELS_TO_METERS + 16 / PlayerCamera.PIXELS_TO_METERS + GraphicsDriver.getPlayerCamera().getScreenPositionY();
+        setTriggerMethod(TriggerMethod.TOUCH);
+        setID(2);
     }
     
     
     @Override
     public void run() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        for (State s : GraphicsDriver.getState()) {
+            if (s instanceof OverheadMap) {
+                GraphicsDriver.getState().set(GraphicsDriver.getState().indexOf(s), MapDatabase.maps.get(map));
+                GraphicsDriver.playMusic(MapDatabase.maps.get(map).getMusic());
+                GraphicsDriver.getPlayer().setMap(MapDatabase.maps.get(map), newX, newY);
+                GraphicsDriver.transition();
+            }
+        }
     }
     
 }

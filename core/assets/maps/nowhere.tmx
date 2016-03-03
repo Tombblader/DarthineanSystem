@@ -5,7 +5,31 @@
  </properties>
  <tileset firstgid="1" name="tileset" tilewidth="32" tileheight="32" tilecount="64" columns="8">
   <image source="tileset.png" width="256" height="256"/>
+  <tile id="0">
+   <properties>
+    <property name="collison" value="FALSE"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="collison" value="FALSE"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="collison" value="FALSE"/>
+   </properties>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="collison" value="FALSE"/>
+   </properties>
+  </tile>
   <tile id="32">
+   <properties>
+    <property name="collision" value="TRUE"/>
+    <property name="collisionType" value="WALL"/>
+   </properties>
    <animation>
     <frame tileid="32" duration="100"/>
     <frame tileid="32" duration="100"/>
@@ -30,8 +54,8 @@
    <properties>
     <property name="collision" value="TRUE"/>
     <property name="collisionType" value="wall"/>
-    <property name="eventID" value="1"/>
-    <property name="parameters" value="testing2, 5, 3"/>
+    <property name="eventID" value="2"/>
+    <property name="parameters" value="testing, 10, 8"/>
    </properties>
   </object>
   <object id="8" name="collisionWater" type="wall" x="0" y="0" width="640" height="64"/>

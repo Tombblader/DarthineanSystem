@@ -26,6 +26,7 @@ public class Pickup extends Event {
         item = getItem;
         isFinished = false;
         setTriggerMethod(TriggerMethod.TOUCH);
+        setID(1);
     }
 
     public void run() {

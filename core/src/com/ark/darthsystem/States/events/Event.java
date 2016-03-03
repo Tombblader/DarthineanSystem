@@ -14,7 +14,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
  * @author Keven
  */
 public abstract class Event extends ActorCollision {
-
+    private int ID;
     public enum LocalSwitch {
 
         A,
@@ -71,6 +71,14 @@ public abstract class Event extends ActorCollision {
         if (getTriggerMethod() == TriggerMethod.AUTO) {
             run();
         }
+    }
+    
+    public int getID() {
+        return ID;
+    }
+        
+    public void setID(int newID) {
+        ID = newID;
     }
     
 }

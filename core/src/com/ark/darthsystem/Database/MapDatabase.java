@@ -2,19 +2,28 @@ package com.ark.darthsystem.Database;
 
 import com.ark.darthsystem.Graphics.GraphicsDriver;
 import com.ark.darthsystem.States.OverheadMap;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
+import java.util.HashMap;
 
 public class MapDatabase {
-
-    public static OverheadMap testing;
+    public static HashMap<String, OverheadMap> maps;
     public MapDatabase() {
-        testing = new OverheadMap("maps/Testing2.tmx", "music/Forbidden Shrine of Heroes.mp3");
-        Database2.player.setMap(testing, 80 / GraphicsDriver.getPlayerCamera().getConversion(), 80 / GraphicsDriver.getPlayerCamera().getConversion());
-        Database2.ErikAI.setMap(testing, 500 / GraphicsDriver.getPlayerCamera().getConversion(), 500 / GraphicsDriver.getPlayerCamera().getConversion());
-        EventDatabase.GraphicsPotion.setMap(testing, false);
-        EventDatabase.chapter1.setMap(testing, false);
+        maps = new HashMap<>();
+        FileHandle[] f = Gdx.files.internal("maps").list();
+        for (FileHandle file : f) {
+            if (!file.extension().equalsIgnoreCase("png"))
+            maps.put(file.nameWithoutExtension(), new OverheadMap(file.path()));
+        }
+//        maps.put("nowhere", new OverheadMap("maps/nowhere.tmx"));
+//        maps.put("testing", new OverheadMap("maps/Testing2.tmx", "music/Forbidden Shrine of Heroes.mp3"));
+        Database2.player.setMap(maps.get("nowhere"), 300 / GraphicsDriver.getPlayerCamera().getConversion(), 300 / GraphicsDriver.getPlayerCamera().getConversion());
+        Database2.ErikAI.setMap(maps.get("testing"), 500 / GraphicsDriver.getPlayerCamera().getConversion(), 500 / GraphicsDriver.getPlayerCamera().getConversion());
+        EventDatabase.GraphicsPotion.setMap(maps.get("testing"), false);
+        EventDatabase.chapter1.setMap(maps.get("testing"), false);
     }
     
-    public static void dispose() {
-        testing.dispose();
+    public static void dispose() {        
+        maps.forEach((k, v) -> v.dispose());
     }
 }

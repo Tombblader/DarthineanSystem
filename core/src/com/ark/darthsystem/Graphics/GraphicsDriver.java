@@ -86,8 +86,6 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
     }
 
     public static void drawMessage(Batch batch, String message, float x, float y) {
-        font.getData().scaleX = FONT_SCALE / getCurrentCamera().getConversion();
-        font.getData().scaleY = FONT_SCALE / getCurrentCamera().getConversion();
         font.draw(batch, message, x, y);
     }
 
@@ -108,7 +106,9 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
     }
 
     public static void removeCurrentState() {        
-        states.get(states.size() - 1).dispose();
+        if (!(states.get(states.size() - 1) instanceof OverheadMap)) {
+            states.get(states.size() - 1).dispose();
+        }
         states.remove(states.size() - 1);
         if (getCurrentState().getMusic() != null && !backgroundMusicString.equals(getCurrentState().getMusic())) {
             playMusic(getCurrentState().getMusic());
@@ -116,7 +116,9 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
     }
 
     public static void removeState(State state) {
-        state.dispose();
+        if (!(state instanceof OverheadMap)) {
+            state.dispose();
+        }
         states.remove(state);
         if (getCurrentState().getMusic() != null && !backgroundMusicString.equals(getCurrentState().getMusic())) {
             playMusic(getCurrentState().getMusic());
@@ -124,7 +126,11 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
     }
 
     public static void removeAllStates() {
-        states.forEach(s -> s.dispose());
+        states.forEach(s -> {
+            if (!(s instanceof OverheadMap)) {
+                s.dispose();
+            }
+        });
         states.clear();
     }
     
@@ -161,7 +167,7 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
                 ((Message) (getCurrentState())).addMessage(new Message(header, face, getMessage));
             }
             if ((getCurrentState() instanceof OverheadMap)) {
-//				((OverheadMap) (getCurrentState())).addMessage(getMessage);
+//                ((OverheadMap) (getCurrentState())).appendMessage(getMessage);
             }
         }
     }
@@ -175,7 +181,7 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
                 ((Message) (getCurrentState())).addMessage(getMessage);
             }
             if ((getCurrentState() instanceof OverheadMap)) {
-//				((OverheadMap) (getCurrentState())).addMessage(getMessage);
+                ((OverheadMap) (getCurrentState())).appendMessage(getMessage);
             }
         }
     }
@@ -293,7 +299,7 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
         else {
             update(delta);
         }
-        Gdx.gl.glClearColor(0, 0, 0, 0);
+        Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         currentCamera.update();
         batch.setProjectionMatrix(currentCamera.combined);

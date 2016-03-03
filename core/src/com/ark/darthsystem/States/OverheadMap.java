@@ -6,6 +6,8 @@ import com.ark.darthsystem.BattlerAI;
 import com.ark.darthsystem.Database.Database1;
 
 import com.ark.darthsystem.Database.Database2;
+import com.ark.darthsystem.Database.InterfaceDatabase;
+import com.ark.darthsystem.Database.MapDatabase;
 import com.ark.darthsystem.Graphics.Actor;
 import com.ark.darthsystem.Graphics.ActorAI;
 import com.ark.darthsystem.Graphics.ActorBattler;
@@ -16,9 +18,14 @@ import com.ark.darthsystem.Graphics.GraphicsDriver;
 import com.ark.darthsystem.Graphics.Input;
 import com.ark.darthsystem.Graphics.Player;
 import com.ark.darthsystem.Graphics.PlayerCamera;
+import static com.ark.darthsystem.States.State.HEIGHT;
+import static com.ark.darthsystem.States.State.WIDTH;
+import com.ark.darthsystem.States.chapters.Novel;
 import com.ark.darthsystem.States.events.Event;
+import com.ark.darthsystem.States.events.Teleport;
 
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObject;
@@ -65,6 +72,9 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
     private boolean worldStep;
     private Array<Body> deleteQueue = new Array<>();
     private String bgm;
+    private ArrayList<String> message = new ArrayList<>();
+    private int elapsed = 0;
+    private final int MESSAGE_TIME = 5000;
 
     public float getWidth() {
         return width / PlayerCamera.PIXELS_TO_METERS;
@@ -135,9 +145,9 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
 
     private Array<Body> generateObjects() {
         ppt = PlayerCamera.PIXELS_TO_METERS;
-        MapObjects objects = map.getLayers().get("object")
-                .getObjects();
+        MapObjects objects = map.getLayers().get("collision").getObjects();
         Array<Body> bodies = new Array<Body>();
+        
         
         for(MapObject object : objects) {
             if (object instanceof TextureMapObject) {
@@ -145,6 +155,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
             }
 
             Shape shape;
+            MapProperties properties = object.getProperties();
             if (object instanceof RectangleMapObject) {
                 shape = getRectangle((RectangleMapObject)object);
             }
@@ -167,19 +178,21 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
             
             Fixture f = body.createFixture(shape, 1);
             Filter filter = new Filter();
+            body.setUserData(object);
             
-            if (object.getProperties().get("type", String.class).equalsIgnoreCase("wall")) {
+            if (properties.get("type", String.class).equalsIgnoreCase("wall")) {
                 filter.categoryBits = ActorCollision.CATEGORY_WALLS;               
                 filter.maskBits = -1;
-            } else if (object.getProperties().get("type", String.class).equalsIgnoreCase("obstacle")) {
+            } else if (properties.get("type", String.class).equalsIgnoreCase("obstacle")) {
                 filter.categoryBits = ActorCollision.CATEGORY_OBSTACLES;
-                filter.maskBits = ActorCollision.CATEGORY_AI | ActorCollision.CATEGORY_PLAYER;                
-            } else if (object.getProperties().get("type", String.class).equalsIgnoreCase("obstacle")) {
-                filter.categoryBits = ActorCollision.CATEGORY_OBSTACLES;
-                filter.maskBits = ActorCollision.CATEGORY_AI | ActorCollision.CATEGORY_PLAYER;                
+                filter.maskBits = ActorCollision.CATEGORY_AI | ActorCollision.CATEGORY_PLAYER;
+            } else if (properties.get("type", String.class).equalsIgnoreCase("event")) {
+                body.setUserData(addEventFromMap(object));
+                filter.categoryBits = ActorCollision.CATEGORY_EVENT;
+                f.setSensor(true);
+                filter.maskBits = ActorCollision.CATEGORY_PLAYER;
             }
             f.setFilterData(filter);            
-
             bodies.add(body);
 
             shape.dispose();
@@ -234,6 +247,32 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
         ChainShape chain = new ChainShape(); 
         chain.createChain(worldVertices);
         return chain;
+    }
+    
+    private Event addEventFromMap(MapObject object) {
+        MapProperties prop = object.getProperties();
+        Event e = null;
+        switch (Integer.parseInt(prop.get("eventID", String.class))) {
+            case 0:
+                break;
+            case 1:
+                break;
+            case 2: //Teleport
+                String [] parameters = prop.get("parameters", String.class).split(",* ");
+                System.out.println(parameters[0]);
+                e = new Teleport(null, 
+                        prop.get("x", Float.class),
+                        prop.get("y", Float.class), 
+                        6/60f, 
+                        parameters[0], 
+                        Integer.parseInt(parameters[1]),
+                        Integer.parseInt(parameters[2]));
+                break;
+            default:
+                break;            
+        }
+        e.setMap(this, false);
+        return e;
     }
 
     private void updateProperties(MapProperties prop) {
@@ -490,6 +529,13 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
 
         }
         worldStep = true;
+        if (!message.isEmpty()) {
+            elapsed += delta;
+            if (elapsed >= MESSAGE_TIME) {
+                elapsed = 0;
+                clearMessages();
+            }
+        }
         return delta;
     }
 
@@ -575,8 +621,11 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
             }
         }
 //        GraphicsDriver.getPlayer().renderGlobalData(batch);
+        this.batch.setProjectionMatrix(GraphicsDriver.getCamera().combined);
+        GraphicsDriver.getPlayer().renderGlobalData(this.batch);
+        drawMessage(this.batch);
         endRender();
-        GraphicsDriver.getPlayer().renderGlobalData(batch);
+        
         if (worldStep) {
             world.step(1f/60f, 6, 2);  //Fix the second and third values.
             for (Body bodies : deleteQueue) {
@@ -593,7 +642,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
     public void renderObject(MapObject object) {
         if (object instanceof TextureMapObject) {
             TextureMapObject textureObject = (TextureMapObject) object;
-            batch.draw(textureObject.getTextureRegion(),
+            this.batch.draw(textureObject.getTextureRegion(),
                     textureObject.getX() / PlayerCamera.PIXELS_TO_METERS,
                     textureObject.getY() / PlayerCamera.PIXELS_TO_METERS,
                     textureObject.getOriginX(),
@@ -639,6 +688,54 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
     
     public World getPhysicsWorld() {
         return world;
+    }
+    
+    public void setMessage(String message) {
+        this.message.clear();
+        this.message.add(message);
+        elapsed = 0;
+    }
+
+    public void setMessage(ArrayList<String> message) {
+        this.message = message;
+        elapsed = 0;
+    }
+
+    public void appendMessage(String message) {
+        this.message.add(message);
+        elapsed = 0;
+    }
+
+    public void appendMessage(ArrayList<String> message) {
+        this.message.addAll(message);
+        while (this.message.size() > 4) {
+            this.message.remove(0);
+        }
+        elapsed = 0;
+    }
+    
+    public void clearMessages() {
+        this.message.clear();
+        elapsed = 0;
+    }
+    
+    private void drawMessage(Batch batch) {
+        final int PADDING_X = 15;
+        final int PADDING_Y = 12;
+        final int MESSAGE_HEIGHT = HEIGHT / 6;
+        final float FONT_HEIGHT = GraphicsDriver.getFont().getLineHeight();
+        
+        InterfaceDatabase.TEXT_BOX.draw(batch, GraphicsDriver.getCamera().getScreenPositionX(), HEIGHT - MESSAGE_HEIGHT + GraphicsDriver.getCamera().getScreenPositionY(), WIDTH, MESSAGE_HEIGHT);
+        
+        int i = 0;
+        
+        for (String m : message) {
+            GraphicsDriver.drawMessage(batch, GraphicsDriver.getPlayer().getFont(), m,
+                PADDING_X + GraphicsDriver.getCamera().getScreenPositionX(),
+                ((PADDING_Y + HEIGHT - MESSAGE_HEIGHT + FONT_HEIGHT * i) + GraphicsDriver.getCamera().getScreenPositionY()));
+            i++;
+        }
+                
     }
 
 }

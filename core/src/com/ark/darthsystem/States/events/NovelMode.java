@@ -14,17 +14,18 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
  * @author Keven
  */
 public class NovelMode extends Event {
-
     public NovelMode(Novel n, Sprite[] img, float getX, float getY, float delay) {
         super(img, getX, getY, delay);
         novel = n;
         setTriggerMethod(TriggerMethod.AUTO);
+        setID(0);
     }
 
     public NovelMode(Novel n, Sprite[] img, float getX, float getY, float delay, TriggerMethod t) {
         super(img, getX, getY, delay);
         novel = n;
         setTriggerMethod(t);
+        setID(0);
     }
     
     private Novel novel;
