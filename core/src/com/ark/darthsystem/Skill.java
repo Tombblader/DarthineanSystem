@@ -4,6 +4,10 @@ import com.ark.darthsystem.States.Battle;
 
 import java.io.Serializable;
 
+/**
+ *
+ * @author Keven
+ */
 public class Skill implements Serializable, Cloneable {
 
     private int base;
@@ -31,10 +35,35 @@ public class Skill implements Serializable, Cloneable {
 //  private boolean[] skillStats;
     private Battle.Stats statusEffect;
 
+    /**
+     *
+     */
     public Skill() {
 
     }
 
+    /**
+     *
+     * @param initializeName
+     * @param initializeLevel
+     * @param initializeCost
+     * @param initializeElement
+     * @param initializeAlly
+     * @param initializeAll
+     * @param initializeStats
+     * @param initializeBase
+     * @param levelDifference
+     * @param initializeHP
+     * @param initializeAttack
+     * @param initializeDefense
+     * @param initializeSpeed
+     * @param initializeMagic
+     * @param initializeTargetAttack
+     * @param initializeTargetDefense
+     * @param initializeTargetSpeed
+     * @param initializeTargetMagic
+     * @param ratio
+     */
     public Skill(String initializeName,
             int initializeLevel,
             int initializeCost,
@@ -75,6 +104,12 @@ public class Skill implements Serializable, Cloneable {
         finalizeRatio = ratio;
     }
 
+    /**
+     *
+     * @param caster
+     * @param target
+     * @return
+     */
     public int calculateDamage(Battler caster, Battler target) {
         return (int) (base +
                 ((int) (((caster.getLevel() -
@@ -110,10 +145,19 @@ public class Skill implements Serializable, Cloneable {
                 this.getElement() == target.getEquipment(Equipment.EquipmentType.LeftArm.getSlot()).getElement() ? .5 : 1)) * (.9 + Math.random() * .25)));
     }
 
+    /**
+     *
+     * @return
+     */
     public int getCost() {
         return cost;
     }
 
+    /**
+     *
+     * @param newLevel
+     * @return
+     */
     public Skill overrideLevel(int newLevel) {
         Skill newSkill = null;
         try {
@@ -124,10 +168,21 @@ public class Skill implements Serializable, Cloneable {
         return newSkill;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getLevel() {
         return level;
     }
 
+    /**
+     *
+     * @param caster
+     * @param target
+     * @param turnCount
+     * @return
+     */
     public String changeStatus(Battler caster,
             Battler target,
             int turnCount) {
@@ -151,22 +206,42 @@ public class Skill implements Serializable, Cloneable {
         return message;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean getAlly() {
         return isAlly;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean getAll() {
         return isAll;
     }
 
+    /**
+     *
+     * @return
+     */
     public Battle.Element getElement() {
         return skillElement;
     }
 
+    /**
+     *
+     * @return
+     */
     public Battle.Stats getStatusEffect() {
         return statusEffect;
     }

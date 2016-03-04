@@ -9,6 +9,10 @@ import com.ark.darthsystem.Database.SoundDatabase;
 
 import java.util.ArrayList;
 
+/**
+ *
+ * @author Keven
+ */
 public class Action implements Serializable {
 
     private static final int ATTACK_CONSTANT = 10;
@@ -22,15 +26,31 @@ public class Action implements Serializable {
     private ArrayList<Battler> allTargets;
     private int damage;
 
+    /**
+     *
+     * @param initializeCommand
+     */
     public Action(Battle.Command initializeCommand) {
         actionCommand = initializeCommand;
     }
 
+    /**
+     *
+     * @param initializeCommand
+     * @param getCaster
+     */
     public Action(Battle.Command initializeCommand, Battler getCaster) {
         actionCommand = initializeCommand;
         caster = getCaster;
     }
 
+    /**
+     *
+     * @param initializeCommand
+     * @param getCaster
+     * @param getTarget
+     * @param getAllTargets
+     */
     public Action(Battle.Command initializeCommand,
             Battler getCaster,
             Battler getTarget,
@@ -41,6 +61,14 @@ public class Action implements Serializable {
         caster = getCaster;
     }
 
+    /**
+     *
+     * @param initializeCommand
+     * @param initializeItem
+     * @param initializeCaster
+     * @param initializeTarget
+     * @param initializeAllTargets
+     */
     public Action(Battle.Command initializeCommand,
             Item initializeItem,
             Battler initializeCaster,
@@ -53,6 +81,13 @@ public class Action implements Serializable {
         allTargets = initializeAllTargets;
     }
 
+    /**
+     *
+     * @param initializeCommand
+     * @param initializeItem
+     * @param initializeCaster
+     * @param initializeTarget
+     */
     public Action(Battle.Command initializeCommand,
             Item initializeItem,
             Battler initializeCaster,
@@ -63,6 +98,14 @@ public class Action implements Serializable {
         allTargets = initializeTarget;
     }
 
+    /**
+     *
+     * @param initializeCommand
+     * @param initializeSkill
+     * @param initializeCaster
+     * @param initializeTarget
+     * @param initializeAllTargets
+     */
     public Action(Battle.Command initializeCommand,
             Skill initializeSkill,
             Battler initializeCaster,
@@ -76,6 +119,13 @@ public class Action implements Serializable {
         allTargets = initializeAllTargets;
     }
 
+    /**
+     *
+     * @param initializeCommand
+     * @param initializeSkill
+     * @param initializeCaster
+     * @param initializeTarget
+     */
     public Action(Battle.Command initializeCommand,
             Skill initializeSkill,
             Battler initializeCaster,
@@ -87,6 +137,10 @@ public class Action implements Serializable {
         actionSkill = initializeSkill;
     }
 
+    /**
+     *
+     * @param b
+     */
     public void declareAttack(Battle b) {
         if (checkStatus(b)) {
             switch (actionCommand) {
@@ -114,6 +168,10 @@ public class Action implements Serializable {
         }
     }
 
+    /**
+     *
+     * @param b
+     */
     public void calculateDamage(Battle b) {
         damage = 0;
         if (checkStatus(b)) {
@@ -294,14 +352,25 @@ public class Action implements Serializable {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public Battler getCaster() {
         return caster;
     }
 
+    /**
+     *
+     * @return
+     */
     public Battler getTarget() {
         return target;
     }
 
+    /**
+     *
+     */
     public void setNewTarget() {
         boolean allAlive = true;
         for (Battler allTarget : allTargets) {
@@ -321,6 +390,10 @@ public class Action implements Serializable {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public Battle.Command getCommand() {
         return actionCommand;
     }
@@ -382,10 +455,18 @@ public class Action implements Serializable {
         return move;
     }
 
+    /**
+     *
+     * @return
+     */
     public Skill getSkill() {
         return actionSkill;
     }
 
+    /**
+     *
+     * @return
+     */
     public ArrayList<Battler> getAllTargets() {
         return allTargets;
     }

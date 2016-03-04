@@ -196,7 +196,7 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
         if ((getCurrentState() instanceof Message)) {
             ((Message) (getCurrentState())).appendMessage(getMessage);
         } else if ((getCurrentState() instanceof OverheadMap)) {
-//			((OverheadMap) (getCurrentState())).appendMessage(getMessage);
+            ((OverheadMap) (getCurrentState())).appendMessage(getMessage);
         } else if (getMessage != null && !getMessage.isEmpty() && !getMessage.get(0).equals("")) {
             setMessage(getMessage);
         }

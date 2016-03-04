@@ -100,7 +100,7 @@ public class ActorCollision extends Actor {
     public void update(float delta) {
         super.update(delta);
         setX(Math.round(body.getPosition().x * 100f) / 100f);
-        setY(Math.round(body.getPosition().y * 100f) / 100f);        
+        setY(Math.round(body.getPosition().y * 100f) / 100f);
     }
     
     public void setMap(OverheadMap map, boolean isPlayer) {

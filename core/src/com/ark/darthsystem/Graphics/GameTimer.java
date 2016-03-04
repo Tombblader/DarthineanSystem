@@ -13,7 +13,7 @@ public abstract class GameTimer {
 
     private boolean isOn;
     private float time;
-    private String name;
+    private final String name;
     private int currentTime = 0;
 
     public GameTimer(String name, float time) {

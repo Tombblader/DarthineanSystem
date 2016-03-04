@@ -32,7 +32,7 @@ import java.util.Iterator;
  * @author trankt1
  */
 public class Player extends ActorCollision {
-    private static final float SPEED = .5f;
+    private static final float SPEED = .4f;
     private static final float DELAY = 6f / 60f;
 
     private int moveUp = Keys.UP;

@@ -23,48 +23,91 @@ import java.util.StringTokenizer;
  */
 public class BattleDriver {
 
+    /**
+     *
+     */
     public BattleDriver() {
 
     }
 
+    /**
+     *
+     * @param i
+     */
     public static void addGoodKarma(int i) {
         Database1.karma += i;
     }
 
+    /**
+     *
+     * @param i
+     */
     public static void addBadKarma(int i) {
         Database1.karma -= i;
     }
 
+    /**
+     *
+     */
     public static void addGoodKarma() {
         Database1.karma++;
     }
 
+    /**
+     *
+     */
     public static void addBadKarma() {
         Database1.karma--;
     }
 
+    /**
+     *
+     * @return
+     */
     public static boolean isGood() {
         return Database1.karma >
                 0;
     }
 
+    /**
+     *
+     * @return
+     */
     public static boolean isBad() {
         return Database1.karma <
                 0;
     }
 
+    /**
+     *
+     * @param switchName
+     * @param b
+     */
     public static void setSwitch(String switchName, boolean b) {
         Database1.switches.put(switchName, b);
     }
 
+    /**
+     *
+     * @param switchName
+     */
     public static void toggleSwitch(String switchName) {
         Database1.switches.put(switchName, !Database1.switches.get(switchName));
     }
 
+    /**
+     *
+     * @param name
+     * @return
+     */
     public static boolean getSwitch(String name) {
         return Database1.switches.get(name);
     }
 
+    /**
+     *
+     * @return
+     */
     public static Battler characterCreation() {
         String name;
         Battler.Gender gender;
@@ -91,6 +134,10 @@ public class BattleDriver {
         return null;
     }
 
+    /**
+     *
+     * @param group
+     */
     public static void fullHeal(ArrayList<Battler> group) {
         for (Battler group1 : group) {
             if (group1 != null) {
@@ -100,6 +147,10 @@ public class BattleDriver {
         }
     }
 
+    /**
+     *
+     * @param newMessage
+     */
     public static void printline(String newMessage) {
         if (!newMessage.equals("")) {
             ArrayList<String> formattedMessage = new ArrayList<>();
@@ -123,6 +174,11 @@ public class BattleDriver {
         }
     }
     
+    /**
+     *
+     * @param battler
+     * @param newMessage
+     */
     public static void printline(ActorBattler battler, String newMessage) {
         if (!newMessage.equals("")) {
             ArrayList<String> formattedMessage = new ArrayList<>();
@@ -146,6 +202,12 @@ public class BattleDriver {
         }        
     }
 
+    /**
+     *
+     * @param battler
+     * @param faceMode
+     * @param newMessage
+     */
     public static void printline(ActorBattler battler, ActorSprite.SpriteModeFace faceMode, String newMessage) {
         if (!newMessage.equals("")) {
             ArrayList<String> formattedMessage = new ArrayList<>();
@@ -169,7 +231,10 @@ public class BattleDriver {
         }        
     }
     
-    
+    /**
+     *
+     * @param newMessage
+     */
     public static void print(String newMessage) {
         StringTokenizer st = new StringTokenizer(newMessage, " \n", true);
         ArrayList<String> formattedMessage = new ArrayList<>();
@@ -194,6 +259,11 @@ public class BattleDriver {
         GraphicsDriver.appendMessage(formattedMessage);
     }
 
+    /**
+     *
+     * @param header
+     * @return
+     */
     public static String condition(String header) {
         printline(header);
         textCondition = "";
@@ -201,6 +271,9 @@ public class BattleDriver {
         return textCondition;
     }
 
+    /**
+     *
+     */
     public static void save() {
         if (false) {
             try {
@@ -212,6 +285,10 @@ public class BattleDriver {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public static boolean load() {
         boolean loaded = false;
         if (loaded) {
@@ -225,6 +302,11 @@ public class BattleDriver {
         return loaded;
     }
 
+    /**
+     *
+     * @param tempBattler
+     * @param newEquipment
+     */
     public static void equip(Battler tempBattler, Equipment newEquipment) {
         Equipment temp = tempBattler.equip(newEquipment);
         if (temp != null) {
@@ -232,6 +314,10 @@ public class BattleDriver {
         }
     }
 
+    /**
+     *
+     * @param newItem
+     */
     public static void addItem(Item newItem) {
         if (Database1.inventory.contains(newItem)) {
             if (Database1.inventory.get(Database1.inventory.indexOf(newItem)) == newItem) {
@@ -244,6 +330,10 @@ public class BattleDriver {
         }
     }
 
+    /**
+     *
+     * @param party
+     */
     public static void printStats(Battler[] party) {
         for (Battler party1 : party) {
             BattleDriver.printline(party1.getName() +
@@ -263,6 +353,11 @@ public class BattleDriver {
         }
     }
 
+    /**
+     *
+     * @param party
+     * @param removed
+     */
     public static void removePartyMember(Battler[] party, Battler removed) {
         Battler[] tempParty = new Battler[party.length];
         int position = Arrays.binarySearch(party, removed);
@@ -282,6 +377,11 @@ public class BattleDriver {
 
     }
 
+    /**
+     *
+     * @param party
+     * @param added
+     */
     public static void addMember(Battler[] party, Battler added) {
         Battler[] tempParty = new Battler[party.length + 1];
         System.arraycopy(tempParty, 0, party, 0, party.length);
@@ -289,7 +389,14 @@ public class BattleDriver {
         party = tempParty;
     }
 
+    /**
+     *
+     */
     public static String textCondition = "";
+
+    /**
+     *
+     */
     public static final int WRAP_LENGTH = 80;
 
 }

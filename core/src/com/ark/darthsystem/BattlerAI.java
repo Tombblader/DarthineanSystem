@@ -3,6 +3,10 @@ package com.ark.darthsystem;
 import com.ark.darthsystem.States.Battle;
 import java.util.ArrayList;
 
+/**
+ *
+ * @author Keven
+ */
 public class BattlerAI extends Battler {
 
     private static final int MAX_PRIORITY = 10;
@@ -11,6 +15,15 @@ public class BattlerAI extends Battler {
     private int experience;
     private Item drop;
 
+    /**
+     *
+     * @param getName
+     * @param newBattler
+     * @param getAIData
+     * @param initializeExperience
+     * @param itemDrop
+     * @param itemQuantity
+     */
     public BattlerAI(String getName,
             Battler newBattler,
             AI[] getAIData,
@@ -39,6 +52,25 @@ public class BattlerAI extends Battler {
         }
     }
 
+    /**
+     *
+     * @param initializeName
+     * @param initializeElement
+     * @param initializeGender
+     * @param initializeLevel
+     * @param initializeHP
+     * @param initializeMP
+     * @param initializeAttack
+     * @param initializeDefense
+     * @param initializeSpeed
+     * @param initializeMagic
+     * @param initializeSkill
+     * @param initializeEquipment
+     * @param getAIData
+     * @param initializeExperience
+     * @param itemDrop
+     * @param itemQuantity
+     */
     public BattlerAI(String initializeName,
             Battle.Element initializeElement,
             Battler.Gender initializeGender,
@@ -76,6 +108,11 @@ public class BattlerAI extends Battler {
         }
     }
 
+    /**
+     *
+     * @param b
+     * @return
+     */
     public Action getCommand(Battle b) {
         Action tempAction = null;
         Skill getSkill;
@@ -184,10 +221,18 @@ public class BattlerAI extends Battler {
         return tempAI.getType();
     }
 
+    /**
+     *
+     * @return
+     */
     public int getExperienceValue() {
         return experience;
     }
 
+    /**
+     *
+     * @return
+     */
     public Item getDroppedItem() {
         return drop;
     }

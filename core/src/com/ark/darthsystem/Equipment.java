@@ -6,14 +6,40 @@ import com.ark.darthsystem.Graphics.GraphicsDriver;
 import com.ark.darthsystem.States.Battle;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
+/**
+ *
+ * @author Keven
+ */
 public class Equipment extends Item implements Cloneable {
 
+    /**
+     *
+     */
     public enum EquipmentType {
 
+        /**
+         *
+         */
         RightArm(0),
+
+        /**
+         *
+         */
         LeftArm(1),
+
+        /**
+         *
+         */
         Body(2),
+
+        /**
+         *
+         */
         Head(3),
+
+        /**
+         *
+         */
         Accessory(4);
         int slot;
 
@@ -21,6 +47,10 @@ public class Equipment extends Item implements Cloneable {
             slot = setSlot;
         }
 
+        /**
+         *
+         * @return
+         */
         public int getSlot() {
             return slot;
         }
@@ -28,13 +58,27 @@ public class Equipment extends Item implements Cloneable {
     private EquipmentType equipmentSlot;
     private int attack, defense, speed, magic;
     private Battle.Element equipElement;
-    private ActorSkill animation;
+    private transient ActorSkill animation;
 
+    /**
+     *
+     */
     public Equipment() {
         super();
         this.equipElement = Battle.Element.Physical;
     }
 
+    /**
+     *
+     * @param getName
+     * @param initializeType
+     * @param invoke
+     * @param useMP
+     * @param initializeAttack
+     * @param initializeDefense
+     * @param initializeSpeed
+     * @param initializeMagic
+     */
     public Equipment(String getName,
             EquipmentType initializeType,
             Skill invoke,
@@ -43,10 +87,7 @@ public class Equipment extends Item implements Cloneable {
             int initializeDefense,
             int initializeSpeed,
             int initializeMagic) {
-        super(getName,
-                false,
-                invoke,
-                useMP);
+        super(getName, false, invoke, useMP);
         this.equipElement = Battle.Element.Physical;
         equipmentSlot = initializeType;
         attack = initializeAttack;
@@ -57,6 +98,18 @@ public class Equipment extends Item implements Cloneable {
         animation = Database2.Sword();
     }
 
+    /**
+     *
+     * @param getName
+     * @param initializeType
+     * @param invoke
+     * @param initializeElement
+     * @param useMP
+     * @param initializeAttack
+     * @param initializeDefense
+     * @param initializeSpeed
+     * @param initializeMagic
+     */
     public Equipment(String getName,
             EquipmentType initializeType,
             Skill invoke,
@@ -66,10 +119,7 @@ public class Equipment extends Item implements Cloneable {
             int initializeDefense,
             int initializeSpeed,
             int initializeMagic) {
-        super(getName,
-                false,
-                invoke,
-                useMP);
+        super(getName, false, invoke, useMP);
         this.equipElement = Battle.Element.Physical;
         equipmentSlot = initializeType;
         attack = initializeAttack;
@@ -80,6 +130,19 @@ public class Equipment extends Item implements Cloneable {
         animation = Database2.Sword();
     }
 
+    /**
+     *
+     * @param getName
+     * @param initializeType
+     * @param invoke
+     * @param useMP
+     * @param initializeAttack
+     * @param initializeDefense
+     * @param initializeSpeed
+     * @param initializeMagic
+     * @param battleAnimation
+     * @param fieldAnimation
+     */
     public Equipment(String getName,
             EquipmentType initializeType,
             Skill invoke,
@@ -103,30 +166,58 @@ public class Equipment extends Item implements Cloneable {
                     1, 1, 5.0f/60f, null, ActorSkill.Area.FRONT);
     }
 
+    /**
+     *
+     * @return
+     */
     public EquipmentType getEquipmentType() {
         return equipmentSlot;
     }
 
+    /**
+     *
+     * @return
+     */
     public Battle.Element getElement() {
         return equipElement;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getAttack() {
         return attack;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getDefense() {
         return defense;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getSpeed() {
         return speed;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getMagic() {
         return magic;
     }
     
+    /**
+     *
+     * @return
+     */
     public ActorSkill getAnimation() {
         return animation;
     }

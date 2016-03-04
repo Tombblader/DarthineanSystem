@@ -8,8 +8,15 @@ import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ *
+ * @author Keven
+ */
 public class Battler implements Serializable {
 
+    /**
+     *
+     */
     public static final long serialVersionUID = 553786374;
     private static final double DEFEND = 0.25;
     private String name;
@@ -39,15 +46,43 @@ public class Battler implements Serializable {
     private double magicTier = magic / 8.0 / level;
     private int tnl = 50;
 
+    /**
+     *
+     */
     public static enum Gender {
 
+        /**
+         *
+         */
         Male,
+
+        /**
+         *
+         */
         Female
     }
 
+    /**
+     *
+     */
     public Battler() {
     }
 
+    /**
+     *
+     * @param initialName
+     * @param initialElement
+     * @param initializeGender
+     * @param initialLevel
+     * @param initialHP
+     * @param initialMP
+     * @param initialAttack
+     * @param initialDefense
+     * @param initialSpeed
+     * @param initialMagic
+     * @param initialClass
+     * @param initialEquipment
+     */
     public Battler(String initialName,
             Battle.Element initialElement,
             Battler.Gender initializeGender,
@@ -87,6 +122,21 @@ public class Battler implements Serializable {
         battlerGender = initializeGender;
     }
 
+    /**
+     *
+     * @param initialName
+     * @param initialElement
+     * @param initializeGender
+     * @param initialLevel
+     * @param initialHP
+     * @param initialMP
+     * @param initialAttack
+     * @param initialDefense
+     * @param initialSpeed
+     * @param initialMagic
+     * @param initialSkill
+     * @param initialEquipment
+     */
     public Battler(String initialName,
             Battle.Element initialElement,
             Battler.Gender initializeGender,
@@ -126,74 +176,147 @@ public class Battler implements Serializable {
         battlerGender = initializeGender;
     }
 
+    /**
+     *
+     * @return
+     */
     public BattlerClass getBattlerClass() {
         return Class;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getLevel() {
         return level;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getHP() {
         return HP;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getMaxHP() {
         return maxHP;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getMP() {
         return MP;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getMaxMP() {
         return maxMP;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getAttack() {
         return attack + getEquipmentAttack();
     }
 
+    /**
+     *
+     * @return
+     */
     public int getBaseAttack() {
         return attack;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getDefense() {
         return defense + getEquipmentDefense();
     }
 
+    /**
+     *
+     * @return
+     */
     public int getBaseDefense() {
         return defense;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getSpeed() {
         return isDelaying ? 1 : speed + getEquipmentSpeed();
     }
 
+    /**
+     *
+     * @return
+     */
     public int getBaseSpeed() {
         return speed;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getMagic() {
         return magic + getEquipmentMagic();
     }
 
+    /**
+     *
+     * @return
+     */
     public int getBaseMagic() {
         return magic;
     }
 
+    /**
+     *
+     * @param skillSlot
+     * @return
+     */
     public Skill getSkill(int skillSlot) {
         return skillList[skillSlot];
     }
 
+    /**
+     *
+     * @return
+     */
     public Skill[] getSkillList() {
         return skillList;
     }
 
+    /**
+     *
+     * @return
+     */
     public Skill[] getCurrentSkillList() {
         ArrayList<Skill> getSkillList = new ArrayList<>();
         for (Skill skillList1 : skillList) {
@@ -204,34 +327,68 @@ public class Battler implements Serializable {
         return (Skill[]) (getSkillList.toArray());
     }
 
+    /**
+     *
+     * @param skill
+     * @return
+     */
     public Skill getSkill(String skill) {
         return skillList[Arrays.binarySearch(skillList, skill)];
     }
 
+    /**
+     *
+     * @param equipmentSlot
+     * @return
+     */
     public Equipment getEquipment(int equipmentSlot) {
         return equipmentList[equipmentSlot];
     }
 
+    /**
+     *
+     * @return
+     */
     public Equipment[] getEquipmentList() {
         return equipmentList;
     }
 
+    /**
+     *
+     * @return
+     */
     public Battler.Gender getGender() {
         return battlerGender;
     }
 
+    /**
+     *
+     * @return
+     */
     public Battle.Element getElement() {
         return battlerElement;
     }
 
+    /**
+     *
+     * @return
+     */
     public Battle.Stats getStatus() {
         return afflicted;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getTurnCount() {
         return turnCount;
     }
 
+    /**
+     *
+     * @return
+     */
     public int levelUp() {
         hpTier = HP / 50.0 / (level + 1);
         mpTier = MP / 50.0 / (level + 1);
@@ -298,6 +455,11 @@ public class Battler implements Serializable {
         return level;
     }
 
+    /**
+     *
+     * @param level
+     * @return
+     */
     public int levelUp(int level) {
         hpTier = HP / 50.0 / (level + 1);
         mpTier = MP / 50.0 / (level + 1);
@@ -360,6 +522,16 @@ public class Battler implements Serializable {
         return level;
     }
 
+    /**
+     *
+     * @param upHP
+     * @param upMP
+     * @param upAttack
+     * @param upDefense
+     * @param upSpeed
+     * @param upMagic
+     * @return
+     */
     public int levelUp(int upHP,
             int upMP,
             int upAttack,
@@ -376,17 +548,31 @@ public class Battler implements Serializable {
         return level;
     }
 
+    /**
+     *
+     * @param getStats
+     */
     public void changeStatus(Battle.Stats getStats) {
         afflicted = getStats;
         turnCount = 0;
     }
 
+    /**
+     *
+     * @param getStats
+     * @param initialTurnCount
+     */
     public void changeStatus(Battle.Stats getStats,
             int initialTurnCount) {
         afflicted = getStats;
         turnCount = initialTurnCount;
     }
 
+    /**
+     *
+     * @param value
+     * @return
+     */
     public boolean changeHP(int value) {
         boolean isDead;
         HP -= ((value > 0) ? (value * damageModifier) : value);
@@ -403,18 +589,34 @@ public class Battler implements Serializable {
         return isDead;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isAlive() {
         return HP > 0;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isDelaying() {
         return isDelaying;
     }
 
+    /**
+     *
+     * @param delay
+     */
     public void setDelaying(boolean delay) {
         isDelaying = delay;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean canMove() {
         isDelaying = false;
         return afflicted != Battle.Stats.Petrify &&
@@ -422,6 +624,10 @@ public class Battler implements Serializable {
                 afflicted != Battle.Stats.Sleep;
     }
 
+    /**
+     *
+     * @param value
+     */
     public void changeMP(int value) {
         MP -= value;
         if (MP > maxMP) {
@@ -429,27 +635,48 @@ public class Battler implements Serializable {
         }
     }
 
+    /**
+     *
+     */
     public void fullHeal() {
         HP = maxHP;
         MP = maxMP;
     }
 
+    /**
+     *
+     */
     public void charge() {
         MP = maxMP;
     }
 
+    /**
+     *
+     */
     public void defend() {
         damageModifier = DEFEND;
     }
 
+    /**
+     *
+     */
     public void resetDefend() {
         damageModifier = 1.0;
     }
 
+    /**
+     *
+     * @return
+     */
     public double getDefend() {
         return damageModifier;
     }
 
+    /**
+     *
+     * @param newEquipment
+     * @return
+     */
     public Equipment equip(Equipment newEquipment) {
         if (!Class.equippable(newEquipment)) {
             return newEquipment;
@@ -505,6 +732,10 @@ public class Battler implements Serializable {
         return equipmentMagic;
     }
 
+    /**
+     *
+     * @param newSkill
+     */
     public void learnSkill(Skill newSkill) {
         Skill[] tempList = new Skill[skillList.length + 1];
         System.arraycopy(skillList,
@@ -516,6 +747,11 @@ public class Battler implements Serializable {
         skillList = tempList;
     }
 
+    /**
+     *
+     * @param newSkill
+     * @param overrideLevel
+     */
     public void learnSkill(Skill newSkill, int overrideLevel) {
         Skill[] tempList = new Skill[skillList.length + 1];
         System.arraycopy(skillList,
@@ -527,6 +763,10 @@ public class Battler implements Serializable {
         skillList = tempList;
     }
 
+    /**
+     *
+     * @param getExperiencePoints
+     */
     public void changeExperiencePoints(int getExperiencePoints) {
         experiencePoints += getExperiencePoints;
         while (experiencePoints >= tnl) {
@@ -536,6 +776,10 @@ public class Battler implements Serializable {
         }
     }
 
+    /**
+     *
+     * @param newName
+     */
     public void rename(String newName) {
         name = newName;
     }

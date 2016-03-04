@@ -71,7 +71,7 @@ public class SkillDatabase {
             7,
             Battle.Element.Dark,
             false,
-            true,
+            false,
             Battle.Stats.Poison,
             0, 0.0, 0.0,
             10, 0,

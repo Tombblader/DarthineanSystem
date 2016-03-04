@@ -3,17 +3,60 @@ package com.ark.darthsystem;
 import com.ark.darthsystem.States.Battle;
 import java.io.Serializable;
 
+/**
+ *
+ * @author Keven
+ */
 public class AI implements Serializable {
 
+    /**
+     *
+     */
     public enum Type {
+
+        /**
+         *
+         */
         Attack,
+
+        /**
+         *
+         */
         Nothing,
+
+        /**
+         *
+         */
         Defend,
+
+        /**
+         *
+         */
         Heal,
+
+        /**
+         *
+         */
         Revive,
+
+        /**
+         *
+         */
         AttackSkill,
+
+        /**
+         *
+         */
         SupportSkill,
+
+        /**
+         *
+         */
         MercilessAttack,
+
+        /**
+         *
+         */
         MercilessHeal;
     }
     private static final int NO_FLAG = -1;

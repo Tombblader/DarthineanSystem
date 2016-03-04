@@ -7,7 +7,6 @@ import com.ark.darthsystem.Database.Database1;
 
 import com.ark.darthsystem.Database.Database2;
 import com.ark.darthsystem.Database.InterfaceDatabase;
-import com.ark.darthsystem.Database.MapDatabase;
 import com.ark.darthsystem.Graphics.Actor;
 import com.ark.darthsystem.Graphics.ActorAI;
 import com.ark.darthsystem.Graphics.ActorBattler;
@@ -20,11 +19,11 @@ import com.ark.darthsystem.Graphics.Player;
 import com.ark.darthsystem.Graphics.PlayerCamera;
 import static com.ark.darthsystem.States.State.HEIGHT;
 import static com.ark.darthsystem.States.State.WIDTH;
-import com.ark.darthsystem.States.chapters.Novel;
 import com.ark.darthsystem.States.events.Event;
 import com.ark.darthsystem.States.events.Teleport;
 
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.MapLayer;
@@ -74,7 +73,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
     private String bgm;
     private ArrayList<String> message = new ArrayList<>();
     private int elapsed = 0;
-    private final int MESSAGE_TIME = 5000;
+    private final int MESSAGE_TIME = 3000;
 
     public float getWidth() {
         return width / PlayerCamera.PIXELS_TO_METERS;
@@ -146,16 +145,25 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
     private Array<Body> generateObjects() {
         ppt = PlayerCamera.PIXELS_TO_METERS;
         MapObjects objects = map.getLayers().get("collision").getObjects();
-        Array<Body> bodies = new Array<Body>();
+        Array<Body> bodies = new Array<>();
         
         
         for(MapObject object : objects) {
             if (object instanceof TextureMapObject) {
                 continue;
             }
+            
+            MapProperties properties = object.getProperties();
+            
+            if (properties.get("type", String.class).equalsIgnoreCase("actor")) {
+//                Actor a = AIDatabase.actors.get(properties.get("Name", String.class));
+//                a.setMap(this, false);
+//                a.setX(properties.get("x", Float.class));
+//                a.setY(properties.get("y", Float.class));
+                continue;
+            }
 
             Shape shape;
-            MapProperties properties = object.getProperties();
             if (object instanceof RectangleMapObject) {
                 shape = getRectangle((RectangleMapObject)object);
             }
@@ -192,6 +200,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                 f.setSensor(true);
                 filter.maskBits = ActorCollision.CATEGORY_PLAYER;
             }
+            
             f.setFilterData(filter);            
             bodies.add(body);
 
@@ -333,8 +342,8 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
         updateProperties(prop);
         width = prop.get("width", Integer.class) * prop.get("tilewidth", Integer.class);
         height = prop.get("height", Integer.class) * prop.get("tileheight", Integer.class);        
-        playerActors = new Array<Actor>();
-        enemyActors = new Array<Actor>();
+        playerActors = new Array<>();
+        enemyActors = new Array<>();
         World.setVelocityThreshold(1000f);
         world = new World(new Vector2(0, 0), true);
         world.setContactListener(new ContactListener() {
@@ -382,7 +391,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
             }
 
             private void renderCollision(Fixture a, Fixture b) {
-                final float KNOCKBACK = 100f;
+                final float KNOCKBACK = 4f;
                 a.getBody().setLinearVelocity(
                         ((Actor)(b.getBody().getUserData())).getFacing().getX() * a.getBody().getPosition().add(b.getBody().getPosition()).x * KNOCKBACK, 
                         ((Actor)(b.getBody().getUserData())).getFacing().getY() * a.getBody().getPosition().add(b.getBody().getPosition()).y * KNOCKBACK);
@@ -592,8 +601,8 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
     public void render(SpriteBatch batch) {
         GraphicsDriver.setCurrentCamera(GraphicsDriver.getPlayerCamera());
         GraphicsDriver.getPlayerCamera().followPlayer(
-                Database2.player.getX(),
-                Database2.player.getY(),
+                Math.round(Database2.player.getX() * 50f) / 50f,
+                Math.round(Database2.player.getY() * 50f) / 50f,
                 width,
                 height);
         GraphicsDriver.getPlayerCamera().update();

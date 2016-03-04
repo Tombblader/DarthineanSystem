@@ -4,6 +4,10 @@ import com.ark.darthsystem.States.Battle;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ *
+ * @author Keven
+ */
 public class Item implements Serializable, Cloneable {
 
     private int HPValue;
@@ -15,9 +19,20 @@ public class Item implements Serializable, Cloneable {
     private String name;
     private int quantity;
 
+    /**
+     *
+     */
     public Item() {
     }
 
+    /**
+     *
+     * @param getName
+     * @param initializeExpendable
+     * @param initializeHP
+     * @param initializeMP
+     * @param all
+     */
     public Item(String getName,
             boolean initializeExpendable,
             int initializeHP,
@@ -31,6 +46,13 @@ public class Item implements Serializable, Cloneable {
         quantity = 1;
     }
 
+    /**
+     *
+     * @param getName
+     * @param initializeExpendable
+     * @param initializeSkill
+     * @param initializeUseMP
+     */
     public Item(String getName,
             boolean initializeExpendable,
             Skill initializeSkill,
@@ -43,6 +65,13 @@ public class Item implements Serializable, Cloneable {
         quantity = 1;
     }
 
+    /**
+     *
+     * @param caster
+     * @param target
+     * @param allTargets
+     * @return
+     */
     public Action use(Battler caster,
             Battler target,
             ArrayList<Battler> allTargets) {
@@ -53,6 +82,12 @@ public class Item implements Serializable, Cloneable {
                 allTargets);
     }
 
+    /**
+     *
+     * @param caster
+     * @param target
+     * @return
+     */
     public Action use(Battler caster,
             ArrayList<Battler> target) {
         return new Action(Battle.Command.Item,
@@ -61,20 +96,39 @@ public class Item implements Serializable, Cloneable {
                 target);
     }
 
+    /**
+     *
+     * @return
+     */
     public int getQuantity() {
         return quantity;
     }
 
+    /**
+     *
+     * @param amount
+     * @return
+     */
     public Item setQuantity(int amount) {
         quantity = amount;
         return this;
     }
 
+    /**
+     *
+     * @param amount
+     * @return
+     */
     public Item increaseQuantity(int amount) {
         quantity += amount;
         return this;
     }
 
+    /**
+     *
+     * @param amount
+     * @return
+     */
     public Item decreaseQuantity(int amount) {
         Item thisItem = this;
         quantity -= amount;
@@ -84,30 +138,58 @@ public class Item implements Serializable, Cloneable {
         return thisItem;
     }
 
+    /**
+     *
+     * @return
+     */
     public Skill getInvoke() {
         return invoke;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getHPValue() {
         return HPValue;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getMPValue() {
         return MPValue;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean getExpendable() {
         return expendable;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean getAll() {
         return isAll;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean useMP() {
         return useMP;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean getAlly() {
         if (invoke == null) {
             return true;
@@ -116,6 +198,10 @@ public class Item implements Serializable, Cloneable {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public String getName() {
         return name;
     }
