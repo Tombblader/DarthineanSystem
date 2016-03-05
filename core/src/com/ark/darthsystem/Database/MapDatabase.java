@@ -14,8 +14,6 @@ public class MapDatabase {
     public MapDatabase() {
         maps = new HashMap<>();
         initializeMaps();
-//        maps.put("nowhere", new OverheadMap("maps/nowhere.tmx"));
-//        maps.put("testing", new OverheadMap("maps/Testing2.tmx", "music/Forbidden Shrine of Heroes.mp3"));
         Database2.player.setMap(maps.get("nowhere"), 300 / GraphicsDriver.getPlayerCamera().getConversion(), 300 / GraphicsDriver.getPlayerCamera().getConversion());
         Database2.ErikAI.setMap(maps.get("testing"), 500 / GraphicsDriver.getPlayerCamera().getConversion(), 500 / GraphicsDriver.getPlayerCamera().getConversion());
         EventDatabase.GraphicsPotion.setMap(maps.get("testing"), false);

@@ -1,0 +1,18 @@
+Chapter 0
+Start
+\\DIALOGUE
+Blue Lady: I'm glad you've answered our call.  It seems like the vessel you were going to use crashed around here somewhere.
+Blue Lady: Your conscious seemed to have separated from your vessel.  That isn't a good sign, but not to worry.  I will lead you to your body.
+Blue Lady: Hmm...  You should guide me.  It'll be a good chance to test your abilities and make them grow.  I'll explain the rules along the way.
+
+Page 1
+Blue Lady: Those that join your party will have special abilities, myself included.  I have the ability to walk on water.  Try it.
+
+Page 2
+Blue Lady: You're going to go into this area instead?  Aren't you a curious one?  
+Blue Lady: ..Very well.  I do ask that you do not guide me improperly, however.
+
+\\PAGE 3
+
+Page 3
+Teleport newMap, 5, 5

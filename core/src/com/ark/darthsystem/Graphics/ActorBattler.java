@@ -27,11 +27,13 @@ public class ActorBattler {
     public ActorBattler(Battler b, ActorSprite s) {
         battler = b;
         spriteSheet = s;
-        currentSkill = Database2.SkillToActor(b.getSkill(0));
-        skillList.add(currentSkill);
-        if (b.equals(Database1.Darth)) {
-            skillList.add(Database2.SkillToActor(b.getSkill(1)));
+        for (Skill skill : b.getSkillList()) {
+            currentSkill = Database2.SkillToActor(skill);
+            if (currentSkill != null) {
+                skillList.add(currentSkill);
+            }
         }
+        currentSkill = skillList.get(0);
     }
 
     public Battler getBattler() {
@@ -106,17 +108,6 @@ public class ActorBattler {
 
     private void convertSkillToActor(Skill s, ActorSkill a) {
         a.setSkill(s);
-    }
-
-    private ActorSkill[] generateSkillList(ActorSkill[] skillAnimation) {
-        ArrayList<ActorSkill> tempActorSkill = new ArrayList<>();
-        for (Skill skills : battler.getSkillList()) {
-//            new ActorSkill(null, 0, 0, 0, 0, 0, skills);
-//    		tempActorSkill.add(new ActorSkill(skills, skillAnimation[0]));
-            tempActorSkill.add(Database2.SkillToActor.get(skills));
-        }
-        return null;
-
     }
 
     public ActorBattler clone() {

@@ -47,6 +47,26 @@ public class Database2 extends Database1 {
                                 5.0f / 60.0f,
                                 SkillDatabase.Red_Spin,
                                 ActorSkill.Area.SELF));
+                put(SkillDatabase.Sap_Shot,
+                        new ActorSkill((Sprite[]) GraphicsDriver.getMasterSheet().createSprites("skills/red_spin/field/red_spin").toArray(Sprite.class),
+                                GraphicsDriver.getMasterSheet().createSprites("skills/crosscall/battler/crosscall").toArray(Sprite.class),
+                                0,
+                                0,
+//                                .5f,
+//                                0,
+                                5.0f / 60.0f,
+                                1f,
+                                SkillDatabase.Sap_Shot,
+                                ActorSkill.Area.FRONT));
+                put(SkillDatabase.Heal,
+                        new ActorSkill((Sprite[]) GraphicsDriver.getMasterSheet().createSprites("skills/wiccan_cross/field/wiccan_cross").toArray(Sprite.class),
+                                GraphicsDriver.getMasterSheet().createSprites("skills/crosscall/battler/crosscall").toArray(Sprite.class),
+                                0,
+                                0,
+                                5.0f / 60.0f,
+                                SkillDatabase.Heal,
+                                ActorSkill.Area.SELF));
+                
 //                put(Leg_Sweep, new ActorSkill(new Sprite("com.ark.darthsystem/GraphicsPack/assets/WiccanCross.png", false).getImages(), 1, 0, 17, Database1.Leg_Sweep));
 //                put(Heal, new ActorSkill(new Sprite("com.ark.darthsystem/GraphicsPack/assets/WiccanCross.png", false).getImages(), 0, 0, 30, Database1.Heal, ActorSkill.Area.SELF));
             }

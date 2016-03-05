@@ -33,7 +33,6 @@ public class GameOver implements State {
                 if (choice.equals("No")) {
                     GraphicsDriver.newGame();
                     GraphicsDriver.addState(new Title());
-//                    GraphicsDriver.addState((State) (Database1Point5.testing));
                 }
                 if (choice.equals("Yes")) {
                     GraphicsDriver.addMenu(new Menu("Open which slot?", new String[]{"Slot 1", "Slot 2", "Slot 3"},

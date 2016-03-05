@@ -67,7 +67,7 @@ public class ActorSkill extends ActorCollision {
     }
     private float aftercastDelay = 0;
     private Area area;
-    private int chargeTime = 0;
+    private float chargeTime = 0;
     private Player invoker;
     private float relX;
     private float relY;
@@ -77,6 +77,8 @@ public class ActorSkill extends ActorCollision {
     private Sound battlerSound = SoundDatabase.battlerSwordSound;
     private float translateX;
     private float translateY;
+    private float currentX = 0;
+    private float currentY = 0;
     private Sprite[] originalFieldImage;
     private Sprite[] originalBattlerImage;
     private WeldJoint joint;
@@ -159,7 +161,33 @@ public class ActorSkill extends ActorCollision {
         }
         battlerAnimation = new Actor(originalBattlerImage, 0, 0, delay, true);
     }
+    
+    public ActorSkill(Sprite[] img,
+            Sprite[] battlerImg,
+            float getX,
+            float getY,
+            float delay,
+            float castTime,
+            Skill getSkill,
+            Area getArea) {
+        this(img, battlerImg, getX, getY, delay, getSkill, getArea);
+        chargeTime = castTime;
+    }
 
+    public ActorSkill(Sprite[] img,
+            Sprite[] battlerImg,
+            float getX,
+            float getY,
+            float getTranslateX,
+            float getTranslateY,
+            float delay,
+            float castTime,
+            Skill getSkill,
+            Area getArea) {
+        this(img, battlerImg, getX, getY, castTime, delay, getSkill, getArea);
+        translateX = getTranslateX;
+        translateY = getTranslateY;
+    }
     
     public float getAftercastDelay() {
         return aftercastDelay;
@@ -169,7 +197,7 @@ public class ActorSkill extends ActorCollision {
         return ((float) (originalFieldImage.length) * (this.getDelay())) + aftercastDelay;
     }
 
-    public int getChargeTime() {
+    public float getChargeTime() {
         return chargeTime;
     }
 
@@ -197,7 +225,7 @@ public class ActorSkill extends ActorCollision {
     public void setX(ActorCollision a) {
         super.changeX(a.getFacing().getX());
         if (area != Area.SELF) {
-            super.setX((relX + (a.getWidth() / 4 / (a.getFacing().y != 0 ? (float) Math.sqrt(2.0) : 1)) / PlayerCamera.PIXELS_TO_METERS) * a.getFacing().getX() + a.getMainBody().getPosition().x);
+            super.setX((relX + (a.getWidth() / 4 / (a.getFacing().y != 0 ? (float) Math.sqrt(2.0) : 1)) / PlayerCamera.PIXELS_TO_METERS) * a.getFacing().getX() + a.getMainBody().getPosition().x + currentX);
         } else {
             super.setX((relX) + a.getMainBody().getPosition().x);
         }
@@ -214,6 +242,8 @@ public class ActorSkill extends ActorCollision {
 
     public void update(float delta) {
         setFacing();
+        currentX += translateX * getFacing().getX();
+        currentY += translateY * getFacing().getY();
         super.update(delta);
         setAnimationFacing();
     }
@@ -287,6 +317,8 @@ public class ActorSkill extends ActorCollision {
 
     public void setMap(OverheadMap map, boolean isPlayer) {
         super.setMap(map, isPlayer);
+        currentX = 0;
+        currentY = 0;
         Array<Joint> temp = new Array<>();
         map.getPhysicsWorld().getJoints(temp);
         if (joint != null && temp.contains(joint, true)) {
@@ -304,7 +336,7 @@ public class ActorSkill extends ActorCollision {
             def.frequencyHz = 60;
             def.collideConnected = false;
             def.initialize(invoker.getMainBody(), getMainBody(), new Vector2(getX(), getY()));        
-            joint = (WeldJoint) map.getPhysicsWorld().createJoint(def);        
+            joint = (WeldJoint) map.getPhysicsWorld().createJoint(def);
         }
     }    
     

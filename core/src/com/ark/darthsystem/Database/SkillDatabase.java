@@ -80,6 +80,20 @@ public class SkillDatabase {
             0, 0,
             6.0);
 
+    public static Skill Sap_Shot = new Skill("Sap Shot",
+            1,
+            4,
+            Battle.Element.Water,
+            false,
+            false,
+            Battle.Stats.Normal,
+            10, 0.0, 0.0,
+            0, 0,
+            0, 6,
+            0, 3,
+            0, 3,
+            5.0);
+    
     public static Skill Heal = new Skill("Heal",
             1,
             3,

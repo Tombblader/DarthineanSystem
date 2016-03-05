@@ -176,12 +176,23 @@ public class Player extends ActorCollision {
             getCurrentBattler().getCurrentSkill().setY(this);
             ActorSkill tempSkill = getCurrentBattler().activateCurrentSkill(this);
             if (tempSkill != null) {
-                setPause((getCurrentBattler().getCurrentSkill().getAnimationDelay() * 1000f));
-                tempSkill.setMap(getCurrentMap(), true);
+                setPause((getCurrentBattler().getCurrentSkill().getChargeTime() * 1000f));
+                addTimer(new GameTimer("Skill", getCurrentBattler().getCurrentSkill().getChargeTime() * 1000f) {
+                    @Override
+                    public void event(Actor a) {
+//                        fieldState = ActorSprite.SpriteModeField.SKILL;
+                        setPause((getCurrentBattler().getCurrentSkill().getAnimationDelay() * 1000f));
+                        tempSkill.setMap(getCurrentMap(), true);
+                    }
+                    
+                });
+//                fieldState = ActorSprite.SpriteModeField.CAST;
+//                setPause((getCurrentBattler().getCurrentSkill().getAnimationDelay() * 1000f));
+ //               tempSkill.setMap(getCurrentMap(), true);
             }
-        }        
+        }
     }
-    
+        
     public ActorSkill getCurrentSkill() {
         return currentSkill;
     }

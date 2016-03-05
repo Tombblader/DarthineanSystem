@@ -34,6 +34,7 @@ public class ActorSprite implements Serializable {
         JUMP,
         ATTACK,
         CAST,
+        SKILL,
         OUCH,
         DEAD;
     }

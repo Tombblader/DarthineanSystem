@@ -36,7 +36,6 @@ public class Teleport extends Event {
             float getY,
             float getDelay, String newMap, int xCoord, int yCoord) {
         super(img, getX, getY, getDelay);
-        System.out.println("I've been called");
         setTriggerMethod(TriggerMethod.TOUCH);
         map = newMap;
         newX = xCoord * 32 / PlayerCamera.PIXELS_TO_METERS + 16 / PlayerCamera.PIXELS_TO_METERS + GraphicsDriver.getPlayerCamera().getScreenPositionX();

@@ -28,7 +28,7 @@ public class SystemDatabase {
     public static Skill[] Axeman_Moveset = {Veather_Sprawl, Veather_Charm, Bladed_Din, Burial_Swipe, Brainwashing_Axe, Black_Miasama, Axe_Effect};
     public static Skill[] Mage_Moveset = {Heal, Antidote, Awaken, Defog, Honey_Voice, Diffuse, Cell_Rejuvination, Storm_Gigas, Mud_Hand, Silver_Flame, Thunderstorm, Terra_Wall, Inferno, Crystal_Whirl, HealMore, HealAll, HealUs, Darknight};
     public static Skill[] Angel_Moveset = {CrossCall, Storm_Gigas, Sword_Dancer, HealMore, HealAll, HealUs, Honey_Voice, Awaken, Revivify, White_Curse, Cell_Rejuvination, Fairy_Circle};
-    public static Skill[] Water_Spirit_Moveset = {CrossCall, Heal, Frozen_Miasama, Feint_Sword_Tackle, Crystal_Whirl, Sword_Dancer, HealMore, HealUs, Revivify};
+    public static Skill[] Water_Spirit_Moveset = {CrossCall, Heal, Sap_Shot, Frozen_Miasama, Feint_Sword_Tackle, Crystal_Whirl, Sword_Dancer, HealMore, HealUs, Revivify};
 
     public static Equipment[] MagicKnight = {Wooden_Sword, Wooden_Shield, Tunic, Headband, null};
     public static Equipment[] Warrior = {Wooden_Sword, Wooden_Shield, Tunic, Headband, null};
