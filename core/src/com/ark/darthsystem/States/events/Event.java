@@ -31,7 +31,6 @@ public abstract class Event extends ActorCollision {
     }
 
     public enum TriggerMethod {
-
         TOUCH,
         AUTO,
         PARALLEL,

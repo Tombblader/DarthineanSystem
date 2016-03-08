@@ -15,7 +15,6 @@ import com.ark.darthsystem.GameOverException;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
@@ -25,7 +24,6 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.physics.box2d.Filter;
-import java.util.Iterator;
 
 /**
  *
@@ -74,9 +72,9 @@ public class Player extends ActorCollision {
         currentBattler = getBattler.get(0);
         currentSkill = Database2.SkillToActor(getBattler.get(0).getBattler().getSkill(0));
         party = getBattler;
-        for (Iterator<ActorBattler> it = party.iterator(); it.hasNext();) {
-            it.next();
-        }
+//        for (Iterator<ActorBattler> it = party.iterator(); it.hasNext();) {
+//            it.next();
+//        }
         setAttackAnimation();
         FreeTypeFontGenerator gen = new FreeTypeFontGenerator(Gdx.files.internal(
                 "fonts/monofont.ttf"));
@@ -164,7 +162,6 @@ public class Player extends ActorCollision {
                 attacking = false;
             }
             public boolean isFinished() {
-                System.out.println(getElapsedTime());
                 return getCurrentAnimation().isAnimationFinished(getElapsedTime());
             }
         });        
@@ -301,11 +298,6 @@ public class Player extends ActorCollision {
         final float NAME_X = 64f;
         final float NAME_Y = 10f;
         final float FONT_SIZE = GraphicsDriver.getFont().getCapHeight();
-//        if (GraphicsDriver.getCurrentCamera() instanceof PlayerCamera) {
-//            batch.end();
-//            batch.begin();
-//            batch.setProjectionMatrix(GraphicsDriver.getCamera().combined);
-//        }
         for (int i = 0; i < getAllActorBattlers().size(); i++) {
             Sprite temp = (Sprite) (getAllActorBattlers().get(i).getSprite().getCurrentFaceAnimation().getKeyFrame(getElapsedTime()));
             InterfaceDatabase.TEXT_BOX.draw(batch, SUB_WIDTH * i + GraphicsDriver.getCamera().getScreenPositionX(), (GraphicsDriver.getCamera().getScreenPositionY()), SUB_WIDTH, STAT_HEIGHT);
@@ -337,12 +329,6 @@ public class Player extends ActorCollision {
                     ((NAME_X + SUB_WIDTH * i) + GraphicsDriver.getCamera().getScreenPositionX()),
                     ((NAME_Y + FONT_SIZE * 3f) + GraphicsDriver.getCamera().getScreenPositionY()));
         }
-//        if (GraphicsDriver.getCurrentCamera() instanceof PlayerCamera) {
-//            batch.end();
-//            batch.begin();
-//            batch.setProjectionMatrix(GraphicsDriver.getPlayerCamera().combined);
-//        }
-
     }
 
     @Override
@@ -502,7 +488,6 @@ public class Player extends ActorCollision {
             isJumping = true;
             fieldState = ActorSprite.SpriteModeField.JUMP;
             canAttack = false;
-            System.out.println("I believe I can touch the sky!");
         }
     }
 

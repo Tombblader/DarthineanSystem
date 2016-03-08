@@ -23,7 +23,6 @@ import com.ark.darthsystem.States.events.Event;
 import com.ark.darthsystem.States.events.Teleport;
 
 import com.badlogic.gdx.Input.Keys;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.MapLayer;
@@ -41,6 +40,7 @@ import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.badlogic.gdx.maps.tiled.objects.TiledMapTileMapObject;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Rectangle;
@@ -144,67 +144,70 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
 
     private Array<Body> generateObjects() {
         ppt = PlayerCamera.PIXELS_TO_METERS;
-        MapObjects objects = map.getLayers().get("collision").getObjects();
+//        MapObjects objects = map.getLayers().get("collision").getObjects();
+//        System.out.println(objects.getCount());
         Array<Body> bodies = new Array<>();
-        
-        
-        for(MapObject object : objects) {
-            if (object instanceof TextureMapObject) {
-                continue;
-            }
-            
-            MapProperties properties = object.getProperties();
-            
-            if (properties.get("type", String.class).equalsIgnoreCase("actor")) {
-//                Actor a = AIDatabase.actors.get(properties.get("Name", String.class));
-//                a.setMap(this, false);
-//                a.setX(properties.get("x", Float.class));
-//                a.setY(properties.get("y", Float.class));
-                continue;
-            }
+        for (MapLayer layer: map.getLayers()) {
+            System.out.println(layer.getName());
+            for(MapObject object : layer.getObjects()) {
+                System.out.println(object.getName());
+                if (object instanceof TextureMapObject) {
+                    continue;
+                }
 
-            Shape shape;
-            if (object instanceof RectangleMapObject) {
-                shape = getRectangle((RectangleMapObject)object);
-            }
-            else if (object instanceof PolygonMapObject) {
-                shape = getPolygon((PolygonMapObject)object);
-            }
-            else if (object instanceof PolylineMapObject) {
-                shape = getPolyline((PolylineMapObject)object);
-            }
-            else if (object instanceof CircleMapObject) {
-                shape = getCircle((CircleMapObject)object);
-            }
-            else {
-                continue;
-            }
+                MapProperties properties = object.getProperties();
 
-            BodyDef bd = new BodyDef();
-            bd.type = BodyType.StaticBody;            
-            Body body = world.createBody(bd);
-            
-            Fixture f = body.createFixture(shape, 1);
-            Filter filter = new Filter();
-            body.setUserData(object);
-            
-            if (properties.get("type", String.class).equalsIgnoreCase("wall")) {
-                filter.categoryBits = ActorCollision.CATEGORY_WALLS;               
-                filter.maskBits = -1;
-            } else if (properties.get("type", String.class).equalsIgnoreCase("obstacle")) {
-                filter.categoryBits = ActorCollision.CATEGORY_OBSTACLES;
-                filter.maskBits = ActorCollision.CATEGORY_AI | ActorCollision.CATEGORY_PLAYER;
-            } else if (properties.get("type", String.class).equalsIgnoreCase("event")) {
-                body.setUserData(addEventFromMap(object));
-                filter.categoryBits = ActorCollision.CATEGORY_EVENT;
-                f.setSensor(true);
-                filter.maskBits = ActorCollision.CATEGORY_PLAYER;
-            }
-            
-            f.setFilterData(filter);            
-            bodies.add(body);
+                if (properties.get("type", String.class).equalsIgnoreCase("actor")) {
+    //                Actor a = AIDatabase.actors.get(properties.get("Name", String.class));
+    //                a.setMap(this, false);
+    //                a.setX(properties.get("x", Float.class));
+    //                a.setY(properties.get("y", Float.class));
+                    continue;
+                }
 
-            shape.dispose();
+                Shape shape;
+                if (object instanceof RectangleMapObject) {
+                    shape = getRectangle((RectangleMapObject)object);
+                }
+                else if (object instanceof PolygonMapObject) {
+                    shape = getPolygon((PolygonMapObject)object);
+                }
+                else if (object instanceof PolylineMapObject) {
+                    shape = getPolyline((PolylineMapObject)object);
+                }
+                else if (object instanceof CircleMapObject) {
+                    shape = getCircle((CircleMapObject)object);
+                }
+                else {
+                    continue;
+                }
+
+                BodyDef bd = new BodyDef();
+                bd.type = BodyType.StaticBody;            
+                Body body = world.createBody(bd);
+
+                Fixture f = body.createFixture(shape, 1);
+                Filter filter = new Filter();
+                body.setUserData(object);
+
+                if (properties.get("type", String.class).equalsIgnoreCase("wall")) {
+                    filter.categoryBits = ActorCollision.CATEGORY_WALLS;               
+                    filter.maskBits = -1;
+                } else if (properties.get("type", String.class).equalsIgnoreCase("obstacle")) {
+                    filter.categoryBits = ActorCollision.CATEGORY_OBSTACLES;
+                    filter.maskBits = ActorCollision.CATEGORY_AI | ActorCollision.CATEGORY_PLAYER;
+                } else if (properties.get("type", String.class).equalsIgnoreCase("event")) {
+                    body.setUserData(addEventFromMap(object));
+                    filter.categoryBits = ActorCollision.CATEGORY_EVENT;
+                    f.setSensor(true);
+                    filter.maskBits = ActorCollision.CATEGORY_PLAYER;
+                }
+
+                f.setFilterData(filter);            
+                bodies.add(body);
+
+                shape.dispose();
+            }
         }
         return bodies;
     }
@@ -308,7 +311,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
 
     private Array<Actor> playerActors;
     private Array<Actor> enemyActors;
-    private final int DRAW_SPRITES_AFTER_LAYER = 1;
+    private final int DRAW_SPRITES_AFTER_LAYER = 2;
     private World world;
     private Box2DDebugRenderer debugRender = new Box2DDebugRenderer();
     private static int width;
@@ -317,12 +320,8 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
     
 
     public OverheadMap(String mapName) {
-        super((new TmxMapLoader().load(mapName)), 1f / PlayerCamera.PIXELS_TO_METERS);
-
-        Parameters parameters = new Parameters();
-        parameters.flipY = false;
-        TiledMap tiledMap = (new TmxMapLoader().load(mapName, parameters));
-        for (MapLayer m : (tiledMap.getLayers())) {
+        super((new TmxMapLoader().load(mapName, new Parameters() {{this.flipY = false;}})), 1f / PlayerCamera.PIXELS_TO_METERS);
+        for (MapLayer m : (getMap().getLayers())) {
             if (!(m instanceof TiledMapTileLayer)) {
                 for (MapObject mo : m.getObjects()) {
                     if (mo instanceof TextureMapObject) {
@@ -331,20 +330,19 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                 }
             }
         }
-        for (TiledMapTileSet tileset : tiledMap.getTileSets()) {
+        for (TiledMapTileSet tileset : getMap().getTileSets()) {
             for (Iterator iterator = tileset.iterator(); iterator.hasNext();) {
                 TiledMapTile tiled = (TiledMapTile) (iterator.next());
                 tiled.getTextureRegion().flip(false, true);
             }
         }
-        this.setMap(tiledMap);
-        MapProperties prop = tiledMap.getProperties();
+        MapProperties prop = getMap().getProperties();
         updateProperties(prop);
         width = prop.get("width", Integer.class) * prop.get("tilewidth", Integer.class);
         height = prop.get("height", Integer.class) * prop.get("tileheight", Integer.class);        
         playerActors = new Array<>();
         enemyActors = new Array<>();
-        World.setVelocityThreshold(1000f);
+//        World.setVelocityThreshold(1000f);
         world = new World(new Vector2(0, 0), true);
         world.setContactListener(new ContactListener() {
 
@@ -445,7 +443,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                             case "JUMP":
                             case "OUCH":
                                 t.event(tempAI);
-                                tempAI.getTimers().remove(t);
+                                tempAI.getTimers().removeValue(t, true);
                                 break;
                         }
                     }
@@ -489,7 +487,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                             case "JUMP":
                             case "OUCH":
                                 t.event(tempPlayer);
-                                tempPlayer.getTimers().remove(t);
+                                tempPlayer.getTimers().removeValue(t, true);
                                 break;
                         }
                     }

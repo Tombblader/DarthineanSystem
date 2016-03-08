@@ -7,11 +7,11 @@
 package com.ark.darthsystem.Graphics;
 
 import com.ark.darthsystem.States.OverheadMap;
-import java.util.concurrent.CopyOnWriteArrayList;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Animation.PlayMode;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.utils.Array;
 
 /**
  * The Actor class is the basic entity class that directly interacts with the
@@ -77,7 +77,7 @@ public class Actor {
     private int pauseTime = 0;
     private float speed;
     private ActorSprite sprite;
-    private CopyOnWriteArrayList<GameTimer> timers = new CopyOnWriteArrayList<>();
+    private Array<GameTimer> timers = new Array<>();
     private float x;
     private float y;
 
@@ -301,7 +301,7 @@ public class Actor {
         }
         for (GameTimer t : timers) {
             if (t.update(delta, this)) {
-                timers.remove(t);
+                timers.removeValue(t, true);
             }
         }
         if (animation != null && elapsed > animation.getAnimationDuration()) {
@@ -351,7 +351,7 @@ public class Actor {
         currentImage = s;
     }
     
-    public CopyOnWriteArrayList<GameTimer> getTimers() {
+    public Array<GameTimer> getTimers() {
         return timers;
     }
     

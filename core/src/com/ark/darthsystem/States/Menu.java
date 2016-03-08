@@ -13,9 +13,6 @@ import static com.ark.darthsystem.Graphics.GraphicsDriver.getCurrentState;
 import static com.ark.darthsystem.Graphics.GraphicsDriver.removeCurrentState;
 import com.ark.darthsystem.States.chapters.Novel;
 import com.badlogic.gdx.Gdx;
-
-import java.util.concurrent.CopyOnWriteArrayList;
-
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -23,6 +20,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
+import com.badlogic.gdx.utils.Array;
 
 /**
  *
@@ -47,7 +45,7 @@ public abstract class Menu implements State {
     private float y;
     private final int MENU_Y;
     private int menuIndex = 0;
-    private CopyOnWriteArrayList<Menu> subMenuList;
+    private Array<Menu> subMenuList;
     private final int UP_BUTTON = Keys.UP;
     private BitmapFont font;
     private final float FONT_SCALE = .25f;
@@ -57,7 +55,7 @@ public abstract class Menu implements State {
         this.header = header;
         isPause = true;
         destroyOnExit = false;
-        subMenuList = new CopyOnWriteArrayList<>();
+        subMenuList = new Array<>();
         subMenuList.add(this);
         cursorTexture = GraphicsDriver.getMasterSheet().createSprite("interface/cursor");
         FreeTypeFontGenerator gen = new FreeTypeFontGenerator(Gdx.files.internal("fonts/monofont.ttf"));
@@ -76,7 +74,7 @@ public abstract class Menu implements State {
         this.choices = choices;
         this.header = header;
         isPause = pause;
-        subMenuList = new CopyOnWriteArrayList<>();
+        subMenuList = new Array<>();
         destroyOnExit = mutable;
         subMenuList.add(this);
         cursorTexture = GraphicsDriver.getMasterSheet().createSprite("interface/cursor");
@@ -97,7 +95,7 @@ public abstract class Menu implements State {
         header = "";
         isPause = true;
         destroyOnExit = false;
-        subMenuList = new CopyOnWriteArrayList<>();
+        subMenuList = new Array<>();
         subMenuList.add(this);
         cursorTexture = GraphicsDriver.getMasterSheet().createSprite("interface/cursor");
         FreeTypeFontGenerator gen = new FreeTypeFontGenerator(Gdx.files.internal("fonts/monofont.ttf"));
@@ -159,14 +157,13 @@ public abstract class Menu implements State {
 
     public void removeMenu(Menu menu) {
         Menu currentMenu = ((Menu) (GraphicsDriver.getCurrentState()));
-        currentMenu.subMenuList.remove(menu);
+        currentMenu.subMenuList.removeValue(menu, true);
         menu.dispose();
-        if (currentMenu.subMenuList.isEmpty()
+        if (currentMenu.subMenuList.size == 0
                 && currentMenu.menuIndex
-                >= currentMenu.subMenuList.size()) {
+                >= currentMenu.subMenuList.size) {
             GraphicsDriver.removeState(currentMenu);
-        } else if (currentMenu.menuIndex
-                > 0) {
+        } else if (currentMenu.menuIndex > 0) {
             currentMenu.menuIndex--;
         }
     }
@@ -183,7 +180,7 @@ public abstract class Menu implements State {
         if (s != null) {
             s.render(batch);
         }
-        if (!subMenuList.isEmpty()) {
+        if (!(subMenuList.size == 0)) {
             subMenuList.get(menuIndex).renderMenu(batch);
         }
     }
@@ -247,10 +244,10 @@ public abstract class Menu implements State {
     }
 
     public float update(float delta) {
-        if (!subMenuList.isEmpty() && menuIndex < subMenuList.size()) {
+        if (!(subMenuList.size == 0) && menuIndex < subMenuList.size) {
             subMenuList.get(menuIndex).updateMenu(delta);
         }
-        if (menuIndex >= subMenuList.size()) {
+        if (menuIndex >= subMenuList.size) {
             subMenuList.clear();
             menuIndex = 0;
             if (getCurrentState() instanceof Menu) {
@@ -261,7 +258,6 @@ public abstract class Menu implements State {
     }
 
     public void updateMenu(float delta) {
-        String choice = "";
         if (Input.getKeyPressed(UP_BUTTON)) {
             cursorIndex--;
             if (cursorIndex < 0) {

@@ -798,4 +798,8 @@ public class Battler implements Serializable {
                 skillList,
                 equipmentList);
     }
+
+    public void reset() {
+        fullHeal();
+    }    
 }

@@ -29,7 +29,7 @@ public class ActorAI extends Player {
         setCurrentImage((Sprite) getCurrentAnimation().getKeyFrame(getElapsedTime()));
         for (GameTimer t : getTimers()) {
             if (t.update(delta, this)) {
-                getTimers().remove(t);
+                getTimers().removeValue(t, true);
             }
         }
         if (canMove()) {

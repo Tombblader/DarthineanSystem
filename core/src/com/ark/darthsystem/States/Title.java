@@ -31,8 +31,7 @@ public class Title implements State {
                 this.flip(false, true);
             }
         };
-        TITLE_MENU = new Menu("Adventurer.",
-                new String[]{"Start", "Continue", "Quit"}) {
+        TITLE_MENU = new Menu("Adventurer.", new String[]{"Start", "Continue", "Quit"}) {
             @Override
             public String confirm(String choice) {
                 if (choice.equals("Start")) {

@@ -1,13 +1,15 @@
 package com.ark.darthsystem;
 
+import com.ark.darthsystem.Graphics.ActorSkill;
 import com.ark.darthsystem.States.Battle;
+import com.badlogic.gdx.utils.Pool.Poolable;
 import java.util.ArrayList;
 
 /**
  *
  * @author Keven
  */
-public class BattlerAI extends Battler {
+public class BattlerAI extends Battler implements Poolable {
 
     private static final int MAX_PRIORITY = 10;
 
@@ -107,11 +109,56 @@ public class BattlerAI extends Battler {
         } catch (Exception e) {
         }
     }
+    
+    public BattlerAI(String initializeName,
+            Battle.Element initializeElement,
+            Battler.Gender initializeGender,
+            int initializeLevel,
+            int initializeHP,
+            int initializeMP,
+            int initializeAttack,
+            int initializeDefense,
+            int initializeSpeed,
+            int initializeMagic,
+            Skill[] initializeSkill,
+            ActorSkill initializeUnarmed,
+            AI[] getAIData,
+            int initializeExperience,
+            Item itemDrop,
+            int itemQuantity) {
+        this(initializeName,
+                initializeElement,
+                initializeGender,
+                initializeLevel,
+                initializeHP,
+                initializeMP,
+                initializeAttack,
+                initializeDefense,
+                initializeSpeed,
+                initializeMagic,
+                initializeSkill,
+                new Equipment[4], 
+                getAIData,
+                initializeExperience,
+                itemDrop,
+                itemQuantity);
+        Equipment temp = new Equipment("Unarmed",
+            Equipment.EquipmentType.LeftArm,
+            null,
+            false,
+            0,
+            0,
+            0,
+            0);
+        temp.setAnimation(initializeUnarmed);
+        equip(temp);
+    }
+    
 
     /**
      *
-     * @param b
-     * @return
+     * @param b : The battle that this entity is currently in.
+     * @return : The resulting action.
      */
     public Action getCommand(Battle b) {
         Action tempAction = null;
@@ -235,5 +282,14 @@ public class BattlerAI extends Battler {
      */
     public Item getDroppedItem() {
         return drop;
+    }
+    
+    public BattlerAI clone() {
+        return new BattlerAI(getName(), super.clone(), AIData, experience, drop, drop.getQuantity());
+    }
+
+    @Override
+    public void reset() {
+        fullHeal();
     }
 }

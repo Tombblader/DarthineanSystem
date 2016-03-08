@@ -1,6 +1,7 @@
 package com.ark.darthsystem;
 
 import com.ark.darthsystem.States.Battle;
+import com.badlogic.gdx.utils.Pool.Poolable;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -222,5 +223,9 @@ public class Item implements Serializable, Cloneable {
 
     public boolean equals(Object o) {
         return o != null && ((Item) (o)).getName().equals(this.getName());
+    }
+
+    public void reset() {
+        quantity = 1;
     }
 }

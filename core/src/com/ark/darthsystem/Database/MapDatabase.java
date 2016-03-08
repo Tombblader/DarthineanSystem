@@ -28,7 +28,7 @@ public class MapDatabase {
 //                fileName += file.nameWithoutExtension();
 //                 
 //           }
-            if (!file.extension().equalsIgnoreCase("png")) {
+            if (file.extension().equalsIgnoreCase("tmx")) {
                 maps.put(file.nameWithoutExtension(), new OverheadMap(file.path()));
             }
         }

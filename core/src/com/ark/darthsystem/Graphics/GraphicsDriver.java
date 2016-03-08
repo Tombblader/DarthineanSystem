@@ -4,7 +4,7 @@ import com.ark.darthsystem.BattleDriver;
 import com.ark.darthsystem.Database.Database1;
 import com.ark.darthsystem.Database.MapDatabase;
 import java.util.ArrayList;
-import java.util.concurrent.CopyOnWriteArrayList;
+//import java.util.concurrent.CopyOnWriteArrayList;
 
 import com.ark.darthsystem.Database.Database2;
 import com.ark.darthsystem.Database.InterfaceDatabase;
@@ -25,6 +25,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ScreenUtils;
 
 public class GraphicsDriver extends com.badlogic.gdx.Game {
@@ -35,7 +36,7 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
     private static PlayerCamera playerCamera;
     private static BitmapFont font;
     private static float currentTime;
-    private static CopyOnWriteArrayList<State> states;
+    private static Array<State> states;
     private static TextureAtlas masterSheet;
     private static Music backgroundMusic;
     private static final int WIDTH = 1024, HEIGHT = 768;
@@ -79,7 +80,7 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
     }
 
     public static void newGame() {
-        states = new CopyOnWriteArrayList<>();
+        states = new Array<>();
         new Database1();
         new Database2();
         new MapDatabase();
@@ -94,22 +95,22 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
     }
 
     public static State getCurrentState() {
-        return states.get(states.size() - 1);
+        return states.get(states.size - 1);
     }
 
     public static BitmapFont getFont() {
         return font;
     }
 
-    public static CopyOnWriteArrayList<State> getState() {
+    public static Array<State> getState() {
         return states;
     }
 
     public static void removeCurrentState() {        
-        if (!(states.get(states.size() - 1) instanceof OverheadMap)) {
-            states.get(states.size() - 1).dispose();
+        if (!(states.get(states.size - 1) instanceof OverheadMap)) {
+            states.get(states.size - 1).dispose();
         }
-        states.remove(states.size() - 1);
+        states.removeIndex(states.size - 1);
         if (getCurrentState().getMusic() != null && !backgroundMusicString.equals(getCurrentState().getMusic())) {
             playMusic(getCurrentState().getMusic());
         }
@@ -119,7 +120,7 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
         if (!(state instanceof OverheadMap)) {
             state.dispose();
         }
-        states.remove(state);
+        states.removeValue(state, true);
         if (getCurrentState().getMusic() != null && !backgroundMusicString.equals(getCurrentState().getMusic())) {
             playMusic(getCurrentState().getMusic());
         }
@@ -150,8 +151,8 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
     }
 
     public static void setState(State getState) {
-        states.get((states.size() - 1)).dispose();
-        states.set((states.size() - 1), getState);
+        states.get((states.size - 1)).dispose();
+        states.set((states.size - 1), getState);
         if (getState.getMusic() != null) {
             playMusic(getState.getMusic());
         }
@@ -267,7 +268,7 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
         gen.dispose();
         Gdx.input.setInputProcessor(input);
         new Database2();
-        states = new CopyOnWriteArrayList();
+        states = new Array();
         states.add(new Title());
     }
     public void dispose() {
@@ -306,7 +307,7 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
         batch.begin();
         getCurrentState().render(batch);
         if (!transitions.isEmpty()) {
-            if (getCurrentState() instanceof OverheadMap) {                
+            if (getCurrentState() instanceof OverheadMap) {
                 SpriteBatch tempBatch = (SpriteBatch) ((OverheadMap)(getCurrentState())).getBatch();
                 tempBatch.setProjectionMatrix(camera.combined);
                 tempBatch.begin();

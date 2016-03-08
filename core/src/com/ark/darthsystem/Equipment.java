@@ -221,6 +221,10 @@ public class Equipment extends Item implements Cloneable {
     public ActorSkill getAnimation() {
         return animation;
     }
+    
+    public void setAnimation(ActorSkill animation) {
+        this.animation = animation;
+    }
 
     public Equipment clone() {
         Equipment temp = new Equipment();

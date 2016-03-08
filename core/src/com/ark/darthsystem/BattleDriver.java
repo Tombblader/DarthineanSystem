@@ -8,10 +8,8 @@ package com.ark.darthsystem;
 import com.ark.darthsystem.Database.Database1;
 import com.ark.darthsystem.States.Battle;
 import static com.ark.darthsystem.BattleDriver.*;
-import com.ark.darthsystem.Database.SystemDatabase;
 import com.ark.darthsystem.Graphics.*;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.StringTokenizer;
@@ -102,36 +100,6 @@ public class BattleDriver {
      */
     public static boolean getSwitch(String name) {
         return Database1.switches.get(name);
-    }
-
-    /**
-     *
-     * @return
-     */
-    public static Battler characterCreation() {
-        String name;
-        Battler.Gender gender;
-        int HP;
-        int MP;
-        int attack;
-        int defense;
-        int speed;
-        int magic;
-        Equipment[] startEquip = SystemDatabase.Warrior;
-        Skill[] newSkill = new Skill[0];
-        BattleDriver.printline("You can create your character here.");
-        name = condition("First, state your name.");
-//        gender = Enum.valueOf(Battler.Gender.class, condition("What is your gender?", new String[]{"Male", "Female"}));
-        BattleDriver.printline("You have 40 stat points to distribute.");
-        HP = Integer.valueOf(condition("Enter HP."));
-        MP = Integer.valueOf(condition("Enter MP."));
-        BattleDriver.printline("You have 20 stat points to distribute.");
-        attack = Integer.valueOf(condition("Enter attack."));
-        defense = Integer.valueOf(condition("Enter defense."));
-        speed = Integer.valueOf(condition("Enter speed."));
-        magic = Integer.valueOf(condition("Enter magic."));
-//        return new Battler(name, Battle.Element.Physical, gender, 1, HP, MP, attack, defense, speed, magic, newSkill, startEquip);
-        return null;
     }
 
     /**
@@ -257,49 +225,6 @@ public class BattleDriver {
             formattedMessage.add(formatted);
         }
         GraphicsDriver.appendMessage(formattedMessage);
-    }
-
-    /**
-     *
-     * @param header
-     * @return
-     */
-    public static String condition(String header) {
-        printline(header);
-        textCondition = "";
-
-        return textCondition;
-    }
-
-    /**
-     *
-     */
-    public static void save() {
-        if (false) {
-            try {
-                Database1.save(condition("Save to which file?"));
-            } catch (Exception e) {
-                System.out.print(e);
-                save();
-            }
-        }
-    }
-
-    /**
-     *
-     * @return
-     */
-    public static boolean load() {
-        boolean loaded = false;
-        if (loaded) {
-            try {
-                Database1.load(BattleDriver.condition("Type in the save file's name."));
-            } catch (IOException | ClassNotFoundException e) {
-                System.out.println(e);
-                loaded = load();
-            }
-        }
-        return loaded;
     }
 
     /**
