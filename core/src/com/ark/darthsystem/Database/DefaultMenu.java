@@ -103,10 +103,15 @@ public class DefaultMenu extends Menu {
                                 true) {
                             @Override
                             public Object confirm(String choice) {
-                                Collections.swap(Database2.player.getAllActorBattlers(),
-                                        sourceIndex,
-                                        getCursorIndex());
+                                if (Database2.player.getAllBattlers().get(getCursorIndex()).isAlive()) {
+                                    Collections.swap(Database2.player.getAllActorBattlers(),
+                                            sourceIndex,
+                                            getCursorIndex());
+                                } else {
+                                    cancel();
+                                }
                                 return choice;
+                                
                             }
                         };
                         GraphicsDriver.addMenu(menuTarget);

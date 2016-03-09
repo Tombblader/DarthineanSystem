@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="32" height="24" tilewidth="32" tileheight="32" nextobjectid="3">
+ <tileset firstgid="1" name="tileset" tilewidth="32" tileheight="32" tilecount="64" columns="8">
+  <image source="tileset.png" width="256" height="256"/>
+  <tile id="32">
+   <properties>
+    <property name="collision" type="bool" value="false"/>
+    <property name="collisionType" value="WALL"/>
+    <property name="collisonPreset" value="FULL_SQUARE"/>
+    <property name="parameters" value=""/>
+   </properties>
+   <animation>
+    <frame tileid="32" duration="200"/>
+    <frame tileid="33" duration="200"/>
+   </animation>
+  </tile>
+ </tileset>
+ <layer name="background" width="32" height="24">
+  <data encoding="base64" compression="zlib">
+   eJztlbEOwCAIREn6CR2d+P+f7NoB5E5BTdqBxETwHSdRFRE9JK7J2Mme0VPBZnRU8xEtKzVYOn7+eNyb+e3j/q/mV7zVp/Oz74rhv3O8XFYb8zdFbNafHseqR/nobER9sr0hZyDej/amzjqDHfGtesRHRAe639OJzrk3ixmRfV4m9wHXiCjN
+  </data>
+ </layer>
+ <layer name="object" width="32" height="24">
+  <data encoding="base64" compression="zlib">
+   eJztwQEBAAAAgiD/r25IQAEAAC8GDAAAAQ==
+  </data>
+ </layer>
+ <objectgroup name="collision">
+  <object id="2" name="door" type="event" x="544" y="256" width="32" height="64">
+   <properties>
+    <property name="collision" type="bool" value="true"/>
+    <property name="collisionType" value="WALL"/>
+    <property name="eventID" type="int" value="2"/>
+    <property name="parameters" value="nowhere, 11, 17"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <layer name="overlay" width="32" height="24">
+  <data encoding="base64" compression="zlib">
+   eJztwQEBAAAAgiD/r25IQAEAAC8GDAAAAQ==
+  </data>
+ </layer>
+</map>

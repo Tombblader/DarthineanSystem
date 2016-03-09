@@ -60,8 +60,7 @@ public class Player extends ActorCollision {
     private int currentBattlerIndex = 0;
     private boolean isWalking;
     private ActorSprite.SpriteModeField fieldState = ActorSprite.SpriteModeField.STAND;
-    private float boundX = 1024 * GraphicsDriver.getCurrentCamera().getConversion();
-    private float boundY = 768 * GraphicsDriver.getCurrentCamera().getConversion();
+
     private ActorSkill currentSkill;
     private ActorBattler currentBattler;
     private Input playerInput;
@@ -72,9 +71,6 @@ public class Player extends ActorCollision {
         currentBattler = getBattler.get(0);
         currentSkill = Database2.SkillToActor(getBattler.get(0).getBattler().getSkill(0));
         party = getBattler;
-//        for (Iterator<ActorBattler> it = party.iterator(); it.hasNext();) {
-//            it.next();
-//        }
         setAttackAnimation();
         FreeTypeFontGenerator gen = new FreeTypeFontGenerator(Gdx.files.internal(
                 "fonts/monofont.ttf"));
@@ -403,14 +399,6 @@ public class Player extends ActorCollision {
         return allBattlers;
     }
 
-    public void setBoundX(int x) {
-        boundX = x;
-    }
-
-    public void setBoundY(int y) {
-        boundY = y;
-    }
-
     public boolean totalPartyKill() {
         boolean isDead = true;
         for (ActorBattler member : party) {
@@ -420,8 +408,6 @@ public class Player extends ActorCollision {
     }
 
     public void setMap(OverheadMap map, float x, float y) {
-        boundX = map.getWidth();
-        boundY = map.getHeight();
         setX(x);
         setY(y);
         super.setMap(map, !(this instanceof ActorAI));

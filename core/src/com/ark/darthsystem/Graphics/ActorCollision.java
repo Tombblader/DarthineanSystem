@@ -104,6 +104,15 @@ public class ActorCollision extends Actor {
     }
     
     public void setMap(OverheadMap map, boolean isPlayer) {
+        if (getCurrentMap() != null) {
+            Array<Body> temp = new Array<Body>();
+            map.getPhysicsWorld().getBodies(temp);
+            for (Body b : temp) {
+                if (b.getUserData() != null && b.getUserData().equals(this)) {
+                    map.getPhysicsWorld().destroyBody(b);
+                }
+            }
+        }
         super.setMap(map, isPlayer);
         Array<Body> temp = new Array<Body>();
         map.getPhysicsWorld().getBodies(temp);

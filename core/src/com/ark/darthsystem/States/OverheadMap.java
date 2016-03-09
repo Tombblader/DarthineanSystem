@@ -101,22 +101,22 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
         FixtureDef fixtureDef = new FixtureDef();
         EdgeShape shape1 = new EdgeShape() {
             {
-                this.set(new Vector2(0, 0), new Vector2(0, OverheadMap.height / PlayerCamera.PIXELS_TO_METERS));
+                this.set(new Vector2(0, 0), new Vector2(0, height / PlayerCamera.PIXELS_TO_METERS));
             }
         };
         EdgeShape shape2 = new EdgeShape() {
             {
-                this.set(new Vector2(0, 0), new Vector2(OverheadMap.width / PlayerCamera.PIXELS_TO_METERS, 0));
+                this.set(new Vector2(0, 0), new Vector2(width / PlayerCamera.PIXELS_TO_METERS, 0));
             }
         };
         EdgeShape shape3 = new EdgeShape() {
             {
-                this.set(new Vector2(OverheadMap.width / PlayerCamera.PIXELS_TO_METERS, 0), new Vector2(OverheadMap.width / PlayerCamera.PIXELS_TO_METERS, OverheadMap.height / PlayerCamera.PIXELS_TO_METERS));
+                this.set(new Vector2(width / PlayerCamera.PIXELS_TO_METERS, 0), new Vector2(width / PlayerCamera.PIXELS_TO_METERS, height / PlayerCamera.PIXELS_TO_METERS));
             }
         };
         EdgeShape shape4 = new EdgeShape() {
             {
-                this.set(new Vector2(0, OverheadMap.height / PlayerCamera.PIXELS_TO_METERS), new Vector2(OverheadMap.width / PlayerCamera.PIXELS_TO_METERS, OverheadMap.height / PlayerCamera.PIXELS_TO_METERS));
+                this.set(new Vector2(0, height / PlayerCamera.PIXELS_TO_METERS), new Vector2(width / PlayerCamera.PIXELS_TO_METERS, height / PlayerCamera.PIXELS_TO_METERS));
             }
         };
         fixtureDef.density = 1f;
@@ -139,7 +139,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
         shape4.dispose();
 
     }
-
+    
     private static float ppt = 0;
 
     private Array<Body> generateObjects() {
@@ -314,8 +314,8 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
     private final int DRAW_SPRITES_AFTER_LAYER = 2;
     private World world;
     private Box2DDebugRenderer debugRender = new Box2DDebugRenderer();
-    private static int width;
-    private static int height;
+    private int width;
+    private int height;
     private Body boundXMin, boundXMax, boundYMin, boundYMax;
     
 
@@ -598,10 +598,11 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
     @Override
     public void render(SpriteBatch batch) {
         GraphicsDriver.setCurrentCamera(GraphicsDriver.getPlayerCamera());
+        System.out.println("WIDTH " + width + "  HEIGHT " + height);
         GraphicsDriver.getPlayerCamera().followPlayer(
                 Math.round(Database2.player.getX() * 50f) / 50f,
                 Math.round(Database2.player.getY() * 50f) / 50f,
-                width,
+                width < WIDTH ? WIDTH : width,
                 height);
         GraphicsDriver.getPlayerCamera().update();
         setView(GraphicsDriver.getPlayerCamera());
@@ -627,7 +628,6 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                 }
             }
         }
-//        GraphicsDriver.getPlayer().renderGlobalData(batch);
         this.batch.setProjectionMatrix(GraphicsDriver.getCamera().combined);
         GraphicsDriver.getPlayer().renderGlobalData(this.batch);
         drawMessage(this.batch);
@@ -742,7 +742,6 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                 ((PADDING_Y + HEIGHT - MESSAGE_HEIGHT + FONT_HEIGHT * i) + GraphicsDriver.getCamera().getScreenPositionY()));
             i++;
         }
-                
     }
 
 }
