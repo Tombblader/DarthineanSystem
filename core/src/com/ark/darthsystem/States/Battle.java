@@ -320,7 +320,6 @@ public class Battle implements State {
 
         public void run(final Battle b, final Battler caster) {
             caster.setDelaying(false);
-            Skill getSkill;
             switch (this) {
                 case Attack:
                     String[] temp = new String[enemy.size()];
@@ -402,9 +401,7 @@ public class Battle implements State {
                     }
                     break;
                 case Item:
-                    ArrayList<Item> getItemList = new ArrayList<>();
-                    if (b.getItem()
-                            != null) {
+                    if (b.getItem() != null) {
                         Menu menuItem = new Menu("Use which Item?",
                                 b.getItemNames(),
                                 true,
