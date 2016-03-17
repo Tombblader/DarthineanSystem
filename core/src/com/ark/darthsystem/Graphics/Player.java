@@ -105,9 +105,9 @@ public class Player extends ActorCollision {
         if (tempEquipment != null) {
             try {
                 ActorSkill tempAnimation =
-                 tempEquipment.getAnimation();
-                 tempAnimation.setInvoker(this);
-                 attackAnimation = tempAnimation;
+                    tempEquipment.getAnimation();
+                    tempAnimation.setInvoker(this);
+                    attackAnimation = tempAnimation;
             } catch (Exception e) {
                 attackAnimation = Database2.Sword();
                 e.printStackTrace();
@@ -119,6 +119,7 @@ public class Player extends ActorCollision {
     }
 
     public void attack() {
+//            getMainBody().setLinearVelocity(0, 0);
             setAttacking(true);
             getAttackAnimation().resetAnimation();
             getAttackAnimation().setX(this);
@@ -150,7 +151,7 @@ public class Player extends ActorCollision {
                     break;
             default:
         }
-        getCurrentAnimation().setFrameDuration(getAttackAnimation().getAnimationDelay() / getCurrentAnimation().getKeyFrames().length);
+//        getCurrentAnimation().setFrameDuration(getAttackAnimation().getAnimationDelay() / getCurrentAnimation().getKeyFrames().length);
         addTimer(new GameTimer("Attack", 10000) {
             @Override
             public void event(Actor a) {
@@ -164,6 +165,7 @@ public class Player extends ActorCollision {
     }
     
     public void skill() {
+//        getMainBody().setLinearVelocity(0, 0);
         if (getCurrentBattler().getCurrentSkill() != null) {
             getCurrentBattler().getCurrentSkill().setX(this);
             getCurrentBattler().getCurrentSkill().setY(this);

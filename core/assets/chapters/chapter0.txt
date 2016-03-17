@@ -2,17 +2,99 @@ Chapter 0
 Start
 \\DIALOGUE
 Blue Lady: I'm glad you've answered our call.  It seems like the vessel you were going to use crashed around here somewhere.
-Blue Lady: Your conscious seemed to have separated from your vessel.  That isn't a good sign, but not to worry.  I will lead you to your body.
+Blue Lady: Your consciousness seemed to have separated from your vessel.  That isn't a good sign, but not to worry.  I will lead you to your body.
 Blue Lady: Hmm...  You should guide me.  It'll be a good chance to test your abilities and make them grow.  I'll explain the rules along the way.
 
 Page 1
 Blue Lady: Those that join your party will have special abilities, myself included.  I have the ability to walk on water.  Try it.
 
 Page 2
-Blue Lady: You're going to go into this area instead?  Aren't you a curious one?  
+Blue Lady: You're going to go into this area instead?  Aren't you a curious one?
 Blue Lady: ..Very well.  I do ask that you do not guide me improperly, however.
 
 \\PAGE 3
 
 Page 3
 Teleport newMap, 5, 5
+
+PAGE 4
+Red Lady: HEY, WHY'D YOU LEAVE ME BEHIND?!
+Blue Lady: You're rather loud.
+Red Lady: ANSWER THE QUESTION!
+Blue Lady: I just did.  Why are you here?
+Red Lady: I WANNA GUIDE THE INTERN TOO!  Is the intern here?
+Blue Lady: Stop talking in caps.  Yes, the intern is here.
+Red Lady: 'Sup!  Nice to meet you, intern.
+=Nice to meet you too.
+  Red Lady: Look at that, the intern is so polite!  Unlike a certain blue monster.
+  Blue Lady: Or a red one.
+  Red Lady: HEY!
+  Blue Lady: In any case, we've got a nice package at the very least.
+  Red Lady: I agree!  Next time, don't leave me out of this, blue monster.
+=Loudmouth.
+  Red Lady: HEY!  I'M NOT A LOUDMOUTH!  YOU WANNA PIECE OF THIS?!
+  Blue Lady: Such aggressiveness, loudmouth.
+  Red Lady: YOU TOO?!  ARGH, I'LL REMEMBER THIS!
+  Blue Lady: Having second thoughts about guiding the intern?
+  Red Lady: NO!  BUT I WON'T GO EASY ON YOU LATER!
+  Blue Lady: (You'll have to forgive her temper.  I suppose being on fire can make anyone cranky and loud..)
+=Hey, sexy.
+  Red Lady: ...
+  Blue Lady: ...
+  Blue Lady: ...Just a moment.  Huddle.
+  Red Lady: Did you just hear what the intern said?
+  Blue Lady: ...Yes.  This could be a problem.  It's only been a few minutes and the intern has already begun flirting, without a body no less.
+  Red Lady: I'm ALREADY dealing with a pervert.  Is it too late to return to sender?
+  Blue Lady: I'm afraid so.  If someone has something like that's child, it's going to be hard to explain...
+  Red Lady: Let's.. have a truce for now and keep an eye on the intern.
+  Blue Lady: Come on, intern.
+
+PAGE 5
+Airy Lady: Yoohoo!  You forgot me, meanie!
+Blue Lady: You as well?  I didn't need the entire party coming to pick up one person.
+Airy Lady: Intern!  Where is he?  Oh, I hope he's cute; I mean, yeah, no relationships with mortals, but still, nothing wrong with a little bit of eye candy, right, right?
+Blue Lady: The intern doesn't even have a body yet.  We don't even know if the intern is male or female.
+Airy Lady: But I'm so curious!  Hey, hey, intern, are you a boy?  A cute boy?  A really, really cute boy?
+=Yes
+  Airy Lady: Yay!  A really, really cute boy!  I can't wait to see what you look like!
+  Blue Lady: Remember that eye candy is not what we called him for.
+  Airy Lady: I know, Ms. Blue Meanie.  It's still nice, though.
+  if (HEY SEXY) {
+    Red Lady: You can have him; I don't want another pervert on my hands.
+    Airy Lady: Oh, he's a perv?  I don't like pervs.
+
+  Red Lady: 
+=No
+  Airy Lady: Aww, no fair, my dreams, my poor dreams.
+  if (HEY SEXY) {
+    Red Lady: ...WAIT.  Then, does that mean the intern swings the other way?!
+    Blue Lady: Perhaps it's a misunderstanding.  Like "Hey Sexy" is merely a greeting or a joke where she comes from?
+    Earthy Lady: Is it, Ms. Intern?
+    =Yes
+      Red Lady: Whew.  Well then, hey sexy right back at you!
+      Blue Lady: I don't see how you can say that so quickly after fretting so much.
+      HEYSEXYFLAGOFF
+    =No
+      Red Lady: EH?!
+      Blue Lady: I don't see why it's that surprising.
+      Redy Lady: YOU'RE NOT THE ONE WHO SHE SAID "HEY SEXY" TO!
+      =Hey Sexy Blue Lady.
+        Blue Lady: Are you happy now?  She said it to me too.  Even in other worlds, women can swing either or both ways.
+        Red Lady: Why aren't you bothered by this?!
+        Blue Lady: People of the same gender can't get each other pregnant.
+        Red Lady: WHAT?!  THAT'S WHAT YOU WERE BOTHERED BY?
+      =Hey Sexier Blue Lady.
+        Blue Lady: ......What?
+        Airy Lady: It looks like she liiiiiiiiikes you more!
+        Red Lady: HOHOHOHOHOHOHOHOHOHOHO!
+        
+      =You're the only one for me!
+        Airy Lady: Oooooooooh, it's a confession!  A confession!
+        Blue Lady: Aren't you happy?  Why don't you two have a nice dinner together at a volcano?
+        Red Lady: SHUT UP, SHUT UP, SHUT UP!
+  }
+
+
+Page 6
+Earthy Lady: Hello.
+Blue Lady: You're here, too.

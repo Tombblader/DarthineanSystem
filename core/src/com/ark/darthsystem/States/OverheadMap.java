@@ -148,9 +148,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
 //        System.out.println(objects.getCount());
         Array<Body> bodies = new Array<>();
         for (MapLayer layer: map.getLayers()) {
-            System.out.println(layer.getName());
             for(MapObject object : layer.getObjects()) {
-                System.out.println(object.getName());
                 if (object instanceof TextureMapObject) {
                     continue;
                 }
@@ -271,7 +269,6 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                 break;
             case 2: //Teleport
                 String [] parameters = prop.get("parameters", String.class).split(",* ");
-                System.out.println(parameters[0]);
                 e = new Teleport(null, 
                         prop.get("x", Float.class),
                         prop.get("y", Float.class), 
@@ -598,7 +595,6 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
     @Override
     public void render(SpriteBatch batch) {
         GraphicsDriver.setCurrentCamera(GraphicsDriver.getPlayerCamera());
-        System.out.println("WIDTH " + width + "  HEIGHT " + height);
         GraphicsDriver.getPlayerCamera().followPlayer(
                 Math.round(Database2.player.getX() * 50f) / 50f,
                 Math.round(Database2.player.getY() * 50f) / 50f,

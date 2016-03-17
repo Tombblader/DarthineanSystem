@@ -72,6 +72,35 @@ public class Transition {
         tempScreenshot.flip(false, true);
         return tempScreenshot;
     }
+
+    public void init(TransitionType t) {
+        screenshot = screenshot();
+        type = t;
+        switch (type) {
+            case FADE:
+                alpha = 1;
+                break;
+            case FADE_IN_OUT:
+                alpha = 0;
+                screenshotClone = screenshot();
+                break;
+            case PAUSE:
+                alpha = 0;
+            case FLASH:
+                break;
+            case MOVE_UP:
+                break;
+            case MOVE_DOWN:
+                break;
+            case MOVE_LEFT:
+                break;
+            case MOVE_RIGHT:
+                break;
+            default:
+                throw new AssertionError(type.name());
+            
+        }
+    }
     
     private boolean stepUp;
     public float update(float delta) {
@@ -129,5 +158,35 @@ public class Transition {
     
     public boolean isFinished() {
         return isFinished;
+    }
+    
+    public void reset() {
+        screenshot = null;
+        screenshotClone = null;                
+        alpha = 1;
+        time = 1000;
+        switch (type) {
+            case FADE:
+                alpha = 1;
+                break;
+            case FADE_IN_OUT:
+                alpha = 0;
+                break;
+            case PAUSE:
+                alpha = 0;
+            case FLASH:
+                break;
+            case MOVE_UP:
+                break;
+            case MOVE_DOWN:
+                break;
+            case MOVE_LEFT:
+                break;
+            case MOVE_RIGHT:
+                break;
+            default:
+                throw new AssertionError(type.name());
+            
+        }
     }
 }

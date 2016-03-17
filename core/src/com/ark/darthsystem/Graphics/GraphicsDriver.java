@@ -22,6 +22,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
@@ -252,9 +253,11 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
         playerCamera = new PlayerCamera(w, h);
         currentCamera = camera;
         batch = new SpriteBatch();
-        masterSheet = new TextureAtlas(Gdx.files.internal("master/MasterSheet.txt"));
-        for (TextureRegion t : masterSheet.getRegions()) {
-            t.flip(false, true);
+        masterSheet = new TextureAtlas(Gdx.files.internal("master/MasterSheet.atlas"));
+        for (AtlasRegion t : masterSheet.getRegions()) {
+            if (t.splits == null) {
+                t.flip(false, true);
+            }
         }
         
         FreeTypeFontGenerator gen = new FreeTypeFontGenerator(Gdx.files.internal("fonts/monofont.ttf"));
@@ -341,6 +344,10 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
     
     public static void transition() {
         transitions.add(new Transition(Transition.TransitionType.FADE_IN_OUT));
+    }
+
+    public static void transition(Transition transition) {
+        transitions.add(transition);
     }
     
     public static void transition(Sprite s) {

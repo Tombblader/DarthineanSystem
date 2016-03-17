@@ -1,0 +1,2156 @@
+
+MasterSheet.png
+size: 2048,1024
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+characters/darth_invader/battler/battler
+  rotate: false
+  xy: 146, 510
+  size: 82, 237
+  orig: 82, 237
+  offset: 0, 0
+  index: 1
+characters/water_spirit/battler/battler
+  rotate: false
+  xy: 146, 510
+  size: 82, 237
+  orig: 82, 237
+  offset: 0, 0
+  index: 1
+characters/darth_invader/face/angry
+  rotate: false
+  xy: 1922, 548
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 1
+characters/darth_invader/face/angry
+  rotate: false
+  xy: 188, 282
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 2
+characters/darth_invader/face/normal
+  rotate: false
+  xy: 1646, 486
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 1
+characters/darth_invader/face/ouch
+  rotate: false
+  xy: 1944, 494
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 1
+characters/darth_invader/field/attack/down
+  rotate: false
+  xy: 185, 760
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/darth_invader/field/cast/down
+  rotate: false
+  xy: 185, 760
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/darth_invader/field/dead/down
+  rotate: false
+  xy: 185, 760
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/darth_invader/field/jump/down
+  rotate: false
+  xy: 185, 760
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/darth_invader/field/ouch/down
+  rotate: false
+  xy: 185, 760
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/darth_invader/field/stand/down
+  rotate: false
+  xy: 185, 760
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/darth_invader/field/walk/down
+  rotate: false
+  xy: 185, 760
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/water_spirit/field/attack/down
+  rotate: false
+  xy: 185, 760
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/water_spirit/field/cast/down
+  rotate: false
+  xy: 185, 760
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/water_spirit/field/dead/down
+  rotate: false
+  xy: 185, 760
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/water_spirit/field/jump/down
+  rotate: false
+  xy: 185, 760
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/water_spirit/field/ouch/down
+  rotate: false
+  xy: 185, 760
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/darth_invader/field/attack/down
+  rotate: false
+  xy: 1997, 812
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/darth_invader/field/cast/down
+  rotate: false
+  xy: 1997, 812
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/darth_invader/field/dead/down
+  rotate: false
+  xy: 1997, 812
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/darth_invader/field/jump/down
+  rotate: false
+  xy: 1997, 812
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/darth_invader/field/ouch/down
+  rotate: false
+  xy: 1997, 812
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/darth_invader/field/walk/down
+  rotate: false
+  xy: 1997, 812
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/water_spirit/field/attack/down
+  rotate: false
+  xy: 1997, 812
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/water_spirit/field/cast/down
+  rotate: false
+  xy: 1997, 812
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/water_spirit/field/dead/down
+  rotate: false
+  xy: 1997, 812
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/water_spirit/field/jump/down
+  rotate: false
+  xy: 1997, 812
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/water_spirit/field/ouch/down
+  rotate: false
+  xy: 1997, 812
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/darth_invader/field/attack/down
+  rotate: false
+  xy: 1020, 500
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/darth_invader/field/cast/down
+  rotate: false
+  xy: 1020, 500
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/darth_invader/field/dead/down
+  rotate: false
+  xy: 1020, 500
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/darth_invader/field/jump/down
+  rotate: false
+  xy: 1020, 500
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/darth_invader/field/ouch/down
+  rotate: false
+  xy: 1020, 500
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/darth_invader/field/walk/down
+  rotate: false
+  xy: 1020, 500
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/water_spirit/field/attack/down
+  rotate: false
+  xy: 1020, 500
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/water_spirit/field/cast/down
+  rotate: false
+  xy: 1020, 500
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/water_spirit/field/dead/down
+  rotate: false
+  xy: 1020, 500
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/water_spirit/field/jump/down
+  rotate: false
+  xy: 1020, 500
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/water_spirit/field/ouch/down
+  rotate: false
+  xy: 1020, 500
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/darth_invader/field/attack/down
+  rotate: false
+  xy: 1808, 486
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/darth_invader/field/cast/down
+  rotate: false
+  xy: 1808, 486
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/darth_invader/field/dead/down
+  rotate: false
+  xy: 1808, 486
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/darth_invader/field/jump/down
+  rotate: false
+  xy: 1808, 486
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/darth_invader/field/ouch/down
+  rotate: false
+  xy: 1808, 486
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/darth_invader/field/walk/down
+  rotate: false
+  xy: 1808, 486
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/water_spirit/field/attack/down
+  rotate: false
+  xy: 1808, 486
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/water_spirit/field/cast/down
+  rotate: false
+  xy: 1808, 486
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/water_spirit/field/dead/down
+  rotate: false
+  xy: 1808, 486
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/water_spirit/field/jump/down
+  rotate: false
+  xy: 1808, 486
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/water_spirit/field/ouch/down
+  rotate: false
+  xy: 1808, 486
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/darth_invader/field/attack/left
+  rotate: false
+  xy: 1903, 482
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/darth_invader/field/cast/left
+  rotate: false
+  xy: 1903, 482
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/darth_invader/field/dead/left
+  rotate: false
+  xy: 1903, 482
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/darth_invader/field/jump/left
+  rotate: false
+  xy: 1903, 482
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/darth_invader/field/ouch/left
+  rotate: false
+  xy: 1903, 482
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/darth_invader/field/stand/left
+  rotate: false
+  xy: 1903, 482
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/darth_invader/field/walk/left
+  rotate: false
+  xy: 1903, 482
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/water_spirit/field/cast/left
+  rotate: false
+  xy: 1903, 482
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/water_spirit/field/dead/left
+  rotate: false
+  xy: 1903, 482
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/water_spirit/field/jump/left
+  rotate: false
+  xy: 1903, 482
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/water_spirit/field/ouch/left
+  rotate: false
+  xy: 1903, 482
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/darth_invader/field/attack/left
+  rotate: false
+  xy: 1998, 494
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/darth_invader/field/cast/left
+  rotate: false
+  xy: 1998, 494
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/darth_invader/field/dead/left
+  rotate: false
+  xy: 1998, 494
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/darth_invader/field/jump/left
+  rotate: false
+  xy: 1998, 494
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/darth_invader/field/ouch/left
+  rotate: false
+  xy: 1998, 494
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/darth_invader/field/walk/left
+  rotate: false
+  xy: 1998, 494
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/water_spirit/field/cast/left
+  rotate: false
+  xy: 1998, 494
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/water_spirit/field/dead/left
+  rotate: false
+  xy: 1998, 494
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/water_spirit/field/jump/left
+  rotate: false
+  xy: 1998, 494
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/water_spirit/field/ouch/left
+  rotate: false
+  xy: 1998, 494
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/darth_invader/field/attack/left
+  rotate: false
+  xy: 212, 456
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/darth_invader/field/cast/left
+  rotate: false
+  xy: 212, 456
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/darth_invader/field/dead/left
+  rotate: false
+  xy: 212, 456
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/darth_invader/field/jump/left
+  rotate: false
+  xy: 212, 456
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/darth_invader/field/ouch/left
+  rotate: false
+  xy: 212, 456
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/darth_invader/field/walk/left
+  rotate: false
+  xy: 212, 456
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/water_spirit/field/cast/left
+  rotate: false
+  xy: 212, 456
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/water_spirit/field/dead/left
+  rotate: false
+  xy: 212, 456
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/water_spirit/field/jump/left
+  rotate: false
+  xy: 212, 456
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/water_spirit/field/ouch/left
+  rotate: false
+  xy: 212, 456
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/darth_invader/field/attack/left
+  rotate: false
+  xy: 242, 256
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/darth_invader/field/cast/left
+  rotate: false
+  xy: 242, 256
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/darth_invader/field/dead/left
+  rotate: false
+  xy: 242, 256
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/darth_invader/field/jump/left
+  rotate: false
+  xy: 242, 256
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/darth_invader/field/ouch/left
+  rotate: false
+  xy: 242, 256
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/darth_invader/field/walk/left
+  rotate: false
+  xy: 242, 256
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/water_spirit/field/cast/left
+  rotate: false
+  xy: 242, 256
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/water_spirit/field/dead/left
+  rotate: false
+  xy: 242, 256
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/water_spirit/field/jump/left
+  rotate: false
+  xy: 242, 256
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/water_spirit/field/ouch/left
+  rotate: false
+  xy: 242, 256
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/darth_invader/field/attack/right
+  rotate: false
+  xy: 296, 310
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/darth_invader/field/cast/right
+  rotate: false
+  xy: 296, 310
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/darth_invader/field/dead/right
+  rotate: false
+  xy: 296, 310
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/darth_invader/field/jump/right
+  rotate: false
+  xy: 296, 310
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/darth_invader/field/ouch/right
+  rotate: false
+  xy: 296, 310
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/darth_invader/field/stand/right
+  rotate: false
+  xy: 296, 310
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/darth_invader/field/walk/right
+  rotate: false
+  xy: 296, 310
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/water_spirit/field/cast/right
+  rotate: false
+  xy: 296, 310
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/water_spirit/field/dead/right
+  rotate: false
+  xy: 296, 310
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/water_spirit/field/jump/right
+  rotate: false
+  xy: 296, 310
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/water_spirit/field/ouch/right
+  rotate: false
+  xy: 296, 310
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/darth_invader/field/attack/right
+  rotate: false
+  xy: 350, 364
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/darth_invader/field/cast/right
+  rotate: false
+  xy: 350, 364
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/darth_invader/field/dead/right
+  rotate: false
+  xy: 350, 364
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/darth_invader/field/jump/right
+  rotate: false
+  xy: 350, 364
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/darth_invader/field/ouch/right
+  rotate: false
+  xy: 350, 364
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/darth_invader/field/walk/right
+  rotate: false
+  xy: 350, 364
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/water_spirit/field/cast/right
+  rotate: false
+  xy: 350, 364
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/water_spirit/field/dead/right
+  rotate: false
+  xy: 350, 364
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/water_spirit/field/jump/right
+  rotate: false
+  xy: 350, 364
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/water_spirit/field/ouch/right
+  rotate: false
+  xy: 350, 364
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/darth_invader/field/attack/right
+  rotate: false
+  xy: 283, 256
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/darth_invader/field/cast/right
+  rotate: false
+  xy: 283, 256
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/darth_invader/field/dead/right
+  rotate: false
+  xy: 283, 256
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/darth_invader/field/jump/right
+  rotate: false
+  xy: 283, 256
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/darth_invader/field/ouch/right
+  rotate: false
+  xy: 283, 256
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/darth_invader/field/walk/right
+  rotate: false
+  xy: 283, 256
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/water_spirit/field/cast/right
+  rotate: false
+  xy: 283, 256
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/water_spirit/field/dead/right
+  rotate: false
+  xy: 283, 256
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/water_spirit/field/jump/right
+  rotate: false
+  xy: 283, 256
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/water_spirit/field/ouch/right
+  rotate: false
+  xy: 283, 256
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/darth_invader/field/attack/right
+  rotate: false
+  xy: 337, 310
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/darth_invader/field/cast/right
+  rotate: false
+  xy: 337, 310
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/darth_invader/field/dead/right
+  rotate: false
+  xy: 337, 310
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/darth_invader/field/jump/right
+  rotate: false
+  xy: 337, 310
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/darth_invader/field/ouch/right
+  rotate: false
+  xy: 337, 310
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/darth_invader/field/walk/right
+  rotate: false
+  xy: 337, 310
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/water_spirit/field/cast/right
+  rotate: false
+  xy: 337, 310
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/water_spirit/field/dead/right
+  rotate: false
+  xy: 337, 310
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/water_spirit/field/jump/right
+  rotate: false
+  xy: 337, 310
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/water_spirit/field/ouch/right
+  rotate: false
+  xy: 337, 310
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/darth_invader/field/attack/up
+  rotate: false
+  xy: 391, 364
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/darth_invader/field/cast/up
+  rotate: false
+  xy: 391, 364
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/darth_invader/field/dead/up
+  rotate: false
+  xy: 391, 364
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/darth_invader/field/jump/up
+  rotate: false
+  xy: 391, 364
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/darth_invader/field/ouch/up
+  rotate: false
+  xy: 391, 364
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/darth_invader/field/stand/up
+  rotate: false
+  xy: 391, 364
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/darth_invader/field/walk/up
+  rotate: false
+  xy: 391, 364
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/water_spirit/field/attack/up
+  rotate: false
+  xy: 391, 364
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/water_spirit/field/cast/up
+  rotate: false
+  xy: 391, 364
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/water_spirit/field/dead/up
+  rotate: false
+  xy: 391, 364
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/water_spirit/field/jump/up
+  rotate: false
+  xy: 391, 364
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/water_spirit/field/ouch/up
+  rotate: false
+  xy: 391, 364
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/darth_invader/field/attack/up
+  rotate: false
+  xy: 324, 256
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/darth_invader/field/cast/up
+  rotate: false
+  xy: 324, 256
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/darth_invader/field/dead/up
+  rotate: false
+  xy: 324, 256
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/darth_invader/field/jump/up
+  rotate: false
+  xy: 324, 256
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/darth_invader/field/ouch/up
+  rotate: false
+  xy: 324, 256
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/darth_invader/field/walk/up
+  rotate: false
+  xy: 324, 256
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/water_spirit/field/attack/up
+  rotate: false
+  xy: 324, 256
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/water_spirit/field/cast/up
+  rotate: false
+  xy: 324, 256
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/water_spirit/field/dead/up
+  rotate: false
+  xy: 324, 256
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/water_spirit/field/jump/up
+  rotate: false
+  xy: 324, 256
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/water_spirit/field/ouch/up
+  rotate: false
+  xy: 324, 256
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/darth_invader/field/attack/up
+  rotate: false
+  xy: 378, 310
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/darth_invader/field/cast/up
+  rotate: false
+  xy: 378, 310
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/darth_invader/field/dead/up
+  rotate: false
+  xy: 378, 310
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/darth_invader/field/jump/up
+  rotate: false
+  xy: 378, 310
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/darth_invader/field/ouch/up
+  rotate: false
+  xy: 378, 310
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/darth_invader/field/walk/up
+  rotate: false
+  xy: 378, 310
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/water_spirit/field/attack/up
+  rotate: false
+  xy: 378, 310
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/water_spirit/field/cast/up
+  rotate: false
+  xy: 378, 310
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/water_spirit/field/dead/up
+  rotate: false
+  xy: 378, 310
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/water_spirit/field/jump/up
+  rotate: false
+  xy: 378, 310
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/water_spirit/field/ouch/up
+  rotate: false
+  xy: 378, 310
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/darth_invader/field/attack/up
+  rotate: false
+  xy: 432, 364
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/darth_invader/field/cast/up
+  rotate: false
+  xy: 432, 364
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/darth_invader/field/dead/up
+  rotate: false
+  xy: 432, 364
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/darth_invader/field/jump/up
+  rotate: false
+  xy: 432, 364
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/darth_invader/field/ouch/up
+  rotate: false
+  xy: 432, 364
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/darth_invader/field/walk/up
+  rotate: false
+  xy: 432, 364
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/water_spirit/field/attack/up
+  rotate: false
+  xy: 432, 364
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/water_spirit/field/cast/up
+  rotate: false
+  xy: 432, 364
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/water_spirit/field/dead/up
+  rotate: false
+  xy: 432, 364
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/water_spirit/field/jump/up
+  rotate: false
+  xy: 432, 364
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/water_spirit/field/ouch/up
+  rotate: false
+  xy: 432, 364
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/erik_the_red/battler/battler
+  rotate: false
+  xy: 2, 41
+  size: 188, 183
+  orig: 188, 183
+  offset: 0, 0
+  index: 1
+characters/erik_the_red/face/happy
+  rotate: false
+  xy: 912, 496
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 1
+characters/erik_the_red/face/normal
+  rotate: false
+  xy: 1700, 486
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 1
+characters/erik_the_red/face/ouch
+  rotate: false
+  xy: 253, 472
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 1
+characters/erik_the_red/face/sad
+  rotate: false
+  xy: 469, 472
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 1
+characters/gladia_macabre/battler/battler
+  rotate: false
+  xy: 2, 749
+  size: 181, 273
+  orig: 181, 273
+  offset: 0, 0
+  index: 1
+characters/gladia_macabre/face/angry
+  rotate: false
+  xy: 1976, 548
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 1
+characters/gladia_macabre/face/normal
+  rotate: false
+  xy: 1754, 486
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 1
+characters/gladia_macabre/face/ouch
+  rotate: false
+  xy: 307, 472
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 1
+characters/gladia_macabre/face/sad
+  rotate: false
+  xy: 523, 472
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 1
+characters/magia_karnedit/battler/battler
+  rotate: false
+  xy: 2, 473
+  size: 142, 274
+  orig: 142, 274
+  offset: 0, 0
+  index: 1
+characters/magia_karnedit/face/angry
+  rotate: false
+  xy: 188, 390
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 1
+characters/magia_karnedit/face/normal
+  rotate: false
+  xy: 1849, 482
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 1
+characters/magia_karnedit/face/ouch
+  rotate: false
+  xy: 361, 472
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 1
+characters/magia_karnedit/face/sad
+  rotate: false
+  xy: 577, 472
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 1
+characters/protox_toxorp/Battler/battler
+  rotate: false
+  xy: 2, 226
+  size: 118, 245
+  orig: 118, 245
+  offset: 0, 0
+  index: 1
+characters/protox_toxorp/Face/angry
+  rotate: false
+  xy: 188, 336
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 1
+characters/protox_toxorp/Face/happy
+  rotate: false
+  xy: 966, 500
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 1
+characters/protox_toxorp/Face/ouch
+  rotate: false
+  xy: 415, 472
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 1
+characters/water_spirit/face/angry
+  rotate: false
+  xy: 1865, 800
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/water_spirit/face/angry
+  rotate: false
+  xy: 1931, 800
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+characters/water_spirit/face/happy
+  rotate: false
+  xy: 1880, 602
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/water_spirit/face/normal
+  rotate: false
+  xy: 1130, 516
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/water_spirit/face/ouch
+  rotate: false
+  xy: 1196, 516
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/water_spirit/field/attack/left
+  rotate: false
+  xy: 1946, 668
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/water_spirit/field/attack/left
+  rotate: false
+  xy: 146, 444
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+characters/water_spirit/field/attack/left
+  rotate: false
+  xy: 122, 312
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
+characters/water_spirit/field/attack/left
+  rotate: false
+  xy: 122, 246
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+characters/water_spirit/field/attack/right
+  rotate: false
+  xy: 1262, 516
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/water_spirit/field/attack/right
+  rotate: false
+  xy: 1394, 516
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+characters/water_spirit/field/attack/right
+  rotate: false
+  xy: 1526, 516
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
+characters/water_spirit/field/attack/right
+  rotate: false
+  xy: 1592, 540
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+characters/water_spirit/field/stand/down
+  rotate: false
+  xy: 1858, 734
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/water_spirit/field/walk/down
+  rotate: false
+  xy: 1858, 734
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
+characters/water_spirit/field/walk/down
+  rotate: false
+  xy: 1858, 734
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/water_spirit/field/stand/left
+  rotate: false
+  xy: 1946, 602
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/water_spirit/field/walk/left
+  rotate: false
+  xy: 1946, 602
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/water_spirit/field/walk/left
+  rotate: false
+  xy: 1946, 602
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
+characters/water_spirit/field/stand/right
+  rotate: false
+  xy: 1328, 516
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/water_spirit/field/walk/right
+  rotate: false
+  xy: 1328, 516
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/water_spirit/field/walk/right
+  rotate: false
+  xy: 1328, 516
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
+characters/water_spirit/field/stand/up
+  rotate: false
+  xy: 1724, 540
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/water_spirit/field/walk/up
+  rotate: false
+  xy: 1724, 540
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
+characters/water_spirit/field/walk/up
+  rotate: false
+  xy: 1724, 540
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/water_spirit/field/walk/down
+  rotate: false
+  xy: 1924, 734
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+characters/water_spirit/field/walk/down
+  rotate: false
+  xy: 1880, 668
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+characters/water_spirit/field/walk/left
+  rotate: false
+  xy: 122, 378
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+characters/water_spirit/field/walk/left
+  rotate: false
+  xy: 1064, 516
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+characters/water_spirit/field/walk/right
+  rotate: false
+  xy: 1460, 516
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+characters/water_spirit/field/walk/right
+  rotate: false
+  xy: 1658, 540
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+characters/water_spirit/field/walk/up
+  rotate: false
+  xy: 1790, 540
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+characters/water_spirit/field/walk/up
+  rotate: false
+  xy: 1856, 536
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+interface/cursor
+  rotate: false
+  xy: 2, 2
+  size: 29, 37
+  orig: 29, 37
+  offset: 0, 0
+  index: -1
+interface/window
+  rotate: false
+  xy: 862, 656
+  size: 156, 156
+  split: 15, 15, 15, 15
+  orig: 156, 156
+  offset: 0, 0
+  index: -1
+items/equipment/spear/field/field
+  rotate: false
+  xy: 750, 550
+  size: 104, 104
+  orig: 104, 104
+  offset: 0, 0
+  index: 1
+items/equipment/spear/field/field
+  rotate: false
+  xy: 1540, 708
+  size: 104, 104
+  orig: 104, 104
+  offset: 0, 0
+  index: 2
+items/equipment/spear/field/field
+  rotate: false
+  xy: 856, 550
+  size: 104, 104
+  orig: 104, 104
+  offset: 0, 0
+  index: 3
+items/equipment/spear/field/field
+  rotate: false
+  xy: 1646, 708
+  size: 104, 104
+  orig: 104, 104
+  offset: 0, 0
+  index: 4
+items/equipment/spear/field/field
+  rotate: false
+  xy: 1752, 708
+  size: 104, 104
+  orig: 104, 104
+  offset: 0, 0
+  index: 5
+items/equipment/sword/battler/battler
+  rotate: false
+  xy: 185, 814
+  size: 208, 208
+  orig: 208, 208
+  offset: 0, 0
+  index: 1
+items/equipment/wooden_sword/battler/battler
+  rotate: false
+  xy: 185, 814
+  size: 208, 208
+  orig: 208, 208
+  offset: 0, 0
+  index: 1
+items/equipment/sword/battler/battler
+  rotate: false
+  xy: 395, 814
+  size: 208, 208
+  orig: 208, 208
+  offset: 0, 0
+  index: 2
+items/equipment/wooden_sword/battler/battler
+  rotate: false
+  xy: 395, 814
+  size: 208, 208
+  orig: 208, 208
+  offset: 0, 0
+  index: 2
+items/equipment/sword/battler/battler
+  rotate: false
+  xy: 605, 814
+  size: 208, 208
+  orig: 208, 208
+  offset: 0, 0
+  index: 3
+items/equipment/wooden_sword/battler/battler
+  rotate: false
+  xy: 605, 814
+  size: 208, 208
+  orig: 208, 208
+  offset: 0, 0
+  index: 3
+items/equipment/sword/battler/battler
+  rotate: false
+  xy: 815, 814
+  size: 208, 208
+  orig: 208, 208
+  offset: 0, 0
+  index: 4
+items/equipment/wooden_sword/battler/battler
+  rotate: false
+  xy: 815, 814
+  size: 208, 208
+  orig: 208, 208
+  offset: 0, 0
+  index: 4
+items/equipment/sword/battler/battler
+  rotate: false
+  xy: 1025, 814
+  size: 208, 208
+  orig: 208, 208
+  offset: 0, 0
+  index: 5
+items/equipment/wooden_sword/battler/battler
+  rotate: false
+  xy: 1025, 814
+  size: 208, 208
+  orig: 208, 208
+  offset: 0, 0
+  index: 5
+items/equipment/sword/battler/battler
+  rotate: false
+  xy: 1235, 814
+  size: 208, 208
+  orig: 208, 208
+  offset: 0, 0
+  index: 6
+items/equipment/wooden_sword/battler/battler
+  rotate: false
+  xy: 1235, 814
+  size: 208, 208
+  orig: 208, 208
+  offset: 0, 0
+  index: 6
+items/equipment/sword/battler/battler
+  rotate: false
+  xy: 1445, 814
+  size: 208, 208
+  orig: 208, 208
+  offset: 0, 0
+  index: 7
+items/equipment/wooden_sword/battler/battler
+  rotate: false
+  xy: 1445, 814
+  size: 208, 208
+  orig: 208, 208
+  offset: 0, 0
+  index: 7
+items/equipment/sword/battler/battler
+  rotate: false
+  xy: 1655, 814
+  size: 208, 208
+  orig: 208, 208
+  offset: 0, 0
+  index: 8
+items/equipment/wooden_sword/battler/battler
+  rotate: false
+  xy: 1655, 814
+  size: 208, 208
+  orig: 208, 208
+  offset: 0, 0
+  index: 8
+items/equipment/sword/field/field
+  rotate: false
+  xy: 230, 526
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: 1
+items/equipment/sword/field/field
+  rotate: false
+  xy: 1020, 684
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: 2
+items/equipment/sword/field/field
+  rotate: false
+  xy: 360, 526
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: 3
+items/equipment/sword/field/field
+  rotate: false
+  xy: 1150, 684
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: 4
+items/equipment/sword/field/field
+  rotate: false
+  xy: 490, 526
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: 5
+items/equipment/sword/field/field
+  rotate: false
+  xy: 1280, 684
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: 6
+items/equipment/sword/field/field
+  rotate: false
+  xy: 620, 526
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: 7
+items/equipment/sword/field/field
+  rotate: false
+  xy: 620, 526
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: 8
+items/equipment/wooden_sword/field/field
+  rotate: false
+  xy: 188, 228
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 1
+items/equipment/wooden_sword/field/field
+  rotate: false
+  xy: 192, 174
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 2
+items/equipment/wooden_sword/field/field
+  rotate: false
+  xy: 192, 120
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 3
+items/equipment/wooden_sword/field/field
+  rotate: false
+  xy: 192, 66
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 4
+items/equipment/wooden_sword/field/field
+  rotate: false
+  xy: 192, 12
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 5
+items/equipment/wooden_sword/field/field
+  rotate: false
+  xy: 750, 496
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 6
+items/equipment/wooden_sword/field/field
+  rotate: false
+  xy: 804, 496
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 7
+items/equipment/wooden_sword/field/field
+  rotate: false
+  xy: 858, 496
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 8
+skills/wiccan_cross/field/wiccan_cross
+  rotate: false
+  xy: 858, 496
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 19
+skills/wiccan_cross/field/wiccan_cross
+  rotate: false
+  xy: 858, 496
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 20
+skills/wiccan_cross/field/wiccan_cross
+  rotate: false
+  xy: 858, 496
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 21
+items/potion/icon
+  rotate: false
+  xy: 1592, 486
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 1
+skills/crosscall/battler/crosscall
+  rotate: false
+  xy: 962, 554
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: 1
+skills/crosscall/battler/crosscall
+  rotate: false
+  xy: 1064, 582
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: 2
+skills/crosscall/battler/crosscall
+  rotate: false
+  xy: 1166, 582
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: 3
+skills/crosscall/battler/crosscall
+  rotate: false
+  xy: 1268, 582
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: 4
+skills/crosscall/battler/crosscall
+  rotate: false
+  xy: 1370, 582
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: 5
+skills/crosscall/battler/crosscall
+  rotate: false
+  xy: 1472, 582
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: 6
+skills/crosscall/battler/crosscall
+  rotate: false
+  xy: 1574, 606
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: 7
+skills/crosscall/battler/crosscall
+  rotate: false
+  xy: 1676, 606
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: 8
+skills/crosscall/battler/crosscall
+  rotate: false
+  xy: 1778, 606
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: 9
+skills/red_spin/field/red_spin
+  rotate: false
+  xy: 1865, 866
+  size: 156, 156
+  orig: 156, 156
+  offset: 0, 0
+  index: 1
+skills/red_spin/field/red_spin
+  rotate: false
+  xy: 230, 656
+  size: 156, 156
+  orig: 156, 156
+  offset: 0, 0
+  index: 2
+skills/red_spin/field/red_spin
+  rotate: false
+  xy: 388, 656
+  size: 156, 156
+  orig: 156, 156
+  offset: 0, 0
+  index: 3
+skills/red_spin/field/red_spin
+  rotate: false
+  xy: 546, 656
+  size: 156, 156
+  orig: 156, 156
+  offset: 0, 0
+  index: 4
+skills/red_spin/field/red_spin
+  rotate: false
+  xy: 704, 656
+  size: 156, 156
+  orig: 156, 156
+  offset: 0, 0
+  index: 5
+skills/wiccan_cross/field/wiccan_cross
+  rotate: false
+  xy: 631, 472
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 1
+skills/wiccan_cross/field/wiccan_cross
+  rotate: false
+  xy: 685, 472
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 2
+skills/wiccan_cross/field/wiccan_cross
+  rotate: false
+  xy: 122, 228
+  size: 52, 16
+  orig: 52, 16
+  offset: 0, 0
+  index: 22
+skills/wiccan_cross/field/wiccan_cross
+  rotate: false
+  xy: 253, 418
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 3
+skills/wiccan_cross/field/wiccan_cross
+  rotate: false
+  xy: 307, 418
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 4
+skills/wiccan_cross/field/wiccan_cross
+  rotate: false
+  xy: 361, 418
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 5
+skills/wiccan_cross/field/wiccan_cross
+  rotate: false
+  xy: 415, 418
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 6
+skills/wiccan_cross/field/wiccan_cross
+  rotate: false
+  xy: 469, 418
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 7
+skills/wiccan_cross/field/wiccan_cross
+  rotate: false
+  xy: 523, 418
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 8
+skills/wiccan_cross/field/wiccan_cross
+  rotate: false
+  xy: 577, 418
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 9
+skills/wiccan_cross/field/wiccan_cross
+  rotate: false
+  xy: 631, 418
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 10
+skills/wiccan_cross/field/wiccan_cross
+  rotate: false
+  xy: 685, 418
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 11
+skills/wiccan_cross/field/wiccan_cross
+  rotate: false
+  xy: 739, 442
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 12
+skills/wiccan_cross/field/wiccan_cross
+  rotate: false
+  xy: 793, 442
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 13
+skills/wiccan_cross/field/wiccan_cross
+  rotate: false
+  xy: 847, 442
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 14
+skills/wiccan_cross/field/wiccan_cross
+  rotate: false
+  xy: 901, 442
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 15
+skills/wiccan_cross/field/wiccan_cross
+  rotate: false
+  xy: 242, 364
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 16
+skills/wiccan_cross/field/wiccan_cross
+  rotate: false
+  xy: 242, 310
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 17
+skills/wiccan_cross/field/wiccan_cross
+  rotate: false
+  xy: 296, 364
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 18
+tilesets/tileset
+  rotate: false
+  xy: 1410, 684
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1

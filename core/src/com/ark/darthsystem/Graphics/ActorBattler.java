@@ -106,10 +106,6 @@ public class ActorBattler {
         return spriteSheet;
     }
 
-    private void convertSkillToActor(Skill s, ActorSkill a) {
-        a.setSkill(s);
-    }
-
     public ActorBattler clone() {
         return new ActorBattler(battler.clone(), spriteSheet);
     }

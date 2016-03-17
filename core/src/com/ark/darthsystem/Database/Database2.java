@@ -100,7 +100,7 @@ public class Database2 extends Database1 {
         Database2.battlers = new ActorBattler[]{
             new ActorBattler(Water_Spirit, Water_Spirit_Sprite)
 //            new ActorBattler(Darth, DarthSprite), 
-//                , new ActorBattler(Erik, ErikSprite)
+                , new ActorBattler(Erik, ErikSprite)
         };
         player = new Player(new ArrayList<>(Arrays.asList(battlers)), 0, 0);
     }
@@ -121,14 +121,14 @@ public class Database2 extends Database1 {
 
     public static final ActorSkill Spear = new ActorSkill(
             GraphicsDriver.getMasterSheet().
-            createSprites("items/equipment/spear/field/spear").toArray(Sprite.class),
+            createSprites("items/equipment/spear/field/field").toArray(Sprite.class),
             1,
             1,
             100,
             null);
 
     public static ActorSkill Sword() {
-        return new ActorSkill(GraphicsDriver.getMasterSheet().createSprites("items/equipment/sword/field/sword").toArray(Sprite.class),
+        return new ActorSkill(GraphicsDriver.getMasterSheet().createSprites("items/equipment/sword/field/field").toArray(Sprite.class),
                 GraphicsDriver.getMasterSheet().createSprites("items/equipment/sword/battler/battler").toArray(Sprite.class),
                 1,
                 1,
