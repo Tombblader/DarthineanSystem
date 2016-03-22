@@ -386,7 +386,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
             }
 
             private void renderCollision(Fixture a, Fixture b) {
-                final float KNOCKBACK = 4f;
+                final float KNOCKBACK = (float) (4f * ((Player)(a.getBody().getUserData())).getCurrentBattler().getBattler().getDefend());
                 a.getBody().setLinearVelocity(
                         ((Actor)(b.getBody().getUserData())).getFacing().getX() * a.getBody().getPosition().add(b.getBody().getPosition()).x * KNOCKBACK, 
                         ((Actor)(b.getBody().getUserData())).getFacing().getY() * a.getBody().getPosition().add(b.getBody().getPosition()).y * KNOCKBACK);

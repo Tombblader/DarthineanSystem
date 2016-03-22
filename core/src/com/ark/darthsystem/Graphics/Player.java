@@ -45,9 +45,10 @@ public class Player extends ActorCollision {
     private int skillButton = Keys.F;
     private int switchSkill = Keys.E;
     private int charge = Keys.C;
-    private int confirmButton = Keys.ENTER;
+    private int defendButton = Keys.X;
+//    private int confirmButton = Keys.ENTER;
     private int quitButton = Keys.ESCAPE;
-    private int menuButton = Keys.N;
+    private int menuButton = Keys.ENTER;
     private int jumpButton = Keys.V;
 
     ActorSkill attackAnimation;
@@ -165,12 +166,12 @@ public class Player extends ActorCollision {
     }
     
     public void skill() {
-//        getMainBody().setLinearVelocity(0, 0);
         if (getCurrentBattler().getCurrentSkill() != null) {
             getCurrentBattler().getCurrentSkill().setX(this);
             getCurrentBattler().getCurrentSkill().setY(this);
             ActorSkill tempSkill = getCurrentBattler().activateCurrentSkill(this);
             if (tempSkill != null) {
+                attacking = true;
                 setPause((getCurrentBattler().getCurrentSkill().getChargeTime() * 1000f));
                 addTimer(new GameTimer("Skill", getCurrentBattler().getCurrentSkill().getChargeTime() * 1000f) {
                     @Override
@@ -178,8 +179,8 @@ public class Player extends ActorCollision {
 //                        fieldState = ActorSprite.SpriteModeField.SKILL;
                         setPause((getCurrentBattler().getCurrentSkill().getAnimationDelay() * 1000f));
                         tempSkill.setMap(getCurrentMap(), true);
+                        attacking = false;
                     }
-                    
                 });
 //                fieldState = ActorSprite.SpriteModeField.CAST;
 //                setPause((getCurrentBattler().getCurrentSkill().getAnimationDelay() * 1000f));
@@ -205,7 +206,7 @@ public class Player extends ActorCollision {
     }
 
     // private float speed = .35;
-    public void Moving(float delta) {
+    public void moving(float delta) {
         setSpeed(getBaseSpeed());
         if (isJumping) {
             setSpeed(getBaseSpeed() * 1.5f);
@@ -257,30 +258,10 @@ public class Player extends ActorCollision {
             getMainBody().setLinearVelocity(getMainBody().getLinearVelocity().x, 0);
         }
 
-        if (Input.getKeyPressed(Keys.F2)) {
-
-        }
-        if (Input.getKeyPressed(switchSkill)) {
-            getCurrentBattler().changeSkill(1);
-        }
-        if (Input.getKeyPressed(attackButton) && canAttack) {
-            attack();
-        }
-        if (Input.getKeyPressed(charge) && canAttack) {
-            getCurrentBattler().getBattler().changeMP(-1);
-            setPause(200f);
-        }
-
-        if (Input.getKeyPressed(skillButton) && canAttack) {
-            skill();
-        }
         if (Input.getKeyPressed(switchBattlerButton)) {
             switchBattler();
         }
 
-        if (Input.getKeyPressed(confirmButton)) {
-            // GraphicsDriver.pauseState();
-        }
         if (Input.getKeyPressed(menuButton)) {
             GraphicsDriver.addMenu(new DefaultMenu());
         }
@@ -341,8 +322,12 @@ public class Player extends ActorCollision {
             getMainBody().setLinearVelocity(0, 0);
         }
         isWalking = false;
-        if (canMove()) {
-            Moving(delta);
+        
+        if (canAttack) {
+            attacking(delta);
+        }
+        if (canMove() && !attacking) {
+            moving(delta);
         } else {
             changeX(0);
             changeY(0);
@@ -539,5 +524,47 @@ public class Player extends ActorCollision {
     
     public BitmapFont getFont() {
         return font;
+    }
+    
+    public void defend() {
+        getCurrentBattler().getBattler().defend();
+        disableMovement();
+        addTimer(new GameTimer("DEFEND", 99999) {
+            @Override
+            public void event(Actor a) {
+                System.out.println("No longer defending");
+                for (Battler allBattlers : getAllBattlers()) {
+                    allBattlers.resetDefend();
+                }
+                attacking = false;
+                enableMovement();
+            }
+            
+            public boolean isFinished() {
+                return !Input.getKeyRepeat(defendButton);
+            }
+            
+        }); 
+    }
+
+    private void attacking(float delta) {
+        if (Input.getKeyRepeat(defendButton) && getCurrentBattler().getBattler().getDefend() == 1.0) {
+            defend();
+        } else {
+            if (Input.getKeyPressed(switchSkill)) {
+                getCurrentBattler().changeSkill(1);
+            }
+            if (Input.getKeyPressed(attackButton) && canAttack) {
+                attack();
+            }
+            if (Input.getKeyPressed(charge) && canAttack) {
+                getCurrentBattler().getBattler().changeMP(-1);
+                setPause(200f);
+            }
+
+            if (Input.getKeyPressed(skillButton) && canAttack) {
+                skill();
+            }
+        }
     }
 }

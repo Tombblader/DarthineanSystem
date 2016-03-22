@@ -780,7 +780,7 @@ public class SkillDatabase {
             0, 0,
             0, 6,
             8.0);
-    public static Skill Paladins_Fury = new Skill("Paladin's Fury",
+    public static Skill Four_Fury = new Skill("Four Fury",
             37,
             25,
             Battle.Element.Light,

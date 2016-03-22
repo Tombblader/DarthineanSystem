@@ -15,7 +15,7 @@ public class MapDatabase {
         maps = new HashMap<>();
         initializeMaps();
         Database2.player.setMap(maps.get("nowhere"), 300 / GraphicsDriver.getPlayerCamera().getConversion(), 300 / GraphicsDriver.getPlayerCamera().getConversion());
-//        Database2.ErikAI.setMap(maps.get("testing"), 500 / GraphicsDriver.getPlayerCamera().getConversion(), 500 / GraphicsDriver.getPlayerCamera().getConversion());
+        Database2.ErikAI.setMap(maps.get("complex"), 200 / GraphicsDriver.getPlayerCamera().getConversion(), 200 / GraphicsDriver.getPlayerCamera().getConversion());
 //        EventDatabase.GraphicsPotion.setMap(maps.get("testing"), false);
 //        EventDatabase.chapter1.setMap(maps.get("testing"), false);
     }

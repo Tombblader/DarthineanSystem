@@ -25,7 +25,8 @@ public class ActorSprite implements Serializable {
         HAPPY,
         NORMAL,
         OUCH,
-        SAD
+        SAD,
+        CUSTOM;
     }
 
     public enum SpriteModeField {
@@ -36,7 +37,8 @@ public class ActorSprite implements Serializable {
         CAST,
         SKILL,
         OUCH,
-        DEAD;
+        DEAD,
+        CUSTOM;
     }
 
     public enum SpriteModeBattler {

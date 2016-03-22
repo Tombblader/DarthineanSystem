@@ -163,7 +163,11 @@ public class BattlerAI extends Battler implements Poolable {
     public Action getCommand(Battle b) {
         Action tempAction = null;
         Skill getSkill;
+        
         switch (interpretAI(b)) {
+            case Run:
+                tempAction = new Action(Battle.Command.Run, this);
+                break;
             case Attack:
                 tempAction = new Action(Battle.Command.Attack,
                         this,

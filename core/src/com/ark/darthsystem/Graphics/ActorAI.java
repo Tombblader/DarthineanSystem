@@ -17,6 +17,16 @@ import java.util.ArrayList;
  * @author trankt1
  */
 public class ActorAI extends Player {
+    
+    public enum State {
+        PATROL,
+        PURSUIT,
+        ATTACK,
+        RECHARGE
+    }
+            
+    
+    
     private float speed = .4f;
     private int vision = (int) (300 / PlayerCamera.PIXELS_TO_METERS);
 

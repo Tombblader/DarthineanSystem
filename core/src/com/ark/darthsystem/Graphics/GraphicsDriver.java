@@ -4,8 +4,6 @@ import com.ark.darthsystem.BattleDriver;
 import com.ark.darthsystem.Database.Database1;
 import com.ark.darthsystem.Database.MapDatabase;
 import java.util.ArrayList;
-//import java.util.concurrent.CopyOnWriteArrayList;
-
 import com.ark.darthsystem.Database.Database2;
 import com.ark.darthsystem.Database.InterfaceDatabase;
 import com.ark.darthsystem.Database.SoundDatabase;
@@ -278,7 +276,7 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
         super.dispose();
         InterfaceDatabase.dispose();
         SoundDatabase.dispose();
-//        MapDatabase.dispose();
+        MapDatabase.dispose();
         font.dispose();
         batch.dispose();
         masterSheet.dispose();

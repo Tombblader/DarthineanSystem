@@ -13,54 +13,21 @@ public class AI implements Serializable {
      *
      */
     public enum Type {
-
-        /**
-         *
-         */
         Attack,
-
-        /**
-         *
-         */
         Nothing,
-
-        /**
-         *
-         */
         Defend,
-
-        /**
-         *
-         */
         Heal,
-
-        /**
-         *
-         */
         Revive,
-
-        /**
-         *
-         */
         AttackSkill,
-
-        /**
-         *
-         */
         SupportSkill,
-
-        /**
-         *
-         */
         MercilessAttack,
-
-        /**
-         *
-         */
-        MercilessHeal;
+        MercilessHeal,
+        Run;
     }
     private static final int NO_FLAG = -1;
     private Type AIType;
+    private float disengageChance;
+    private int disengageTurn;
     private int priority;
     private double lowHP = NO_FLAG;
     private int turn = NO_FLAG;
@@ -73,8 +40,24 @@ public class AI implements Serializable {
         priority = setPriority;
     }
 
-    Type getType() {
+    AI(Type getType, float disengageChance, int disengageTurn) {
+        AIType = getType;
+        priority = 1;
+        this.disengageChance = disengageChance;
+        turnInterval = disengageTurn;
+//        this.disengageTurn = disengageTurn;
+    }
+    
+    public Type getType() {
         return AIType;
+    }
+    
+    public float getDisengageChance() {
+        return disengageChance;
+    }
+
+    public float getDisengageTurn() {
+        return disengageTurn;
     }
 
     int getPriority() {

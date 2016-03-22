@@ -32,7 +32,7 @@ public abstract class Menu implements State {
 
     private final int BACK_BUTTON = Keys.X;
     private String[] choices;
-    private final int MESSAGE_HEIGHT = HEIGHT / 5;
+    private final int MESSAGE_HEIGHT = HEIGHT / 6;
     private final int CONFIRM_BUTTON = Keys.Z;
     private Sprite cursorTexture;
     private int cursorIndex;

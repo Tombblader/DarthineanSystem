@@ -656,7 +656,7 @@ public class Battler implements Serializable {
     public void defend() {
         damageModifier = DEFEND;
     }
-
+    
     /**
      *
      */
