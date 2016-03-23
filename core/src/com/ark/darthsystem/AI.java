@@ -99,8 +99,7 @@ public class AI implements Serializable {
                 break;
             }
         }
-        return isDead &&
-                dead;
+        return isDead && dead;
     }
 
     boolean checkLowHP(Battle b) {
