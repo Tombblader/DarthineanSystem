@@ -9,6 +9,7 @@ import com.ark.darthsystem.BattlerAI;
 import com.ark.darthsystem.States.OverheadMap;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Filter;
 import java.util.ArrayList;
 
@@ -17,6 +18,13 @@ import java.util.ArrayList;
  * @author trankt1
  */
 public class ActorAI extends Player {
+    
+    private Vector2 patrolCoordinates = Vector2.Zero;
+    private Vector2 patrol() {
+        final Actor.Facing direction = Actor.Facing.values()[(int) (Math.random() * Actor.Facing.values().length)];
+        final float distance = 2;
+        return new Vector2(getX() + direction.x * distance, getY() + direction.getY() * distance);
+    }
     
     public enum State {
         PATROL,
@@ -82,7 +90,10 @@ public class ActorAI extends Player {
             if (isInRange()) {
                 attack();
             }
-        }        
+        }
+        else if (patrolCoordinates == Vector2.Zero || moveTowardsPoint(patrolCoordinates.x, patrolCoordinates.y, delta)) {
+            patrolCoordinates = patrol();
+        }
     }
 
     public void attack() {
@@ -188,7 +199,8 @@ public class ActorAI extends Player {
         this.setWalking(true);
     }
     
-    public void moveTowardsPoint(float x, float y, float delta) {
+    public boolean moveTowardsPoint(float x, float y, float delta) {
+
         if (x > (this.getX()) && x - (this.getX()) > 4.0 / PlayerCamera.PIXELS_TO_METERS) {
             changeX(1);
             getMainBody().setLinearVelocity(speed * (float) (delta), getMainBody().getLinearVelocity().y);
@@ -232,6 +244,7 @@ public class ActorAI extends Player {
             default:
         }
         this.setWalking(true);
+        return (getMainBody().getLinearVelocity().equals(Vector2.Zero));
     }    
 
     public ArrayList<BattlerAI> getAllBattlerAI() {
