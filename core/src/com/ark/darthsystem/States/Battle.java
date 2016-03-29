@@ -18,11 +18,11 @@ import java.util.Iterator;
 public class Battle implements State {
 
     private static final String BATTLE_MUSIC = "music/Forbidden Secret Unfolding.mp3";
-    private static ArrayList<Battler> party;
+    private ArrayList<Battler> party;
     private static ArrayList<Battler> enemy;
     private static ArrayList<ActorBattler> partyActors;
     private static ArrayList<ActorBattler> enemyActors;
-    private static ArrayList<Item> partyItems;
+    private ArrayList<Item> partyItems;
     private static boolean inBattle = false;
     private static ArrayList<Action> partyAction = new ArrayList<>();
     private static ArrayList<Action> enemyAction = new ArrayList<>();
@@ -307,7 +307,7 @@ public class Battle implements State {
         }
     }
 
-    public static enum Command {
+    public enum Command {
 
         Attack,
         Defend,
@@ -807,7 +807,7 @@ public class Battle implements State {
     @Override
     public void dispose() {
         // TODO Auto-generated method stub
-
+        background.getTexture().dispose();
     }
 
 }

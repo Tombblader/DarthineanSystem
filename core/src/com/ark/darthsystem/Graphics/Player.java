@@ -23,7 +23,9 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
+import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Filter;
+import com.badlogic.gdx.utils.Array;
 
 /**
  *
@@ -57,7 +59,6 @@ public class Player extends ActorCollision {
     private boolean attacking;
     private boolean isJumping;
     private ArrayList<ActorBattler> party = new ArrayList<>();
-//    private ArrayList<Integer> currentFace = new ArrayList<>();
     private int currentBattlerIndex = 0;
     private boolean isWalking;
     private ActorSprite.SpriteModeField fieldState = ActorSprite.SpriteModeField.STAND;
@@ -121,48 +122,36 @@ public class Player extends ActorCollision {
 
     public void attack() {
 //            getMainBody().setLinearVelocity(0, 0);
-            setAttacking(true);
+            attacking = true;
             getAttackAnimation().resetAnimation();
             getAttackAnimation().setX(this);
-            getAttackAnimation().setY(this);
-            this.setPause((getAttackAnimation().getAnimationDelay() * 1000f));
-            getAttackAnimation().setMap(getCurrentMap(), true);
-            getAttackAnimation().playFieldSound();
-            fieldState = ActorSprite.SpriteModeField.ATTACK;
-            switch (super.getFacing()) {
-                case UP:
-                case UP_LEFT:
-                case UP_RIGHT:
-                    changeAnimation(currentBattler.getSprite().
-                            getFieldAnimation(fieldState, Actor.Facing.UP));
-                    break;
-                case RIGHT:
-                    changeAnimation(currentBattler.getSprite().
-                            getFieldAnimation(fieldState, Actor.Facing.RIGHT));
-                    break;
-                case LEFT:
-                    changeAnimation(currentBattler.getSprite().
-                            getFieldAnimation(fieldState, Actor.Facing.LEFT));
-                    break;
-                case DOWN:
-                case DOWN_LEFT:
-                case DOWN_RIGHT:
-                    changeAnimation(currentBattler.getSprite().
-                            getFieldAnimation(fieldState, Actor.Facing.DOWN));
-                    break;
-            default:
-        }
+            getAttackAnimation().setY(this);            
+            setPause((getAttackAnimation().getChargeTime() * 1000f));
+            addTimer(new GameTimer("Attack", getAttackAnimation().getChargeTime() * 1000f) {
+                @Override
+                public void event(Actor a) {
+                    fieldState = ActorSprite.SpriteModeField.ATTACK;
+                    setPause((getAttackAnimation().getAnimationDelay() * 1000f));
+                    getAttackAnimation().setMap(getCurrentMap(), true);
+                    addTimer(new GameTimer("Attack", (getAttackAnimation().getAnimationDelay() * 1000f)) {
+                        @Override
+                        public void event(Actor a) {
+                            fieldState = ActorSprite.SpriteModeField.STAND;
+                            attacking = false;
+                        }
+                        public boolean update(float delta, Actor a) {
+                            fieldState = ActorSprite.SpriteModeField.ATTACK;
+                            return super.update(delta, a);
+                        }
+                    });
+                }
+                public boolean update(float delta, Actor a) {
+                    attacking = true;
+                    return super.update(delta, a);
+                }
+            });
+
 //        getCurrentAnimation().setFrameDuration(getAttackAnimation().getAnimationDelay() / getCurrentAnimation().getKeyFrames().length);
-        addTimer(new GameTimer("Attack", 10000) {
-            @Override
-            public void event(Actor a) {
-                fieldState = ActorSprite.SpriteModeField.STAND;
-                attacking = false;
-            }
-            public boolean isFinished() {
-                return getCurrentAnimation().isAnimationFinished(getElapsedTime());
-            }
-        });        
     }
     
     public void skill() {
@@ -323,7 +312,7 @@ public class Player extends ActorCollision {
         }
         isWalking = false;
         
-        if (canAttack) {
+        if (canMove() && canAttack) {
             attacking(delta);
         }
         if (canMove() && !attacking) {
@@ -532,7 +521,6 @@ public class Player extends ActorCollision {
         addTimer(new GameTimer("DEFEND", 99999) {
             @Override
             public void event(Actor a) {
-                System.out.println("No longer defending");
                 for (Battler allBattlers : getAllBattlers()) {
                     allBattlers.resetDefend();
                 }

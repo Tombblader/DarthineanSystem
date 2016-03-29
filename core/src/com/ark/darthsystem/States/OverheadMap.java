@@ -594,6 +594,15 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
     
     @Override
     public void render(SpriteBatch batch) {
+        if (worldStep) {
+            for (Body bodies : deleteQueue) {
+//                bodies.setActive(false);
+                world.destroyBody(bodies);
+                deleteQueue.removeValue(bodies, true);
+            }
+            world.step(1f/60f, 6, 2);  //Fix the second and third values.
+            worldStep = false;
+        }
         GraphicsDriver.setCurrentCamera(GraphicsDriver.getPlayerCamera());
         GraphicsDriver.getPlayerCamera().followPlayer(
                 Math.round(Database2.player.getX() * 50f) / 50f,
@@ -629,14 +638,6 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
         drawMessage(this.batch);
         endRender();
         
-        if (worldStep) {
-            world.step(1f/60f, 6, 2);  //Fix the second and third values.
-            for (Body bodies : deleteQueue) {
-                bodies.setActive(false);
-                deleteQueue.removeValue(bodies, true);
-            }
-            worldStep = false;
-        }
         
         debugRender.render(world, GraphicsDriver.getCurrentCamera().combined);
     }

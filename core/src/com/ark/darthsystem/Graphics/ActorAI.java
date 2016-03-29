@@ -20,10 +20,12 @@ import java.util.ArrayList;
 public class ActorAI extends Player {
     
     private Vector2 patrolCoordinates = Vector2.Zero;
-    private Vector2 patrol() {
+    private boolean patrolling = false;
+    private void patrol(float delta) {
+        patrolling = true;
         final Actor.Facing direction = Actor.Facing.values()[(int) (Math.random() * Actor.Facing.values().length)];
-        final float distance = 2;
-        return new Vector2(getX() + direction.x * distance, getY() + direction.getY() * distance);
+        final float distance = 4;
+        moveTowardsPoint(getX() + direction.x * distance, getY() + direction.getY() * distance, delta);
     }
     
     public enum State {
@@ -32,8 +34,6 @@ public class ActorAI extends Player {
         ATTACK,
         RECHARGE
     }
-            
-    
     
     private float speed = .4f;
     private int vision = (int) (300 / PlayerCamera.PIXELS_TO_METERS);
@@ -91,8 +91,8 @@ public class ActorAI extends Player {
                 attack();
             }
         }
-        else if (patrolCoordinates == Vector2.Zero || moveTowardsPoint(patrolCoordinates.x, patrolCoordinates.y, delta)) {
-            patrolCoordinates = patrol();
+        else if (!patrolling) {
+            patrol(delta);
         }
     }
 
@@ -199,52 +199,67 @@ public class ActorAI extends Player {
         this.setWalking(true);
     }
     
-    public boolean moveTowardsPoint(float x, float y, float delta) {
+    public void moveTowardsPoint(float x, float y, float delta) {
+        addTimer(new GameTimer("MOVE", Math.abs((x - getX()) / (speed * delta)) + Math.abs((y - getY()) / (speed * delta)) / 2f * 1000f + 1000f) {
+            @Override
+            public void event(Actor a) {
+                patrolling = false;
+            }
+            public boolean update(float delta, Actor a) {
+                if (x > (getX()) && x - (getX()) > 4.0 / PlayerCamera.PIXELS_TO_METERS) {
+                    changeX(1);
+                    getMainBody().setLinearVelocity(speed * delta, getMainBody().getLinearVelocity().y);
+                } else if (x < (getX()) && (getX()) - x > 4.0 / PlayerCamera.PIXELS_TO_METERS) {
+                    changeX(-1);
+                    getMainBody().setLinearVelocity(-speed * delta, getMainBody().getLinearVelocity().y);
+                } else {
+                    changeX(0);
+                    getMainBody().setLinearVelocity(0, getMainBody().getLinearVelocity().y);
+                }
 
-        if (x > (this.getX()) && x - (this.getX()) > 4.0 / PlayerCamera.PIXELS_TO_METERS) {
-            changeX(1);
-            getMainBody().setLinearVelocity(speed * (float) (delta), getMainBody().getLinearVelocity().y);
-        } else if (x < (this.getX()) && (this.getX()) - x > 4.0 / PlayerCamera.PIXELS_TO_METERS) {
-            changeX(-1);
-            getMainBody().setLinearVelocity(-speed * (float) (delta), getMainBody().getLinearVelocity().y);
-        } else {
-            changeX(0);
-            getMainBody().setLinearVelocity(0, getMainBody().getLinearVelocity().y);
-        }
-
-        if (y > (this.getY()) && y - (this.getY()) > 4.0 / PlayerCamera.PIXELS_TO_METERS) {
-            changeY(1);
-           getMainBody().setLinearVelocity(getMainBody().getLinearVelocity().x, speed * (float) (delta));
-         } else if (y < (this.getY()) && (this.getY()) - y > 4.0 / PlayerCamera.PIXELS_TO_METERS) {
-            changeY(-1);
-            getMainBody().setLinearVelocity(getMainBody().getLinearVelocity().x, -speed * (float) (delta));
-        } else {
-            changeY(0);
-            getMainBody().setLinearVelocity(getMainBody().getLinearVelocity().x, 0);
-        }
-        setFacing();
-        setFieldState(ActorSprite.SpriteModeField.WALK);
-        switch (getFacing()) {
-            case UP:
-            case UP_LEFT:
-            case UP_RIGHT:
-                changeDuringAnimation(getCurrentBattler().getSprite().getFieldAnimation(ActorSprite.SpriteModeField.WALK, Actor.Facing.UP));
-                break;
-            case RIGHT:
-                changeDuringAnimation(getCurrentBattler().getSprite().getFieldAnimation(ActorSprite.SpriteModeField.WALK, Actor.Facing.RIGHT));
-                break;
-            case LEFT:
-                changeDuringAnimation(getCurrentBattler().getSprite().getFieldAnimation(ActorSprite.SpriteModeField.WALK, Actor.Facing.LEFT));
-                break;
-            case DOWN:
-            case DOWN_LEFT:
-            case DOWN_RIGHT:
-                changeDuringAnimation(getCurrentBattler().getSprite().getFieldAnimation(ActorSprite.SpriteModeField.WALK, Actor.Facing.DOWN));
-                break;
-            default:
-        }
-        this.setWalking(true);
-        return (getMainBody().getLinearVelocity().equals(Vector2.Zero));
+                if (y > (getY()) && y - (getY()) > 4.0 / PlayerCamera.PIXELS_TO_METERS) {
+                    changeY(1);
+                   getMainBody().setLinearVelocity(getMainBody().getLinearVelocity().x, speed * (float) (delta));
+                 } else if (y < (getY()) && (getY()) - y > 4.0 / PlayerCamera.PIXELS_TO_METERS) {
+                    changeY(-1);
+                    getMainBody().setLinearVelocity(getMainBody().getLinearVelocity().x, -speed * (float) (delta));
+                } else {
+                    changeY(0);
+                    getMainBody().setLinearVelocity(getMainBody().getLinearVelocity().x, 0);
+                }
+                setFacing();
+                if (!getMainBody().getLinearVelocity().isZero(.5f)) {
+                    setFieldState(ActorSprite.SpriteModeField.WALK);
+                }
+                else {
+                    setFieldState(ActorSprite.SpriteModeField.STAND);                    
+                }
+                switch (getFacing()) {
+                    case UP:
+                    case UP_LEFT:
+                    case UP_RIGHT:
+                        changeDuringAnimation(getCurrentBattler().getSprite().getFieldAnimation(getFieldState(), Actor.Facing.UP));
+                        break;
+                    case RIGHT:
+                        changeDuringAnimation(getCurrentBattler().getSprite().getFieldAnimation(getFieldState(), Actor.Facing.RIGHT));
+                        break;
+                    case LEFT:
+                        changeDuringAnimation(getCurrentBattler().getSprite().getFieldAnimation(getFieldState(), Actor.Facing.LEFT));
+                        break;
+                    case DOWN:
+                    case DOWN_LEFT:
+                    case DOWN_RIGHT:
+                        changeDuringAnimation(getCurrentBattler().getSprite().getFieldAnimation(getFieldState(), Actor.Facing.DOWN));
+                        break;
+                    default:
+                }
+                setWalking(true);                
+                return super.update(delta, a);
+            }
+            public boolean isFinished() {
+                return super.isFinished() || getMainBody().getLinearVelocity().isZero(.5f);
+            }
+        });
     }    
 
     public ArrayList<BattlerAI> getAllBattlerAI() {

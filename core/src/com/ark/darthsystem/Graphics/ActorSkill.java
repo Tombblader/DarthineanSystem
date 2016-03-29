@@ -345,7 +345,6 @@ public class ActorSkill extends ActorCollision {
     }
     
     public void dispose() {
-//        fieldSound.dispose();
-//        battlerSound.dispose();
+        super.dispose();
     }
 }

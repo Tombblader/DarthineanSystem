@@ -25,7 +25,7 @@ Blue Lady: I just did.  Why are you here?
 Red Lady: I WANNA GUIDE THE INTERN TOO!  Is the intern here?
 Blue Lady: Stop talking in caps.  Yes, the intern is here.
 Red Lady: 'Sup!  Nice to meet you, intern.
-=Nice to meet you too.
+=Nice to meet you too, Miss.
   Red Lady: Look at that, the intern is so polite!  Unlike a certain blue monster.
   Blue Lady: Or a red one.
   Red Lady: HEY!
@@ -80,9 +80,6 @@ Airy Lady: But I'm so curious!  Hey, hey, intern, are you a boy?  A cute boy?  A
       Redy Lady: YOU'RE NOT THE ONE WHO SHE SAID "HEY SEXY" TO!
       =Hey Sexy Blue Lady.
         Blue Lady: Are you happy now?  She said it to me too.  Even in other worlds, women can swing either or both ways.
-        Red Lady: Why aren't you bothered by this?!
-        Blue Lady: People of the same gender can't get each other pregnant.
-        Red Lady: WHAT?!  THAT'S WHAT YOU WERE BOTHERED BY?
       =Hey Sexier Blue Lady.
         Blue Lady: ......What?
         Airy Lady: It looks like she liiiiiiiiikes you more!
@@ -97,4 +94,9 @@ Airy Lady: But I'm so curious!  Hey, hey, intern, are you a boy?  A cute boy?  A
 
 Page 6
 Earthy Lady: Hello.
-Blue Lady: You're here, too.
+Blue Lady: You're here, too.  Are you here for the intern?
+Earthy Lady: Yes.  ...Nice to meet you, intern.
+Blue Lady:  ...
+Red Lady: ...
+Earthy Lady: ...
+Airy Lady: ...

@@ -48,7 +48,6 @@ public abstract class Menu implements State {
     private Array<Menu> subMenuList;
     private final int UP_BUTTON = Keys.UP;
     private BitmapFont font;
-    private final float FONT_SCALE = .25f;
 
     public Menu(String header, String[] choices) {
         this.choices = choices;
