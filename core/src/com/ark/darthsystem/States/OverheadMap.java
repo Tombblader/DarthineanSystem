@@ -58,10 +58,12 @@ import com.badlogic.gdx.physics.box2d.EdgeShape;
 import com.badlogic.gdx.physics.box2d.Filter;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.badlogic.gdx.physics.box2d.Joint;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.Shape;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.physics.box2d.joints.WeldJoint;
 import com.badlogic.gdx.utils.Array;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -70,6 +72,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
     private Fixture boundXMinFixture, boundYMinFixture, boundXMaxFixture, boundYMaxFixture;
     private boolean worldStep;
     private Array<Body> deleteQueue = new Array<>();
+    private Array<Joint> deleteJointQueue = new Array<>();
     private String bgm;
     private ArrayList<String> message = new ArrayList<>();
     private int elapsed = 0;
@@ -290,6 +293,10 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void removeJoint(Joint joint) {
+        deleteJointQueue.add(joint);
     }
 
 
@@ -564,23 +571,16 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
             a.resetAnimation();
         }
         if (a instanceof ActorCollision) {
-            deleteQueue.add(((ActorCollision) (a)).getMainBody());
-            deleteQueue.add(((ActorCollision) (a)).getSensorBody());
+            Array<Body> temp = new Array<>();
+            world.getBodies(temp);
+            if (!deleteQueue.contains(((ActorCollision) (a)).getMainBody() , true) && temp.contains(((ActorCollision) (a)).getMainBody() , true)) {
+                deleteQueue.add(((ActorCollision) (a)).getMainBody());
+            }
+            if (!deleteQueue.contains(((ActorCollision) (a)).getSensorBody(), true) && temp.contains(((ActorCollision) (a)).getSensorBody(), true)) {
+                deleteQueue.add(((ActorCollision) (a)).getSensorBody());
+            }
         }
-    }
-    
-    public void removeActor(Actor a, Iterator it) {
-        it.remove();
-        
-        if (!(a instanceof Player)) {
-            a.resetAnimation();
-        }
-        if (a instanceof ActorCollision) {
-            deleteQueue.add(((ActorCollision) (a)).getMainBody());
-            deleteQueue.add(((ActorCollision) (a)).getSensorBody());
-        }
-    }
-    
+    }    
     
     private void battleStart() {
             ArrayList<ActorBattler> encounters = new ArrayList<>();
@@ -595,12 +595,29 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
     @Override
     public void render(SpriteBatch batch) {
         if (worldStep) {
+            world.step(1f/60f, 6, 2);  //Fix the second and third values.
+            Array<Body> temp = new Array<>();
+            world.getBodies(temp);
             for (Body bodies : deleteQueue) {
 //                bodies.setActive(false);
-                world.destroyBody(bodies);
-                deleteQueue.removeValue(bodies, true);
+                if (!world.isLocked()) {
+                    if (temp.contains(bodies, true)) {
+                        world.destroyBody(bodies);
+                    }
+                    deleteQueue.removeValue(bodies, true);
+                }
             }
-            world.step(1f/60f, 6, 2);  //Fix the second and third values.
+            Array<Joint> temp2 = new Array<>();
+            world.getJoints(temp2);            
+            for (Joint joints : deleteJointQueue) {
+//                bodies.setActive(false);
+                if (!world.isLocked()) {
+                    if (temp2.contains(joints, true)) {
+                        world.destroyJoint(joints);
+                    }
+                    deleteJointQueue.removeValue(joints, true);
+                }
+            }
             worldStep = false;
         }
         GraphicsDriver.setCurrentCamera(GraphicsDriver.getPlayerCamera());

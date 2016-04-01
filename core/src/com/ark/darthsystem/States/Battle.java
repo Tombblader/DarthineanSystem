@@ -13,30 +13,31 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import java.util.ArrayList;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import java.util.Collections;
 import java.util.Iterator;
 
 public class Battle implements State {
 
     private static final String BATTLE_MUSIC = "music/Forbidden Secret Unfolding.mp3";
     private ArrayList<Battler> party;
-    private static ArrayList<Battler> enemy;
-    private static ArrayList<ActorBattler> partyActors;
-    private static ArrayList<ActorBattler> enemyActors;
+    private ArrayList<Battler> enemy;
+    private ArrayList<ActorBattler> partyActors;
+    private ArrayList<ActorBattler> enemyActors;
     private ArrayList<Item> partyItems;
-    private static boolean inBattle = false;
-    private static ArrayList<Action> partyAction = new ArrayList<>();
-    private static ArrayList<Action> enemyAction = new ArrayList<>();
-    private static ArrayList<Action> allAction = new ArrayList<>();
-    private ArrayList<Actor> animations = new ArrayList<>();
+    private boolean inBattle = false;
+    private ArrayList<Action> partyAction;
+    private ArrayList<Action> enemyAction;
+    private ArrayList<Action> allAction;
+    private ArrayList<Actor> animations;
     
-    private int turnCount = 1;
+    private int turnCount;
     private Scenario script;
-    private static State state;
+    private State state;
     private Sprite background;
-    private float elapsed = 0;
+    private float elapsed;
     private ArrayList<GameTimer> timers;
     private String bgm;
-    private ArrayList<Sound> sounds = new ArrayList<>();
+    private ArrayList<Sound> sounds;
 
     
     private void renderPersistentActors(SpriteBatch batch) {
@@ -322,15 +323,15 @@ public class Battle implements State {
             caster.setDelaying(false);
             switch (this) {
                 case Attack:
-                    String[] temp = new String[enemy.size()];
+                    String[] temp = new String[b.getEnemy().size()];
                     for (int i = 0; i < temp.length; i++) {
-                        temp[i] = enemy.get(i).getName();
+                        temp[i] = b.getEnemy().get(i).getName();
                     }
 
                     Menu targetMenu = new Menu("Target?", temp, true, true) {
                         @Override
                         public Object confirm(String choice) {
-                            partyAction.add(new Action(Command.Attack, caster, (enemy.get(this.getCursorIndex())), enemy));
+                            b.getPartyActions().add(new Action(Command.Attack, caster, (b.getEnemy().get(this.getCursorIndex())), b.getEnemy()));
                             return choice;
                         }
                     };
@@ -338,7 +339,7 @@ public class Battle implements State {
                     break;
                 case Defend:
                     caster.defend();
-                    partyAction.add(new Action(this, caster));
+                    b.getPartyActions().add(new Action(this, caster));
                     break;
                 case Skill:
                     final ArrayList<Skill> getSkillList = new ArrayList<>();
@@ -371,7 +372,7 @@ public class Battle implements State {
                                             Menu targetMenu = new Menu("Target?", temp, true, true) {
                                                 @Override
                                                 public Object confirm(String choice) {
-                                                    partyAction.add(new Action(Command.Skill,
+                                                    b.getPartyActions().add(new Action(Command.Skill,
                                                             getSkill,
                                                             caster,
                                                             (targetList.get(this.getCursorIndex())),
@@ -381,7 +382,7 @@ public class Battle implements State {
                                             };
                                             GraphicsDriver.addMenu(targetMenu);
                                         } else {
-                                            partyAction.add(new Action(Command.Skill,
+                                            b.getPartyActions().add(new Action(Command.Skill,
                                                     getSkill,
                                                     caster,
                                                     targetList));
@@ -422,7 +423,7 @@ public class Battle implements State {
                                             true) {
                                         @Override
                                         public Object confirm(String choice) {
-                                            partyAction.add(useItem.use(caster,
+                                            b.getPartyActions().add(useItem.use(caster,
                                                     targetList.get(getCursorIndex()),
                                                     targetList));
                                             return choice;
@@ -430,7 +431,7 @@ public class Battle implements State {
                                     };
                                     GraphicsDriver.addMenu(menuTarget);
                                 } else {
-                                    partyAction.add(useItem.use(caster,
+                                    b.getPartyActions().add(useItem.use(caster,
                                             targetList));
                                 }
                                 return choice;
@@ -443,12 +444,12 @@ public class Battle implements State {
                     break;
                 case Charge:
                 case Analyze:
-                    partyAction.add(new Action(this, caster));
+                    b.getPartyActions().add(new Action(this, caster));
                     break;
                 case Delay:
                     caster.setDelaying(true);
                 case Run:
-                    partyAction.add(new Action(this, caster));
+                    b.getPartyActions().add(new Action(this, caster));
                     break;
             }
         }
@@ -463,10 +464,11 @@ public class Battle implements State {
         END;
 
         State() {
-
+            maxTicks = 0;
+            ticks = 0;
         }
-        private int maxTicks = 0;
-        private int ticks = 0;
+        private int maxTicks;
+        private int ticks;
 
         public int getMaxTicks() {
             return maxTicks;
@@ -478,8 +480,8 @@ public class Battle implements State {
 
         public boolean update() {
             ticks++;
-            if (ticks
-                    > maxTicks) {
+            if (ticks > maxTicks) {
+                System.out.println("Update Complete");
                 ticks = 0;
                 return true;
             }
@@ -499,6 +501,13 @@ public class Battle implements State {
             ArrayList<ActorBattler> initializeEnemy,
             ArrayList<Item> initializeItems,
             Scenario initializeScenario) {
+        this.sounds = new ArrayList<>();
+        this.elapsed = 0;
+        this.turnCount = 1;
+        this.animations = new ArrayList<>();
+        this.allAction = new ArrayList<>();
+        this.enemyAction = new ArrayList<>();
+        this.partyAction = new ArrayList<>();
         partyActors = initializeParty;
         party = new ArrayList<>();
         for (ActorBattler allies : initializeParty) {
@@ -520,6 +529,13 @@ public class Battle implements State {
             ArrayList<Item> initializeItems,
             Scenario initializeScenario,
             String initializeMusic) {
+        this.sounds = new ArrayList<>();
+        this.elapsed = 0;
+        this.turnCount = 1;
+        this.animations = new ArrayList<>();
+        this.allAction = new ArrayList<>();
+        this.enemyAction = new ArrayList<>();
+        this.partyAction = new ArrayList<>();
         bgm = initializeMusic;
         partyActors = initializeParty;
         party = new ArrayList<>();
@@ -544,6 +560,7 @@ public class Battle implements State {
         background = new Sprite(new Texture(Gdx.files.internal("backgrounds/title.png")));
         background.flip(false, true);
         updatePersistentActors(0);
+        
         state = State.START;
         return this;
     }
@@ -565,9 +582,10 @@ public class Battle implements State {
                     if (allAction.get(i).getCaster().getSpeed() > allAction.get(j).getCaster().getSpeed() ||
                             (allAction.get(j).getCaster().getSpeed() == allAction.get(j).getCaster().getSpeed() && 
                             Math.random() < .5)) {
-                        tempAction = allAction.get(i);
-                        allAction.set(i, allAction.get(j));
-                        allAction.set(j, tempAction);
+                        Collections.swap(allAction, i, j);
+//                        tempAction = allAction.get(i);
+//                        allAction.set(i, allAction.get(j));
+//                        allAction.set(j, tempAction);
                     }
                 }
             }
@@ -637,12 +655,20 @@ public class Battle implements State {
         return party;
     }
 
-    public static boolean inBattle() {
+    public boolean inBattle() {
         return inBattle;
     }
 
     public ArrayList<Action> getActions() {
         return allAction;
+    }
+
+    public ArrayList<Action> getPartyActions() {
+        return partyAction;
+    }
+
+    public ArrayList<Action> getEnemyActions() {
+        return enemyAction;
     }
 
     public Battler getAlly(int index) {
@@ -701,11 +727,12 @@ public class Battle implements State {
         GraphicsDriver.setCurrentCamera(GraphicsDriver.getCamera());
         updateTemporaryActors(delta);        
         if (animations.isEmpty()) {
+            System.out.println(state + ": Ticks" + state.getTicks() + " MaxTicks: " + state.getMaxTicks());
             switch (state) {
                 case START:
                     BattleDriver.printline("Battle Start!");
-                    State.COMMAND.setMaxTicks(party.size());
                     state = State.COMMAND;
+                    state.setMaxTicks(party.size());
                     break;
                 case COMMAND:
                     if (!(State.COMMAND.update())) {
@@ -723,6 +750,7 @@ public class Battle implements State {
                     enemyCommand();
                     reorder();
                     state = State.ACTION;
+                    state.setTicks(0);
                     state.setMaxTicks(allAction.size() * 2);
                     break;
                 case ACTION:
@@ -730,8 +758,7 @@ public class Battle implements State {
                         Action currentAction;
                         if (State.ACTION.getTicks() % 2 == 1) {
                             currentAction = allAction.get(State.ACTION.getTicks() / 2);
-                            if (!(currentAction == null)
-                                    && currentAction.getCaster().canMove()) {
+                            if (!(currentAction == null) && currentAction.getCaster().canMove()) {
                                 currentAction.declareAttack(this);
                                 if (partyAction.contains(currentAction)
 //                                        && currentAction.getCommand() == Battle.Command.Skill && 
@@ -743,11 +770,10 @@ public class Battle implements State {
                             }
                         } else if (State.ACTION.getTicks() % 2 == 0) {
                             currentAction = allAction.get(State.ACTION.getTicks() / 2 - 1);
-                            if (!(currentAction == null) && 
-                                    currentAction.getCaster().isAlive()) {
+                            if (!(currentAction == null) && currentAction.getCaster().isAlive()) {
                                 currentAction.calculateDamage(this);
-                                if (!allAction.isEmpty() && 
-                                        currentAction.getCommand() != Command.Run) {
+                                if (!allAction.isEmpty() && currentAction.getCommand() != Command.Run) {
+                                
                                 }
                             }
                         }
@@ -759,6 +785,7 @@ public class Battle implements State {
                         statusCheck();
                         state = State.COMMAND;
                         state.setTicks(0);
+                        state.setMaxTicks(party.size());
                     }
                     break;
                 case END:

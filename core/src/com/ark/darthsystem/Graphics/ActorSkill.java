@@ -322,7 +322,8 @@ public class ActorSkill extends ActorCollision {
         Array<Joint> temp = new Array<>();
         map.getPhysicsWorld().getJoints(temp);
         if (joint != null && temp.contains(joint, true)) {
-            map.getPhysicsWorld().destroyJoint(joint);
+            
+            map.removeJoint(joint);
         }
         Filter filter = new Filter();
         filter.categoryBits = isPlayer ? ActorCollision.CATEGORY_PLAYER_SKILL : ActorCollision.CATEGORY_AI_SKILL;
