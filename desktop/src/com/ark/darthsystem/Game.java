@@ -6,7 +6,9 @@
 package com.ark.darthsystem;
 
 import com.ark.darthsystem.Graphics.GraphicsDriver;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.lwjgl3.*;
+import com.badlogic.gdx.graphics.GL30;
 
 /**
  *
@@ -18,7 +20,7 @@ public class Game {
         Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
         config.setWindowedMode(1024, 768);
         config.setTitle("Adventurer");
-        config.useOpenGL3(true, 3, 2);
+        config.useOpenGL3(true, 3, 3);        
         config.useVsync(true);
         GraphicsDriver listener = new GraphicsDriver();  // example of sharing context
         new Lwjgl3Application(listener, config);
