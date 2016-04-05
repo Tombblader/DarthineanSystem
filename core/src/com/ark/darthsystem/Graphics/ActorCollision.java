@@ -109,22 +109,22 @@ public class ActorCollision extends Actor {
             map.getPhysicsWorld().getBodies(temp);
             for (Body b : temp) {
                 if (b.getUserData() != null && b.getUserData().equals(this)) {
-                    map.getPhysicsWorld().destroyBody(b);
+                    map.removeBody(b);
                 }
             }
         }
         super.setMap(map, isPlayer);
-        Array<Body> temp = new Array<Body>();
-        map.getPhysicsWorld().getBodies(temp);
-        if (temp.contains(body, false)) {
-            body.setActive(true);
-            body.setTransform(getX(), getY(), 0);
-            sensorBody.setActive(true);
-            sensorBody.setTransform(getX(), getY(), 0);
-        }
-        else {
+//        Array<Body> temp = new Array<Body>();
+//        map.getPhysicsWorld().getBodies(temp);
+//        if (temp.contains(body, true)) {
+//            body.setActive(true);
+//            body.setTransform(getX(), getY(), 0);
+//            sensorBody.setActive(true);
+//            sensorBody.setTransform(getX(), getY(), 0);
+//        }
+//        else {
             generateBody(map);
-        }
+//        }
         
     }
     

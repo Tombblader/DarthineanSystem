@@ -130,6 +130,7 @@ public class Player extends ActorCollision {
             addTimer(new GameTimer("Attack", getAttackAnimation().getChargeTime() * 1000f) {
                 @Override
                 public void event(Actor a) {
+//                    getAttackAnimation().playFieldSound();
                     fieldState = ActorSprite.SpriteModeField.ATTACK;
                     setPause((getAttackAnimation().getAnimationDelay() * 1000f));
                     getAttackAnimation().setMap(getCurrentMap(), true);

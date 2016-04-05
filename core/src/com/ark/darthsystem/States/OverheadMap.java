@@ -295,7 +295,11 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
     public void removeJoint(Joint joint) {
         deleteJointQueue.add(joint);
     }
-
+    
+    public void removeBody(Body body) {
+        deleteQueue.add(body);
+    }
+ 
 
     private enum TileType {
 
