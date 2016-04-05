@@ -27,7 +27,6 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObject;
-import com.badlogic.gdx.maps.MapObjects;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.objects.CircleMapObject;
 import com.badlogic.gdx.maps.objects.PolygonMapObject;
@@ -40,7 +39,6 @@ import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
-import com.badlogic.gdx.maps.tiled.objects.TiledMapTileMapObject;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Rectangle;
@@ -63,7 +61,6 @@ import com.badlogic.gdx.physics.box2d.Manifold;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.Shape;
 import com.badlogic.gdx.physics.box2d.World;
-import com.badlogic.gdx.physics.box2d.joints.WeldJoint;
 import com.badlogic.gdx.utils.Array;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -346,7 +343,6 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
         height = prop.get("height", Integer.class) * prop.get("tileheight", Integer.class);        
         playerActors = new Array<>();
         enemyActors = new Array<>();
-//        World.setVelocityThreshold(1000f);
         world = new World(new Vector2(0, 0), true);
         world.setContactListener(new ContactListener() {
 
@@ -599,7 +595,6 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
             Array<Body> temp = new Array<>();
             world.getBodies(temp);
             for (Body bodies : deleteQueue) {
-//                bodies.setActive(false);
                 if (!world.isLocked()) {
                     if (temp.contains(bodies, true)) {
                         world.destroyBody(bodies);
@@ -610,7 +605,6 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
             Array<Joint> temp2 = new Array<>();
             world.getJoints(temp2);            
             for (Joint joints : deleteJointQueue) {
-//                bodies.setActive(false);
                 if (!world.isLocked()) {
                     if (temp2.contains(joints, true)) {
                         world.destroyJoint(joints);

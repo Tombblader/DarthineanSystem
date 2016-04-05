@@ -119,7 +119,7 @@ public class ActorSkill extends ActorCollision {
         relX = getX;
         relY = getY;
         skill = getSkill;
-        aftercastDelay = 0;
+        aftercastDelay = delay;
         translateX = 0;
         translateY = 0;
         area = Area.FRONT;
@@ -140,7 +140,7 @@ public class ActorSkill extends ActorCollision {
         relX = getX;
         relY = getY;
         skill = getSkill;
-        aftercastDelay = 0;
+        aftercastDelay = delay;
         translateX = 0;
         translateY = 0;
         area = getArea;

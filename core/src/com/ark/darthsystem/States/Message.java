@@ -35,8 +35,6 @@ public class Message implements State {
     private ArrayList<String> currentMessage;
     private Message message;
     private LinkedList<Message> messageQueue;
-//    private final int MESSAGE_FONT_SIZE = 12;
-//    private final float FONT_SCALE = .25f;
     private BitmapFont font;
     private Animation face = null;
     private float elapsed = 0;

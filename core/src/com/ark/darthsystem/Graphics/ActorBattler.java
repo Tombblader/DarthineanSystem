@@ -7,7 +7,6 @@ package com.ark.darthsystem.Graphics;
 
 import com.ark.darthsystem.Database.Database2;
 import com.ark.darthsystem.Battler;
-import com.ark.darthsystem.Database.Database1;
 import com.ark.darthsystem.Skill;
 
 import java.util.ArrayList;

@@ -44,7 +44,6 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
     private static com.ark.darthsystem.Graphics.Camera currentCamera;
     private static String backgroundMusicString = null;
     private static Sprite screenshot;
-    private static float transition = 0;
     private static ArrayList<Transition> transitions = new ArrayList<>();
     public static Player getPlayer() {
         return Database2.player;
@@ -246,8 +245,6 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
     
     @Override
     public void create() {
-        System.out.println(
-                Gdx.gl30.glGetString(GL30.GL_VERSION));
         input = new Input();
         float w = Gdx.graphics.getWidth();
         float h = Gdx.graphics.getHeight();
@@ -276,6 +273,7 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
         states = new Array();
         states.add(new Title());
     }
+    
     public void dispose() {
         super.dispose();
         InterfaceDatabase.dispose();
@@ -285,9 +283,11 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
         batch.dispose();
         masterSheet.dispose();
     }
+    
     public static void pauseTime(int time) {
         transitions.add(new Transition(Transition.TransitionType.PAUSE, time));
     }
+    
     public void render() {
         if (getPlayer().totalPartyKill()) {
             BattleDriver.fullHeal(getPlayer().getAllBattlers());
@@ -324,8 +324,8 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
             }
         }
         batch.end();
-//        sleep(60);
     }
+    
     public void resize(int width,
             int height) {
         System.out.println(Gdx.app.getApplicationListener().
@@ -354,7 +354,7 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
     
     public static void transition(Sprite s) {
         screenshot = s;
-        transition = 1f;
+//        transitions.add(new Transition());
     }
     
     public static void clearAllStates() {

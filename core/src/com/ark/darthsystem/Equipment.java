@@ -12,34 +12,12 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
  */
 public class Equipment extends Item implements Cloneable {
 
-    /**
-     *
-     */
     public enum EquipmentType {
 
-        /**
-         *
-         */
         RightArm(0),
-
-        /**
-         *
-         */
         LeftArm(1),
-
-        /**
-         *
-         */
         Body(2),
-
-        /**
-         *
-         */
         Head(3),
-
-        /**
-         *
-         */
         Accessory(4);
         int slot;
 

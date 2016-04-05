@@ -131,6 +131,14 @@ public class Battle implements State {
         allAction.clear();
         enemyAction.clear();
         partyAction.clear();
+        final int BATTLE_DELAY = 3000;
+        GraphicsDriver.getPlayer().getTimers().forEach(t -> {
+            if (t.getName().equalsIgnoreCase("Invulnerable") || t.getName().equalsIgnoreCase("Jump")) {
+                t.event(GraphicsDriver.getPlayer());
+                GraphicsDriver.getPlayer().getTimers().removeValue(t, true);
+            }
+        });
+        GraphicsDriver.getPlayer().setInvulnerability(BATTLE_DELAY);
         GraphicsDriver.removeState(this);
     }
 

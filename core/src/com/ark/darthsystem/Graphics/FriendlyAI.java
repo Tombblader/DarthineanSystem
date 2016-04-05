@@ -5,8 +5,6 @@
  */
 package com.ark.darthsystem.Graphics;
 
-import java.util.ArrayList;
-
 /**
  *
  * @author Keven

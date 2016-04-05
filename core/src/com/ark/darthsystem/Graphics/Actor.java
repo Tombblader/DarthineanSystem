@@ -73,8 +73,6 @@ public class Actor {
     private int lastXFacing = 0;
     private float lastY;
     private int lastYFacing = 0;
-    private int nextFrame = 0;
-    private int pauseTime = 0;
     private float speed;
     private ActorSprite sprite;
     private Array<GameTimer> timers = new Array<>();
