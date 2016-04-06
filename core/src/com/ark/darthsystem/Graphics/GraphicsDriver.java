@@ -10,10 +10,10 @@ import com.ark.darthsystem.Database.SoundDatabase;
 import com.ark.darthsystem.States.*;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Graphics.DisplayMode;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.GL30;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -40,11 +40,13 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
     private static Array<State> states;
     private static TextureAtlas masterSheet;
     private static Music backgroundMusic;
-    private static final int WIDTH = 1024, HEIGHT = 768;
+//    private static final int WIDTH, HEIGHT;
     private static com.ark.darthsystem.Graphics.Camera currentCamera;
     private static String backgroundMusicString = null;
     private static Sprite screenshot;
     private static ArrayList<Transition> transitions = new ArrayList<>();
+    private static final float FONT_SCALE = 1f;
+    
     public static Player getPlayer() {
         return Database2.player;
     }
@@ -71,12 +73,11 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
     }
 
     public static int getHeight() {
-        return HEIGHT;
-
+        return Gdx.graphics.getHeight();
     }
 
     public static int getWidth() {
-        return WIDTH;
+        return Gdx.graphics.getWidth();
     }
 
     public static void newGame() {
@@ -238,16 +239,43 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
             e.printStackTrace();
         }
     }
+    public static void pauseTime(int time) {
+        transitions.add(new Transition(Transition.TransitionType.PAUSE, time));
+    }
+    public static void transition() {
+        transitions.add(new Transition(Transition.TransitionType.FADE_IN_OUT));
+    }
+    public static void transition(Transition transition) {
+        transitions.add(transition);
+    }
+    public static void transition(Sprite s) {
+        screenshot = s;
+//        transitions.add(new Transition());
+    }
+    public static void clearAllStates() {
+        for (State s : states) {
+            s.dispose();
+        }
+        states.clear();
+    }
+    public static void flashScreen() {
+        screenshot.setColor(1, 1, 1, 1);
+    }
     private Input input;
 
     private long diff, start = System.currentTimeMillis();
-    private static final float FONT_SCALE = 1f;
     
     @Override
     public void create() {
         input = new Input();
+        DisplayMode optimal = null;
+        for (DisplayMode d : Gdx.graphics.getDisplayModes()) {
+            if (d.width == 1024 && d.height == 768)
+            optimal = d;
+        }
+        Gdx.graphics.setFullscreenMode(optimal);
         float w = Gdx.graphics.getWidth();
-        float h = Gdx.graphics.getHeight();
+        float h = Gdx.graphics.getHeight();        
         camera = new Camera(w, h);
         playerCamera = new PlayerCamera(w, h);
         currentCamera = camera;
@@ -284,9 +312,6 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
         masterSheet.dispose();
     }
     
-    public static void pauseTime(int time) {
-        transitions.add(new Transition(Transition.TransitionType.PAUSE, time));
-    }
     
     public void render() {
         if (getPlayer().totalPartyKill()) {
@@ -341,44 +366,8 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
     
     public void update(float delta) {
         getCurrentState().update(delta);
+//        System.out.println(Integer.toString(Gdx.graphics.getFramesPerSecond()));
         Gdx.graphics.setTitle(Integer.toString(Gdx.graphics.getFramesPerSecond()));        
     }
     
-    public static void transition() {
-        transitions.add(new Transition(Transition.TransitionType.FADE_IN_OUT));
-    }
-
-    public static void transition(Transition transition) {
-        transitions.add(transition);
-    }
-    
-    public static void transition(Sprite s) {
-        screenshot = s;
-//        transitions.add(new Transition());
-    }
-    
-    public static void clearAllStates() {
-        for (State s : states) {
-            s.dispose();
-        }
-        states.clear();
-    }
-
-    public void sleep(int fps) {
-        if (fps > 0) {
-            diff = System.currentTimeMillis() - start;
-            long targetDelay = 1000 / fps;
-            if (diff < targetDelay) {
-                try {
-                    Thread.sleep(targetDelay - diff);
-                } catch (InterruptedException e) {
-                }
-            }
-            start = System.currentTimeMillis();
-        }
-    }
-    
-    public static void flashScreen() {
-        screenshot.setColor(1, 1, 1, 1);
-    }
 }

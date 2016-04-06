@@ -21,12 +21,8 @@ import java.util.StringTokenizer;
  */
 public class BattleDriver {
 
-    /**
-     *
-     */
-    public BattleDriver() {
-
-    }
+    public static String textCondition = "";
+    public static final int WRAP_LENGTH = 80;
 
     /**
      *
@@ -317,11 +313,8 @@ public class BattleDriver {
     /**
      *
      */
-    public static String textCondition = "";
-
-    /**
-     *
-     */
-    public static final int WRAP_LENGTH = 80;
+    public BattleDriver() {
+        
+    }
 
 }

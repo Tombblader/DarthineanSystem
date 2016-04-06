@@ -20,34 +20,6 @@ import java.util.HashMap;
  */
 public class ActorSprite implements Serializable {
 
-    public enum SpriteModeFace {
-        ANGRY,
-        HAPPY,
-        NORMAL,
-        OUCH,
-        SAD,
-        CUSTOM;
-    }
-
-    public enum SpriteModeField {
-        STAND,
-        WALK,
-        JUMP,
-        ATTACK,
-        CAST,
-        SKILL,
-        OUCH,
-        DEAD,
-        CUSTOM;
-    }
-
-    public enum SpriteModeBattler {
-        BATTLER
-/*      ATTACK,
-        CAST,
-        */
-        
-    }
 
     private transient String masterSpriteSheet;
     private transient HashMap<SpriteModeFace, Animation> spriteSheetFace = new HashMap<>();
@@ -168,6 +140,32 @@ public class ActorSprite implements Serializable {
 
     public Animation getCurrentBattlerAnimation() {
         return currentBattlerImage;
+    }
+    public enum SpriteModeFace {
+        ANGRY,
+        HAPPY,
+        NORMAL,
+        OUCH,
+        SAD,
+        CUSTOM;
+    }
+    public enum SpriteModeField {
+        STAND,
+        WALK,
+        JUMP,
+        ATTACK,
+        CAST,
+        SKILL,
+        OUCH,
+        DEAD,
+        CUSTOM;
+    }
+    public enum SpriteModeBattler {
+        BATTLER
+        /*      ATTACK,
+        CAST,
+        */
+        
     }
 
 }

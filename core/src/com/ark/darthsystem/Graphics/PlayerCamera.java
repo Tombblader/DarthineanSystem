@@ -5,13 +5,13 @@ public class PlayerCamera extends Camera {
     public static final float PIXELS_TO_METERS = 32.0F;
 
     public PlayerCamera(float width, float height) {
-        super(width, height);
-        setToOrtho(true, GraphicsDriver.getWidth() / PIXELS_TO_METERS, GraphicsDriver.getHeight() / PIXELS_TO_METERS);
+        super((int) width / PIXELS_TO_METERS, (int) height / PIXELS_TO_METERS);
+        setToOrtho(true, (int) GraphicsDriver.getWidth() / PIXELS_TO_METERS, (int) GraphicsDriver.getHeight() / PIXELS_TO_METERS);
     }
 
     public void followPlayer(float x, float y, float boundX, float boundY) {
-        final float Y_TOP_OFFSET = 72f;
-        final float Y_BOTTOM_OFFSET = 72f;
+        final float Y_TOP_OFFSET = 74f;
+        final float Y_BOTTOM_OFFSET = GraphicsDriver.getHeight() / 6f;
         float posX = x;
         float posY = y;
 

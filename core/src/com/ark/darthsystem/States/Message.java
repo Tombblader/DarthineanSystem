@@ -27,7 +27,7 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
  */
 public class Message implements State {
 
-    private final int MESSAGE_HEIGHT = HEIGHT / 6;
+    private final int MESSAGE_HEIGHT;
     private String header = "";
     private boolean isPause;
     private final int CONFIRM_BUTTON = Keys.Z;
@@ -47,10 +47,12 @@ public class Message implements State {
     }
     
     public Message() {
+        this.MESSAGE_HEIGHT = GraphicsDriver.getHeight() / 6;
         
     }
 
     public Message(ArrayList<String> getMessage) {
+        this.MESSAGE_HEIGHT = GraphicsDriver.getHeight() / 6;
         messageQueue = new LinkedList<>();
         message = new Message();
         currentMessage = getMessage;
@@ -127,29 +129,29 @@ public class Message implements State {
             batch.setProjectionMatrix(GraphicsDriver.getCamera().combined);
         }
 
-        InterfaceDatabase.TEXT_BOX.draw(batch, GraphicsDriver.getCamera().getScreenPositionX(), HEIGHT - MESSAGE_HEIGHT + GraphicsDriver.getCamera().getScreenPositionY(), WIDTH, MESSAGE_HEIGHT);
+        InterfaceDatabase.TEXT_BOX.draw(batch, GraphicsDriver.getCamera().getScreenPositionX(), GraphicsDriver.getHeight() - MESSAGE_HEIGHT + GraphicsDriver.getCamera().getScreenPositionY(), GraphicsDriver.getWidth(), MESSAGE_HEIGHT);
         
         int i = 0;
         if (message.face != null) {
             batch.draw(message.face.getKeyFrame(GraphicsDriver.getCurrentTime() * 1000), (PADDING_X - 64) / 2, 
-                 HEIGHT - MESSAGE_HEIGHT / 2 - 32 + GraphicsDriver.getCamera().getScreenPositionY());
+                 GraphicsDriver.getHeight() - MESSAGE_HEIGHT / 2 - 32 + GraphicsDriver.getCamera().getScreenPositionY());
         }
         
         if (!message.header.equals("")) {
             InterfaceDatabase.TEXT_BOX.draw(batch, 
                     1 + GraphicsDriver.getCamera().getScreenPositionX(), 
-                    HEIGHT - MESSAGE_HEIGHT - 30 + GraphicsDriver.getCamera().getScreenPositionY(),
+                    GraphicsDriver.getHeight() - MESSAGE_HEIGHT - 30 + GraphicsDriver.getCamera().getScreenPositionY(),
                     message.header.length() * 14,
                     font.getCapHeight() + 18);
             GraphicsDriver.drawMessage(batch, font, message.header,
                     10 + GraphicsDriver.getCamera().getScreenPositionX(),
-                    ((HEIGHT - MESSAGE_HEIGHT - 24) + GraphicsDriver.getCamera().getScreenPositionY()));
+                    ((GraphicsDriver.getHeight() - MESSAGE_HEIGHT - 24) + GraphicsDriver.getCamera().getScreenPositionY()));
         }
         for (String m : message.currentMessage) {
             GraphicsDriver.drawMessage(batch, font,
                     i == messageIndex ? m.substring(0, (int) (elapsed)) : (i < messageIndex ? m : ""),
                 PADDING_X + GraphicsDriver.getCamera().getScreenPositionX() - (message.face == null ? 64 : 0),
-                ((PADDING_Y + HEIGHT - MESSAGE_HEIGHT + font.getLineHeight() * font.getScaleY() * i) + GraphicsDriver.getCamera().getScreenPositionY()));
+                ((PADDING_Y + GraphicsDriver.getHeight() - MESSAGE_HEIGHT + font.getLineHeight() * font.getScaleY() * i) + GraphicsDriver.getCamera().getScreenPositionY()));
             i++;
         }
 

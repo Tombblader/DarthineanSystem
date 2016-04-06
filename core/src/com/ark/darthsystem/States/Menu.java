@@ -32,7 +32,7 @@ public abstract class Menu implements State {
 
     private final int BACK_BUTTON = Keys.X;
     private String[] choices;
-    private final int MESSAGE_HEIGHT = HEIGHT / 6;
+    private final int MESSAGE_HEIGHT;
     private final int CONFIRM_BUTTON = Keys.Z;
     private Sprite cursorTexture;
     private int cursorIndex;
@@ -50,6 +50,7 @@ public abstract class Menu implements State {
     private BitmapFont font;
 
     public Menu(String header, String[] choices) {
+        this.MESSAGE_HEIGHT = GraphicsDriver.getHeight() / 6;
         this.choices = choices;
         this.header = header;
         isPause = true;
@@ -65,11 +66,12 @@ public abstract class Menu implements State {
         parameter.color = Color.WHITE;
         font = gen.generateFont(parameter);
         gen.dispose();
-        MENU_X = WIDTH - 200;
-        MENU_Y = HEIGHT - MESSAGE_HEIGHT - (24 + choices.length * (int) (GraphicsDriver.getFont().getData().capHeight * GraphicsDriver.getFont().getData().scaleY + PADDING));
+        MENU_X = GraphicsDriver.getWidth() - 200;
+        MENU_Y = GraphicsDriver.getHeight() - MESSAGE_HEIGHT - (24 + choices.length * (int) (GraphicsDriver.getFont().getData().capHeight * GraphicsDriver.getFont().getData().scaleY + PADDING));
     }
 
     public Menu(String header, String[] choices, boolean pause, boolean mutable) {
+        this.MESSAGE_HEIGHT = GraphicsDriver.getHeight() / 6;
         this.choices = choices;
         this.header = header;
         isPause = pause;
@@ -85,11 +87,12 @@ public abstract class Menu implements State {
         parameter.color = Color.WHITE;
         font = gen.generateFont(parameter);
         gen.dispose();
-        MENU_X = WIDTH - 200;
-        MENU_Y = HEIGHT - MESSAGE_HEIGHT - (24 + choices.length * (int) (GraphicsDriver.getFont().getData().capHeight * GraphicsDriver.getFont().getData().scaleY + PADDING));
+        MENU_X = GraphicsDriver.getWidth() - 200;
+        MENU_Y = GraphicsDriver.getHeight() - MESSAGE_HEIGHT - (24 + choices.length * (int) (GraphicsDriver.getFont().getData().capHeight * GraphicsDriver.getFont().getData().scaleY + PADDING));
     }
 
     public Menu(String[] choices) {
+        this.MESSAGE_HEIGHT = GraphicsDriver.getHeight() / 6;
         this.choices = choices;
         header = "";
         isPause = true;
@@ -105,8 +108,8 @@ public abstract class Menu implements State {
         parameter.color = Color.WHITE;
         font = gen.generateFont(parameter);
         gen.dispose();
-        MENU_X = WIDTH - 200;
-        MENU_Y = HEIGHT - MESSAGE_HEIGHT - (24 + choices.length * (int) (GraphicsDriver.getFont().getData().capHeight * GraphicsDriver.getFont().getData().scaleY + PADDING));
+        MENU_X = GraphicsDriver.getWidth() - 200;
+        MENU_Y = GraphicsDriver.getHeight() - MESSAGE_HEIGHT - (24 + choices.length * (int) (GraphicsDriver.getFont().getData().capHeight * GraphicsDriver.getFont().getData().scaleY + PADDING));
     }
 
     public void addSubMenu(Menu m) {
@@ -227,11 +230,11 @@ public abstract class Menu implements State {
                     cursorTexture.getScaleY(),
                     cursorTexture.getRotation());
         
-        InterfaceDatabase.TEXT_BOX.draw(batch, GraphicsDriver.getCamera().getScreenPositionX(), HEIGHT - MESSAGE_HEIGHT + GraphicsDriver.getCamera().getScreenPositionY(), WIDTH, MESSAGE_HEIGHT);        
+        InterfaceDatabase.TEXT_BOX.draw(batch, GraphicsDriver.getCamera().getScreenPositionX(), GraphicsDriver.getHeight() - MESSAGE_HEIGHT + GraphicsDriver.getCamera().getScreenPositionY(), GraphicsDriver.getWidth(), MESSAGE_HEIGHT);        
         GraphicsDriver.drawMessage(batch, font,
                 header,
                 15 + GraphicsDriver.getCamera().getScreenPositionX(),
-                (12 + (HEIGHT - MESSAGE_HEIGHT) + GraphicsDriver.getCamera().getScreenPositionY()));
+                (12 + (GraphicsDriver.getHeight() - MESSAGE_HEIGHT) + GraphicsDriver.getCamera().getScreenPositionY()));
         if (isOverhead) {
             batch.end();
             batch.setProjectionMatrix(GraphicsDriver.getPlayerCamera().combined);

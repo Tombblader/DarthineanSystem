@@ -23,13 +23,13 @@ import com.badlogic.gdx.utils.Array;
  * @author Keven
  */
 public class ActorCollision extends Actor {
-    public static final short CATEGORY_WALLS = 0x0004;
-    public static final short CATEGORY_OBSTACLES = 0x0008;
-    public static final short CATEGORY_PLAYER = 0x0001;
     public static final short CATEGORY_AI = 0x0002;
-    public static final short CATEGORY_PLAYER_SKILL = 0x0010;
     public static final short CATEGORY_AI_SKILL = 0x0020;
     public static final short CATEGORY_EVENT = 0x0040;
+    public static final short CATEGORY_OBSTACLES = 0x0008;
+    public static final short CATEGORY_PLAYER = 0x0001;
+    public static final short CATEGORY_PLAYER_SKILL = 0x0010;
+    public static final short CATEGORY_WALLS = 0x0004;
     
     private Body body;
     private Fixture fixture;
@@ -85,24 +85,37 @@ public class ActorCollision extends Actor {
         return body;
     }
     
-    public Body getSensorBody() {
-        return sensorBody;
-    }
 
     public void setMainBody(Body body) {
         this.body = body;
     }
     
+    
+    public Fixture getMainFixture() {
+        return fixture;
+    }
+    public void setPause(float pause) {
+        super.setPause(pause);
+        body.setLinearVelocity(0, 0);
+    }
+    public Body getSensorBody() {
+        return sensorBody;
+    }
     public void setSensorBody(Body body) {
         sensorBody = body;
-    }    
-    
-    public void update(float delta) {
-        super.update(delta);
-        setX(Math.round(body.getPosition().x * 100f) / 100f);
-        setY(Math.round(body.getPosition().y * 100f) / 100f);
+    }
+
+    public Fixture getSensorFixture() {
+        return sensorFixture;
     }
     
+    public void setMainFilter(short category, short mask) {
+        Filter f = new Filter();
+        f.categoryBits = category;
+        f.maskBits = mask;
+        fixture.setFilterData(f);
+//        sensorFixture.setFilterData(f);
+    }
     public void setMap(OverheadMap map, boolean isPlayer) {
         if (getCurrentMap() != null) {
             Array<Body> temp = new Array<Body>();
@@ -123,25 +136,9 @@ public class ActorCollision extends Actor {
 //            sensorBody.setTransform(getX(), getY(), 0);
 //        }
 //        else {
-            generateBody(map);
+generateBody(map);
 //        }
-        
-    }
-    
-    public Fixture getMainFixture() {
-        return fixture;
-    }
 
-    public Fixture getSensorFixture() {
-        return sensorFixture;
-    }
-    
-    public void setMainFilter(short category, short mask) {
-        Filter f = new Filter();
-        f.categoryBits = category;
-        f.maskBits = mask;
-        fixture.setFilterData(f);
-//        sensorFixture.setFilterData(f);
     }
     
     public void setSensorFilter(short category, short mask) {
@@ -150,9 +147,9 @@ public class ActorCollision extends Actor {
         f.maskBits = mask;
         sensorFixture.setFilterData(f);
     }
-    
-    public void setPause(float pause) {
-        super.setPause(pause);
-        body.setLinearVelocity(0, 0);
+    public void update(float delta) {
+        super.update(delta);
+        setX(Math.round(body.getPosition().x * 100f) / 100f);
+        setY(Math.round(body.getPosition().y * 100f) / 100f);
     }
 }

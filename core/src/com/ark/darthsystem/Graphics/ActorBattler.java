@@ -19,8 +19,8 @@ import java.util.ArrayList;
 public class ActorBattler {
 
     Battler battler;
-    ArrayList<ActorSkill> skillList = new ArrayList<>();
     ActorSkill currentSkill;
+    ArrayList<ActorSkill> skillList = new ArrayList<>();
     ActorSprite spriteSheet;
 
     public ActorBattler(Battler b, ActorSprite s) {
@@ -35,23 +35,6 @@ public class ActorBattler {
         currentSkill = skillList.get(0);
     }
 
-    public Battler getBattler() {
-        return battler;
-    }
-
-    public ArrayList<ActorSkill> getSkillList() {
-        ArrayList<ActorSkill> tempSkillList = new ArrayList<>();
-        for (ActorSkill a : skillList) {
-            if (a.getSkill().getLevel() <= battler.getLevel()) {
-                tempSkillList.add(a);
-            }
-        }
-        return tempSkillList;
-    }
-
-    public ActorSkill getCurrentSkill() {
-        return currentSkill;
-    }
 
     public ActorSkill activateCurrentSkill() {
         if (battler.getMP() >= currentSkill.getSkill().getCost()) {
@@ -61,19 +44,19 @@ public class ActorBattler {
         return null;
     }
 
-    public final ActorSkill activateSkill(String s) {
-        if (battler.getMP() >= battler.getSkill(s).getCost()) {
-            battler.changeMP(battler.getSkill(s).getCost());
-            return currentSkill;
-        }
-        return null;
-    }
 
     public ActorSkill activateCurrentSkill(Player p) {
         if (battler.getMP() >= currentSkill.getSkill().getCost()) {
             battler.changeMP(currentSkill.getSkill().getCost());
             currentSkill.setInvoker(p);
-            currentSkill.playFieldSound();
+//            currentSkill.playFieldSound();
+            return currentSkill;
+        }
+        return null;
+    }
+    public final ActorSkill activateSkill(String s) {
+        if (battler.getMP() >= battler.getSkill(s).getCost()) {
+            battler.changeMP(battler.getSkill(s).getCost());
             return currentSkill;
         }
         return null;
@@ -101,12 +84,27 @@ public class ActorBattler {
         currentSkill = getSkillList().get(currentIndex);
     }
 
-    public ActorSprite getSprite() {
-        return spriteSheet;
-    }
 
     public ActorBattler clone() {
         return new ActorBattler(battler.clone(), spriteSheet);
+    }
+    public Battler getBattler() {
+        return battler;
+    }
+    public ActorSkill getCurrentSkill() {
+        return currentSkill;
+    }
+    public ArrayList<ActorSkill> getSkillList() {
+        ArrayList<ActorSkill> tempSkillList = new ArrayList<>();
+        for (ActorSkill a : skillList) {
+            if (a.getSkill().getLevel() <= battler.getLevel()) {
+                tempSkillList.add(a);
+            }
+        }
+        return tempSkillList;
+    }
+    public ActorSprite getSprite() {
+        return spriteSheet;
     }
 
 }

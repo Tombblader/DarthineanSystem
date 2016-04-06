@@ -17,8 +17,6 @@ import com.ark.darthsystem.Graphics.GraphicsDriver;
 import com.ark.darthsystem.Graphics.Input;
 import com.ark.darthsystem.Graphics.Player;
 import com.ark.darthsystem.Graphics.PlayerCamera;
-import static com.ark.darthsystem.States.State.HEIGHT;
-import static com.ark.darthsystem.States.State.WIDTH;
 import com.ark.darthsystem.States.events.Event;
 import com.ark.darthsystem.States.events.Teleport;
 
@@ -66,6 +64,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
+    private float ppt = 0;    
     private Fixture boundXMinFixture, boundYMinFixture, boundXMaxFixture, boundYMaxFixture;
     private boolean worldStep;
     private Array<Body> deleteQueue = new Array<>();
@@ -74,246 +73,6 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
     private ArrayList<String> message = new ArrayList<>();
     private int elapsed = 0;
     private final int MESSAGE_TIME = 3000;
-
-    public float getWidth() {
-        return width / PlayerCamera.PIXELS_TO_METERS;
-    }
-
-    public float getHeight() {
-        return height / PlayerCamera.PIXELS_TO_METERS;
-    }
-    
-    public String getMusic() {
-        return bgm;
-    }
-
-    private void generateBounds() {
-        BodyDef genericBodyType = new BodyDef();
-        genericBodyType.type = BodyDef.BodyType.StaticBody;
-        genericBodyType.fixedRotation = true;
-        {
-            genericBodyType.position.set(0, 0);
-            boundXMin = world.createBody(genericBodyType);
-            boundYMin = world.createBody(genericBodyType);
-            boundXMax = world.createBody(genericBodyType);
-            boundYMax = world.createBody(genericBodyType);
-        }
-        FixtureDef fixtureDef = new FixtureDef();
-        EdgeShape shape1 = new EdgeShape() {
-            {
-                this.set(new Vector2(0, 0), new Vector2(0, height / PlayerCamera.PIXELS_TO_METERS));
-            }
-        };
-        EdgeShape shape2 = new EdgeShape() {
-            {
-                this.set(new Vector2(0, 0), new Vector2(width / PlayerCamera.PIXELS_TO_METERS, 0));
-            }
-        };
-        EdgeShape shape3 = new EdgeShape() {
-            {
-                this.set(new Vector2(width / PlayerCamera.PIXELS_TO_METERS, 0), new Vector2(width / PlayerCamera.PIXELS_TO_METERS, height / PlayerCamera.PIXELS_TO_METERS));
-            }
-        };
-        EdgeShape shape4 = new EdgeShape() {
-            {
-                this.set(new Vector2(0, height / PlayerCamera.PIXELS_TO_METERS), new Vector2(width / PlayerCamera.PIXELS_TO_METERS, height / PlayerCamera.PIXELS_TO_METERS));
-            }
-        };
-        fixtureDef.density = 1f;
-        fixtureDef.friction = 0.2f;
-        fixtureDef.restitution = 0.0f;
-        fixtureDef.filter.categoryBits = ActorCollision.CATEGORY_WALLS;
-        fixtureDef.filter.maskBits = -1;
-        // Create our fixture and attach it to the body
-        fixtureDef.shape = shape1;
-        boundXMinFixture = boundXMin.createFixture(fixtureDef);
-        fixtureDef.shape = shape2;
-        boundXMinFixture = boundYMin.createFixture(fixtureDef);
-        fixtureDef.shape = shape3;
-        boundXMinFixture = boundXMax.createFixture(fixtureDef);
-        fixtureDef.shape = shape4;
-        boundXMinFixture = boundYMax.createFixture(fixtureDef);
-        shape1.dispose();
-        shape2.dispose();
-        shape3.dispose();
-        shape4.dispose();
-
-    }
-    
-    private static float ppt = 0;
-
-    private Array<Body> generateObjects() {
-        ppt = PlayerCamera.PIXELS_TO_METERS;
-//        MapObjects objects = map.getLayers().get("collision").getObjects();
-//        System.out.println(objects.getCount());
-        Array<Body> bodies = new Array<>();
-        for (MapLayer layer: map.getLayers()) {
-            for(MapObject object : layer.getObjects()) {
-                if (object instanceof TextureMapObject) {
-                    continue;
-                }
-
-                MapProperties properties = object.getProperties();
-
-                if (properties.get("type", String.class).equalsIgnoreCase("actor")) {
-    //                Actor a = AIDatabase.actors.get(properties.get("Name", String.class));
-    //                a.setMap(this, false);
-    //                a.setX(properties.get("x", Float.class));
-    //                a.setY(properties.get("y", Float.class));
-                    continue;
-                }
-
-                Shape shape;
-                if (object instanceof RectangleMapObject) {
-                    shape = getRectangle((RectangleMapObject)object);
-                }
-                else if (object instanceof PolygonMapObject) {
-                    shape = getPolygon((PolygonMapObject)object);
-                }
-                else if (object instanceof PolylineMapObject) {
-                    shape = getPolyline((PolylineMapObject)object);
-                }
-                else if (object instanceof CircleMapObject) {
-                    shape = getCircle((CircleMapObject)object);
-                }
-                else {
-                    continue;
-                }
-
-                BodyDef bd = new BodyDef();
-                bd.type = BodyType.StaticBody;            
-                Body body = world.createBody(bd);
-
-                Fixture f = body.createFixture(shape, 1);
-                Filter filter = new Filter();
-                body.setUserData(object);
-
-                if (properties.get("type", String.class).equalsIgnoreCase("wall")) {
-                    filter.categoryBits = ActorCollision.CATEGORY_WALLS;               
-                    filter.maskBits = -1;
-                } else if (properties.get("type", String.class).equalsIgnoreCase("obstacle")) {
-                    filter.categoryBits = ActorCollision.CATEGORY_OBSTACLES;
-                    filter.maskBits = ActorCollision.CATEGORY_AI | ActorCollision.CATEGORY_PLAYER;
-                } else if (properties.get("type", String.class).equalsIgnoreCase("event")) {
-                    body.setUserData(addEventFromMap(object));
-                    filter.categoryBits = ActorCollision.CATEGORY_EVENT;
-                    f.setSensor(true);
-                    filter.maskBits = ActorCollision.CATEGORY_PLAYER;
-                }
-
-                f.setFilterData(filter);            
-                bodies.add(body);
-
-                shape.dispose();
-            }
-        }
-        return bodies;
-    }
-
-    private static PolygonShape getRectangle(RectangleMapObject rectangleObject) {
-        Rectangle rectangle = rectangleObject.getRectangle();
-        PolygonShape polygon = new PolygonShape();
-        Vector2 size = new Vector2((rectangle.x + rectangle.width * 0.5f) / ppt,
-                                   (rectangle.y + rectangle.height * 0.5f ) / ppt);
-        polygon.setAsBox(rectangle.width * 0.5f / ppt,
-                         rectangle.height * 0.5f / ppt,
-                         size,
-                         0.0f);
-        return polygon;
-    }
-
-    private static CircleShape getCircle(CircleMapObject circleObject) {
-        Circle circle = circleObject.getCircle();
-        CircleShape circleShape = new CircleShape();
-        circleShape.setRadius(circle.radius / ppt);
-        circleShape.setPosition(new Vector2(circle.x / ppt, circle.y / ppt));
-        return circleShape;
-    }
-
-    private static PolygonShape getPolygon(PolygonMapObject polygonObject) {
-        PolygonShape polygon = new PolygonShape();
-        float[] vertices = polygonObject.getPolygon().getTransformedVertices();
-
-        float[] worldVertices = new float[vertices.length];
-
-        for (int i = 0; i < vertices.length; ++i) {
-            worldVertices[i] = vertices[i] / ppt;
-        }
-
-        polygon.set(worldVertices);
-        return polygon;
-    }
-
-    private static ChainShape getPolyline(PolylineMapObject polylineObject) {
-        float[] vertices = polylineObject.getPolyline().getTransformedVertices();
-        Vector2[] worldVertices = new Vector2[vertices.length / 2];
-
-        for (int i = 0; i < vertices.length / 2; ++i) {
-            worldVertices[i] = new Vector2();
-            worldVertices[i].x = vertices[i * 2] / ppt;
-            worldVertices[i].y = vertices[i * 2 + 1] / ppt;
-        }
-
-        ChainShape chain = new ChainShape(); 
-        chain.createChain(worldVertices);
-        return chain;
-    }
-    
-    private Event addEventFromMap(MapObject object) {
-        MapProperties prop = object.getProperties();
-        Event e = null;
-        switch (Integer.parseInt(prop.get("eventID", String.class))) {
-            case 0:
-                break;
-            case 1:
-                break;
-            case 2: //Teleport
-                String [] parameters = prop.get("parameters", String.class).split(",* ");
-                e = new Teleport(null, 
-                        prop.get("x", Float.class),
-                        prop.get("y", Float.class), 
-                        6/60f, 
-                        parameters[0], 
-                        Integer.parseInt(parameters[1]),
-                        Integer.parseInt(parameters[2]));
-                break;
-            default:
-                break;            
-        }
-        e.setMap(this, false);
-        return e;
-    }
-
-    private void updateProperties(MapProperties prop) {
-        try {
-            bgm = "music/" + prop.get("music", String.class);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void removeJoint(Joint joint) {
-        deleteJointQueue.add(joint);
-    }
-    
-    public void removeBody(Body body) {
-        deleteQueue.add(body);
-    }
- 
-
-    private enum TileType {
-
-        WALL,
-        OBSTACLE, //You can jump over these.
-        EVENT,
-        PIT;
-
-        @Override
-        public String toString() {
-            return super.toString().toLowerCase();
-        }
-    }
-
     private Array<Actor> playerActors;
     private Array<Actor> enemyActors;
     private final int DRAW_SPRITES_AFTER_LAYER = 2;
@@ -515,6 +274,216 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
         this(mapName);
         bgm = bgmName;
     }
+    private PolygonShape getRectangle(RectangleMapObject rectangleObject) {
+        Rectangle rectangle = rectangleObject.getRectangle();
+        PolygonShape polygon = new PolygonShape();
+        Vector2 size = new Vector2((rectangle.x + rectangle.width * 0.5f) / ppt,
+                (rectangle.y + rectangle.height * 0.5f ) / ppt);
+        polygon.setAsBox(rectangle.width * 0.5f / ppt,
+                rectangle.height * 0.5f / ppt,
+                size,
+                0.0f);
+        return polygon;
+    }
+    private CircleShape getCircle(CircleMapObject circleObject) {
+        Circle circle = circleObject.getCircle();
+        CircleShape circleShape = new CircleShape();
+        circleShape.setRadius(circle.radius / ppt);
+        circleShape.setPosition(new Vector2(circle.x / ppt, circle.y / ppt));
+        return circleShape;
+    }
+    private PolygonShape getPolygon(PolygonMapObject polygonObject) {
+        PolygonShape polygon = new PolygonShape();
+        float[] vertices = polygonObject.getPolygon().getTransformedVertices();
+        
+        float[] worldVertices = new float[vertices.length];
+        
+        for (int i = 0; i < vertices.length; ++i) {
+            worldVertices[i] = vertices[i] / ppt;
+        }
+        
+        polygon.set(worldVertices);
+        return polygon;
+    }
+    private ChainShape getPolyline(PolylineMapObject polylineObject) {
+        float[] vertices = polylineObject.getPolyline().getTransformedVertices();
+        Vector2[] worldVertices = new Vector2[vertices.length / 2];
+        
+        for (int i = 0; i < vertices.length / 2; ++i) {
+            worldVertices[i] = new Vector2();
+            worldVertices[i].x = vertices[i * 2] / ppt;
+            worldVertices[i].y = vertices[i * 2 + 1] / ppt;
+        }
+        
+        ChainShape chain = new ChainShape();
+        chain.createChain(worldVertices);
+        return chain;
+    }
+    public float getWidth() {
+        return Math.round(width / PlayerCamera.PIXELS_TO_METERS);
+    }
+    public float getHeight() {
+        return Math.round(height / PlayerCamera.PIXELS_TO_METERS);
+    }
+    public String getMusic() {
+        return bgm;
+    }
+    private void generateBounds() {
+        BodyDef genericBodyType = new BodyDef();
+        genericBodyType.type = BodyDef.BodyType.StaticBody;
+        genericBodyType.fixedRotation = true;
+        {
+            genericBodyType.position.set(0, 0);
+            boundXMin = world.createBody(genericBodyType);
+            boundYMin = world.createBody(genericBodyType);
+            boundXMax = world.createBody(genericBodyType);
+            boundYMax = world.createBody(genericBodyType);
+        }
+        FixtureDef fixtureDef = new FixtureDef();
+        EdgeShape shape1 = new EdgeShape() {
+            {
+                this.set(new Vector2(0, 0), new Vector2(0, height / PlayerCamera.PIXELS_TO_METERS));
+            }
+        };
+        EdgeShape shape2 = new EdgeShape() {
+            {
+                this.set(new Vector2(0, 0), new Vector2(width / PlayerCamera.PIXELS_TO_METERS, 0));
+            }
+        };
+        EdgeShape shape3 = new EdgeShape() {
+            {
+                this.set(new Vector2(width / PlayerCamera.PIXELS_TO_METERS, 0), new Vector2(width / PlayerCamera.PIXELS_TO_METERS, height / PlayerCamera.PIXELS_TO_METERS));
+            }
+        };
+        EdgeShape shape4 = new EdgeShape() {
+            {
+                this.set(new Vector2(0, height / PlayerCamera.PIXELS_TO_METERS), new Vector2(width / PlayerCamera.PIXELS_TO_METERS, height / PlayerCamera.PIXELS_TO_METERS));
+            }
+        };
+        fixtureDef.density = 1f;
+        fixtureDef.friction = 0.2f;
+        fixtureDef.restitution = 0.0f;
+        fixtureDef.filter.categoryBits = ActorCollision.CATEGORY_WALLS;
+        fixtureDef.filter.maskBits = -1;
+        // Create our fixture and attach it to the body
+        fixtureDef.shape = shape1;
+        boundXMinFixture = boundXMin.createFixture(fixtureDef);
+        fixtureDef.shape = shape2;
+        boundXMinFixture = boundYMin.createFixture(fixtureDef);
+        fixtureDef.shape = shape3;
+        boundXMinFixture = boundXMax.createFixture(fixtureDef);
+        fixtureDef.shape = shape4;
+        boundXMinFixture = boundYMax.createFixture(fixtureDef);
+        shape1.dispose();
+        shape2.dispose();
+        shape3.dispose();
+        shape4.dispose();
+        
+    }
+    private Array<Body> generateObjects() {
+        ppt = PlayerCamera.PIXELS_TO_METERS;
+//        MapObjects objects = map.getLayers().get("collision").getObjects();
+//        System.out.println(objects.getCount());
+Array<Body> bodies = new Array<>();
+for (MapLayer layer: map.getLayers()) {
+    for(MapObject object : layer.getObjects()) {
+        if (object instanceof TextureMapObject) {
+            continue;
+        }
+        
+        MapProperties properties = object.getProperties();
+        
+        if (properties.get("type", String.class).equalsIgnoreCase("actor")) {
+            //                Actor a = AIDatabase.actors.get(properties.get("Name", String.class));
+            //                a.setMap(this, false);
+            //                a.setX(properties.get("x", Float.class));
+            //                a.setY(properties.get("y", Float.class));
+            continue;
+        }
+        
+        Shape shape;
+        if (object instanceof RectangleMapObject) {
+            shape = getRectangle((RectangleMapObject)object);
+        }
+        else if (object instanceof PolygonMapObject) {
+            shape = getPolygon((PolygonMapObject)object);
+        }
+        else if (object instanceof PolylineMapObject) {
+            shape = getPolyline((PolylineMapObject)object);
+        }
+        else if (object instanceof CircleMapObject) {
+            shape = getCircle((CircleMapObject)object);
+        }
+        else {
+            continue;
+        }
+        
+        BodyDef bd = new BodyDef();
+        bd.type = BodyType.StaticBody;
+        Body body = world.createBody(bd);
+        
+        Fixture f = body.createFixture(shape, 1);
+        Filter filter = new Filter();
+        body.setUserData(object);
+        
+        if (properties.get("type", String.class).equalsIgnoreCase("wall")) {
+            filter.categoryBits = ActorCollision.CATEGORY_WALLS;
+            filter.maskBits = -1;
+        } else if (properties.get("type", String.class).equalsIgnoreCase("obstacle")) {
+            filter.categoryBits = ActorCollision.CATEGORY_OBSTACLES;
+            filter.maskBits = ActorCollision.CATEGORY_AI | ActorCollision.CATEGORY_PLAYER;
+        } else if (properties.get("type", String.class).equalsIgnoreCase("event")) {
+            body.setUserData(addEventFromMap(object));
+            filter.categoryBits = ActorCollision.CATEGORY_EVENT;
+            f.setSensor(true);
+            filter.maskBits = ActorCollision.CATEGORY_PLAYER;
+        }
+        
+        f.setFilterData(filter);
+        bodies.add(body);
+        
+        shape.dispose();
+    }
+}
+return bodies;
+    }
+    private Event addEventFromMap(MapObject object) {
+        MapProperties prop = object.getProperties();
+        Event e = null;
+        switch (Integer.parseInt(prop.get("eventID", String.class))) {
+            case 0:
+                break;
+            case 1:
+                break;
+            case 2: //Teleport
+                String [] parameters = prop.get("parameters", String.class).split(",* ");
+                e = new Teleport(null,
+                        prop.get("x", Float.class),
+                        prop.get("y", Float.class),
+                        6/60f,
+                        parameters[0],
+                        Integer.parseInt(parameters[1]),
+                        Integer.parseInt(parameters[2]));
+                break;
+            default:
+                break;
+        }
+        e.setMap(this, false);
+        return e;
+    }
+    private void updateProperties(MapProperties prop) {
+        try {
+            bgm = "music/" + prop.get("music", String.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public void removeJoint(Joint joint) {
+        deleteJointQueue.add(joint);
+    }
+    public void removeBody(Body body) {
+        deleteQueue.add(body);
+    }
 
     @Override
     public float update(float delta) {
@@ -620,9 +589,9 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
         }
         GraphicsDriver.setCurrentCamera(GraphicsDriver.getPlayerCamera());
         GraphicsDriver.getPlayerCamera().followPlayer(
-                Math.round(Database2.player.getX() * 50f) / 50f,
-                Math.round(Database2.player.getY() * 50f) / 50f,
-                width < WIDTH ? WIDTH : width,
+                Math.round(Database2.player.getX() * 25f) / 25f,
+                Math.round(Database2.player.getY() * 25f) / 25f,
+                width < GraphicsDriver.getWidth() ? GraphicsDriver.getWidth() : width,
                 height);
         GraphicsDriver.getPlayerCamera().update();
         setView(GraphicsDriver.getPlayerCamera());
@@ -741,18 +710,30 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
     private void drawMessage(Batch batch) {
         final int PADDING_X = 15;
         final int PADDING_Y = 12;
-        final int MESSAGE_HEIGHT = HEIGHT / 6;
+        final int MESSAGE_HEIGHT = GraphicsDriver.getHeight() / 6;
         final float FONT_HEIGHT = GraphicsDriver.getFont().getLineHeight();
         
-        InterfaceDatabase.TEXT_BOX.draw(batch, GraphicsDriver.getCamera().getScreenPositionX(), HEIGHT - MESSAGE_HEIGHT + GraphicsDriver.getCamera().getScreenPositionY(), WIDTH, MESSAGE_HEIGHT);
+        InterfaceDatabase.TEXT_BOX.draw(batch, GraphicsDriver.getCamera().getScreenPositionX(), GraphicsDriver.getHeight() - MESSAGE_HEIGHT + GraphicsDriver.getCamera().getScreenPositionY(), GraphicsDriver.getWidth(), MESSAGE_HEIGHT);
         
         int i = 0;
         
         for (String m : message) {
             GraphicsDriver.drawMessage(batch, GraphicsDriver.getPlayer().getFont(), m,
                 PADDING_X + GraphicsDriver.getCamera().getScreenPositionX(),
-                ((PADDING_Y + HEIGHT - MESSAGE_HEIGHT + FONT_HEIGHT * i) + GraphicsDriver.getCamera().getScreenPositionY()));
+                ((PADDING_Y + GraphicsDriver.getHeight() - MESSAGE_HEIGHT + FONT_HEIGHT * i) + GraphicsDriver.getCamera().getScreenPositionY()));
             i++;
+        }
+    }
+    private enum TileType {
+        
+        WALL,
+        OBSTACLE, //You can jump over these.
+        EVENT,
+        PIT;
+        
+        @Override
+        public String toString() {
+            return super.toString().toLowerCase();
         }
     }
 

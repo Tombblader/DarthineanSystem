@@ -15,8 +15,8 @@ import com.ark.darthsystem.Graphics.GraphicsDriver;
  */
 public interface State {
 
-    public final int WIDTH = GraphicsDriver.getWidth();
-    public final int HEIGHT = GraphicsDriver.getHeight();
+//    public final int WIDTH = GraphicsDriver.getWidth();
+//    public final int HEIGHT = GraphicsDriver.getHeight();
     
     public float update(float delta);
 

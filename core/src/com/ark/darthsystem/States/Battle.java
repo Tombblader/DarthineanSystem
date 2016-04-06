@@ -24,12 +24,11 @@ public class Battle implements State {
     private ArrayList<ActorBattler> partyActors;
     private ArrayList<ActorBattler> enemyActors;
     private ArrayList<Item> partyItems;
-    private boolean inBattle = false;
+//    private boolean inBattle = false;
     private ArrayList<Action> partyAction;
     private ArrayList<Action> enemyAction;
     private ArrayList<Action> allAction;
     private ArrayList<Actor> animations;
-    
     private int turnCount;
     private Scenario script;
     private State state;
@@ -38,6 +37,60 @@ public class Battle implements State {
     private ArrayList<GameTimer> timers;
     private String bgm;
     private ArrayList<Sound> sounds;
+    
+    public Battle(ArrayList<ActorBattler> initializeParty,
+            ArrayList<ActorBattler> initializeEnemy,
+            ArrayList<Item> initializeItems,
+            Scenario initializeScenario) {
+        this.sounds = new ArrayList<>();
+        this.elapsed = 0;
+        this.turnCount = 1;
+        this.animations = new ArrayList<>();
+        this.allAction = new ArrayList<>();
+        this.enemyAction = new ArrayList<>();
+        this.partyAction = new ArrayList<>();
+        partyActors = initializeParty;
+        party = new ArrayList<>();
+        for (ActorBattler allies : initializeParty) {
+            party.add(allies.getBattler());
+        }
+        enemyActors = initializeEnemy;
+        enemy = new ArrayList<>();
+        for (ActorBattler enemies : initializeEnemy) {
+            enemy.add((enemies.getBattler()));
+        }
+        partyItems = initializeItems;
+        script = initializeScenario;
+        turnCount = 1;
+        bgm = BATTLE_MUSIC;
+    }
+    public Battle(ArrayList<ActorBattler> initializeParty,
+            ArrayList<ActorBattler> initializeEnemy,
+            ArrayList<Item> initializeItems,
+            Scenario initializeScenario,
+            String initializeMusic) {
+        this.sounds = new ArrayList<>();
+        this.elapsed = 0;
+        this.turnCount = 1;
+        this.animations = new ArrayList<>();
+        this.allAction = new ArrayList<>();
+        this.enemyAction = new ArrayList<>();
+        this.partyAction = new ArrayList<>();
+        bgm = initializeMusic;
+        partyActors = initializeParty;
+        party = new ArrayList<>();
+        for (ActorBattler allies : initializeParty) {
+            party.add(allies.getBattler());
+        }
+        enemyActors = initializeEnemy;
+        enemy = new ArrayList<>();
+        for (ActorBattler enemies : initializeEnemy) {
+            enemy.add((enemies.getBattler()));
+        }
+        partyItems = initializeItems;
+        script = initializeScenario;
+        turnCount = 1;
+    }
 
     
     private void renderPersistentActors(SpriteBatch batch) {
@@ -47,7 +100,7 @@ public class Battle implements State {
             if (enemy.get(i).isAlive()) {
                 Sprite s = (Sprite) (enemyActors.get(i).getSprite().getCurrentBattlerAnimation().getKeyFrame(elapsed));
                 batch.draw(s, 
-                    (float) ((WIDTH + divider * (i - 1)) / 2 + divider * i) - s.getOriginX(),
+                    (float) ((GraphicsDriver.getWidth() + divider * (i - 1)) / 2 + divider * i) - s.getOriginX(),
                     BATTLER_Y - s.getOriginY(),
                     s.getOriginX(),
                     s.getOriginY(),
@@ -153,7 +206,7 @@ public class Battle implements State {
             ActorSkill tempSkill = Database2.SkillToActor(currentAction.getSkill());
             sounds.add(tempSkill.getBattlerSound());
             animations.add(tempSkill.getBattlerAnimation());
-            animations.get(animations.size() - 1).setX((float) ((WIDTH + divider * (enemy.indexOf(tempBattler) - 1)) / 2 + divider * enemy.indexOf(tempBattler)));
+            animations.get(animations.size() - 1).setX((float) ((GraphicsDriver.getWidth() + divider * (enemy.indexOf(tempBattler) - 1)) / 2 + divider * enemy.indexOf(tempBattler)));
             animations.get(animations.size() - 1).setY(BATTLER_Y);
         }
         if (currentAction.getCommand() == Command.Skill && 
@@ -171,7 +224,7 @@ public class Battle implements State {
             ActorSkill tempSkill = (currentAction.getCaster().getEquipment(Equipment.EquipmentType.LeftArm.getSlot()).getAnimation());
             sounds.add(tempSkill.getBattlerSound());
             animations.add(tempSkill.getBattlerAnimation());
-            animations.get(animations.size() - 1).setX((float) ((WIDTH + divider * (enemy.indexOf(tempBattler) - 1)) / 2 + divider * enemy.indexOf(tempBattler)));
+            animations.get(animations.size() - 1).setX((float) ((GraphicsDriver.getWidth() + divider * (enemy.indexOf(tempBattler) - 1)) / 2 + divider * enemy.indexOf(tempBattler)));
             animations.get(animations.size() - 1).setY(BATTLER_Y);
         }
     }
@@ -181,384 +234,6 @@ public class Battle implements State {
         return bgm;
     }
 
-    public enum Stats {
-
-        Normal(1, 1.0, 0.0, 0, "'s wounds are healed!"),
-        Death(8, .10, 0.0, 0, " has instantly died!"),
-        Poison(3, .25, 0.1, 7, " has been poisoned!"),
-        Sleep(4, .25, 0.1, 8, 0.5, " has fallen asleep!"),
-        Silence(5, .25, 0.16, 6, "'s skills have been sealed!"),
-        Fog(2, .5, .15, 7, 0.2, " is covered in a hallucinating fog!"),
-        Confuse(6, .25, 0.15, 5, 0.25, " has become confused!"),
-        Petrify(7, .10, 0.0, 0, " is now petrified!");
-        private int priority;
-        private int turnCount;
-        private double success;
-        private double fade;
-        private double attackFade;
-        private String message;
-
-        private Stats(int setPriority,
-                double setSuccess,
-                double setFade,
-                int setTurnCount,
-                double setAttackFade,
-                String getMessage) {
-            priority = setPriority;
-            success = setSuccess;
-            fade = setFade;
-            turnCount = setTurnCount;
-            attackFade = setAttackFade;
-            message = getMessage;
-        }
-
-        private Stats(int setPriority,
-                double setSuccess,
-                double setFade,
-                int setTurnCount,
-                String getMessage) {
-            priority = setPriority;
-            success = setSuccess;
-            fade = setFade;
-            turnCount = setTurnCount;
-            attackFade = 0.0;
-            message = getMessage;
-        }
-
-        public int getPriority() {
-            return priority;
-        }
-
-        public int getTurnCount() {
-            return turnCount;
-        }
-
-        public boolean isSuccessful(Battler getCaster, Battler getTarget) {
-            return (Math.random() <= success
-                    - ((getCaster.getLevel()
-                    - getTarget.getLevel())
-                    / (getCaster.getLevel()
-                    + getTarget.getLevel())
-                    + (getCaster.getMagic()
-                    - getTarget.getMagic())
-                    / (getCaster.getMagic()
-                    + getTarget.getMagic())));
-        }
-
-        public boolean faded(Battler getCaster) {
-            return (this != Battle.Stats.Normal
-                    && turnCount != 0
-                    && (turnCount >= getTurnCount() - getCaster.getTurnCount()
-                    || (Math.random() <= fade 
-                    //                    - (1.0 / (101.1 - getCaster.getLevel())
-                    //                    / (getCaster.getDefense() - getCaster.getLevel())
-                    //                    / (getCaster.getMagic() - getCaster.getLevel()))
-                    )));
-        }
-
-        public boolean attackFaded() {
-            return ((this != Battle.Stats.Normal)
-                    && attackFade != 0.0
-                    && Math.random() < attackFade);
-        }
-
-        public String getMessage() {
-            return message;
-        }
-
-    }
-
-    public static enum Element {
-
-        Physical,
-        Heal,
-        Male,
-        Female,
-        Fire,
-        Water,
-        Wind,
-        Earth,
-        Light,
-        Dark;
-
-        private Element() {
-        }
-
-        public Element getWeakness() {
-            Element weakness = null;
-            switch (this) {
-                case Male:
-                    weakness = Battle.Element.Female;
-                    break;
-                case Female:
-                    weakness = Battle.Element.Male;
-                    break;
-                case Fire:
-                    weakness = Battle.Element.Water;
-                    break;
-                case Water:
-                    weakness = Battle.Element.Fire;
-                    break;
-                case Wind:
-                    weakness = Battle.Element.Earth;
-                    break;
-                case Earth:
-                    weakness = Battle.Element.Wind;
-                    break;
-                case Light:
-                    weakness = Battle.Element.Dark;
-                    break;
-                case Dark:
-                    weakness = Battle.Element.Light;
-                    break;
-            }
-            return weakness;
-        }
-    }
-
-    public enum Command {
-
-        Attack,
-        Defend,
-        Skill,
-        Charge,
-        Analyze,
-        Delay,
-        Item,
-        Run;
-
-        public void run(final Battle b, final Battler caster) {
-            caster.setDelaying(false);
-            switch (this) {
-                case Attack:
-                    String[] temp = new String[b.getEnemy().size()];
-                    for (int i = 0; i < temp.length; i++) {
-                        temp[i] = b.getEnemy().get(i).getName();
-                    }
-
-                    Menu targetMenu = new Menu("Target?", temp, true, true) {
-                        @Override
-                        public Object confirm(String choice) {
-                            b.getPartyActions().add(new Action(Command.Attack, caster, (b.getEnemy().get(this.getCursorIndex())), b.getEnemy()));
-                            return choice;
-                        }
-                    };
-                    GraphicsDriver.addMenu(targetMenu);
-                    break;
-                case Defend:
-                    caster.defend();
-                    b.getPartyActions().add(new Action(this, caster));
-                    break;
-                case Skill:
-                    final ArrayList<Skill> getSkillList = new ArrayList<>();
-                    if (caster.getSkillList() != null) {
-                        for (Skill skillList1 : caster.getSkillList()) {
-                            if (skillList1 != null && skillList1.getLevel() <= caster.getLevel()) {
-                                getSkillList.add(skillList1);
-                            }
-                        }
-                        try {
-                            temp = new String[getSkillList.size()];
-                            for (int i = 0; i < temp.length; i++) {
-                                temp[i] = getSkillList.get(i).getName();
-                            }
-                            Menu skillMenu = new Menu("Activate which skill?",
-                                    temp,
-                                    true,
-                                    true) {
-                                @Override
-                                public Object confirm(String choice) {
-                                    final Skill getSkill = getSkillList.get(getCursorIndex());
-                                    final ArrayList<Battler> targetList = (ArrayList<Battler>) (getSkill. getAlly() ? b.getAlly() : b. getEnemy());
-                                    if (getSkill.getCost() <= caster.getMP()) {
-                                        if (!getSkill.getAll()) {
-                                            String[] temp = new String[targetList.size()];
-                                            for (int i = 0; i < temp.length; i++) {
-                                                temp[i] = targetList.get(i).getName();
-                                            }
-
-                                            Menu targetMenu = new Menu("Target?", temp, true, true) {
-                                                @Override
-                                                public Object confirm(String choice) {
-                                                    b.getPartyActions().add(new Action(Command.Skill,
-                                                            getSkill,
-                                                            caster,
-                                                            (targetList.get(this.getCursorIndex())),
-                                                            targetList));
-                                                    return choice;
-                                                }
-                                            };
-                                            GraphicsDriver.addMenu(targetMenu);
-                                        } else {
-                                            b.getPartyActions().add(new Action(Command.Skill,
-                                                    getSkill,
-                                                    caster,
-                                                    targetList));
-                                        }
-                                    } else {
-                                        cancel();
-                                    }
-                                    return null;
-                                }
-                            };
-                            GraphicsDriver.addMenu(skillMenu);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    } else {
-
-                    }
-                    break;
-                case Item:
-                    if (b.getItem() != null) {
-                        Menu menuItem = new Menu("Use which Item?",
-                                b.getItemNames(),
-                                true,
-                                true) {
-                            @Override
-                            public Object confirm(String choice) {
-                                final Item useItem;
-                                useItem = b.getItem(this.getCursorIndex());
-                                final ArrayList<Battler> targetList = (ArrayList<Battler>) (useItem.getAlly() ? b.getAlly() : b.getEnemy());
-                                if (!useItem.getAll()) {
-                                    String[] temp = new String[targetList.size()];
-                                    for (int i = 0; i < temp.length; i++) {
-                                        temp[i] = targetList.get(i).getName();
-                                    }
-                                    Menu menuTarget = new Menu("Target?",
-                                            temp,
-                                            true,
-                                            true) {
-                                        @Override
-                                        public Object confirm(String choice) {
-                                            b.getPartyActions().add(useItem.use(caster,
-                                                    targetList.get(getCursorIndex()),
-                                                    targetList));
-                                            return choice;
-                                        }
-                                    };
-                                    GraphicsDriver.addMenu(menuTarget);
-                                } else {
-                                    b.getPartyActions().add(useItem.use(caster,
-                                            targetList));
-                                }
-                                return choice;
-                            }
-                        };
-                        GraphicsDriver.addMenu(menuItem);
-                    } else {
-
-                    }
-                    break;
-                case Charge:
-                case Analyze:
-                    b.getPartyActions().add(new Action(this, caster));
-                    break;
-                case Delay:
-                    caster.setDelaying(true);
-                case Run:
-                    b.getPartyActions().add(new Action(this, caster));
-                    break;
-            }
-        }
-    }
-
-    public enum State {
-
-        START,
-        COMMAND,
-        ENEMY_COMMAND,
-        ACTION,
-        END;
-
-        State() {
-            maxTicks = 0;
-            ticks = 0;
-        }
-        private int maxTicks;
-        private int ticks;
-
-        public int getMaxTicks() {
-            return maxTicks;
-        }
-
-        public int getTicks() {
-            return ticks;
-        }
-
-        public boolean update() {
-            ticks++;
-            if (ticks > maxTicks) {
-                System.out.println("Update Complete");
-                ticks = 0;
-                return true;
-            }
-            return false;
-        }
-
-        public void setMaxTicks(int size) {
-            maxTicks = size;
-        }
-
-        private void setTicks(int i) {
-            ticks = i;
-        }
-    }
-
-    public Battle(ArrayList<ActorBattler> initializeParty,
-            ArrayList<ActorBattler> initializeEnemy,
-            ArrayList<Item> initializeItems,
-            Scenario initializeScenario) {
-        this.sounds = new ArrayList<>();
-        this.elapsed = 0;
-        this.turnCount = 1;
-        this.animations = new ArrayList<>();
-        this.allAction = new ArrayList<>();
-        this.enemyAction = new ArrayList<>();
-        this.partyAction = new ArrayList<>();
-        partyActors = initializeParty;
-        party = new ArrayList<>();
-        for (ActorBattler allies : initializeParty) {
-            party.add(allies.getBattler());
-        }
-        enemyActors = initializeEnemy;
-        enemy = new ArrayList<>();
-        for (ActorBattler enemies : initializeEnemy) {
-            enemy.add((enemies.getBattler()));
-        }
-        partyItems = initializeItems;
-        script = initializeScenario;
-        turnCount = 1;
-        bgm = BATTLE_MUSIC;
-    }
-
-    public Battle(ArrayList<ActorBattler> initializeParty,
-            ArrayList<ActorBattler> initializeEnemy,
-            ArrayList<Item> initializeItems,
-            Scenario initializeScenario,
-            String initializeMusic) {
-        this.sounds = new ArrayList<>();
-        this.elapsed = 0;
-        this.turnCount = 1;
-        this.animations = new ArrayList<>();
-        this.allAction = new ArrayList<>();
-        this.enemyAction = new ArrayList<>();
-        this.partyAction = new ArrayList<>();
-        bgm = initializeMusic;
-        partyActors = initializeParty;
-        party = new ArrayList<>();
-        for (ActorBattler allies : initializeParty) {
-            party.add(allies.getBattler());
-        }
-        enemyActors = initializeEnemy;
-        enemy = new ArrayList<>();
-        for (ActorBattler enemies : initializeEnemy) {
-            enemy.add((enemies.getBattler()));
-        }
-        partyItems = initializeItems;
-        script = initializeScenario;
-        turnCount = 1;
-    }
 
     public Battle start() {
 //        previousMusic = BattleDriver.getCurrentMusic();
@@ -661,10 +336,6 @@ public class Battle implements State {
 
     public ArrayList<Battler> getAlly() {
         return party;
-    }
-
-    public boolean inBattle() {
-        return inBattle;
     }
 
     public ArrayList<Action> getActions() {
@@ -843,6 +514,326 @@ public class Battle implements State {
     public void dispose() {
         // TODO Auto-generated method stub
         background.getTexture().dispose();
+    }
+    public static enum Element {
+        
+        Physical,
+        Heal,
+        Male,
+        Female,
+        Fire,
+        Water,
+        Wind,
+        Earth,
+        Light,
+        Dark;
+        
+        private Element() {
+        }
+        
+        public Element getWeakness() {
+            Element weakness = null;
+            switch (this) {
+                case Male:
+                    weakness = Battle.Element.Female;
+                    break;
+                case Female:
+                    weakness = Battle.Element.Male;
+                    break;
+                case Fire:
+                    weakness = Battle.Element.Water;
+                    break;
+                case Water:
+                    weakness = Battle.Element.Fire;
+                    break;
+                case Wind:
+                    weakness = Battle.Element.Earth;
+                    break;
+                case Earth:
+                    weakness = Battle.Element.Wind;
+                    break;
+                case Light:
+                    weakness = Battle.Element.Dark;
+                    break;
+                case Dark:
+                    weakness = Battle.Element.Light;
+                    break;
+            }
+            return weakness;
+        }
+    }
+    public enum Stats {
+        
+        Normal(1, 1.0, 0.0, 0, "'s wounds are healed!"),
+        Death(8, .10, 0.0, 0, " has instantly died!"),
+        Poison(3, .25, 0.1, 7, " has been poisoned!"),
+        Sleep(4, .25, 0.1, 8, 0.5, " has fallen asleep!"),
+        Silence(5, .25, 0.16, 6, "'s skills have been sealed!"),
+        Fog(2, .5, .15, 7, 0.2, " is covered in a hallucinating fog!"),
+        Confuse(6, .25, 0.15, 5, 0.25, " has become confused!"),
+        Petrify(7, .10, 0.0, 0, " is now petrified!");
+        private int priority;
+        private int turnCount;
+        private double success;
+        private double fade;
+        private double attackFade;
+        private String message;
+        
+        private Stats(int setPriority,
+                double setSuccess,
+                double setFade,
+                int setTurnCount,
+                double setAttackFade,
+                String getMessage) {
+            priority = setPriority;
+            success = setSuccess;
+            fade = setFade;
+            turnCount = setTurnCount;
+            attackFade = setAttackFade;
+            message = getMessage;
+        }
+        
+        private Stats(int setPriority,
+                double setSuccess,
+                double setFade,
+                int setTurnCount,
+                String getMessage) {
+            priority = setPriority;
+            success = setSuccess;
+            fade = setFade;
+            turnCount = setTurnCount;
+            attackFade = 0.0;
+            message = getMessage;
+        }
+        
+        public int getPriority() {
+            return priority;
+        }
+        
+        public int getTurnCount() {
+            return turnCount;
+        }
+        
+        public boolean isSuccessful(Battler getCaster, Battler getTarget) {
+            return (Math.random() <= success
+                    - ((getCaster.getLevel()
+                    - getTarget.getLevel())
+                    / (getCaster.getLevel()
+                    + getTarget.getLevel())
+                    + (getCaster.getMagic()
+                    - getTarget.getMagic())
+                    / (getCaster.getMagic()
+                    + getTarget.getMagic())));
+        }
+        
+        public boolean faded(Battler getCaster) {
+            return (this != Battle.Stats.Normal
+                    && turnCount != 0
+                    && (turnCount >= getTurnCount() - getCaster.getTurnCount()
+                    || (Math.random() <= fade
+                    //                    - (1.0 / (101.1 - getCaster.getLevel())
+                    //                    / (getCaster.getDefense() - getCaster.getLevel())
+                    //                    / (getCaster.getMagic() - getCaster.getLevel()))
+                    )));
+        }
+        
+        public boolean attackFaded() {
+            return ((this != Battle.Stats.Normal)
+                    && attackFade != 0.0
+                    && Math.random() < attackFade);
+        }
+        
+        public String getMessage() {
+            return message;
+        }
+        
+    }
+    public enum Command {
+        
+        Attack,
+        Defend,
+        Skill,
+        Charge,
+        Analyze,
+        Delay,
+        Item,
+        Run;
+        
+        public void run(final Battle b, final Battler caster) {
+            caster.setDelaying(false);
+            switch (this) {
+                case Attack:
+                    String[] temp = new String[b.getEnemy().size()];
+                    for (int i = 0; i < temp.length; i++) {
+                        temp[i] = b.getEnemy().get(i).getName();
+                    }
+                    
+                    Menu targetMenu = new Menu("Target?", temp, true, true) {
+                        @Override
+                        public Object confirm(String choice) {
+                            b.getPartyActions().add(new Action(Command.Attack, caster, (b.getEnemy().get(this.getCursorIndex())), b.getEnemy()));
+                            return choice;
+                        }
+                    };
+                    GraphicsDriver.addMenu(targetMenu);
+                    break;
+                case Defend:
+                    caster.defend();
+                    b.getPartyActions().add(new Action(this, caster));
+                    break;
+                case Skill:
+                    final ArrayList<Skill> getSkillList = new ArrayList<>();
+                    if (caster.getSkillList() != null) {
+                        for (Skill skillList1 : caster.getSkillList()) {
+                            if (skillList1 != null && skillList1.getLevel() <= caster.getLevel()) {
+                                getSkillList.add(skillList1);
+                            }
+                        }
+                        try {
+                            temp = new String[getSkillList.size()];
+                            for (int i = 0; i < temp.length; i++) {
+                                temp[i] = getSkillList.get(i).getName();
+                            }
+                            Menu skillMenu = new Menu("Activate which skill?",
+                                    temp,
+                                    true,
+                                    true) {
+                                        @Override
+                                        public Object confirm(String choice) {
+                                            final Skill getSkill = getSkillList.get(getCursorIndex());
+                                            final ArrayList<Battler> targetList = (ArrayList<Battler>) (getSkill. getAlly() ? b.getAlly() : b. getEnemy());
+                                            if (getSkill.getCost() <= caster.getMP()) {
+                                                if (!getSkill.getAll()) {
+                                                    String[] temp = new String[targetList.size()];
+                                                    for (int i = 0; i < temp.length; i++) {
+                                                        temp[i] = targetList.get(i).getName();
+                                                    }
+                                                    
+                                                    Menu targetMenu = new Menu("Target?", temp, true, true) {
+                                                        @Override
+                                                        public Object confirm(String choice) {
+                                                            b.getPartyActions().add(new Action(Command.Skill,
+                                                                    getSkill,
+                                                                    caster,
+                                                                    (targetList.get(this.getCursorIndex())),
+                                                                    targetList));
+                                                            return choice;
+                                                        }
+                                                    };
+                                                    GraphicsDriver.addMenu(targetMenu);
+                                                } else {
+                                                    b.getPartyActions().add(new Action(Command.Skill,
+                                                            getSkill,
+                                                            caster,
+                                                            targetList));
+                                                }
+                                            } else {
+                                                cancel();
+                                            }
+                                            return null;
+                                        }
+                                    };
+                            GraphicsDriver.addMenu(skillMenu);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        
+                    }
+                    break;
+                case Item:
+                    if (b.getItem() != null) {
+                        Menu menuItem = new Menu("Use which Item?",
+                                b.getItemNames(),
+                                true,
+                                true) {
+                                    @Override
+                                    public Object confirm(String choice) {
+                                        final Item useItem;
+                                        useItem = b.getItem(this.getCursorIndex());
+                                        final ArrayList<Battler> targetList = (ArrayList<Battler>) (useItem.getAlly() ? b.getAlly() : b.getEnemy());
+                                        if (!useItem.getAll()) {
+                                            String[] temp = new String[targetList.size()];
+                                            for (int i = 0; i < temp.length; i++) {
+                                                temp[i] = targetList.get(i).getName();
+                                            }
+                                            Menu menuTarget = new Menu("Target?",
+                                                    temp,
+                                                    true,
+                                                    true) {
+                                                        @Override
+                                                        public Object confirm(String choice) {
+                                                            b.getPartyActions().add(useItem.use(caster,
+                                                                    targetList.get(getCursorIndex()),
+                                                                    targetList));
+                                                            return choice;
+                                                        }
+                                                    };
+                                            GraphicsDriver.addMenu(menuTarget);
+                                        } else {
+                                            b.getPartyActions().add(useItem.use(caster,
+                                                    targetList));
+                                        }
+                                        return choice;
+                                    }
+                                };
+                        GraphicsDriver.addMenu(menuItem);
+                    } else {
+                        
+                    }
+                    break;
+                case Charge:
+                case Analyze:
+                    b.getPartyActions().add(new Action(this, caster));
+                    break;
+                case Delay:
+                    caster.setDelaying(true);
+                case Run:
+                    b.getPartyActions().add(new Action(this, caster));
+                    break;
+            }
+        }
+    }
+    public enum State {
+        
+        START,
+        COMMAND,
+        ENEMY_COMMAND,
+        ACTION,
+        END;
+        
+        State() {
+            maxTicks = 0;
+            ticks = 0;
+        }
+        private int maxTicks;
+        private int ticks;
+        
+        public int getMaxTicks() {
+            return maxTicks;
+        }
+        
+        public int getTicks() {
+            return ticks;
+        }
+        
+        public boolean update() {
+            ticks++;
+            if (ticks > maxTicks) {
+                System.out.println("Update Complete");
+                ticks = 0;
+                return true;
+            }
+            return false;
+        }
+        
+        public void setMaxTicks(int size) {
+            maxTicks = size;
+        }
+        
+        private void setTicks(int i) {
+            ticks = i;
+        }
     }
 
 }

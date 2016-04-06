@@ -56,7 +56,7 @@ public class ActorSkillParameters {
         this.aftercastDelay = 0;
         
     }
-
+    
     public float getAftercastDelay() {
         return aftercastDelay;
     }

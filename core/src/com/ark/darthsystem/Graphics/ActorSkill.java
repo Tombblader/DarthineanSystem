@@ -24,64 +24,23 @@ import com.badlogic.gdx.utils.Array;
  */
 public class ActorSkill extends ActorCollision {
 
-    public enum Area {
-
-        ALL,
-        BOOMERANG,
-        CONE,
-        CROSS,
-        FRONT,
-        LINE,
-        SELF,
-        RADIUS,
-        SPHERE;
-
-        private int translateX;
-        private int translateY;
-
-        float updateX(float delta, Facing f) {
-            switch (this) {
-                case FRONT:
-                    return translateX * f.getX();
-                case LINE:
-                    return f.getX();
-                case RADIUS:
-
-                    break;
-                case CROSS:
-                    break;
-                case CONE:
-                    break;
-                case SPHERE:
-                    break;
-                case BOOMERANG:
-                    break;
-                default:
-                    while (true) {
-                        System.out.println("You shouldn't have done that.");
-                    }
-            }
-            return 0;
-        }
-
-    }
     private float aftercastDelay = 0;
     private Area area;
+    private Actor battlerAnimation;
+    private Sound battlerSound = SoundDatabase.battlerSwordSound;
     private float chargeTime = 0;
+    private float currentX = 0;
+    private float currentY = 0;
+    private Sound fieldSound = SoundDatabase.fieldSwordSound;
     private Player invoker;
+    private WeldJoint joint;
+    private Sprite[] originalBattlerImage;
+    private Sprite[] originalFieldImage;
     private float relX;
     private float relY;
     private Skill skill;
-    private Actor battlerAnimation;
-    private Sound fieldSound = SoundDatabase.fieldSwordSound;
-    private Sound battlerSound = SoundDatabase.battlerSwordSound;
     private float translateX;
     private float translateY;
-    private float currentX = 0;
-    private float currentY = 0;
-    private Sprite[] originalFieldImage;
-    private Sprite[] originalBattlerImage;
-    private WeldJoint joint;
 
     public ActorSkill(Sprite[] img,
             float getX,
@@ -188,6 +147,12 @@ public class ActorSkill extends ActorCollision {
         translateX = getTranslateX;
         translateY = getTranslateY;
     }
+    public void dispose() {
+        super.dispose();
+    }
+    public void generateBody(OverheadMap map) {
+        super.generateBody(map);
+    }
     
     public float getAftercastDelay() {
         return aftercastDelay;
@@ -195,6 +160,17 @@ public class ActorSkill extends ActorCollision {
 
     public float getAnimationDelay() {
         return ((float) (originalFieldImage.length) * (this.getDelay())) + aftercastDelay;
+    }
+    public Actor getBattlerAnimation() {
+        return battlerAnimation;
+    }
+    public Actor getBattlerAnimation(float x, float y) {
+        battlerAnimation.setX(x);
+        battlerAnimation.setY(y);
+        return battlerAnimation;
+    }
+    public Sound getBattlerSound() {
+        return battlerSound;
     }
 
     public float getChargeTime() {
@@ -205,21 +181,26 @@ public class ActorSkill extends ActorCollision {
         return invoker;
     }
 
-    public Skill getSkill() {
-        return skill;
-    }
-
-    public Skill getSkill(Player a) {
-        invoker = a;
-        return skill;
-    }
 
     public void setInvoker(Player p) {
         invoker = p;
     }
+    public float getRelX() {
+        return relX;
+    }
+    public float getRelY() {
+        return relX;
+    }
+    public Skill getSkill() {
+        return skill;
+    }
 
     public void setSkill(Skill s) {
         skill = s;
+    }
+    public Skill getSkill(Player a) {
+        invoker = a;
+        return skill;
     }
 
     public void setX(ActorCollision a) {
@@ -239,24 +220,15 @@ public class ActorSkill extends ActorCollision {
             super.setY((relY) + a.getMainBody().getPosition().y);
         }
     }
-
-    public void update(float delta) {
-        setFacing();
-        currentX += translateX * getFacing().getX();
-        currentY += translateY * getFacing().getY();
-        super.update(delta);
-        setAnimationFacing();
+    public void playBattlerSound() {
+        try {
+            battlerSound.play();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     
-    public Actor getBattlerAnimation() {
-        return battlerAnimation;
-    }
-    
-    public Actor getBattlerAnimation(float x, float y) {
-        battlerAnimation.setX(x);
-        battlerAnimation.setY(y);        
-        return battlerAnimation;
-    }
     
     public void playFieldSound() {
         try {
@@ -268,36 +240,6 @@ public class ActorSkill extends ActorCollision {
         }
     }
     
-    public Sound getBattlerSound() {
-        return battlerSound;
-    }
-    
-    public void stopFieldSound() {
-        try {
-            fieldSound.stop();
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-    
-    public void playBattlerSound() {
-        try {
-            battlerSound.play();
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void stopBattlerSound() {
-        try {
-            battlerSound.stop();
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
     public void render(Batch batch) {
         super.render(batch);
@@ -307,13 +249,6 @@ public class ActorSkill extends ActorCollision {
         getCurrentImage().setRotation(this.getFacing().getRotate());
     }
 
-    public float getRelX() {
-        return relX;
-    }
-
-    public float getRelY() {
-        return relX;
-    }
 
     public void setMap(OverheadMap map, boolean isPlayer) {
         super.setMap(map, isPlayer);
@@ -340,12 +275,68 @@ public class ActorSkill extends ActorCollision {
             joint = (WeldJoint) map.getPhysicsWorld().createJoint(def);
         }
     }    
-    
-    public void generateBody(OverheadMap map) {
-        super.generateBody(map);
+    public void stopBattlerSound() {
+        try {
+            battlerSound.stop();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
     }
-    
-    public void dispose() {
-        super.dispose();
+    public void stopFieldSound() {
+        try {
+            fieldSound.stop();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public void update(float delta) {
+        setFacing();
+        currentX += translateX * getFacing().getX();
+        currentY += translateY * getFacing().getY();
+        super.update(delta);
+        setAnimationFacing();
+    }
+    public enum Area {
+        
+        ALL,
+        BOOMERANG,
+        CONE,
+        CROSS,
+        FRONT,
+        LINE,
+        SELF,
+        RADIUS,
+        SPHERE;
+        
+        private int translateX;
+        private int translateY;
+        
+        float updateX(float delta, Facing f) {
+            switch (this) {
+                case FRONT:
+                    return translateX * f.getX();
+                case LINE:
+                    return f.getX();
+                case RADIUS:
+                    
+                    break;
+                case CROSS:
+                    break;
+                case CONE:
+                    break;
+                case SPHERE:
+                    break;
+                case BOOMERANG:
+                    break;
+                default:
+                    while (true) {
+                        System.out.println("You shouldn't have done that.");
+                    }
+            }
+            return 0;
+        }
+        
     }
 }

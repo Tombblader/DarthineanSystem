@@ -21,10 +21,59 @@ import java.util.concurrent.CopyOnWriteArrayList;
  */
 public abstract class Novel implements State {
 
+    ArrayList<Page> chapters;
+    
+    
+    String choices;
+    int pageIndex = 0;
+    CopyOnWriteArrayList<TickEvent> timers = new CopyOnWriteArrayList<>();
     public Novel() {
         this.chapters = new ArrayList<>();
     }
 
+
+    public void dispose() {
+
+    }
+    
+    public void moveActor(float x, float y, float speed, int wait) {
+        
+    }
+    public void render(SpriteBatch batch) {
+        State ste = null;
+        for (State state : GraphicsDriver.getState()) {
+            if (!(state instanceof Message)
+                    && !(state instanceof Menu)
+                    && !(state instanceof Novel)//&& !(state instanceof Pause)
+                    ) {
+                ste = state;
+            }
+        }
+        if (ste != null) {
+            ste.render(batch);
+        }
+    }
+    //    public abstract void run();
+    
+    public float update(float delta) {
+        if (timers.isEmpty()) {
+            if (chapters.size() <= pageIndex) {
+                GraphicsDriver.removeState(this);
+            }
+            else {
+                chapters.get(pageIndex).run();
+                pageIndex++;
+            }
+        } else {
+            for (TickEvent t : timers) {
+                t.update(delta);
+                if (t.isFinished()) {
+                    timers.remove(t);
+                }
+            }
+        }
+        return delta;
+    }
     public class Condition extends Menu {
         public Condition(String header, String[] choices) {
             super(header, choices, true, true);
@@ -35,11 +84,9 @@ public abstract class Novel implements State {
             return choice;
         }
     }
-    
     public abstract class Page {
         public abstract void run();
     }
-    
     public abstract class TickEvent {
         private String name;
         private int frameTime;
@@ -60,57 +107,6 @@ public abstract class Novel implements State {
         public String getName() {
             return name;
         }
-    }
-    
-    
-    String choices;
-    int pageIndex = 0;
-    ArrayList<Page> chapters;
-    CopyOnWriteArrayList<TickEvent> timers = new CopyOnWriteArrayList<>();
-    
-//    public abstract void run();
-
-    public float update(float delta) {
-        if (timers.isEmpty()) {
-            if (chapters.size() <= pageIndex) {
-                GraphicsDriver.removeState(this);
-            }
-            else {
-                chapters.get(pageIndex).run();
-                pageIndex++;
-            }
-        } else {
-            for (TickEvent t : timers) {
-                t.update(delta);
-                if (t.isFinished()) {
-                    timers.remove(t);
-                }
-            }
-        }
-        return delta;
-    }
-
-    public void render(SpriteBatch batch) {
-        State ste = null;
-        for (State state : GraphicsDriver.getState()) {
-            if (!(state instanceof Message)
-                    && !(state instanceof Menu)
-                    && !(state instanceof Novel)//&& !(state instanceof Pause)
-                    ) {
-                ste = state;
-            }
-        }
-        if (ste != null) {
-            ste.render(batch);
-        }
-    }
-
-    public void dispose() {
-
-    }
-    
-    public void moveActor(float x, float y, float speed, int wait) {
-        
     }
 
 }
