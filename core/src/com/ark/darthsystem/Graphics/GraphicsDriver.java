@@ -332,8 +332,13 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
         }
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        currentCamera.update();
-        batch.setProjectionMatrix(currentCamera.combined);
+        if (!(getCurrentState() instanceof OverheadMap)) {
+            camera.update();
+            batch.setProjectionMatrix(camera.combined);
+        } else {
+            playerCamera.update();
+            batch.setProjectionMatrix(playerCamera.combined);
+        }
         batch.begin();
         getCurrentState().render(batch);
         if (!transitions.isEmpty()) {
@@ -345,6 +350,7 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
                 tempBatch.end();
                 tempBatch.setProjectionMatrix(currentCamera.combined);
             } else {
+                batch.setProjectionMatrix(camera.combined);
                 transitions.get(0).render(batch);
             }
         }

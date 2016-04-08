@@ -146,12 +146,18 @@ public class Transition {
     
     public void render(SpriteBatch batch) {
         if (type == TransitionType.FADE_IN_OUT && screenshotClone != null) {
+            if (screenshotClone.getWidth() != 1024) {
+                System.out.println("Tell me");
+            }
             screenshotClone.draw(batch);
             if (stepUp) {
                 screenshotClone = null;
             }
         }
         if (type != TransitionType.PAUSE) {
+            if (screenshot.getWidth() != 1024) {
+                System.out.println("Tell me");
+            }
             screenshot.draw(batch);
         }
     }

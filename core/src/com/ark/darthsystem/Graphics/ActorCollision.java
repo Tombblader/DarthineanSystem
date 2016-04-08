@@ -136,7 +136,11 @@ public class ActorCollision extends Actor {
 //            sensorBody.setTransform(getX(), getY(), 0);
 //        }
 //        else {
-generateBody(map);
+        if (!map.getPhysicsWorld().isLocked()) {
+            generateBody(map);
+        } else {
+            map.addBody(this);
+        }
 //        }
 
     }

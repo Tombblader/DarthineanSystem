@@ -104,7 +104,7 @@ public class ActorSkill extends ActorCollision {
         translateY = 0;
         area = getArea;
     }
-    
+
     public ActorSkill(Sprite[] img,
             Sprite[] battlerImg,
             float getX,
@@ -120,7 +120,7 @@ public class ActorSkill extends ActorCollision {
         }
         battlerAnimation = new Actor(originalBattlerImage, 0, 0, delay, true);
     }
-    
+
     public ActorSkill(Sprite[] img,
             Sprite[] battlerImg,
             float getX,
@@ -147,13 +147,36 @@ public class ActorSkill extends ActorCollision {
         translateX = getTranslateX;
         translateY = getTranslateY;
     }
+
     public void dispose() {
         super.dispose();
     }
+
     public void generateBody(OverheadMap map) {
         super.generateBody(map);
+        currentX = 0;
+        currentY = 0;
+        Array<Joint> temp = new Array<>();
+        map.getPhysicsWorld().getJoints(temp);
+        if (joint != null && temp.contains(joint, true)) {
+            map.removeJoint(joint);
+        }
+        Filter filter = new Filter();
+        filter.categoryBits = !(getInvoker() instanceof ActorAI) ? ActorCollision.CATEGORY_PLAYER_SKILL : ActorCollision.CATEGORY_AI_SKILL;
+        filter.maskBits = (short) (ActorCollision.CATEGORY_WALLS | ActorCollision.CATEGORY_OBSTACLES | ((getInvoker() instanceof ActorAI) ? ActorCollision.CATEGORY_PLAYER_SKILL : ActorCollision.CATEGORY_AI_SKILL));
+        getMainFixture().setFilterData(filter);
+        filter.maskBits = ((getInvoker() instanceof ActorAI) ? ActorCollision.CATEGORY_PLAYER : ActorCollision.CATEGORY_AI);
+        getSensorFixture().setFilterData(filter);
+        if ((translateX == 0 && area == Area.FRONT)) {
+            WeldJointDef def = new WeldJointDef();
+            def.dampingRatio = 1f;
+            def.frequencyHz = 60;
+            def.collideConnected = false;
+            def.initialize(invoker.getMainBody(), getMainBody(), new Vector2(getX(), getY()));
+            joint = (WeldJoint) map.getPhysicsWorld().createJoint(def);
+        }
     }
-    
+
     public float getAftercastDelay() {
         return aftercastDelay;
     }
@@ -161,14 +184,17 @@ public class ActorSkill extends ActorCollision {
     public float getAnimationDelay() {
         return ((float) (originalFieldImage.length) * (this.getDelay())) + aftercastDelay;
     }
+
     public Actor getBattlerAnimation() {
         return battlerAnimation;
     }
+
     public Actor getBattlerAnimation(float x, float y) {
         battlerAnimation.setX(x);
         battlerAnimation.setY(y);
         return battlerAnimation;
     }
+
     public Sound getBattlerSound() {
         return battlerSound;
     }
@@ -181,16 +207,18 @@ public class ActorSkill extends ActorCollision {
         return invoker;
     }
 
-
     public void setInvoker(Player p) {
         invoker = p;
     }
+
     public float getRelX() {
         return relX;
     }
+
     public float getRelY() {
         return relX;
     }
+
     public Skill getSkill() {
         return skill;
     }
@@ -198,6 +226,7 @@ public class ActorSkill extends ActorCollision {
     public void setSkill(Skill s) {
         skill = s;
     }
+
     public Skill getSkill(Player a) {
         invoker = a;
         return skill;
@@ -220,26 +249,23 @@ public class ActorSkill extends ActorCollision {
             super.setY((relY) + a.getMainBody().getPosition().y);
         }
     }
+
     public void playBattlerSound() {
         try {
             battlerSound.play();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    
-    
+
     public void playFieldSound() {
         try {
             fieldSound.stop();
             fieldSound.play();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    
 
     public void render(Batch batch) {
         super.render(batch);
@@ -249,48 +275,26 @@ public class ActorSkill extends ActorCollision {
         getCurrentImage().setRotation(this.getFacing().getRotate());
     }
 
-
     public void setMap(OverheadMap map, boolean isPlayer) {
         super.setMap(map, isPlayer);
-        currentX = 0;
-        currentY = 0;
-        Array<Joint> temp = new Array<>();
-        map.getPhysicsWorld().getJoints(temp);
-        if (joint != null && temp.contains(joint, true)) {
-            
-            map.removeJoint(joint);
-        }
-        Filter filter = new Filter();
-        filter.categoryBits = isPlayer ? ActorCollision.CATEGORY_PLAYER_SKILL : ActorCollision.CATEGORY_AI_SKILL;
-        filter.maskBits = (short)(ActorCollision.CATEGORY_WALLS | ActorCollision.CATEGORY_OBSTACLES | (!isPlayer ? ActorCollision.CATEGORY_PLAYER_SKILL : ActorCollision.CATEGORY_AI_SKILL));
-        getMainFixture().setFilterData(filter);
-        filter.maskBits = (!isPlayer ? ActorCollision.CATEGORY_PLAYER : ActorCollision.CATEGORY_AI);
-        getSensorFixture().setFilterData(filter);
-        if ((translateX == 0 && area == Area.FRONT)) {
-            WeldJointDef def = new WeldJointDef();
-            def.dampingRatio = 1f;
-            def.frequencyHz = 60;
-            def.collideConnected = false;
-            def.initialize(invoker.getMainBody(), getMainBody(), new Vector2(getX(), getY()));        
-            joint = (WeldJoint) map.getPhysicsWorld().createJoint(def);
-        }
-    }    
+    }
+
     public void stopBattlerSound() {
         try {
             battlerSound.stop();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
     public void stopFieldSound() {
         try {
             fieldSound.stop();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
     public void update(float delta) {
         setFacing();
         currentX += translateX * getFacing().getX();
@@ -298,8 +302,9 @@ public class ActorSkill extends ActorCollision {
         super.update(delta);
         setAnimationFacing();
     }
+
     public enum Area {
-        
+
         ALL,
         BOOMERANG,
         CONE,
@@ -309,10 +314,10 @@ public class ActorSkill extends ActorCollision {
         SELF,
         RADIUS,
         SPHERE;
-        
+
         private int translateX;
         private int translateY;
-        
+
         float updateX(float delta, Facing f) {
             switch (this) {
                 case FRONT:
@@ -320,7 +325,7 @@ public class ActorSkill extends ActorCollision {
                 case LINE:
                     return f.getX();
                 case RADIUS:
-                    
+
                     break;
                 case CROSS:
                     break;
@@ -337,6 +342,6 @@ public class ActorSkill extends ActorCollision {
             }
             return 0;
         }
-        
+
     }
 }

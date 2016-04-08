@@ -17,6 +17,7 @@ import com.ark.darthsystem.Graphics.GraphicsDriver;
 import com.ark.darthsystem.Graphics.Input;
 import com.ark.darthsystem.Graphics.Player;
 import com.ark.darthsystem.Graphics.PlayerCamera;
+import com.ark.darthsystem.Graphics.Transition;
 import com.ark.darthsystem.States.events.Event;
 import com.ark.darthsystem.States.events.Teleport;
 
@@ -69,6 +70,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
     private boolean worldStep;
     private Array<Body> deleteQueue = new Array<>();
     private Array<Joint> deleteJointQueue = new Array<>();
+    private Array<ActorCollision> createQueue = new Array<>();
     private String bgm;
     private ArrayList<String> message = new ArrayList<>();
     private int elapsed = 0;
@@ -384,69 +386,70 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
         ppt = PlayerCamera.PIXELS_TO_METERS;
 //        MapObjects objects = map.getLayers().get("collision").getObjects();
 //        System.out.println(objects.getCount());
-Array<Body> bodies = new Array<>();
-for (MapLayer layer: map.getLayers()) {
-    for(MapObject object : layer.getObjects()) {
-        if (object instanceof TextureMapObject) {
-            continue;
+        Array<Body> bodies = new Array<>();
+        for (MapLayer layer: map.getLayers()) {
+            for(MapObject object : layer.getObjects()) {
+                if (object instanceof TextureMapObject) {
+                    continue;
+                }
+
+                MapProperties properties = object.getProperties();
+
+                if (properties.get("type", String.class).equalsIgnoreCase("actor")) {
+                    //                Actor a = AIDatabase.actors.get(properties.get("Name", String.class));
+                    //                a.setMap(this, false);
+                    //                a.setX(properties.get("x", Float.class));
+                    //                a.setY(properties.get("y", Float.class));
+                    continue;
+                }
+
+                Shape shape;
+                if (object instanceof RectangleMapObject) {
+                    shape = getRectangle((RectangleMapObject)object);
+                }
+                else if (object instanceof PolygonMapObject) {
+                    shape = getPolygon((PolygonMapObject)object);
+                }
+                else if (object instanceof PolylineMapObject) {
+                    shape = getPolyline((PolylineMapObject)object);
+                }
+                else if (object instanceof CircleMapObject) {
+                    shape = getCircle((CircleMapObject)object);
+                }
+                else {
+                    continue;
+                }
+
+                BodyDef bd = new BodyDef();
+                bd.type = BodyType.StaticBody;
+                Body body = world.createBody(bd);
+
+                Fixture f = body.createFixture(shape, 1);
+                Filter filter = new Filter();
+                body.setUserData(object);
+
+                if (properties.get("type", String.class).equalsIgnoreCase("wall")) {
+                    filter.categoryBits = ActorCollision.CATEGORY_WALLS;
+                    filter.maskBits = -1;
+                } else if (properties.get("type", String.class).equalsIgnoreCase("obstacle")) {
+                    filter.categoryBits = ActorCollision.CATEGORY_OBSTACLES;
+                    filter.maskBits = ActorCollision.CATEGORY_AI | ActorCollision.CATEGORY_PLAYER;
+                } else if (properties.get("type", String.class).equalsIgnoreCase("event")) {
+                    body.setUserData(addEventFromMap(object));
+                    filter.categoryBits = ActorCollision.CATEGORY_EVENT;
+                    f.setSensor(true);
+                    filter.maskBits = ActorCollision.CATEGORY_PLAYER;
+                }
+
+                f.setFilterData(filter);
+                bodies.add(body);
+
+                shape.dispose();
+            }
         }
-        
-        MapProperties properties = object.getProperties();
-        
-        if (properties.get("type", String.class).equalsIgnoreCase("actor")) {
-            //                Actor a = AIDatabase.actors.get(properties.get("Name", String.class));
-            //                a.setMap(this, false);
-            //                a.setX(properties.get("x", Float.class));
-            //                a.setY(properties.get("y", Float.class));
-            continue;
-        }
-        
-        Shape shape;
-        if (object instanceof RectangleMapObject) {
-            shape = getRectangle((RectangleMapObject)object);
-        }
-        else if (object instanceof PolygonMapObject) {
-            shape = getPolygon((PolygonMapObject)object);
-        }
-        else if (object instanceof PolylineMapObject) {
-            shape = getPolyline((PolylineMapObject)object);
-        }
-        else if (object instanceof CircleMapObject) {
-            shape = getCircle((CircleMapObject)object);
-        }
-        else {
-            continue;
-        }
-        
-        BodyDef bd = new BodyDef();
-        bd.type = BodyType.StaticBody;
-        Body body = world.createBody(bd);
-        
-        Fixture f = body.createFixture(shape, 1);
-        Filter filter = new Filter();
-        body.setUserData(object);
-        
-        if (properties.get("type", String.class).equalsIgnoreCase("wall")) {
-            filter.categoryBits = ActorCollision.CATEGORY_WALLS;
-            filter.maskBits = -1;
-        } else if (properties.get("type", String.class).equalsIgnoreCase("obstacle")) {
-            filter.categoryBits = ActorCollision.CATEGORY_OBSTACLES;
-            filter.maskBits = ActorCollision.CATEGORY_AI | ActorCollision.CATEGORY_PLAYER;
-        } else if (properties.get("type", String.class).equalsIgnoreCase("event")) {
-            body.setUserData(addEventFromMap(object));
-            filter.categoryBits = ActorCollision.CATEGORY_EVENT;
-            f.setSensor(true);
-            filter.maskBits = ActorCollision.CATEGORY_PLAYER;
-        }
-        
-        f.setFilterData(filter);
-        bodies.add(body);
-        
-        shape.dispose();
+        return bodies;
     }
-}
-return bodies;
-    }
+    
     private Event addEventFromMap(MapObject object) {
         MapProperties prop = object.getProperties();
         Event e = null;
@@ -478,6 +481,11 @@ return bodies;
             e.printStackTrace();
         }
     }
+    
+    public void addBody(ActorCollision body) {
+        createQueue.add(body);
+    }
+    
     public void removeJoint(Joint joint) {
         deleteJointQueue.add(joint);
     }
@@ -552,13 +560,14 @@ return bodies;
     }    
     
     private void battleStart() {
-            ArrayList<ActorBattler> encounters = new ArrayList<>();
-            for (Actor enemyActors2 : enemyActors) {
-                if (enemyActors2 instanceof ActorAI && ((ActorAI) (enemyActors2)).vision()) {
-                    encounters.addAll(((ActorAI) (enemyActors2)).getAllActorBattlers());
-                }
+        ArrayList<ActorBattler> encounters = new ArrayList<>();
+        for (Actor enemyActors2 : enemyActors) {
+            if (enemyActors2 instanceof ActorAI && ((ActorAI) (enemyActors2)).vision()) {
+                encounters.addAll(((ActorAI) (enemyActors2)).getAllActorBattlers());
             }
-            GraphicsDriver.addState(new Battle(GraphicsDriver.getPlayer().getAllActorBattlers(), encounters, Database1.inventory, null).start());
+        }
+        GraphicsDriver.addState(new Battle(GraphicsDriver.getPlayer().getAllActorBattlers(), encounters, Database1.inventory, null).start());
+        GraphicsDriver.transition(new Transition(Transition.TransitionType.FADE));
     }    
     
     @Override
@@ -585,6 +594,11 @@ return bodies;
                     deleteJointQueue.removeValue(joints, true);
                 }
             }
+            for (ActorCollision a : createQueue) {
+                a.generateBody(this);
+            }
+            createQueue.clear();
+           
             worldStep = false;
         }
         GraphicsDriver.setCurrentCamera(GraphicsDriver.getPlayerCamera());
