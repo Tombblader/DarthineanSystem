@@ -49,10 +49,10 @@ public class Teleport extends Event {
     public void run() {
         for (State s : GraphicsDriver.getState()) {
             if (s instanceof OverheadMap) {
+                GraphicsDriver.transition();
                 GraphicsDriver.getState().set(GraphicsDriver.getState().indexOf(s, true), MapDatabase.maps.get(map));
                 GraphicsDriver.playMusic(MapDatabase.maps.get(map).getMusic());
                 GraphicsDriver.getPlayer().setMap(MapDatabase.maps.get(map), newX, newY);
-                GraphicsDriver.transition();
             }
         }
     }

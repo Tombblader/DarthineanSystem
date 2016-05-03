@@ -560,47 +560,67 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
     }    
     
     private void battleStart() {
+        Array<ActorAI> clear = new Array<>();
         ArrayList<ActorBattler> encounters = new ArrayList<>();
         for (Actor enemyActors2 : enemyActors) {
             if (enemyActors2 instanceof ActorAI && ((ActorAI) (enemyActors2)).vision()) {
                 encounters.addAll(((ActorAI) (enemyActors2)).getAllActorBattlers());
+                clear.add((ActorAI) enemyActors2);
             }
         }
+        
+        for (ActorAI tempAI : clear) {
+            //clear certain called events
+            for (Actor actors :  enemyActors) {
+                if (actors instanceof ActorSkill) {
+                    if (((ActorSkill)(actors)).getInvoker().equals(tempAI)) {
+                        removeActor(actors, false);
+                        ((ActorSkill)(actors)).stopFieldSound();
+                    }
+                }
+            }
+            for (GameTimer t : tempAI.getTimers()) {
+                switch (t.getName().toUpperCase()) {
+                    case "ATTACK":
+                    case "SKILL":
+                    case "CHARGE":
+                    case "JUMP":
+                    case "OUCH":
+                        t.event(tempAI);
+                        tempAI.getTimers().removeValue(t, true);
+                        break;
+                }
+            }
+        }
+
+        for (Actor actors:  playerActors) {
+               if (actors instanceof ActorSkill) {
+                   if (((ActorSkill)(actors)).getInvoker().equals(GraphicsDriver.getPlayer())) {
+                       removeActor(actors, true);
+                       ((ActorSkill)(actors)).stopFieldSound();
+                   }
+               }
+           }
+           for (GameTimer t : GraphicsDriver.getPlayer().getTimers()) {
+               switch (t.getName().toUpperCase()) {
+                   case "ATTACK":
+                   case "SKILL":
+                   case "CHARGE":
+                   case "JUMP":
+                   case "OUCH":
+                       t.event(GraphicsDriver.getPlayer());
+                       GraphicsDriver.getPlayer().getTimers().removeValue(t, true);
+                       break;
+               }
+           }
+        
         GraphicsDriver.addState(new Battle(GraphicsDriver.getPlayer().getAllActorBattlers(), encounters, Database1.inventory, null).start());
-        GraphicsDriver.transition(new Transition(Transition.TransitionType.FADE));
+//        GraphicsDriver.transition(new Transition(Transition.TransitionType.FADE));
     }    
     
     @Override
     public void render(SpriteBatch batch) {
-        if (worldStep) {
-            world.step(1f/60f, 6, 2);  //Fix the second and third values.
-            Array<Body> temp = new Array<>();
-            world.getBodies(temp);
-            for (Body bodies : deleteQueue) {
-                if (!world.isLocked()) {
-                    if (temp.contains(bodies, true)) {
-                        world.destroyBody(bodies);
-                    }
-                    deleteQueue.removeValue(bodies, true);
-                }
-            }
-            Array<Joint> temp2 = new Array<>();
-            world.getJoints(temp2);            
-            for (Joint joints : deleteJointQueue) {
-                if (!world.isLocked()) {
-                    if (temp2.contains(joints, true)) {
-                        world.destroyJoint(joints);
-                    }
-                    deleteJointQueue.removeValue(joints, true);
-                }
-            }
-            for (ActorCollision a : createQueue) {
-                a.generateBody(this);
-            }
-            createQueue.clear();
-           
-            worldStep = false;
-        }
+
         GraphicsDriver.setCurrentCamera(GraphicsDriver.getPlayerCamera());
         GraphicsDriver.getPlayerCamera().followPlayer(
                 Math.round(Database2.player.getX() * 25f) / 25f,
@@ -636,7 +656,35 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
         drawMessage(this.batch);
         endRender();
         
-        
+        if (worldStep) {
+            world.step(1f/60f, 6, 2);  //Fix the second and third values.
+            Array<Body> temp = new Array<>();
+            world.getBodies(temp);
+            for (Body bodies : deleteQueue) {
+                if (!world.isLocked()) {
+                    if (temp.contains(bodies, true)) {
+                        world.destroyBody(bodies);
+                    }
+                    deleteQueue.removeValue(bodies, true);
+                }
+            }
+            Array<Joint> temp2 = new Array<>();
+            world.getJoints(temp2);            
+            for (Joint joints : deleteJointQueue) {
+                if (!world.isLocked()) {
+                    if (temp2.contains(joints, true)) {
+                        world.destroyJoint(joints);
+                    }
+                    deleteJointQueue.removeValue(joints, true);
+                }
+            }
+            for (ActorCollision a : createQueue) {
+                a.generateBody(this);
+            }
+            createQueue.clear();
+           
+            worldStep = false;
+        }        
         debugRender.render(world, GraphicsDriver.getCurrentCamera().combined);
     }
 

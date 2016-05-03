@@ -167,11 +167,12 @@ public class ActorSkill extends ActorCollision {
         getMainFixture().setFilterData(filter);
         filter.maskBits = ((getInvoker() instanceof ActorAI) ? ActorCollision.CATEGORY_PLAYER : ActorCollision.CATEGORY_AI);
         getSensorFixture().setFilterData(filter);
-        if ((translateX == 0 && area == Area.FRONT)) {
+        if (invoker.getMainBody() != null && (translateX == 0 && area == Area.FRONT)) {
             WeldJointDef def = new WeldJointDef();
             def.dampingRatio = 1f;
             def.frequencyHz = 60;
             def.collideConnected = false;
+            System.out.println(invoker.getMainBody() != getMainBody());
             def.initialize(invoker.getMainBody(), getMainBody(), new Vector2(getX(), getY()));
             joint = (WeldJoint) map.getPhysicsWorld().createJoint(def);
         }
@@ -312,6 +313,7 @@ public class ActorSkill extends ActorCollision {
         FRONT,
         LINE,
         SELF,
+        SELF_BENEFIT,
         RADIUS,
         SPHERE;
 
@@ -320,12 +322,14 @@ public class ActorSkill extends ActorCollision {
 
         float updateX(float delta, Facing f) {
             switch (this) {
+                case SELF:
+                case SELF_BENEFIT:
+                    return 0;
                 case FRONT:
                     return translateX * f.getX();
                 case LINE:
                     return f.getX();
                 case RADIUS:
-
                     break;
                 case CROSS:
                     break;

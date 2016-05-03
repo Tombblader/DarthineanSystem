@@ -273,7 +273,7 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
             if (d.width == 1024 && d.height == 768)
             optimal = d;
         }
-        Gdx.graphics.setFullscreenMode(optimal);
+//        Gdx.graphics.setFullscreenMode(optimal);
         float w = Gdx.graphics.getWidth();
         float h = Gdx.graphics.getHeight();        
         camera = new Camera(w, h);
@@ -348,7 +348,7 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
                 tempBatch.begin();
                 transitions.get(0).render(tempBatch);
                 tempBatch.end();
-                tempBatch.setProjectionMatrix(currentCamera.combined);
+                tempBatch.setProjectionMatrix(playerCamera.combined);
             } else {
                 batch.setProjectionMatrix(camera.combined);
                 transitions.get(0).render(batch);

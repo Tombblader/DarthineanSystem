@@ -36,7 +36,7 @@ public class Database2 extends Database1 {
                                 (Sprite[]) GraphicsDriver.getMasterSheet().createSprites("skills/crosscall/battler/crosscall").toArray(Sprite.class),
                                 1,
                                 1,
-                                2.0f / 60.0f,
+                                1.0f / 60.0f,
                                 SkillDatabase.CrossCall,
                                 ActorSkill.Area.FRONT));
                 put(SkillDatabase.Red_Spin,
@@ -44,7 +44,7 @@ public class Database2 extends Database1 {
                                 GraphicsDriver.getMasterSheet().createSprites("skills/crosscall/battler/crosscall").toArray(Sprite.class),
                                 0,
                                 0,
-                                5.0f / 60.0f,
+                                1.0f / 60.0f,
                                 SkillDatabase.Red_Spin,
                                 ActorSkill.Area.SELF));
                 put(SkillDatabase.Sap_Shot,
@@ -54,7 +54,7 @@ public class Database2 extends Database1 {
                                 0,
 //                                .5f,
 //                                0,
-                                5.0f / 60.0f,
+                                1.0f / 60.0f,
                                 1f,
                                 SkillDatabase.Sap_Shot,
                                 ActorSkill.Area.FRONT));
@@ -63,7 +63,7 @@ public class Database2 extends Database1 {
                                 GraphicsDriver.getMasterSheet().createSprites("skills/crosscall/battler/crosscall").toArray(Sprite.class),
                                 0,
                                 0,
-                                5.0f / 60.0f,
+                                1.0f / 60.0f,
                                 SkillDatabase.Heal,
                                 ActorSkill.Area.SELF));
                 
@@ -132,7 +132,7 @@ public class Database2 extends Database1 {
                 GraphicsDriver.getMasterSheet().createSprites("items/equipment/sword/battler/battler").toArray(Sprite.class),
                 1,
                 1,
-                2.0f / 60.0f,
+                1.0f / 60.0f,
                 null,
                 ActorSkill.Area.FRONT);
     }

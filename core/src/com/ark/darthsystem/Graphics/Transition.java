@@ -5,8 +5,13 @@
  */
 package com.ark.darthsystem.Graphics;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.PixmapIO;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.utils.BufferUtils;
 import com.badlogic.gdx.utils.ScreenUtils;
 
 /**
@@ -15,8 +20,8 @@ import com.badlogic.gdx.utils.ScreenUtils;
  */
 public class Transition {
 
-    private boolean isFinished = false;
-    private float time = 1000;
+    private boolean isFinished;
+    private float time;
     public enum TransitionType {
         FADE,
         FADE_IN_OUT,
@@ -31,10 +36,13 @@ public class Transition {
     private Sprite screenshot;
     private Sprite screenshotClone;
     private TransitionType type;
-    private float alpha = 1;
+    private float alpha;
     
     public Transition(TransitionType type) {
+        this.time = 1000;
+        this.isFinished = false;
         this.type = type;
+        this.stepUp = false;
         screenshot = screenshot();
         switch (type) {
             case FADE:
@@ -144,20 +152,14 @@ public class Transition {
         return delta;
     }
     
-    public void render(SpriteBatch batch) {
+    public void render(Batch batch) {
         if (type == TransitionType.FADE_IN_OUT && screenshotClone != null) {
-            if (screenshotClone.getWidth() != 1024) {
-                System.out.println("Tell me");
-            }
             screenshotClone.draw(batch);
             if (stepUp) {
                 screenshotClone = null;
             }
         }
         if (type != TransitionType.PAUSE) {
-            if (screenshot.getWidth() != 1024) {
-                System.out.println("Tell me");
-            }
             screenshot.draw(batch);
         }
     }
