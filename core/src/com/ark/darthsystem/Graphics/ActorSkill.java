@@ -154,6 +154,7 @@ public class ActorSkill extends ActorCollision {
 
     public void generateBody(OverheadMap map) {
         super.generateBody(map);
+        getMainBody().setBullet(true);
         currentX = 0;
         currentY = 0;
         Array<Joint> temp = new Array<>();
@@ -172,8 +173,7 @@ public class ActorSkill extends ActorCollision {
             def.dampingRatio = 1f;
             def.frequencyHz = 60;
             def.collideConnected = false;
-            System.out.println(invoker.getMainBody() != getMainBody());
-            def.initialize(invoker.getMainBody(), getMainBody(), new Vector2(getX(), getY()));
+            def.initialize(invoker.getMainBody(), getMainBody(), new Vector2(getX(), getY()));            
             joint = (WeldJoint) map.getPhysicsWorld().createJoint(def);
         }
     }

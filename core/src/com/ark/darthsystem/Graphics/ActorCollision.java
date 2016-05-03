@@ -75,7 +75,9 @@ public class ActorCollision extends Actor {
         def.dampingRatio = 1f;
         def.frequencyHz = 60;
         def.collideConnected = false;
-        def.initialize(sensorBody, body, new Vector2(getX(), getY()));        
+        if (!sensorBody.equals(body)) { //Bandage Problem.  Why would the bodies the same?
+            def.initialize(sensorBody, body, new Vector2(getX(), getY()));
+        }
         sensorJoint = (WeldJoint) map.getPhysicsWorld().createJoint(def);        
         
         fixtureDef.shape.dispose();
