@@ -395,7 +395,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
 
                 MapProperties properties = object.getProperties();
 
-                if (properties.get("type", String.class).equalsIgnoreCase("actor")) {
+                if (properties.get("type", String.class) != null && properties.get("type", String.class).equalsIgnoreCase("actor")) {
                     //                Actor a = AIDatabase.actors.get(properties.get("Name", String.class));
                     //                a.setMap(this, false);
                     //                a.setX(properties.get("x", Float.class));

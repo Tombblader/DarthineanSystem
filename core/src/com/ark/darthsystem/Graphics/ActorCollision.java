@@ -5,6 +5,7 @@
  */
 package com.ark.darthsystem.Graphics;
 
+import com.ark.darthsystem.Database.CollisionDatabaseLoader;
 import com.ark.darthsystem.States.OverheadMap;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
@@ -56,11 +57,17 @@ public class ActorCollision extends Actor {
         genericBodyType.position.set(getX(), getY());
         body = map.getPhysicsWorld().createBody(genericBodyType);
         FixtureDef fixtureDef = new FixtureDef();
-        fixtureDef.shape = new CircleShape() {
-            {
-                setRadius(24f / GraphicsDriver.getPlayerCamera().getConversion());
-            }
-        };
+        if (CollisionDatabaseLoader.getShapes().get("basiccircle") == null) {
+            fixtureDef.shape = new CircleShape() {
+                {
+//                    setRadius(24f / GraphicsDriver.getPlayerCamera().getConversion());
+                }
+            };
+        } else {
+            fixtureDef.shape = CollisionDatabaseLoader.getShapes().get("basiccircle");
+            System.out.println(fixtureDef.shape);
+        }
+        
         fixtureDef.density = 0.1f; 
         fixtureDef.friction = 1.0f;
         fixtureDef.restitution = 0f;
@@ -80,7 +87,7 @@ public class ActorCollision extends Actor {
         }
         sensorJoint = (WeldJoint) map.getPhysicsWorld().createJoint(def);        
         
-        fixtureDef.shape.dispose();
+//        fixtureDef.shape.dispose();
     }    
     
     public Body getMainBody() {

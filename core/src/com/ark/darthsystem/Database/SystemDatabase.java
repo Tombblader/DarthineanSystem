@@ -47,5 +47,4 @@ public class SystemDatabase {
     public static BattlerClass Axeman_Class = new BattlerClass("Axeman", null, Axeman_Moveset);
     public static BattlerClass Mage_Class = new BattlerClass("Mage", null, Mage_Moveset);
     public static BattlerClass Angel_Class = new BattlerClass("Angel", null, Angel_Moveset);
-
 }

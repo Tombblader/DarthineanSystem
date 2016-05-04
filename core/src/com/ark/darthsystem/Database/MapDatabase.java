@@ -20,9 +20,9 @@ public class MapDatabase {
     private static final int MIN_Y_TILES = 24;
     
     public MapDatabase() {
-        maps = new HashMap<>();
-        
+        maps = new HashMap<>();        
         initializeMaps();
+        new CollisionDatabaseLoader();
         Database2.player.setMap(maps.get("nowhere"), 300 / GraphicsDriver.getPlayerCamera().getConversion(), 300 / GraphicsDriver.getPlayerCamera().getConversion());
         Database2.ErikAI.setMap(maps.get("complex"), 200 / GraphicsDriver.getPlayerCamera().getConversion(), 200 / GraphicsDriver.getPlayerCamera().getConversion());
 //        EventDatabase.GraphicsPotion.setMap(maps.get("testing"), false);

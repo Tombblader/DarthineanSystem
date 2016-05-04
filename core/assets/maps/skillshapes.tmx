@@ -6,17 +6,16 @@
   </data>
  </layer>
  <objectgroup name="objects">
-  <object id="1" name="basicCircle" x="32" y="32" width="32" height="32">
+  <object id="1" name="basiccircle" type="skill" x="32" y="32" width="32" height="32">
    <ellipse/>
   </object>
-  <object id="4" name="largeAreaCircle" x="0" y="96" width="96" height="96">
+  <object id="4" name="widecircle" type="skill" x="0" y="96" width="96" height="96">
    <ellipse/>
   </object>
-  <object id="5" name="basicSquare" x="96" y="32" width="32" height="32"/>
-  <object id="8" name="widesword" x="160" y="81">
+  <object id="5" name="basicsquare" type="skill" x="96" y="32" width="32" height="32"/>
+  <object id="8" name="widesword" type="skill" x="96" y="99.5">
    <polygon points="0,4.5 8,-3.5 24,-3.5 32,4.5 24,15 8,15"/>
   </object>
-  <object id="11" x="205.75" y="96.25" width="2"/>
-  <object id="12" x="208" y="64" width="3.75" height="36.5"/>
+  <object id="12" name="thinthrust" type="skill" x="208" y="64" width="3.75" height="36.5"/>
  </objectgroup>
 </map>
