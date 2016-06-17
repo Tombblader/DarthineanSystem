@@ -29,49 +29,50 @@ public class ActorAI extends Player {
     }
 
     public void attack() {
-        setAttacking(true);
-        getAttackAnimation().resetAnimation();
-        setPause((getAttackAnimation().getAnimationDelay() + getAttackAnimation().getAftercastDelay()) * 1000f);
-        getAttackAnimation().setX(this);
-        getAttackAnimation().setY(this);
-        getAttackAnimation().setFacing();
-        getAttackAnimation().setMap(getCurrentMap(), false);
-        getAttackAnimation().playFieldSound();
-        setFieldState(ActorSprite.SpriteModeField.ATTACK);
-        switch (super.getFacing()) {
-            case UP:
-            case UP_LEFT:
-            case UP_RIGHT:
-                changeAnimation(getCurrentBattler().getSprite().
-                        getFieldAnimation(getFieldState(), Actor.Facing.UP));
-                break;
-            case RIGHT:
-                changeAnimation(getCurrentBattler().getSprite().
-                        getFieldAnimation(getFieldState(), Actor.Facing.RIGHT));
-                break;
-            case LEFT:
-                changeAnimation(getCurrentBattler().getSprite().
-                        getFieldAnimation(getFieldState(), Actor.Facing.LEFT));
-                break;
-            case DOWN:
-            case DOWN_LEFT:
-            case DOWN_RIGHT:
-                changeAnimation(getCurrentBattler().getSprite().
-                        getFieldAnimation(getFieldState(), Actor.Facing.DOWN));
-                break;
-            default:
-        }
-        getCurrentAnimation().setFrameDuration(getAttackAnimation().getAnimationDelay() / getCurrentAnimation().getKeyFrames().length);
-        addTimer(new GameTimer("Attack", 10000) {
-            @Override
-            public void event(Actor a) {
-                setFieldState(ActorSprite.SpriteModeField.STAND);
-                setAttacking(false);
-            }
-            public boolean isFinished() {
-                return getCurrentAnimation().isAnimationFinished(getElapsedTime());
-            }
-        });
+        super.attack();
+//        setAttacking(true);
+//        getAttackAnimation().resetAnimation();
+//        setPause((getAttackAnimation().getAnimationDelay() + getAttackAnimation().getAftercastDelay()) * 1000f);
+//        getAttackAnimation().setX(this);
+//        getAttackAnimation().setY(this);
+//        getAttackAnimation().setFacing();
+//        getAttackAnimation().setMap(getCurrentMap(), false);
+//        getAttackAnimation().playFieldSound();
+//        setFieldState(ActorSprite.SpriteModeField.ATTACK);
+//        switch (super.getFacing()) {
+//            case UP:
+//            case UP_LEFT:
+//            case UP_RIGHT:
+//                changeAnimation(getCurrentBattler().getSprite().
+//                        getFieldAnimation(getFieldState(), Actor.Facing.UP));
+//                break;
+//            case RIGHT:
+//                changeAnimation(getCurrentBattler().getSprite().
+//                        getFieldAnimation(getFieldState(), Actor.Facing.RIGHT));
+//                break;
+//            case LEFT:
+//                changeAnimation(getCurrentBattler().getSprite().
+//                        getFieldAnimation(getFieldState(), Actor.Facing.LEFT));
+//                break;
+//            case DOWN:
+//            case DOWN_LEFT:
+//            case DOWN_RIGHT:
+//                changeAnimation(getCurrentBattler().getSprite().
+//                        getFieldAnimation(getFieldState(), Actor.Facing.DOWN));
+//                break;
+//            default:
+//        }
+//        getCurrentAnimation().setFrameDuration(getAttackAnimation().getAnimationDelay() / getCurrentAnimation().getKeyFrames().length);
+//        addTimer(new GameTimer("Attack", 10000) {
+//            @Override
+//            public void event(Actor a) {
+//                setFieldState(ActorSprite.SpriteModeField.STAND);
+//                setAttacking(false);
+//            }
+//            public boolean isFinished() {
+//                return getCurrentAnimation().isAnimationFinished(getElapsedTime());
+//            }
+//        });
     }
     
     public void generateBody(OverheadMap map) {
