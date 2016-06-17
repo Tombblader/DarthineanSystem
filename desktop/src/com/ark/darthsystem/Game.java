@@ -24,7 +24,8 @@ public class Game {
         Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
         config.setWindowedMode(1024, 768);
         config.setTitle("Adventurer");
-        config.useOpenGL3(true, 3, 3);        
+        config.useOpenGL3(true, 3, 3);       
+        config.setResizable(false);
         ShaderProgram.prependVertexCode = "#version 330 core\n#define varying out\n#define attribute in\n";
         ShaderProgram.prependFragmentCode = "#version 330 core\n#define varying in\n#define texture2D texture\n#define gl_FragColor fragColor\nout vec4 fragColor;\nprecision mediump float;\n";
         config.useVsync(true);

@@ -45,8 +45,9 @@ public class Database2 extends Database1 {
                                 0,
                                 0,
                                 1.0f / 60.0f,
+                                
                                 SkillDatabase.Red_Spin,
-                                ActorSkill.Area.SELF));
+                                ActorSkill.Area.SELF) {{setShape("widespin");}});
                 put(SkillDatabase.Sap_Shot,
                         new ActorSkill((Sprite[]) GraphicsDriver.getMasterSheet().createSprites("skills/red_spin/field/red_spin").toArray(Sprite.class),
                                 GraphicsDriver.getMasterSheet().createSprites("skills/crosscall/battler/crosscall").toArray(Sprite.class),
@@ -100,7 +101,7 @@ public class Database2 extends Database1 {
         Database2.battlers = new ActorBattler[]{
             new ActorBattler(Water_Spirit, Water_Spirit_Sprite)
 //            , new ActorBattler(Darth, DarthSprite) 
-//                , new ActorBattler(Erik, ErikSprite)
+                , new ActorBattler(Erik, ErikSprite)
         };
         player = new Player(new ArrayList<>(Arrays.asList(battlers)), 0, 0);
     }
@@ -132,9 +133,9 @@ public class Database2 extends Database1 {
                 GraphicsDriver.getMasterSheet().createSprites("items/equipment/sword/battler/battler").toArray(Sprite.class),
                 1,
                 1,
-                1.0f / 60.0f,
+                4.0f / 60.0f,
                 null,
-                ActorSkill.Area.FRONT);
+                ActorSkill.Area.FRONT) {{setShape("widesword");}};
     }
 
     //  public static GraphicsEvent Pickup;

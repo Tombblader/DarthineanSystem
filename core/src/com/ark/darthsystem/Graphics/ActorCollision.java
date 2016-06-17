@@ -8,6 +8,7 @@ package com.ark.darthsystem.Graphics;
 import com.ark.darthsystem.Database.CollisionDatabaseLoader;
 import com.ark.darthsystem.States.OverheadMap;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
@@ -15,6 +16,7 @@ import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.Filter;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.joints.WeldJoint;
 import com.badlogic.gdx.physics.box2d.joints.WeldJointDef;
 import com.badlogic.gdx.utils.Array;
@@ -32,6 +34,7 @@ public class ActorCollision extends Actor {
     public static final short CATEGORY_PLAYER_SKILL = 0x0010;
     public static final short CATEGORY_WALLS = 0x0004;
     
+    private String shapeName = "basiccircle";
     private Body body;
     private Fixture fixture;
     private Body sensorBody;
@@ -50,23 +53,56 @@ public class ActorCollision extends Actor {
         super(img, getX, getY, delay);
     }
     
+    public void setShape(String name) {
+        shapeName = name;
+    }
+    
     public void generateBody(OverheadMap map) {        
         BodyDef genericBodyType = new BodyDef();
         genericBodyType.type = BodyDef.BodyType.DynamicBody;
         genericBodyType.fixedRotation = true;
         genericBodyType.position.set(getX(), getY());
-        body = map.getPhysicsWorld().createBody(genericBodyType);
         FixtureDef fixtureDef = new FixtureDef();
-        if (CollisionDatabaseLoader.getShapes().get("basiccircle") == null) {
+        if (CollisionDatabaseLoader.getShapes().get(shapeName) == null) {
             fixtureDef.shape = new CircleShape() {
                 {
 //                    setRadius(24f / GraphicsDriver.getPlayerCamera().getConversion());
                 }
             };
         } else {
-            fixtureDef.shape = CollisionDatabaseLoader.getShapes().get("basiccircle");
-            System.out.println(fixtureDef.shape);
+            fixtureDef.shape = CollisionDatabaseLoader.getShape(shapeName);
+            if (fixtureDef.shape instanceof PolygonShape) {
+                float degrees = 0;
+                switch (this.getFacing()) {
+                    case UP:
+                        degrees = 0;
+                        break;
+                    case UP_LEFT:
+                        degrees = 360 - 45;
+                        break;
+                    case UP_RIGHT:
+                        degrees = 45;
+                        break;
+                    case RIGHT:
+                        degrees = 90;
+                        break;
+                    case DOWN_RIGHT:
+                        degrees = 135;
+                        break;
+                    case DOWN:
+                        degrees = 180;
+                        break;
+                    case DOWN_LEFT:
+                        degrees = 225;
+                        break;
+                    case LEFT:
+                        degrees = 270;
+                        break;
+                }
+                genericBodyType.angle = degrees * MathUtils.degreesToRadians;
+            }
         }
+        body = map.getPhysicsWorld().createBody(genericBodyType);
         
         fixtureDef.density = 0.1f; 
         fixtureDef.friction = 1.0f;
@@ -88,7 +124,9 @@ public class ActorCollision extends Actor {
         sensorJoint = (WeldJoint) map.getPhysicsWorld().createJoint(def);        
         
 //        fixtureDef.shape.dispose();
-    }    
+    }
+    
+    
     
     public Body getMainBody() {
         return body;

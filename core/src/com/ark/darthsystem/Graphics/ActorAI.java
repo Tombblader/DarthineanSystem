@@ -34,6 +34,7 @@ public class ActorAI extends Player {
         setPause((getAttackAnimation().getAnimationDelay() + getAttackAnimation().getAftercastDelay()) * 1000f);
         getAttackAnimation().setX(this);
         getAttackAnimation().setY(this);
+        getAttackAnimation().setFacing();
         getAttackAnimation().setMap(getCurrentMap(), false);
         getAttackAnimation().playFieldSound();
         setFieldState(ActorSprite.SpriteModeField.ATTACK);
