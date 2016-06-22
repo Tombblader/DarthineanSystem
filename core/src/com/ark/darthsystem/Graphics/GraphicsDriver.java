@@ -152,7 +152,9 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
     }
 
     public static void setState(State getState) {
-        states.get((states.size - 1)).dispose();
+        if (!(states.get((states.size - 1)) instanceof OverheadMap)) {
+            states.get((states.size - 1)).dispose();
+        }
         states.set((states.size - 1), getState);
         if (getState.getMusic() != null) {
             playMusic(getState.getMusic());

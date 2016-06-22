@@ -15,7 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class MapDatabase {
-    public static HashMap<String, OverheadMap> maps;
+    private static HashMap<String, OverheadMap> maps;
     private static final int MIN_X_TILES = 32;
     private static final int MIN_Y_TILES = 24;
     
@@ -29,11 +29,15 @@ public class MapDatabase {
 //        EventDatabase.chapter1.setMap(maps.get("testing"), false);
     }
     
+    public static HashMap<String, OverheadMap> getMaps() {
+        return maps;
+    }
+    
     private void initializeMaps() {
 //        File f = new File(Gdx.files.internal("maps").file().toURI()); //CANNOT LIST INSIDE JAR
         Array<FileHandle> f = new Array<>();
         final File jarFile = new File(getClass().getProtectionDomain().getCodeSource().getLocation().getPath());
-        final JarFile jar;
+        final JarFile jar;        
         try {
             jar = new JarFile(jarFile);            
             final Enumeration<JarEntry> entries = jar.entries(); //gives ALL entries in jar
@@ -71,7 +75,7 @@ public class MapDatabase {
 //                fileName += file.nameWithoutExtension();
 //                 
 //           }
-            if (file.extension().equalsIgnoreCase("tmx")) {
+             if (file.extension().equalsIgnoreCase("tmx")) {
                 maps.put(file.nameWithoutExtension(), new OverheadMap(file.path()));
             }
         }

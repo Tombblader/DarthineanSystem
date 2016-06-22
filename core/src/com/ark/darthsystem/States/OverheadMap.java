@@ -655,6 +655,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
         GraphicsDriver.getPlayer().renderGlobalData(this.batch);
         drawMessage(this.batch);
         endRender();
+        debugRender.render(world, GraphicsDriver.getCurrentCamera().combined);
         
         if (worldStep) {
             world.step(1f/60f, 6, 2);  //Fix the second and third values.
@@ -685,7 +686,6 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
            
             worldStep = false;
         }        
-        debugRender.render(world, GraphicsDriver.getCurrentCamera().combined);
     }
 
     @Override

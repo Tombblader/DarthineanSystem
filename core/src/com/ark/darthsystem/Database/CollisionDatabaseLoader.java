@@ -39,11 +39,12 @@ import java.util.HashMap;
  */
 public class CollisionDatabaseLoader {
     private static final float ppt = 32f;
-    private static HashMap<String, Shape> shapes = new HashMap<>();
+    private static HashMap<String, Shape> shapes;
     private static MapLayer layer;
     public CollisionDatabaseLoader() {
-        TiledMap tiledMap = MapDatabase.maps.get("skillshapes").getMap();
-        layer = tiledMap.getLayers().get("objects");
+        shapes = new HashMap<>();
+        TiledMap tiledMap = MapDatabase.getMaps().get("skillshapes").getMap();
+        layer = tiledMap.getLayers().get("collisions");
             for(MapObject object : layer.getObjects()) {
                 Shape shape;
                 if (object instanceof RectangleMapObject) {
@@ -67,24 +68,24 @@ public class CollisionDatabaseLoader {
     }
     
     public static Shape getShape(String shapeName) {
-        TiledMap tiledMap = MapDatabase.maps.get("skillshapes").getMap();
-            Shape shape;
-            MapObject object = layer.getObjects().get(shapeName);
-            if (object instanceof RectangleMapObject) {
-                shape = getRectangle((RectangleMapObject)object);
-            }
-            else if (object instanceof PolygonMapObject) {
-                shape = getPolygon((PolygonMapObject)object);
-            }
-            else if (object instanceof PolylineMapObject) {
-                shape = getPolyline((PolylineMapObject)object);
-            }
-            else if (object instanceof EllipseMapObject) {
-                shape = getCircle((EllipseMapObject)object);
-            }
-            else {
-                shape = null;
-            }
+        TiledMap tiledMap = MapDatabase.getMaps().get("skillshapes").getMap();
+        Shape shape;
+        MapObject object = layer.getObjects().get(shapeName);
+        if (object instanceof RectangleMapObject) {
+            shape = getRectangle((RectangleMapObject)object);
+        }
+        else if (object instanceof PolygonMapObject) {
+            shape = getPolygon((PolygonMapObject)object);
+        }
+        else if (object instanceof PolylineMapObject) {
+            shape = getPolyline((PolylineMapObject)object);
+        }
+        else if (object instanceof EllipseMapObject) {
+            shape = getCircle((EllipseMapObject)object);
+        }
+        else {
+            shape = null;
+        }
             
         return shape;
     }

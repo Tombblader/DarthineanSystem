@@ -6,6 +6,7 @@
 package com.ark.darthsystem.Graphics;
 
 import com.ark.darthsystem.Database.CollisionDatabaseLoader;
+import com.ark.darthsystem.Database.MapDatabase;
 import com.ark.darthsystem.States.OverheadMap;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.MathUtils;
@@ -63,7 +64,8 @@ public class ActorCollision extends Actor {
         genericBodyType.fixedRotation = true;
         genericBodyType.position.set(getX(), getY());
         FixtureDef fixtureDef = new FixtureDef();
-        if (CollisionDatabaseLoader.getShapes().get(shapeName) == null) {
+        if (CollisionDatabaseLoader.getShapes() == null || CollisionDatabaseLoader.getShapes().isEmpty()
+                || (!MapDatabase.getMaps().containsKey("skillshapes") && map.getMap().getLayers().get("collisions") == null)) {
             fixtureDef.shape = new CircleShape() {
                 {
 //                    setRadius(24f / GraphicsDriver.getPlayerCamera().getConversion());
@@ -186,7 +188,7 @@ public class ActorCollision extends Actor {
         if (!map.getPhysicsWorld().isLocked()) {
             generateBody(map);
         } else {
-            map.addBody(this);
+              map.addBody(this);
         }
 //        }
 
