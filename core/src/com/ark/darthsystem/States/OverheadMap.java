@@ -75,8 +75,9 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
     private ArrayList<String> message = new ArrayList<>();
     private int elapsed = 0;
     private final int MESSAGE_TIME = 3000;
-    private Array<Actor> playerActors;
-    private Array<Actor> enemyActors;
+    private Array<Actor> actorList;
+//    private Array<Actor> playerActors;
+//    private Array<Actor> enemyActors;
     private final int DRAW_SPRITES_AFTER_LAYER = 2;
     private World world;
     private Box2DDebugRenderer debugRender = new Box2DDebugRenderer();
@@ -106,8 +107,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
         updateProperties(prop);
         width = prop.get("width", Integer.class) * prop.get("tilewidth", Integer.class);
         height = prop.get("height", Integer.class) * prop.get("tileheight", Integer.class);        
-        playerActors = new Array<>();
-        enemyActors = new Array<>();
+        actorList = new Array<>();
         world = new World(new Vector2(0, 0), true);
         world.setContactListener(new ContactListener() {
 
@@ -188,14 +188,14 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                                 battler.changeExperiencePoints(getBattlerAI.getExperienceValue());
                             }
                         }
-                        removeActor(tempAI, false);
+                        removeActor(tempAI);
                     }
 
                     //clear certain called events
-                    for (Actor actors :  enemyActors) {
+                    for (Actor actors :  actorList) {
                         if (actors instanceof ActorSkill) {
                             if (((ActorSkill)(actors)).getInvoker().equals(tempAI)) {
-                                removeActor(actors, false);
+                                removeActor(actors);
                                 ((ActorSkill)(actors)).stopFieldSound();
                             }
                         }
@@ -208,6 +208,8 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                             case "JUMP":
                             case "OUCH":
                                 t.event(tempAI);
+                            case "ATTACK_CHARGE":
+                            case "SKILL_CHARGE":
                                 tempAI.getTimers().removeValue(t, true);
                                 break;
                         }
@@ -236,10 +238,10 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                                 tempPlayer.getAllBattlers());
                         action.calculateDamage(new Battle(tempSkill.getInvoker().getAllActorBattlers(), tempPlayer.getAllActorBattlers(), Database1.inventory, null));
                     }                                
-                    for (Actor actors:  playerActors) {
+                    for (Actor actors : actorList) {
                         if (actors instanceof ActorSkill) {
                             if (((ActorSkill)(actors)).getInvoker().equals(tempPlayer)) {
-                                removeActor(actors, true);
+                                removeActor(actors);
                                 ((ActorSkill)(actors)).stopFieldSound();
                             }
                         }
@@ -252,6 +254,8 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                             case "JUMP":
                             case "OUCH":
                                 t.event(tempPlayer);
+                            case "ATTACK_CHARGE":
+                            case "SKILL_CHARGE":
                                 tempPlayer.getTimers().removeValue(t, true);
                                 break;
                         }
@@ -471,7 +475,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
             default:
                 break;
         }
-        e.setMap(this, false);
+        e.setMap(this);
         return e;
     }
     private void updateProperties(MapProperties prop) {
@@ -495,19 +499,13 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
 
     @Override
     public float update(float delta) {
-        for (Actor a : playerActors) {
-            a.update(delta);
-            if (a.isFinished()) {
-                removeActor(a, true);
-            }
-        }
-        for (Actor a : enemyActors) {
+        for (Actor a : actorList) {
             if (a instanceof ActorAI && ((ActorAI) (a)).totalPartyKill()) {
-                removeActor(a, false);
+                removeActor(a);
             } else {
                 a.update(delta);
                 if (a.isFinished()) {
-                    removeActor(a, false);
+                    removeActor(a);
                 }
             }
         }
@@ -527,22 +525,14 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
         return delta;
     }
 
-    public void addActor(Actor a, boolean isPlayer) {
-        if (isPlayer) {
-            if (!playerActors.contains(a, true)) {
-                playerActors.add(a);
-            }
-        } else if (!enemyActors.contains(a, true)) {
-            enemyActors.add(a);
+    public void addActor(Actor a) {
+        if (!actorList.contains(a, true)) {
+            actorList.add(a);
         }
     }
 
-    public void removeActor(Actor a, boolean isPlayer) {
-        if (isPlayer) {
-            playerActors.removeValue(a, true);
-        } else {
-            enemyActors.removeValue(a, true);
-        }
+    public void removeActor(Actor a) {
+        actorList.removeValue(a, true);
         
         if (!(a instanceof Player)) {
             a.resetAnimation();
@@ -562,7 +552,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
     private void battleStart() {
         Array<ActorAI> clear = new Array<>();
         ArrayList<ActorBattler> encounters = new ArrayList<>();
-        for (Actor enemyActors2 : enemyActors) {
+        for (Actor enemyActors2 : actorList) {
             if (enemyActors2 instanceof ActorAI && ((ActorAI) (enemyActors2)).vision()) {
                 encounters.addAll(((ActorAI) (enemyActors2)).getAllActorBattlers());
                 clear.add((ActorAI) enemyActors2);
@@ -571,10 +561,10 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
         
         for (ActorAI tempAI : clear) {
             //clear certain called events
-            for (Actor actors :  enemyActors) {
+            for (Actor actors :  actorList) {
                 if (actors instanceof ActorSkill) {
                     if (((ActorSkill)(actors)).getInvoker().equals(tempAI)) {
-                        removeActor(actors, false);
+                        removeActor(actors);
                         ((ActorSkill)(actors)).stopFieldSound();
                     }
                 }
@@ -587,16 +577,18 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                     case "JUMP":
                     case "OUCH":
                         t.event(tempAI);
+                    case "ATTACK_CHARGE":
+                    case "SKILL_CHARGE":
                         tempAI.getTimers().removeValue(t, true);
                         break;
                 }
             }
         }
 
-        for (Actor actors:  playerActors) {
+        for (Actor actors : actorList) {
                if (actors instanceof ActorSkill) {
                    if (((ActorSkill)(actors)).getInvoker().equals(GraphicsDriver.getPlayer())) {
-                       removeActor(actors, true);
+                       removeActor(actors);
                        ((ActorSkill)(actors)).stopFieldSound();
                    }
                }
@@ -609,6 +601,8 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                    case "JUMP":
                    case "OUCH":
                        t.event(GraphicsDriver.getPlayer());
+                   case "ATTACK_CHARGE":
+                   case "SKILL_CHARGE":
                        GraphicsDriver.getPlayer().getTimers().removeValue(t, true);
                        break;
                }
@@ -637,10 +631,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                     renderTileLayer((TiledMapTileLayer) layer);
                     currentLayer++;
                     if (currentLayer == DRAW_SPRITES_AFTER_LAYER) {
-                        for (Actor a : playerActors) {
-                            a.render(this.batch);
-                        }
-                        for (Actor a : enemyActors) {
+                        for (Actor a : actorList) {
                             a.render(this.batch);
                         }
                     }
@@ -658,6 +649,12 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
         debugRender.render(world, GraphicsDriver.getCurrentCamera().combined);
         
         if (worldStep) {
+            for (ActorCollision a : createQueue) {
+                if (!world.isLocked()) {
+                    a.generateBody(this);                    
+                    createQueue.removeValue(a, true);
+                }
+            }
             world.step(1f/60f, 6, 2);  //Fix the second and third values.
             Array<Body> temp = new Array<>();
             world.getBodies(temp);
@@ -679,11 +676,6 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                     deleteJointQueue.removeValue(joints, true);
                 }
             }
-            for (ActorCollision a : createQueue) {
-                a.generateBody(this);
-            }
-            createQueue.clear();
-           
             worldStep = false;
         }        
     }

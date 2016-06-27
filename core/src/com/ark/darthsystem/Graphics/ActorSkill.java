@@ -276,10 +276,6 @@ public class ActorSkill extends ActorCollision {
         getCurrentImage().setRotation(this.getFacing().getRotate());
     }
 
-    public void setMap(OverheadMap map, boolean isPlayer) {
-        super.setMap(map, isPlayer);
-    }
-
     public void stopBattlerSound() {
         try {
             battlerSound.stop();

@@ -121,36 +121,40 @@ public class Player extends ActorCollision {
     }
 
     public void attack() {
-        attacking = true;
-        getAttackAnimation().resetAnimation();
-        getAttackAnimation().setX(this);
-        getAttackAnimation().setY(this);
-        setPause((getAttackAnimation().getChargeTime() * 1000f));
-        addTimer(new GameTimer("Attack", getAttackAnimation().getChargeTime() * 1000f) {
-            @Override
-            public void event(Actor a) {
-                getAttackAnimation().playFieldSound();
-                getAttackAnimation().setFacing();
-                fieldState = ActorSprite.SpriteModeField.ATTACK;
-                setPause((getAttackAnimation().getAnimationDelay() * 1000f));
-                getAttackAnimation().setMap(getCurrentMap(), !(getAttackAnimation().getInvoker() instanceof ActorAI));
-                addTimer(new GameTimer("Attack", (getAttackAnimation().getAnimationDelay() * 1000f)) {
-                    @Override
-                    public void event(Actor a) {
-                        fieldState = ActorSprite.SpriteModeField.STAND;
-                        attacking = false;
+        if (!getCurrentMap().getPhysicsWorld().isLocked()) {
+            attacking = true;
+            getAttackAnimation().resetAnimation();
+            getAttackAnimation().setX(this);
+            getAttackAnimation().setY(this);
+            setPause((getAttackAnimation().getChargeTime() * 1000f));
+            addTimer(new GameTimer("Attack_Charge", getAttackAnimation().getChargeTime() * 1000f) {
+                @Override
+                public void event(Actor a) {
+                    getAttackAnimation().playFieldSound();
+                    getAttackAnimation().setFacing();
+                    fieldState = ActorSprite.SpriteModeField.ATTACK;
+                    setPause((getAttackAnimation().getAnimationDelay() * 1000f));
+                    if (!getCurrentMap().getPhysicsWorld().isLocked()) {
+                        getAttackAnimation().setMap(getCurrentMap());
+                        addTimer(new GameTimer("Attack", (getAttackAnimation().getAnimationDelay() * 1000f)) {
+                            @Override
+                            public void event(Actor a) {
+                                fieldState = ActorSprite.SpriteModeField.STAND;
+                                attacking = false;
+                            }
+                            public boolean update(float delta, Actor a) {
+                                fieldState = ActorSprite.SpriteModeField.ATTACK;
+                                return super.update(delta, a);
+                            }
+                        });
                     }
-                    public boolean update(float delta, Actor a) {
-                        fieldState = ActorSprite.SpriteModeField.ATTACK;
-                        return super.update(delta, a);
-                    }
-                });
-            }
-            public boolean update(float delta, Actor a) {
-                attacking = true;
-                return super.update(delta, a);
-            }
-        });
+                }
+                public boolean update(float delta, Actor a) {
+                    attacking = true;
+                    return super.update(delta, a);
+                }
+            });
+        }
 
 //        getCurrentAnimation().setFrameDuration(getAttackAnimation().getAnimationDelay() / getCurrentAnimation().getKeyFrames().length);
     }
@@ -169,7 +173,7 @@ public class Player extends ActorCollision {
                         tempSkill.playFieldSound();
 //                        fieldState = ActorSprite.SpriteModeField.SKILL;
                         setPause((getCurrentBattler().getCurrentSkill().getAnimationDelay() * 1000f));
-                        tempSkill.setMap(getCurrentMap(), true);
+                        tempSkill.setMap(getCurrentMap());
                         attacking = false;
                     }
                 });
@@ -309,7 +313,7 @@ public class Player extends ActorCollision {
         if (!isWalking) {
             if (!attacking) {
                 fieldState = ActorSprite.SpriteModeField.STAND;
-            }
+            }            
             getMainBody().setLinearVelocity(0, 0);
         }
         isWalking = false;
@@ -388,7 +392,7 @@ public class Player extends ActorCollision {
     public void setMap(OverheadMap map, float x, float y) {
         setX(x);
         setY(y);
-        super.setMap(map, !(this instanceof ActorAI));
+        super.setMap(map);
     }
     
     public void render(Batch batch) {

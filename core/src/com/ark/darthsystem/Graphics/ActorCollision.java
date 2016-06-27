@@ -165,7 +165,7 @@ public class ActorCollision extends Actor {
         fixture.setFilterData(f);
 //        sensorFixture.setFilterData(f);
     }
-    public void setMap(OverheadMap map, boolean isPlayer) {
+    public void setMap(OverheadMap map) {
         if (getCurrentMap() != null) {
             Array<Body> temp = new Array<Body>();
             map.getPhysicsWorld().getBodies(temp);
@@ -175,23 +175,8 @@ public class ActorCollision extends Actor {
                 }
             }
         }
-        super.setMap(map, isPlayer);
-//        Array<Body> temp = new Array<Body>();
-//        map.getPhysicsWorld().getBodies(temp);
-//        if (temp.contains(body, true)) {
-//            body.setActive(true);
-//            body.setTransform(getX(), getY(), 0);
-//            sensorBody.setActive(true);
-//            sensorBody.setTransform(getX(), getY(), 0);
-//        }
-//        else {
-        if (!map.getPhysicsWorld().isLocked()) {
-            generateBody(map);
-        } else {
-              map.addBody(this);
-        }
-//        }
-
+        super.setMap(map);
+        generateBody(map);
     }
     
     public void setSensorFilter(short category, short mask) {
@@ -202,7 +187,9 @@ public class ActorCollision extends Actor {
     }
     public void update(float delta) {
         super.update(delta);
-        setX(Math.round(body.getPosition().x * 100f) / 100f);
-        setY(Math.round(body.getPosition().y * 100f) / 100f);
+        if (body != null) {
+            setX(Math.round(body.getPosition().x * 100f) / 100f);
+            setY(Math.round(body.getPosition().y * 100f) / 100f);
+        }
     }
 }

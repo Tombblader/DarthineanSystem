@@ -305,9 +305,9 @@ public class Actor {
         }
     }
     
-    public void setMap(OverheadMap map, boolean isPlayer) {
+    public void setMap(OverheadMap map) {
         currentMap = map;
-        currentMap.addActor(this, isPlayer);
+        currentMap.addActor(this);
         setX(x);
         setY(y);
         
