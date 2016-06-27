@@ -122,10 +122,8 @@ public class ActorCollision extends Actor {
         def.collideConnected = false;
         if (!sensorBody.equals(body)) { //Bandage Problem.  Why would the bodies the same?
             def.initialize(sensorBody, body, new Vector2(getX(), getY()));
-        }
-        sensorJoint = (WeldJoint) map.getPhysicsWorld().createJoint(def);        
-        
-//        fixtureDef.shape.dispose();
+            sensorJoint = (WeldJoint) map.getPhysicsWorld().createJoint(def);        
+        }        
     }
     
     
@@ -175,8 +173,10 @@ public class ActorCollision extends Actor {
                 }
             }
         }
-        super.setMap(map);
-        generateBody(map);
+        setCurrentMap(map);
+        setX(getX());
+        setY(getY());
+        map.addBody(this);
     }
     
     public void setSensorFilter(short category, short mask) {

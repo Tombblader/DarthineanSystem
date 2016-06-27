@@ -118,11 +118,13 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                 if (a.isSensor() || b.isSensor()) {
                     if (a.getBody().getUserData() instanceof ActorSkill) {
                         if (b.getBody().getUserData() instanceof Player) {
+                            System.out.println("B, a");
                             renderCollision(b, a);
                         }
                     }
                     if (b.getBody().getUserData() instanceof ActorSkill) {
                         if (a.getBody().getUserData() instanceof Player) {
+                            System.out.println("a, b");
                             renderCollision(a, b);
                         }
                     }
@@ -649,14 +651,15 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
         debugRender.render(world, GraphicsDriver.getCurrentCamera().combined);
         
         if (worldStep) {
+            world.step(1f/60f, 6, 2);  //Fix the second and third values.
+            Array<Body> temp = new Array<>();
             for (ActorCollision a : createQueue) {
                 if (!world.isLocked()) {
-                    a.generateBody(this);                    
+                    a.generateBody(this);
+                    addActor(a);
                     createQueue.removeValue(a, true);
                 }
             }
-            world.step(1f/60f, 6, 2);  //Fix the second and third values.
-            Array<Body> temp = new Array<>();
             world.getBodies(temp);
             for (Body bodies : deleteQueue) {
                 if (!world.isLocked()) {

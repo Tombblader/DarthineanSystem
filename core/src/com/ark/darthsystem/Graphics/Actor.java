@@ -310,8 +310,12 @@ public class Actor {
         currentMap.addActor(this);
         setX(x);
         setY(y);
-        
     }
+    
+    public void setCurrentMap(OverheadMap map) {
+        currentMap = map;
+    }
+    
     public void update(float delta) {
         if (currentImage != null) {
             elapsed += delta / 1000f;
