@@ -307,7 +307,7 @@ public class Actor {
     
     public void setMap(OverheadMap map) {
         currentMap = map;
-        currentMap.addActor(this);
+//        currentMap.addActor(this);
         setX(x);
         setY(y);
     }

@@ -307,7 +307,7 @@ public class Player extends ActorCollision {
 
     @Override
     public void update(float delta) {
-        while (!currentBattler.getBattler().isAlive()) {
+    while (!currentBattler.getBattler().isAlive()) {
             switchBattler();
         }
         if (!isWalking) {
@@ -389,9 +389,9 @@ public class Player extends ActorCollision {
         return isDead;
     }
 
-    public void setMap(OverheadMap map, float x, float y) {
-        setX(x);
-        setY(y);
+    public void setMap(OverheadMap map, float x, float y) {        
+        setInitialX(x);
+        setInitialY(y);
         super.setMap(map);
     }
     
@@ -481,6 +481,8 @@ public class Player extends ActorCollision {
     }
     
     public void generateBody(OverheadMap map) {
+        setX(getInitialX());
+        setY(getInitialY());
         super.generateBody(map);
         Filter filter = new Filter();
         filter.categoryBits = ActorCollision.CATEGORY_PLAYER;

@@ -17,6 +17,7 @@ import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.Filter;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.badlogic.gdx.physics.box2d.Joint;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.joints.WeldJoint;
 import com.badlogic.gdx.physics.box2d.joints.WeldJointDef;
@@ -41,6 +42,8 @@ public class ActorCollision extends Actor {
     private Body sensorBody;
     private Fixture sensorFixture;
     private WeldJoint sensorJoint;
+    private float initialX;
+    private float initialY;
 
     public ActorCollision(Sprite[] img, float getX, float getY, float delay) {
         super(img, getX, getY, delay);
@@ -53,12 +56,32 @@ public class ActorCollision extends Actor {
     public ActorCollision(ActorSprite img, float getX, float getY, float delay) {
         super(img, getX, getY, delay);
     }
+
+    public void setInitialX(float x) {
+        initialX = x;
+    }
+
+    public void setInitialY(float y) {
+        initialY = y;
+    }
+    
+    public float getInitialX() {
+        return initialX;
+    }
+
+    public float getInitialY() {
+        return initialY;
+    }
+
+    public Joint getJoint() {
+        return sensorJoint;
+    }
     
     public void setShape(String name) {
         shapeName = name;
     }
     
-    public void generateBody(OverheadMap map) {        
+    public void generateBody(OverheadMap map) {
         BodyDef genericBodyType = new BodyDef();
         genericBodyType.type = BodyDef.BodyType.DynamicBody;
         genericBodyType.fixedRotation = true;
@@ -80,7 +103,7 @@ public class ActorCollision extends Actor {
                         degrees = 0;
                         break;
                     case UP_LEFT:
-                        degrees = 360 - 45;
+                        degrees = 315;
                         break;
                     case UP_RIGHT:
                         degrees = 45;
@@ -105,25 +128,48 @@ public class ActorCollision extends Actor {
             }
         }
         body = map.getPhysicsWorld().createBody(genericBodyType);
-        
         fixtureDef.density = 0.1f; 
         fixtureDef.friction = 1.0f;
         fixtureDef.restitution = 0f;
         fixture = body.createFixture(fixtureDef);
         body.setUserData(this);
-        genericBodyType.type = BodyDef.BodyType.DynamicBody;
-        sensorBody = map.getPhysicsWorld().createBody(genericBodyType);
-        sensorFixture = sensorBody.createFixture(fixtureDef);
+        BodyDef genericBodyType2 = new BodyDef();
+        genericBodyType2.type = BodyDef.BodyType.DynamicBody;
+        genericBodyType2.fixedRotation = true;
+        genericBodyType2.position.set(getX(), getY());
+        genericBodyType2.angularDamping = genericBodyType.angularDamping + .01f;
+        genericBodyType2.angle = genericBodyType.angle;
+        sensorBody = null;
+        sensorBody = map.getPhysicsWorld().createBody(genericBodyType2);
+        FixtureDef fixtureDef2 = new FixtureDef();
+        if (CollisionDatabaseLoader.getShapes() == null || CollisionDatabaseLoader.getShapes().isEmpty()
+                || (!MapDatabase.getMaps().containsKey("skillshapes") && map.getMap().getLayers().get("collisions") == null)) {
+            fixtureDef2.shape = new CircleShape() {
+                {
+//                    setRadius(24f / GraphicsDriver.getPlayerCamera().getConversion());
+                }
+            };
+        } else {
+            fixtureDef2.shape = CollisionDatabaseLoader.getShape(shapeName);
+        }
+        fixtureDef2.density = 0.1f; 
+        fixtureDef2.friction = 1.0f;
+        fixtureDef2.restitution = 0f;
+        sensorFixture = sensorBody.createFixture(fixtureDef2);
         sensorFixture.setSensor(true);
         sensorBody.setUserData(this);
         WeldJointDef def = new WeldJointDef();
+        sensorJoint = null;
         def.dampingRatio = 1f;
         def.frequencyHz = 60;
-        def.collideConnected = false;
-        if (!sensorBody.equals(body)) { //Bandage Problem.  Why would the bodies the same?
-            def.initialize(sensorBody, body, new Vector2(getX(), getY()));
-            sensorJoint = (WeldJoint) map.getPhysicsWorld().createJoint(def);        
-        }        
+        def.collideConnected = false;   
+        if (sensorBody ==  body) {
+            System.out.println(body);
+        }
+        def.initialize(sensorBody, body, new Vector2(getX(), getY()));
+        sensorJoint = (WeldJoint) map.getPhysicsWorld().createJoint(def);        
+        fixtureDef.shape.dispose();
+        fixtureDef2.shape.dispose();
     }
     
     
@@ -174,9 +220,13 @@ public class ActorCollision extends Actor {
             }
         }
         setCurrentMap(map);
-        setX(getX());
-        setY(getY());
+//        if (map.getPhysicsWorld().isLocked()) {
         map.addBody(this);
+//        }
+//        else {
+//            this.generateBody(map);
+//            map.addActor(this);
+//        }
     }
     
     public void setSensorFilter(short category, short mask) {
@@ -191,5 +241,11 @@ public class ActorCollision extends Actor {
             setX(Math.round(body.getPosition().x * 100f) / 100f);
             setY(Math.round(body.getPosition().y * 100f) / 100f);
         }
+    }
+    public void setBodyX(float x) {
+        body.getPosition().x = x;
+    }
+    public void setBodyY(float y) {
+        body.getPosition().y = y;
     }
 }
