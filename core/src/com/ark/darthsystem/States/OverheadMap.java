@@ -6,6 +6,7 @@ import com.ark.darthsystem.BattlerAI;
 import com.ark.darthsystem.Database.Database1;
 
 import com.ark.darthsystem.Database.Database2;
+import com.ark.darthsystem.Database.EventDatabase;
 import com.ark.darthsystem.Database.InterfaceDatabase;
 import com.ark.darthsystem.Graphics.Actor;
 import com.ark.darthsystem.Graphics.ActorAI;
@@ -18,6 +19,7 @@ import com.ark.darthsystem.Graphics.Input;
 import com.ark.darthsystem.Graphics.Player;
 import com.ark.darthsystem.Graphics.PlayerCamera;
 import com.ark.darthsystem.States.events.Event;
+import com.ark.darthsystem.States.events.NovelMode;
 import com.ark.darthsystem.States.events.Teleport;
 
 import com.badlogic.gdx.Input.Keys;
@@ -430,13 +432,20 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
     private Event addEventFromMap(MapObject object) {
         MapProperties prop = object.getProperties();
         Event e = null;
-        switch (Integer.parseInt(prop.get("eventID", String.class))) {
+        String[] parameters;
+        switch (Integer.parseInt(prop.get("eventID").toString())) {
             case 0:
                 break;
-            case 1:
+            case 1: //NovelMode
+                parameters = prop.get("parameters", String.class).split(",* ");
+                e = new NovelMode(EventDatabase.chapters(parameters),
+                        null,
+                        prop.get("x", Float.class),
+                        prop.get("y", Float.class),
+                        6/60f);
                 break;
             case 2: //Teleport
-                String [] parameters = prop.get("parameters", String.class).split(",* ");
+                parameters = prop.get("parameters", String.class).split(",* ");
                 e = new Teleport(null,
                         prop.get("x", Float.class),
                         prop.get("y", Float.class),

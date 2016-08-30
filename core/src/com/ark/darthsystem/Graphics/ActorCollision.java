@@ -220,13 +220,7 @@ public class ActorCollision extends Actor {
             }
         }
         setCurrentMap(map);
-//        if (map.getPhysicsWorld().isLocked()) {
         map.addBody(this);
-//        }
-//        else {
-//            this.generateBody(map);
-//            map.addActor(this);
-//        }
     }
     
     public void setSensorFilter(short category, short mask) {

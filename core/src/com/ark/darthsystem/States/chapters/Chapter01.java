@@ -20,6 +20,8 @@ public class Chapter01 extends Novel {
         chapters.add(new Novel.Page() {
             @Override
             public void run() {
+                BattleDriver.printline(Database2.player.getBattler(0), "I understand that you have some streamlined method of issuing orders, correct?" +
+                        "Let me see here...  I do not like the idea of a magic item that issues controls, but I will do what I must.  Here are the instructions.");                
                 BattleDriver.printline(Database2.player.getBattler(0), "Move me with the arrow keys.  That's simple enough, right?" +
                         "  Attack with the spacebar.  Defend with the x button.  The Enter button opens up the menu.");
                 BattleDriver.printline(Database2.player.getBattler(0), "If my HP falls to 0, this body will wither away." +

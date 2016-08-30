@@ -22,7 +22,8 @@ public class ActorAI extends Player {
     private Vector2 patrolCoordinates = Vector2.Zero;
     private boolean patrolling = false;
     private float speed = .4f;
-    private int vision = (int) (300 / PlayerCamera.PIXELS_TO_METERS);
+    private int vision = 10;
+    private float stopInterval;    
 
     public ActorAI(ArrayList<ActorBattler> getBattlers, float getX, float getY) {
         super(getBattlers, getX, getY);

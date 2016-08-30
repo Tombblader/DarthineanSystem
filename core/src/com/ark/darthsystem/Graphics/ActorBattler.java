@@ -35,7 +35,6 @@ public class ActorBattler {
         currentSkill = skillList.get(0);
     }
 
-
     public ActorSkill activateCurrentSkill() {
         if (battler.getMP() >= currentSkill.getSkill().getCost()) {
             battler.changeMP(currentSkill.getSkill().getCost());
@@ -43,7 +42,6 @@ public class ActorBattler {
         }
         return null;
     }
-
 
     public ActorSkill activateCurrentSkill(Player p) {
         if (battler.getMP() >= currentSkill.getSkill().getCost()) {
@@ -54,6 +52,7 @@ public class ActorBattler {
         }
         return null;
     }
+    
     public final ActorSkill activateSkill(String s) {
         if (battler.getMP() >= battler.getSkill(s).getCost()) {
             battler.changeMP(battler.getSkill(s).getCost());
@@ -88,12 +87,15 @@ public class ActorBattler {
     public ActorBattler clone() {
         return new ActorBattler(battler.clone(), spriteSheet);
     }
+    
     public Battler getBattler() {
         return battler;
     }
+    
     public ActorSkill getCurrentSkill() {
         return currentSkill;
     }
+    
     public ArrayList<ActorSkill> getSkillList() {
         ArrayList<ActorSkill> tempSkillList = new ArrayList<>();
         for (ActorSkill a : skillList) {
@@ -103,6 +105,7 @@ public class ActorBattler {
         }
         return tempSkillList;
     }
+    
     public ActorSprite getSprite() {
         return spriteSheet;
     }
