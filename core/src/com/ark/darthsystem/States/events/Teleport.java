@@ -53,6 +53,7 @@ public class Teleport extends Event {
                 GraphicsDriver.getState().set(GraphicsDriver.getState().indexOf(s, true), MapDatabase.getMaps().get(map));
                 GraphicsDriver.playMusic(MapDatabase.getMaps().get(map).getMusic());
                 GraphicsDriver.getPlayer().setMap(MapDatabase.getMaps().get(map), newX, newY);
+                ((OverheadMap) (GraphicsDriver.getCurrentState())).updatePartial(0);
             }
         }
     }

@@ -18,19 +18,24 @@ public class MapDatabase {
     private static HashMap<String, OverheadMap> maps;
     private static final int MIN_X_TILES = 32;
     private static final int MIN_Y_TILES = 24;
+    public static final String DEFAULT_MAP = "nowhere";
+    private static final float DEFAULT_X = 9;
+    private static final float DEFAULT_Y = 9;
     
     public MapDatabase() {
         maps = new HashMap<>();        
         initializeMaps();
         new CollisionDatabaseLoader();
-        Database2.player.setMap(maps.get("nowhere"), 300 / GraphicsDriver.getPlayerCamera().getConversion(), 300 / GraphicsDriver.getPlayerCamera().getConversion());
+        setDefaultMap();
         Database2.ErikAI.setMap(maps.get("complex"), 200 / GraphicsDriver.getPlayerCamera().getConversion(), 200 / GraphicsDriver.getPlayerCamera().getConversion());
-//        EventDatabase.GraphicsPotion.setMap(maps.get("testing"), false);
-//        EventDatabase.chapter1.setMap(maps.get("testing"), false);
     }
     
     public static HashMap<String, OverheadMap> getMaps() {
         return maps;
+    }
+    
+    private void setDefaultMap() {
+        Database2.player.setMap(maps.get(DEFAULT_MAP), 9, 9);
     }
     
     private void initializeMaps() {

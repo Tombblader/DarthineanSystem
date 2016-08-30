@@ -20,7 +20,6 @@ import com.badlogic.gdx.graphics.Texture;
  * @author Keven
  */
 public class Title implements State {
-    
     private final Menu TITLE_MENU;
     private final TextureRegion titleTexture;
     private final String BGM = null;
@@ -36,8 +35,9 @@ public class Title implements State {
             public String confirm(String choice) {
                 if (choice.equals("Start")) {
                     GraphicsDriver.newGame();
-                    GraphicsDriver.addState((State) (MapDatabase.getMaps().get("nowhere")));
+                    GraphicsDriver.addState((State) (MapDatabase.getMaps().get(MapDatabase.DEFAULT_MAP)));
                     GraphicsDriver.transition();
+                    ((OverheadMap) (GraphicsDriver.getCurrentState())).updatePartial(0);
                 }
                 if (choice.equals("Continue")) {
                     GraphicsDriver.addMenu(new Menu("Open which slot?",

@@ -17,7 +17,6 @@ import com.ark.darthsystem.Graphics.GraphicsDriver;
 import com.ark.darthsystem.Graphics.Input;
 import com.ark.darthsystem.Graphics.Player;
 import com.ark.darthsystem.Graphics.PlayerCamera;
-import com.ark.darthsystem.Graphics.Transition;
 import com.ark.darthsystem.States.events.Event;
 import com.ark.darthsystem.States.events.Teleport;
 
@@ -200,20 +199,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                             }
                         }
                     }
-                    for (GameTimer t : tempAI.getTimers()) {
-                        switch (t.getName().toUpperCase()) {
-                            case "ATTACK":
-                            case "SKILL":
-                            case "CHARGE":
-                            case "JUMP":
-                            case "OUCH":
-                                t.event(tempAI);
-                            case "ATTACK_CHARGE":
-                            case "SKILL_CHARGE":
-                                tempAI.getTimers().removeValue(t, true);
-                                break;
-                        }
-                    }
+                    clearTempRunningTimers(tempAI);
                     
                 }
                 else {
@@ -246,20 +232,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                             }
                         }
                     }
-                    for (GameTimer t : tempPlayer.getTimers()) {
-                        switch (t.getName().toUpperCase()) {
-                            case "ATTACK":
-                            case "SKILL":
-                            case "CHARGE":
-                            case "JUMP":
-                            case "OUCH":
-                                t.event(tempPlayer);
-                            case "ATTACK_CHARGE":
-                            case "SKILL_CHARGE":
-                                tempPlayer.getTimers().removeValue(t, true);
-                                break;
-                        }
-                    }
+                    clearTempRunningTimers(tempPlayer);
                 }
             }
 
@@ -486,6 +459,28 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
         }
     }
     
+    public void updatePartial(float delta) {
+        for (Actor a : actorList) {
+            if (a instanceof ActorAI && ((ActorAI) (a)).totalPartyKill()) {
+                removeActor(a);
+            } else {
+                a.update(delta);
+                if (a.isFinished()) {
+                    removeActor(a);
+                }
+            }
+        }
+        worldStep = true;
+        for (ActorCollision a : createQueue) {
+            if (!world.isLocked()) {
+                a.generateBody(this);
+                addActor(a);
+                createQueue.removeValue(a, true);
+            }
+        }
+    }
+    
+        
     public void addBody(ActorCollision body) {
         createQueue.add(body);
     }
@@ -569,20 +564,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                     }
                 }
             }
-            for (GameTimer t : tempAI.getTimers()) {
-                switch (t.getName().toUpperCase()) {
-                    case "ATTACK":
-                    case "SKILL":
-                    case "CHARGE":
-                    case "JUMP":
-                    case "OUCH":
-                        t.event(tempAI);
-                    case "ATTACK_CHARGE":
-                    case "SKILL_CHARGE":
-                        tempAI.getTimers().removeValue(t, true);
-                        break;
-                }
-            }
+            clearTempRunningTimers(tempAI);
         }
 
         for (Actor actors : actorList) {
@@ -593,24 +575,28 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                    }
                }
            }
-           for (GameTimer t : GraphicsDriver.getPlayer().getTimers()) {
-               switch (t.getName().toUpperCase()) {
-                   case "ATTACK":
-                   case "SKILL":
-                   case "CHARGE":
-                   case "JUMP":
-                   case "OUCH":
-                       t.event(GraphicsDriver.getPlayer());
-                   case "ATTACK_CHARGE":
-                   case "SKILL_CHARGE":
-                       GraphicsDriver.getPlayer().getTimers().removeValue(t, true);
-                       break;
-               }
-           }
+        clearTempRunningTimers(GraphicsDriver.getPlayer());
         
         GraphicsDriver.addState(new Battle(GraphicsDriver.getPlayer().getAllActorBattlers(), encounters, Database1.inventory, null).start());
 //        GraphicsDriver.transition(new Transition(Transition.TransitionType.FADE));
     }    
+
+    private void clearTempRunningTimers(Player tempPlayer) {
+        for (GameTimer t : tempPlayer.getTimers()) {
+            switch (t.getName().toUpperCase()) {
+                case "ATTACK":
+                case "SKILL":
+                case "CHARGE":
+                case "JUMP":
+                case "OUCH":
+                    t.event(tempPlayer);
+                case "ATTACK_CHARGE":
+                case "SKILL_CHARGE":
+                    tempPlayer.getTimers().removeValue(t, true);
+                    break;
+            }
+        }
+    }
     
     @Override
     public void render(SpriteBatch batch) {

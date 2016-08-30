@@ -374,7 +374,6 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
     
     public void update(float delta) {
         getCurrentState().update(delta);
-//        System.out.println(Integer.toString(Gdx.graphics.getFramesPerSecond()));
         Gdx.graphics.setTitle(Integer.toString(Gdx.graphics.getFramesPerSecond()));        
     }
     
