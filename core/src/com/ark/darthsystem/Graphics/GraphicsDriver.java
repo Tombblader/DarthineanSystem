@@ -328,7 +328,7 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
             }
         }
         else {
-            update(delta);
+            getCurrentState().update(delta);
         }
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -355,6 +355,7 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
             }
         }
         batch.end();
+        Gdx.graphics.setTitle(Integer.toString(Gdx.graphics.getFramesPerSecond()));        
     }
     
     public void resize(int width,
@@ -369,10 +370,5 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
     public void resume() {
         System.out.println("Resumed");
     }
-    
-    public void update(float delta) {
-        getCurrentState().update(delta);
-        Gdx.graphics.setTitle(Integer.toString(Gdx.graphics.getFramesPerSecond()));        
-    }
-    
+        
 }

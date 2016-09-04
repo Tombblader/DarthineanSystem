@@ -14,8 +14,8 @@ public class Equipment extends Item implements Cloneable {
 
     public enum EquipmentType {
 
-        RightArm(0),
-        LeftArm(1),
+        MainHand(0),
+        OffHand(1),
         Body(2),
         Head(3),
         Accessory(4);

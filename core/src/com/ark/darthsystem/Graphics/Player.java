@@ -544,6 +544,31 @@ public class Player extends ActorCollision {
     }
 
     private void attacking(float delta) {
+        //Check for direction first
+        if (Input.getKeyRepeat(moveLeft)) {
+            changeX(-1);
+        }
+
+        if (Input.getKeyRepeat(moveRight)) {
+            changeX(1);
+        }
+
+        if (Input.getKeyRepeat(moveUp)) {
+            changeY(-1);
+        }
+        if (Input.getKeyRepeat(moveDown)) {
+            changeY(1);
+        }
+
+        if (!Input.getKeyRepeat(moveLeft) && !Input.getKeyRepeat(moveRight)) {
+            changeX(0);
+        }
+
+        if (!Input.getKeyRepeat(moveUp) && !Input.getKeyRepeat(moveDown)) {
+            changeY(0);
+        }
+        setFacing();
+
         if (Input.getKeyRepeat(defendButton) && getCurrentBattler().getBattler().getDefend() == 1.0) {
             defend();
         } else {

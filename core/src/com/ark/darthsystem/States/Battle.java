@@ -221,7 +221,7 @@ public class Battle implements State {
         }
         if (currentAction.getCommand() == Command.Attack && 
                 currentAction.getTarget() instanceof BattlerAI) {
-            ActorSkill tempSkill = (currentAction.getCaster().getEquipment(Equipment.EquipmentType.LeftArm.getSlot()).getAnimation());
+            ActorSkill tempSkill = (currentAction.getCaster().getEquipment(Equipment.EquipmentType.OffHand.getSlot()).getAnimation());
             sounds.add(tempSkill.getBattlerSound());
             animations.add(tempSkill.getBattlerAnimation());
             animations.get(animations.size() - 1).setX((float) ((GraphicsDriver.getWidth() + divider * (enemy.indexOf(tempBattler) - 1)) / 2 + divider * enemy.indexOf(tempBattler)));

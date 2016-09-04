@@ -207,7 +207,6 @@ public class ActorCollision extends Actor {
         f.categoryBits = category;
         f.maskBits = mask;
         fixture.setFilterData(f);
-//        sensorFixture.setFilterData(f);
     }
     public void setMap(OverheadMap map) {
         if (getCurrentMap() != null) {

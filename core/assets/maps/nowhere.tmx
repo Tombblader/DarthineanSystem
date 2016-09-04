@@ -30,6 +30,13 @@
     <object id="0" x="0" y="24" width="32" height="8"/>
    </objectgroup>
   </tile>
+  <tile id="19">
+   <objectgroup draworder="index">
+    <object id="1" name="collisionBoulder" type="wall" x="0" y="0" width="32" height="32">
+     <ellipse/>
+    </object>
+   </objectgroup>
+  </tile>
   <tile id="32">
    <properties>
     <property name="collision" value="TRUE"/>
@@ -71,7 +78,7 @@
   <object id="11" name="CollisionWater2" type="wall" x="0" y="64" width="64" height="576"/>
   <object id="12" name="collisionWater3" type="wall" x="64" y="576" width="512" height="64"/>
   <object id="13" name="OopWall" gid="12" x="376" y="264" width="32" height="32"/>
-  <object id="14" gid="20" x="400" y="328" width="32" height="32"/>
+  <object id="14" name="collisionBoulder" type="wall" gid="20" x="400" y="328" width="32" height="32"/>
   <object id="15" name="chapter1" type="event" x="512" y="192" width="32" height="32">
    <properties>
     <property name="collision" value="FALSE"/>

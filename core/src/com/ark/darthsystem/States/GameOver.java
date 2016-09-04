@@ -26,7 +26,7 @@ public class GameOver implements State {
         gameOverTexture = new TextureRegion(new Texture(Gdx.files.internal("backgrounds/title.png"))) { {
                 this.flip(false, true);
                }
-            };        
+            };
         gameOverMenu = new Menu("Continue?", new String[]{"Yes", "No"}) {
             @Override
             public String confirm(String choice) {

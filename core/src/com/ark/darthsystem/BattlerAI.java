@@ -143,7 +143,7 @@ public class BattlerAI extends Battler implements Poolable {
                 itemDrop,
                 itemQuantity);
         Equipment temp = new Equipment("Unarmed",
-            Equipment.EquipmentType.LeftArm,
+            Equipment.EquipmentType.OffHand,
             null,
             false,
             0,
