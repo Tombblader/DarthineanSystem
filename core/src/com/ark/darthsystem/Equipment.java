@@ -25,10 +25,6 @@ public class Equipment extends Item implements Cloneable {
             slot = setSlot;
         }
 
-        /**
-         *
-         * @return
-         */
         public int getSlot() {
             return slot;
         }
