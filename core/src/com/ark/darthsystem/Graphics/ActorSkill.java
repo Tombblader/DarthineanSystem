@@ -240,6 +240,7 @@ public class ActorSkill extends ActorCollision {
         } else {
             super.setX((relX) + a.getMainBody().getPosition().x);
         }
+        System.out.println(getX());
     }
 
     public void setY(ActorCollision a) {
@@ -249,6 +250,7 @@ public class ActorSkill extends ActorCollision {
         } else {
             super.setY((relY) + a.getMainBody().getPosition().y);
         }
+        System.out.println(getY());
     }
 
     public void playBattlerSound() {

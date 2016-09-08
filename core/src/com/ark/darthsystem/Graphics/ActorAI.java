@@ -24,6 +24,7 @@ public class ActorAI extends Player {
     private float speed = .4f;
     private int vision = 10;
     private float stopInterval;    
+    private State state;
 
     public ActorAI(ArrayList<ActorBattler> getBattlers, float getX, float getY) {
         super(getBattlers, getX, getY);
@@ -227,7 +228,8 @@ public class ActorAI extends Player {
         
     public boolean vision() {
         return isInRange(vision);
-    }    
+    }
+    
     private void interpretAI(float delta) {
         if (vision()) {
             moveTowardsPlayer(delta);
@@ -237,6 +239,19 @@ public class ActorAI extends Player {
         }
         else if (!patrolling) {
             patrol(delta);
+        }
+    }
+    
+    private void interpretAIState(float delta) {
+        switch (state) {
+            case PATROL:
+                break;
+            case PURSUIT:
+                break;
+            case ATTACK:
+                break;
+            case RECHARGE:
+                break;
         }
     }
     
