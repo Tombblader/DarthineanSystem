@@ -95,7 +95,7 @@ public class Battle implements State {
     
     private void renderPersistentActors(SpriteBatch batch) {
         final float BATTLER_Y = 400;
-        int divider = enemyActors.isEmpty() ? 512 / enemyActors.size() : 0;
+        int divider = !enemyActors.isEmpty() ? 512 / enemyActors.size() : 0;
         for (int i = 0; i < enemyActors.size(); i++) {
             if (enemy.get(i).isAlive()) {
                 Sprite s = (Sprite) (enemyActors.get(i).getSprite().getCurrentBattlerAnimation().getKeyFrame(elapsed));

@@ -239,7 +239,6 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
             }
 
             private void renderEvent(Fixture a, Fixture b) {
-//                Player tempPlayer = (Player) a.getBody().getUserData();
                 Event tempEvent = (Event) b.getBody().getUserData();
                 if (tempEvent.isTriggered(Event.TriggerMethod.TOUCH)) {
                     tempEvent.run();
@@ -364,7 +363,6 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
     private Array<Body> generateObjects() {
         ppt = PlayerCamera.PIXELS_TO_METERS;
 //        MapObjects objects = map.getLayers().get("collision").getObjects();
-//        System.out.println(objects.getCount());
         Array<Body> bodies = new Array<>();
         for (MapLayer layer: map.getLayers()) {
             for(MapObject object : layer.getObjects()) {
@@ -375,10 +373,6 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                 MapProperties properties = object.getProperties();
 
                 if (properties.get("type", String.class) != null && properties.get("type", String.class).equalsIgnoreCase("actor")) {
-                    //                Actor a = AIDatabase.actors.get(properties.get("Name", String.class));
-                    //                a.setMap(this, false);
-                    //                a.setX(properties.get("x", Float.class));
-                    //                a.setY(properties.get("y", Float.class));
                     continue;
                 }
 

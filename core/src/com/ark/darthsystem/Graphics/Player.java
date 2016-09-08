@@ -33,7 +33,7 @@ import com.badlogic.gdx.utils.Array;
  */
 public class Player extends ActorCollision {
     private static final float SPEED = .4f;
-    private static final float DELAY = 6f / 60f;
+    private static final float DELAY =  1f/12f;
 
     private int moveUp = Keys.UP;
     private int moveDown = Keys.DOWN;

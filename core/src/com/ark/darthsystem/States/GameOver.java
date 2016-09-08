@@ -20,7 +20,7 @@ public class GameOver implements State {
     private Menu gameOverMenu;
     private final TextureRegion gameOverTexture;
 
-    private String BGM = null;
+    private String BGM = "music/WhySuffering.mp3";
     
     public GameOver() {
         gameOverTexture = new TextureRegion(new Texture(Gdx.files.internal("backgrounds/title.png"))) { {
