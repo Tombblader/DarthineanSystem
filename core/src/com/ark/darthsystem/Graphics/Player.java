@@ -177,9 +177,6 @@ public class Player extends ActorCollision {
                         attacking = false;
                     }
                 });
-//                fieldState = ActorSprite.SpriteModeField.CAST;
-//                setPause((getCurrentBattler().getCurrentSkill().getAnimationDelay() * 1000f));
- //               tempSkill.setMap(getCurrentMap(), true);
             }
         }
     }

@@ -6,7 +6,6 @@
 package com.ark.darthsystem.Database;
 
 import com.ark.darthsystem.*;
-//import static com.ark.darthsystem.Database.Database1.*;
 import com.ark.darthsystem.Graphics.*;
 import com.ark.darthsystem.States.events.*;
 
@@ -45,16 +44,15 @@ public class Database2 extends Database1 {
                                 0,
                                 0,
                                 1.0f / 12.0f,
-                                
                                 SkillDatabase.Red_Spin,
                                 ActorSkill.Area.SELF) {{setShape("widespin");}});
                 put(SkillDatabase.Sap_Shot,
-                        new ActorSkill((Sprite[]) GraphicsDriver.getMasterSheet().createSprites("skills/red_spin/field/red_spin").toArray(Sprite.class),
+                        new ActorSkill((Sprite[]) GraphicsDriver.getMasterSheet().createSprites("skills/wiccan_cross/field/wiccan_cross").toArray(Sprite.class),
                                 GraphicsDriver.getMasterSheet().createSprites("skills/crosscall/battler/crosscall").toArray(Sprite.class),
                                 0,
                                 0,
-//                                .5f,
-//                                0,
+                                10f,
+                                0,
                                 1.0f / 24.0f,
                                 1f,
                                 SkillDatabase.Sap_Shot,
@@ -100,8 +98,8 @@ public class Database2 extends Database1 {
         ErikAI = new ActorAI(ErikAIParty, 500, 500);
         Database2.battlers = new ActorBattler[]{
             new ActorBattler(Water_Spirit, Water_Spirit_Sprite)
-//            , new ActorBattler(Darth, DarthSprite) 
-                , new ActorBattler(Erik, ErikSprite)
+            , new ActorBattler(Darth, DarthSprite) 
+//                , new ActorBattler(Erik, ErikSprite)
         };
         player = new Player(new ArrayList<>(Arrays.asList(battlers)), 0, 0);
     }

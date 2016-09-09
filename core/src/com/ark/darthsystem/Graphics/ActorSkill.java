@@ -99,7 +99,7 @@ public class ActorSkill extends ActorCollision {
         relX = getX;
         relY = getY;
         skill = getSkill;
-        aftercastDelay = delay;
+//        aftercastDelay = delay;
         translateX = 0;
         translateY = 0;
         area = getArea;
@@ -143,7 +143,7 @@ public class ActorSkill extends ActorCollision {
             float castTime,
             Skill getSkill,
             Area getArea) {
-        this(img, battlerImg, getX, getY, castTime, delay, getSkill, getArea);
+        this(img, battlerImg, getX, getY, delay, castTime, getSkill, getArea);
         translateX = getTranslateX;
         translateY = getTranslateY;
     }
@@ -175,7 +175,11 @@ public class ActorSkill extends ActorCollision {
             def.collideConnected = false;
             def.initialize(invoker.getMainBody(), getMainBody(), new Vector2(getX(), getY()));            
             joint = (WeldJoint) map.getPhysicsWorld().createJoint(def);
+        } else if (translateX != 0) {
+            System.out.println("VELX" + (getFacing().getX() * 5f));
+            System.out.println("VELY" + (getFacing().getY() * 5f));
         }
+        
     }
 
     public float getAftercastDelay() {
@@ -236,11 +240,10 @@ public class ActorSkill extends ActorCollision {
     public void setX(ActorCollision a) {
         super.changeX(a.getFacing().getX());
         if (area != Area.SELF) {
-            super.setX((relX + (a.getWidth() / 4 / (a.getFacing().y != 0 ? (float) Math.sqrt(2.0) : 1)) / PlayerCamera.PIXELS_TO_METERS) * a.getFacing().getX() + a.getMainBody().getPosition().x + currentX);
+            super.setX((relX + (a.getWidth() / 4 / (a.getFacing().y != 0 ? (float) Math.sqrt(2.0) : 1)) / PlayerCamera.PIXELS_TO_METERS) * a.getFacing().getX() + a.getMainBody().getPosition().x);
         } else {
             super.setX((relX) + a.getMainBody().getPosition().x);
         }
-        System.out.println(getX());
     }
 
     public void setY(ActorCollision a) {
@@ -250,7 +253,6 @@ public class ActorSkill extends ActorCollision {
         } else {
             super.setY((relY) + a.getMainBody().getPosition().y);
         }
-        System.out.println(getY());
     }
 
     public void playBattlerSound() {
@@ -296,8 +298,11 @@ public class ActorSkill extends ActorCollision {
 
     public void update(float delta) {
         setFacing();
-        currentX += translateX * getFacing().getX();
-        currentY += translateY * getFacing().getY();
+//        currentX += translateX * getFacing().getX();
+//        currentY += translateY * getFacing().getY();
+        if (translateX != 0) {
+            getMainBody().setLinearVelocity(getFacing().getX() * translateX, getFacing().getY() * translateX);
+        }
         super.update(delta);
         setAnimationFacing();
     }

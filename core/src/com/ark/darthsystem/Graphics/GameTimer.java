@@ -47,6 +47,10 @@ public abstract class GameTimer {
         return currentTime >= time;
     }
     
+    public float getCurrentTime() {
+        return currentTime;
+    }
+    
 
     public abstract void event(Actor a);
 }
