@@ -22,7 +22,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 public class Database2 extends Database1 {
 
     public static Player player;
-//    private static ActorAI ProtoxAI;
+    public static ActorAI ProtoxAI;
     public static ActorAI ErikAI;
     public static ArrayList<Event> events = new ArrayList<>();
 
@@ -84,7 +84,7 @@ public class Database2 extends Database1 {
             null,
             0)),
             ErikSprite)};
-//        Database2.ProtoxAI = new ActorAI(new ArrayList<>(Arrays.asList(new ActorBattler[]{new ActorBattler(new BattlerAI("Protox Toxorp", Database1.Protox, Scenario.Standard, 50, null, 0), DarthSprite)})), 500, 400);
+        Database2.ProtoxAI = new ActorAI(new ArrayList<>(Arrays.asList(new ActorBattler[]{new ActorBattler(new BattlerAI("Protox Toxorp", Database1.Protox, Scenario.Standard, 50, null, 0), DarthSprite)})), 500, 400);
         BattlerAI temp = new BattlerAI(
             "Erik the Red",
             Erik,

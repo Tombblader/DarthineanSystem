@@ -28,6 +28,7 @@ public class MapDatabase {
         new CollisionDatabaseLoader();
         setDefaultMap();
         Database2.ErikAI.setMap(maps.get("complex"), 200 / GraphicsDriver.getPlayerCamera().getConversion(), 200 / GraphicsDriver.getPlayerCamera().getConversion());
+        Database2.ProtoxAI.setMap(maps.get("complex"), 200 / GraphicsDriver.getPlayerCamera().getConversion(), 200 / GraphicsDriver.getPlayerCamera().getConversion());
     }
     
     public static HashMap<String, OverheadMap> getMaps() {
