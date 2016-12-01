@@ -470,6 +470,29 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                 }
             }
         }
+        for (Player p : teamRed) {
+            if (p.getCurrentLife() <= 0) {
+                teamRed.removeValue(p, true);
+            }
+        }
+        for (Player p : teamBlue) {
+            if (p.getCurrentLife() <= 0) {
+                teamBlue.removeValue(p, true);
+            }
+        }
+        for (Player p : teamYellow) {
+            if (p.getCurrentLife() <= 0) {
+                teamYellow.removeValue(p, true);
+            }
+        }
+        while (teamRed.size < TEAM_SIZE && teamRedCurrentLife > 0) {
+            teamRed.add(new Player(Actor.TeamColor.RED, Database2.defaultSprite, 12, 0));
+            teamRed.get(teamRed.size - 1).setMap(this, 1, 12);            
+        }
+        while (teamBlue.size < TEAM_SIZE && teamBlueCurrentLife > 0) {
+            teamBlue.add(new Player(Actor.TeamColor.BLUE, Database2.defaultSprite, 12, 24));
+            teamBlue.get(teamBlue.size - 1).setMap(this, 1, 12);            
+        }
         if (Input.getKeyPressed(Keys.ESCAPE)) {
             GraphicsDriver.clearAllStates();
             GraphicsDriver.addState(new Title());
@@ -510,7 +533,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                 case "ATTACK":
                 case "SKILL":
                 case "CHARGE":
-                case "JUMP":
+                case "DODGE":
                 case "OUCH":
                     t.event(tempPlayer);
                 case "ATTACK_CHARGE":

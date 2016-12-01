@@ -49,13 +49,13 @@ public class Player extends ActorCollision {
 //    private int confirmButton = Keys.ENTER;
     private int quitButton = Keys.ESCAPE;
     private int menuButton = Keys.ENTER;
-    private int jumpButton = Keys.V;
+    private int dodgeButton = Keys.V;
 
     ActorSkill attackAnimation;
     private float speed = SPEED;
     private boolean canAttack = true;
     private boolean attacking;
-    private boolean isJumping;
+    private boolean isDodging;
     private boolean isWalking;
     private ActorSprite.SpriteModeField fieldState = ActorSprite.SpriteModeField.STAND;
 
@@ -117,7 +117,7 @@ public class Player extends ActorCollision {
             getAttackAnimation().setX(this);
             getAttackAnimation().setY(this);
             setPause((getAttackAnimation().getChargeTime() * 1000f));
-            addTimer(new GameTimer("Attack_Charge", getAttackAnimation().getChargeTime() * 1000f) {
+            addTimer(new GameTimer("Attack_Charge", (int)(1/24f*4*1000)) {
                 @Override
                 public void event(Actor a) {
                     getAttackAnimation().playFieldSound();
@@ -131,6 +131,7 @@ public class Player extends ActorCollision {
                             public void event(Actor a) {
                                 fieldState = ActorSprite.SpriteModeField.STAND;
                                 attacking = false;
+                                a.setPause(200);
                             }
                             public boolean update(float delta, Actor a) {
                                 fieldState = ActorSprite.SpriteModeField.ATTACK;
@@ -141,6 +142,7 @@ public class Player extends ActorCollision {
                 }
                 public boolean update(float delta, Actor a) {
                     attacking = true;
+                    fieldState = ActorSprite.SpriteModeField.ATTACK;
                     return super.update(delta, a);
                 }
             });
@@ -160,15 +162,12 @@ public class Player extends ActorCollision {
     // private float speed = .35;
     public void moving(float delta) {
         setSpeed(getBaseSpeed());
-        if (isJumping) {
-            setSpeed(getBaseSpeed() * 1.5f);
-        }
             
         if (Input.getKeyRepeat(slowButton)) {
             setSpeed(getBaseSpeed() * 0.5f);
         }
-        if (Input.getKeyPressed(jumpButton)) {
-            jump();
+        if (Input.getKeyPressed(dodgeButton)) {
+            dodge();
             // fieldState = ActorSprite.SpriteModeField.JUMP;
         }
 
@@ -228,10 +227,10 @@ public class Player extends ActorCollision {
         }
         isWalking = false;
         
-        if (canMove() && canAttack) {
+        if (canMove() && canAttack && !isDodging) {
             attacking(delta);
         }
-        if (canMove() && !attacking) {
+        if (canMove() && !attacking && !isDodging) {
             moving(delta);
         } else {
             changeX(0);
@@ -243,7 +242,7 @@ public class Player extends ActorCollision {
     }
 
     public boolean isJumping() {
-        return isJumping;
+        return isDodging;
     }
 
     public void setMap(OverheadMap map, float x, float y) {        
@@ -260,12 +259,12 @@ public class Player extends ActorCollision {
         return SPEED;
     }
 
-    public void jump() {
-        final int JUMP_TIME = 1050;
-        if (!isJumping) {
-            GameTimer tempTimer = new GameTimer("Jump", JUMP_TIME) {
+    public void dodge() {
+        final int DODGE_TIME = 250;
+        if (!isDodging) {
+            GameTimer tempTimer = new GameTimer("Dodge", DODGE_TIME) {
                 public void event(Actor a) {
-                    isJumping = false;
+                    isDodging = false;
                     canAttack = true;
                     setMainFilter(ActorCollision.CATEGORY_PLAYER, (short)(ActorCollision.CATEGORY_WALLS | ActorCollision.CATEGORY_OBSTACLES));
                     setSensorFilter(ActorCollision.CATEGORY_PLAYER, (short) (ActorCollision.CATEGORY_AI | ActorCollision.CATEGORY_AI_SKILL | ActorCollision.CATEGORY_EVENT));
@@ -284,17 +283,17 @@ public class Player extends ActorCollision {
                 }
 
                 public boolean update(float delta, Actor a) {
-                    isJumping = true;
+                    isDodging = true;
                     canAttack = false;
                     return super.update(delta, a);
                 }
             };
-            this.setInvulnerability(JUMP_TIME);
+            this.setInvulnerability(DODGE_TIME);
             addTimer(tempTimer);
             setMainFilter(ActorCollision.CATEGORY_PLAYER, ActorCollision.CATEGORY_WALLS);
             setSensorFilter(ActorCollision.CATEGORY_PLAYER, (short) (ActorCollision.CATEGORY_AI | ActorCollision.CATEGORY_EVENT));
-            isJumping = true;
-            fieldState = ActorSprite.SpriteModeField.JUMP;
+            isDodging = true;
+            fieldState = ActorSprite.SpriteModeField.DODGE;
             canAttack = false;
         }
     }
