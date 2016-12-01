@@ -6,6 +6,7 @@
  */
 package com.ark.darthsystem.Graphics;
 
+import com.ark.darthsystem.Item;
 import com.ark.darthsystem.States.OverheadMap;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Animation.PlayMode;
@@ -20,7 +21,12 @@ import com.badlogic.gdx.utils.Array;
  *
  */
 public class Actor {
-
+    
+    public enum TeamColor {
+        RED,
+        BLUE,
+        YELLOW        
+    }
     private Animation animation;
     private Sprite currentImage;
     private OverheadMap currentMap;
@@ -34,13 +40,15 @@ public class Actor {
     private boolean isRotate;
     private float lastX;
     private int lastXFacing = 0;
-    private float lastY;
-    private int lastYFacing = 0;
     private float speed;
     private ActorSprite sprite;
     private Array<GameTimer> timers = new Array<>();
     private float x;
     private float y;
+    private int maxLife;
+    private int currentLife;
+    private int attack;
+    private Item item;
 
     public Actor(Sprite img,
             float getX,
@@ -52,7 +60,7 @@ public class Actor {
         isMovable = false;
         speed = 0;
         destroyAfterAnimation = false;
-        facing = Facing.NONE;
+        facing = Facing.RIGHT;
         isRotate = false;
     }
 
@@ -71,7 +79,7 @@ public class Actor {
         }
         speed = 0;
         destroyAfterAnimation = false;
-        facing = Facing.NONE;
+        facing = Facing.RIGHT;
         isRotate = false;
     }
 
@@ -93,7 +101,7 @@ public class Actor {
         sprite = img;
         x = getX;
         y = getY;
-        animation = sprite.getFieldAnimation(ActorSprite.SpriteModeField.STAND, Facing.DOWN);
+        animation = sprite.getFieldAnimation(ActorSprite.SpriteModeField.STAND, Facing.RIGHT);
         animation.setPlayMode(PlayMode.LOOP);
         animation.setFrameDuration(delay);
         currentImage = (Sprite) animation.getKeyFrame(elapsed);
@@ -101,7 +109,7 @@ public class Actor {
         speed = 0;
         this.delay = delay;
         destroyAfterAnimation = false;
-        facing = Facing.NONE;
+        facing = Facing.RIGHT;
         isRotate = false;
     }
 
@@ -125,14 +133,13 @@ public class Actor {
     }
     public void changeX(float getX) {
         lastX = x;
-        x += getX;
+        x += getX;        
         lastXFacing = x > lastX ? 1 : x == lastX ? 0 : -1;
-        
     }
     public void changeY(float getY) {
-        lastY = y;
+//        lastY = y;
         y += getY;
-        lastYFacing = y > lastY ? 1 : y == lastY ? 0 : -1;
+//        lastYFacing = y > lastY ? 1 : y == lastY ? 0 : -1;
         
     }
 
@@ -202,21 +209,14 @@ public class Actor {
         isRotate = getRotate;
     }
 
-    public float getLastX() {
-        return lastX;
-    }
-
     public float getLastXFacing() {
         return facing.getX();
     }
 
-    public float getLastY() {
-        return lastY;
+    public float getLastX() {
+        return lastX;
     }
 
-    public float getLastYFacing() {
-        return facing.getY();
-    }
 
 
     public void setPause(float time) {
@@ -241,7 +241,6 @@ public class Actor {
     public void setSpeed(float speed) {
         this.speed = speed;
     }
-
 
     public ActorSprite getSpriteSheet() {
         return sprite;
@@ -298,16 +297,18 @@ public class Actor {
         }
     }
     public void setFacing() {
-        for (Facing f : Facing.values()) {
-            if (lastXFacing == f.getX() && lastYFacing == f.getY() && f != Facing.NONE) {
-                facing = f;
-            }
+        if (lastXFacing < 0.0) {
+            facing = Facing.LEFT;
         }
+        else if (lastXFacing > 0.0) {
+            facing = Facing.RIGHT;
+        }
+        
+        
     }
     
     public void setMap(OverheadMap map) {
         currentMap = map;
-//        currentMap.addActor(this);
         setX(x);
         setY(y);
     }
@@ -333,15 +334,8 @@ public class Actor {
     }
     public enum Facing {
         
-        UP(0, -1, 0),
         LEFT(-1, 0, 270),
-        RIGHT(1, 0, 90),
-        DOWN(0, 1, 180),
-        NONE(0, 0, 0),
-        DOWN_LEFT(-1, 1, 225),
-        DOWN_RIGHT(1, 1, 135),
-        UP_LEFT(-1, -1, 315),
-        UP_RIGHT(1, -1, 45);
+        RIGHT(1, 0, 90);
         
         float x, y;
         float rotate;
@@ -363,6 +357,49 @@ public class Actor {
         public float getRotate() {
             return rotate;
         }
+    }
+    public void setMaxLife(int newLife) {
+        maxLife = newLife;
+    }
+    
+    public int getMaxLife() {
+        return maxLife;
+    }
+    
+    public void reduceLife(int deltaLife) {
+        currentLife -= deltaLife;
+        if (currentLife < 0) {
+            currentLife = 0;
+        }
+        if (currentLife > maxLife) {
+            currentLife = maxLife;
+        }
+    }
+
+    public void increaseLife(int deltaLife) {
+        currentLife += deltaLife;
+        if (currentLife < 0) {
+            currentLife = 0;
+        }
+        if (currentLife > maxLife) {
+            currentLife = maxLife;
+        }
+    }
+    
+    public void setCurrentLife(int newLife) {
+        currentLife = newLife;
+    }
+    
+    public int getCurrentLife() {
+        return currentLife;
+    }
+
+    public void setAttack(int newAttack) {
+        attack = newAttack;
+    }
+    
+    public int getAttack() {
+        return attack;
     }
 
 }

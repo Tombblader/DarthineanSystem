@@ -5,7 +5,6 @@
  */
 package com.ark.darthsystem.States.events;
 
-import com.ark.darthsystem.BattleDriver;
 import com.ark.darthsystem.Item;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
@@ -30,7 +29,7 @@ public class Pickup extends Event {
     }
 
     public void run() {
-        BattleDriver.addItem(item);
+
         isFinished = true;
     }
 

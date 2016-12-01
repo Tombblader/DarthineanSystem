@@ -11,7 +11,6 @@ import com.ark.darthsystem.Graphics.GraphicsDriver;
 import com.ark.darthsystem.Graphics.Input;
 import static com.ark.darthsystem.Graphics.GraphicsDriver.getCurrentState;
 import static com.ark.darthsystem.Graphics.GraphicsDriver.removeCurrentState;
-import com.ark.darthsystem.States.chapters.Novel;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Color;
@@ -173,9 +172,7 @@ public abstract class Menu implements State {
     public void render(SpriteBatch batch) {
         State s = null;
         for (State states : GraphicsDriver.getState()) {
-            if (!(states instanceof Menu)
-                    && !(states instanceof Message)
-                    && !(states instanceof Novel)) {
+            if (!(states instanceof Menu)) {
                 s = states;
             }
         }
@@ -194,9 +191,7 @@ public abstract class Menu implements State {
         boolean isOverhead = false;
         State s = null;
         for (State states : GraphicsDriver.getState()) {
-            if (!(states instanceof Menu)
-                    && !(states instanceof Novel)
-                    && !(states instanceof Message)) {
+            if (!(states instanceof Menu)) {
                 s = states;
             }
         }
@@ -293,5 +288,8 @@ public abstract class Menu implements State {
         menuIndex = 0;
         subMenuList.clear();
         subMenuList.add(this);
+    }
+    public void initialize() {
+        
     }
 }

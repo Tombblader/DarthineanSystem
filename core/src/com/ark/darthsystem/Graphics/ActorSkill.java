@@ -6,7 +6,6 @@
 package com.ark.darthsystem.Graphics;
 
 import com.ark.darthsystem.Database.SoundDatabase;
-import com.ark.darthsystem.Skill;
 import com.ark.darthsystem.States.OverheadMap;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -38,7 +37,6 @@ public class ActorSkill extends ActorCollision {
     private Sprite[] originalFieldImage;
     private float relX;
     private float relY;
-    private Skill skill;
     private float translateX;
     private float translateY;
 
@@ -47,8 +45,7 @@ public class ActorSkill extends ActorCollision {
             float getY,
             int translateX,
             int translateY,
-            int delay,
-            Skill getSkill) {
+            int delay) {
         super(img, getX, getY, delay, true);
         originalFieldImage = img;
         for (Sprite s : originalFieldImage) {
@@ -57,7 +54,6 @@ public class ActorSkill extends ActorCollision {
         }
         relX = getX;
         relY = getY;
-        skill = getSkill;
         aftercastDelay = delay;
         this.translateX = translateX;
         this.translateY = translateY;
@@ -67,8 +63,7 @@ public class ActorSkill extends ActorCollision {
     public ActorSkill(Sprite[] img,
             float getX,
             float getY,
-            float delay,
-            Skill getSkill) {
+            float delay) {
         super(img, getX, getY, delay, true);
         originalFieldImage = img;
         for (Sprite s : originalFieldImage) {
@@ -77,7 +72,6 @@ public class ActorSkill extends ActorCollision {
         }
         relX = getX;
         relY = getY;
-        skill = getSkill;
         aftercastDelay = delay;
         translateX = 0;
         translateY = 0;
@@ -88,7 +82,6 @@ public class ActorSkill extends ActorCollision {
             float getX,
             float getY,
             float delay,
-            Skill getSkill,
             Area getArea) {
         super(img, getX, getY, delay, true);
         originalFieldImage = img;
@@ -98,54 +91,10 @@ public class ActorSkill extends ActorCollision {
         }
         relX = getX;
         relY = getY;
-        skill = getSkill;
 //        aftercastDelay = delay;
         translateX = 0;
         translateY = 0;
         area = getArea;
-    }
-
-    public ActorSkill(Sprite[] img,
-            Sprite[] battlerImg,
-            float getX,
-            float getY,
-            float delay,
-            Skill getSkill,
-            Area getArea) {
-        this(img, getX, getY, delay, getSkill, getArea);
-        originalBattlerImage = battlerImg;
-        for (Sprite s : originalBattlerImage) {
-            s.setCenter(s.getWidth() / 2f, s.getHeight() / 2f);
-            s.setOriginCenter();
-        }
-        battlerAnimation = new Actor(originalBattlerImage, 0, 0, delay, true);
-    }
-
-    public ActorSkill(Sprite[] img,
-            Sprite[] battlerImg,
-            float getX,
-            float getY,
-            float delay,
-            float castTime,
-            Skill getSkill,
-            Area getArea) {
-        this(img, battlerImg, getX, getY, delay, getSkill, getArea);
-        chargeTime = castTime;
-    }
-
-    public ActorSkill(Sprite[] img,
-            Sprite[] battlerImg,
-            float getX,
-            float getY,
-            float getTranslateX,
-            float getTranslateY,
-            float delay,
-            float castTime,
-            Skill getSkill,
-            Area getArea) {
-        this(img, battlerImg, getX, getY, delay, castTime, getSkill, getArea);
-        translateX = getTranslateX;
-        translateY = getTranslateY;
     }
 
     public void dispose() {
@@ -163,10 +112,10 @@ public class ActorSkill extends ActorCollision {
             map.removeJoint(joint);
         }
         Filter filter = new Filter();
-        filter.categoryBits = !(getInvoker() instanceof ActorAI) ? ActorCollision.CATEGORY_PLAYER_SKILL : ActorCollision.CATEGORY_AI_SKILL;
-        filter.maskBits = (short) (ActorCollision.CATEGORY_WALLS | ActorCollision.CATEGORY_OBSTACLES | ((getInvoker() instanceof ActorAI) ? ActorCollision.CATEGORY_PLAYER_SKILL : ActorCollision.CATEGORY_AI_SKILL));
+        filter.categoryBits = !(getInvoker() instanceof Monster) ? ActorCollision.CATEGORY_PLAYER_SKILL : ActorCollision.CATEGORY_AI_SKILL;
+        filter.maskBits = (short) (ActorCollision.CATEGORY_WALLS | ActorCollision.CATEGORY_OBSTACLES | ((getInvoker() instanceof Monster) ? ActorCollision.CATEGORY_PLAYER_SKILL : ActorCollision.CATEGORY_AI_SKILL));
         getMainFixture().setFilterData(filter);
-        filter.maskBits = ((getInvoker() instanceof ActorAI) ? ActorCollision.CATEGORY_PLAYER : ActorCollision.CATEGORY_AI);
+        filter.maskBits = ((getInvoker() instanceof Monster) ? ActorCollision.CATEGORY_PLAYER : ActorCollision.CATEGORY_AI);
         getSensorFixture().setFilterData(filter);
         if (invoker.getMainBody() != null && (translateX == 0 && area == Area.FRONT)) {
             WeldJointDef def = new WeldJointDef();
@@ -224,18 +173,6 @@ public class ActorSkill extends ActorCollision {
         return relX;
     }
 
-    public Skill getSkill() {
-        return skill;
-    }
-
-    public void setSkill(Skill s) {
-        skill = s;
-    }
-
-    public Skill getSkill(Player a) {
-        invoker = a;
-        return skill;
-    }
 
     public void setX(ActorCollision a) {
         super.changeX(a.getFacing().getX());

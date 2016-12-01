@@ -97,33 +97,7 @@ public class ActorCollision extends Actor {
         } else {
             fixtureDef.shape = CollisionDatabaseLoader.getShape(shapeName);
             if (fixtureDef.shape instanceof PolygonShape) {
-                float degrees = 0;
-                switch (this.getFacing()) {
-                    case UP:
-                        degrees = 0;
-                        break;
-                    case UP_LEFT:
-                        degrees = 315;
-                        break;
-                    case UP_RIGHT:
-                        degrees = 45;
-                        break;
-                    case RIGHT:
-                        degrees = 90;
-                        break;
-                    case DOWN_RIGHT:
-                        degrees = 135;
-                        break;
-                    case DOWN:
-                        degrees = 180;
-                        break;
-                    case DOWN_LEFT:
-                        degrees = 225;
-                        break;
-                    case LEFT:
-                        degrees = 270;
-                        break;
-                }
+                float degrees = getFacing().getRotate();
                 genericBodyType.angle = degrees * MathUtils.degreesToRadians;
             }
         }

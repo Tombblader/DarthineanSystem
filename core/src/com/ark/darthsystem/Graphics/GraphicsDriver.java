@@ -1,10 +1,8 @@
 package com.ark.darthsystem.Graphics;
 
-import com.ark.darthsystem.BattleDriver;
-import com.ark.darthsystem.Database.Database1;
+import com.ark.darthsystem.Database.Database2;
 import com.ark.darthsystem.Database.MapDatabase;
 import java.util.ArrayList;
-import com.ark.darthsystem.Database.Database2;
 import com.ark.darthsystem.Database.InterfaceDatabase;
 import com.ark.darthsystem.Database.SoundDatabase;
 import com.ark.darthsystem.States.*;
@@ -44,6 +42,7 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
     private static Sprite screenshot;
     private static ArrayList<Transition> transitions = new ArrayList<>();
     private static final float FONT_SCALE = 1f;
+    private static Player player;
     
     public static Player getPlayer() {
         return Database2.player;
@@ -80,8 +79,8 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
 
     public static void newGame() {
         states = new Array<>();
-        new Database1();
         new Database2();
+        Database2.player = new Player(Actor.TeamColor.BLUE, Database2.defaultSprite, 0, 0);
         new MapDatabase();
     }
 
@@ -144,6 +143,7 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
 
     public static void addState(State getStates) {
         states.add(getStates);
+        getStates.initialize();
         if (getStates.getMusic() != null) {
             playMusic(getStates.getMusic());
         }
@@ -154,61 +154,62 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
             states.get((states.size - 1)).dispose();
         }
         states.set((states.size - 1), getState);
+        getState.initialize();
         if (getState.getMusic() != null) {
             playMusic(getState.getMusic());
         }
     }
 
-    public static void setMessage(String header, Animation face, ArrayList<String> getMessage) {
-        if (!(getCurrentState() instanceof Message) 
-                && !(getCurrentState() instanceof OverheadMap)
-                ) {
-            states.add(new Message(header, face, getMessage));
-        } else {
-            if ((getCurrentState() instanceof Message)) {
-                ((Message) (getCurrentState())).addMessage(new Message(header, face, getMessage));
-            }
-            if ((getCurrentState() instanceof OverheadMap)) {
+//    public static void setMessage(String header, Animation face, ArrayList<String> getMessage) {
+//        if (!(getCurrentState() instanceof Message) 
+//                && !(getCurrentState() instanceof OverheadMap)
+//                ) {
+//            states.add(new Message(header, face, getMessage));
+//        } else {
+//            if ((getCurrentState() instanceof Message)) {
+//                ((Message) (getCurrentState())).addMessage(new Message(header, face, getMessage));
+//            }
+//            if ((getCurrentState() instanceof OverheadMap)) {
+////                ((OverheadMap) (getCurrentState())).appendMessage(getMessage);
+//            }
+//        }
+//    }
+//    public static void setMessage(ArrayList<String> getMessage) {
+//        if (!(getCurrentState() instanceof Message) 
+//                && !(getCurrentState() instanceof OverheadMap)
+//                ) {
+//            states.add(new Message(getMessage));
+//        } else {
+//            if ((getCurrentState() instanceof Message)) {
+//                ((Message) (getCurrentState())).addMessage(getMessage);
+//            }
+//            if ((getCurrentState() instanceof OverheadMap)) {
 //                ((OverheadMap) (getCurrentState())).appendMessage(getMessage);
-            }
-        }
-    }
-    public static void setMessage(ArrayList<String> getMessage) {
-        if (!(getCurrentState() instanceof Message) 
-                && !(getCurrentState() instanceof OverheadMap)
-                ) {
-            states.add(new Message(getMessage));
-        } else {
-            if ((getCurrentState() instanceof Message)) {
-                ((Message) (getCurrentState())).addMessage(getMessage);
-            }
-            if ((getCurrentState() instanceof OverheadMap)) {
-                ((OverheadMap) (getCurrentState())).appendMessage(getMessage);
-            }
-        }
-    }
-
-    public static void setMessage(String getMessage) {
-        ArrayList<String> tempMessage = new ArrayList<>();
-        tempMessage.add(getMessage);
-        setMessage(tempMessage);
-    }
-
-    public static void appendMessage(ArrayList<String> getMessage) {
-        if ((getCurrentState() instanceof Message)) {
-            ((Message) (getCurrentState())).appendMessage(getMessage);
-        } else if ((getCurrentState() instanceof OverheadMap)) {
-            ((OverheadMap) (getCurrentState())).appendMessage(getMessage);
-        } else if (getMessage != null && !getMessage.isEmpty() && !getMessage.get(0).equals("")) {
-            setMessage(getMessage);
-        }
-    }
-
-    public static void appendMessage(String getMessage) {
-        ArrayList<String> temp = new ArrayList<>();
-        temp.add(getMessage);
-        appendMessage(temp);
-    }
+//            }
+//        }
+//    }
+//
+//    public static void setMessage(String getMessage) {
+//        ArrayList<String> tempMessage = new ArrayList<>();
+//        tempMessage.add(getMessage);
+//        setMessage(tempMessage);
+//    }
+//
+//    public static void appendMessage(ArrayList<String> getMessage) {
+//        if ((getCurrentState() instanceof Message)) {
+//            ((Message) (getCurrentState())).appendMessage(getMessage);
+//        } else if ((getCurrentState() instanceof OverheadMap)) {
+//            ((OverheadMap) (getCurrentState())).appendMessage(getMessage);
+//        } else if (getMessage != null && !getMessage.isEmpty() && !getMessage.get(0).equals("")) {
+//            setMessage(getMessage);
+//        }
+//    }
+//
+//    public static void appendMessage(String getMessage) {
+//        ArrayList<String> temp = new ArrayList<>();
+//        temp.add(getMessage);
+//        appendMessage(temp);
+//    }
 
     public static Batch getBatch() {
         return batch;
@@ -297,7 +298,6 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
         font = gen.generateFont(parameter);
         gen.dispose();
         Gdx.input.setInputProcessor(input);
-        new Database2();
         states = new Array();
         states.add(new Title());
     }
@@ -314,11 +314,6 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
     
     
     public void render() {
-        if (getPlayer().totalPartyKill()) {
-            BattleDriver.fullHeal(getPlayer().getAllBattlers());
-            removeAllStates();
-            addState(new GameOver());
-        } 
         delta = (Gdx.graphics.getDeltaTime() * 1000.0f);
         currentTime += Gdx.graphics.getDeltaTime();
         if (!transitions.isEmpty()) {

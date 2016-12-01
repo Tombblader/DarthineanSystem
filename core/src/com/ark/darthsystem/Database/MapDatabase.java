@@ -18,7 +18,7 @@ public class MapDatabase {
     private static HashMap<String, OverheadMap> maps;
     private static final int MIN_X_TILES = 32;
     private static final int MIN_Y_TILES = 24;
-    public static final String DEFAULT_MAP = "nowhere";
+    public static final String DEFAULT_MAP = "Beginning";
     private static final float DEFAULT_X = 9;
     private static final float DEFAULT_Y = 9;
     
@@ -26,9 +26,7 @@ public class MapDatabase {
         maps = new HashMap<>();        
         initializeMaps();
         new CollisionDatabaseLoader();
-        setDefaultMap();
-        Database2.ErikAI.setMap(maps.get("complex"), 200 / GraphicsDriver.getPlayerCamera().getConversion(), 200 / GraphicsDriver.getPlayerCamera().getConversion());
-        Database2.ProtoxAI.setMap(maps.get("complex"), 200 / GraphicsDriver.getPlayerCamera().getConversion(), 200 / GraphicsDriver.getPlayerCamera().getConversion());
+//        setDefaultMap();
     }
     
     public static HashMap<String, OverheadMap> getMaps() {

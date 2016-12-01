@@ -71,5 +71,10 @@ public class GameOver implements State {
     public String getMusic() {
         return BGM;
     }
+
+    @Override
+    public void initialize() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

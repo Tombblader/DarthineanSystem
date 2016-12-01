@@ -22,12 +22,8 @@ public class ActorSprite implements Serializable {
 
 
     private transient String masterSpriteSheet;
-    private transient HashMap<SpriteModeFace, Animation> spriteSheetFace = new HashMap<>();
-    private transient HashMap<SpriteModeBattler, Animation> spriteSheetBattler = new HashMap<>();
     private transient HashMap<SpriteModeField, HashMap<Actor.Facing, Animation>> spriteSheetField = new HashMap<>();
     private transient Animation currentFieldImage;
-    private transient Animation currentBattlerImage;
-    private transient Animation currentFaceImage;
 
     public ActorSprite(String imageName) {
         masterSpriteSheet = imageName;
@@ -41,8 +37,6 @@ public class ActorSprite implements Serializable {
 
     private void setupImage() {
         setupWalking();
-        setupFace();
-        setupBattler();
     }
 
     private void setupWalking() {
@@ -69,103 +63,33 @@ public class ActorSprite implements Serializable {
                 spriteSheetField.put(field, tempAnimation);
             }
         }
-        currentFieldImage = spriteSheetField.get(SpriteModeField.STAND).get(Facing.DOWN);
+        currentFieldImage = spriteSheetField.get(SpriteModeField.STAND).get(Facing.RIGHT);
     }
 
-    private void setupFace() {
-        final int DELAY = 10;
-        for (SpriteModeFace face : SpriteModeFace.values()) {
-            try {
-                spriteSheetFace.put(face,
-                        new Animation(DELAY,
-                                GraphicsDriver.getMasterSheet().
-                                createSprites(masterSpriteSheet +
-                                        "/face/" +
-                                        face.toString().toLowerCase()),
-                                Animation.PlayMode.LOOP));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        currentFaceImage = spriteSheetFace.get(SpriteModeFace.NORMAL);
-    }
-
-    private void setupBattler() {
-        final int DELAY = 10;
-        for (SpriteModeBattler battler : SpriteModeBattler.values()) {
-            try {
-                spriteSheetBattler.put(battler, new Animation(DELAY, 
-                        GraphicsDriver.getMasterSheet().createSprites(masterSpriteSheet + 
-                                "/battler/" + 
-                                battler.toString().toLowerCase()),
-                        Animation.PlayMode.LOOP));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        currentBattlerImage = spriteSheetBattler.get(SpriteModeBattler.BATTLER);
-    }
 
     public Animation getFieldAnimation(SpriteModeField field, Actor.Facing facing) {
         return spriteSheetField.get(field).get(facing);
     }
 
-    public Animation getFaceAnimation(SpriteModeFace face) {
-        return spriteSheetFace.get(face);
-    }
-
-    public Animation getBattlerAnimation(SpriteModeBattler battler) {
-        return spriteSheetBattler.get(battler);
-    }
 
     public void setFieldAnimation(SpriteModeField field, Actor.Facing facing) {
         currentFieldImage = spriteSheetField.get(field).get(facing);
-    }
-
-    public void setFaceAnimation(SpriteModeFace face) {
-        currentFaceImage = spriteSheetFace.get(face);
-    }
-
-    public void setBattlerAnimation(SpriteModeBattler battler) {
-        currentBattlerImage = spriteSheetBattler.get(battler);
     }
 
     public Animation getCurrentFieldAnimation() {
         return currentFieldImage;
     }
 
-    public Animation getCurrentFaceAnimation() {
-        return currentFaceImage;
-    }
 
-    public Animation getCurrentBattlerAnimation() {
-        return currentBattlerImage;
-    }
-    public enum SpriteModeFace {
-        ANGRY,
-        HAPPY,
-        NORMAL,
-        OUCH,
-        SAD,
-        CUSTOM;
-    }
     public enum SpriteModeField {
         STAND,
         WALK,
-        JUMP,
         ATTACK,
         CAST,
+        JUMP,
         SKILL,
         OUCH,
         DEAD,
         CUSTOM;
     }
-    public enum SpriteModeBattler {
-        BATTLER
-        /*      ATTACK,
-        CAST,
-        */
-        
-    }
-
 }

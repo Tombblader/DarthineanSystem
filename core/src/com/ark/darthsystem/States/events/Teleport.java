@@ -28,7 +28,6 @@ public class Teleport extends Event {
         super(img, getX, getY, getDelay);
         map = newMap;
         setTriggerMethod(TriggerMethod.TOUCH);
-        setTriggerMethod(TriggerMethod.TOUCH);
         setID(2);
     }
     

@@ -1,16 +1,11 @@
 package com.ark.darthsystem.States;
 
-import com.ark.darthsystem.Action;
-import com.ark.darthsystem.Battler;
-import com.ark.darthsystem.BattlerAI;
-import com.ark.darthsystem.Database.Database1;
 
 import com.ark.darthsystem.Database.Database2;
 import com.ark.darthsystem.Database.EventDatabase;
 import com.ark.darthsystem.Database.InterfaceDatabase;
 import com.ark.darthsystem.Graphics.Actor;
-import com.ark.darthsystem.Graphics.ActorAI;
-import com.ark.darthsystem.Graphics.ActorBattler;
+import com.ark.darthsystem.Graphics.Monster;
 import com.ark.darthsystem.Graphics.ActorCollision;
 import com.ark.darthsystem.Graphics.ActorSkill;
 import com.ark.darthsystem.Graphics.GameTimer;
@@ -19,12 +14,15 @@ import com.ark.darthsystem.Graphics.Input;
 import com.ark.darthsystem.Graphics.Player;
 import com.ark.darthsystem.Graphics.PlayerCamera;
 import com.ark.darthsystem.States.events.Event;
-import com.ark.darthsystem.States.events.NovelMode;
 import com.ark.darthsystem.States.events.Teleport;
+import com.badlogic.gdx.Gdx;
 
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.MapProperties;
@@ -35,6 +33,7 @@ import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.objects.TextureMapObject;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader.Parameters;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TiledMapImageLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
@@ -85,12 +84,29 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
     private int width;
     private int height;
     private Body boundXMin, boundXMax, boundYMin, boundYMax;
+    private Array<Player> players;
+    private int TEAM_SIZE = 1;
+    private Array<Player> teamRed = new Array<Player>(TEAM_SIZE);
+    private Array<Player> teamBlue = new Array<Player>(TEAM_SIZE);
+    private Array<Player> teamYellow = new Array<Player>(1);
+    private Array<Player> allPlayers = new Array<Player>();
+    private int teamRedCurrentLife = 15;
+    private int teamBlueCurrentLife = 15;
+    private TextureRegion background;
+    
     
 
     public OverheadMap(String mapName) {
         super((new TmxMapLoader().load(mapName, new Parameters() {{this.flipY = false;}})), 1f / PlayerCamera.PIXELS_TO_METERS);
+        background = new TextureRegion(new Texture(Gdx.files.internal("backgrounds/title.png"))) {
+                        {
+//                            this.flip(false, true);
+                        }
+                    };
         for (MapLayer m : (getMap().getLayers())) {
             if (!(m instanceof TiledMapTileLayer)) {
+                if (m instanceof TiledMapImageLayer) {
+                }
                 for (MapObject mo : m.getObjects()) {
                     if (mo instanceof TextureMapObject) {
                         ((TextureMapObject) (mo)).getTextureRegion().flip(false, true);
@@ -127,9 +143,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                             renderCollision(a, b);
                         }
                     }
-                    if (a.getBody().getUserData() instanceof Player && b.getBody().getUserData() instanceof Player) {
-                        battleStart();
-                    }
+                    
                     if (a.getBody().getUserData() instanceof Player && b.getBody().getUserData() instanceof Event) {
                         renderEvent(a, b);
                     }
@@ -155,87 +169,38 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
             }
 
             private void renderCollision(Fixture a, Fixture b) {
-                final float KNOCKBACK = (float) (4f * ((Player)(a.getBody().getUserData())).getCurrentBattler().getBattler().getDefend());
-                a.getBody().setLinearVelocity(
-                        ((Actor)(b.getBody().getUserData())).getFacing().getX() * a.getBody().getPosition().add(b.getBody().getPosition()).x * KNOCKBACK, 
-                        ((Actor)(b.getBody().getUserData())).getFacing().getY() * a.getBody().getPosition().add(b.getBody().getPosition()).y * KNOCKBACK);
-                if (a.getBody().getUserData() instanceof ActorAI) {
-                    ActorAI tempAI = (ActorAI) a.getBody().getUserData();
-                    ActorSkill tempSkill = (ActorSkill) b.getBody().getUserData();
-
-                    if (tempSkill.getSkill() == null) {
-                        Action action = new Action(Battle.Command.Attack,
-                                tempSkill.getInvoker()
-                                .getCurrentBattler().getBattler(),
-                                tempAI.getCurrentBattler().getBattler(),
-                                tempAI.getAllBattlers());
-                        action.calculateDamage(new Battle(tempSkill.getInvoker().getAllActorBattlers(),
-                                        tempAI.getAllActorBattlers(),
-                                Database1.inventory, null));
-                    } else {
-                        Action action = new Action(Battle.Command.Skill,
-                                tempSkill.getSkill(),
-                                tempSkill.getInvoker()
-                                .getCurrentBattler().getBattler(),
-                                tempAI.getCurrentBattler().getBattler(),
-                                tempAI.getAllBattlers());
-                        action.calculateDamage(new Battle(tempSkill.getInvoker().getAllActorBattlers(),
-                                        tempAI.getAllActorBattlers(),
-                                Database1.inventory, null));
-                    }
-                    if (tempAI.totalPartyKill()) {
-                        for (Battler battler : tempSkill.getInvoker().getAllBattlers()) {
-                            for (BattlerAI getBattlerAI : tempAI.getAllBattlerAI()) {
-                                battler.changeExperiencePoints(getBattlerAI.getExperienceValue());
-                            }
-                        }
-                        removeActor(tempAI);
-                    }
-
-                    //clear certain called events
-                    for (Actor actors :  actorList) {
-                        if (actors instanceof ActorSkill) {
-                            if (((ActorSkill)(actors)).getInvoker().equals(tempAI)) {
-                                removeActor(actors);
-                                ((ActorSkill)(actors)).stopFieldSound();
-                            }
+                Player tempActor1 = (Player) a.getBody().getUserData();
+                Player tempActor2 = ((ActorSkill) b.getBody().getUserData()).getInvoker();
+                tempActor1.reduceLife(tempActor2.getAttack());
+                if (tempActor1.getCurrentLife() <= 0) {
+                    removeActor(tempActor1);
+                } 
+                //clear certain called events
+                for (Actor actors :  actorList) {
+                    if (actors instanceof ActorSkill) {
+                        if (((ActorSkill)(actors)).getInvoker().equals(tempActor1)) {
+                            removeActor(actors);
+                            ((ActorSkill)(actors)).stopFieldSound();
                         }
                     }
-                    clearTempRunningTimers(tempAI);
-                    
                 }
-                else {
-                    Player tempPlayer = (Player) a.getBody().getUserData();
-                    ActorSkill tempSkill = (ActorSkill) b.getBody().getUserData();
-                    if (tempSkill.getSkill() == null) {
-                        Action action = new Action(Battle.Command.Attack,
-                                tempSkill.getInvoker()
-                                .getCurrentBattler().getBattler(),
-                                tempPlayer.getCurrentBattler().getBattler(),
-                                tempPlayer.getAllBattlers());
-                        action.calculateDamage(new Battle(
-                                        tempPlayer.getAllActorBattlers(),
-                                        tempSkill.getInvoker().getAllActorBattlers(),
-                                        Database1.inventory, null));
-                    } else {
-                        Action action = new Action(Battle.Command.Skill,
-                                tempSkill.getSkill(),
-                                tempSkill.getInvoker()
-                                .getCurrentBattler().getBattler(),
-                                tempPlayer.getCurrentBattler().getBattler(),
-                                tempPlayer.getAllBattlers());
-                        action.calculateDamage(new Battle(tempSkill.getInvoker().getAllActorBattlers(), tempPlayer.getAllActorBattlers(), Database1.inventory, null));
-                    }                                
-                    for (Actor actors : actorList) {
-                        if (actors instanceof ActorSkill) {
-                            if (((ActorSkill)(actors)).getInvoker().equals(tempPlayer)) {
-                                removeActor(actors);
-                                ((ActorSkill)(actors)).stopFieldSound();
-                            }
-                        }
-                    }
-                    clearTempRunningTimers(tempPlayer);
-                }
+                clearTempRunningTimers(tempActor1);
+                tempActor1.setPause(200);
+                tempActor1.setInvulnerability(500);
+                
+
+//                Player tempActor2 = (Player) a.getBody().getUserData();
+//                ActorSkill tempSkill = (ActorSkill) b.getBody().getUserData();
+//
+//                for (Actor actors : actorList) {
+//                    if (actors instanceof ActorSkill) {
+//                        if (((ActorSkill)(actors)).getInvoker().equals(tempActor2)) {
+//                            removeActor(actors);
+//                            ((ActorSkill)(actors)).stopFieldSound();
+//                        }
+//                    }
+//                }
+//                clearTempRunningTimers(tempActor2);
             }
 
             private void renderEvent(Fixture a, Fixture b) {
@@ -309,11 +274,14 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
         return bgm;
     }
     private void generateBounds() {
+        final int BOUND_X0 = 0;
+        final int BOUND_Y0 = 4;
+        
         BodyDef genericBodyType = new BodyDef();
         genericBodyType.type = BodyDef.BodyType.StaticBody;
         genericBodyType.fixedRotation = true;
         {
-            genericBodyType.position.set(0, 0);
+            genericBodyType.position.set(0,0);
             boundXMin = world.createBody(genericBodyType);
             boundYMin = world.createBody(genericBodyType);
             boundXMax = world.createBody(genericBodyType);
@@ -322,22 +290,22 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
         FixtureDef fixtureDef = new FixtureDef();
         EdgeShape shape1 = new EdgeShape() {
             {
-                this.set(new Vector2(0, 0), new Vector2(0, height / PlayerCamera.PIXELS_TO_METERS));
+                this.set(new Vector2(BOUND_X0, BOUND_Y0), new Vector2(BOUND_X0, height / PlayerCamera.PIXELS_TO_METERS));
             }
         };
         EdgeShape shape2 = new EdgeShape() {
             {
-                this.set(new Vector2(0, 0), new Vector2(width / PlayerCamera.PIXELS_TO_METERS, 0));
+                this.set(new Vector2(BOUND_X0, BOUND_Y0), new Vector2(width / PlayerCamera.PIXELS_TO_METERS, BOUND_Y0));
             }
         };
         EdgeShape shape3 = new EdgeShape() {
             {
-                this.set(new Vector2(width / PlayerCamera.PIXELS_TO_METERS, 0), new Vector2(width / PlayerCamera.PIXELS_TO_METERS, height / PlayerCamera.PIXELS_TO_METERS));
+                this.set(new Vector2(width / PlayerCamera.PIXELS_TO_METERS, BOUND_Y0), new Vector2(width / PlayerCamera.PIXELS_TO_METERS, height / PlayerCamera.PIXELS_TO_METERS));
             }
         };
         EdgeShape shape4 = new EdgeShape() {
             {
-                this.set(new Vector2(0, height / PlayerCamera.PIXELS_TO_METERS), new Vector2(width / PlayerCamera.PIXELS_TO_METERS, height / PlayerCamera.PIXELS_TO_METERS));
+                this.set(new Vector2(BOUND_X0, height / PlayerCamera.PIXELS_TO_METERS), new Vector2(width / PlayerCamera.PIXELS_TO_METERS, height / PlayerCamera.PIXELS_TO_METERS));
             }
         };
         fixtureDef.density = 1f;
@@ -432,11 +400,6 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                 break;
             case 1: //NovelMode
                 parameters = prop.get("parameters", String.class).split(",* ");
-                e = new NovelMode(EventDatabase.chapters(parameters),
-                        null,
-                        prop.get("x", Float.class),
-                        prop.get("y", Float.class),
-                        6/60f);
                 break;
             case 2: //Teleport
                 parameters = prop.get("parameters", String.class).split(",* ");
@@ -464,7 +427,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
     
     public void updatePartial(float delta) {
         for (Actor a : actorList) {
-            if (a instanceof ActorAI && ((ActorAI) (a)).totalPartyKill()) {
+            if (a instanceof Monster && ((Monster) (a)).getCurrentLife() <= 0) {
                 removeActor(a);
             } else {
                 a.update(delta);
@@ -498,7 +461,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
     @Override
     public float update(float delta) {
         for (Actor a : actorList) {
-            if (a instanceof ActorAI && ((ActorAI) (a)).totalPartyKill()) {
+            if (a instanceof Player && ((Player) (a)).getCurrentLife() <= 0) {
                 removeActor(a);
             } else {
                 a.update(delta);
@@ -513,13 +476,6 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
 
         }
         worldStep = true;
-        if (!message.isEmpty()) {
-            elapsed += delta;
-            if (elapsed >= MESSAGE_TIME) {
-                elapsed = 0;
-                clearMessages();
-            }
-        }
         return delta;
     }
 
@@ -547,42 +503,6 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
         }
     }    
     
-    private void battleStart() {
-        Array<ActorAI> clear = new Array<>();
-        ArrayList<ActorBattler> encounters = new ArrayList<>();
-        for (Actor enemyActors2 : actorList) {
-            if (enemyActors2 instanceof ActorAI && ((ActorAI) (enemyActors2)).vision()) {
-                encounters.addAll(((ActorAI) (enemyActors2)).getAllActorBattlers());
-                clear.add((ActorAI) enemyActors2);
-            }
-        }
-        
-        for (ActorAI tempAI : clear) {
-            //clear certain called events
-            for (Actor actors :  actorList) {
-                if (actors instanceof ActorSkill) {
-                    if (((ActorSkill)(actors)).getInvoker().equals(tempAI)) {
-                        removeActor(actors);
-                        ((ActorSkill)(actors)).stopFieldSound();
-                    }
-                }
-            }
-            clearTempRunningTimers(tempAI);
-        }
-
-        for (Actor actors : actorList) {
-               if (actors instanceof ActorSkill) {
-                   if (((ActorSkill)(actors)).getInvoker().equals(GraphicsDriver.getPlayer())) {
-                       removeActor(actors);
-                       ((ActorSkill)(actors)).stopFieldSound();
-                   }
-               }
-           }
-        clearTempRunningTimers(GraphicsDriver.getPlayer());
-        
-        GraphicsDriver.addState(new Battle(GraphicsDriver.getPlayer().getAllActorBattlers(), encounters, Database1.inventory, null).start());
-//        GraphicsDriver.transition(new Transition(Transition.TransitionType.FADE));
-    }    
 
     private void clearTempRunningTimers(Player tempPlayer) {
         for (GameTimer t : tempPlayer.getTimers()) {
@@ -614,6 +534,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
         setView(GraphicsDriver.getPlayerCamera());
         beginRender();
         int currentLayer = 0;
+        this.batch.draw(background, 0, 0);
         for (MapLayer layer : map.getLayers()) {
             if (layer.isVisible()) {
                 if (layer instanceof TiledMapTileLayer) {
@@ -624,6 +545,14 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                             a.render(this.batch);
                         }
                     }
+                } else if (layer instanceof TiledMapImageLayer) {
+                    currentLayer++;
+                    if (currentLayer == DRAW_SPRITES_AFTER_LAYER) {
+                        for (Actor a : actorList) {
+                            a.render(this.batch);
+                        }
+                    }
+                    
                 } else {
                     for (MapObject mo : layer.getObjects()) {
                         renderObject(mo);
@@ -632,8 +561,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
             }
         }
         this.batch.setProjectionMatrix(GraphicsDriver.getCamera().combined);
-        GraphicsDriver.getPlayer().renderGlobalData(this.batch);
-        drawMessage(this.batch);
+//        drawMessage(this.batch);
         endRender();
         debugRender.render(world, GraphicsDriver.getCurrentCamera().combined);
         
@@ -701,12 +629,18 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
         TiledMap tiledMap = (new TmxMapLoader().load(mapName, parameters));
         for (MapLayer m : (tiledMap.getLayers())) {
             if (!(m instanceof TiledMapTileLayer)) {
+                if (m instanceof TiledMapImageLayer) {
+                    ((TiledMapImageLayer) m).getTextureRegion().flip(false, true);
+                    ((TiledMapImageLayer) m).setY(-((TiledMapImageLayer) m).getY());
+                    
+                }
+
                 for (MapObject mo : m.getObjects()) {
                     if (mo instanceof TextureMapObject) {
                         ((TextureMapObject) (mo)).getTextureRegion().flip(false, true);
                     }
                 }
-            }
+            }           
         }
         for (TiledMapTileSet tileset : tiledMap.getTileSets()) {
             for (Iterator iterator = tileset.iterator(); iterator.hasNext();) {
@@ -724,52 +658,38 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
         return world;
     }
     
-    public void setMessage(String message) {
-        this.message.clear();
-        this.message.add(message);
-        elapsed = 0;
+    public Array<Player> getAllPlayers() {
+        allPlayers.clear();
+        allPlayers.addAll(teamRed);
+        allPlayers.addAll(teamBlue);
+        return allPlayers;
     }
 
-    public void setMessage(ArrayList<String> message) {
-        this.message = message;
-        elapsed = 0;
-    }
-
-    public void appendMessage(String message) {
-        this.message.add(message);
-        elapsed = 0;
-    }
-
-    public void appendMessage(ArrayList<String> message) {
-        this.message.addAll(message);
-        while (this.message.size() > 4) {
-            this.message.remove(0);
+    public void initialize() {
+        for (int i = 0; i < TEAM_SIZE; i++) {
+            teamRed.add(new Player(Actor.TeamColor.RED, Database2.defaultSprite, 12, 0));
+            teamRed.get(i).setMap(this, 1, 12);
+            teamBlue.add(new Player(Actor.TeamColor.BLUE, Database2.defaultSprite, 12, 24));            
+            teamBlue.get(i).setMap(this, 24, 12);
         }
-        elapsed = 0;
+        teamYellow.add(new Monster(Database2.defaultSprite, 10, 24));
+        teamYellow.get(0).setMap(this, 12, 12);
+        teamRedCurrentLife = 15;
+        teamBlueCurrentLife = 15;
     }
     
-    public void clearMessages() {
-        this.message.clear();
-        elapsed = 0;
+    public Array getTeam(Actor.TeamColor color) {
+        switch (color) {
+            case RED:
+                return teamRed;
+            case BLUE:
+                return teamBlue;
+            case YELLOW:
+                return teamYellow;
+        }
+        return null;
     }
     
-    private void drawMessage(Batch batch) {
-        final int PADDING_X = 15;
-        final int PADDING_Y = 12;
-        final int MESSAGE_HEIGHT = GraphicsDriver.getHeight() / 6;
-        final float FONT_HEIGHT = GraphicsDriver.getFont().getLineHeight();
-        
-        InterfaceDatabase.TEXT_BOX.draw(batch, GraphicsDriver.getCamera().getScreenPositionX(), GraphicsDriver.getHeight() - MESSAGE_HEIGHT + GraphicsDriver.getCamera().getScreenPositionY(), GraphicsDriver.getWidth(), MESSAGE_HEIGHT);
-        
-        int i = 0;
-        
-        for (String m : message) {
-            GraphicsDriver.drawMessage(batch, GraphicsDriver.getPlayer().getFont(), m,
-                PADDING_X + GraphicsDriver.getCamera().getScreenPositionX(),
-                ((PADDING_Y + GraphicsDriver.getHeight() - MESSAGE_HEIGHT + FONT_HEIGHT * i) + GraphicsDriver.getCamera().getScreenPositionY()));
-            i++;
-        }
-    }
     private enum TileType {
         
         WALL,
