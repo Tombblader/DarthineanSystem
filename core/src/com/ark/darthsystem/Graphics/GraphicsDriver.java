@@ -1,6 +1,6 @@
 package com.ark.darthsystem.Graphics;
 
-import com.ark.darthsystem.Database.Database2;
+import com.ark.darthsystem.Database.Database;
 import com.ark.darthsystem.Database.MapDatabase;
 import java.util.ArrayList;
 import com.ark.darthsystem.Database.InterfaceDatabase;
@@ -45,7 +45,7 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
     private static Player player;
     
     public static Player getPlayer() {
-        return Database2.player;
+        return Database.player;
     }
 
     public static Camera getCamera() {
@@ -79,8 +79,8 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
 
     public static void newGame() {
         states = new Array<>();
-        new Database2();
-        Database2.player = new Player(Actor.TeamColor.BLUE, Database2.defaultSprite, 0, 0);
+        new Database();
+        Database.player = new Player(Actor.TeamColor.BLUE, Database.defaultRedSprite, 0, 0);
         new MapDatabase();
     }
 

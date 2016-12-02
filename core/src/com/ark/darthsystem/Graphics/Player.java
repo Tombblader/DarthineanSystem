@@ -5,21 +5,17 @@
  */
 package com.ark.darthsystem.Graphics;
 
-import com.ark.darthsystem.Database.Database2;
+import com.ark.darthsystem.Database.Database;
 import com.ark.darthsystem.Database.DefaultMenu;
-import com.ark.darthsystem.Database.InterfaceDatabase;
 import com.ark.darthsystem.States.OverheadMap;
 import com.ark.darthsystem.GameOverException;
 
-import java.util.ArrayList;
-import java.util.Collections;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Filter;
@@ -89,7 +85,10 @@ public class Player extends ActorCollision {
     }
 
     public ActorSkill getAttackAnimation() {
-        return attackAnimation;
+        ActorSkill temp = Database.Basic();
+        temp.setInvoker(this);
+        return temp;
+//        return attackAnimation;
     }
 
     public final void setAttackAnimation() {
@@ -105,7 +104,7 @@ public class Player extends ActorCollision {
 //                e.printStackTrace();
 //            }
 //        } else {
-        attackAnimation = Database2.Basic();
+        attackAnimation = Database.Basic();
 //        }
         attackAnimation.setInvoker(this);
     }
@@ -113,31 +112,39 @@ public class Player extends ActorCollision {
     public void attack() {
         if (!getCurrentMap().getPhysicsWorld().isLocked()) {
             attacking = true;
-            getAttackAnimation().resetAnimation();
-            getAttackAnimation().setX(this);
-            getAttackAnimation().setY(this);
-            setPause((getAttackAnimation().getChargeTime() * 1000f));
-            addTimer(new GameTimer("Attack_Charge", (int)(1/24f*4*1000)) {
+            ActorSkill animation = getAttackAnimation();
+            animation.resetAnimation();
+            animation.setX(this);
+            animation.setY(this);
+            setPause((animation.getChargeTime() * 1000f));
+            addTimer(new GameTimer("Attack_Charge", (int)(1/24f * 4 * 1000)) {
                 @Override
                 public void event(Actor a) {
-                    getAttackAnimation().playFieldSound();
-                    getAttackAnimation().setFacing();
-                    fieldState = ActorSprite.SpriteModeField.ATTACK;
-                    setPause((getAttackAnimation().getAnimationDelay() * 1000f));
-                    if (!getCurrentMap().getPhysicsWorld().isLocked()) {
-                        getAttackAnimation().setMap(getCurrentMap());
-                        addTimer(new GameTimer("Attack", (getAttackAnimation().getAnimationDelay() * 1000f)) {
-                            @Override
-                            public void event(Actor a) {
-                                fieldState = ActorSprite.SpriteModeField.STAND;
-                                attacking = false;
-                                a.setPause(200);
-                            }
-                            public boolean update(float delta, Actor a) {
-                                fieldState = ActorSprite.SpriteModeField.ATTACK;
-                                return super.update(delta, a);
-                            }
-                        });
+                    Array<Body> bodies = new Array<>();
+                    getCurrentMap().getPhysicsWorld().getBodies(bodies);
+                    if (!bodies.contains(animation.getMainBody(), true)) {
+                        animation.playFieldSound();
+                        animation.setFacing();
+                        fieldState = ActorSprite.SpriteModeField.ATTACK;
+                        setPause((animation.getAnimationDelay() * 1000f));
+                        if (!getCurrentMap().getPhysicsWorld().isLocked()) {
+                            animation.setMap(getCurrentMap());
+                            addTimer(new GameTimer("Attack", (animation.getAnimationDelay() * 1000f)) {
+                                @Override
+                                public void event(Actor a) {
+                                    fieldState = ActorSprite.SpriteModeField.STAND;
+                                    attacking = false;
+                                    a.setPause(200);
+                                }
+                                public boolean update(float delta, Actor a) {
+                                    fieldState = ActorSprite.SpriteModeField.ATTACK;
+                                    return super.update(delta, a);
+                                }
+                            });
+                        }
+                    } else {
+                        attacking = false;
+                        fieldState = ActorSprite.SpriteModeField.STAND;
                     }
                 }
                 public boolean update(float delta, Actor a) {
@@ -145,10 +152,12 @@ public class Player extends ActorCollision {
                     fieldState = ActorSprite.SpriteModeField.ATTACK;
                     return super.update(delta, a);
                 }
+                public void clear() {
+                    attacking = false;
+                    fieldState = ActorSprite.SpriteModeField.STAND;
+                }
             });
         }
-
-//        getCurrentAnimation().setFrameDuration(getAttackAnimation().getAnimationDelay() / getCurrentAnimation().getKeyFrames().length);
     }
 
     public boolean isWalking() {
@@ -222,7 +231,7 @@ public class Player extends ActorCollision {
         if (!isWalking) {
             if (!attacking) {
                 fieldState = ActorSprite.SpriteModeField.STAND;
-            }            
+            }
             getMainBody().setLinearVelocity(0, 0);
         }
         isWalking = false;
@@ -266,8 +275,8 @@ public class Player extends ActorCollision {
                 public void event(Actor a) {
                     isDodging = false;
                     canAttack = true;
-                    setMainFilter(ActorCollision.CATEGORY_PLAYER, (short)(ActorCollision.CATEGORY_WALLS | ActorCollision.CATEGORY_OBSTACLES));
-                    setSensorFilter(ActorCollision.CATEGORY_PLAYER, (short) (ActorCollision.CATEGORY_AI | ActorCollision.CATEGORY_AI_SKILL | ActorCollision.CATEGORY_EVENT));
+                    setMainFilter(ActorCollision.CATEGORY_RED, (short)(ActorCollision.CATEGORY_WALLS | ActorCollision.CATEGORY_OBSTACLES));
+                    setSensorFilter(ActorCollision.CATEGORY_RED, (short) (ActorCollision.CATEGORY_AI | ActorCollision.CATEGORY_AI_SKILL | ActorCollision.CATEGORY_EVENT));
                     fieldState = ActorSprite.SpriteModeField.STAND;
                     switch (getFacing()) {
                         case RIGHT:
@@ -290,8 +299,8 @@ public class Player extends ActorCollision {
             };
             this.setInvulnerability(DODGE_TIME);
             addTimer(tempTimer);
-            setMainFilter(ActorCollision.CATEGORY_PLAYER, ActorCollision.CATEGORY_WALLS);
-            setSensorFilter(ActorCollision.CATEGORY_PLAYER, (short) (ActorCollision.CATEGORY_AI | ActorCollision.CATEGORY_EVENT));
+            setMainFilter(ActorCollision.CATEGORY_RED, ActorCollision.CATEGORY_WALLS);
+            setSensorFilter(ActorCollision.CATEGORY_RED, (short) (ActorCollision.CATEGORY_AI | ActorCollision.CATEGORY_EVENT));
             isDodging = true;
             fieldState = ActorSprite.SpriteModeField.DODGE;
             canAttack = false;
@@ -311,7 +320,7 @@ public class Player extends ActorCollision {
         setY(getInitialY());
         super.generateBody(map);
         Filter filter = new Filter();
-        filter.categoryBits = ActorCollision.CATEGORY_PLAYER;
+        filter.categoryBits = ActorCollision.CATEGORY_RED;
         filter.maskBits = ActorCollision.CATEGORY_WALLS | ActorCollision.CATEGORY_OBSTACLES;
         getMainFixture().setFilterData(filter);
         filter.maskBits = ActorCollision.CATEGORY_AI | ActorCollision.CATEGORY_AI_SKILL | ActorCollision.CATEGORY_EVENT;

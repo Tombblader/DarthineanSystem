@@ -112,10 +112,10 @@ public class ActorSkill extends ActorCollision {
             map.removeJoint(joint);
         }
         Filter filter = new Filter();
-        filter.categoryBits = !(getInvoker() instanceof Monster) ? ActorCollision.CATEGORY_PLAYER_SKILL : ActorCollision.CATEGORY_AI_SKILL;
-        filter.maskBits = (short) (ActorCollision.CATEGORY_WALLS | ActorCollision.CATEGORY_OBSTACLES | ((getInvoker() instanceof Monster) ? ActorCollision.CATEGORY_PLAYER_SKILL : ActorCollision.CATEGORY_AI_SKILL));
+        filter.categoryBits = !(getInvoker() instanceof Monster) ? ActorCollision.CATEGORY_RED_SKILL : ActorCollision.CATEGORY_AI_SKILL;
+        filter.maskBits = (short) (ActorCollision.CATEGORY_WALLS | ActorCollision.CATEGORY_OBSTACLES | ((getInvoker() instanceof Monster) ? ActorCollision.CATEGORY_RED_SKILL : ActorCollision.CATEGORY_AI_SKILL));
         getMainFixture().setFilterData(filter);
-        filter.maskBits = ((getInvoker() instanceof Monster) ? ActorCollision.CATEGORY_PLAYER : ActorCollision.CATEGORY_AI);
+        filter.maskBits = ((getInvoker() instanceof Monster) ? ActorCollision.CATEGORY_RED : ActorCollision.CATEGORY_AI);
         getSensorFixture().setFilterData(filter);
         if (invoker.getMainBody() != null && (translateX == 0 && area == Area.FRONT)) {
             WeldJointDef def = new WeldJointDef();

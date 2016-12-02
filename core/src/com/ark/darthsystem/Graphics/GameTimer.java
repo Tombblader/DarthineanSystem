@@ -49,8 +49,11 @@ public abstract class GameTimer {
     
     public float getCurrentTime() {
         return currentTime;
-    }
-    
+    }    
 
     public abstract void event(Actor a);
+
+    public void clear() {
+        
+    }
 }

@@ -1,7 +1,7 @@
 package com.ark.darthsystem.States;
 
 
-import com.ark.darthsystem.Database.Database2;
+import com.ark.darthsystem.Database.Database;
 import com.ark.darthsystem.Database.EventDatabase;
 import com.ark.darthsystem.Database.InterfaceDatabase;
 import com.ark.darthsystem.Graphics.Actor;
@@ -13,7 +13,9 @@ import com.ark.darthsystem.Graphics.GraphicsDriver;
 import com.ark.darthsystem.Graphics.Input;
 import com.ark.darthsystem.Graphics.Player;
 import com.ark.darthsystem.Graphics.PlayerCamera;
+import com.ark.darthsystem.Item;
 import com.ark.darthsystem.States.events.Event;
+import com.ark.darthsystem.States.events.Pickup;
 import com.ark.darthsystem.States.events.Teleport;
 import com.badlogic.gdx.Gdx;
 
@@ -76,8 +78,6 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
     private int elapsed = 0;
     private final int MESSAGE_TIME = 3000;
     private Array<Actor> actorList;
-//    private Array<Actor> playerActors;
-//    private Array<Actor> enemyActors;
     private final int DRAW_SPRITES_AFTER_LAYER = 2;
     private World world;
     private Box2DDebugRenderer debugRender = new Box2DDebugRenderer();
@@ -92,20 +92,15 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
     private Array<Player> allPlayers = new Array<Player>();
     private int teamRedCurrentLife = 15;
     private int teamBlueCurrentLife = 15;
-    private TextureRegion background;
     
     
 
     public OverheadMap(String mapName) {
         super((new TmxMapLoader().load(mapName, new Parameters() {{this.flipY = false;}})), 1f / PlayerCamera.PIXELS_TO_METERS);
-        background = new TextureRegion(new Texture(Gdx.files.internal("backgrounds/title.png"))) {
-                        {
-//                            this.flip(false, true);
-                        }
-                    };
         for (MapLayer m : (getMap().getLayers())) {
             if (!(m instanceof TiledMapTileLayer)) {
                 if (m instanceof TiledMapImageLayer) {
+                    ((TiledMapImageLayer) m).getTextureRegion().flip(false, true);
                 }
                 for (MapObject mo : m.getObjects()) {
                     if (mo instanceof TextureMapObject) {
@@ -187,20 +182,6 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                 clearTempRunningTimers(tempActor1);
                 tempActor1.setPause(200);
                 tempActor1.setInvulnerability(500);
-                
-
-//                Player tempActor2 = (Player) a.getBody().getUserData();
-//                ActorSkill tempSkill = (ActorSkill) b.getBody().getUserData();
-//
-//                for (Actor actors : actorList) {
-//                    if (actors instanceof ActorSkill) {
-//                        if (((ActorSkill)(actors)).getInvoker().equals(tempActor2)) {
-//                            removeActor(actors);
-//                            ((ActorSkill)(actors)).stopFieldSound();
-//                        }
-//                    }
-//                }
-//                clearTempRunningTimers(tempActor2);
             }
 
             private void renderEvent(Fixture a, Fixture b) {
@@ -374,12 +355,12 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                     filter.maskBits = -1;
                 } else if (properties.get("type", String.class).equalsIgnoreCase("obstacle")) {
                     filter.categoryBits = ActorCollision.CATEGORY_OBSTACLES;
-                    filter.maskBits = ActorCollision.CATEGORY_AI | ActorCollision.CATEGORY_PLAYER;
+                    filter.maskBits = ActorCollision.CATEGORY_AI | ActorCollision.CATEGORY_RED;
                 } else if (properties.get("type", String.class).equalsIgnoreCase("event")) {
                     body.setUserData(addEventFromMap(object));
                     filter.categoryBits = ActorCollision.CATEGORY_EVENT;
                     f.setSensor(true);
-                    filter.maskBits = ActorCollision.CATEGORY_PLAYER;
+                    filter.maskBits = ActorCollision.CATEGORY_RED;
                 }
 
                 f.setFilterData(filter);
@@ -473,25 +454,31 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
         for (Player p : teamRed) {
             if (p.getCurrentLife() <= 0) {
                 teamRed.removeValue(p, true);
+                teamRedCurrentLife--;
             }
         }
         for (Player p : teamBlue) {
             if (p.getCurrentLife() <= 0) {
                 teamBlue.removeValue(p, true);
+                teamBlueCurrentLife--;
             }
         }
         for (Player p : teamYellow) {
             if (p.getCurrentLife() <= 0) {
                 teamYellow.removeValue(p, true);
+                Event e = new Pickup((Sprite[]) GraphicsDriver.getMasterSheet().createSprites("items/potion/icon").toArray(Sprite.class), 350.0f, 350.0f, .1f, new Item("Meat"));
+                e.setMap(this);
+                e.setX(p.getX());
+                e.setY(p.getY());
             }
         }
         while (teamRed.size < TEAM_SIZE && teamRedCurrentLife > 0) {
-            teamRed.add(new Player(Actor.TeamColor.RED, Database2.defaultSprite, 12, 0));
+            teamRed.add(new Player(Actor.TeamColor.RED, Database.defaultRedSprite, 12, 0));
             teamRed.get(teamRed.size - 1).setMap(this, 1, 12);            
         }
         while (teamBlue.size < TEAM_SIZE && teamBlueCurrentLife > 0) {
-            teamBlue.add(new Player(Actor.TeamColor.BLUE, Database2.defaultSprite, 12, 24));
-            teamBlue.get(teamBlue.size - 1).setMap(this, 1, 12);            
+            teamBlue.add(new Player(Actor.TeamColor.BLUE, Database.defaultRedSprite, 12, 24));
+            teamBlue.get(teamBlue.size - 1).setMap(this, 31, 12);            
         }
         if (Input.getKeyPressed(Keys.ESCAPE)) {
             GraphicsDriver.clearAllStates();
@@ -537,6 +524,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                 case "OUCH":
                     t.event(tempPlayer);
                 case "ATTACK_CHARGE":
+                    t.clear();
                 case "SKILL_CHARGE":
                     tempPlayer.getTimers().removeValue(t, true);
                     break;
@@ -548,16 +536,14 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
     public void render(SpriteBatch batch) {
 
         GraphicsDriver.setCurrentCamera(GraphicsDriver.getPlayerCamera());
-        GraphicsDriver.getPlayerCamera().followPlayer(
-                Math.round(Database2.player.getX() * 25f) / 25f,
-                Math.round(Database2.player.getY() * 25f) / 25f,
+        GraphicsDriver.getPlayerCamera().followPlayer(Math.round(Database.player.getX() * 25f) / 25f,
+                Math.round(Database.player.getY() * 25f) / 25f,
                 width < GraphicsDriver.getWidth() ? GraphicsDriver.getWidth() : width,
                 height);
         GraphicsDriver.getPlayerCamera().update();
         setView(GraphicsDriver.getPlayerCamera());
         beginRender();
         int currentLayer = 0;
-        this.batch.draw(background, 0, 0);
         for (MapLayer layer : map.getLayers()) {
             if (layer.isVisible()) {
                 if (layer instanceof TiledMapTileLayer) {
@@ -569,6 +555,9 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                         }
                     }
                 } else if (layer instanceof TiledMapImageLayer) {
+                    batch.setProjectionMatrix(GraphicsDriver.getCamera().combined);
+                    batch.draw(((TiledMapImageLayer) layer).getTextureRegion(), 0, 0);
+                    batch.setProjectionMatrix(GraphicsDriver.getPlayerCamera().combined);
                     currentLayer++;
                     if (currentLayer == DRAW_SPRITES_AFTER_LAYER) {
                         for (Actor a : actorList) {
@@ -690,12 +679,12 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
 
     public void initialize() {
         for (int i = 0; i < TEAM_SIZE; i++) {
-            teamRed.add(new Player(Actor.TeamColor.RED, Database2.defaultSprite, 12, 0));
+            teamRed.add(new Player(Actor.TeamColor.RED, Database.defaultRedSprite, 12, 0));
             teamRed.get(i).setMap(this, 1, 12);
-            teamBlue.add(new Player(Actor.TeamColor.BLUE, Database2.defaultSprite, 12, 24));            
+            teamBlue.add(new Player(Actor.TeamColor.BLUE, Database.defaultBlueSprite, 12, 24));            
             teamBlue.get(i).setMap(this, 24, 12);
         }
-        teamYellow.add(new Monster(Database2.defaultSprite, 10, 24));
+        teamYellow.add(new Monster(Database.defaultRedSprite, 10, 24));
         teamYellow.get(0).setMap(this, 12, 12);
         teamRedCurrentLife = 15;
         teamBlueCurrentLife = 15;

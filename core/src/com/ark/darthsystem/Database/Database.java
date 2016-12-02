@@ -19,17 +19,17 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
  *
  * @author trankt1
  */
-public class Database2 {
+public class Database {
 
 //    public static Player[] players = new Player[2];
     public static Player player;
-    public static Monster ProtoxAI;
-    public static Monster ErikAI;
     public static ArrayList<Event> events = new ArrayList<>();
-    public static ActorSprite defaultSprite = new ActorSprite("characters/darth_invader");
+    public static ActorSprite defaultRedSprite = new ActorSprite("characters/darth_invader");
+    public static ActorSprite defaultBlueSprite = new ActorSprite("characters/darth_invader");
 
-    public Database2() {
-        defaultSprite = new ActorSprite("characters/darth_invader");
+    public Database() {
+        defaultRedSprite = new ActorSprite("characters/darth_invader");
+        defaultBlueSprite = new ActorSprite("characters/darth_invader");
     }
     public static Input createInputInstance() {
         return new Input();

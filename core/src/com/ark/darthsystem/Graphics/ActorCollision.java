@@ -28,13 +28,15 @@ import com.badlogic.gdx.utils.Array;
  * @author Keven
  */
 public class ActorCollision extends Actor {
-    public static final short CATEGORY_AI = 0x0002;
-    public static final short CATEGORY_AI_SKILL = 0x0020;
-    public static final short CATEGORY_EVENT = 0x0040;
-    public static final short CATEGORY_OBSTACLES = 0x0008;
-    public static final short CATEGORY_PLAYER = 0x0001;
-    public static final short CATEGORY_PLAYER_SKILL = 0x0010;
-    public static final short CATEGORY_WALLS = 0x0004;
+    public static final short CATEGORY_AI = 0x0004;
+    public static final short CATEGORY_AI_SKILL = 0x0040;
+    public static final short CATEGORY_EVENT = 0x0100;
+    public static final short CATEGORY_OBSTACLES = 0x0010;
+    public static final short CATEGORY_RED = 0x0001;
+    public static final short CATEGORY_BLUE = 0x0002;
+    public static final short CATEGORY_RED_SKILL = 0x0020;
+    public static final short CATEGORY_BLUE_SKILL = 0x0080;
+    public static final short CATEGORY_WALLS = 0x0008;
     
     private String shapeName = "basiccircle";
     private Body body;

@@ -34,7 +34,7 @@ public class MapDatabase {
     }
     
     private void setDefaultMap() {
-        Database2.player.setMap(maps.get(DEFAULT_MAP), 9, 9);
+        Database.player.setMap(maps.get(DEFAULT_MAP), 9, 9);
     }
     
     private void initializeMaps() {

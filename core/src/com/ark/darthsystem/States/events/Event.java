@@ -62,7 +62,7 @@ public abstract class Event extends ActorCollision {
     public void generateBody(OverheadMap map) {
         super.generateBody(map);
         setMainFilter(ActorCollision.CATEGORY_EVENT, (short) (0));
-        setSensorFilter(ActorCollision.CATEGORY_EVENT, CATEGORY_PLAYER);
+        setSensorFilter(ActorCollision.CATEGORY_EVENT, CATEGORY_RED);
     }
     
     public void update(float delta) {
