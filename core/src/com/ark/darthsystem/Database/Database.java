@@ -25,13 +25,14 @@ public class Database {
     public static Player player;
     public static ArrayList<Event> events = new ArrayList<>();
     public static ActorSprite defaultRedSprite = new ActorSprite("characters/flint_spear");
-    public static ActorSprite defaultBlueSprite = new ActorSprite("characters/darth_invader");
+    public static ActorSprite defaultBlueSprite = new ActorSprite("characters/flint_spear");
     public static ActorSprite defaultYellowSprite = new ActorSprite("characters/mammoth");
     
 
     public Database() {
         defaultRedSprite = new ActorSprite("characters/flint_spear");
-        defaultBlueSprite = new ActorSprite("characters/darth_invader");
+        defaultBlueSprite = new ActorSprite("characters/flint_spear");
+        defaultYellowSprite = new ActorSprite("characters/mammoth");
     }
     public static Input createInputInstance() {
         return new Input();
