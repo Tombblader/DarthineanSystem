@@ -53,7 +53,7 @@ public class Player extends ActorCollision {
     private boolean attacking;
     private boolean isDodging;
     private boolean isWalking;
-    private ActorSprite.SpriteModeField fieldState = ActorSprite.SpriteModeField.STAND;
+    private ActorSprite.SpriteModeField fieldState = ActorSprite.SpriteModeField.IDLE;
 
     private Input playerInput;
     private BitmapFont font;
@@ -132,7 +132,7 @@ public class Player extends ActorCollision {
                             addTimer(new GameTimer("Attack", (animation.getAnimationDelay() * 1000f)) {
                                 @Override
                                 public void event(Actor a) {
-                                    fieldState = ActorSprite.SpriteModeField.STAND;
+                                    fieldState = ActorSprite.SpriteModeField.IDLE;
                                     attacking = false;
                                     a.setPause(200);
                                 }
@@ -144,7 +144,7 @@ public class Player extends ActorCollision {
                         }
                     } else {
                         attacking = false;
-                        fieldState = ActorSprite.SpriteModeField.STAND;
+                        fieldState = ActorSprite.SpriteModeField.IDLE;
                     }
                 }
                 public boolean update(float delta, Actor a) {
@@ -154,7 +154,7 @@ public class Player extends ActorCollision {
                 }
                 public void clear() {
                     attacking = false;
-                    fieldState = ActorSprite.SpriteModeField.STAND;
+                    fieldState = ActorSprite.SpriteModeField.IDLE;
                 }
             });
         }
@@ -184,27 +184,27 @@ public class Player extends ActorCollision {
             getMainBody().setLinearVelocity(-getSpeed() * (float) (delta), getMainBody().getLinearVelocity().y);
             changeX(-1);
             setWalking(true);
-            fieldState = ActorSprite.SpriteModeField.WALK;
+            fieldState = ActorSprite.SpriteModeField.RUN;
         }
 
         if (Input.getKeyRepeat(moveRight)) {
             getMainBody().setLinearVelocity(getSpeed() * (float) (delta), getMainBody().getLinearVelocity().y);
             changeX(1);
             setWalking(true);
-            fieldState = ActorSprite.SpriteModeField.WALK;
+            fieldState = ActorSprite.SpriteModeField.RUN;
         }
 
         if (Input.getKeyRepeat(moveUp)) {
             getMainBody().setLinearVelocity(getMainBody().getLinearVelocity().x, -getSpeed() * (float) (delta));
             changeY(-1);
             setWalking(true);
-            fieldState = ActorSprite.SpriteModeField.WALK;
+            fieldState = ActorSprite.SpriteModeField.RUN;
         }
         if (Input.getKeyRepeat(moveDown)) {
             getMainBody().setLinearVelocity(getMainBody().getLinearVelocity().x, getSpeed() * (float) (delta));
             changeY(1);
             setWalking(true);
-            fieldState = ActorSprite.SpriteModeField.WALK;
+            fieldState = ActorSprite.SpriteModeField.RUN;
         }
 
         if (!Input.getKeyRepeat(moveLeft) && !Input.getKeyRepeat(moveRight)) {
@@ -230,7 +230,7 @@ public class Player extends ActorCollision {
     public void update(float delta) {
         if (!isWalking) {
             if (!attacking) {
-                fieldState = ActorSprite.SpriteModeField.STAND;
+                fieldState = ActorSprite.SpriteModeField.IDLE;
             }
             getMainBody().setLinearVelocity(0, 0);
         }
@@ -277,7 +277,7 @@ public class Player extends ActorCollision {
                     canAttack = true;
                     setMainFilter(ActorCollision.CATEGORY_RED, (short)(ActorCollision.CATEGORY_WALLS | ActorCollision.CATEGORY_OBSTACLES));
                     setSensorFilter(ActorCollision.CATEGORY_RED, (short) (ActorCollision.CATEGORY_AI | ActorCollision.CATEGORY_AI_SKILL | ActorCollision.CATEGORY_EVENT));
-                    fieldState = ActorSprite.SpriteModeField.STAND;
+                    fieldState = ActorSprite.SpriteModeField.IDLE;
                     switch (getFacing()) {
                         case RIGHT:
                             changeAnimation(getSpriteSheet().

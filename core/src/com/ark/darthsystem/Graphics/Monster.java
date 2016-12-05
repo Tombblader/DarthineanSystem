@@ -191,10 +191,10 @@ public class Monster extends Player {
                 }
                 setFacing();
                 if (!getMainBody().getLinearVelocity().isZero(.5f)) {
-                    setFieldState(ActorSprite.SpriteModeField.WALK);
+                    setFieldState(ActorSprite.SpriteModeField.RUN);
                 }
                 else {
-                    setFieldState(ActorSprite.SpriteModeField.STAND);                    
+                    setFieldState(ActorSprite.SpriteModeField.IDLE);                    
                 }
                 switch (getFacing()) {
                     case RIGHT:
@@ -247,13 +247,13 @@ public class Monster extends Player {
         if (!isWalking()) {
             getMainBody().setLinearVelocity(0, 0);
             if (!isAttacking()) {
-                setFieldState(ActorSprite.SpriteModeField.STAND);
+                setFieldState(ActorSprite.SpriteModeField.IDLE);
                 switch (getFacing()) {
                     case RIGHT:
-                        changeAnimation(getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.STAND, Actor.Facing.RIGHT));
+                        changeAnimation(getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.IDLE, Actor.Facing.RIGHT));
                         break;
                     case LEFT:
-                        changeAnimation(getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.STAND, Actor.Facing.LEFT));
+                        changeAnimation(getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.IDLE, Actor.Facing.LEFT));
                         break;
                     default:
                 }
@@ -317,13 +317,13 @@ public class Monster extends Player {
             getMainBody().setLinearVelocity(getMainBody().getLinearVelocity().x, 0);
         }
         setFacing();
-        setFieldState(ActorSprite.SpriteModeField.WALK);
+        setFieldState(ActorSprite.SpriteModeField.RUN);
         switch (getFacing()) {
             case RIGHT:
-                changeDuringAnimation(getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.WALK, Actor.Facing.RIGHT));
+                changeDuringAnimation(getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.RUN, Actor.Facing.RIGHT));
                 break;
             case LEFT:
-                changeDuringAnimation(getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.WALK, Actor.Facing.LEFT));
+                changeDuringAnimation(getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.RUN, Actor.Facing.LEFT));
                 break;
             default:
         }

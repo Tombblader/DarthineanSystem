@@ -101,7 +101,7 @@ public class Actor {
         sprite = img;
         x = getX;
         y = getY;
-        animation = sprite.getFieldAnimation(ActorSprite.SpriteModeField.STAND, Facing.RIGHT);
+        animation = sprite.getFieldAnimation(ActorSprite.SpriteModeField.IDLE, Facing.RIGHT);
         animation.setPlayMode(PlayMode.LOOP);
         animation.setFrameDuration(delay);
         currentImage = (Sprite) animation.getKeyFrame(elapsed);

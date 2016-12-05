@@ -684,7 +684,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
             teamBlue.add(new Player(Actor.TeamColor.BLUE, Database.defaultBlueSprite, 12, 24));            
             teamBlue.get(i).setMap(this, 24, 12);
         }
-        teamYellow.add(new Monster(Database.defaultRedSprite, 10, 24));
+        teamYellow.add(new Monster(Database.defaultYellowSprite, 10, 24));
         teamYellow.get(0).setMap(this, 12, 12);
         teamRedCurrentLife = 15;
         teamBlueCurrentLife = 15;

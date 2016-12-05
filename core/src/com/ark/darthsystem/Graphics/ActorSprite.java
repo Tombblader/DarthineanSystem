@@ -63,7 +63,7 @@ public class ActorSprite implements Serializable {
                 spriteSheetField.put(field, tempAnimation);
             }
         }
-        currentFieldImage = spriteSheetField.get(SpriteModeField.STAND).get(Facing.RIGHT);
+        currentFieldImage = spriteSheetField.get(SpriteModeField.IDLE).get(Facing.RIGHT);
     }
 
 
@@ -82,8 +82,8 @@ public class ActorSprite implements Serializable {
 
 
     public enum SpriteModeField {
-        STAND,
-        WALK,
+        IDLE,
+        RUN,
         ATTACK,
         CAST,
         DODGE,
