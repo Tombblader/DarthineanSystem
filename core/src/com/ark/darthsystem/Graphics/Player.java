@@ -116,9 +116,8 @@ public class Player extends ActorCollision {
             animation.resetAnimation();
             animation.setX(this);
             animation.setY(this);
-            setPause((animation.getChargeTime() * 1000f));
-            addTimer(new GameTimer("Attack_Charge", (int)(1/24f * 4 * 1000)) {
-                @Override
+            setPause((int)(this.getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.ATTACK, getFacing()).getAnimationDuration()));
+            addTimer(new GameTimer("Attack_Charge", (int)(this.getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.ATTACK, getFacing()).getAnimationDuration())) {
                 public void event(Actor a) {
                     Array<Body> bodies = new Array<>();
                     getCurrentMap().getPhysicsWorld().getBodies(bodies);

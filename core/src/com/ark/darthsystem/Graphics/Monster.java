@@ -37,87 +37,6 @@ public class Monster extends Player {
 
     public void attack() {
         super.attack();
-//        setAttacking(true);
-//        getAttackAnimation().resetAnimation();
-//        setPause((getAttackAnimation().getAnimationDelay() + getAttackAnimation().getAftercastDelay()) * 1000f);
-//        getAttackAnimation().setX(this);
-//        getAttackAnimation().setY(this);
-//        getAttackAnimation().setFacing();
-//        getAttackAnimation().setMap(getCurrentMap());
-//        getAttackAnimation().playFieldSound();
-//        setFieldState(ActorSprite.SpriteModeField.ATTACK);
-//        switch (super.getFacing()) {
-//            case RIGHT:
-//                changeAnimation(getSpriteSheet().
-//                        getFieldAnimation(getFieldState(), Actor.Facing.RIGHT));
-//                break;
-//            case LEFT:
-//                changeAnimation(getSpriteSheet().
-//                        getFieldAnimation(getFieldState(), Actor.Facing.LEFT));
-//                break;
-//            default:
-//        }
-//        getCurrentAnimation().setFrameDuration(getAttackAnimation().getAnimationDelay() / getCurrentAnimation().getKeyFrames().length);
-//        addTimer(new GameTimer("Attack", 10000) {
-//            @Override
-//            public void event(Actor a) {
-//                setFieldState(ActorSprite.SpriteModeField.STAND);
-//                setAttacking(false);
-//            }
-//            public boolean isFinished() {
-//                return getCurrentAnimation().isAnimationFinished(getElapsedTime());
-//            }
-//        });
-
-//        if (!getCurrentMap().getPhysicsWorld().isLocked()) {
-//            setAttacking(true);
-//            getAttackAnimation().resetAnimation();
-//            getAttackAnimation().setX(this);
-//            getAttackAnimation().setY(this);
-//            setPause((getAttackAnimation().getChargeTime() * 1000f));
-//            addTimer(new GameTimer("Attack_Charge", (int)(1/24f*4*1000)) {
-//                @Override
-//                public void event(Actor a) {
-//                    Array<Body> bodies = new Array<>();
-//                    getCurrentMap().getPhysicsWorld().getBodies(bodies);
-//                    if (!bodies.contains(getAttackAnimation().getMainBody(), true)) {
-//                        getAttackAnimation().playFieldSound();
-//                        getAttackAnimation().setFacing();
-//                        setFieldState(ActorSprite.SpriteModeField.ATTACK);
-//                        setPause((getAttackAnimation().getAnimationDelay() * 1000f));
-//                        if (!getCurrentMap().getPhysicsWorld().isLocked()) {
-//                            getAttackAnimation().setMap(getCurrentMap());
-//                            addTimer(new GameTimer("Attack", (getAttackAnimation().getAnimationDelay() * 1000f)) {
-//                                @Override
-//                                public void event(Actor a) {
-//                                    setFieldState(ActorSprite.SpriteModeField.STAND);
-//                                    setAttacking(false);
-//                                    a.setPause(200);
-//                                }
-//                                public boolean update(float delta, Actor a) {
-//                                    setFieldState(ActorSprite.SpriteModeField.ATTACK);
-//                                    return super.update(delta, a);
-//                                }
-//                            });
-//                        }
-//                    } else {
-//                        setAttacking(false);
-//                        setFieldState(ActorSprite.SpriteModeField.STAND);
-//                    }
-//                }
-//                public boolean update(float delta, Actor a) {
-//                    setAttacking(true);
-//                    setFieldState(ActorSprite.SpriteModeField.ATTACK);
-//                    return super.update(delta, a);
-//                }
-//                public void clear() {
-//                    setAttacking(false);
-//                    setFieldState(ActorSprite.SpriteModeField.STAND);
-//                }
-//                
-//                
-//            });
-//        }
     }
     
     public void generateBody(OverheadMap map) {
@@ -254,6 +173,16 @@ public class Monster extends Player {
                         break;
                     case LEFT:
                         changeAnimation(getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.IDLE, Actor.Facing.LEFT));
+                        break;
+                    default:
+                }
+            } else {
+                switch (getFacing()) {
+                    case RIGHT:
+                        changeDuringAnimation(getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.ATTACK, Actor.Facing.RIGHT));
+                        break;
+                    case LEFT:
+                        changeDuringAnimation(getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.ATTACK, Actor.Facing.LEFT));
                         break;
                     default:
                 }

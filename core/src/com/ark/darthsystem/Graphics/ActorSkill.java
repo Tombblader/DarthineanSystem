@@ -136,7 +136,7 @@ public class ActorSkill extends ActorCollision {
     }
 
     public float getAnimationDelay() {
-        return ((float) (originalFieldImage.length) * (this.getDelay())) + aftercastDelay;
+        return ((float) (originalFieldImage.length - 1) * (this.getDelay()));
     }
 
     public Actor getBattlerAnimation() {
