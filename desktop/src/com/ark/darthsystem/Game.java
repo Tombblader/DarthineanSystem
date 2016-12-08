@@ -22,7 +22,7 @@ public class Game {
 
     public static void main(String[] args) {
         Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
-        config.setWindowedMode(1024, 768);
+        config.setWindowedMode(1920, 1080);
         config.setTitle("Adventurer");
         config.useOpenGL3(true, 3, 3);       
         config.setResizable(false);
