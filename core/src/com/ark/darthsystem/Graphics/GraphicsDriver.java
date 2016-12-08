@@ -272,8 +272,13 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
     public void create() {
         input = new Input();
         DisplayMode optimal = null;
-        for (DisplayMode d : Gdx.graphics.getDisplayModes()) {
-            if (optimal == null || (d.width > optimal.width && d.width <= WIDTH) || (d.height > optimal.height && d.height <= HEIGHT))
+        
+        for (DisplayMode d : Gdx.graphics.getDisplayModes()) {            
+            if (optimal == null || (d.width > optimal.width 
+//                    && d.width <= WIDTH
+                    ) || (d.height > optimal.height
+//                    && d.height <= HEIGHT
+                    ))
             optimal = d;
         }
 //        Gdx.graphics.setFullscreenMode(optimal);
