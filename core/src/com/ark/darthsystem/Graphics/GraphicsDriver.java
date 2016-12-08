@@ -24,6 +24,8 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
 
 public class GraphicsDriver extends com.badlogic.gdx.Game {
 
@@ -336,9 +338,11 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         if (!(getCurrentState() instanceof OverheadMap)) {
             camera.update();
+              Gdx.gl.glViewport(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
             batch.setProjectionMatrix(camera.combined);
         } else {
             playerCamera.update();
+              Gdx.gl.glViewport(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
             batch.setProjectionMatrix(playerCamera.combined);
         }
         batch.begin();
