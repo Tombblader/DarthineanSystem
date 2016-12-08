@@ -116,34 +116,27 @@ public class Player extends ActorCollision {
             animation.resetAnimation();
             animation.setX(this);
             animation.setY(this);
-            setPause((int)(this.getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.ATTACK, getFacing()).getAnimationDuration()));
-            addTimer(new GameTimer("Attack_Charge", (int)(this.getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.ATTACK, getFacing()).getAnimationDuration())) {
+            setPause((int)((this.getDelay() * (this.getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.ATTACK, getFacing()).getKeyFrames().length - 1f)) * 1000f));
+            addTimer(new GameTimer("Attack_Charge", this.getDelay() * ((this.getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.ATTACK, getFacing()).getKeyFrames().length - 1f)) * 1000f) {
                 public void event(Actor a) {
-                    Array<Body> bodies = new Array<>();
-                    getCurrentMap().getPhysicsWorld().getBodies(bodies);
-                    if (!bodies.contains(animation.getMainBody(), true)) {
-                        animation.playFieldSound();
-                        animation.setFacing();
-                        fieldState = ActorSprite.SpriteModeField.ATTACK;
-                        setPause((animation.getAnimationDelay() * 1000f));
-                        if (!getCurrentMap().getPhysicsWorld().isLocked()) {
-                            animation.setMap(getCurrentMap());
-                            addTimer(new GameTimer("Attack", (animation.getAnimationDelay() * 1000f)) {
-                                @Override
-                                public void event(Actor a) {
-                                    fieldState = ActorSprite.SpriteModeField.IDLE;
-                                    attacking = false;
-                                    a.setPause(200);
-                                }
-                                public boolean update(float delta, Actor a) {
-                                    fieldState = ActorSprite.SpriteModeField.ATTACK;
-                                    return super.update(delta, a);
-                                }
-                            });
-                        }
-                    } else {
-                        attacking = false;
-                        fieldState = ActorSprite.SpriteModeField.IDLE;
+                    animation.playFieldSound();
+                    animation.setFacing();
+                    fieldState = ActorSprite.SpriteModeField.ATTACK;
+                    setPause(((animation.getAnimationDelay()) * 1000f));
+                    if (!getCurrentMap().getPhysicsWorld().isLocked()) {
+                        animation.setMap(getCurrentMap());
+                        addTimer(new GameTimer("Attack", animation.getAnimationDelay() * 1000) {
+                            @Override
+                            public void event(Actor a) {
+                                fieldState = ActorSprite.SpriteModeField.IDLE;
+                                attacking = false;
+                                a.setPause(250);
+                            }
+                            public boolean update(float delta, Actor a) {
+                                fieldState = ActorSprite.SpriteModeField.ATTACK;
+                                return super.update(delta, a);
+                            }
+                        });
                     }
                 }
                 public boolean update(float delta, Actor a) {

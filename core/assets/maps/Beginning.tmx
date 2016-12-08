@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="32" height="18" tilewidth="32" tileheight="32" nextobjectid="1">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="33" tilewidth="32" tileheight="32" nextobjectid="1">
  <tileset firstgid="1" name="tileset" tilewidth="32" tileheight="32" tilecount="64" columns="8">
   <image source="tileset.png" width="256" height="256"/>
  </tileset>
- <imagelayer name="backgroundImage" offsetx="13" offsety="63">
-  <image source="Background/jungle.png" width="1024" height="569"/>
+ <imagelayer name="backgroundImage">
+  <image source="Background/jungle_map.png" width="1920" height="1067"/>
  </imagelayer>
- <layer name="background" width="32" height="18">
+ <layer name="background" width="60" height="33">
   <data encoding="base64" compression="zlib">
-   eJztwQEBAAAAgiD/r25IQAEAfBkJAAAB
+   eJztwQENAAAAwqD3T20ON6AAAAAAAAAA4M8AHvAAAQ==
   </data>
  </layer>
- <layer name="object" width="32" height="18">
+ <layer name="object" width="60" height="33">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIKRC1hGiJ2jYBSMAlQAACcQAAk=
+   eJztzTENAAAIA7Ad+NeMiSUctAaaAADQNk9OAAAAAIBLC8mAAAk=
   </data>
  </layer>
  <objectgroup name="collision"/>

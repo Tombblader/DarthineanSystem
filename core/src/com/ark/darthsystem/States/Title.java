@@ -36,7 +36,7 @@ public class Title implements State {
                 if (choice.equals("Start")) {
                     GraphicsDriver.newGame();
                     GraphicsDriver.addState((State) (MapDatabase.getMaps().get(MapDatabase.DEFAULT_MAP)));
-                    GraphicsDriver.transition();
+//                    GraphicsDriver.transition();
                     ((OverheadMap) (GraphicsDriver.getCurrentState())).updatePartial(0);
                 }
                 if (choice.equals("Continue")) {

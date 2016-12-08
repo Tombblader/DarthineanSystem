@@ -149,7 +149,7 @@ public class Monster extends Player {
     }
     
     public void update(float delta) {
-        setAttacking(false);
+//        setAttacking(false);
         setElapsedTime(getElapsedTime() + GraphicsDriver.getRawDelta());
         setCurrentImage((Sprite) getCurrentAnimation().getKeyFrame(getElapsedTime()));
         for (GameTimer t : getTimers()) {
