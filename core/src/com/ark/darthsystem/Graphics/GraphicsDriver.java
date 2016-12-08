@@ -36,7 +36,7 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
     private static Array<State> states;
     private static TextureAtlas masterSheet;
     private static Music backgroundMusic;
-//    private static final int WIDTH, HEIGHT;
+    private static final int WIDTH = 1920, HEIGHT = 1080;
     private static com.ark.darthsystem.Graphics.Camera currentCamera;
     private static String backgroundMusicString = null;
     private static Sprite screenshot;
@@ -70,11 +70,13 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
     }
 
     public static int getHeight() {
-        return Gdx.graphics.getHeight();
+//        return Gdx.graphics.getHeight();
+        return HEIGHT;
     }
 
     public static int getWidth() {
-        return Gdx.graphics.getWidth();
+//        return Gdx.graphics.getWidth();
+        return WIDTH;
     }
 
     public static void newGame() {
@@ -271,12 +273,12 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
         input = new Input();
         DisplayMode optimal = null;
         for (DisplayMode d : Gdx.graphics.getDisplayModes()) {
-            if (d.width == 1024 && d.height == 768)
+            if (optimal == null || (d.width > optimal.width && d.width <= WIDTH) || (d.height > optimal.height && d.height <= HEIGHT))
             optimal = d;
         }
 //        Gdx.graphics.setFullscreenMode(optimal);
-        float w = Gdx.graphics.getWidth();
-        float h = Gdx.graphics.getHeight();        
+        float w = WIDTH;
+        float h = HEIGHT;        
         camera = new Camera(w, h);
         playerCamera = new PlayerCamera(w, h);
         currentCamera = camera;
