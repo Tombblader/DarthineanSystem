@@ -281,7 +281,7 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
                     ))
             optimal = d;
         }
-//        Gdx.graphics.setFullscreenMode(optimal);
+        Gdx.graphics.setFullscreenMode(optimal);
         float w = WIDTH;
         float h = HEIGHT;        
         camera = new Camera(w, h);
