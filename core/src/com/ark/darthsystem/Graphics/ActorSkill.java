@@ -112,11 +112,35 @@ public class ActorSkill extends ActorCollision {
             map.removeJoint(joint);
         }
         Filter filter = new Filter();
-        filter.categoryBits = !(getInvoker() instanceof Monster) ? ActorCollision.CATEGORY_RED_SKILL : ActorCollision.CATEGORY_AI_SKILL;
-        filter.maskBits = (short) (ActorCollision.CATEGORY_WALLS | ActorCollision.CATEGORY_OBSTACLES | ((getInvoker() instanceof Monster) ? ActorCollision.CATEGORY_RED_SKILL : ActorCollision.CATEGORY_AI_SKILL));
+        short mainFilter = 0;
+        short subFilter = 0;
+        switch (invoker.getTeam()) {
+            case RED:
+                mainFilter = ActorCollision.CATEGORY_RED_SKILL;
+                subFilter = (short) (ActorCollision.CATEGORY_BLUE | ActorCollision.CATEGORY_AI);
+                break;
+            case BLUE:
+                mainFilter = ActorCollision.CATEGORY_BLUE_SKILL;
+                subFilter = (short) (ActorCollision.CATEGORY_RED | ActorCollision.CATEGORY_AI);
+                break;
+            case YELLOW:
+                mainFilter = ActorCollision.CATEGORY_AI_SKILL;
+                subFilter = (short) (ActorCollision.CATEGORY_RED | ActorCollision.CATEGORY_BLUE);
+                break;
+        }
+
+        filter.categoryBits = mainFilter;
+        filter.maskBits = ActorCollision.CATEGORY_WALLS | ActorCollision.CATEGORY_OBSTACLES;
         getMainFixture().setFilterData(filter);
-        filter.maskBits = ((getInvoker() instanceof Monster) ? ActorCollision.CATEGORY_RED : ActorCollision.CATEGORY_AI);
+        filter.maskBits = subFilter;
         getSensorFixture().setFilterData(filter);
+
+
+//        filter.categoryBits = !(getInvoker() instanceof Monster) ? ActorCollision.CATEGORY_RED_SKILL : ActorCollision.CATEGORY_AI_SKILL;
+//        filter.maskBits = (short) (ActorCollision.CATEGORY_WALLS | ActorCollision.CATEGORY_OBSTACLES | ((getInvoker() instanceof Monster) ? ActorCollision.CATEGORY_RED_SKILL : ActorCollision.CATEGORY_AI_SKILL));
+//        getMainFixture().setFilterData(filter);
+//        filter.maskBits = ((getInvoker() instanceof Monster) ? ActorCollision.CATEGORY_RED : ActorCollision.CATEGORY_AI);
+//        getSensorFixture().setFilterData(filter);
         if (invoker.getMainBody() != null && (translateX == 0 && area == Area.FRONT)) {
             WeldJointDef def = new WeldJointDef();
             def.dampingRatio = 1f;
