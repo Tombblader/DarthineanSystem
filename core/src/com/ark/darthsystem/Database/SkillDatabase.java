@@ -6,12 +6,18 @@
 package com.ark.darthsystem.Database;
 
 import com.ark.darthsystem.Graphics.ActorSkill;
+import com.ark.darthsystem.Graphics.GraphicsDriver;
 
 /**
  *
  * @author Keven
  */
 public class SkillDatabase {
-//    ActorSkill Spear_Throw = new ActorSkill();
+    ActorSkill Spear_Throw = new ActorSkill(GraphicsDriver.getMasterSheet().createSprites("spear_throw").toArray(),
+            0,
+            0,
+            1,
+            1,
+            1/12);
 
 }

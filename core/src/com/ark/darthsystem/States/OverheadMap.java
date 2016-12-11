@@ -92,7 +92,8 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
     private Array<Player> allPlayers = new Array<Player>();
     private int teamRedCurrentLife = 15;
     private int teamBlueCurrentLife = 15;
-    
+    private Sprite circleUI;
+    private Sprite[] lifeUI;
     
 
     public OverheadMap(String mapName) {
@@ -200,6 +201,16 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
         this(mapName);
         bgm = bgmName;
     }
+    
+    private void buildUI() {
+        final String UI_CIRCLE = "interface/cursor";
+        final String UI_LIFE = "interface/cursor";
+        circleUI = GraphicsDriver.getMasterSheet().createSprite(UI_CIRCLE);
+        circleUI.setOriginCenter();
+        lifeUI = GraphicsDriver.getMasterSheet().createSprites(UI_LIFE).toArray();
+        
+    }
+    
     private PolygonShape getRectangle(RectangleMapObject rectangleObject) {
         Rectangle rectangle = rectangleObject.getRectangle();
         PolygonShape polygon = new PolygonShape();
@@ -574,6 +585,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
         }
         this.batch.setProjectionMatrix(GraphicsDriver.getCamera().combined);
 //        drawMessage(this.batch);
+//        renderUI(this.batch);
         endRender();
         debugRender.render(world, GraphicsDriver.getCurrentCamera().combined);
         
@@ -610,6 +622,24 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
             }
             worldStep = false;
         }        
+    }
+    
+    public void renderUI(Batch batch) {
+        final float X1 = 30;
+        final float Y1 = GraphicsDriver.getHeight() - 30;
+        final float X2 = GraphicsDriver.getWidth() - X1;
+        final float Y2 = Y1;        
+        batch.draw(circleUI, X1, Y1, circleUI.getOriginX(), circleUI.getOriginY());
+        batch.draw(circleUI, X2, Y2, circleUI.getOriginX(), circleUI.getOriginY());
+        GraphicsDriver.getFont().draw(batch, Integer.toString(teamRedCurrentLife), X1, Y1);
+        GraphicsDriver.getFont().draw(batch, Integer.toString(teamBlueCurrentLife), X2, Y2);
+        final float XDELTA = 30;
+        for (int i = 0; i < teamRed.size; i++) {
+            batch.draw(lifeUI[teamRed.get(i).getCurrentLife()], X1 + XDELTA * (i +1), Y1);
+        }
+        for (int i = 0; i < teamBlue.size; i++) {
+            batch.draw(lifeUI[teamRed.get(i).getCurrentLife()], X2 - XDELTA * (i +1), Y1);
+        }
     }
 
     @Override

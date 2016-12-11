@@ -289,7 +289,7 @@ public class Player extends ActorCollision {
     }
 
     public void dodge() {
-        final int DODGE_TIME = 250;
+        final int DODGE_TIME = (int) (this.getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.DODGE, Facing.RIGHT).getAnimationDuration() * 1000);
         if (!isDodging) {
             GameTimer tempTimer = new GameTimer("Dodge", DODGE_TIME) {
                 public void event(Actor a) {
@@ -328,6 +328,10 @@ public class Player extends ActorCollision {
                 }
 
                 public boolean update(float delta, Actor a) {
+                    getMainBody().setLinearVelocity(-getSpeed() * (float) (delta), getMainBody().getLinearVelocity().y);
+                    changeX(-1);
+//                    setWalking(true);
+                    fieldState = ActorSprite.SpriteModeField.DODGE;
                     isDodging = true;
                     canAttack = false;
                     return super.update(delta, a);
@@ -336,7 +340,7 @@ public class Player extends ActorCollision {
             this.setInvulnerability(DODGE_TIME);
             addTimer(tempTimer);
             setMainFilter(ActorCollision.CATEGORY_RED, ActorCollision.CATEGORY_WALLS);
-            setSensorFilter(ActorCollision.CATEGORY_RED, (short) (ActorCollision.CATEGORY_AI | ActorCollision.CATEGORY_EVENT));
+            setSensorFilter(ActorCollision.CATEGORY_RED, (short) (ActorCollision.CATEGORY_EVENT));
             isDodging = true;
 //            fieldState = ActorSprite.SpriteModeField.DODGE;
             canAttack = false;
@@ -450,5 +454,9 @@ public class Player extends ActorCollision {
             attack();
         }
         
+    }
+
+    public TeamColor getTeam() {
+        return team;
     }
 }
