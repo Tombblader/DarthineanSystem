@@ -1,0 +1,1890 @@
+
+MasterSheet.png
+size: 2048,2048
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+characters/flint_spear/field/attack/left
+  rotate: false
+  xy: 710, 901
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/flint_spear/field/cast/left
+  rotate: false
+  xy: 710, 901
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/flint_spear/field/dead/left
+  rotate: false
+  xy: 710, 901
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/flint_spear/field/idle/left
+  rotate: false
+  xy: 710, 901
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/flint_spear/field/jump/left
+  rotate: false
+  xy: 710, 901
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/flint_spear/field/ouch/left
+  rotate: false
+  xy: 710, 901
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/flint_spear/field/run/left
+  rotate: false
+  xy: 710, 901
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/flint_spear/field/walk/left
+  rotate: false
+  xy: 710, 901
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/mammoth/field/attack/left
+  rotate: false
+  xy: 710, 901
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/mammoth/field/cast/left
+  rotate: false
+  xy: 710, 901
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/mammoth/field/dead/left
+  rotate: false
+  xy: 710, 901
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/mammoth/field/jump/left
+  rotate: false
+  xy: 710, 901
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/mammoth/field/ouch/left
+  rotate: false
+  xy: 710, 901
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/mammoth/field/run/left
+  rotate: false
+  xy: 710, 901
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/flint_spear/field/attack/left
+  rotate: false
+  xy: 1759, 834
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/flint_spear/field/cast/left
+  rotate: false
+  xy: 1759, 834
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/flint_spear/field/dead/left
+  rotate: false
+  xy: 1759, 834
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/flint_spear/field/jump/left
+  rotate: false
+  xy: 1759, 834
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/flint_spear/field/ouch/left
+  rotate: false
+  xy: 1759, 834
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/flint_spear/field/run/left
+  rotate: false
+  xy: 1759, 834
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/flint_spear/field/walk/left
+  rotate: false
+  xy: 1759, 834
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/mammoth/field/attack/left
+  rotate: false
+  xy: 1759, 834
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/mammoth/field/cast/left
+  rotate: false
+  xy: 1759, 834
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/mammoth/field/dead/left
+  rotate: false
+  xy: 1759, 834
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/mammoth/field/jump/left
+  rotate: false
+  xy: 1759, 834
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/mammoth/field/ouch/left
+  rotate: false
+  xy: 1759, 834
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/mammoth/field/run/left
+  rotate: false
+  xy: 1759, 834
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/flint_spear/field/attack/left
+  rotate: false
+  xy: 1759, 780
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/flint_spear/field/cast/left
+  rotate: false
+  xy: 1759, 780
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/flint_spear/field/dead/left
+  rotate: false
+  xy: 1759, 780
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/flint_spear/field/jump/left
+  rotate: false
+  xy: 1759, 780
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/flint_spear/field/ouch/left
+  rotate: false
+  xy: 1759, 780
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/flint_spear/field/run/left
+  rotate: false
+  xy: 1759, 780
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/flint_spear/field/walk/left
+  rotate: false
+  xy: 1759, 780
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/mammoth/field/attack/left
+  rotate: false
+  xy: 1759, 780
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/mammoth/field/cast/left
+  rotate: false
+  xy: 1759, 780
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/mammoth/field/dead/left
+  rotate: false
+  xy: 1759, 780
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/mammoth/field/jump/left
+  rotate: false
+  xy: 1759, 780
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/mammoth/field/ouch/left
+  rotate: false
+  xy: 1759, 780
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/mammoth/field/run/left
+  rotate: false
+  xy: 1759, 780
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/flint_spear/field/attack/left
+  rotate: false
+  xy: 1759, 726
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/flint_spear/field/cast/left
+  rotate: false
+  xy: 1759, 726
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/flint_spear/field/dead/left
+  rotate: false
+  xy: 1759, 726
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/flint_spear/field/jump/left
+  rotate: false
+  xy: 1759, 726
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/flint_spear/field/ouch/left
+  rotate: false
+  xy: 1759, 726
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/flint_spear/field/run/left
+  rotate: false
+  xy: 1759, 726
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/flint_spear/field/walk/left
+  rotate: false
+  xy: 1759, 726
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/mammoth/field/attack/left
+  rotate: false
+  xy: 1759, 726
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/mammoth/field/cast/left
+  rotate: false
+  xy: 1759, 726
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/mammoth/field/dead/left
+  rotate: false
+  xy: 1759, 726
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/mammoth/field/jump/left
+  rotate: false
+  xy: 1759, 726
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/mammoth/field/ouch/left
+  rotate: false
+  xy: 1759, 726
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/mammoth/field/run/left
+  rotate: false
+  xy: 1759, 726
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/flint_spear/field/attack/right
+  rotate: false
+  xy: 447, 17
+  size: 192, 175
+  orig: 192, 175
+  offset: 0, 0
+  index: 0
+characters/flint_spear/field/attack/right
+  rotate: false
+  xy: 757, 919
+  size: 192, 175
+  orig: 192, 175
+  offset: 0, 0
+  index: 1
+characters/flint_spear/field/cast/down
+  rotate: false
+  xy: 447, 244
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/flint_spear/field/dead/down
+  rotate: false
+  xy: 447, 244
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/flint_spear/field/jump/down
+  rotate: false
+  xy: 447, 244
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/flint_spear/field/ouch/down
+  rotate: false
+  xy: 447, 244
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/flint_spear/field/walk/down
+  rotate: false
+  xy: 447, 244
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/mammoth/field/cast/down
+  rotate: false
+  xy: 447, 244
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/mammoth/field/dead/down
+  rotate: false
+  xy: 447, 244
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/mammoth/field/jump/down
+  rotate: false
+  xy: 447, 244
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/mammoth/field/ouch/down
+  rotate: false
+  xy: 447, 244
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/flint_spear/field/cast/down
+  rotate: false
+  xy: 710, 1009
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/flint_spear/field/dead/down
+  rotate: false
+  xy: 710, 1009
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/flint_spear/field/jump/down
+  rotate: false
+  xy: 710, 1009
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/flint_spear/field/ouch/down
+  rotate: false
+  xy: 710, 1009
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/flint_spear/field/walk/down
+  rotate: false
+  xy: 710, 1009
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/mammoth/field/cast/down
+  rotate: false
+  xy: 710, 1009
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/mammoth/field/dead/down
+  rotate: false
+  xy: 710, 1009
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/mammoth/field/jump/down
+  rotate: false
+  xy: 710, 1009
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/mammoth/field/ouch/down
+  rotate: false
+  xy: 710, 1009
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/flint_spear/field/cast/down
+  rotate: false
+  xy: 1551, 1010
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/flint_spear/field/dead/down
+  rotate: false
+  xy: 1551, 1010
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/flint_spear/field/jump/down
+  rotate: false
+  xy: 1551, 1010
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/flint_spear/field/ouch/down
+  rotate: false
+  xy: 1551, 1010
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/flint_spear/field/walk/down
+  rotate: false
+  xy: 1551, 1010
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/mammoth/field/cast/down
+  rotate: false
+  xy: 1551, 1010
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/mammoth/field/dead/down
+  rotate: false
+  xy: 1551, 1010
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/mammoth/field/jump/down
+  rotate: false
+  xy: 1551, 1010
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/mammoth/field/ouch/down
+  rotate: false
+  xy: 1551, 1010
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/flint_spear/field/cast/down
+  rotate: false
+  xy: 710, 955
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/flint_spear/field/dead/down
+  rotate: false
+  xy: 710, 955
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/flint_spear/field/jump/down
+  rotate: false
+  xy: 710, 955
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/flint_spear/field/ouch/down
+  rotate: false
+  xy: 710, 955
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/flint_spear/field/walk/down
+  rotate: false
+  xy: 710, 955
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/mammoth/field/cast/down
+  rotate: false
+  xy: 710, 955
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/mammoth/field/dead/down
+  rotate: false
+  xy: 710, 955
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/mammoth/field/jump/down
+  rotate: false
+  xy: 710, 955
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/mammoth/field/ouch/down
+  rotate: false
+  xy: 710, 955
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/flint_spear/field/cast/right
+  rotate: false
+  xy: 1759, 672
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/flint_spear/field/dead/right
+  rotate: false
+  xy: 1759, 672
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/flint_spear/field/jump/right
+  rotate: false
+  xy: 1759, 672
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/flint_spear/field/ouch/right
+  rotate: false
+  xy: 1759, 672
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/flint_spear/field/walk/right
+  rotate: false
+  xy: 1759, 672
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/mammoth/field/cast/right
+  rotate: false
+  xy: 1759, 672
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/mammoth/field/dead/right
+  rotate: false
+  xy: 1759, 672
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/mammoth/field/jump/right
+  rotate: false
+  xy: 1759, 672
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/mammoth/field/ouch/right
+  rotate: false
+  xy: 1759, 672
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/flint_spear/field/cast/right
+  rotate: false
+  xy: 1759, 618
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/flint_spear/field/dead/right
+  rotate: false
+  xy: 1759, 618
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/flint_spear/field/jump/right
+  rotate: false
+  xy: 1759, 618
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/flint_spear/field/ouch/right
+  rotate: false
+  xy: 1759, 618
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/flint_spear/field/walk/right
+  rotate: false
+  xy: 1759, 618
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/mammoth/field/cast/right
+  rotate: false
+  xy: 1759, 618
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/mammoth/field/dead/right
+  rotate: false
+  xy: 1759, 618
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/mammoth/field/jump/right
+  rotate: false
+  xy: 1759, 618
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/mammoth/field/ouch/right
+  rotate: false
+  xy: 1759, 618
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/flint_spear/field/cast/right
+  rotate: false
+  xy: 1962, 721
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/flint_spear/field/dead/right
+  rotate: false
+  xy: 1962, 721
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/flint_spear/field/jump/right
+  rotate: false
+  xy: 1962, 721
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/flint_spear/field/ouch/right
+  rotate: false
+  xy: 1962, 721
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/flint_spear/field/walk/right
+  rotate: false
+  xy: 1962, 721
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/mammoth/field/cast/right
+  rotate: false
+  xy: 1962, 721
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/mammoth/field/dead/right
+  rotate: false
+  xy: 1962, 721
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/mammoth/field/jump/right
+  rotate: false
+  xy: 1962, 721
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/mammoth/field/ouch/right
+  rotate: false
+  xy: 1962, 721
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/flint_spear/field/cast/right
+  rotate: false
+  xy: 1962, 667
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/flint_spear/field/dead/right
+  rotate: false
+  xy: 1962, 667
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/flint_spear/field/jump/right
+  rotate: false
+  xy: 1962, 667
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/flint_spear/field/ouch/right
+  rotate: false
+  xy: 1962, 667
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/flint_spear/field/walk/right
+  rotate: false
+  xy: 1962, 667
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/mammoth/field/cast/right
+  rotate: false
+  xy: 1962, 667
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/mammoth/field/dead/right
+  rotate: false
+  xy: 1962, 667
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/mammoth/field/jump/right
+  rotate: false
+  xy: 1962, 667
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/mammoth/field/ouch/right
+  rotate: false
+  xy: 1962, 667
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/flint_spear/field/cast/up
+  rotate: false
+  xy: 1962, 613
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/flint_spear/field/dead/up
+  rotate: false
+  xy: 1962, 613
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/flint_spear/field/jump/up
+  rotate: false
+  xy: 1962, 613
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/flint_spear/field/ouch/up
+  rotate: false
+  xy: 1962, 613
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/flint_spear/field/walk/up
+  rotate: false
+  xy: 1962, 613
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/mammoth/field/cast/up
+  rotate: false
+  xy: 1962, 613
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/mammoth/field/dead/up
+  rotate: false
+  xy: 1962, 613
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/mammoth/field/jump/up
+  rotate: false
+  xy: 1962, 613
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/mammoth/field/ouch/up
+  rotate: false
+  xy: 1962, 613
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/flint_spear/field/cast/up
+  rotate: false
+  xy: 1759, 564
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/flint_spear/field/dead/up
+  rotate: false
+  xy: 1759, 564
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/flint_spear/field/jump/up
+  rotate: false
+  xy: 1759, 564
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/flint_spear/field/ouch/up
+  rotate: false
+  xy: 1759, 564
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/flint_spear/field/walk/up
+  rotate: false
+  xy: 1759, 564
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/mammoth/field/cast/up
+  rotate: false
+  xy: 1759, 564
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/mammoth/field/dead/up
+  rotate: false
+  xy: 1759, 564
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/mammoth/field/jump/up
+  rotate: false
+  xy: 1759, 564
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/mammoth/field/ouch/up
+  rotate: false
+  xy: 1759, 564
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/flint_spear/field/cast/up
+  rotate: false
+  xy: 690, 523
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/flint_spear/field/dead/up
+  rotate: false
+  xy: 690, 523
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/flint_spear/field/jump/up
+  rotate: false
+  xy: 690, 523
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/flint_spear/field/ouch/up
+  rotate: false
+  xy: 690, 523
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/flint_spear/field/walk/up
+  rotate: false
+  xy: 690, 523
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/mammoth/field/cast/up
+  rotate: false
+  xy: 690, 523
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/mammoth/field/dead/up
+  rotate: false
+  xy: 690, 523
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/mammoth/field/jump/up
+  rotate: false
+  xy: 690, 523
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/mammoth/field/ouch/up
+  rotate: false
+  xy: 690, 523
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/flint_spear/field/cast/up
+  rotate: false
+  xy: 684, 469
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/flint_spear/field/dead/up
+  rotate: false
+  xy: 684, 469
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/flint_spear/field/jump/up
+  rotate: false
+  xy: 684, 469
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/flint_spear/field/ouch/up
+  rotate: false
+  xy: 684, 469
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/flint_spear/field/walk/up
+  rotate: false
+  xy: 684, 469
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/mammoth/field/cast/up
+  rotate: false
+  xy: 684, 469
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/mammoth/field/dead/up
+  rotate: false
+  xy: 684, 469
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/mammoth/field/jump/up
+  rotate: false
+  xy: 684, 469
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/mammoth/field/ouch/up
+  rotate: false
+  xy: 684, 469
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/flint_spear/field/idle/right
+  rotate: false
+  xy: 757, 1096
+  size: 192, 175
+  orig: 192, 175
+  offset: 0, 0
+  index: -1
+characters/flint_spear/field/run/right
+  rotate: false
+  xy: 1118, 1502
+  size: 254, 192
+  orig: 254, 192
+  offset: 0, 0
+  index: 5
+characters/flint_spear/field/run/right
+  rotate: false
+  xy: 1584, 1512
+  size: 251, 187
+  orig: 251, 187
+  offset: 0, 0
+  index: 1
+characters/flint_spear/field/run/right
+  rotate: false
+  xy: 1118, 1322
+  size: 239, 178
+  orig: 239, 178
+  offset: 0, 0
+  index: 4
+characters/flint_spear/field/run/right
+  rotate: false
+  xy: 1359, 1317
+  size: 239, 167
+  orig: 239, 167
+  offset: 0, 0
+  index: 3
+characters/flint_spear/field/run/right
+  rotate: false
+  xy: 1118, 1170
+  size: 239, 150
+  orig: 239, 150
+  offset: 0, 0
+  index: 2
+characters/flint_spear/field/run/right
+  rotate: false
+  xy: 1359, 1166
+  size: 239, 149
+  orig: 239, 149
+  offset: 0, 0
+  index: 6
+characters/flint_spear/field/run/right
+  rotate: false
+  xy: 516, 1231
+  size: 239, 170
+  orig: 239, 170
+  offset: 0, 0
+  index: 8
+characters/flint_spear/field/run/right
+  rotate: false
+  xy: 516, 1063
+  size: 239, 166
+  orig: 239, 166
+  offset: 0, 0
+  index: 7
+characters/mammoth/field/attack/right
+  rotate: false
+  xy: 2, 1649
+  size: 492, 383
+  orig: 492, 383
+  offset: 0, 0
+  index: 3
+characters/mammoth/field/attack/right
+  rotate: false
+  xy: 2, 1264
+  size: 486, 383
+  orig: 486, 383
+  offset: 0, 0
+  index: 4
+characters/mammoth/field/attack/right
+  rotate: false
+  xy: 2, 2
+  size: 443, 294
+  orig: 443, 294
+  offset: 0, 0
+  index: 1
+characters/mammoth/field/attack/right
+  rotate: false
+  xy: 496, 1403
+  size: 410, 288
+  orig: 410, 288
+  offset: 0, 0
+  index: 2
+characters/mammoth/field/idle/left
+  rotate: false
+  xy: 496, 1693
+  size: 512, 339
+  orig: 512, 339
+  offset: 0, 0
+  index: 1
+characters/mammoth/field/idle/right
+  rotate: false
+  xy: 496, 1693
+  size: 512, 339
+  orig: 512, 339
+  offset: 0, 0
+  index: 1
+characters/mammoth/field/idle/right
+  rotate: false
+  xy: 1524, 1701
+  size: 512, 331
+  orig: 512, 331
+  offset: 0, 0
+  index: 3
+characters/mammoth/field/idle/right
+  rotate: false
+  xy: 2, 933
+  size: 512, 329
+  orig: 512, 329
+  offset: 0, 0
+  index: 2
+characters/mammoth/field/run/right
+  rotate: false
+  xy: 1010, 1696
+  size: 512, 336
+  orig: 512, 336
+  offset: 0, 0
+  index: 1
+characters/mammoth/field/run/right
+  rotate: false
+  xy: 2, 605
+  size: 492, 326
+  orig: 492, 326
+  offset: 0, 0
+  index: 2
+characters/mammoth/field/run/right
+  rotate: false
+  xy: 2, 298
+  size: 486, 305
+  orig: 486, 305
+  offset: 0, 0
+  index: 3
+event/hut
+  rotate: false
+  xy: 496, 704
+  size: 192, 199
+  orig: 192, 199
+  offset: 0, 0
+  index: -1
+interface/cursor
+  rotate: false
+  xy: 447, 205
+  size: 29, 37
+  orig: 29, 37
+  offset: 0, 0
+  index: -1
+interface/health_bar/health_bar
+  rotate: false
+  xy: 516, 905
+  size: 192, 156
+  orig: 192, 156
+  offset: 0, 0
+  index: 0
+interface/health_bar/health_bar
+  rotate: false
+  xy: 516, 905
+  size: 192, 156
+  orig: 192, 156
+  offset: 0, 0
+  index: 6
+interface/health_bar/health_bar
+  rotate: false
+  xy: 496, 546
+  size: 192, 156
+  orig: 192, 156
+  offset: 0, 0
+  index: 1
+interface/health_bar/health_bar
+  rotate: false
+  xy: 490, 194
+  size: 192, 156
+  orig: 192, 156
+  offset: 0, 0
+  index: 2
+interface/health_bar/health_bar
+  rotate: false
+  xy: 1109, 1012
+  size: 192, 156
+  orig: 192, 156
+  offset: 0, 0
+  index: 3
+interface/health_bar/health_bar
+  rotate: false
+  xy: 1303, 1008
+  size: 192, 156
+  orig: 192, 156
+  offset: 0, 0
+  index: 4
+interface/rock
+  rotate: false
+  xy: 1109, 844
+  size: 192, 166
+  orig: 192, 166
+  offset: 0, 0
+  index: -1
+interface/window
+  rotate: false
+  xy: 641, 36
+  size: 156, 156
+  split: 15, 15, 15, 15
+  orig: 156, 156
+  offset: 0, 0
+  index: -1
+items/equipment/spear/field/field
+  rotate: false
+  xy: 1527, 512
+  size: 104, 104
+  orig: 104, 104
+  offset: 0, 0
+  index: 1
+items/equipment/spear/field/field
+  rotate: false
+  xy: 1599, 986
+  size: 104, 104
+  orig: 104, 104
+  offset: 0, 0
+  index: 2
+items/equipment/spear/field/field
+  rotate: false
+  xy: 1591, 880
+  size: 104, 104
+  orig: 104, 104
+  offset: 0, 0
+  index: 3
+items/equipment/spear/field/field
+  rotate: false
+  xy: 1807, 965
+  size: 104, 104
+  orig: 104, 104
+  offset: 0, 0
+  index: 4
+items/equipment/spear/field/field
+  rotate: false
+  xy: 1913, 965
+  size: 104, 104
+  orig: 104, 104
+  offset: 0, 0
+  index: 5
+items/equipment/sword/battler/battler
+  rotate: false
+  xy: 908, 1483
+  size: 208, 208
+  orig: 208, 208
+  offset: 0, 0
+  index: 1
+items/equipment/wooden_sword/battler/battler
+  rotate: false
+  xy: 908, 1483
+  size: 208, 208
+  orig: 208, 208
+  offset: 0, 0
+  index: 1
+items/equipment/sword/battler/battler
+  rotate: false
+  xy: 1374, 1486
+  size: 208, 208
+  orig: 208, 208
+  offset: 0, 0
+  index: 2
+items/equipment/wooden_sword/battler/battler
+  rotate: false
+  xy: 1374, 1486
+  size: 208, 208
+  orig: 208, 208
+  offset: 0, 0
+  index: 2
+items/equipment/sword/battler/battler
+  rotate: false
+  xy: 1837, 1491
+  size: 208, 208
+  orig: 208, 208
+  offset: 0, 0
+  index: 3
+items/equipment/wooden_sword/battler/battler
+  rotate: false
+  xy: 1837, 1491
+  size: 208, 208
+  orig: 208, 208
+  offset: 0, 0
+  index: 3
+items/equipment/sword/battler/battler
+  rotate: false
+  xy: 908, 1273
+  size: 208, 208
+  orig: 208, 208
+  offset: 0, 0
+  index: 4
+items/equipment/wooden_sword/battler/battler
+  rotate: false
+  xy: 908, 1273
+  size: 208, 208
+  orig: 208, 208
+  offset: 0, 0
+  index: 4
+items/equipment/sword/battler/battler
+  rotate: false
+  xy: 1600, 1302
+  size: 208, 208
+  orig: 208, 208
+  offset: 0, 0
+  index: 5
+items/equipment/wooden_sword/battler/battler
+  rotate: false
+  xy: 1600, 1302
+  size: 208, 208
+  orig: 208, 208
+  offset: 0, 0
+  index: 5
+items/equipment/sword/battler/battler
+  rotate: false
+  xy: 1810, 1281
+  size: 208, 208
+  orig: 208, 208
+  offset: 0, 0
+  index: 6
+items/equipment/wooden_sword/battler/battler
+  rotate: false
+  xy: 1810, 1281
+  size: 208, 208
+  orig: 208, 208
+  offset: 0, 0
+  index: 6
+items/equipment/sword/battler/battler
+  rotate: false
+  xy: 1600, 1092
+  size: 208, 208
+  orig: 208, 208
+  offset: 0, 0
+  index: 7
+items/equipment/wooden_sword/battler/battler
+  rotate: false
+  xy: 1600, 1092
+  size: 208, 208
+  orig: 208, 208
+  offset: 0, 0
+  index: 7
+items/equipment/sword/battler/battler
+  rotate: false
+  xy: 1810, 1071
+  size: 208, 208
+  orig: 208, 208
+  offset: 0, 0
+  index: 8
+items/equipment/wooden_sword/battler/battler
+  rotate: false
+  xy: 1810, 1071
+  size: 208, 208
+  orig: 208, 208
+  offset: 0, 0
+  index: 8
+items/equipment/sword/field/field
+  rotate: false
+  xy: 1800, 775
+  size: 64, 32
+  orig: 64, 32
+  offset: 0, 0
+  index: 1
+items/equipment/sword/field/field
+  rotate: false
+  xy: 1800, 775
+  size: 64, 32
+  orig: 64, 32
+  offset: 0, 0
+  index: 2
+items/equipment/sword/field/field
+  rotate: false
+  xy: 1866, 775
+  size: 64, 32
+  orig: 64, 32
+  offset: 0, 0
+  index: 3
+items/equipment/sword/field/field
+  rotate: false
+  xy: 1932, 775
+  size: 64, 32
+  orig: 64, 32
+  offset: 0, 0
+  index: 4
+items/equipment/sword/field/field
+  rotate: false
+  xy: 1800, 579
+  size: 64, 32
+  orig: 64, 32
+  offset: 0, 0
+  index: 5
+items/equipment/sword/field/field
+  rotate: false
+  xy: 1866, 579
+  size: 64, 32
+  orig: 64, 32
+  offset: 0, 0
+  index: 6
+items/equipment/sword/field/field
+  rotate: false
+  xy: 1932, 579
+  size: 64, 32
+  orig: 64, 32
+  offset: 0, 0
+  index: 7
+items/equipment/sword/field/field
+  rotate: false
+  xy: 641, 2
+  size: 64, 32
+  orig: 64, 32
+  offset: 0, 0
+  index: 8
+items/equipment/wooden_sword/field/field
+  rotate: false
+  xy: 757, 1273
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: 1
+items/equipment/wooden_sword/field/field
+  rotate: false
+  xy: 1461, 878
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: 2
+items/equipment/wooden_sword/field/field
+  rotate: false
+  xy: 1267, 714
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: 3
+items/equipment/wooden_sword/field/field
+  rotate: false
+  xy: 1397, 720
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: 4
+items/equipment/wooden_sword/field/field
+  rotate: false
+  xy: 1527, 748
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: 5
+items/equipment/wooden_sword/field/field
+  rotate: false
+  xy: 1267, 584
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: 6
+items/equipment/wooden_sword/field/field
+  rotate: false
+  xy: 1397, 590
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: 7
+items/equipment/wooden_sword/field/field
+  rotate: false
+  xy: 1397, 590
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: 8
+items/meat/icon
+  rotate: false
+  xy: 490, 352
+  size: 192, 192
+  orig: 192, 192
+  offset: 0, 0
+  index: 1
+items/potion/icon
+  rotate: false
+  xy: 1497, 1010
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 1
+skills/crosscall/battler/crosscall
+  rotate: false
+  xy: 1497, 1064
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: 1
+skills/crosscall/battler/crosscall
+  rotate: false
+  xy: 1705, 990
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: 2
+skills/crosscall/battler/crosscall
+  rotate: false
+  xy: 1657, 778
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: 3
+skills/crosscall/battler/crosscall
+  rotate: false
+  xy: 1657, 676
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: 4
+skills/crosscall/battler/crosscall
+  rotate: false
+  xy: 1657, 574
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: 5
+skills/crosscall/battler/crosscall
+  rotate: false
+  xy: 1633, 472
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: 6
+skills/crosscall/battler/crosscall
+  rotate: false
+  xy: 1705, 888
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: 7
+skills/crosscall/battler/crosscall
+  rotate: false
+  xy: 1807, 863
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: 8
+skills/crosscall/battler/crosscall
+  rotate: false
+  xy: 1909, 863
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: 9
+skills/red_spin/field/red_spin
+  rotate: false
+  xy: 951, 1115
+  size: 156, 156
+  orig: 156, 156
+  offset: 0, 0
+  index: 1
+skills/red_spin/field/red_spin
+  rotate: false
+  xy: 951, 957
+  size: 156, 156
+  orig: 156, 156
+  offset: 0, 0
+  index: 2
+skills/red_spin/field/red_spin
+  rotate: false
+  xy: 1303, 850
+  size: 156, 156
+  orig: 156, 156
+  offset: 0, 0
+  index: 3
+skills/red_spin/field/red_spin
+  rotate: false
+  xy: 951, 799
+  size: 156, 156
+  orig: 156, 156
+  offset: 0, 0
+  index: 4
+skills/red_spin/field/red_spin
+  rotate: false
+  xy: 1109, 686
+  size: 156, 156
+  orig: 156, 156
+  offset: 0, 0
+  index: 5
+skills/wiccan_cross/field/wiccan_cross
+  rotate: false
+  xy: 690, 847
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 1
+skills/wiccan_cross/field/wiccan_cross
+  rotate: false
+  xy: 690, 793
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 2
+skills/wiccan_cross/field/wiccan_cross
+  rotate: false
+  xy: 690, 739
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 3
+skills/wiccan_cross/field/wiccan_cross
+  rotate: false
+  xy: 690, 685
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 4
+skills/wiccan_cross/field/wiccan_cross
+  rotate: false
+  xy: 690, 631
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 5
+skills/wiccan_cross/field/wiccan_cross
+  rotate: false
+  xy: 690, 577
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 6
+skills/wiccan_cross/field/wiccan_cross
+  rotate: false
+  xy: 1800, 809
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 7
+skills/wiccan_cross/field/wiccan_cross
+  rotate: false
+  xy: 1854, 809
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 8
+skills/wiccan_cross/field/wiccan_cross
+  rotate: false
+  xy: 1908, 809
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 9
+skills/wiccan_cross/field/wiccan_cross
+  rotate: false
+  xy: 1962, 809
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 10
+skills/wiccan_cross/field/wiccan_cross
+  rotate: false
+  xy: 1800, 721
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 11
+skills/wiccan_cross/field/wiccan_cross
+  rotate: false
+  xy: 1854, 721
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 12
+skills/wiccan_cross/field/wiccan_cross
+  rotate: false
+  xy: 1908, 721
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 13
+skills/wiccan_cross/field/wiccan_cross
+  rotate: false
+  xy: 1800, 667
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 14
+skills/wiccan_cross/field/wiccan_cross
+  rotate: false
+  xy: 1854, 667
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 15
+skills/wiccan_cross/field/wiccan_cross
+  rotate: false
+  xy: 1908, 667
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 16
+skills/wiccan_cross/field/wiccan_cross
+  rotate: false
+  xy: 1800, 613
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 17
+skills/wiccan_cross/field/wiccan_cross
+  rotate: false
+  xy: 1854, 613
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 18
+skills/wiccan_cross/field/wiccan_cross
+  rotate: false
+  xy: 1908, 613
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 19
+skills/wiccan_cross/field/wiccan_cross
+  rotate: false
+  xy: 1908, 613
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 21
+skills/wiccan_cross/field/wiccan_cross
+  rotate: false
+  xy: 1908, 613
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 20
+skills/wiccan_cross/field/wiccan_cross
+  rotate: false
+  xy: 1461, 860
+  size: 52, 16
+  orig: 52, 16
+  offset: 0, 0
+  index: 22
+tilesets/tileset
+  rotate: false
+  xy: 1527, 618
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1

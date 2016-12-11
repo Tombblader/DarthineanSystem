@@ -203,11 +203,14 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
     }
     
     private void buildUI() {
-        final String UI_CIRCLE = "interface/cursor";
-        final String UI_LIFE = "interface/cursor";
-        circleUI = GraphicsDriver.getMasterSheet().createSprite(UI_CIRCLE);
+        final String UI_ROCK = "interface/rock";
+        final String UI_LIFE = "interface/health_bar/health_bar";
+        circleUI = GraphicsDriver.getMasterSheet().createSprite(UI_ROCK);
         circleUI.setOriginCenter();
         lifeUI = GraphicsDriver.getMasterSheet().createSprites(UI_LIFE).toArray();
+        for (Sprite s : lifeUI) {
+            s.setOriginCenter();
+        }
         
     }
     
@@ -635,10 +638,14 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
         GraphicsDriver.getFont().draw(batch, Integer.toString(teamBlueCurrentLife), X2, Y2);
         final float XDELTA = 30;
         for (int i = 0; i < teamRed.size; i++) {
-            batch.draw(lifeUI[teamRed.get(i).getCurrentLife()], X1 + XDELTA * (i +1), Y1);
+            batch.draw(lifeUI[teamRed.get(i).getCurrentLife()], X1 + XDELTA * (i +1), Y1, 
+                    lifeUI[teamRed.get(i).getCurrentLife()].getOriginX(),
+                    lifeUI[teamRed.get(i).getCurrentLife()].getOriginY());
         }
         for (int i = 0; i < teamBlue.size; i++) {
-            batch.draw(lifeUI[teamRed.get(i).getCurrentLife()], X2 - XDELTA * (i +1), Y1);
+            batch.draw(lifeUI[teamBlue.get(i).getCurrentLife()], X2 - XDELTA * (i +1), Y1,
+                    lifeUI[teamBlue.get(i).getCurrentLife()].getOriginX(),
+                    lifeUI[teamBlue.get(i).getCurrentLife()].getOriginY());
         }
     }
 
