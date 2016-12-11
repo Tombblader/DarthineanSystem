@@ -75,12 +75,13 @@ public class Player extends ActorCollision {
         font.setColor(Color.WHITE);
         font.setUseIntegerPositions(false);
         gen.dispose();
-        setControls(color);
+        setControls();
+//        setDefaultFilter();
         // playerInput = Database2.createInputInstance();
     }
     
-    private void setControls(TeamColor color) {
-        if (color == TeamColor.RED) {
+    private void setControls() {
+        if (team == TeamColor.RED) {
             moveUp = Keys.W;
             moveDown = Keys.S;
             moveLeft = Keys.A;
@@ -91,15 +92,13 @@ public class Player extends ActorCollision {
             skillButton = Keys.F;
             quitButton = Keys.ESCAPE;
             menuButton = Keys.ENTER;
-            dodgeButton = Keys.SPACE;            
+            dodgeButton = Keys.SPACE;
         }
-        if (color == TeamColor.BLUE) {
+        if (team == TeamColor.BLUE) {
             moveUp = Keys.UP;
             moveDown = Keys.DOWN;
             moveLeft = Keys.LEFT;
             moveRight = Keys.RIGHT;
-
-
             attackButton = Keys.ALT_RIGHT;
             skillButton = Keys.SHIFT_RIGHT;
             quitButton = Keys.ESCAPE;
@@ -296,8 +295,24 @@ public class Player extends ActorCollision {
                 public void event(Actor a) {
                     isDodging = false;
                     canAttack = true;
-                    setMainFilter(ActorCollision.CATEGORY_RED, (short)(ActorCollision.CATEGORY_WALLS | ActorCollision.CATEGORY_OBSTACLES));
-                    setSensorFilter(ActorCollision.CATEGORY_RED, (short) (ActorCollision.CATEGORY_AI | ActorCollision.CATEGORY_AI_SKILL | ActorCollision.CATEGORY_EVENT));
+                    short mainFilter = 0;
+                    short subFilter = 0;
+                    switch (team) {
+                        case RED:
+                            mainFilter = ActorCollision.CATEGORY_RED;
+                            subFilter = (short) (ActorCollision.CATEGORY_BLUE_SKILL | ActorCollision.CATEGORY_AI_SKILL | ActorCollision.CATEGORY_EVENT);
+                            break;
+                        case BLUE:
+                            mainFilter = ActorCollision.CATEGORY_BLUE;
+                            subFilter = (short) (ActorCollision.CATEGORY_RED_SKILL | ActorCollision.CATEGORY_AI_SKILL | ActorCollision.CATEGORY_EVENT);
+                            break;
+                        case YELLOW:
+                            mainFilter = ActorCollision.CATEGORY_AI;
+                            subFilter = (short) (ActorCollision.CATEGORY_RED_SKILL | ActorCollision.CATEGORY_BLUE_SKILL | ActorCollision.CATEGORY_EVENT);
+                            break;
+                    }
+                    setMainFilter(mainFilter, (short)(ActorCollision.CATEGORY_WALLS | ActorCollision.CATEGORY_OBSTACLES));
+                    setSensorFilter(mainFilter, subFilter);
                     fieldState = ActorSprite.SpriteModeField.IDLE;
                     switch (getFacing()) {
                         case RIGHT:
@@ -323,9 +338,30 @@ public class Player extends ActorCollision {
             setMainFilter(ActorCollision.CATEGORY_RED, ActorCollision.CATEGORY_WALLS);
             setSensorFilter(ActorCollision.CATEGORY_RED, (short) (ActorCollision.CATEGORY_AI | ActorCollision.CATEGORY_EVENT));
             isDodging = true;
-            fieldState = ActorSprite.SpriteModeField.DODGE;
+//            fieldState = ActorSprite.SpriteModeField.DODGE;
             canAttack = false;
         }
+    }
+    
+    public final void setDefaultFilter() {
+        short mainFilter = 0;
+        short subFilter = 0;
+        switch (team) {
+            case RED:
+                mainFilter = ActorCollision.CATEGORY_RED;
+                subFilter = (short) (ActorCollision.CATEGORY_BLUE_SKILL | ActorCollision.CATEGORY_AI_SKILL | ActorCollision.CATEGORY_EVENT);
+                break;
+            case BLUE:
+                mainFilter = ActorCollision.CATEGORY_BLUE;
+                subFilter = (short) (ActorCollision.CATEGORY_RED_SKILL | ActorCollision.CATEGORY_AI_SKILL | ActorCollision.CATEGORY_EVENT);
+                break;
+            case YELLOW:
+                mainFilter = ActorCollision.CATEGORY_AI;
+                subFilter = (short) (ActorCollision.CATEGORY_RED_SKILL | ActorCollision.CATEGORY_BLUE_SKILL | ActorCollision.CATEGORY_EVENT);
+                break;
+        }
+        setMainFilter(mainFilter, (short)(ActorCollision.CATEGORY_WALLS | ActorCollision.CATEGORY_OBSTACLES));
+        setSensorFilter(mainFilter, subFilter);
     }
 
     public void setFieldState(ActorSprite.SpriteModeField mode) {
@@ -341,10 +377,27 @@ public class Player extends ActorCollision {
         setY(getInitialY());
         super.generateBody(map);
         Filter filter = new Filter();
-        filter.categoryBits = ActorCollision.CATEGORY_RED;
+        short mainFilter = 0;
+        short subFilter = 0;
+        switch (team) {
+            case RED:
+                mainFilter = ActorCollision.CATEGORY_RED;
+                subFilter = (short) (ActorCollision.CATEGORY_BLUE_SKILL | ActorCollision.CATEGORY_AI_SKILL | ActorCollision.CATEGORY_EVENT);
+                break;
+            case BLUE:
+                mainFilter = ActorCollision.CATEGORY_BLUE;
+                subFilter = (short) (ActorCollision.CATEGORY_RED_SKILL | ActorCollision.CATEGORY_AI_SKILL | ActorCollision.CATEGORY_EVENT);
+                break;
+            case YELLOW:
+                mainFilter = ActorCollision.CATEGORY_AI;
+                subFilter = (short) (ActorCollision.CATEGORY_RED_SKILL | ActorCollision.CATEGORY_BLUE_SKILL | ActorCollision.CATEGORY_EVENT);
+                break;
+        }
+
+        filter.categoryBits = mainFilter;
         filter.maskBits = ActorCollision.CATEGORY_WALLS | ActorCollision.CATEGORY_OBSTACLES;
         getMainFixture().setFilterData(filter);
-        filter.maskBits = ActorCollision.CATEGORY_AI | ActorCollision.CATEGORY_AI_SKILL | ActorCollision.CATEGORY_EVENT;
+        filter.maskBits = subFilter;
         getSensorFixture().setFilterData(filter);
     }
     
@@ -355,6 +408,7 @@ public class Player extends ActorCollision {
                         getFieldAnimation(fieldState, Actor.Facing.RIGHT));
                 break;
             case LEFT:
+                System.out.println(fieldState);
                 changeDuringAnimation(getSpriteSheet().
                         getFieldAnimation(fieldState, Actor.Facing.LEFT));
                 break;
