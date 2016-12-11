@@ -46,11 +46,23 @@ public class ActorSprite implements Serializable {
 
             for (Actor.Facing direction : Actor.Facing.values()) {
                 try {
-                    Array<Sprite> tempSprites = GraphicsDriver.getMasterSheet().createSprites(masterSpriteSheet +
-                                    "/field/" +
-                                    field.toString().toLowerCase() +
-                                    '/' +
-                                    direction.toString().toLowerCase());
+                    Array<Sprite> tempSprites;
+                    if (direction == Actor.Facing.LEFT) {
+                        tempSprites = GraphicsDriver.getMasterSheet().createSprites(masterSpriteSheet +
+                                        "/field/" +
+                                        field.toString().toLowerCase() +
+                                        "/right");
+                        for (Sprite s : tempSprites) {
+                            s.flip(true, false);
+                        }
+                        
+                    } else {
+                        tempSprites = GraphicsDriver.getMasterSheet().createSprites(masterSpriteSheet +
+                                        "/field/" +
+                                        field.toString().toLowerCase() +
+                                        '/' +
+                                        direction.toString().toLowerCase());
+                    }
                     for (Sprite s : tempSprites) {
                         s.setOriginCenter();
                     }

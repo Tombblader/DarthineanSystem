@@ -26,7 +26,7 @@ import com.badlogic.gdx.utils.Array;
  * @author trankt1
  */
 public class Player extends ActorCollision {
-    private static final float SPEED = .4f;
+    private static final float SPEED = .6f;
     private static final float DELAY =  1f/12f;
 
     private int moveUp = Keys.UP;
@@ -34,7 +34,7 @@ public class Player extends ActorCollision {
     private int moveLeft = Keys.LEFT;
     private int moveRight = Keys.RIGHT;
 
-    private int slowButton = Keys.SHIFT_LEFT;
+//    private int slowButton = Keys.SHIFT_LEFT;
 
     private int attackButton = Keys.SPACE;
     private int switchBattlerButton = Keys.A;
@@ -57,9 +57,11 @@ public class Player extends ActorCollision {
 
     private Input playerInput;
     private BitmapFont font;
+    private TeamColor team;
 
     public Player(TeamColor color, ActorSprite sprite, float getX, float getY) {
         super(sprite, getX, getY, DELAY);
+        team = color;
         setMaxLife(5);
         setCurrentLife(5);
         setAttack(1);
@@ -73,7 +75,37 @@ public class Player extends ActorCollision {
         font.setColor(Color.WHITE);
         font.setUseIntegerPositions(false);
         gen.dispose();
+        setControls(color);
         // playerInput = Database2.createInputInstance();
+    }
+    
+    private void setControls(TeamColor color) {
+        if (color == TeamColor.RED) {
+            moveUp = Keys.W;
+            moveDown = Keys.S;
+            moveLeft = Keys.A;
+            moveRight = Keys.D;
+
+
+            attackButton = Keys.SHIFT_LEFT;
+            skillButton = Keys.F;
+            quitButton = Keys.ESCAPE;
+            menuButton = Keys.ENTER;
+            dodgeButton = Keys.SPACE;            
+        }
+        if (color == TeamColor.BLUE) {
+            moveUp = Keys.UP;
+            moveDown = Keys.DOWN;
+            moveLeft = Keys.LEFT;
+            moveRight = Keys.RIGHT;
+
+
+            attackButton = Keys.ALT_RIGHT;
+            skillButton = Keys.SHIFT_RIGHT;
+            quitButton = Keys.ESCAPE;
+            menuButton = Keys.ENTER;
+            dodgeButton = Keys.CONTROL_RIGHT;            
+        }
     }
 
     public void setAttacking(boolean attacking) {
@@ -164,9 +196,6 @@ public class Player extends ActorCollision {
     public void moving(float delta) {
         setSpeed(getBaseSpeed());
             
-        if (Input.getKeyRepeat(slowButton)) {
-            setSpeed(getBaseSpeed() * 0.5f);
-        }
         if (Input.getKeyPressed(dodgeButton)) {
             dodge();
             // fieldState = ActorSprite.SpriteModeField.JUMP;
