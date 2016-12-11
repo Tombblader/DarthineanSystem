@@ -65,7 +65,7 @@ public abstract class Menu implements State {
         parameter.color = Color.WHITE;
         font = gen.generateFont(parameter);
         gen.dispose();
-        MENU_X = GraphicsDriver.getWidth() - 200;
+        MENU_X = (GraphicsDriver.getWidth() - 200) / 2;
         MENU_Y = GraphicsDriver.getHeight() - MESSAGE_HEIGHT - (24 + choices.length * (int) (GraphicsDriver.getFont().getData().capHeight * GraphicsDriver.getFont().getData().scaleY + PADDING));
     }
 
@@ -86,7 +86,7 @@ public abstract class Menu implements State {
         parameter.color = Color.WHITE;
         font = gen.generateFont(parameter);
         gen.dispose();
-        MENU_X = GraphicsDriver.getWidth() - 200;
+        MENU_X = (GraphicsDriver.getWidth() - 200)/2;
         MENU_Y = GraphicsDriver.getHeight() - MESSAGE_HEIGHT - (24 + choices.length * (int) (GraphicsDriver.getFont().getData().capHeight * GraphicsDriver.getFont().getData().scaleY + PADDING));
     }
 
@@ -107,7 +107,7 @@ public abstract class Menu implements State {
         parameter.color = Color.WHITE;
         font = gen.generateFont(parameter);
         gen.dispose();
-        MENU_X = GraphicsDriver.getWidth() - 200;
+        MENU_X = (GraphicsDriver.getWidth() - 200)/2;
         MENU_Y = GraphicsDriver.getHeight() - MESSAGE_HEIGHT - (24 + choices.length * (int) (GraphicsDriver.getFont().getData().capHeight * GraphicsDriver.getFont().getData().scaleY + PADDING));
     }
 
@@ -225,11 +225,11 @@ public abstract class Menu implements State {
                     cursorTexture.getScaleY(),
                     cursorTexture.getRotation());
         
-        InterfaceDatabase.TEXT_BOX.draw(batch, GraphicsDriver.getCamera().getScreenPositionX(), GraphicsDriver.getHeight() - MESSAGE_HEIGHT + GraphicsDriver.getCamera().getScreenPositionY(), GraphicsDriver.getWidth(), MESSAGE_HEIGHT);        
-        GraphicsDriver.drawMessage(batch, font,
-                header,
-                15 + GraphicsDriver.getCamera().getScreenPositionX(),
-                (12 + (GraphicsDriver.getHeight() - MESSAGE_HEIGHT) + GraphicsDriver.getCamera().getScreenPositionY()));
+//        InterfaceDatabase.TEXT_BOX.draw(batch, GraphicsDriver.getCamera().getScreenPositionX(), GraphicsDriver.getHeight() - MESSAGE_HEIGHT + GraphicsDriver.getCamera().getScreenPositionY(), GraphicsDriver.getWidth(), MESSAGE_HEIGHT);        
+//        GraphicsDriver.drawMessage(batch, font,
+//                header,
+//                15 + GraphicsDriver.getCamera().getScreenPositionX(),
+//                (12 + (GraphicsDriver.getHeight() - MESSAGE_HEIGHT) + GraphicsDriver.getCamera().getScreenPositionY()));
         if (isOverhead) {
             batch.end();
             batch.setProjectionMatrix(GraphicsDriver.getPlayerCamera().combined);

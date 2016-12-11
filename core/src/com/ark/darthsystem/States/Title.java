@@ -30,7 +30,7 @@ public class Title implements State {
                 this.flip(false, true);
             }
         };
-        TITLE_MENU = new Menu("Adventurer.", new String[]{"Start", "Continue", "Quit"}) {
+        TITLE_MENU = new Menu(new String[]{"Start", "Continue", "Quit"}) {
             @Override
             public String confirm(String choice) {
                 if (choice.equals("Start")) {
@@ -70,7 +70,7 @@ public class Title implements State {
     
     @Override
     public void render(SpriteBatch batch) {
-        batch.draw(titleTexture, 0, 0);
+        batch.draw(titleTexture, Math.abs(titleTexture.getRegionWidth() - GraphicsDriver.getWidth()) / 2, Math.abs(titleTexture.getRegionHeight() - GraphicsDriver.getHeight()) / 2);
     }
     
     @Override
