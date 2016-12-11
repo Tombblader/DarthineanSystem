@@ -195,6 +195,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
         });
         generateBounds();
         generateObjects();
+        buildUI();
     }
     
     public OverheadMap(String mapName, String bgmName) {
@@ -207,7 +208,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
         final String UI_LIFE = "interface/health_bar/health_bar";
         circleUI = GraphicsDriver.getMasterSheet().createSprite(UI_ROCK);
         circleUI.setOriginCenter();
-        lifeUI = GraphicsDriver.getMasterSheet().createSprites(UI_LIFE).toArray();
+        lifeUI = GraphicsDriver.getMasterSheet().createSprites(UI_LIFE).toArray(Sprite.class);
         for (Sprite s : lifeUI) {
             s.setOriginCenter();
         }
@@ -588,7 +589,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
         }
         this.batch.setProjectionMatrix(GraphicsDriver.getCamera().combined);
 //        drawMessage(this.batch);
-//        renderUI(this.batch);
+        renderUI(this.batch);
         endRender();
         debugRender.render(world, GraphicsDriver.getCurrentCamera().combined);
         
@@ -628,15 +629,15 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
     }
     
     public void renderUI(Batch batch) {
-        final float X1 = 30;
-        final float Y1 = GraphicsDriver.getHeight() - 30;
+        final float X1 = 68;
+        final float Y1 = GraphicsDriver.getHeight() - 60;
         final float X2 = GraphicsDriver.getWidth() - X1;
         final float Y2 = Y1;        
         batch.draw(circleUI, X1, Y1, circleUI.getOriginX(), circleUI.getOriginY());
         batch.draw(circleUI, X2, Y2, circleUI.getOriginX(), circleUI.getOriginY());
         GraphicsDriver.getFont().draw(batch, Integer.toString(teamRedCurrentLife), X1, Y1);
         GraphicsDriver.getFont().draw(batch, Integer.toString(teamBlueCurrentLife), X2, Y2);
-        final float XDELTA = 30;
+        final float XDELTA = 96;
         for (int i = 0; i < teamRed.size; i++) {
             batch.draw(lifeUI[teamRed.get(i).getCurrentLife()], X1 + XDELTA * (i +1), Y1, 
                     lifeUI[teamRed.get(i).getCurrentLife()].getOriginX(),
