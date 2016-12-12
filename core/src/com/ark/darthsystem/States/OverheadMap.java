@@ -22,11 +22,14 @@ import com.ark.darthsystem.States.events.Teleport;
 import com.badlogic.gdx.Gdx;
 
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.MapProperties;
@@ -69,6 +72,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
+
+    private BitmapFont font = null;
     private float ppt = 0;    
     private Fixture boundXMinFixture, boundYMinFixture, boundXMaxFixture, boundYMaxFixture;
     private boolean worldStep;
@@ -190,7 +195,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                 }
                 clearTempRunningTimers(tempActor1);
                 tempActor1.setPause(200);
-                tempActor1.setInvulnerability(500);
+                tempActor1.setInvulnerability(1000);
             }
 
             private void renderEvent(Fixture a, Fixture b) {
@@ -201,6 +206,16 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
             }
             
         });
+        FreeTypeFontGenerator gen = new FreeTypeFontGenerator(Gdx.files.internal("fonts/monofont.ttf"));
+        FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+        parameter.size = 144;
+        parameter.flip = true;
+        parameter.borderColor = Color.BLACK;
+        parameter.color = Color.BLACK;
+        font = gen.generateFont(parameter);
+        gen.dispose();
+
+        
         generateBounds();
         generateObjects();
         buildUI();
@@ -651,14 +666,16 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
     
     public void renderUI(Batch batch) {
         final float X1 = 0;
-        final float Y1 = GraphicsDriver.getHeight() - 80;
-        final float X2 = GraphicsDriver.getWidth() - X1 - 80;
-        final float Y2 = Y1;        
+        final float Y1 = GraphicsDriver.getHeight() - circleUI.getHeight() / 2;
+        final float X2 = GraphicsDriver.getWidth() - X1 - circleUI.getWidth() / 2;
+        final float Y2 = Y1;
         batch.draw(circleUI, X1, Y1, circleUI.getOriginX(), circleUI.getOriginY());
         batch.draw(circleUI, X2, Y2, circleUI.getOriginX(), circleUI.getOriginY());
-        GraphicsDriver.getFont().draw(batch, Integer.toString(teamRedCurrentLife), X1, Y1);
-        GraphicsDriver.getFont().draw(batch, Integer.toString(teamBlueCurrentLife), X2, Y2);
-        final float XDELTA = 80;
+        final float X_PADDING = 30;
+        final float Y_PADDING = 50;
+        font.draw(batch, Integer.toString(teamRedCurrentLife), X1 + X_PADDING, Y1 + Y_PADDING);
+        font.draw(batch, Integer.toString(teamBlueCurrentLife), X2 + X_PADDING, Y2 + Y_PADDING);
+        final float XDELTA = circleUI.getWidth() / 2;
         for (int i = 0; i < teamRed.size; i++) {
             batch.draw(lifeUI[teamRed.get(i).getCurrentLife()], X1 + XDELTA * (i + 1), Y1, 
                     lifeUI[teamRed.get(i).getCurrentLife()].getOriginX(),

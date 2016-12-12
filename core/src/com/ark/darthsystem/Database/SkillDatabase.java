@@ -14,11 +14,11 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
  * @author Keven
  */
 public class SkillDatabase {
-    public static ActorSkill Spear_Throw = new ActorSkill(GraphicsDriver.getMasterSheet().createSprites("skills/wiccan_cross/field/wiccan_cross").toArray(Sprite.class),
+    public static ActorSkill Spear_Throw = new ActorSkill(GraphicsDriver.getMasterSheet().createSprites("skills/spear_throw/field/spear_throw").toArray(Sprite.class),
             0,
             0,
-            10f,
-            10f,
-            1f/24f);
+            20f,
+            20f,
+            1f/12f);
 
 }

@@ -12,6 +12,7 @@ import com.ark.darthsystem.Graphics.Player;
 import com.ark.darthsystem.Graphics.PlayerCamera;
 import com.ark.darthsystem.States.OverheadMap;
 import com.ark.darthsystem.States.State;
+import com.ark.darthsystem.States.Win;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
 /**
@@ -44,7 +45,7 @@ public class Base extends Event {
         }
         if (player.getTeam() == team) {
             if (player.getItem() != null && player.getItem().getName().equals("Meat")) {
-                System.out.println("WINNN");
+                GraphicsDriver.addState(new Win(team));
             }
         }
         

@@ -5,6 +5,7 @@
  */
 package com.ark.darthsystem.Graphics;
 
+import com.ark.darthsystem.Database.Database;
 import com.ark.darthsystem.States.OverheadMap;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -35,7 +36,7 @@ public class Monster extends Player {
         setAttack(2);
         setShape("monster");
     }
-
+    
     public void attack() {
         super.attack();
     }
@@ -46,10 +47,18 @@ public class Monster extends Player {
         filter.categoryBits = ActorCollision.CATEGORY_AI;
         filter.maskBits = ActorCollision.CATEGORY_WALLS | ActorCollision.CATEGORY_OBSTACLES | ActorCollision.CATEGORY_AI | ActorCollision.CATEGORY_RED | ActorCollision.CATEGORY_BLUE;
         getMainFixture().setFilterData(filter);
-        filter.maskBits = ActorCollision.CATEGORY_RED | ActorCollision.CATEGORY_RED_SKILL;
+        filter.maskBits = ActorCollision.CATEGORY_BLUE_SKILL | ActorCollision.CATEGORY_RED_SKILL;
         getSensorFixture().setFilterData(filter);
     }
 
+    public ActorSkill getAttackAnimation() {
+        ActorSkill temp = Database.BasicMonster();
+        temp.setInvoker(this);
+        return temp;
+//        return attackAnimation;
+    }
+    
+    
     public boolean isInRange() {
         final float RANGE = 228;
         if (closestPlayer == null) {
@@ -259,6 +268,12 @@ public class Monster extends Player {
             default:
         }
         this.setWalking(true);
+    }
+    
+    public void setAttackAnimation() {
+        attackAnimation = Database.BasicMonster();
+        System.out.println("MONSTER SLASH");
+        attackAnimation.setInvoker(this);
     }
     
     private void patrol(float delta) {

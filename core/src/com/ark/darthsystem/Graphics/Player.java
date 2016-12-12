@@ -51,7 +51,7 @@ public class Player extends ActorCollision {
     ActorSkill attackAnimation;
     private float speed = SPEED;
     private boolean canAttack = true;
-    private boolean canSkill = true;
+//    private boolean canSkill = true;
     private boolean attacking;
     private boolean isDodging;
     private boolean isWalking;
@@ -124,9 +124,6 @@ public class Player extends ActorCollision {
         return canAttack;        
     }
 
-    public boolean canSkill() {
-        return canSkill;        
-    }
     public ActorSkill getAttackAnimation() {
         ActorSkill temp = Database.Basic();
         temp.setInvoker(this);
@@ -135,19 +132,19 @@ public class Player extends ActorCollision {
     }
     public void skill() {
         if (currentSkill != null) {
+            currentSkill.setInvoker(this);
             ActorSkill tempSkill = this.currentSkill.clone();
             tempSkill.setInvoker(this);
             tempSkill.setX(this);
             tempSkill.setY(this);            
             if (tempSkill != null) {
                 attacking = true;
-                canSkill = false;
-                addTimer(new GameTimer("Skill", 5000) {
-                    @Override
-                    public void event(Actor a) {
-                        canSkill = true;
-                    }
-                });
+//                addTimer(new GameTimer("Skill", 5000) {
+//                    @Override
+//                    public void event(Actor a) {
+//                        canSkill = true;
+//                    }
+//                });
                 setPause((tempSkill.getChargeTime() * 1000f));
                 addTimer(new GameTimer("Skill", tempSkill.getChargeTime() * 1000f) {
                     @Override
@@ -162,7 +159,7 @@ public class Player extends ActorCollision {
             }
         }
     }
-    public final void setAttackAnimation() {
+    public void setAttackAnimation() {
 //        Equipment tempEquipment = getCurrentBattler().getBattler().getEquipment(0);
 //        if (tempEquipment != null) {
 //            try {
@@ -379,8 +376,21 @@ public class Player extends ActorCollision {
             };
             this.setInvulnerability(DODGE_TIME);
             addTimer(tempTimer);
-            setMainFilter(ActorCollision.CATEGORY_RED, ActorCollision.CATEGORY_WALLS);
-            setSensorFilter(ActorCollision.CATEGORY_RED, (short) (ActorCollision.CATEGORY_EVENT));
+            switch (team) {
+                case RED:
+                    setMainFilter(ActorCollision.CATEGORY_RED, ActorCollision.CATEGORY_WALLS);
+                    setSensorFilter(ActorCollision.CATEGORY_RED, (short) (ActorCollision.CATEGORY_EVENT));
+                    break;
+                case BLUE:
+                    setMainFilter(ActorCollision.CATEGORY_BLUE, ActorCollision.CATEGORY_WALLS);
+                    setSensorFilter(ActorCollision.CATEGORY_BLUE, (short) (ActorCollision.CATEGORY_EVENT));
+                    break;
+                case YELLOW:
+                    setMainFilter(ActorCollision.CATEGORY_AI, ActorCollision.CATEGORY_WALLS);
+                    setSensorFilter(ActorCollision.CATEGORY_AI, (short) (ActorCollision.CATEGORY_EVENT));
+                    break;
+            }
+            
             isDodging = true;
 //            fieldState = ActorSprite.SpriteModeField.DODGE;
             canAttack = false;
@@ -416,7 +426,7 @@ public class Player extends ActorCollision {
         return fieldState;
     }
     
-    public void generateBody(OverheadMap map, String key) {
+    public void generateBody(OverheadMap map) {
         setX(getInitialX());
         setY(getInitialY());
         super.generateBody(map);
@@ -492,7 +502,7 @@ public class Player extends ActorCollision {
         if (Input.getKeyPressed(attackButton) && canAttack) {
             attack();
         }
-        if (Input.getKeyPressed(skillButton) && canAttack && canSkill) {
+        if (Input.getKeyPressed(skillButton) && canAttack) {
             skill();
         }
         

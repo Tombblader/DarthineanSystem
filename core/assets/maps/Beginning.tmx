@@ -13,7 +13,7 @@
  </layer>
  <layer name="object" width="60" height="33">
   <data encoding="base64" compression="zlib">
-   eJztzTENAAAIA7Ad+NeMiSUctAaaAADQNk9OAAAAAIBLC8mAAAk=
+   eJztwQENAAAAwqD3T20ON6AAAAAAAAAA4M8AHvAAAQ==
   </data>
  </layer>
  <objectgroup name="collision"/>

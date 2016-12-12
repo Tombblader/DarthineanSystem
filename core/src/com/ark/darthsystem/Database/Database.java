@@ -5,13 +5,10 @@
  */
 package com.ark.darthsystem.Database;
 
-import com.ark.darthsystem.*;
 import com.ark.darthsystem.Graphics.*;
 import com.ark.darthsystem.States.events.*;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
@@ -41,11 +38,20 @@ public class Database {
     public static Input createInputInstance(String instance) {
         return new Input();
     }
+
     public static ActorSkill Basic() {        
         return new ActorSkill(GraphicsDriver.getMasterSheet().createSprites("items/equipment/sword/field/field").toArray(Sprite.class),
                 1,
                 1,
                 1f/24f,
-                ActorSkill.Area.FRONT) {{setShape("widesword");}};
+                ActorSkill.Area.FRONT) {{setShape("thinthrust");}};
+    }
+    
+    public static ActorSkill BasicMonster() {
+        return new ActorSkill(GraphicsDriver.getMasterSheet().createSprites("items/equipment/sword/field/field").toArray(Sprite.class),
+                1,
+                1,
+                1f/24f,
+                ActorSkill.Area.FRONT) {{setShape("monsterslash");}};
     }
 }

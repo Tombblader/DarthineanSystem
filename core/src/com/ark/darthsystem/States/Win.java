@@ -21,11 +21,10 @@ public class Win implements State {
     private Menu winMenu;
     private final TextureRegion winTexture;
 
-    private String BGM = "music/WhySuffering.mp3";
     private String winner = "";
     
-    public Win() {
-        winTexture = new TextureRegion(new Texture(Gdx.files.internal("backgrounds/title.png"))) { {
+    public Win(TeamColor color) {
+        winTexture = new TextureRegion(new Texture(Gdx.files.internal("backgrounds/" + color.toString().toLowerCase() + " wins.png"))) { {
                 this.flip(false, true);
                }
             };
@@ -51,11 +50,7 @@ public class Win implements State {
             
         };
     }
-    
-    public Win(TeamColor color) {
-        this();
-    }
-    
+        
     @Override
     public float update(float delta) {
         GraphicsDriver.setCurrentCamera(GraphicsDriver.getCamera());
@@ -75,12 +70,11 @@ public class Win implements State {
 
     @Override
     public String getMusic() {
-        return BGM;
+        return null;
     }
 
     @Override
     public void initialize() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
