@@ -98,7 +98,7 @@ public class ActorSprite implements Serializable {
         RUN,
         ATTACK,
         CAST,
-        DODGE,
+        ROLL,
         SKILL,
         OUCH,
         DEAD,

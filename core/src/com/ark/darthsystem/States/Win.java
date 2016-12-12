@@ -5,6 +5,7 @@
  */
 package com.ark.darthsystem.States;
 
+import com.ark.darthsystem.GameOverException;
 import com.ark.darthsystem.Graphics.Actor.TeamColor;
 import com.ark.darthsystem.Graphics.GraphicsDriver;
 import com.badlogic.gdx.Gdx;
@@ -28,22 +29,15 @@ public class Win implements State {
                 this.flip(false, true);
                }
             };
-        winMenu = new Menu(new String[]{"Yes", "No"}) {
+        winMenu = new Menu(new String[]{"Continue", "Quit"}) {
             @Override
             public String confirm(String choice) {
-                if (choice.equals("No")) {
+                if (choice.equals("Continue")) {
                     GraphicsDriver.newGame();
                     GraphicsDriver.addState(new Title());
                 }
-                if (choice.equals("Yes")) {
-                    GraphicsDriver.addMenu(new Menu("Open which slot?", new String[]{"Slot 1", "Slot 2", "Slot 3"},
-                            true,
-                            true) {
-                        @Override
-                        public Object confirm(String choice) {
-                            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                        }
-                    });
+                if (choice.equals("Quit")) {
+                    throw new GameOverException();
                 }                
                 return choice;
             }
@@ -70,7 +64,7 @@ public class Win implements State {
 
     @Override
     public String getMusic() {
-        return null;
+        return "";
     }
 
     @Override

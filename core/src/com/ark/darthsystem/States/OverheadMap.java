@@ -143,20 +143,20 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                 Fixture b = contact.getFixtureB();
                 if (a.isSensor() || b.isSensor()) {
                     if (a.getBody().getUserData() instanceof ActorSkill) {
-                        if (b.getBody().getUserData() instanceof Player && ((Player) (b.getBody().getUserData())).getCurrentLife() > 0) {
+                        if (b.getBody().getUserData() instanceof Player && ((Player) (b.getBody().getUserData())).getCurrentLife() > 0 && !((Player) (b.getBody().getUserData())).isInvulnerable()) {
                             renderCollision(b, a);
                         }
                     }
                     if (b.getBody().getUserData() instanceof ActorSkill) {
-                        if (a.getBody().getUserData() instanceof Player && ((Player) (a.getBody().getUserData())).getCurrentLife() > 0) {
+                        if (a.getBody().getUserData() instanceof Player && ((Player) (a.getBody().getUserData())).getCurrentLife() > 0&& !((Player) (a.getBody().getUserData())).isInvulnerable()) {
                             renderCollision(a, b);
                         }
                     }
                     
-                    if (a.getBody().getUserData() instanceof Player && b.getBody().getUserData() instanceof Event) {
+                    if (a.getBody().getUserData() instanceof Player && b.getBody().getUserData() instanceof Event && !((Event) b.getBody().getUserData()).isInvulnerable()) {
                         renderEvent(a, b);
                     }
-                    if (a.getBody().getUserData() instanceof Event && b.getBody().getUserData() instanceof Player) {
+                    if (a.getBody().getUserData() instanceof Event && b.getBody().getUserData() instanceof Player && !((Event) a.getBody().getUserData()).isInvulnerable()) {
                         renderEvent(b, a);
                     }
                 }
@@ -194,8 +194,15 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                     }
                 }
                 clearTempRunningTimers(tempActor1);
-                tempActor1.setPause(200);
-                tempActor1.setInvulnerability(1000);
+                if (tempActor1 instanceof Monster) {
+
+                } else {
+                    tempActor1.setInvulnerability(500);
+                    if (tempActor1.getItem() != null && tempActor1.getItem().getName().equalsIgnoreCase("Meat")) {
+                        tempActor1.setItem(null);
+                        createPickupFromActor(tempActor1);
+                    }
+                }
             }
 
             private void renderEvent(Fixture a, Fixture b) {
@@ -236,6 +243,15 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
             s.setOriginCenter();
         }
         
+    }
+    
+    private void createPickupFromActor(Actor a) {
+        System.out.println("I was called");
+        Event e = new Pickup((Sprite[]) GraphicsDriver.getMasterSheet().createSprites("items/meat/icon").toArray(Sprite.class), a.getX(), a.getY(), .1f, new Item("Meat"));
+        e.setMap(this);
+        e.setX(a.getX());
+        e.setY(a.getY());
+        e.setInvulnerability(1000);
     }
     
     private PolygonShape getRectangle(RectangleMapObject rectangleObject) {
@@ -767,9 +783,9 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
             teamBlue.add(new Player(Actor.TeamColor.BLUE, Database.defaultBlueSprite, BASE_BLUE_X, BASE_BLUE_Y));            
             teamBlue.get(i).setMap(this, BASE_BLUE_X, BASE_BLUE_Y);
         }
-        teamYellow.add(new Monster(Database.defaultYellowSprite, 29, 17));
+        teamYellow.add(new Monster(Database.defaultYellowSprite, 30, 17));
         teamYellow.get(0).setItem(new Item("Meat"));
-        teamYellow.get(0).setMap(this, 29, 17);
+        teamYellow.get(0).setMap(this, 30, 17);
         teamRedCurrentLife = 15;
         teamBlueCurrentLife = 15;
     }

@@ -17,8 +17,8 @@ public class SkillDatabase {
     public static ActorSkill Spear_Throw = new ActorSkill(GraphicsDriver.getMasterSheet().createSprites("skills/spear_throw/field/spear_throw").toArray(Sprite.class),
             0,
             0,
-            20f,
-            20f,
+            10f,
+            10f,
             1f/12f);
 
 }
