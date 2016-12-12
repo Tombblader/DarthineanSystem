@@ -43,9 +43,9 @@ public class ActorSkill extends ActorCollision {
     public ActorSkill(Sprite[] img,
             float getX,
             float getY,
-            int translateX,
-            int translateY,
-            int delay) {
+            float translateX,
+            float translateY,
+            float delay) {
         super(img, getX, getY, delay, true);
         originalFieldImage = img;
         for (Sprite s : originalFieldImage) {
@@ -149,8 +149,6 @@ public class ActorSkill extends ActorCollision {
             def.initialize(invoker.getMainBody(), getMainBody(), new Vector2(getX(), getY()));            
             joint = (WeldJoint) map.getPhysicsWorld().createJoint(def);
         } else if (translateX != 0) {
-            System.out.println("VELX" + (getFacing().getX() * 5f));
-            System.out.println("VELY" + (getFacing().getY() * 5f));
         }
         
     }
@@ -266,6 +264,10 @@ public class ActorSkill extends ActorCollision {
         }
         super.update(delta);
         setAnimationFacing();
+    }
+    
+    public ActorSkill clone() {
+        return new ActorSkill(originalFieldImage, relX, relX, translateX, translateY, aftercastDelay);
     }
 
     public enum Area {

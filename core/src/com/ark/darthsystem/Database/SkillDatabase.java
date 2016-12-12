@@ -7,17 +7,18 @@ package com.ark.darthsystem.Database;
 
 import com.ark.darthsystem.Graphics.ActorSkill;
 import com.ark.darthsystem.Graphics.GraphicsDriver;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 
 /**
  *
  * @author Keven
  */
 public class SkillDatabase {
-    ActorSkill Spear_Throw = new ActorSkill(GraphicsDriver.getMasterSheet().createSprites("spear_throw").toArray(),
+    public static ActorSkill Spear_Throw = new ActorSkill(GraphicsDriver.getMasterSheet().createSprites("skills/wiccan_cross/field/wiccan_cross").toArray(Sprite.class),
             0,
             0,
-            1,
-            1,
-            1/12);
+            10f,
+            10f,
+            1f/24f);
 
 }

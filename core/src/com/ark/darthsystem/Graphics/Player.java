@@ -7,6 +7,7 @@ package com.ark.darthsystem.Graphics;
 
 import com.ark.darthsystem.Database.Database;
 import com.ark.darthsystem.Database.DefaultMenu;
+import com.ark.darthsystem.Database.SkillDatabase;
 import com.ark.darthsystem.States.OverheadMap;
 import com.ark.darthsystem.GameOverException;
 
@@ -36,9 +37,9 @@ public class Player extends ActorCollision {
 
 //    private int slowButton = Keys.SHIFT_LEFT;
 
-    private int attackButton = Keys.SPACE;
+    private int attackButton = Keys.TAB;
     private int switchBattlerButton = Keys.A;
-    private int skillButton = Keys.F;
+    private int skillButton = Keys.T;
     private int switchSkill = Keys.E;
     private int charge = Keys.C;
     private int defendButton = Keys.X;
@@ -50,10 +51,12 @@ public class Player extends ActorCollision {
     ActorSkill attackAnimation;
     private float speed = SPEED;
     private boolean canAttack = true;
+    private boolean canSkill = true;
     private boolean attacking;
     private boolean isDodging;
     private boolean isWalking;
     private ActorSprite.SpriteModeField fieldState = ActorSprite.SpriteModeField.IDLE;
+    private ActorSkill currentSkill;
 
     private Input playerInput;
     private BitmapFont font;
@@ -76,34 +79,36 @@ public class Player extends ActorCollision {
         font.setUseIntegerPositions(false);
         gen.dispose();
         setControls();
+        currentSkill = SkillDatabase.Spear_Throw;
+        setShape("player");
 //        setDefaultFilter();
         // playerInput = Database2.createInputInstance();
     }
     
     private void setControls() {
         if (team == TeamColor.RED) {
-            moveUp = Keys.W;
-            moveDown = Keys.S;
-            moveLeft = Keys.A;
-            moveRight = Keys.D;
+            moveUp = Keys.D;
+            moveDown = Keys.C;
+            moveLeft = Keys.X;
+            moveRight = Keys.V;
 
 
-            attackButton = Keys.SHIFT_LEFT;
-            skillButton = Keys.F;
+            attackButton = Keys.Z;
+            skillButton = Keys.A;
             quitButton = Keys.ESCAPE;
             menuButton = Keys.ENTER;
-            dodgeButton = Keys.SPACE;
+            dodgeButton = Keys.Q;
         }
         if (team == TeamColor.BLUE) {
             moveUp = Keys.UP;
             moveDown = Keys.DOWN;
             moveLeft = Keys.LEFT;
             moveRight = Keys.RIGHT;
-            attackButton = Keys.ALT_RIGHT;
-            skillButton = Keys.SHIFT_RIGHT;
+            attackButton = Keys.COMMA;
+            skillButton = Keys.PERIOD;
             quitButton = Keys.ESCAPE;
             menuButton = Keys.ENTER;
-            dodgeButton = Keys.CONTROL_RIGHT;            
+            dodgeButton = Keys.SLASH;            
         }
     }
 
@@ -114,14 +119,49 @@ public class Player extends ActorCollision {
     public boolean isAttacking() {
         return attacking;
     }
+    
+    public boolean canAttack() {
+        return canAttack;        
+    }
 
+    public boolean canSkill() {
+        return canSkill;        
+    }
     public ActorSkill getAttackAnimation() {
         ActorSkill temp = Database.Basic();
         temp.setInvoker(this);
         return temp;
 //        return attackAnimation;
     }
-
+    public void skill() {
+        if (currentSkill != null) {
+            ActorSkill tempSkill = this.currentSkill.clone();
+            tempSkill.setInvoker(this);
+            tempSkill.setX(this);
+            tempSkill.setY(this);            
+            if (tempSkill != null) {
+                attacking = true;
+                canSkill = false;
+                addTimer(new GameTimer("Skill", 5000) {
+                    @Override
+                    public void event(Actor a) {
+                        canSkill = true;
+                    }
+                });
+                setPause((tempSkill.getChargeTime() * 1000f));
+                addTimer(new GameTimer("Skill", tempSkill.getChargeTime() * 1000f) {
+                    @Override
+                    public void event(Actor a) {
+                        tempSkill.playFieldSound();
+//                        fieldState = ActorSprite.SpriteModeField.SKILL;
+                        setPause((tempSkill.getAnimationDelay() * 1000f));
+                        tempSkill.setMap(getCurrentMap());
+                        attacking = false;
+                    }
+                });
+            }
+        }
+    }
     public final void setAttackAnimation() {
 //        Equipment tempEquipment = getCurrentBattler().getBattler().getEquipment(0);
 //        if (tempEquipment != null) {
@@ -147,13 +187,13 @@ public class Player extends ActorCollision {
             animation.resetAnimation();
             animation.setX(this);
             animation.setY(this);
-            setPause((int)((this.getDelay() * (this.getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.ATTACK, getFacing()).getKeyFrames().length - 1f)) * 1000f));
+//            setPause((int)((this.getDelay() * (this.getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.ATTACK, getFacing()).getKeyFrames().length - 1f)) * 1000f));
             addTimer(new GameTimer("Attack_Charge", this.getDelay() * ((this.getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.ATTACK, getFacing()).getKeyFrames().length - 1f)) * 1000f) {
                 public void event(Actor a) {
                     animation.playFieldSound();
                     animation.setFacing();
                     fieldState = ActorSprite.SpriteModeField.ATTACK;
-                    setPause(((animation.getAnimationDelay()) * 1000f));
+//                    setPause(((animation.getAnimationDelay()) * 1000f));
                     if (!getCurrentMap().getPhysicsWorld().isLocked()) {
                         animation.setMap(getCurrentMap());
                         addTimer(new GameTimer("Attack", animation.getAnimationDelay() * 1000) {
@@ -259,7 +299,7 @@ public class Player extends ActorCollision {
         if (canMove() && canAttack && !isDodging) {
             attacking(delta);
         }
-        if (canMove() && !attacking && !isDodging) {
+        if (canMove() && !isDodging) {
             moving(delta);
         } else {
             changeX(0);
@@ -289,7 +329,7 @@ public class Player extends ActorCollision {
     }
 
     public void dodge() {
-        final int DODGE_TIME = (int) (this.getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.DODGE, Facing.RIGHT).getAnimationDuration() * 1000);
+        final int DODGE_TIME = (int) (this.getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.DODGE, Facing.RIGHT).getKeyFrames().length * getDelay() * 1000f);
         if (!isDodging) {
             GameTimer tempTimer = new GameTimer("Dodge", DODGE_TIME) {
                 public void event(Actor a) {
@@ -311,7 +351,7 @@ public class Player extends ActorCollision {
                             subFilter = (short) (ActorCollision.CATEGORY_RED_SKILL | ActorCollision.CATEGORY_BLUE_SKILL | ActorCollision.CATEGORY_EVENT);
                             break;
                     }
-                    setMainFilter(mainFilter, (short)(ActorCollision.CATEGORY_WALLS | ActorCollision.CATEGORY_OBSTACLES));
+                    setMainFilter(mainFilter, (short)(ActorCollision.CATEGORY_WALLS | ActorCollision.CATEGORY_OBSTACLES | ActorCollision.CATEGORY_AI | ActorCollision.CATEGORY_RED | ActorCollision.CATEGORY_BLUE));
                     setSensorFilter(mainFilter, subFilter);
                     fieldState = ActorSprite.SpriteModeField.IDLE;
                     switch (getFacing()) {
@@ -328,8 +368,8 @@ public class Player extends ActorCollision {
                 }
 
                 public boolean update(float delta, Actor a) {
-                    getMainBody().setLinearVelocity(-getSpeed() * (float) (delta), getMainBody().getLinearVelocity().y);
-                    changeX(-1);
+                    getMainBody().setLinearVelocity(10 * getFacing().x * getSpeed() * (float) (delta), getMainBody().getLinearVelocity().y);
+                    changeX(getFacing().x);
 //                    setWalking(true);
                     fieldState = ActorSprite.SpriteModeField.DODGE;
                     isDodging = true;
@@ -376,7 +416,7 @@ public class Player extends ActorCollision {
         return fieldState;
     }
     
-    public void generateBody(OverheadMap map) {
+    public void generateBody(OverheadMap map, String key) {
         setX(getInitialX());
         setY(getInitialY());
         super.generateBody(map);
@@ -399,7 +439,7 @@ public class Player extends ActorCollision {
         }
 
         filter.categoryBits = mainFilter;
-        filter.maskBits = ActorCollision.CATEGORY_WALLS | ActorCollision.CATEGORY_OBSTACLES;
+        filter.maskBits = ActorCollision.CATEGORY_WALLS | ActorCollision.CATEGORY_OBSTACLES | ActorCollision.CATEGORY_AI | ActorCollision.CATEGORY_RED | ActorCollision.CATEGORY_BLUE;
         getMainFixture().setFilterData(filter);
         filter.maskBits = subFilter;
         getSensorFixture().setFilterData(filter);
@@ -412,7 +452,6 @@ public class Player extends ActorCollision {
                         getFieldAnimation(fieldState, Actor.Facing.RIGHT));
                 break;
             case LEFT:
-                System.out.println(fieldState);
                 changeDuringAnimation(getSpriteSheet().
                         getFieldAnimation(fieldState, Actor.Facing.LEFT));
                 break;
@@ -452,6 +491,9 @@ public class Player extends ActorCollision {
         setFacing();
         if (Input.getKeyPressed(attackButton) && canAttack) {
             attack();
+        }
+        if (Input.getKeyPressed(skillButton) && canAttack && canSkill) {
+            skill();
         }
         
     }

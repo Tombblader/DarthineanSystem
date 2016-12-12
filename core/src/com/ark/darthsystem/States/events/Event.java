@@ -5,6 +5,7 @@
  */
 package com.ark.darthsystem.States.events;
 
+import com.ark.darthsystem.Graphics.Actor;
 import com.ark.darthsystem.Graphics.ActorCollision;
 import com.ark.darthsystem.States.OverheadMap;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -41,7 +42,7 @@ public abstract class Event extends ActorCollision {
         return trigger == getTriggerMethod();
     }
     
-    public abstract void run();
+    public abstract void run(Actor a);
     
     public final LocalSwitch getLocalSwitch() {
         return localSwitch;
@@ -62,13 +63,13 @@ public abstract class Event extends ActorCollision {
     public void generateBody(OverheadMap map) {
         super.generateBody(map);
         setMainFilter(ActorCollision.CATEGORY_EVENT, (short) (0));
-        setSensorFilter(ActorCollision.CATEGORY_EVENT, CATEGORY_RED);
+        setSensorFilter(ActorCollision.CATEGORY_EVENT,(short) (CATEGORY_RED | CATEGORY_BLUE));
     }
     
     public void update(float delta) {
         super.update(delta);
         if (getTriggerMethod() == TriggerMethod.AUTO) {
-            run();
+            run(null);
         }
     }
     

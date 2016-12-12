@@ -101,7 +101,6 @@ public class Actor {
         sprite = img;
         x = getX;
         y = getY;
-        System.out.println(sprite.getFieldAnimation(ActorSprite.SpriteModeField.IDLE, Facing.RIGHT).getKeyFrames().length);
         animation = sprite.getFieldAnimation(ActorSprite.SpriteModeField.IDLE, Facing.RIGHT);
         animation.setPlayMode(PlayMode.LOOP);
         animation.setFrameDuration(delay);
@@ -401,6 +400,14 @@ public class Actor {
     
     public int getAttack() {
         return attack;
+    }
+    
+    public Item getItem() {
+        return item;
+    }
+    
+    public void setItem(Item i) {
+        item = i;
     }
 
 }

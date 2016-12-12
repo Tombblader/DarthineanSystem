@@ -6,6 +6,7 @@
 package com.ark.darthsystem.States.events;
 
 import com.ark.darthsystem.Database.MapDatabase;
+import com.ark.darthsystem.Graphics.Actor;
 import com.ark.darthsystem.Graphics.GraphicsDriver;
 import com.ark.darthsystem.Graphics.PlayerCamera;
 import com.ark.darthsystem.States.OverheadMap;
@@ -45,7 +46,7 @@ public class Teleport extends Event {
     
     
     @Override
-    public void run() {
+    public void run(Actor a) {
         for (State s : GraphicsDriver.getState()) {
             if (s instanceof OverheadMap) {
                 GraphicsDriver.transition();

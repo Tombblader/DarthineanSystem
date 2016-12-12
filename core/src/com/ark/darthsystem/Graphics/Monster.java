@@ -33,6 +33,7 @@ public class Monster extends Player {
         setMaxLife(10);
         setCurrentLife(10);
         setAttack(2);
+        setShape("monster");
     }
 
     public void attack() {
@@ -43,20 +44,21 @@ public class Monster extends Player {
         super.generateBody(map);
         Filter filter = new Filter();
         filter.categoryBits = ActorCollision.CATEGORY_AI;
-        filter.maskBits = ActorCollision.CATEGORY_WALLS | ActorCollision.CATEGORY_OBSTACLES;
+        filter.maskBits = ActorCollision.CATEGORY_WALLS | ActorCollision.CATEGORY_OBSTACLES | ActorCollision.CATEGORY_AI | ActorCollision.CATEGORY_RED | ActorCollision.CATEGORY_BLUE;
         getMainFixture().setFilterData(filter);
         filter.maskBits = ActorCollision.CATEGORY_RED | ActorCollision.CATEGORY_RED_SKILL;
         getSensorFixture().setFilterData(filter);
     }
 
     public boolean isInRange() {
+        final float RANGE = 228;
         if (closestPlayer == null) {
             return false;
         }
         float distance = (float) Math.sqrt(
                 Math.pow(closestPlayer.getX() - (this.getX()), 2)
                 + Math.pow((closestPlayer.getY() - (this.getY())), 2));
-        return distance < 64f / PlayerCamera.PIXELS_TO_METERS;
+        return distance < RANGE / PlayerCamera.PIXELS_TO_METERS;
     }
 
     public boolean isInRange(float range) {

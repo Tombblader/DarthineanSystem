@@ -5,6 +5,7 @@ import com.ark.darthsystem.Database.Database;
 import com.ark.darthsystem.Database.EventDatabase;
 import com.ark.darthsystem.Database.InterfaceDatabase;
 import com.ark.darthsystem.Graphics.Actor;
+import com.ark.darthsystem.Graphics.Actor.TeamColor;
 import com.ark.darthsystem.Graphics.Monster;
 import com.ark.darthsystem.Graphics.ActorCollision;
 import com.ark.darthsystem.Graphics.ActorSkill;
@@ -14,6 +15,7 @@ import com.ark.darthsystem.Graphics.Input;
 import com.ark.darthsystem.Graphics.Player;
 import com.ark.darthsystem.Graphics.PlayerCamera;
 import com.ark.darthsystem.Item;
+import com.ark.darthsystem.States.events.Base;
 import com.ark.darthsystem.States.events.Event;
 import com.ark.darthsystem.States.events.Pickup;
 import com.ark.darthsystem.States.events.Teleport;
@@ -94,6 +96,12 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
     private int teamBlueCurrentLife = 15;
     private Sprite circleUI;
     private Sprite[] lifeUI;
+    public static final int BASE_RED_X = 3;
+    public static final int BASE_RED_Y = 16;
+    public static final int BASE_BLUE_X = 56;
+    public static final int BASE_BLUE_Y = 16;
+
+
     
 
     public OverheadMap(String mapName) {
@@ -130,12 +138,12 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                 Fixture b = contact.getFixtureB();
                 if (a.isSensor() || b.isSensor()) {
                     if (a.getBody().getUserData() instanceof ActorSkill) {
-                        if (b.getBody().getUserData() instanceof Player) {
+                        if (b.getBody().getUserData() instanceof Player && ((Player) (b.getBody().getUserData())).getCurrentLife() > 0) {
                             renderCollision(b, a);
                         }
                     }
                     if (b.getBody().getUserData() instanceof ActorSkill) {
-                        if (a.getBody().getUserData() instanceof Player) {
+                        if (a.getBody().getUserData() instanceof Player && ((Player) (a.getBody().getUserData())).getCurrentLife() > 0) {
                             renderCollision(a, b);
                         }
                     }
@@ -188,7 +196,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
             private void renderEvent(Fixture a, Fixture b) {
                 Event tempEvent = (Event) b.getBody().getUserData();
                 if (tempEvent.isTriggered(Event.TriggerMethod.TOUCH)) {
-                    tempEvent.run();
+                    tempEvent.run((Actor) (a.getBody().getUserData()));
                 }
             }
             
@@ -470,30 +478,44 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
             if (p.getCurrentLife() <= 0) {
                 teamRed.removeValue(p, true);
                 teamRedCurrentLife--;
+                if (p.getItem() != null) {
+                    Event e = new Pickup((Sprite[]) GraphicsDriver.getMasterSheet().createSprites("items/meat/icon").toArray(Sprite.class), 350.0f, 350.0f, .1f, p.getItem());
+                    e.setMap(this);
+                    e.setX(p.getX());
+                    e.setY(p.getY());
+                }
             }
         }
         for (Player p : teamBlue) {
             if (p.getCurrentLife() <= 0) {
                 teamBlue.removeValue(p, true);
                 teamBlueCurrentLife--;
+                if (p.getItem() != null) {
+                    Event e = new Pickup((Sprite[]) GraphicsDriver.getMasterSheet().createSprites("items/meat/icon").toArray(Sprite.class), 350.0f, 350.0f, .1f, p.getItem());
+                    e.setMap(this);
+                    e.setX(p.getX());
+                    e.setY(p.getY());
+                }
             }
         }
         for (Player p : teamYellow) {
             if (p.getCurrentLife() <= 0) {
                 teamYellow.removeValue(p, true);
-                Event e = new Pickup((Sprite[]) GraphicsDriver.getMasterSheet().createSprites("items/potion/icon").toArray(Sprite.class), 350.0f, 350.0f, .1f, new Item("Meat"));
+                Event e = new Pickup((Sprite[]) GraphicsDriver.getMasterSheet().createSprites("items/meat/icon").toArray(Sprite.class), 350.0f, 350.0f, .1f, new Item("Meat"));
                 e.setMap(this);
                 e.setX(p.getX());
                 e.setY(p.getY());
             }
         }
         while (teamRed.size < TEAM_SIZE && teamRedCurrentLife > 0) {
-            teamRed.add(new Player(Actor.TeamColor.RED, Database.defaultRedSprite, 12, 0));
-            teamRed.get(teamRed.size - 1).setMap(this, 1, 12);            
+            teamRed.add(new Player(Actor.TeamColor.RED, Database.defaultRedSprite, BASE_RED_X, BASE_RED_Y));
+            teamRed.get(teamRed.size - 1).setMap(this, BASE_RED_X, BASE_RED_Y);
+            teamRed.get(teamRed.size - 1).setInvulnerability(1000);
         }
         while (teamBlue.size < TEAM_SIZE && teamBlueCurrentLife > 0) {
-            teamBlue.add(new Player(Actor.TeamColor.BLUE, Database.defaultRedSprite, 12, 24));
-            teamBlue.get(teamBlue.size - 1).setMap(this, 31, 12);            
+            teamBlue.add(new Player(Actor.TeamColor.BLUE, Database.defaultRedSprite, BASE_BLUE_X, BASE_BLUE_Y));
+            teamBlue.get(teamBlue.size - 1).setMap(this, BASE_BLUE_X, BASE_BLUE_Y);            
+            teamBlue.get(teamBlue.size - 1).setInvulnerability(1000);            
         }
         if (Input.getKeyPressed(Keys.ESCAPE)) {
             GraphicsDriver.clearAllStates();
@@ -588,7 +610,6 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
             }
         }
         this.batch.setProjectionMatrix(GraphicsDriver.getCamera().combined);
-//        drawMessage(this.batch);
         renderUI(this.batch);
         endRender();
         debugRender.render(world, GraphicsDriver.getCurrentCamera().combined);
@@ -629,22 +650,22 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
     }
     
     public void renderUI(Batch batch) {
-        final float X1 = 68;
-        final float Y1 = GraphicsDriver.getHeight() - 60;
-        final float X2 = GraphicsDriver.getWidth() - X1;
+        final float X1 = 0;
+        final float Y1 = GraphicsDriver.getHeight() - 80;
+        final float X2 = GraphicsDriver.getWidth() - X1 - 80;
         final float Y2 = Y1;        
         batch.draw(circleUI, X1, Y1, circleUI.getOriginX(), circleUI.getOriginY());
         batch.draw(circleUI, X2, Y2, circleUI.getOriginX(), circleUI.getOriginY());
         GraphicsDriver.getFont().draw(batch, Integer.toString(teamRedCurrentLife), X1, Y1);
         GraphicsDriver.getFont().draw(batch, Integer.toString(teamBlueCurrentLife), X2, Y2);
-        final float XDELTA = 96;
+        final float XDELTA = 80;
         for (int i = 0; i < teamRed.size; i++) {
-            batch.draw(lifeUI[teamRed.get(i).getCurrentLife()], X1 + XDELTA * (i +1), Y1, 
+            batch.draw(lifeUI[teamRed.get(i).getCurrentLife()], X1 + XDELTA * (i + 1), Y1, 
                     lifeUI[teamRed.get(i).getCurrentLife()].getOriginX(),
                     lifeUI[teamRed.get(i).getCurrentLife()].getOriginY());
         }
         for (int i = 0; i < teamBlue.size; i++) {
-            batch.draw(lifeUI[teamBlue.get(i).getCurrentLife()], X2 - XDELTA * (i +1), Y1,
+            batch.draw(lifeUI[teamBlue.get(i).getCurrentLife()], X2 - XDELTA * (i + 1), Y2,
                     lifeUI[teamBlue.get(i).getCurrentLife()].getOriginX(),
                     lifeUI[teamBlue.get(i).getCurrentLife()].getOriginY());
         }
@@ -716,14 +737,22 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
     }
 
     public void initialize() {
-        for (int i = 0; i < TEAM_SIZE; i++) {
-            teamRed.add(new Player(Actor.TeamColor.RED, Database.defaultRedSprite, 12, 0));
-            teamRed.get(i).setMap(this, 1, 12);
-            teamBlue.add(new Player(Actor.TeamColor.BLUE, Database.defaultBlueSprite, 12, 24));            
-            teamBlue.get(i).setMap(this, 24, 12);
+        Sprite[] s = (Sprite[]) GraphicsDriver.getMasterSheet().createSprites("event/hut").toArray(Sprite.class);
+        for (Sprite sprite: s) {
+            sprite.flip(true, false);
         }
-        teamYellow.add(new Monster(Database.defaultYellowSprite, 10, 24));
-        teamYellow.get(0).setMap(this, 12, 12);
+        (new Base(s, BASE_RED_X, BASE_RED_Y, 1/12f, TeamColor.RED)).setMap(this);
+        s = (Sprite[]) GraphicsDriver.getMasterSheet().createSprites("event/hut").toArray(Sprite.class);
+        (new Base(s, BASE_BLUE_X, BASE_BLUE_Y, 1/12f, TeamColor.BLUE)).setMap(this);
+        for (int i = 0; i < TEAM_SIZE; i++) {
+            teamRed.add(new Player(Actor.TeamColor.RED, Database.defaultRedSprite, BASE_RED_X, BASE_RED_Y));
+            teamRed.get(i).setMap(this, BASE_RED_X, BASE_RED_Y);
+            teamBlue.add(new Player(Actor.TeamColor.BLUE, Database.defaultBlueSprite, BASE_BLUE_X, BASE_BLUE_Y));            
+            teamBlue.get(i).setMap(this, BASE_BLUE_X, BASE_BLUE_Y);
+        }
+        teamYellow.add(new Monster(Database.defaultYellowSprite, 29, 17));
+        teamYellow.get(0).setItem(new Item("Meat"));
+        teamYellow.get(0).setMap(this, 29, 17);
         teamRedCurrentLife = 15;
         teamBlueCurrentLife = 15;
     }

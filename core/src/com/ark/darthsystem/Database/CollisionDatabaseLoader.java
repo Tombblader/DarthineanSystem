@@ -53,6 +53,7 @@ public class CollisionDatabaseLoader {
                     continue;
                 }
                 shapes.put(object.getName(), shape);
+                System.out.println(object.getName());
             }
                 
     }

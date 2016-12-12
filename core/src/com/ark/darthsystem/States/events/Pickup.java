@@ -5,6 +5,8 @@
  */
 package com.ark.darthsystem.States.events;
 
+import com.ark.darthsystem.Graphics.Actor;
+import com.ark.darthsystem.Graphics.Player;
 import com.ark.darthsystem.Item;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
@@ -28,9 +30,13 @@ public class Pickup extends Event {
         setID(1);
     }
 
-    public void run() {
-
-        isFinished = true;
+    public void run(Actor a) {
+        if (a.getCurrentLife() > 0) {
+            ((Player) a).setItem(item);
+            isFinished = true;
+        } else {
+            isFinished = false;
+        }
     }
 
     public boolean isFinished() {
