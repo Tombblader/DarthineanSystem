@@ -162,20 +162,7 @@ public class Player extends ActorCollision {
         }
     }
     public void setAttackAnimation() {
-//        Equipment tempEquipment = getCurrentBattler().getBattler().getEquipment(0);
-//        if (tempEquipment != null) {
-//            try {
-//                ActorSkill tempAnimation =
-//                    tempEquipment.getAnimation();
-//                    tempAnimation.setInvoker(this);
-//                    attackAnimation = tempAnimation;
-//            } catch (Exception e) {
-//                attackAnimation = Database2.Sword();
-//                e.printStackTrace();
-//            }
-//        } else {
         attackAnimation = Database.Basic();
-//        }
         attackAnimation.setInvoker(this);
     }
 
@@ -240,7 +227,6 @@ public class Player extends ActorCollision {
         isWalking = walking;
     }
 
-    // private float speed = .35;
     public void moving(float delta) {
         setSpeed(getBaseSpeed() * (getItem() != null && getItem().getName().equalsIgnoreCase("Meat") ? 0.5f : 1));
             

@@ -40,6 +40,8 @@ public class Actor {
     private boolean isRotate;
     private float lastX;
     private int lastXFacing = 0;
+    private float lastY;
+    private int lastYFacing = 0;
     private float speed;
     private ActorSprite sprite;
     private Array<GameTimer> timers = new Array<>();
@@ -137,9 +139,9 @@ public class Actor {
         lastXFacing = x > lastX ? 1 : x == lastX ? 0 : -1;
     }
     public void changeY(float getY) {
-//        lastY = y;
+        lastY = y;
         y += getY;
-//        lastYFacing = y > lastY ? 1 : y == lastY ? 0 : -1;
+        lastYFacing = y > lastY ? 1 : y == lastY ? 0 : -1;
         
     }
 
@@ -192,6 +194,7 @@ public class Actor {
         return currentImage.getRegionHeight();
     }
     public void setInvulnerability(int time) {
+        isInvulnerable = true;
         GameTimer tempTimer = new GameTimer("Invulnerable", time) {
             public void event(Actor a) {
                 a.isInvulnerable = false;
@@ -217,6 +220,13 @@ public class Actor {
         return lastX;
     }
 
+    public float getLastYFacing() {
+        return lastYFacing;
+    }
+
+    public float getLastY() {
+        return lastY;
+    }
 
 
     public void setPause(float time) {

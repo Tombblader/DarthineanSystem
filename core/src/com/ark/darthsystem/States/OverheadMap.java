@@ -152,7 +152,6 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                             renderCollision(a, b);
                         }
                     }
-                    
                     if (a.getBody().getUserData() instanceof Player && b.getBody().getUserData() instanceof Event && !((Event) b.getBody().getUserData()).isInvulnerable()) {
                         renderEvent(a, b);
                     }
@@ -246,13 +245,11 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
     }
     
     private void createPickupFromActor(Actor a) {
-        System.out.println("I was called");
         Event e = new Pickup((Sprite[]) GraphicsDriver.getMasterSheet().createSprites("items/meat/icon").toArray(Sprite.class), a.getX(), a.getY(), .1f, new Item("Meat"));
+        e.setInvulnerability(3000);
         e.setMap(this);
         e.setX(a.getX());
         e.setY(a.getY());
-        e.setPause(1000);
-        e.setInvulnerability(1000);
     }
     
     private PolygonShape getRectangle(RectangleMapObject rectangleObject) {
@@ -494,7 +491,6 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
         deleteQueue.add(body);
     }
 
-    @Override
     public float update(float delta) {
 
         for (Actor a : actorList) {
@@ -793,8 +789,15 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
         allPlayers.clear();
         allPlayers.addAll(teamRed);
         allPlayers.addAll(teamBlue);
+        for (Player player : allPlayers) {
+            if (!actorList.contains(player, true)) {
+                allPlayers.removeValue(player, true);
+            }
+        }
         return allPlayers;
     }
+    
+    
 
     public void initialize() {
         Sprite[] s = (Sprite[]) GraphicsDriver.getMasterSheet().createSprites("event/hut").toArray(Sprite.class);
