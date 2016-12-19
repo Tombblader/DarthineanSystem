@@ -43,6 +43,17 @@ public abstract class GameTimer {
         return false;
     }
     
+    public boolean update(float delta) {
+        currentTime += delta;
+        if (isFinished()) {
+            currentTime = 0;
+            event(null);
+            return true;
+        }
+        return false;
+    }
+    
+    
     public boolean isFinished() {
         return currentTime >= time;
     }

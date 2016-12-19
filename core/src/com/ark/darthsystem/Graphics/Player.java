@@ -54,6 +54,7 @@ public class Player extends ActorCollision {
     private boolean canSkill = true;
     private boolean attacking;
     private boolean isDodging;
+    private boolean canDodge = true;
     private boolean isWalking;
     private ActorSprite.SpriteModeField fieldState = ActorSprite.SpriteModeField.IDLE;
     private ActorSkill currentSkill;
@@ -143,6 +144,7 @@ public class Player extends ActorCollision {
                     @Override
                     public void event(Actor a) {
                         canSkill = true;
+//                        fieldState = ActorSprite.SpriteModeField.IDLE;
                     }
                 });
                 setPause((tempSkill.getChargeTime() * 1000f));
@@ -242,7 +244,7 @@ public class Player extends ActorCollision {
     public void moving(float delta) {
         setSpeed(getBaseSpeed() * (getItem() != null && getItem().getName().equalsIgnoreCase("Meat") ? 0.5f : 1));
             
-        if (Input.getKeyPressed(dodgeButton)) {
+        if (Input.getKeyPressed(dodgeButton) && canDodge) {
             dodge();
         }
 
@@ -298,7 +300,9 @@ public class Player extends ActorCollision {
             if (!attacking) {
                 fieldState = ActorSprite.SpriteModeField.IDLE;
             }
-            getMainBody().setLinearVelocity(0, 0);
+            if (getMainBody() != null) {
+                getMainBody().setLinearVelocity(0, 0);
+            }
         }
         isWalking = false;
         
@@ -341,6 +345,7 @@ public class Player extends ActorCollision {
                 public void event(Actor a) {
                     isDodging = false;
                     canAttack = true;
+                    canDodge = false;
                     short mainFilter = 0;
                     short subFilter = 0;
                     switch (team) {
@@ -371,6 +376,16 @@ public class Player extends ActorCollision {
                             break;
                     default:
                     }
+                    addTimer(new GameTimer("DODGE_DELAY", 2000) {
+                        @Override
+                        public void event(Actor a) {
+                            canDodge = true;
+                        }
+                        public boolean update(float delta, Actor a) {
+                            canDodge = false;
+                            return super.update(delta, a);                            
+                        }
+                    });
                 }
 
                 public boolean update(float delta, Actor a) {

@@ -251,6 +251,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
         e.setMap(this);
         e.setX(a.getX());
         e.setY(a.getY());
+        e.setPause(1000);
         e.setInvulnerability(1000);
     }
     
@@ -495,6 +496,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
 
     @Override
     public float update(float delta) {
+
         for (Actor a : actorList) {
             if (a instanceof Player && ((Player) (a)).getCurrentLife() <= 0) {
                 removeActor(a);
@@ -516,6 +518,13 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                     e.setY(p.getY());
                 }
             }
+            if (!actorList.contains(p, true)) {
+                for (GameTimer t : p.getTimers()) {
+                    if (t.update(delta, p)) {
+                        p.getTimers().removeValue(t, true);
+                    }                    
+                }
+            }            
         }
         for (Player p : teamBlue) {
             if (p.getCurrentLife() <= 0) {
@@ -526,6 +535,13 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                     e.setMap(this);
                     e.setX(p.getX());
                     e.setY(p.getY());
+                }
+            }
+            if (!actorList.contains(p, true)) {
+                for (GameTimer t : p.getTimers()) {
+                    if (t.update(delta, p)) {
+                        p.getTimers().removeValue(t, true);
+                    }                    
                 }
             }
         }
@@ -540,13 +556,24 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
         }
         while (teamRed.size < TEAM_SIZE && teamRedCurrentLife > 0) {
             teamRed.add(new Player(Actor.TeamColor.RED, Database.defaultRedSprite, BASE_RED_X, BASE_RED_Y));
-            teamRed.get(teamRed.size - 1).setMap(this, BASE_RED_X, BASE_RED_Y);
-            teamRed.get(teamRed.size - 1).setInvulnerability(1000);
+            teamRed.get(teamRed.size - 1).setPause(2000);
+            teamRed.get(teamRed.size - 1).addTimer(new GameTimer("RESPAWN", 2000) {
+                @Override
+                public void event(Actor a) {
+                    ((Player) (a)).setMap((OverheadMap) (GraphicsDriver.getCurrentState()), BASE_RED_X, BASE_RED_Y);
+                    ((Player) (a)).setInvulnerability(2000);
+                }            
+            });
         }
         while (teamBlue.size < TEAM_SIZE && teamBlueCurrentLife > 0) {
             teamBlue.add(new Player(Actor.TeamColor.BLUE, Database.defaultRedSprite, BASE_BLUE_X, BASE_BLUE_Y));
-            teamBlue.get(teamBlue.size - 1).setMap(this, BASE_BLUE_X, BASE_BLUE_Y);            
-            teamBlue.get(teamBlue.size - 1).setInvulnerability(1000);            
+            teamBlue.get(teamBlue.size - 1).addTimer(new GameTimer("RESPAWN", 2000) {
+                @Override
+                public void event(Actor a) {
+                    ((Player) (a)).setMap((OverheadMap) (GraphicsDriver.getCurrentState()), BASE_BLUE_X, BASE_BLUE_Y);
+                    ((Player) (a)).setInvulnerability(2000);
+                }            
+            });
         }
         if (Input.getKeyPressed(Keys.ESCAPE)) {
             GraphicsDriver.clearAllStates();

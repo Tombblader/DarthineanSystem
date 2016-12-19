@@ -165,7 +165,9 @@ public class ActorCollision extends Actor {
     }
     public void setPause(float pause) {
         super.setPause(pause);
-        body.setLinearVelocity(0, 0);
+        if (body != null) {
+            body.setLinearVelocity(0, 0);
+        }
     }
     public Body getSensorBody() {
         return sensorBody;
