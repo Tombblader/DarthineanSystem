@@ -997,21 +997,7 @@ skills/spear_throw/field/spear_throw
   size: 192, 389
   orig: 192, 389
   offset: 0, 0
-  index: 4
-skills/spear_throw/field/spear_throw
-  rotate: false
-  xy: 1546, 872
-  size: 192, 389
-  orig: 192, 389
-  offset: 0, 0
-  index: 6
-skills/spear_throw/field/spear_throw
-  rotate: false
-  xy: 1546, 872
-  size: 192, 389
-  orig: 192, 389
-  offset: 0, 0
-  index: 7
+  index: 8
 skills/spear_throw/field/spear_throw
   rotate: false
   xy: 1546, 872
@@ -1025,7 +1011,21 @@ skills/spear_throw/field/spear_throw
   size: 192, 389
   orig: 192, 389
   offset: 0, 0
-  index: 8
+  index: 7
+skills/spear_throw/field/spear_throw
+  rotate: false
+  xy: 1546, 872
+  size: 192, 389
+  orig: 192, 389
+  offset: 0, 0
+  index: 6
+skills/spear_throw/field/spear_throw
+  rotate: false
+  xy: 1546, 872
+  size: 192, 389
+  orig: 192, 389
+  offset: 0, 0
+  index: 4
 skills/wiccan_cross/field/wiccan_cross
   rotate: false
   xy: 1046, 159
