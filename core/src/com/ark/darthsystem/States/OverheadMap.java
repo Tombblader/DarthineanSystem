@@ -110,7 +110,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
     
 
     public OverheadMap(String mapName) {
-        super((new TmxMapLoader().load(mapName, new Parameters() {{this.flipY = false;}})), 1f / PlayerCamera.PIXELS_TO_METERS);
+        super((new TmxMapLoader().load(mapName, new Parameters() {{this.flipY = false; this.convertObjectToTileSpace = false;}})), 1f / PlayerCamera.PIXELS_TO_METERS);
         for (MapLayer m : (getMap().getLayers())) {
             if (!(m instanceof TiledMapTileLayer)) {
                 if (m instanceof TiledMapImageLayer) {
@@ -638,7 +638,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
         for (MapLayer layer : map.getLayers()) {
             if (layer.isVisible()) {
                 if (layer instanceof TiledMapTileLayer) {
-                    renderTileLayer((TiledMapTileLayer) layer);
+                    renderTileLayer((TiledMapTileLayer) layer);                    
                     currentLayer++;
                     if (currentLayer == DRAW_SPRITES_AFTER_LAYER) {
                         for (Actor a : actorList) {
@@ -731,15 +731,18 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
     public void renderObject(MapObject object) {
         if (object instanceof TextureMapObject) {
             TextureMapObject textureObject = (TextureMapObject) object;
+            System.out.println("TILED");
+            System.out.println(textureObject.getX());
+            System.out.println(textureObject.getY());
             this.batch.draw(textureObject.getTextureRegion(),
                     textureObject.getX() / PlayerCamera.PIXELS_TO_METERS,
                     textureObject.getY() / PlayerCamera.PIXELS_TO_METERS,
-                    textureObject.getOriginX(),
-                    textureObject.getOriginY(),
-                    textureObject.getTextureRegion().getRegionWidth(),
-                    textureObject.getTextureRegion().getRegionHeight(),
-                    textureObject.getScaleX() / PlayerCamera.PIXELS_TO_METERS,
-                    textureObject.getScaleY() / PlayerCamera.PIXELS_TO_METERS,
+                    0,
+                    0,
+                    textureObject.getTextureRegion().getRegionWidth() / PlayerCamera.PIXELS_TO_METERS,
+                    textureObject.getTextureRegion().getRegionHeight() / PlayerCamera.PIXELS_TO_METERS,
+                    textureObject.getScaleX(),
+                    textureObject.getScaleY(),
                     textureObject.getRotation());
         }
     }
