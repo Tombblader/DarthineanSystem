@@ -5,6 +5,7 @@ sourceSets.main.java.srcDirs = [ "src/" ]
 
 project.ext.mainClassName = "com.ark.darthsystem.Game"
 project.ext.assetsDir = new File("../core/assets");
+project.ext.texturePacker = [ "../core/assets/graphics/", "../core/assets/master/", "MasterSheet" ]
 
 task run(dependsOn: classes, type: JavaExec) {
     main = project.mainClassName
@@ -15,6 +16,14 @@ task run(dependsOn: classes, type: JavaExec) {
     if (System.properties['os.name'].toLowerCase().contains('mac')) {
         jvmArgs=["-XstartOnFirstThread"]
     }
+}
+
+// Add a new task that packs the textures for you
+task texturePacker << {
+  if (project.ext.has('texturePacker')) {
+    logger.info "Calling TexturePacker: "+texturePacker
+    TexturePacker.process(texturePacker[0], texturePacker[1], texturePacker[2])
+  }
 }
 
 task debug(dependsOn: classes, type: JavaExec) {

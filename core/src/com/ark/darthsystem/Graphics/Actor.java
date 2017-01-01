@@ -344,8 +344,13 @@ public class Actor {
     }
     public enum Facing {
         
-        LEFT(-1, 0, 270),
-        RIGHT(1, 0, 90);
+        LEFT(-1, 0, 180),
+//        LEFT_DOWN(-1, 1, 180-45),
+        RIGHT(1, 0, 0);
+//        RIGHT_DOWN(1, 1, 45),
+//        RIGHT_UP(1, 1, 0),
+//        UP(0, -1, 270),
+//        DOWN(0, 1, 90);
         
         float x, y;
         float rotate;

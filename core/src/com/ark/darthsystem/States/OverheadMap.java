@@ -83,9 +83,8 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
     private String bgm;
     private ArrayList<String> message = new ArrayList<>();
     private int elapsed = 0;
-    private final int MESSAGE_TIME = 3000;
     private Array<Actor> actorList;
-    private final int DRAW_SPRITES_AFTER_LAYER = 2;
+    private final int DRAW_SPRITES_AFTER_LAYER = 1;
     private World world;
     private Box2DDebugRenderer debugRender = new Box2DDebugRenderer();
     private int width;
