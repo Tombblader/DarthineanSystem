@@ -116,174 +116,6 @@ characters/flint_spear/field/run/right
   orig: 259, 128
   offset: 0, 0
   index: 2
-characters/mammoth/field/attack/left
-  rotate: false
-  xy: 1970, 507
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 1
-characters/mammoth/field/cast/left
-  rotate: false
-  xy: 1970, 507
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 1
-characters/mammoth/field/dead/left
-  rotate: false
-  xy: 1970, 507
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 1
-characters/mammoth/field/jump/left
-  rotate: false
-  xy: 1970, 507
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 1
-characters/mammoth/field/ouch/left
-  rotate: false
-  xy: 1970, 507
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 1
-characters/mammoth/field/run/left
-  rotate: false
-  xy: 1970, 507
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 1
-characters/mammoth/field/attack/left
-  rotate: false
-  xy: 1970, 453
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 2
-characters/mammoth/field/cast/left
-  rotate: false
-  xy: 1970, 453
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 2
-characters/mammoth/field/dead/left
-  rotate: false
-  xy: 1970, 453
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 2
-characters/mammoth/field/jump/left
-  rotate: false
-  xy: 1970, 453
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 2
-characters/mammoth/field/ouch/left
-  rotate: false
-  xy: 1970, 453
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 2
-characters/mammoth/field/run/left
-  rotate: false
-  xy: 1970, 453
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 2
-characters/mammoth/field/attack/left
-  rotate: false
-  xy: 1970, 399
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 3
-characters/mammoth/field/cast/left
-  rotate: false
-  xy: 1970, 399
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 3
-characters/mammoth/field/dead/left
-  rotate: false
-  xy: 1970, 399
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 3
-characters/mammoth/field/jump/left
-  rotate: false
-  xy: 1970, 399
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 3
-characters/mammoth/field/ouch/left
-  rotate: false
-  xy: 1970, 399
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 3
-characters/mammoth/field/run/left
-  rotate: false
-  xy: 1970, 399
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 3
-characters/mammoth/field/attack/left
-  rotate: false
-  xy: 1970, 345
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 4
-characters/mammoth/field/cast/left
-  rotate: false
-  xy: 1970, 345
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 4
-characters/mammoth/field/dead/left
-  rotate: false
-  xy: 1970, 345
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 4
-characters/mammoth/field/jump/left
-  rotate: false
-  xy: 1970, 345
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 4
-characters/mammoth/field/ouch/left
-  rotate: false
-  xy: 1970, 345
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 4
-characters/mammoth/field/run/left
-  rotate: false
-  xy: 1970, 345
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 4
 characters/mammoth/field/attack/right
   rotate: false
   xy: 388, 1335
@@ -314,116 +146,88 @@ characters/mammoth/field/attack/right
   index: 3
 characters/mammoth/field/cast/down
   rotate: false
-  xy: 1966, 825
+  xy: 1970, 349
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 1
 characters/mammoth/field/dead/down
   rotate: false
-  xy: 1966, 825
+  xy: 1970, 349
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 1
 characters/mammoth/field/jump/down
   rotate: false
-  xy: 1966, 825
+  xy: 1970, 349
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 1
 characters/mammoth/field/ouch/down
   rotate: false
-  xy: 1966, 825
+  xy: 1970, 349
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 1
 characters/mammoth/field/cast/down
   rotate: false
-  xy: 2007, 825
+  xy: 2004, 481
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 2
 characters/mammoth/field/dead/down
   rotate: false
-  xy: 2007, 825
+  xy: 2004, 481
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 2
 characters/mammoth/field/jump/down
   rotate: false
-  xy: 2007, 825
+  xy: 2004, 481
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 2
 characters/mammoth/field/ouch/down
   rotate: false
-  xy: 2007, 825
+  xy: 2004, 481
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 2
 characters/mammoth/field/cast/down
   rotate: false
-  xy: 2004, 639
+  xy: 2004, 427
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 3
 characters/mammoth/field/dead/down
   rotate: false
-  xy: 2004, 639
+  xy: 2004, 427
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 3
 characters/mammoth/field/jump/down
   rotate: false
-  xy: 2004, 639
+  xy: 2004, 427
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 3
 characters/mammoth/field/ouch/down
   rotate: false
-  xy: 2004, 639
+  xy: 2004, 427
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 3
-characters/mammoth/field/cast/down
-  rotate: false
-  xy: 2004, 585
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 4
-characters/mammoth/field/dead/down
-  rotate: false
-  xy: 2004, 585
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 4
-characters/mammoth/field/jump/down
-  rotate: false
-  xy: 2004, 585
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 4
-characters/mammoth/field/ouch/down
-  rotate: false
-  xy: 2004, 585
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 4
 characters/mammoth/field/idle/left
   rotate: false
   xy: 2, 1706
@@ -572,6 +376,20 @@ items/equipment/spear/field/field
   orig: 104, 104
   offset: 0, 0
   index: 3
+items/equipment/spear/field/right
+  rotate: false
+  xy: 1937, 1477
+  size: 101, 48
+  orig: 101, 48
+  offset: 0, 0
+  index: 1
+items/equipment/spear/field/right
+  rotate: false
+  xy: 1755, 35
+  size: 101, 48
+  orig: 101, 48
+  offset: 0, 0
+  index: 2
 items/equipment/sword/battler/battler
   rotate: false
   xy: 784, 135
@@ -700,42 +518,42 @@ items/equipment/sword/field/field
   index: 2
 items/equipment/sword/field/field
   rotate: false
-  xy: 1970, 759
+  xy: 1970, 601
   size: 32, 64
   orig: 32, 64
   offset: 0, 0
   index: 3
 items/equipment/sword/field/field
   rotate: false
-  xy: 1970, 693
+  xy: 1970, 535
   size: 32, 64
   orig: 32, 64
   offset: 0, 0
   index: 4
 items/equipment/sword/field/field
   rotate: false
-  xy: 2004, 759
+  xy: 1970, 469
   size: 32, 64
   orig: 32, 64
   offset: 0, 0
   index: 5
 items/equipment/sword/field/field
   rotate: false
-  xy: 1970, 627
+  xy: 1970, 403
   size: 32, 64
   orig: 32, 64
   offset: 0, 0
   index: 6
 items/equipment/sword/field/field
   rotate: false
-  xy: 2004, 693
+  xy: 2004, 601
   size: 32, 64
   orig: 32, 64
   offset: 0, 0
   index: 7
 items/equipment/sword/field/field
   rotate: false
-  xy: 1970, 561
+  xy: 2004, 535
   size: 32, 64
   orig: 32, 64
   offset: 0, 0
@@ -851,14 +669,14 @@ skills/spear_throw/field/spear_throw
   size: 389, 192
   orig: 389, 192
   offset: 0, 0
-  index: 5
+  index: 6
 skills/spear_throw/field/spear_throw
   rotate: false
   xy: 1546, 1449
   size: 389, 192
   orig: 389, 192
   offset: 0, 0
-  index: 8
+  index: 7
 skills/spear_throw/field/spear_throw
   rotate: false
   xy: 1546, 1449
@@ -872,161 +690,161 @@ skills/spear_throw/field/spear_throw
   size: 389, 192
   orig: 389, 192
   offset: 0, 0
-  index: 6
+  index: 8
 skills/spear_throw/field/spear_throw
   rotate: false
   xy: 1546, 1449
   size: 389, 192
   orig: 389, 192
   offset: 0, 0
-  index: 7
-skills/wiccan_cross/field/wiccan_cross
-  rotate: false
-  xy: 1937, 1473
-  size: 52, 52
-  orig: 52, 52
-  offset: 0, 0
-  index: 1
+  index: 5
 skills/wiccan_cross/field/wiccan_cross
   rotate: false
   xy: 916, 27
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
+  index: 1
+skills/wiccan_cross/field/wiccan_cross
+  rotate: false
+  xy: 1858, 31
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
   index: 2
 skills/wiccan_cross/field/wiccan_cross
   rotate: false
-  xy: 1755, 31
+  xy: 1912, 31
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
   index: 3
 skills/wiccan_cross/field/wiccan_cross
   rotate: false
-  xy: 1809, 31
+  xy: 1966, 31
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
   index: 4
 skills/wiccan_cross/field/wiccan_cross
   rotate: false
-  xy: 1863, 31
+  xy: 1966, 1423
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
   index: 5
 skills/wiccan_cross/field/wiccan_cross
   rotate: false
-  xy: 1917, 31
+  xy: 1966, 1369
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
   index: 6
 skills/wiccan_cross/field/wiccan_cross
   rotate: false
-  xy: 1971, 31
+  xy: 1966, 1315
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
   index: 7
 skills/wiccan_cross/field/wiccan_cross
   rotate: false
-  xy: 1991, 1473
+  xy: 1966, 1261
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
   index: 8
 skills/wiccan_cross/field/wiccan_cross
   rotate: false
-  xy: 1966, 1419
+  xy: 1966, 1207
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
   index: 9
 skills/wiccan_cross/field/wiccan_cross
   rotate: false
-  xy: 1966, 1365
+  xy: 1966, 1153
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
   index: 10
 skills/wiccan_cross/field/wiccan_cross
   rotate: false
-  xy: 1966, 1311
+  xy: 1966, 1099
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
   index: 11
 skills/wiccan_cross/field/wiccan_cross
   rotate: false
-  xy: 1966, 1257
+  xy: 1966, 1045
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
   index: 12
 skills/wiccan_cross/field/wiccan_cross
   rotate: false
-  xy: 1966, 1203
+  xy: 1966, 991
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
   index: 13
 skills/wiccan_cross/field/wiccan_cross
   rotate: false
-  xy: 1966, 1149
+  xy: 1966, 937
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
   index: 14
 skills/wiccan_cross/field/wiccan_cross
   rotate: false
-  xy: 1966, 1095
+  xy: 1966, 883
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
   index: 15
 skills/wiccan_cross/field/wiccan_cross
   rotate: false
-  xy: 1966, 1041
+  xy: 1966, 829
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
   index: 16
 skills/wiccan_cross/field/wiccan_cross
   rotate: false
-  xy: 1966, 987
+  xy: 1970, 775
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
   index: 17
 skills/wiccan_cross/field/wiccan_cross
   rotate: false
-  xy: 1966, 933
+  xy: 1970, 721
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
   index: 18
 skills/wiccan_cross/field/wiccan_cross
   rotate: false
-  xy: 1966, 879
+  xy: 1970, 667
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
   index: 19
 skills/wiccan_cross/field/wiccan_cross
   rotate: false
-  xy: 1966, 879
-  size: 52, 52
-  orig: 52, 52
-  offset: 0, 0
-  index: 20
-skills/wiccan_cross/field/wiccan_cross
-  rotate: false
-  xy: 1966, 879
+  xy: 1970, 667
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
   index: 21
+skills/wiccan_cross/field/wiccan_cross
+  rotate: false
+  xy: 1970, 667
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 20
 skills/wiccan_cross/field/wiccan_cross
   rotate: false
   xy: 388, 1688
@@ -1691,226 +1509,422 @@ characters/flint_spear/field/walk/right_0007_Frame-1
   orig: 128, 128
   offset: 0, 0
   index: -1
-characters/mammoth/field/cast/right
+characters/mammoth/field/attack/left
+  rotate: false
+  xy: 516, 54
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/mammoth/field/cast/left
+  rotate: false
+  xy: 516, 54
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/mammoth/field/dead/left
+  rotate: false
+  xy: 516, 54
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/mammoth/field/jump/left
+  rotate: false
+  xy: 516, 54
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/mammoth/field/ouch/left
+  rotate: false
+  xy: 516, 54
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/mammoth/field/run/left
+  rotate: false
+  xy: 516, 54
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/mammoth/field/attack/left
+  rotate: false
+  xy: 1983, 444
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/mammoth/field/cast/left
+  rotate: false
+  xy: 1983, 444
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/mammoth/field/dead/left
+  rotate: false
+  xy: 1983, 444
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/mammoth/field/jump/left
+  rotate: false
+  xy: 1983, 444
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/mammoth/field/ouch/left
+  rotate: false
+  xy: 1983, 444
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/mammoth/field/run/left
+  rotate: false
+  xy: 1983, 444
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/mammoth/field/attack/left
+  rotate: false
+  xy: 557, 54
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/mammoth/field/cast/left
+  rotate: false
+  xy: 557, 54
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/mammoth/field/dead/left
+  rotate: false
+  xy: 557, 54
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/mammoth/field/jump/left
+  rotate: false
+  xy: 557, 54
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/mammoth/field/ouch/left
+  rotate: false
+  xy: 557, 54
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/mammoth/field/run/left
+  rotate: false
+  xy: 557, 54
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/mammoth/field/attack/left
+  rotate: false
+  xy: 598, 54
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/mammoth/field/cast/left
+  rotate: false
+  xy: 598, 54
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/mammoth/field/dead/left
+  rotate: false
+  xy: 598, 54
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/mammoth/field/jump/left
+  rotate: false
+  xy: 598, 54
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/mammoth/field/ouch/left
+  rotate: false
+  xy: 598, 54
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/mammoth/field/run/left
+  rotate: false
+  xy: 598, 54
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/mammoth/field/cast/down
   rotate: false
   xy: 1942, 444
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/mammoth/field/dead/down
+  rotate: false
+  xy: 1942, 444
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/mammoth/field/jump/down
+  rotate: false
+  xy: 1942, 444
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/mammoth/field/ouch/down
+  rotate: false
+  xy: 1942, 444
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/mammoth/field/cast/right
+  rotate: false
+  xy: 639, 54
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 1
 characters/mammoth/field/dead/right
   rotate: false
-  xy: 1942, 444
+  xy: 639, 54
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 1
 characters/mammoth/field/jump/right
   rotate: false
-  xy: 1942, 444
+  xy: 639, 54
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 1
 characters/mammoth/field/ouch/right
   rotate: false
-  xy: 1942, 444
+  xy: 639, 54
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 1
 characters/mammoth/field/cast/right
   rotate: false
-  xy: 516, 54
+  xy: 680, 54
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 2
 characters/mammoth/field/dead/right
   rotate: false
-  xy: 516, 54
+  xy: 680, 54
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 2
 characters/mammoth/field/jump/right
   rotate: false
-  xy: 516, 54
+  xy: 680, 54
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 2
 characters/mammoth/field/ouch/right
   rotate: false
-  xy: 516, 54
+  xy: 680, 54
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 2
 characters/mammoth/field/cast/right
   rotate: false
-  xy: 1983, 444
+  xy: 721, 54
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 3
 characters/mammoth/field/dead/right
   rotate: false
-  xy: 1983, 444
+  xy: 721, 54
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 3
 characters/mammoth/field/jump/right
   rotate: false
-  xy: 1983, 444
+  xy: 721, 54
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 3
 characters/mammoth/field/ouch/right
   rotate: false
-  xy: 1983, 444
+  xy: 721, 54
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 3
 characters/mammoth/field/cast/right
   rotate: false
-  xy: 557, 54
+  xy: 762, 54
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 4
 characters/mammoth/field/dead/right
   rotate: false
-  xy: 557, 54
+  xy: 762, 54
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 4
 characters/mammoth/field/jump/right
   rotate: false
-  xy: 557, 54
+  xy: 762, 54
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 4
 characters/mammoth/field/ouch/right
   rotate: false
-  xy: 557, 54
+  xy: 762, 54
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 4
 characters/mammoth/field/cast/up
   rotate: false
-  xy: 598, 54
+  xy: 803, 54
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 1
 characters/mammoth/field/dead/up
   rotate: false
-  xy: 598, 54
+  xy: 803, 54
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 1
 characters/mammoth/field/jump/up
   rotate: false
-  xy: 598, 54
+  xy: 803, 54
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 1
 characters/mammoth/field/ouch/up
   rotate: false
-  xy: 598, 54
+  xy: 803, 54
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 1
 characters/mammoth/field/cast/up
   rotate: false
-  xy: 639, 54
+  xy: 844, 54
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 2
 characters/mammoth/field/dead/up
   rotate: false
-  xy: 639, 54
+  xy: 844, 54
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 2
 characters/mammoth/field/jump/up
   rotate: false
-  xy: 639, 54
+  xy: 844, 54
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 2
 characters/mammoth/field/ouch/up
   rotate: false
-  xy: 639, 54
+  xy: 844, 54
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 2
 characters/mammoth/field/cast/up
   rotate: false
-  xy: 680, 54
+  xy: 885, 54
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 3
 characters/mammoth/field/dead/up
   rotate: false
-  xy: 680, 54
+  xy: 885, 54
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 3
 characters/mammoth/field/jump/up
   rotate: false
-  xy: 680, 54
+  xy: 885, 54
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 3
 characters/mammoth/field/ouch/up
   rotate: false
-  xy: 680, 54
+  xy: 885, 54
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 3
 characters/mammoth/field/cast/up
   rotate: false
-  xy: 721, 54
+  xy: 926, 54
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 4
 characters/mammoth/field/dead/up
   rotate: false
-  xy: 721, 54
+  xy: 926, 54
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 4
 characters/mammoth/field/jump/up
   rotate: false
-  xy: 721, 54
+  xy: 926, 54
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 4
 characters/mammoth/field/ouch/up
   rotate: false
-  xy: 721, 54
+  xy: 926, 54
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
