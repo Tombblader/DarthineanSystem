@@ -46,27 +46,113 @@ public class ActorSprite implements Serializable {
 
             for (Actor.Facing direction : Actor.Facing.values()) {
                 try {
-                    Array<Sprite> tempSprites;
-                    if (direction == Actor.Facing.LEFT) {
-                        tempSprites = GraphicsDriver.getMasterSheet().createSprites(masterSpriteSheet +
-                                        "/field/" +
-                                        field.toString().toLowerCase() +
-                                        "/right");
-                        for (Sprite s : tempSprites) {
-                            s.flip(true, false);
-                        }
+                    Array<Sprite> tempSprites;                    
+                    tempSprites = GraphicsDriver.getMasterSheet().createSprites(masterSpriteSheet +
+                                    "/field/" +
+                                    field.toString().toLowerCase() +
+                                    '/' + direction.toString().toLowerCase());
+                    switch (direction) {
+                        case LEFT_DOWN:
+                            if (tempAnimation.get(Actor.Facing.RIGHT_DOWN) != null) {
+                                tempSprites = GraphicsDriver.getMasterSheet().createSprites(masterSpriteSheet +
+                                    "/field/" +
+                                    field.toString().toLowerCase() +
+                                    "/right_down");
+                                for (Sprite s : tempSprites) {
+                                    s.flip(true, false);
+                                }
+                            }
+                            if (tempSprites.size != 0) {
+                                break;
+                            }
+                        case LEFT_UP:
+                            if (tempAnimation.get(Actor.Facing.RIGHT_UP) != null) {
+                                tempSprites = GraphicsDriver.getMasterSheet().createSprites(masterSpriteSheet +
+                                    "/field/" +
+                                    field.toString().toLowerCase() +
+                                    "/right_up");
+                                for (Sprite s : tempSprites) {
+                                    s.flip(true, false);
+                                }
+                            }
+                            if (tempSprites.size != 0) {
+                                break;
+                            }
+                        case LEFT:
+                            tempSprites = GraphicsDriver.getMasterSheet().createSprites(masterSpriteSheet +
+                                            "/field/" +
+                                            field.toString().toLowerCase() +
+                                            "/right");
+                            for (Sprite s : tempSprites) {
+                                 s.flip(true, false);
+                             }
+                             break;
+                        case RIGHT_DOWN:
+                            tempSprites = GraphicsDriver.getMasterSheet().createSprites(masterSpriteSheet +
+                                            "/field/" +
+                                            field.toString().toLowerCase() +
+                                            '/' + direction.toString().toLowerCase());
+                            if (tempSprites.size != 0) {
+                                break;
+                            }
+                        case RIGHT_UP:
+                            tempSprites = GraphicsDriver.getMasterSheet().createSprites(masterSpriteSheet +
+                                            "/field/" +
+                                            field.toString().toLowerCase() +
+                                            '/' + direction.toString().toLowerCase());
+                                System.out.println("Changability");
+                                System.out.println(tempSprites.size != 0);
+                            if (tempSprites.size != 0) {
+                                break;
+                            }
+                        case RIGHT:
+                            tempSprites = GraphicsDriver.getMasterSheet().createSprites(masterSpriteSheet +
+                                            "/field/" +
+                                            field.toString().toLowerCase() +
+                                            "/right");
+                            break;
+                        case UP:
+                        case DOWN:
+                            tempSprites = GraphicsDriver.getMasterSheet().createSprites(masterSpriteSheet +
+                                            "/field/" +
+                                            field.toString().toLowerCase() +
+                                            '/' + direction.toString().toLowerCase());
+                            break;
+                        default:
+                            throw new AssertionError(direction.name());
                         
-                    } else {
-                        tempSprites = GraphicsDriver.getMasterSheet().createSprites(masterSpriteSheet +
-                                        "/field/" +
-                                        field.toString().toLowerCase() +
-                                        '/' +
-                                        direction.toString().toLowerCase());
                     }
+
+//                    if (direction == Actor.Facing.LEFT) {
+//                        tempSprites = GraphicsDriver.getMasterSheet().createSprites(masterSpriteSheet +
+//                                        "/field/" +
+//                                        field.toString().toLowerCase() +
+//                                        "/right");
+//                        for (Sprite s : tempSprites) {
+//                            s.flip(true, false);
+//                        }                        
+//                    } else if (direction == Actor.Facing.UP || direction == Actor.Facing.DOWN) {
+//                        
+//                    } else if (GraphicsDriver.getMasterSheet().createSprites(masterSpriteSheet +
+//                                        "/field/" +
+//                                        field.toString().toLowerCase() +
+//                                        '/' +
+//                                        direction.toString().toLowerCase()) == null) {
+//                        
+//                    }
+//                    else {
+//                        tempSprites = GraphicsDriver.getMasterSheet().createSprites(masterSpriteSheet +
+//                                        "/field/" +
+//                                        field.toString().toLowerCase() +
+//                                        '/' +
+//                                        direction.toString().toLowerCase());
+//                    }
                     for (Sprite s : tempSprites) {
                         s.setOriginCenter();
                     }
-                    tempAnimation.put(direction, new Animation(DELAY, tempSprites, Animation.PlayMode.LOOP));
+                    if (tempSprites != null && tempSprites.size != 0) {
+                        tempAnimation.put(direction, new Animation(DELAY, tempSprites, Animation.PlayMode.LOOP));
+                    }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

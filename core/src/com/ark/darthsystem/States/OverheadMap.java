@@ -730,9 +730,6 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
     public void renderObject(MapObject object) {
         if (object instanceof TextureMapObject) {
             TextureMapObject textureObject = (TextureMapObject) object;
-            System.out.println("TILED");
-            System.out.println(textureObject.getX());
-            System.out.println(textureObject.getY());
             this.batch.draw(textureObject.getTextureRegion(),
                     textureObject.getX() / PlayerCamera.PIXELS_TO_METERS,
                     textureObject.getY() / PlayerCamera.PIXELS_TO_METERS,

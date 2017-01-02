@@ -40,10 +40,10 @@ public class Database {
     }
 
     public static ActorSkill Basic() {        
-        return new ActorSkill(GraphicsDriver.getMasterSheet().createSprites("items/equipment/sword/field/field").toArray(Sprite.class),
+        return new ActorSkill(GraphicsDriver.getMasterSheet().createSprites("items/equipment/spear/field/field").toArray(Sprite.class),
                 1,
                 1,
-                1f/24f,
+                1f/12f,
                 ActorSkill.Area.FRONT) {{setShape("thinthrust");}};
     }
     

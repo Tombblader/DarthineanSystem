@@ -39,7 +39,7 @@ public class Actor {
     private boolean isMovable = true;
     private boolean isRotate;
     private float lastX;
-    private int lastXFacing = 0;
+    private int lastXFacing = 1;
     private float lastY;
     private int lastYFacing = 0;
     private float speed;
@@ -51,6 +51,7 @@ public class Actor {
     private int currentLife;
     private int attack;
     private Item item;
+    private Facing xFacingBias = Facing.RIGHT;
 
     public Actor(Sprite img,
             float getX,
@@ -307,14 +308,17 @@ public class Actor {
         }
     }
     public void setFacing() {
-        if (lastXFacing < 0.0) {
-            facing = Facing.LEFT;
+        if (lastXFacing > 0) {
+            xFacingBias = Facing.RIGHT;
         }
-        else if (lastXFacing > 0.0) {
-            facing = Facing.RIGHT;
+        if (lastXFacing < 0) {
+            xFacingBias = Facing.LEFT;
         }
-        
-        
+        for (Facing f : Facing.values()) {
+            if (lastXFacing == f.getX() && lastYFacing == f.getY()) {
+                facing = f;
+            }
+        }
     }
     
     public void setMap(OverheadMap map) {
@@ -344,13 +348,14 @@ public class Actor {
     }
     public enum Facing {
         
+        RIGHT(1, 0, 0),
+        RIGHT_DOWN(1, 1, 45),
+        RIGHT_UP(1, -1, 360-45),
         LEFT(-1, 0, 180),
-//        LEFT_DOWN(-1, 1, 180-45),
-        RIGHT(1, 0, 0);
-//        RIGHT_DOWN(1, 1, 45),
-//        RIGHT_UP(1, 1, 0),
-//        UP(0, -1, 270),
-//        DOWN(0, 1, 90);
+        LEFT_DOWN(-1, 1, 180-45),
+        LEFT_UP(-1, -1, 180+45),
+        UP(0, -1, 270),
+        DOWN(0, 1, 90);
         
         float x, y;
         float rotate;
@@ -423,6 +428,10 @@ public class Actor {
     
     public void setItem(Item i) {
         item = i;
+    }
+    
+    public Facing getFacingBias() {
+        return xFacingBias;
     }
 
 }

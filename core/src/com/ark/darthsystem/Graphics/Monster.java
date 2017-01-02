@@ -31,8 +31,8 @@ public class Monster extends Player {
     
     public Monster(ActorSprite sprites, float getX, float getY) {
         super(Actor.TeamColor.YELLOW, sprites, getX, getY);
-        setMaxLife(10);
-        setCurrentLife(10);
+        setMaxLife(15);
+        setCurrentLife(15);
         setAttack(2);
         setShape("monster");
     }
@@ -179,9 +179,21 @@ public class Monster extends Player {
             if (!isAttacking()) {
                 setFieldState(ActorSprite.SpriteModeField.IDLE);
                 switch (getFacing()) {
-                    case RIGHT:
+                    case RIGHT_DOWN:
+                    case RIGHT_UP:
+                        if (getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.IDLE, getFacing()) != null) {
+                           changeAnimation(getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.IDLE, getFacing()));
+                            break;
+                        }
+                     case RIGHT:
                         changeAnimation(getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.IDLE, Actor.Facing.RIGHT));
                         break;
+                    case LEFT_DOWN:
+                    case LEFT_UP:
+                        if (getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.IDLE, getFacing()) != null) {
+                           changeAnimation(getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.IDLE, getFacing()));
+                            break;
+                        }
                     case LEFT:
                         changeAnimation(getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.IDLE, Actor.Facing.LEFT));
                         break;
