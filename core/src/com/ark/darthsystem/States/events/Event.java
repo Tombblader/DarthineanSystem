@@ -17,7 +17,6 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 public abstract class Event extends ActorCollision {
     private static int ID;
     public enum LocalSwitch {
-
         A,
         B,
         C,

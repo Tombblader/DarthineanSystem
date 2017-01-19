@@ -100,8 +100,6 @@ public class ActorSprite implements Serializable {
                                             "/field/" +
                                             field.toString().toLowerCase() +
                                             '/' + direction.toString().toLowerCase());
-                                System.out.println("Changability");
-                                System.out.println(tempSprites.size != 0);
                             if (tempSprites.size != 0) {
                                 break;
                             }
@@ -120,33 +118,9 @@ public class ActorSprite implements Serializable {
                             break;
                         default:
                             throw new AssertionError(direction.name());
-                        
                     }
 
-//                    if (direction == Actor.Facing.LEFT) {
-//                        tempSprites = GraphicsDriver.getMasterSheet().createSprites(masterSpriteSheet +
-//                                        "/field/" +
-//                                        field.toString().toLowerCase() +
-//                                        "/right");
-//                        for (Sprite s : tempSprites) {
-//                            s.flip(true, false);
-//                        }                        
-//                    } else if (direction == Actor.Facing.UP || direction == Actor.Facing.DOWN) {
-//                        
-//                    } else if (GraphicsDriver.getMasterSheet().createSprites(masterSpriteSheet +
-//                                        "/field/" +
-//                                        field.toString().toLowerCase() +
-//                                        '/' +
-//                                        direction.toString().toLowerCase()) == null) {
-//                        
-//                    }
-//                    else {
-//                        tempSprites = GraphicsDriver.getMasterSheet().createSprites(masterSpriteSheet +
-//                                        "/field/" +
-//                                        field.toString().toLowerCase() +
-//                                        '/' +
-//                                        direction.toString().toLowerCase());
-//                    }
+
                     for (Sprite s : tempSprites) {
                         s.setOriginCenter();
                     }
@@ -183,7 +157,6 @@ public class ActorSprite implements Serializable {
         IDLE,
         RUN,
         ATTACK,
-        CAST,
         ROLL,
         SKILL,
         OUCH,
