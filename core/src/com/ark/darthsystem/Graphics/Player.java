@@ -145,17 +145,21 @@ public class Player extends ActorCollision {
                     @Override
                     public void event(Actor a) {
                         canSkill = true;
-//                        fieldState = ActorSprite.SpriteModeField.IDLE;
                     }
                 });
                 setPause((tempSkill.getChargeTime() * 1000f));
+                addTimer(new GameTimer("Skill", getDelay() * 1000 * getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.ATTACK, getFacing()).getKeyFrames().length) {
+                    @Override
+                    public void event(Actor a) {
+                        attacking = false;
+                    }
+                });
                 addTimer(new GameTimer("Skill", tempSkill.getChargeTime() * 1000f) {
                     @Override
                     public void event(Actor a) {
                         tempSkill.playFieldSound();
                         fieldState = ActorSprite.SpriteModeField.SKILL;
                         setPause((tempSkill.getAnimationDelay() * 1000f));
-                        attacking = false;
                         tempSkill.setMap(getCurrentMap());
                     }
                     public boolean update(float delta) {
