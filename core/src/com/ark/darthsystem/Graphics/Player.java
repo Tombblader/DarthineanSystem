@@ -10,6 +10,7 @@ import com.ark.darthsystem.Database.DefaultMenu;
 import com.ark.darthsystem.Database.SkillDatabase;
 import com.ark.darthsystem.States.OverheadMap;
 import com.ark.darthsystem.GameOverException;
+import com.ark.darthsystem.Item;
 
 
 import com.badlogic.gdx.Gdx;
@@ -62,6 +63,10 @@ public class Player extends ActorCollision {
     private Input playerInput;
     private BitmapFont font;
     private TeamColor team;
+    private int maxLife;
+    private int currentLife;
+    private int attack;
+    private Item item;
 
     public Player(TeamColor color, ActorSprite sprite, float getX, float getY) {
         super(sprite, getX, getY, DELAY);
@@ -551,4 +556,57 @@ public class Player extends ActorCollision {
     public TeamColor getTeam() {
         return team;
     }
+    
+    public void setMaxLife(int newLife) {
+        maxLife = newLife;
+    }
+    
+    public int getMaxLife() {
+        return maxLife;
+    }
+    
+    public void reduceLife(int deltaLife) {
+        currentLife -= deltaLife;
+        if (currentLife < 0) {
+            currentLife = 0;
+        }
+        if (currentLife > maxLife) {
+            currentLife = maxLife;
+        }
+    }
+
+    public void increaseLife(int deltaLife) {
+        currentLife += deltaLife;
+        if (currentLife < 0) {
+            currentLife = 0;
+        }
+        if (currentLife > maxLife) {
+            currentLife = maxLife;
+        }
+    }
+    
+    public void setCurrentLife(int newLife) {
+        currentLife = newLife;
+    }
+    
+    public int getCurrentLife() {
+        return currentLife;
+    }
+
+    public void setAttack(int newAttack) {
+        attack = newAttack;
+    }
+    
+    public int getAttack() {
+        return attack;
+    }
+    
+    public Item getItem() {
+        return item;
+    }
+    
+    public void setItem(Item i) {
+        item = i;
+    }
+    
 }
