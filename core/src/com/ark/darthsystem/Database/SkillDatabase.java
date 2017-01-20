@@ -19,6 +19,6 @@ public class SkillDatabase {
             0,
             10f,
             10f,
-            1f/12f);
+            1f/6f);
 
 }

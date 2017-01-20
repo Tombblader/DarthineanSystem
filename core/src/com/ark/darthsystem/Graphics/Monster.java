@@ -126,15 +126,7 @@ public class Monster extends Player {
                 else {
                     setFieldState(ActorSprite.SpriteModeField.IDLE);                    
                 }
-                switch (getFacing()) {
-                    case RIGHT:
-                        changeDuringAnimation(getSpriteSheet().getFieldAnimation(getFieldState(), Actor.Facing.RIGHT));
-                        break;
-                    case LEFT:
-                        changeDuringAnimation(getSpriteSheet().getFieldAnimation(getFieldState(), Actor.Facing.LEFT));
-                        break;
-                    default:
-                }
+                applySprite();
                 setWalking(true);                
                 return super.update(delta, a);
             }
@@ -178,37 +170,31 @@ public class Monster extends Player {
             getMainBody().setLinearVelocity(0, 0);
             if (!isAttacking()) {
                 setFieldState(ActorSprite.SpriteModeField.IDLE);
-                switch (getFacing()) {
-                    case RIGHT_DOWN:
-                    case RIGHT_UP:
-                        if (getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.IDLE, getFacing()) != null) {
-                           changeAnimation(getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.IDLE, getFacing()));
-                            break;
-                        }
-                     case RIGHT:
-                        changeAnimation(getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.IDLE, Actor.Facing.RIGHT));
-                        break;
-                    case LEFT_DOWN:
-                    case LEFT_UP:
-                        if (getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.IDLE, getFacing()) != null) {
-                           changeAnimation(getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.IDLE, getFacing()));
-                            break;
-                        }
-                    case LEFT:
-                        changeAnimation(getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.IDLE, Actor.Facing.LEFT));
-                        break;
-                    default:
-                }
+                resetSprite();
+
+//                switch (getFacing()) {
+//                    case RIGHT_DOWN:
+//                    case RIGHT_UP:
+//                        if (getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.IDLE, getFacing()) != null) {
+//                           changeAnimation(getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.IDLE, getFacing()));
+//                            break;
+//                        }
+//                     case RIGHT:
+//                        changeAnimation(getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.IDLE, Actor.Facing.RIGHT));
+//                        break;
+//                    case LEFT_DOWN:
+//                    case LEFT_UP:
+//                        if (getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.IDLE, getFacing()) != null) {
+//                           changeAnimation(getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.IDLE, getFacing()));
+//                            break;
+//                        }
+//                    case LEFT:
+//                        changeAnimation(getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.IDLE, Actor.Facing.LEFT));
+//                        break;
+//                    default:
+//                }
             } else {
-                switch (getFacing()) {
-                    case RIGHT:
-                        changeDuringAnimation(getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.ATTACK, Actor.Facing.RIGHT));
-                        break;
-                    case LEFT:
-                        changeDuringAnimation(getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.ATTACK, Actor.Facing.LEFT));
-                        break;
-                    default:
-                }
+                applySprite();
             }
         }
         setWalking(false);
@@ -270,15 +256,17 @@ public class Monster extends Player {
         }
         setFacing();
         setFieldState(ActorSprite.SpriteModeField.RUN);
-        switch (getFacing()) {
-            case RIGHT:
-                changeDuringAnimation(getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.RUN, Actor.Facing.RIGHT));
-                break;
-            case LEFT:
-                changeDuringAnimation(getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.RUN, Actor.Facing.LEFT));
-                break;
-            default:
-        }
+        applySprite();
+
+//        switch (getFacing()) {
+//            case RIGHT:
+//                changeDuringAnimation(getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.RUN, Actor.Facing.RIGHT));
+//                break;
+//            case LEFT:
+//                changeDuringAnimation(getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.RUN, Actor.Facing.LEFT));
+//                break;
+//            default:
+//        }
         this.setWalking(true);
     }
     

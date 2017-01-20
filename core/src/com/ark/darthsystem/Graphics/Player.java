@@ -54,6 +54,7 @@ public class Player extends ActorCollision {
     private boolean canAttack = true;
     private boolean canSkill = true;
     private boolean attacking;
+    private boolean skilling;
     private boolean isDodging;
     private boolean canDodge = true;
     private boolean isWalking;
@@ -149,18 +150,27 @@ public class Player extends ActorCollision {
                     @Override
                     public void event(Actor a) {
                         canSkill = true;
-//                        fieldState = ActorSprite.SpriteModeField.IDLE;
                     }
                 });
                 setPause((tempSkill.getChargeTime() * 1000f));
+                addTimer(new GameTimer("Skill", getDelay() * 1000 * getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.ATTACK, getFacing()).getKeyFrames().length) {
+                    @Override
+                    public void event(Actor a) {
+                        attacking = false;
+                    }
+                });
                 addTimer(new GameTimer("Skill", tempSkill.getChargeTime() * 1000f) {
                     @Override
                     public void event(Actor a) {
                         tempSkill.playFieldSound();
-//                        fieldState = ActorSprite.SpriteModeField.SKILL;
+                        fieldState = ActorSprite.SpriteModeField.SKILL;
                         setPause((tempSkill.getAnimationDelay() * 1000f));
                         tempSkill.setMap(getCurrentMap());
-                        attacking = false;
+                    }
+                    public boolean update(float delta) {
+                        fieldState = ActorSprite.SpriteModeField.SKILL;
+                        attacking = true;
+                        return super.update(delta);
                     }
                 });
             }
@@ -290,7 +300,7 @@ public class Player extends ActorCollision {
     @Override
     public void update(float delta) {
         if (!isWalking) {
-            if (!attacking) {
+            if (!attacking && !skilling) {
                 fieldState = ActorSprite.SpriteModeField.IDLE;
             }
             if (getMainBody() != null) {
@@ -358,31 +368,7 @@ public class Player extends ActorCollision {
                     setMainFilter(mainFilter, (short)(ActorCollision.CATEGORY_WALLS | ActorCollision.CATEGORY_OBSTACLES | ActorCollision.CATEGORY_AI | ActorCollision.CATEGORY_RED | ActorCollision.CATEGORY_BLUE));
                     setSensorFilter(mainFilter, subFilter);
                     fieldState = ActorSprite.SpriteModeField.IDLE;
-                    switch (getFacing()) {
-                        case UP:
-                        case DOWN:
-                            changeAnimation(getSpriteSheet().getFieldAnimation(fieldState, Facing.valueOf(getFacingBias().toString() + "_" + getFacing().toString())));
-                            break;                        
-                        case RIGHT_DOWN:
-                        case RIGHT_UP:
-                            if (getSpriteSheet().getFieldAnimation(fieldState, getFacing()) != null) {
-                               changeAnimation(getSpriteSheet().getFieldAnimation(fieldState, getFacing()));
-                                break;
-                            }
-                         case RIGHT:
-                            changeAnimation(getSpriteSheet().getFieldAnimation(fieldState, Actor.Facing.RIGHT));
-                            break;
-                        case LEFT_DOWN:
-                        case LEFT_UP:
-                            if (getSpriteSheet().getFieldAnimation(fieldState, getFacing()) != null) {
-                               changeAnimation(getSpriteSheet().getFieldAnimation(fieldState, getFacing()));
-                                break;
-                            }
-                        case LEFT:
-                            changeAnimation(getSpriteSheet().getFieldAnimation(fieldState, Actor.Facing.LEFT));
-                            break;
-                        default:
-                    }
+                    resetSprite();
                     addTimer(new GameTimer("DODGE_DELAY", 2000) {
                         @Override
                         public void event(Actor a) {
@@ -425,6 +411,34 @@ public class Player extends ActorCollision {
             isDodging = true;
             fieldState = ActorSprite.SpriteModeField.ROLL;
             canAttack = false;
+        }
+    }
+    
+    protected void resetSprite() {
+        switch (getFacing()) {
+            case UP:
+            case DOWN:
+                changeAnimation(getSpriteSheet().getFieldAnimation(fieldState, Facing.valueOf(getFacingBias().toString() + "_" + getFacing().toString())));
+                break;                        
+            case RIGHT_DOWN:
+            case RIGHT_UP:
+                if (getSpriteSheet().getFieldAnimation(fieldState, getFacing()) != null) {
+                    changeAnimation(getSpriteSheet().getFieldAnimation(fieldState, getFacing()));
+                    break;
+                }
+            case RIGHT:
+                changeAnimation(getSpriteSheet().getFieldAnimation(fieldState, Actor.Facing.RIGHT));
+                break;
+            case LEFT_DOWN:
+            case LEFT_UP:
+                if (getSpriteSheet().getFieldAnimation(fieldState, getFacing()) != null) {
+                    changeAnimation(getSpriteSheet().getFieldAnimation(fieldState, getFacing()));
+                    break;
+                }
+            case LEFT:
+                changeAnimation(getSpriteSheet().getFieldAnimation(fieldState, Actor.Facing.LEFT));
+                break;
+            default:
         }
     }
     
@@ -486,11 +500,16 @@ public class Player extends ActorCollision {
         getSensorFixture().setFilterData(filter);
     }
     
-    private void applySprite() {
+    protected void applySprite() {
         switch (getFacing()) {
             case UP:
             case DOWN:
-                changeDuringAnimation(getSpriteSheet().getFieldAnimation(fieldState, Facing.valueOf(getFacingBias().toString() + "_" + getFacing().toString())));
+                if (getSpriteSheet().getFieldAnimation(fieldState, getFacing()) != null) {
+                   changeDuringAnimation(getSpriteSheet().getFieldAnimation(fieldState, getFacing()));
+                    break;
+                } else {
+                    changeDuringAnimation(getSpriteSheet().getFieldAnimation(fieldState, Facing.valueOf(getFacingBias().toString() + "_" + getFacing().toString())));
+                }
                 break;
             case RIGHT_DOWN:
             case RIGHT_UP:
