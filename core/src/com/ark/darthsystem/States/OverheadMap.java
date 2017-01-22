@@ -142,19 +142,19 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                 Fixture b = contact.getFixtureB();
                 if (a.isSensor() || b.isSensor()) {
                     if (a.getBody().getUserData() instanceof ActorSkill) {
-                        if (b.getBody().getUserData() instanceof Player && ((Player) (b.getBody().getUserData())).getCurrentLife() > 0 && !((Player) (b.getBody().getUserData())).isInvulnerable()) {
+                        if (b.getBody().getUserData() instanceof Player && ((Player) (b.getBody().getUserData())).getCurrentLife() > 0) {
                             renderCollision(b, a);
                         }
                     }
                     if (b.getBody().getUserData() instanceof ActorSkill) {
-                        if (a.getBody().getUserData() instanceof Player && ((Player) (a.getBody().getUserData())).getCurrentLife() > 0&& !((Player) (a.getBody().getUserData())).isInvulnerable()) {
+                        if (a.getBody().getUserData() instanceof Player && ((Player) (a.getBody().getUserData())).getCurrentLife() > 0) {
                             renderCollision(a, b);
                         }
                     }
-                    if (a.getBody().getUserData() instanceof Player && b.getBody().getUserData() instanceof Event && !((Event) b.getBody().getUserData()).isInvulnerable()) {
+                    if (a.getBody().getUserData() instanceof Player && b.getBody().getUserData() instanceof Event) {
                         renderEvent(a, b);
                     }
-                    if (a.getBody().getUserData() instanceof Event && b.getBody().getUserData() instanceof Player && !((Event) a.getBody().getUserData()).isInvulnerable()) {
+                    if (a.getBody().getUserData() instanceof Event && b.getBody().getUserData() instanceof Player) {
                         renderEvent(b, a);
                     }
                 }
@@ -166,8 +166,17 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
             }
 
             @Override
-            public void preSolve(Contact cntct, Manifold mnfld) {
-//                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            public void preSolve(Contact contact, Manifold mnfld) {
+                Actor a = (Actor) contact.getFixtureA().getBody().getUserData();
+                Actor b = (Actor) contact.getFixtureB().getBody().getUserData();
+                System.out.println("ACTOR A: " + a);
+                System.out.println("ACTOR B: " + b);
+                if ((a != null && b != null) && !(a instanceof Player && b instanceof Player) && (a.isInvulnerable() || b.isInvulnerable())) {
+                    contact.setEnabled(false);
+                }
+                if (((a != null && b != null) && (a instanceof Pickup && b instanceof Pickup) && (a.isInvulnerable() || b.isInvulnerable()))) {
+                    System.out.println("Item called");
+                }
             }
 
             @Override
@@ -195,7 +204,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                 if (tempActor1 instanceof Monster) {
 
                 } else {
-                    tempActor1.setInvulnerability(500);
+                    tempActor1.setInvulnerability(2000);
                     if (tempActor1.getItem() != null && tempActor1.getItem().getName().equalsIgnoreCase("Meat")) {
                         tempActor1.setItem(null);
                         createPickupFromActor(tempActor1);
@@ -245,8 +254,8 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
     
     private void createPickupFromActor(Actor a) {
         Event e = new Pickup((Sprite[]) GraphicsDriver.getMasterSheet().createSprites("items/meat/icon").toArray(Sprite.class), a.getX(), a.getY(), .1f, new Item("Meat"));
-        e.setInvulnerability(1000);
         e.setMap(this);
+        e.setInvulnerability(3000);
         e.setX(a.getX());
         e.setY(a.getY());
     }

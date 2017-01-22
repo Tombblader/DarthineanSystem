@@ -103,7 +103,7 @@ public class ActorSkill extends ActorCollision {
 
     public void generateBody(OverheadMap map) {
         super.generateBody(map);
-        getMainBody().setBullet(true);
+//        getMainBody().setBullet(true);
         currentX = 0;
         currentY = 0;
         Array<Joint> temp = new Array<>();
@@ -117,22 +117,25 @@ public class ActorSkill extends ActorCollision {
         switch (invoker.getTeam()) {
             case RED:
                 mainFilter = ActorCollision.CATEGORY_RED_SKILL;
+                filter.maskBits = (short) (ActorCollision.CATEGORY_WALLS | ActorCollision.CATEGORY_OBSTACLES | ActorCollision.CATEGORY_BLUE | ActorCollision.CATEGORY_AI);                
                 subFilter = (short) (ActorCollision.CATEGORY_BLUE | ActorCollision.CATEGORY_AI);
                 break;
             case BLUE:
                 mainFilter = ActorCollision.CATEGORY_BLUE_SKILL;
+                filter.maskBits = (short) (ActorCollision.CATEGORY_WALLS | ActorCollision.CATEGORY_OBSTACLES | ActorCollision.CATEGORY_RED | ActorCollision.CATEGORY_AI);
                 subFilter = (short) (ActorCollision.CATEGORY_RED | ActorCollision.CATEGORY_AI);
                 break;
             case YELLOW:
                 mainFilter = ActorCollision.CATEGORY_AI_SKILL;
+                filter.maskBits = (short) (ActorCollision.CATEGORY_WALLS | ActorCollision.CATEGORY_OBSTACLES | ActorCollision.CATEGORY_RED | ActorCollision.CATEGORY_BLUE);
                 subFilter = (short) (ActorCollision.CATEGORY_RED | ActorCollision.CATEGORY_BLUE);
                 break;
         }
 
         filter.categoryBits = mainFilter;
-        filter.maskBits = ActorCollision.CATEGORY_WALLS | ActorCollision.CATEGORY_OBSTACLES;
+//        filter.maskBits = ActorCollision.CATEGORY_WALLS | ActorCollision.CATEGORY_OBSTACLES;
         getMainFixture().setFilterData(filter);
-        filter.maskBits = subFilter;
+//        filter.maskBits = subFilter;
         getSensorFixture().setFilterData(filter);
 
 
