@@ -21,7 +21,7 @@ public class SystemDatabase {
     public static final HashMap<Battle.Element, Double> weakness = new HashMap<>();
     public static final HashMap<Battle.Stats, Double> statusVulnerability = new HashMap<>();
 
-    public static Skill[] Magic_Knight_Moveset = {CrossCall, Heal, Darth_Fireball, Feint_Sword_Tackle, Frozen_Miasama, Tornado_Spin, Terra_Wall, Sword_Dancer, Four_Fury, Corruption_Force_Wave};
+    public static Skill[] Magic_Knight_Moveset = {CrossCall, Heal, Darth_Fireball, Feint_Sword_Tackle, Frozen_Miasama, Tornado_Spin, Terra_Wall, Sword_Dancer, Four_Fury, Entropy};
     public static Skill[] Warrior_Moveset = {Red_Spin, Red_Flail, Feint_Sword_Tackle, Red_Slayer, Seal_Breaker};
     public static Skill[] Lancer_Moveset = {Leg_Sweep, Tiger_Thrust, Defense_Rush, Thunder_Thrust, Reign_of_Terror};
     public static Skill[] Weapon_Master_Moveset = {Poison_Edge, Ray_Assassin, Tiger_Thrust, Feint_Sword_Tackle, Weapon_Master};

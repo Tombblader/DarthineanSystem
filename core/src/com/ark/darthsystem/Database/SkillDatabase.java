@@ -766,8 +766,8 @@ public class SkillDatabase {
             0, 3,
             3, 0,
             5.0);
-    public static Skill Corruption_Force_Wave = new Skill(
-            "Corruption Force Wave",
+    public static Skill Entropy = new Skill(
+            "Entropy",
             35,
             7,
             Battle.Element.Dark,

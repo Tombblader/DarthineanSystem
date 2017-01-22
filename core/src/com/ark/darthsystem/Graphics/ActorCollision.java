@@ -102,22 +102,22 @@ public class ActorCollision extends Actor {
                     case UP:
                         degrees = 0;
                         break;
-                    case UP_LEFT:
+                    case LEFT_UP:
                         degrees = 315;
                         break;
-                    case UP_RIGHT:
+                    case RIGHT_UP:
                         degrees = 45;
                         break;
                     case RIGHT:
                         degrees = 90;
                         break;
-                    case DOWN_RIGHT:
+                    case RIGHT_DOWN:
                         degrees = 135;
                         break;
                     case DOWN:
                         degrees = 180;
                         break;
-                    case DOWN_LEFT:
+                    case LEFT_DOWN:
                         degrees = 225;
                         break;
                     case LEFT:

@@ -20,6 +20,7 @@ import com.badlogic.gdx.utils.Array;
  *
  */
 public class Actor {
+    
 
     private Animation animation;
     private Sprite currentImage;
@@ -33,7 +34,7 @@ public class Actor {
     private boolean isMovable = true;
     private boolean isRotate;
     private float lastX;
-    private int lastXFacing = 0;
+    private int lastXFacing = 1;
     private float lastY;
     private int lastYFacing = 0;
     private float speed;
@@ -41,6 +42,7 @@ public class Actor {
     private Array<GameTimer> timers = new Array<>();
     private float x;
     private float y;
+    private Facing xFacingBias = Facing.DOWN;
 
     public Actor(Sprite img,
             float getX,
@@ -52,7 +54,7 @@ public class Actor {
         isMovable = false;
         speed = 0;
         destroyAfterAnimation = false;
-        facing = Facing.NONE;
+        facing = Facing.RIGHT;
         isRotate = false;
     }
 
@@ -71,7 +73,7 @@ public class Actor {
         }
         speed = 0;
         destroyAfterAnimation = false;
-        facing = Facing.NONE;
+        facing = Facing.RIGHT;
         isRotate = false;
     }
 
@@ -101,7 +103,7 @@ public class Actor {
         speed = 0;
         this.delay = delay;
         destroyAfterAnimation = false;
-        facing = Facing.NONE;
+        facing = Facing.RIGHT;
         isRotate = false;
     }
 
@@ -125,9 +127,8 @@ public class Actor {
     }
     public void changeX(float getX) {
         lastX = x;
-        x += getX;
+        x += getX;        
         lastXFacing = x > lastX ? 1 : x == lastX ? 0 : -1;
-        
     }
     public void changeY(float getY) {
         lastY = y;
@@ -185,6 +186,7 @@ public class Actor {
         return currentImage.getRegionHeight();
     }
     public void setInvulnerability(int time) {
+        isInvulnerable = true;
         GameTimer tempTimer = new GameTimer("Invulnerable", time) {
             public void event(Actor a) {
                 a.isInvulnerable = false;
@@ -202,20 +204,20 @@ public class Actor {
         isRotate = getRotate;
     }
 
-    public float getLastX() {
-        return lastX;
-    }
-
     public float getLastXFacing() {
         return facing.getX();
     }
 
-    public float getLastY() {
-        return lastY;
+    public float getLastX() {
+        return lastX;
     }
 
     public float getLastYFacing() {
-        return facing.getY();
+        return lastYFacing;
+    }
+
+    public float getLastY() {
+        return lastY;
     }
 
 
@@ -241,7 +243,6 @@ public class Actor {
     public void setSpeed(float speed) {
         this.speed = speed;
     }
-
 
     public ActorSprite getSpriteSheet() {
         return sprite;
@@ -298,8 +299,21 @@ public class Actor {
         }
     }
     public void setFacing() {
+        if (lastXFacing > 0) {
+            xFacingBias = Facing.RIGHT;
+        }
+        if (lastXFacing < 0) {
+            xFacingBias = Facing.LEFT;
+        }
+        if (lastYFacing < 0) {
+            xFacingBias = Facing.UP;
+        }
+        if (lastYFacing > 0) {
+            xFacingBias = Facing.DOWN;
+        }
+
         for (Facing f : Facing.values()) {
-            if (lastXFacing == f.getX() && lastYFacing == f.getY() && f != Facing.NONE) {
+            if (lastXFacing == f.getX() && lastYFacing == f.getY()) {
                 facing = f;
             }
         }
@@ -307,7 +321,6 @@ public class Actor {
     
     public void setMap(OverheadMap map) {
         currentMap = map;
-//        currentMap.addActor(this);
         setX(x);
         setY(y);
     }
@@ -337,11 +350,10 @@ public class Actor {
         LEFT(-1, 0, 270),
         RIGHT(1, 0, 90),
         DOWN(0, 1, 180),
-        NONE(0, 0, 0),
-        DOWN_LEFT(-1, 1, 225),
-        DOWN_RIGHT(1, 1, 135),
-        UP_LEFT(-1, -1, 315),
-        UP_RIGHT(1, -1, 45);
+        LEFT_DOWN(-1, 1, 225),
+        RIGHT_DOWN(1, 1, 135),
+        LEFT_UP(-1, -1, 315),
+        RIGHT_UP(1, -1, 45);
         
         float x, y;
         float rotate;
@@ -363,6 +375,10 @@ public class Actor {
         public float getRotate() {
             return rotate;
         }
+    }
+    
+    public Facing getFacingBias() {
+        return xFacingBias;
     }
 
 }

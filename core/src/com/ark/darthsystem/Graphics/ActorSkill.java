@@ -176,8 +176,7 @@ public class ActorSkill extends ActorCollision {
             def.initialize(invoker.getMainBody(), getMainBody(), new Vector2(getX(), getY()));            
             joint = (WeldJoint) map.getPhysicsWorld().createJoint(def);
         } else if (translateX != 0) {
-            System.out.println("VELX" + (getFacing().getX() * 5f));
-            System.out.println("VELY" + (getFacing().getY() * 5f));
+
         }
         
     }
@@ -188,20 +187,6 @@ public class ActorSkill extends ActorCollision {
 
     public float getAnimationDelay() {
         return ((float) (originalFieldImage.length) * (this.getDelay())) + aftercastDelay;
-    }
-
-    public Actor getBattlerAnimation() {
-        return battlerAnimation;
-    }
-
-    public Actor getBattlerAnimation(float x, float y) {
-        battlerAnimation.setX(x);
-        battlerAnimation.setY(y);
-        return battlerAnimation;
-    }
-
-    public Sound getBattlerSound() {
-        return battlerSound;
     }
 
     public float getChargeTime() {
@@ -221,7 +206,7 @@ public class ActorSkill extends ActorCollision {
     }
 
     public float getRelY() {
-        return relX;
+        return relY;
     }
 
     public Skill getSkill() {
@@ -235,6 +220,19 @@ public class ActorSkill extends ActorCollision {
     public Skill getSkill(Player a) {
         invoker = a;
         return skill;
+    }
+    public Actor getBattlerAnimation() {
+        return battlerAnimation;
+    }
+
+    public Actor getBattlerAnimation(float x, float y) {
+        battlerAnimation.setX(x);
+        battlerAnimation.setY(y);
+        return battlerAnimation;
+    }
+
+    public Sound getBattlerSound() {
+        return battlerSound;
     }
 
     public void setX(ActorCollision a) {
@@ -351,4 +349,18 @@ public class ActorSkill extends ActorCollision {
         }
 
     }
+    public ActorSkill clone() {
+    return new ActorSkill(originalFieldImage,
+            originalBattlerImage,
+            relX,
+            relY,
+            translateX,
+            translateY,
+            this.getDelay(),
+            chargeTime,
+            skill,
+            area);
+    
+    }
+
 }
