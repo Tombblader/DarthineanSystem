@@ -6,7 +6,7 @@
 package com.ark.darthsystem.States;
 
 import com.ark.darthsystem.GameOverException;
-import com.ark.darthsystem.Graphics.Actor.TeamColor;
+import com.ark.darthsystem.Graphics.Player.TeamColor;
 import com.ark.darthsystem.Graphics.GraphicsDriver;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;

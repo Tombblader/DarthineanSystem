@@ -10,7 +10,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.ark.darthsystem.Graphics.GraphicsDriver;
 
 /**
- *
+ * The State is
  * @author Keven
  */
 public interface State {

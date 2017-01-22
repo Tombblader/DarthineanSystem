@@ -31,7 +31,7 @@ public class Pickup extends Event {
     }
 
     public void run(Actor a) {
-        if (a.getCurrentLife() > 0) {
+        if ((a instanceof Player) && ((Player) a).getCurrentLife() > 0) {
             ((Player) a).setItem(item);
             isFinished = true;
         } else {

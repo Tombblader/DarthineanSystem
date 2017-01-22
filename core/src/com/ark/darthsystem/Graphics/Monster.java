@@ -30,7 +30,7 @@ public class Monster extends Player {
     private Player closestPlayer = null;
     
     public Monster(ActorSprite sprites, float getX, float getY) {
-        super(Actor.TeamColor.YELLOW, sprites, getX, getY);
+        super(Player.TeamColor.YELLOW, sprites, getX, getY);
         setMaxLife(15);
         setCurrentLife(15);
         setAttack(2);

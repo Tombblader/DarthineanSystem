@@ -84,7 +84,7 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
     public static void newGame() {
         states = new Array<>();
         new Database();
-        Database.player = new Player(Actor.TeamColor.BLUE, Database.defaultRedSprite, 0, 0);
+        Database.player = new Player(Player.TeamColor.BLUE, Database.defaultRedSprite, 0, 0);
         new MapDatabase();
     }
 

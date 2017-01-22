@@ -68,6 +68,13 @@ public class Player extends ActorCollision {
     private int currentLife;
     private int attack;
     private Item item;
+    
+    
+    public enum TeamColor {
+        RED,
+        BLUE,
+        YELLOW        
+    }
 
     public Player(TeamColor color, ActorSprite sprite, float getX, float getY) {
         super(sprite, getX, getY, DELAY);

@@ -21,7 +21,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
  */
 public class Base extends Event {
 
-    TeamColor team;
+    Player.TeamColor team;
     
     public Base(Sprite[] img, float getX,
             float getY,

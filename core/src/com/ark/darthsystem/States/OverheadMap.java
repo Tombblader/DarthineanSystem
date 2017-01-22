@@ -5,7 +5,7 @@ import com.ark.darthsystem.Database.Database;
 import com.ark.darthsystem.Database.EventDatabase;
 import com.ark.darthsystem.Database.InterfaceDatabase;
 import com.ark.darthsystem.Graphics.Actor;
-import com.ark.darthsystem.Graphics.Actor.TeamColor;
+import com.ark.darthsystem.Graphics.Player.TeamColor;
 import com.ark.darthsystem.Graphics.Monster;
 import com.ark.darthsystem.Graphics.ActorCollision;
 import com.ark.darthsystem.Graphics.ActorSkill;
@@ -137,7 +137,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
         world.setContactListener(new ContactListener() {
 
             @Override
-            public void beginContact(Contact contact) {
+            public void beginContact(Contact contact) {    
                 Fixture a = contact.getFixtureA();
                 Fixture b = contact.getFixtureB();
                 if (a.isSensor() || b.isSensor()) {
@@ -245,7 +245,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
     
     private void createPickupFromActor(Actor a) {
         Event e = new Pickup((Sprite[]) GraphicsDriver.getMasterSheet().createSprites("items/meat/icon").toArray(Sprite.class), a.getX(), a.getY(), .1f, new Item("Meat"));
-        e.setInvulnerability(3000);
+        e.setInvulnerability(1000);
         e.setMap(this);
         e.setX(a.getX());
         e.setY(a.getY());
@@ -550,7 +550,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
             }
         }
         while (teamRed.size < TEAM_SIZE && teamRedCurrentLife > 0) {
-            teamRed.add(new Player(Actor.TeamColor.RED, Database.defaultRedSprite, BASE_RED_X, BASE_RED_Y));
+            teamRed.add(new Player(Player.TeamColor.RED, Database.defaultRedSprite, BASE_RED_X, BASE_RED_Y));
             teamRed.get(teamRed.size - 1).setPause(2000);
             teamRed.get(teamRed.size - 1).addTimer(new GameTimer("RESPAWN", 2000) {
                 @Override
@@ -561,7 +561,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
             });
         }
         while (teamBlue.size < TEAM_SIZE && teamBlueCurrentLife > 0) {
-            teamBlue.add(new Player(Actor.TeamColor.BLUE, Database.defaultRedSprite, BASE_BLUE_X, BASE_BLUE_Y));
+            teamBlue.add(new Player(Player.TeamColor.BLUE, Database.defaultRedSprite, BASE_BLUE_X, BASE_BLUE_Y));
             teamBlue.get(teamBlue.size - 1).addTimer(new GameTimer("RESPAWN", 2000) {
                 @Override
                 public void event(Actor a) {
@@ -807,9 +807,9 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
         s = (Sprite[]) GraphicsDriver.getMasterSheet().createSprites("event/hut").toArray(Sprite.class);
         (new Base(s, BASE_BLUE_X, BASE_BLUE_Y, 1/12f, TeamColor.BLUE)).setMap(this);
         for (int i = 0; i < TEAM_SIZE; i++) {
-            teamRed.add(new Player(Actor.TeamColor.RED, Database.defaultRedSprite, BASE_RED_X, BASE_RED_Y));
+            teamRed.add(new Player(Player.TeamColor.RED, Database.defaultRedSprite, BASE_RED_X, BASE_RED_Y));
             teamRed.get(i).setMap(this, BASE_RED_X, BASE_RED_Y);
-            teamBlue.add(new Player(Actor.TeamColor.BLUE, Database.defaultBlueSprite, BASE_BLUE_X, BASE_BLUE_Y));            
+            teamBlue.add(new Player(Player.TeamColor.BLUE, Database.defaultBlueSprite, BASE_BLUE_X, BASE_BLUE_Y));            
             teamBlue.get(i).setMap(this, BASE_BLUE_X, BASE_BLUE_Y);
         }
         teamYellow.add(new Monster(Database.defaultYellowSprite, 30, 17));
@@ -819,7 +819,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
         teamBlueCurrentLife = 15;
     }
     
-    public Array getTeam(Actor.TeamColor color) {
+    public Array getTeam(Player.TeamColor color) {
         switch (color) {
             case RED:
                 return teamRed;

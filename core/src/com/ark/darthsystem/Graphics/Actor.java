@@ -6,7 +6,6 @@
  */
 package com.ark.darthsystem.Graphics;
 
-import com.ark.darthsystem.Item;
 import com.ark.darthsystem.States.OverheadMap;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Animation.PlayMode;
@@ -22,11 +21,7 @@ import com.badlogic.gdx.utils.Array;
  */
 public class Actor {
     
-    public enum TeamColor {
-        RED,
-        BLUE,
-        YELLOW        
-    }
+
     private Animation animation;
     private Sprite currentImage;
     private OverheadMap currentMap;
@@ -47,10 +42,6 @@ public class Actor {
     private Array<GameTimer> timers = new Array<>();
     private float x;
     private float y;
-    private int maxLife;
-    private int currentLife;
-    private int attack;
-    private Item item;
     private Facing xFacingBias = Facing.RIGHT;
 
     public Actor(Sprite img,
@@ -377,57 +368,6 @@ public class Actor {
         public float getRotate() {
             return rotate;
         }
-    }
-    public void setMaxLife(int newLife) {
-        maxLife = newLife;
-    }
-    
-    public int getMaxLife() {
-        return maxLife;
-    }
-    
-    public void reduceLife(int deltaLife) {
-        currentLife -= deltaLife;
-        if (currentLife < 0) {
-            currentLife = 0;
-        }
-        if (currentLife > maxLife) {
-            currentLife = maxLife;
-        }
-    }
-
-    public void increaseLife(int deltaLife) {
-        currentLife += deltaLife;
-        if (currentLife < 0) {
-            currentLife = 0;
-        }
-        if (currentLife > maxLife) {
-            currentLife = maxLife;
-        }
-    }
-    
-    public void setCurrentLife(int newLife) {
-        currentLife = newLife;
-    }
-    
-    public int getCurrentLife() {
-        return currentLife;
-    }
-
-    public void setAttack(int newAttack) {
-        attack = newAttack;
-    }
-    
-    public int getAttack() {
-        return attack;
-    }
-    
-    public Item getItem() {
-        return item;
-    }
-    
-    public void setItem(Item i) {
-        item = i;
     }
     
     public Facing getFacingBias() {
