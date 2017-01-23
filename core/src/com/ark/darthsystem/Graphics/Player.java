@@ -499,6 +499,7 @@ public class Player extends ActorCollision {
         setX(getInitialX());
         setY(getInitialY());
         super.generateBody(map);
+        getSensorBody().setBullet(true);
         Filter filter = new Filter();
         short mainFilter = 0;
         short subFilter = 0;
