@@ -179,6 +179,14 @@ public class ActorSkill extends ActorCollision {
     public Sound getBattlerSound() {
         return battlerSound;
     }
+    
+    public Sound getFieldSound() {
+        return fieldSound;
+    }
+    
+    public void setFieldSound(Sound s) {
+        fieldSound = s;
+    }
 
     public float getChargeTime() {
         return chargeTime;
@@ -272,7 +280,11 @@ public class ActorSkill extends ActorCollision {
     }
     
     public ActorSkill clone() {
-        return new ActorSkill(originalFieldImage, relX, relX, translateX, translateY, aftercastDelay);
+        return new ActorSkill(originalFieldImage, relX, relX, translateX, translateY, aftercastDelay) {
+                {
+                    setFieldSound(fieldSound);
+                }
+            };
     }
 
     public enum Area {

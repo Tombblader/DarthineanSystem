@@ -100,6 +100,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
     private int teamBlueCurrentLife = 15;
     private Sprite circleUI;
     private Sprite[] lifeUI;
+    private Sprite barUI;
     public static final int BASE_RED_X = 3;
     public static final int BASE_RED_Y = 16;
     public static final int BASE_BLUE_X = 56;
@@ -168,8 +169,6 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
             public void preSolve(Contact contact, Manifold mnfld) {
                 Actor a = (Actor) contact.getFixtureA().getBody().getUserData();
                 Actor b = (Actor) contact.getFixtureB().getBody().getUserData();
-                System.out.println("ACTOR A: " + (a != null ? a.getClass() : a));
-                System.out.println("ACTOR B: " + (b != null ? b.getClass() : b) + "\n");
                 if (((a != null && b != null) && (a instanceof Pickup || b instanceof Pickup))) {
                     System.out.println("Item called");
                 }
@@ -248,13 +247,15 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
     private void buildUI() {
         final String UI_ROCK = "interface/rock";
         final String UI_LIFE = "interface/health_bar/health_bar";
+        final String UI_BAR = "interface/bar_ui";
         circleUI = GraphicsDriver.getMasterSheet().createSprite(UI_ROCK);
         circleUI.setOriginCenter();
         lifeUI = GraphicsDriver.getMasterSheet().createSprites(UI_LIFE).toArray(Sprite.class);
         for (Sprite s : lifeUI) {
             s.setOriginCenter();
         }
-        
+        barUI = GraphicsDriver.getMasterSheet().createSprite(UI_BAR);
+        barUI.setOriginCenter();
     }
     
     private void createPickupFromActor(Actor a) {
@@ -718,26 +719,33 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
     }
     
     public void renderUI(Batch batch) {
-        final float X1 = 0;
-        final float Y1 = GraphicsDriver.getHeight() - circleUI.getHeight() / 2;
-        final float X2 = GraphicsDriver.getWidth() - X1 - circleUI.getWidth() / 2;
+        final float X1 = 1;
+        final float Y1 = GraphicsDriver.getHeight() - circleUI.getHeight();
+        final float X2 = GraphicsDriver.getWidth() - X1 - circleUI.getWidth();
         final float Y2 = Y1;
-        batch.draw(circleUI, X1, Y1, circleUI.getOriginX(), circleUI.getOriginY());
-        batch.draw(circleUI, X2, Y2, circleUI.getOriginX(), circleUI.getOriginY());
-        final float X_PADDING = 30;
-        final float Y_PADDING = 50;
+        final float X3 = 0;
+        final float Y3 = GraphicsDriver.getHeight() - barUI.getHeight();
+        batch.draw(barUI, X3, Y3);
+        batch.draw(circleUI, X1, Y1);
+        batch.draw(circleUI, X2, Y2);
+        final float X_PADDING = 15;
+        final float Y_PADDING = 35;
         font.draw(batch, Integer.toString(teamRedCurrentLife), X1 + X_PADDING, Y1 + Y_PADDING);
         font.draw(batch, Integer.toString(teamBlueCurrentLife), X2 + X_PADDING, Y2 + Y_PADDING);
-        final float XDELTA = circleUI.getWidth() / 2;
+        final float XDELTA = circleUI.getWidth();
         for (int i = 0; i < teamRed.size; i++) {
-            batch.draw(lifeUI[teamRed.get(i).getCurrentLife()], X1 + XDELTA * (i + 1), Y1, 
-                    lifeUI[teamRed.get(i).getCurrentLife()].getOriginX(),
-                    lifeUI[teamRed.get(i).getCurrentLife()].getOriginY());
+            batch.draw(lifeUI[teamRed.get(i).getCurrentLife()], X1 + XDELTA * (i + 1), Y1
+                    //, 
+//                    lifeUI[teamRed.get(i).getCurrentLife()].getOriginX(),
+//                    lifeUI[teamRed.get(i).getCurrentLife()].getOriginY()
+            );
         }
         for (int i = 0; i < teamBlue.size; i++) {
-            batch.draw(lifeUI[teamBlue.get(i).getCurrentLife()], X2 - XDELTA * (i + 1), Y2,
-                    lifeUI[teamBlue.get(i).getCurrentLife()].getOriginX(),
-                    lifeUI[teamBlue.get(i).getCurrentLife()].getOriginY());
+            batch.draw(lifeUI[teamBlue.get(i).getCurrentLife()], X2 - XDELTA * (i + 1), Y2
+                    //,
+//                    lifeUI[teamBlue.get(i).getCurrentLife()].getOriginX(),
+//                    lifeUI[teamBlue.get(i).getCurrentLife()].getOriginY()
+            );
         }
     }
 

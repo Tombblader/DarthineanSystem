@@ -30,7 +30,16 @@ public class Database {
         defaultRedSprite = new ActorSprite("characters/flint_spear");
         defaultBlueSprite = new ActorSprite("characters/flint_spear");
         defaultYellowSprite = new ActorSprite("characters/mammoth");
+        defaultRedShadow = GraphicsDriver.getMasterSheet().createSprite("characters/flint_spear/field/shadow/right");
+        defaultBlueShadow = GraphicsDriver.getMasterSheet().createSprite("characters/flint_spear/field/shadow/right");
+        defaultYellowShadow = GraphicsDriver.getMasterSheet().createSprite("characters/mammoth/field/shadow/right");
     }
+    
+    public static Sprite defaultRedShadow = GraphicsDriver.getMasterSheet().createSprite("characters/flint_spear/field/shadow/right");
+    public static Sprite defaultBlueShadow = GraphicsDriver.getMasterSheet().createSprite("characters/flint_spear/field/shadow/right");
+    public static Sprite defaultYellowShadow = GraphicsDriver.getMasterSheet().createSprite("characters/mammoth/field/shadow/right");
+
+    
     public static Input createInputInstance() {
         return new Input();
     }
@@ -44,7 +53,10 @@ public class Database {
                 1,
                 1,
                 1f/12f,
-                ActorSkill.Area.FRONT) {{setShape("thinthrust");}};
+                ActorSkill.Area.FRONT) {{
+                    setShape("thinthrust");
+                    setFieldSound(SoundDatabase.fieldSpearSound);
+                }};
     }
     
     public static ActorSkill BasicMonster() {

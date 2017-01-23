@@ -8,6 +8,7 @@ package com.ark.darthsystem.Graphics;
 import com.ark.darthsystem.Database.Database;
 import com.ark.darthsystem.Database.DefaultMenu;
 import com.ark.darthsystem.Database.SkillDatabase;
+import com.ark.darthsystem.Database.SoundDatabase;
 import com.ark.darthsystem.States.OverheadMap;
 import com.ark.darthsystem.GameOverException;
 import com.ark.darthsystem.Item;
@@ -47,7 +48,6 @@ public class Player extends ActorCollision {
     private int switchSkill = Keys.E;
     private int charge = Keys.C;
     private int defendButton = Keys.X;
-//    private int confirmButton = Keys.ENTER;
     private int quitButton = Keys.ESCAPE;
     private int menuButton = Keys.ENTER;
     private int dodgeButton = Keys.V;
@@ -358,6 +358,20 @@ public class Player extends ActorCollision {
     }
     
     public void render(Batch batch) {
+        Sprite shadowImage = new Sprite(getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.SHADOW, Facing.RIGHT).getKeyFrames()[0]);
+        shadowImage.setOriginCenter();
+        batch.setColor(team == TeamColor.RED ? 1 : 0, 0, team == TeamColor.BLUE ? 1 : 0, 1);
+        batch.draw(shadowImage,
+                this.getX() - shadowImage.getOriginX(),
+                this.getY() - shadowImage.getOriginY(),
+                shadowImage.getOriginX(),
+                shadowImage.getOriginY(),
+                shadowImage.getWidth(),
+                shadowImage.getHeight(),
+                shadowImage.getScaleX() / GraphicsDriver.getCurrentCamera().getConversion(),
+                shadowImage.getScaleY() / GraphicsDriver.getCurrentCamera().getConversion(),
+                shadowImage.getRotation());
+        batch.setColor(Color.WHITE);
         super.render(batch);
     }
 
@@ -660,7 +674,7 @@ public class Player extends ActorCollision {
     public void ouch() {
         fieldState = ActorSprite.SpriteModeField.OUCH;
         setPause(100);
-        
+        SoundDatabase.ouchSound.play();
         addTimer(new GameTimer("OUCH", 100) {
             @Override
             public void event(Actor a) {

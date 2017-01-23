@@ -161,6 +161,7 @@ public class ActorSprite implements Serializable {
         SKILL,
         OUCH,
         DEAD,
+        SHADOW,
         CUSTOM;
     }
 }

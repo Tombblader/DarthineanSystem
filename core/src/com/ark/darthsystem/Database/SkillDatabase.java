@@ -19,6 +19,10 @@ public class SkillDatabase {
             0,
             10f,
             10f,
-            1f/6f);
+            1f/6f) {
+                {
+                    setFieldSound(SoundDatabase.fieldSpearSound);
+                }
+            };
 
 }

@@ -138,6 +138,18 @@ public class Monster extends Player {
 
     
     public void render(Batch batch) {
+        Sprite shadowImage = new Sprite(getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.SHADOW, Facing.RIGHT).getKeyFrames()[0]);
+        shadowImage.setOriginCenter();
+        batch.draw(shadowImage,
+                this.getX() - shadowImage.getOriginX(),
+                this.getY() - shadowImage.getOriginY(),
+                shadowImage.getOriginX(),
+                shadowImage.getOriginY(),
+                shadowImage.getWidth(),
+                shadowImage.getHeight(),
+                shadowImage.getScaleX() / GraphicsDriver.getCurrentCamera().getConversion(),
+                shadowImage.getScaleY() / GraphicsDriver.getCurrentCamera().getConversion(),
+                shadowImage.getRotation());
         Sprite currentImage = getCurrentImage();
         batch.draw(currentImage,
                 this.getX() - currentImage.getOriginX(),

@@ -14,8 +14,9 @@ import com.badlogic.gdx.audio.Sound;
  */
 public class SoundDatabase {
     public static Sound fieldSwordSound = Gdx.audio.newSound(Gdx.files.internal("sounds/slash.wav"));
+    public static Sound fieldSpearSound = Gdx.audio.newSound(Gdx.files.internal("sounds/spear.mp3"));
     public static Sound battlerSwordSound = Gdx.audio.newSound(Gdx.files.internal("sounds/slash.wav"));
-    public static Sound ouchSound = Gdx.audio.newSound(Gdx.files.internal("sounds/slash.wav"));
+    public static Sound ouchSound = Gdx.audio.newSound(Gdx.files.internal("sounds/ouch.mp3"));
     
     public static void dispose() {
         fieldSwordSound.dispose();
