@@ -161,27 +161,28 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
             }
 
             @Override
-            public void endContact(Contact cntct) {
-//                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            public void endContact(Contact contact) {
             }
 
             @Override
             public void preSolve(Contact contact, Manifold mnfld) {
                 Actor a = (Actor) contact.getFixtureA().getBody().getUserData();
                 Actor b = (Actor) contact.getFixtureB().getBody().getUserData();
-                System.out.println("ACTOR A: " + a);
-                System.out.println("ACTOR B: " + b);
+                System.out.println("ACTOR A: " + (a != null ? a.getClass() : a));
+                System.out.println("ACTOR B: " + (b != null ? b.getClass() : b) + "\n");
+                if (((a != null && b != null) && (a instanceof Pickup || b instanceof Pickup))) {
+                    System.out.println("Item called");
+                }
+
                 if ((a != null && b != null) && !(a instanceof Player && b instanceof Player) && (a.isInvulnerable() || b.isInvulnerable())) {
                     contact.setEnabled(false);
-                }
-                if (((a != null && b != null) && (a instanceof Pickup && b instanceof Pickup) && (a.isInvulnerable() || b.isInvulnerable()))) {
-                    System.out.println("Item called");
                 }
             }
 
             @Override
-            public void postSolve(Contact cntct, ContactImpulse ci) {
-//                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            public void postSolve(Contact contact, ContactImpulse ci) {
+
+                
             }
 
             private void renderCollision(Fixture a, Fixture b) {
@@ -210,6 +211,10 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                         createPickupFromActor(tempActor1);
                     }
                 }
+                if (((ActorSkill) (b.getBody().getUserData())).getTranslateX() != 0) {
+                    removeActor((ActorSkill) (b.getBody().getUserData()));
+                }
+                
             }
 
             private void renderEvent(Fixture a, Fixture b) {
@@ -254,6 +259,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
     
     private void createPickupFromActor(Actor a) {
         Event e = new Pickup((Sprite[]) GraphicsDriver.getMasterSheet().createSprites("items/meat/icon").toArray(Sprite.class), a.getX(), a.getY(), .1f, new Item("Meat"));
+        System.out.println("Pickup");
         e.setMap(this);
         e.setInvulnerability(3000);
         e.setX(a.getX());

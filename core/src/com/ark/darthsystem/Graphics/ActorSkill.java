@@ -103,7 +103,9 @@ public class ActorSkill extends ActorCollision {
 
     public void generateBody(OverheadMap map) {
         super.generateBody(map);
-//        getMainBody().setBullet(true);
+        getMainBody().setBullet(true);
+        this.getMainFixture().setSensor(false);
+        this.getSensorFixture().setSensor(false);
         currentX = 0;
         currentY = 0;
         Array<Joint> temp = new Array<>();
@@ -316,5 +318,9 @@ public class ActorSkill extends ActorCollision {
             return 0;
         }
 
+    }
+    
+    public float getTranslateX() {
+        return translateX;
     }
 }

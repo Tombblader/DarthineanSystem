@@ -16,8 +16,11 @@ import com.ark.darthsystem.Item;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Filter;
@@ -148,6 +151,16 @@ public class Player extends ActorCollision {
         if (currentSkill != null) {
             currentSkill.setInvoker(this);
             ActorSkill tempSkill = this.currentSkill.clone();
+            Array<Sprite> s = new Array<>();
+            if (getFacingBias() == Facing.LEFT) {
+                for (TextureRegion r : tempSkill.getCurrentAnimation().getKeyFrames()) {
+                    s.add(new Sprite(r));
+                    s.peek().flip(false, true);
+                }
+                Animation a = new Animation(tempSkill.getDelay(), s);
+                tempSkill.changeAnimation(a);
+                    
+            }
             tempSkill.setInvoker(this);
             tempSkill.setX(this);
             tempSkill.setY(this);            
@@ -171,7 +184,7 @@ public class Player extends ActorCollision {
                     public void event(Actor a) {
                         tempSkill.playFieldSound();
                         fieldState = ActorSprite.SpriteModeField.SKILL;
-                        setPause((tempSkill.getAnimationDelay() * 1000f));
+                        setPause(tempSkill.getTranslateX() == 0 ? tempSkill.getAnimationDelay() * 1000f : 400f);
                         tempSkill.setMap(getCurrentMap());
                     }
                     public boolean update(float delta) {
@@ -372,7 +385,7 @@ public class Player extends ActorCollision {
                             subFilter = (short) (ActorCollision.CATEGORY_RED_SKILL | ActorCollision.CATEGORY_BLUE_SKILL | ActorCollision.CATEGORY_EVENT);
                             break;
                     }
-                    setMainFilter(mainFilter, (short)(ActorCollision.CATEGORY_WALLS | ActorCollision.CATEGORY_OBSTACLES | ActorCollision.CATEGORY_AI | ActorCollision.CATEGORY_RED | ActorCollision.CATEGORY_BLUE));
+                    setMainFilter(mainFilter, (short)(ActorCollision.CATEGORY_WALLS | ActorCollision.CATEGORY_OBSTACLES | ActorCollision.CATEGORY_AI | ActorCollision.CATEGORY_RED | ActorCollision.CATEGORY_BLUE | subFilter));
                     setSensorFilter(mainFilter, subFilter);
                     fieldState = ActorSprite.SpriteModeField.IDLE;
                     resetSprite();
@@ -501,7 +514,7 @@ public class Player extends ActorCollision {
         }
 
         filter.categoryBits = mainFilter;
-        filter.maskBits = ActorCollision.CATEGORY_WALLS | ActorCollision.CATEGORY_OBSTACLES | ActorCollision.CATEGORY_AI | ActorCollision.CATEGORY_RED | ActorCollision.CATEGORY_BLUE;
+        filter.maskBits = (short) (ActorCollision.CATEGORY_WALLS | ActorCollision.CATEGORY_OBSTACLES | ActorCollision.CATEGORY_AI | ActorCollision.CATEGORY_RED | ActorCollision.CATEGORY_BLUE | subFilter);
         getMainFixture().setFilterData(filter);
         filter.maskBits = subFilter;
         getSensorFixture().setFilterData(filter);
@@ -633,6 +646,10 @@ public class Player extends ActorCollision {
     
     public void setItem(Item i) {
         item = i;
+    }
+    
+    public void ouch() {
+        
     }
     
 }

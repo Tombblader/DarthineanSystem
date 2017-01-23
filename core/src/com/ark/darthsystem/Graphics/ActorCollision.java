@@ -87,7 +87,7 @@ public class ActorCollision extends Actor {
         BodyDef genericBodyType = new BodyDef();
         genericBodyType.type = BodyDef.BodyType.DynamicBody;
         genericBodyType.fixedRotation = true;
-        genericBodyType.position.set(getX(), getY());
+        genericBodyType.position.set(getX(), getY());        
         FixtureDef fixtureDef = new FixtureDef();
         if (CollisionDatabaseLoader.getShapes() == null || CollisionDatabaseLoader.getShapes().isEmpty()
                 || (!MapDatabase.getMaps().containsKey("skillshapes") && map.getMap().getLayers().get("collisions") == null)) {
