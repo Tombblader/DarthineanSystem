@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="33" tilewidth="32" tileheight="32" nextobjectid="1">
- <imagelayer name="background" offsetx="101.675" offsety="140.972">
-  <image source="tilesets/grasslands/grass_map_background.png" width="1920" height="1056"/>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="33" tilewidth="32" tileheight="28" nextobjectid="1">
+ <imagelayer name="Background">
+  <image source="tilesets/grasslands/PineTree_Map2.0.png" width="1920" height="928"/>
  </imagelayer>
- <imagelayer name="trees" offsetx="120.514" offsety="138.477">
-  <image source="tilesets/grasslands/grass_map_trees.png" width="1920" height="1056"/>
+ <imagelayer name="Trees">
+  <image source="tilesets/grasslands/PineTree_Map2_Trees2.0.png" width="1920" height="928"/>
  </imagelayer>
 </map>
