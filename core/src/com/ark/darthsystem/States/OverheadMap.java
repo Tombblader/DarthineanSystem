@@ -626,7 +626,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                 case "SKILL":
                 case "CHARGE":
                 case "DODGE":
-                case "OUCH":
+//                case "OUCH":
                     t.event(tempPlayer);
                 case "ATTACK_CHARGE":
                     t.clear();

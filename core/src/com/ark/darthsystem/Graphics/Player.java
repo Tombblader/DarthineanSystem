@@ -98,7 +98,7 @@ public class Player extends ActorCollision {
         setControls();
         currentSkill = SkillDatabase.Spear_Throw;
         setShape("player");
-//        setDefaultFilter();
+//        setShadow("player");
         // playerInput = Database2.createInputInstance();
     }
     
@@ -166,10 +166,14 @@ public class Player extends ActorCollision {
             tempSkill.setY(this);            
             if (tempSkill != null) {
                 attacking = true;
-                addTimer(new GameTimer("Skill", 5000) {
+                addTimer(new GameTimer("Skill", 3000) {
                     @Override
                     public void event(Actor a) {
                         canSkill = true;
+                    }
+                    public boolean update(float delta, Actor a) {
+                        canSkill = false;
+                        return super.update(delta, a);
                     }
                 });
                 setPause((tempSkill.getChargeTime() * 1000f));
@@ -187,10 +191,10 @@ public class Player extends ActorCollision {
                         setPause(tempSkill.getTranslateX() == 0 ? tempSkill.getAnimationDelay() * 1000f : 400f);
                         tempSkill.setMap(getCurrentMap());
                     }
-                    public boolean update(float delta) {
+                    public boolean update(float delta, Actor a) {
                         fieldState = ActorSprite.SpriteModeField.SKILL;
                         attacking = true;
-                        return super.update(delta);
+                        return super.update(delta, a);
                     }
                 });
             }
@@ -514,13 +518,16 @@ public class Player extends ActorCollision {
         }
 
         filter.categoryBits = mainFilter;
-        filter.maskBits = (short) (ActorCollision.CATEGORY_WALLS | ActorCollision.CATEGORY_OBSTACLES | ActorCollision.CATEGORY_AI | ActorCollision.CATEGORY_RED | ActorCollision.CATEGORY_BLUE | subFilter);
+        filter.maskBits = (short) (ActorCollision.CATEGORY_WALLS | ActorCollision.CATEGORY_OBSTACLES | ActorCollision.CATEGORY_AI | ActorCollision.CATEGORY_RED | ActorCollision.CATEGORY_BLUE);
         getMainFixture().setFilterData(filter);
         filter.maskBits = subFilter;
         getSensorFixture().setFilterData(filter);
     }
     
     protected void applySprite() {
+        if (fieldState == ActorSprite.SpriteModeField.OUCH) {
+            System.out.println(fieldState);
+        }
         switch (getFacing()) {
             case UP:
             case DOWN:
@@ -612,6 +619,7 @@ public class Player extends ActorCollision {
         if (currentLife > maxLife) {
             currentLife = maxLife;
         }
+        ouch();
     }
 
     public void increaseLife(int deltaLife) {
@@ -649,6 +657,24 @@ public class Player extends ActorCollision {
     }
     
     public void ouch() {
+        fieldState = ActorSprite.SpriteModeField.OUCH;
+        setPause(100);
+        
+        addTimer(new GameTimer("OUCH", 100) {
+            @Override
+            public void event(Actor a) {
+                fieldState = ActorSprite.SpriteModeField.IDLE;
+            }
+            
+            @Override
+            public boolean update(float delta, Actor a) {
+                fieldState = ActorSprite.SpriteModeField.OUCH;
+                return super.update(delta, a);
+            }
+        });
+    }
+    
+    public void setShadow() {
         
     }
     
