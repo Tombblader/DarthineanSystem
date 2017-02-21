@@ -174,7 +174,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                                 Database1.inventory, null));
                     } else {
                         Action action = new Action(Battle.Command.Skill,
-                                tempSkill.getSkill(),
+                                tempSkill.getSkill().overrideCost(0),
                                 tempSkill.getInvoker()
                                 .getCurrentBattler().getBattler(),
                                 tempAI.getCurrentBattler().getBattler(),
@@ -219,7 +219,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                                         Database1.inventory, null));
                     } else {
                         Action action = new Action(Battle.Command.Skill,
-                                tempSkill.getSkill(),
+                                tempSkill.getSkill().overrideCost(0),
                                 tempSkill.getInvoker()
                                 .getCurrentBattler().getBattler(),
                                 tempPlayer.getCurrentBattler().getBattler(),
@@ -756,7 +756,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
     private void drawMessage(Batch batch) {
         final int PADDING_X = 15;
         final int PADDING_Y = 12;
-        final int MESSAGE_HEIGHT = GraphicsDriver.getHeight() / 6;
+        final int MESSAGE_HEIGHT = GraphicsDriver.getHeight() / 8;
         final float FONT_HEIGHT = GraphicsDriver.getFont().getLineHeight();
         
         InterfaceDatabase.TEXT_BOX.draw(batch, GraphicsDriver.getCamera().getScreenPositionX(), GraphicsDriver.getHeight() - MESSAGE_HEIGHT + GraphicsDriver.getCamera().getScreenPositionY(), GraphicsDriver.getWidth(), MESSAGE_HEIGHT);

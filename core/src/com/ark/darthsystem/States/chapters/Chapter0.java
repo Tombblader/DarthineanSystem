@@ -19,8 +19,8 @@ public class Chapter0 extends Novel {
         chapters.add(new Page() {
             @Override
             public void run() {
-                BattleDriver.printline(Database2.player.getBattler(0), ActorSprite.SpriteModeFace.NORMAL, "I am glad you answered our call.\nIt is quite dangerous, so I am going to pick you up.");
-                BattleDriver.printline(Database2.player.getBattler(0), ActorSprite.SpriteModeFace.NORMAL, "I think you are at the end of this dungeon.");
+                BattleDriver.printline(Database2.player.getBattler(0), ActorSprite.SpriteModeFace.NORMAL, "I'm glad you've answered our call.  It seems like the vessel you were going to use crashed around here somewhere.");
+                BattleDriver.printline(Database2.player.getBattler(0), ActorSprite.SpriteModeFace.NORMAL, "Your consciousness seemed to have separated from your vessel.  That isn't a good sign, but not to worry.  I will lead you to your body.");
             }
         });
         chapters.add(new Page() {

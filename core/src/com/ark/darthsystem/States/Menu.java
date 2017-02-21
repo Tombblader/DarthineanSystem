@@ -50,7 +50,7 @@ public abstract class Menu implements State {
     private BitmapFont font;
 
     public Menu(String header, String[] choices) {
-        this.MESSAGE_HEIGHT = GraphicsDriver.getHeight() / 6;
+        this.MESSAGE_HEIGHT = GraphicsDriver.getHeight() / 8;
         this.choices = choices;
         this.header = header;
         isPause = true;
@@ -71,7 +71,7 @@ public abstract class Menu implements State {
     }
 
     public Menu(String header, String[] choices, boolean pause, boolean mutable) {
-        this.MESSAGE_HEIGHT = GraphicsDriver.getHeight() / 6;
+        this.MESSAGE_HEIGHT = GraphicsDriver.getHeight() / 8;
         this.choices = choices;
         this.header = header;
         isPause = pause;
@@ -92,7 +92,7 @@ public abstract class Menu implements State {
     }
 
     public Menu(String[] choices) {
-        this.MESSAGE_HEIGHT = GraphicsDriver.getHeight() / 6;
+        this.MESSAGE_HEIGHT = GraphicsDriver.getHeight() / 8;
         this.choices = choices;
         header = "";
         isPause = true;

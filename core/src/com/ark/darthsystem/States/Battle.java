@@ -24,7 +24,6 @@ public class Battle implements State {
     private ArrayList<ActorBattler> partyActors;
     private ArrayList<ActorBattler> enemyActors;
     private ArrayList<Item> partyItems;
-//    private boolean inBattle = false;
     private ArrayList<Action> partyAction;
     private ArrayList<Action> enemyAction;
     private ArrayList<Action> allAction;
@@ -406,7 +405,6 @@ public class Battle implements State {
         GraphicsDriver.setCurrentCamera(GraphicsDriver.getCamera());
         updateTemporaryActors(delta);        
         if (animations.isEmpty()) {
-            System.out.println(state + ": Ticks" + state.getTicks() + " MaxTicks: " + state.getMaxTicks());
             switch (state) {
                 case START:
                     BattleDriver.printline("Battle Start!");
@@ -698,40 +696,40 @@ public class Battle implements State {
                                     temp,
                                     true,
                                     true) {
-                                        @Override
-                                        public Object confirm(String choice) {
-                                            final Skill getSkill = getSkillList.get(getCursorIndex());
-                                            final ArrayList<Battler> targetList = (ArrayList<Battler>) (getSkill. getAlly() ? b.getAlly() : b. getEnemy());
-                                            if (getSkill.getCost() <= caster.getMP()) {
-                                                if (!getSkill.getAll()) {
-                                                    String[] temp = new String[targetList.size()];
-                                                    for (int i = 0; i < temp.length; i++) {
-                                                        temp[i] = targetList.get(i).getName();
-                                                    }
-                                                    
-                                                    Menu targetMenu = new Menu("Target?", temp, true, true) {
-                                                        @Override
-                                                        public Object confirm(String choice) {
-                                                            b.getPartyActions().add(new Action(Command.Skill,
-                                                                    getSkill,
-                                                                    caster,
-                                                                    (targetList.get(this.getCursorIndex())),
-                                                                    targetList));
-                                                            return choice;
-                                                        }
-                                                    };
-                                                    GraphicsDriver.addMenu(targetMenu);
-                                                } else {
+                                @Override
+                                public Object confirm(String choice) {
+                                    final Skill getSkill = getSkillList.get(getCursorIndex());
+                                    final ArrayList<Battler> targetList = (ArrayList<Battler>) (getSkill. getAlly() ? b.getAlly() : b. getEnemy());
+                                    if (getSkill.getCost() <= caster.getMP()) {
+                                        if (!getSkill.getAll()) {
+                                            String[] temp = new String[targetList.size()];
+                                            for (int i = 0; i < temp.length; i++) {
+                                                temp[i] = targetList.get(i).getName();
+                                            }
+
+                                            Menu targetMenu = new Menu("Target?", temp, true, true) {
+                                                @Override
+                                                public Object confirm(String choice) {
                                                     b.getPartyActions().add(new Action(Command.Skill,
                                                             getSkill,
                                                             caster,
+                                                            (targetList.get(this.getCursorIndex())),
                                                             targetList));
+                                                    return choice;
                                                 }
-                                            } else {
-                                                cancel();
-                                            }
-                                            return null;
+                                            };
+                                            GraphicsDriver.addMenu(targetMenu);
+                                        } else {
+                                            b.getPartyActions().add(new Action(Command.Skill,
+                                                    getSkill,
+                                                    caster,
+                                                    targetList));
                                         }
+                                    } else {
+                                        cancel();
+                                    }
+                                    return null;
+                                }
                                     };
                             GraphicsDriver.addMenu(skillMenu);
                         } catch (Exception e) {
@@ -820,7 +818,6 @@ public class Battle implements State {
         public boolean update() {
             ticks++;
             if (ticks > maxTicks) {
-                System.out.println("Update Complete");
                 ticks = 0;
                 return true;
             }

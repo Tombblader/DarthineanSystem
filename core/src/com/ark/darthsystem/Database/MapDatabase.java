@@ -28,7 +28,7 @@ public class MapDatabase {
         new CollisionDatabaseLoader();
         setDefaultMap();
         Database2.ErikAI.setMap(maps.get("complex"), 200 / GraphicsDriver.getPlayerCamera().getConversion(), 200 / GraphicsDriver.getPlayerCamera().getConversion());
-        Database2.ProtoxAI.setMap(maps.get("complex"), 200 / GraphicsDriver.getPlayerCamera().getConversion(), 200 / GraphicsDriver.getPlayerCamera().getConversion());
+//        Database2.ProtoxAI.setMap(maps.get("complex"), 200 / GraphicsDriver.getPlayerCamera().getConversion(), 200 / GraphicsDriver.getPlayerCamera().getConversion());
     }
     
     public static HashMap<String, OverheadMap> getMaps() {
@@ -59,11 +59,6 @@ public class MapDatabase {
         }
         if (f.size > 0) {
             for (FileHandle file : f) {
-    //            String fileName = "";
-    //            while (file.isDirectory()) {
-    //                fileName += file.nameWithoutExtension();
-    //                 
-    //           }
                 if (file.extension().equalsIgnoreCase("tmx")) {
                     maps.put(file.nameWithoutExtension(), new OverheadMap(file.path()));
                 }
@@ -76,11 +71,6 @@ public class MapDatabase {
     private void initializeMapsAlt() {
         FileHandle[] f = Gdx.files.internal("maps").list(); //CANNOT LIST INSIDE JAR
         for (FileHandle file : f) {
-//            String fileName = "";
-//            while (file.isDirectory()) {
-//                fileName += file.nameWithoutExtension();
-//                 
-//           }
              if (file.extension().equalsIgnoreCase("tmx")) {
                 maps.put(file.nameWithoutExtension(), new OverheadMap(file.path()));
             }

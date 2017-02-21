@@ -16,6 +16,7 @@ import com.ark.darthsystem.States.Menu;
  * @author Keven
  */
 public class Chapter01 extends Novel {
+    int annoyance = 0;
     public Chapter01() {
         chapters.add(new Novel.Page() {
             @Override
@@ -43,6 +44,11 @@ public class Chapter01 extends Novel {
                 }
                 else {
                     pageIndex = -1;
+                    annoyance++;
+                    if (annoyance >= 5) {
+                        BattleDriver.printline(Database2.player.getBattler(0), ActorSprite.SpriteModeFace.ANGRY, "....I can't tell if you are slow or if you are simply messing around.");
+                        pageIndex = 1;
+                    }
                 }
             }
         });

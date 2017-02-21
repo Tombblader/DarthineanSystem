@@ -31,7 +31,7 @@ public class Database2 extends Database1 {
         Database2.SkillToActor = new HashMap<Skill, ActorSkill>() {
             {
                 put(SkillDatabase.CrossCall,
-                        new ActorSkill((Sprite[]) GraphicsDriver.getMasterSheet().createSprites("skills/wiccan_cross/field/wiccan_cross").toArray(Sprite.class),
+                        new ActorSkill(GraphicsDriver.getMasterSheet().createSprites("skills/wiccan_cross/field/wiccan_cross").toArray(Sprite.class),
                                 (Sprite[]) GraphicsDriver.getMasterSheet().createSprites("skills/crosscall/battler/crosscall").toArray(Sprite.class),
                                 1,
                                 1,
@@ -84,7 +84,7 @@ public class Database2 extends Database1 {
             null,
             0)),
             ErikSprite)};
-        Database2.ProtoxAI = new ActorAI(new ArrayList<>(Arrays.asList(new ActorBattler[]{new ActorBattler(new BattlerAI("Protox Toxorp", Database1.Protox, Scenario.Standard, 50, null, 0), DarthSprite)})), 500, 400);
+//        Database2.ProtoxAI = new ActorAI(new ArrayList<>(Arrays.asList(new ActorBattler[]{new ActorBattler(new BattlerAI("Protox Toxorp", Database1.Protox, Scenario.Standard, 50, null, 0), DarthSprite)})), 500, 400);
         BattlerAI temp = new BattlerAI(
             "Erik the Red",
             Erik,

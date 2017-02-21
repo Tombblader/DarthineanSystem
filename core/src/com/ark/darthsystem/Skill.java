@@ -152,6 +152,10 @@ public class Skill implements Serializable, Cloneable {
     public int getCost() {
         return cost;
     }
+    
+    public void setCost(int cost) {
+        this.cost = cost;
+    }
 
     /**
      *
@@ -164,6 +168,22 @@ public class Skill implements Serializable, Cloneable {
             newSkill = (Skill) (this.clone());
             newSkill.level = newLevel;
         } catch (Exception e) {
+        }
+        return newSkill;
+    }
+    
+    /**
+     *
+     * @param newLevel
+     * @return
+     */
+    public Skill overrideCost(int newCost) {
+        Skill newSkill = null;
+        try {
+            newSkill = (Skill) (this.clone());
+            newSkill.cost = newCost;
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return newSkill;
     }

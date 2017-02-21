@@ -159,7 +159,7 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
         }
     }
 
-    public static void setMessage(String header, Animation face, ArrayList<String> getMessage) {
+    public static void setMessage(String header, Animation<Sprite> face, ArrayList<String> getMessage) {
         if (!(getCurrentState() instanceof Message) 
                 && !(getCurrentState() instanceof OverheadMap)
                 ) {

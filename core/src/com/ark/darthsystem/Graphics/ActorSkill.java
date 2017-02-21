@@ -350,16 +350,16 @@ public class ActorSkill extends ActorCollision {
 
     }
     public ActorSkill clone() {
-    return new ActorSkill(originalFieldImage,
-            originalBattlerImage,
-            relX,
-            relY,
-            translateX,
-            translateY,
-            this.getDelay(),
-            chargeTime,
-            skill,
-            area);
+        return new ActorSkill(originalFieldImage,
+                originalBattlerImage,
+                relX,
+                relY,
+                translateX,
+                translateY,
+                this.getDelay(),
+                chargeTime,
+                skill,
+                area);
     
     }
 

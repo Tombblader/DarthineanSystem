@@ -6,12 +6,7 @@
 package com.ark.darthsystem;
 
 import com.ark.darthsystem.Graphics.GraphicsDriver;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Graphics;
-import com.badlogic.gdx.Graphics.DisplayMode;
-import com.badlogic.gdx.Graphics.Monitor;
 import com.badlogic.gdx.backends.lwjgl3.*;
-import com.badlogic.gdx.graphics.GL30;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 
 /**

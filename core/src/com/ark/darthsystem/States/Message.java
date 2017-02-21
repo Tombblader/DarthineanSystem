@@ -18,6 +18,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 
@@ -31,12 +32,11 @@ public class Message implements State {
     private String header = "";
     private boolean isPause;
     private final int CONFIRM_BUTTON = Keys.Z;
-    private boolean destroyOnExit;
     private ArrayList<String> currentMessage;
     private Message message;
     private LinkedList<Message> messageQueue;
     private BitmapFont font;
-    private Animation face = null;
+    private Animation<Sprite> face = null;
     private float elapsed = 0;
     private final float MESSAGE_SPEED = 30f;
     private int messageIndex = 0;
@@ -47,19 +47,18 @@ public class Message implements State {
     }
     
     public Message() {
-        this.MESSAGE_HEIGHT = GraphicsDriver.getHeight() / 6;
+        this.MESSAGE_HEIGHT = GraphicsDriver.getHeight() / 8;
         
     }
 
     public Message(ArrayList<String> getMessage) {
-        this.MESSAGE_HEIGHT = GraphicsDriver.getHeight() / 6;
+        this.MESSAGE_HEIGHT = GraphicsDriver.getHeight() / 8;
         messageQueue = new LinkedList<>();
         message = new Message();
         currentMessage = getMessage;
         messageQueue.add(this);
         message = messageQueue.remove();
         isPause = true;
-        destroyOnExit = false;
         FreeTypeFontGenerator gen = new FreeTypeFontGenerator(Gdx.files.internal("fonts/monofont.ttf"));
         FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
         parameter.size = 24;
@@ -76,7 +75,7 @@ public class Message implements State {
         this.face = header.getSprite().getFaceAnimation(ActorSprite.SpriteModeFace.NORMAL);
     }
     
-    public Message(String header, Animation face, ArrayList<String> message) {
+    public Message(String header, Animation<Sprite> face, ArrayList<String> message) {
         this(message);
         this.header = header;
         this.face = face;

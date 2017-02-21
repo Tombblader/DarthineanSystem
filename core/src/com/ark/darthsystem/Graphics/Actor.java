@@ -67,7 +67,7 @@ public class Actor {
         this.delay = delay;
         images = img;
         if (images != null) {
-            animation = new Animation(delay, img);
+            animation = new Animation<>(delay, img);
             animation.setPlayMode(PlayMode.LOOP);
             currentImage = (Sprite) animation.getKeyFrame(0);
         }
@@ -114,16 +114,16 @@ public class Actor {
     public boolean canMove() {
         return isMovable;
     }
-    public void changeAnimation(Animation a) {
+    public void changeAnimation(Animation<Sprite> a) {
         elapsed = 0;
         a.setFrameDuration(delay);
         animation = a;
         currentImage = (Sprite) a.getKeyFrame(0);
     }
-    public void changeDuringAnimation(Animation a) {
+    public void changeDuringAnimation(Animation<Sprite> a) {
         a.setFrameDuration(delay);
         animation = a;
-        currentImage = (Sprite) a.getKeyFrame(elapsed);
+        currentImage = (a.getKeyFrame(elapsed));
     }
     public void changeX(float getX) {
         lastX = x;
@@ -147,7 +147,7 @@ public class Actor {
     public void enableMovement() {
         isMovable = true;
     }
-    public Animation getCurrentAnimation() {
+    public Animation<Sprite> getCurrentAnimation() {
         return animation;
     }
     public Sprite getCurrentImage() {
@@ -294,7 +294,7 @@ public class Actor {
     public void resetAnimation() {
         if (images != null) {
             elapsed = 0;
-            animation = new Animation(delay, images);
+            animation = new Animation<>(delay, images);
             currentImage = (Sprite) animation.getKeyFrame(0);
         }
     }

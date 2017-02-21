@@ -13,6 +13,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.utils.Array;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.HashMap;
 
 /**
@@ -22,12 +23,12 @@ public class ActorSprite implements Serializable {
 
 
     private transient String masterSpriteSheet;
-    private transient HashMap<SpriteModeFace, Animation> spriteSheetFace = new HashMap<>();
-    private transient HashMap<SpriteModeBattler, Animation> spriteSheetBattler = new HashMap<>();
-    private transient HashMap<SpriteModeField, HashMap<Actor.Facing, Animation>> spriteSheetField = new HashMap<>();
-    private transient Animation currentFieldImage;
-    private transient Animation currentBattlerImage;
-    private transient Animation currentFaceImage;
+    private transient HashMap<SpriteModeFace, Animation<Sprite>> spriteSheetFace = new HashMap<>();
+    private transient HashMap<SpriteModeBattler, Animation<Sprite>> spriteSheetBattler = new HashMap<>();
+    private transient HashMap<SpriteModeField, HashMap<Actor.Facing, Animation<Sprite>>> spriteSheetField = new HashMap<SpriteModeField, HashMap<Actor.Facing, Animation<Sprite>>>();
+    private transient Animation<Sprite> currentFieldImage;
+    private transient Animation<Sprite> currentBattlerImage;
+    private transient Animation<Sprite> currentFaceImage;
 
     public ActorSprite(String imageName) {
         masterSpriteSheet = imageName;
@@ -48,7 +49,7 @@ public class ActorSprite implements Serializable {
     private void setupWalking() {
         final int DELAY = 10;
         for (SpriteModeField field : SpriteModeField.values()) {
-            HashMap<Actor.Facing, Animation> tempAnimation = new HashMap<>();
+            HashMap<Actor.Facing, Animation<Sprite>> tempAnimation = new HashMap<>();
 
             for (Actor.Facing direction : Actor.Facing.values()) {
                 try {
@@ -60,7 +61,7 @@ public class ActorSprite implements Serializable {
                     for (Sprite s : tempSprites) {
                         s.setOriginCenter();
                     }
-                    tempAnimation.put(direction, new Animation(DELAY, tempSprites, Animation.PlayMode.LOOP));
+                    tempAnimation.put(direction, new Animation<Sprite>(DELAY, tempSprites, Animation.PlayMode.LOOP));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -77,7 +78,7 @@ public class ActorSprite implements Serializable {
         for (SpriteModeFace face : SpriteModeFace.values()) {
             try {
                 spriteSheetFace.put(face,
-                        new Animation(DELAY,
+                        new Animation<>(DELAY,
                                 GraphicsDriver.getMasterSheet().
                                 createSprites(masterSpriteSheet +
                                         "/face/" +
@@ -94,7 +95,7 @@ public class ActorSprite implements Serializable {
         final int DELAY = 10;
         for (SpriteModeBattler battler : SpriteModeBattler.values()) {
             try {
-                spriteSheetBattler.put(battler, new Animation(DELAY, 
+                spriteSheetBattler.put(battler, new Animation<>(DELAY, 
                         GraphicsDriver.getMasterSheet().createSprites(masterSpriteSheet + 
                                 "/battler/" + 
                                 battler.toString().toLowerCase()),
@@ -107,7 +108,7 @@ public class ActorSprite implements Serializable {
     }
 
     public Animation getFieldAnimation(SpriteModeField field, Actor.Facing facing) {
-        return spriteSheetField.get(field).get(facing);
+        return (spriteSheetField.get(field)).get(facing);
     }
 
     public Animation getFaceAnimation(SpriteModeFace face) {

@@ -9,21 +9,21 @@ import com.ark.darthsystem.Battler;
 import com.ark.darthsystem.Database.Database2;
 import com.ark.darthsystem.Database.DefaultMenu;
 import com.ark.darthsystem.Database.InterfaceDatabase;
-import com.ark.darthsystem.Database.SkillDatabase;
+import com.ark.darthsystem.Database.SoundDatabase;
 import com.ark.darthsystem.Equipment;
 import com.ark.darthsystem.States.OverheadMap;
 import com.ark.darthsystem.GameOverException;
-import com.ark.darthsystem.Item;
 
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
-import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Filter;
 import com.badlogic.gdx.utils.Array;
 import java.util.ArrayList;
@@ -34,7 +34,7 @@ import java.util.Collections;
  * @author trankt1
  */
 public class Player extends ActorCollision {
-    private static final float SPEED = .6f;
+    private static final float SPEED = .4f;
     private static final float DELAY =  1f/12f;
 
     private int moveUp = Keys.UP;
@@ -128,19 +128,38 @@ public class Player extends ActorCollision {
 
     public ActorSkill getAttackAnimation() {
         ActorSkill temp = attackAnimation.clone();
+        if (getFacing().getX() == -1) {
+            Array<Sprite> s = new Array<>(Sprite.class);
+            for (TextureRegion r : temp.getCurrentAnimation().getKeyFrames()) {
+                s.add(new Sprite(r));
+                s.peek().flip(true, false);
+            }
+            Animation<Sprite> a = new Animation<>(temp.getDelay(), s);
+            temp.changeAnimation(a);
+        }
         temp.setInvoker(this);
         return temp;
     }
     public void skill() {
         if (currentSkill != null) {
             currentSkill.setInvoker(this);
-            ActorSkill tempSkill = this.currentSkill.clone();
-            tempSkill.setInvoker(this);
-            tempSkill.setX(this);
-            tempSkill.setY(this);            
-            if (tempSkill != null) {
+            ActorSkill tempSkill;
+            if (getCurrentBattler().activateCurrentSkill() != null) {
+                tempSkill = getCurrentBattler().getCurrentSkill().clone();
+                if (getFacing().getX() == -1) {
+                    Array<Sprite> s = new Array<>(Sprite.class);
+                    for (TextureRegion r : tempSkill.getCurrentAnimation().getKeyFrames()) {
+                        s.add(new Sprite(r));
+                        s.peek().flip(true, false);
+                    }
+                    Animation<Sprite> a = new Animation<>(tempSkill.getDelay(), s);
+                    tempSkill.changeAnimation(a);
+                }
+                tempSkill.setInvoker(this);
+                tempSkill.setX(this);
+                tempSkill.setY(this);
                 attacking = true;
-                addTimer(new GameTimer("Skill", 5000) {
+                addTimer(new GameTimer("Skill", tempSkill.getChargeTime()+tempSkill.getAftercastDelay() * 1000f) {
                     @Override
                     public void event(Actor a) {
                         canSkill = true;
@@ -283,7 +302,7 @@ public class Player extends ActorCollision {
             changeY(0);
             getMainBody().setLinearVelocity(getMainBody().getLinearVelocity().x, 0);
         }
-
+        
         if (Input.getKeyPressed(menuButton)) {
             GraphicsDriver.addMenu(new DefaultMenu());
         }
@@ -370,10 +389,10 @@ public class Player extends ActorCollision {
     }
     
     protected void resetSprite() {
-        if (getSpriteSheet().getFieldAnimation(fieldState, getFacingBias()) != null && getSpriteSheet().getFieldAnimation(fieldState, getFacingBias()).getKeyFrames().length > 0) {
-           changeAnimation(getSpriteSheet().getFieldAnimation(fieldState, getFacingBias()));
+        if (currentBattler.getSprite().getFieldAnimation(fieldState, getFacingBias()) != null && currentBattler.getSprite().getFieldAnimation(fieldState, getFacingBias()).getKeyFrames().length > 0) {
+           changeAnimation(currentBattler.getSprite().getFieldAnimation(fieldState, getFacingBias()));
         } else {
-            changeAnimation(getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.STAND, getFacingBias()));
+            changeAnimation(currentBattler.getSprite().getFieldAnimation(ActorSprite.SpriteModeField.STAND, getFacingBias()));
         }
 
     }
@@ -405,10 +424,13 @@ public class Player extends ActorCollision {
     }
     
     protected void applySprite() {
-        if (getSpriteSheet().getFieldAnimation(fieldState, getFacingBias()) != null && getSpriteSheet().getFieldAnimation(fieldState, getFacingBias()).getKeyFrames().length > 0) {
-           changeDuringAnimation(getSpriteSheet().getFieldAnimation(fieldState, getFacingBias()));
+        if (currentBattler.getSprite().getFieldAnimation(fieldState, getFacingBias()) != null && 
+                currentBattler.getSprite().getFieldAnimation(fieldState, getFacingBias())
+                        .getKeyFrames()
+                .length > 0) {
+            changeDuringAnimation(currentBattler.getSprite().getFieldAnimation(fieldState, getFacingBias()));
         } else {
-            changeDuringAnimation(getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.STAND, getFacingBias()));
+            changeDuringAnimation(currentBattler.getSprite().getFieldAnimation(ActorSprite.SpriteModeField.STAND, getFacingBias()));
         }
     }
     
@@ -448,6 +470,10 @@ public class Player extends ActorCollision {
             if (Input.getKeyPressed(switchSkill)) {
                 getCurrentBattler().changeSkill(1);
             }
+            if (Input.getKeyPressed(switchBattlerButton)) {
+                switchBattler();
+            }
+
             if (Input.getKeyPressed(attackButton) && canAttack) {
                 attack();
             }
@@ -579,5 +605,21 @@ public class Player extends ActorCollision {
             
         }); 
     }
-    
+    public void ouch() {
+        fieldState = ActorSprite.SpriteModeField.OUCH;
+        setPause(100);
+        SoundDatabase.ouchSound.play();
+        addTimer(new GameTimer("OUCH", 100) {
+            @Override
+            public void event(Actor a) {
+                fieldState = ActorSprite.SpriteModeField.STAND;
+            }
+            
+            @Override
+            public boolean update(float delta, Actor a) {
+                fieldState = ActorSprite.SpriteModeField.OUCH;
+                return super.update(delta, a);
+            }
+        });
+    }    
 }
