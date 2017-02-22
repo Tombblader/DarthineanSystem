@@ -206,7 +206,7 @@ public class Skill implements Serializable, Cloneable {
     public String changeStatus(Battler caster,
             Battler target,
             int turnCount) {
-        String message = "";
+        String message;
         if (target.getStatus().getPriority() < statusEffect.getPriority() &&
                 statusEffect.isSuccessful(caster, target) &&
                 !(getElement() == Battle.Element.Heal)) {
@@ -217,7 +217,7 @@ public class Skill implements Serializable, Cloneable {
             message = target.getName() +
                     (target.getStatus() == Battle.Stats.Death ? " has returned to life!\n" : "'s status has returned to normal!\n");
             if (statusEffect == Battle.Stats.Normal) {
-                message = target.getName() + statusEffect.getMessage() + "\n";
+                message = target.getName() + statusEffect.getMessage() + "";
             }
             target.changeStatus(Battle.Stats.Normal, turnCount);
         } else {

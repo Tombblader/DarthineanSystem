@@ -291,7 +291,9 @@ public class Action implements Serializable {
         String temp = ((actionSkill == null ||
                 actionSkill.getElement() != Battle.Element.Heal) ? target.getName() +
                         " took " + ((int) (getDamage * target.getDefend())) + " damage!" : "");
-        printline(temp);
+        if (!temp.equals("")) {
+            printline(temp);
+        }
         if (getDamage > 0) {
             if (b.getAlly().contains(target)) {
 //                GraphicsDriver.getPlayer().hasTakenDamage(target);

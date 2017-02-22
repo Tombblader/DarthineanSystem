@@ -5,7 +5,9 @@
  */
 package com.ark.darthsystem.Graphics;
 
+import com.ark.darthsystem.Action;
 import com.ark.darthsystem.Battler;
+import com.ark.darthsystem.Database.Database1;
 import com.ark.darthsystem.Database.Database2;
 import com.ark.darthsystem.Database.DefaultMenu;
 import com.ark.darthsystem.Database.InterfaceDatabase;
@@ -13,6 +15,7 @@ import com.ark.darthsystem.Database.SoundDatabase;
 import com.ark.darthsystem.Equipment;
 import com.ark.darthsystem.States.OverheadMap;
 import com.ark.darthsystem.GameOverException;
+import com.ark.darthsystem.States.Battle;
 
 
 import com.badlogic.gdx.Gdx;
@@ -42,7 +45,7 @@ public class Player extends ActorCollision {
     private int moveLeft = Keys.LEFT;
     private int moveRight = Keys.RIGHT;
 
-//    private int slowButton = Keys.SHIFT_LEFT;
+    private int slowButton = Keys.SHIFT_LEFT;
 
     private int attackButton = Keys.TAB;
     private int switchBattlerButton = Keys.A;
@@ -50,12 +53,10 @@ public class Player extends ActorCollision {
     private int switchSkill = Keys.E;
     private int charge = Keys.C;
     private int defendButton = Keys.X;
-    private int slowButton;
-    private int jumpButton;
 //    private int confirmButton = Keys.ENTER;
     private int quitButton = Keys.ESCAPE;
     private int menuButton = Keys.ENTER;
-    private int dodgeButton = Keys.V;
+    private int jumpButton = Keys.V;
 
     ActorSkill attackAnimation;
     private float speed = SPEED;
@@ -178,6 +179,15 @@ public class Player extends ActorCollision {
                         tempSkill.playFieldSound();
                         fieldState = ActorSprite.SpriteModeField.SKILL;
                         setPause((tempSkill.getAnimationDelay() * 1000f));
+                        if (tempSkill.getSkill().getAlly()) {
+                            Action action = new Action(Battle.Command.Skill,
+                                    tempSkill.getSkill().overrideCost(0),
+                                    tempSkill.getInvoker()
+                                    .getCurrentBattler().getBattler(),
+                                    tempSkill.getInvoker().getCurrentBattler().getBattler(),
+                                    getAllBattlers());
+                            action.calculateDamage(new Battle(tempSkill.getInvoker().getAllActorBattlers(), getAllActorBattlers(), Database1.inventory, null));
+                        }
                         tempSkill.setMap(getCurrentMap());
                     }
                     public boolean update(float delta) {
@@ -261,7 +271,7 @@ public class Player extends ActorCollision {
             setSpeed(getBaseSpeed() * 1.5f);
         }
         
-        if (Input.getKeyPressed(dodgeButton) && canDodge) {
+        if (Input.getKeyPressed(jumpButton) && canDodge) {
             jump();
         }
 
@@ -580,7 +590,7 @@ public class Player extends ActorCollision {
                     ((NAME_X + SUB_WIDTH * i) + GraphicsDriver.getCamera().getScreenPositionX()),
                     ((NAME_Y + FONT_SIZE * 2f) + GraphicsDriver.getCamera().getScreenPositionY()));
             GraphicsDriver.drawMessage(batch, font,
-                    getAllActorBattlers().get(i).currentSkill.getSkill().getName(),
+                    getAllActorBattlers().get(i).getCurrentSkill().getSkill().getName(),
                     ((NAME_X + SUB_WIDTH * i) + GraphicsDriver.getCamera().getScreenPositionX()),
                     ((NAME_Y + FONT_SIZE * 3f) + GraphicsDriver.getCamera().getScreenPositionY()));
         }

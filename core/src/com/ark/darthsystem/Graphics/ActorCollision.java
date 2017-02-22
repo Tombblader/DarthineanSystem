@@ -210,7 +210,7 @@ public class ActorCollision extends Actor {
     }
     public void setMap(OverheadMap map) {
         if (getCurrentMap() != null) {
-            Array<Body> temp = new Array<Body>();
+            Array<Body> temp = new Array<>();
             map.getPhysicsWorld().getBodies(temp);
             for (Body b : temp) {
                 if (b.getUserData() != null && b.getUserData().equals(this)) {

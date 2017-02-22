@@ -13,15 +13,14 @@ import java.util.ArrayList;
 
 /**
  * The ActorBattler encapsulates the Battler so it can interact with the map.
- *
- * @author trankt1
+ * @author Keven
  */
 public class ActorBattler {
 
-    Battler battler;
-    ActorSkill currentSkill;
-    ArrayList<ActorSkill> skillList = new ArrayList<>();
-    ActorSprite spriteSheet;
+    private Battler battler;
+    private ActorSkill currentSkill;
+    private ArrayList<ActorSkill> skillList = new ArrayList<>();
+    private ActorSprite spriteSheet;
 
     public ActorBattler(Battler b, ActorSprite s) {
         battler = b;

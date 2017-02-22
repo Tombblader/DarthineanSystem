@@ -64,8 +64,9 @@ public class Database2 extends Database1 {
                                 0,
                                 0,
                                 1.0f / 24.0f,
+                                1.0f,
                                 SkillDatabase.Heal,
-                                ActorSkill.Area.SELF));
+                                ActorSkill.Area.SELF_BENEFIT));
                 
 //                put(Leg_Sweep, new ActorSkill(new Sprite("com.ark.darthsystem/GraphicsPack/assets/WiccanCross.png", false).getImages(), 1, 0, 17, Database1.Leg_Sweep));
 //                put(Heal, new ActorSkill(new Sprite("com.ark.darthsystem/GraphicsPack/assets/WiccanCross.png", false).getImages(), 0, 0, 30, Database1.Heal, ActorSkill.Area.SELF));
