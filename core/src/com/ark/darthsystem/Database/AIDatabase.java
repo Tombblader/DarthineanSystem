@@ -23,8 +23,8 @@ public class AIDatabase {
 
     public static BattlerAI Eyesore =
             new BattlerAI("Eyesore", Battle.Element.Physical, Battler.Gender.Male, 1,
-            34, 0, 7, 4, 4, 7, null,
-            new Equipment[]{null, null, null, null, null}, Brainless,
+            34, 99, 7, 4, 4, 7, new Skill[]{AISkillDatabase.Eyebeam},
+            new Equipment[]{null, null, null, null, null}, Brainless_Skill,
             20, ItemDatabase.Potion, 1);
     public static BattlerAI Ghost =
             new BattlerAI("Ghost", Battle.Element.Dark, Battler.Gender.Male, 1,
