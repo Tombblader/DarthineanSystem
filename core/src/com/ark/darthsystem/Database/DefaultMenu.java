@@ -54,17 +54,10 @@ public class DefaultMenu extends Menu {
                                 for (int i = 0; i < temp.length; i++) {
                                     temp[i] = targetList.get(i).getName();
                                 }
-                                Menu menuTarget = new Menu("Target?",
-                                        temp,
-                                        true,
-                                        true) {
+                                Menu menuTarget = new Menu("Target?", temp, true, true) {
                                     @Override
                                     public Object confirm(String choice) {
-                                        (useItem.use(caster, targetList.get(getCursorIndex()),
-                                                targetList)).calculateDamage(new Battle(player.getAllActorBattlers(),
-                                                                player.getAllActorBattlers(),
-                                                                Database1.inventory,
-                                                                null));
+                                        useItem.use(caster, targetList.get(getCursorIndex()), targetList).calculateDamage(new Battle(player.getAllActorBattlers(), player.getAllActorBattlers(), Database1.inventory, null));
                                         return choice;
                                     }
                                 };
@@ -97,16 +90,11 @@ public class DefaultMenu extends Menu {
                     @Override
                     public Object confirm(String choice) {
                         final int sourceIndex = getCursorIndex();
-                        Menu menuTarget = new Menu("Target?",
-                                getPlayerList,
-                                true,
-                                true) {
+                        Menu menuTarget = new Menu("Target?", getPlayerList, true, true) {
                             @Override
                             public Object confirm(String choice) {
                                 if (Database2.player.getAllBattlers().get(getCursorIndex()).isAlive()) {
-                                    Collections.swap(Database2.player.getAllActorBattlers(),
-                                            sourceIndex,
-                                            getCursorIndex());
+                                    Collections.swap(Database2.player.getAllActorBattlers(), sourceIndex, getCursorIndex());
                                 } else {
                                     cancel();
                                 }

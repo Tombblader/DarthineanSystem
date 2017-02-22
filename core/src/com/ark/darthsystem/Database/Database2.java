@@ -25,6 +25,7 @@ public class Database2 extends Database1 {
     public static ActorAI ProtoxAI;
     public static ActorAI ErikAI;
     public static ArrayList<Event> events = new ArrayList<>();
+    private static ActorSprite Eyesore_Sprite;
 
     public Database2() {
         super();
@@ -76,6 +77,7 @@ public class Database2 extends Database1 {
         Database2.ErikSprite = new ActorSprite("characters/darth_invader");
         Database2.DarthSprite = new ActorSprite("characters/darth_invader");
         Database2.Water_Spirit_Sprite = new ActorSprite("characters/water_spirit");
+        Database2.Eyesore_Sprite = new ActorSprite("monsters/eyesore");
         Database2.enemies = new ActorBattler[]{new ActorBattler((new BattlerAI(
             "Erik the Red",
             Erik,
