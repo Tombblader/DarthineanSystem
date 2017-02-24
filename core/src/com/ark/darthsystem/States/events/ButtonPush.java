@@ -12,14 +12,14 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
  * @author Keven
  */
 public class ButtonPush extends Event {
-
+    Event event;
     public ButtonPush(Sprite[] img, float getX, float getY, float delay) {
         super(img, getX, getY, delay);
     }
 
     @Override
     public void run() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        event.run();
     }
     
 }

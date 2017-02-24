@@ -140,8 +140,17 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
             }
 
             @Override
-            public void endContact(Contact cntct) {
-//                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            public void endContact(Contact contact) {
+                Fixture a = contact.getFixtureA();
+                Fixture b = contact.getFixtureB();
+                if (a.isSensor() || b.isSensor()) {
+                    if (a.getBody().getUserData() instanceof Player && b.getBody().getUserData() instanceof Event) {
+                        endEvent(a, b);
+                    }
+                    if (a.getBody().getUserData() instanceof Event && b.getBody().getUserData() instanceof Player) {
+                        endEvent(b, a);
+                    }
+                }
             }
 
             @Override
@@ -159,90 +168,66 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                 a.getBody().setLinearVelocity(
                         ((Actor)(b.getBody().getUserData())).getFacing().getX() * a.getBody().getPosition().add(b.getBody().getPosition()).x * KNOCKBACK, 
                         ((Actor)(b.getBody().getUserData())).getFacing().getY() * a.getBody().getPosition().add(b.getBody().getPosition()).y * KNOCKBACK);
-                if (a.getBody().getUserData() instanceof ActorAI) {
-                    ActorAI tempAI = (ActorAI) a.getBody().getUserData();
-                    ActorSkill tempSkill = (ActorSkill) b.getBody().getUserData();
-
-                    if (tempSkill.getSkill() == null) {
-                        Action action = new Action(Battle.Command.Attack,
-                                tempSkill.getInvoker()
-                                .getCurrentBattler().getBattler(),
-                                tempAI.getCurrentBattler().getBattler(),
-                                tempAI.getAllBattlers());
-                        action.calculateDamage(new Battle(tempSkill.getInvoker().getAllActorBattlers(),
-                                        tempAI.getAllActorBattlers(),
-                                Database1.inventory, null));
-                    } else {
-                        Action action = new Action(Battle.Command.Skill,
-                                tempSkill.getSkill().overrideCost(0),
-                                tempSkill.getInvoker()
-                                .getCurrentBattler().getBattler(),
-                                tempAI.getCurrentBattler().getBattler(),
-                                tempAI.getAllBattlers());
-                        action.calculateDamage(new Battle(tempSkill.getInvoker().getAllActorBattlers(),
-                                        tempAI.getAllActorBattlers(),
-                                Database1.inventory, null));
-                    }
-                    if (tempAI.totalPartyKill()) {
-                        for (Battler battler : tempSkill.getInvoker().getAllBattlers()) {
-                            for (BattlerAI getBattlerAI : tempAI.getAllBattlerAI()) {
-                                battler.changeExperiencePoints(getBattlerAI.getExperienceValue());
-                            }
-                        }
-                        removeActor(tempAI);
-                    }
-
-                    //clear certain called events
-                    for (Actor actors :  actorList) {
-                        if (actors instanceof ActorSkill) {
-                            if (((ActorSkill)(actors)).getInvoker().equals(tempAI)) {
-                                removeActor(actors);
-                                ((ActorSkill)(actors)).stopFieldSound();
-                            }
-                        }
-                    }
-                    clearTempRunningTimers(tempAI);
-                    
+                Player tempActor = (Player) a.getBody().getUserData();
+                ActorSkill tempSkill = (ActorSkill) b.getBody().getUserData();
+                Action action;
+                if (tempSkill.getSkill() == null) {
+                    action = new Action(Battle.Command.Attack,
+                            tempSkill.getInvoker()
+                            .getCurrentBattler().getBattler(),
+                            tempActor.getCurrentBattler().getBattler(),
+                            tempActor.getAllBattlers());
+                } else {
+                    action = new Action(Battle.Command.Skill,
+                            tempSkill.getSkill().overrideCost(0),
+                            tempSkill.getInvoker()
+                            .getCurrentBattler().getBattler(),
+                            tempActor.getCurrentBattler().getBattler(),
+                            tempActor.getAllBattlers());
                 }
-                else {
-                    Player tempPlayer = (Player) a.getBody().getUserData();
-                    ActorSkill tempSkill = (ActorSkill) b.getBody().getUserData();
-                    if (tempSkill.getSkill() == null) {
-                        Action action = new Action(Battle.Command.Attack,
-                                tempSkill.getInvoker()
-                                .getCurrentBattler().getBattler(),
-                                tempPlayer.getCurrentBattler().getBattler(),
-                                tempPlayer.getAllBattlers());
-                        action.calculateDamage(new Battle(
-                                        tempPlayer.getAllActorBattlers(),
-                                        tempSkill.getInvoker().getAllActorBattlers(),
-                                        Database1.inventory, null));
-                    } else {
-                        Action action = new Action(Battle.Command.Skill,
-                                tempSkill.getSkill().overrideCost(0),
-                                tempSkill.getInvoker()
-                                .getCurrentBattler().getBattler(),
-                                tempPlayer.getCurrentBattler().getBattler(),
-                                tempPlayer.getAllBattlers());
-                        action.calculateDamage(new Battle(tempSkill.getInvoker().getAllActorBattlers(), tempPlayer.getAllActorBattlers(), Database1.inventory, null));
-                    }                                
-                    for (Actor actors : actorList) {
-                        if (actors instanceof ActorSkill) {
-                            if (((ActorSkill)(actors)).getInvoker().equals(tempPlayer)) {
-                                removeActor(actors);
-                                ((ActorSkill)(actors)).stopFieldSound();
-                            }
+                action.calculateDamage(new Battle(tempSkill.getInvoker().getAllActorBattlers(),
+                        tempActor.getAllActorBattlers(),
+                        Database1.inventory, null));
+                if (tempActor instanceof ActorAI && tempActor.totalPartyKill()) {
+                    for (Battler battler : tempSkill.getInvoker().getAllBattlers()) {
+                        for (BattlerAI getBattlerAI : ((ActorAI) (tempActor)).getAllBattlerAI()) {
+                            battler.changeExperiencePoints(getBattlerAI.getExperienceValue());
                         }
                     }
-                    clearTempRunningTimers(tempPlayer);
+                    removeActor(tempActor);
                 }
+
+                //clear certain called events
+                for (Actor actors :  actorList) {
+                    if (actors instanceof ActorSkill) {
+                        if (((ActorSkill)(actors)).getInvoker().equals(tempActor)) {
+                            removeActor(actors);
+                            ((ActorSkill)(actors)).stopFieldSound();
+                        }
+                    }
+                }
+                clearTempRunningTimers(tempActor);
             }
 
             private void renderEvent(Fixture a, Fixture b) {
                 Event tempEvent = (Event) b.getBody().getUserData();
+                Player tempPlayer = (Player) a.getBody().getUserData();
+                
                 if (tempEvent.isTriggered(Event.TriggerMethod.TOUCH)) {
                     tempEvent.run();
                 }
+                if (tempEvent.isTriggered(Event.TriggerMethod.PRESS)) {
+                    tempPlayer.addButtonEvent(tempEvent);
+                }
+            }
+            
+            private void endEvent(Fixture a, Fixture b) {
+                Event tempEvent = (Event) b.getBody().getUserData();
+                Player tempPlayer = (Player) a.getBody().getUserData();
+                if (tempEvent.isTriggered(Event.TriggerMethod.PRESS)) {
+                    tempPlayer.removeButtonEvent(tempEvent);
+                }
+                
             }
             
         });

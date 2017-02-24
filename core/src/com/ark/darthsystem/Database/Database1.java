@@ -81,7 +81,7 @@ public class Database1 implements Serializable {
                     Battler.Gender.Female,
                     1,
                     32, 15,
-                    7, 5, 5, 5, Water_Spirit_Moveset, Water_Spirit_Equipment);
+                    7, 3, 4, 5, Water_Spirit_Moveset, Water_Spirit_Equipment);
 
             Water_Spirit = new Battler("???",
                     Battle.Element.Water,

@@ -78,7 +78,13 @@ public class Database2 extends Database1 {
         Database2.ErikSprite = new ActorSprite("characters/darth_invader");
         Database2.DarthSprite = new ActorSprite("characters/darth_invader");
         Database2.Water_Spirit_Sprite = new ActorSprite("characters/water_spirit");
+        Database2.Fire_Spirit_Sprite = new ActorSprite("characters/fire_spirit");
+        
         Database2.Eyesore_Sprite = new ActorSprite("monsters/eyesore");
+
+        Database2.Fire_Spirit_Actor = new ActorBattler(Fire_Spirit, Fire_Spirit_Sprite);
+        
+        
         Database2.enemies = new ActorBattler[]{new ActorBattler((new BattlerAI(
             "Erik the Red",
             Erik,
@@ -101,7 +107,7 @@ public class Database2 extends Database1 {
         ErikAI = new ActorAI(ErikAIParty, 500, 500);
         Database2.battlers = new ActorBattler[]{
             new ActorBattler(Water_Spirit, Water_Spirit_Sprite)
-            , new ActorBattler(Darth, DarthSprite) 
+//            , new ActorBattler(Darth, DarthSprite) 
 //                , new ActorBattler(Erik, ErikSprite)
         };
         player = new Player(new ArrayList<>(Arrays.asList(battlers)), 0, 0);
@@ -112,7 +118,10 @@ public class Database2 extends Database1 {
     public static ActorSprite DarthSprite;
     public static ActorSprite ErikSprite;
     public static ActorSprite Water_Spirit_Sprite;
+    public static ActorSprite Fire_Spirit_Sprite;
 
+    public static ActorBattler Fire_Spirit_Actor;
+    
 //    public static ActorAI DarthQuestionMark;
     public static ActorBattler[] battlers;
     public static ActorBattler[] enemies;
