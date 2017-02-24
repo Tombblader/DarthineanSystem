@@ -16,6 +16,7 @@ import com.ark.darthsystem.Equipment;
 import com.ark.darthsystem.States.OverheadMap;
 import com.ark.darthsystem.GameOverException;
 import com.ark.darthsystem.States.Battle;
+import com.ark.darthsystem.States.events.Event;
 
 
 import com.badlogic.gdx.Gdx;
@@ -27,6 +28,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Filter;
 import com.badlogic.gdx.utils.Array;
 import java.util.ArrayList;
@@ -73,6 +75,7 @@ public class Player extends ActorCollision {
     private Input playerInput;
     private BitmapFont font;
     private ActorBattler currentBattler;
+    private Array<Event> eventQueue = new Array<>();
     
 //    private boolean isJumping;
     private ArrayList<ActorBattler> party = new ArrayList<>();
@@ -615,6 +618,26 @@ public class Player extends ActorCollision {
             
         }); 
     }
+    
+    public void addButtonEvent(Event e) {
+        eventQueue.add(e);
+    }
+    
+    public void removeButtonEvent(Event e) {
+        eventQueue.removeValue(e, true);        
+    }
+    
+    public Event getClosestButtonEvent() {
+        Event temp = eventQueue.size != 0 ? eventQueue.get(0) : null;
+        for (Event e : eventQueue) {
+            if (Math.pow(e.getX() - getX(), 2) + Math.pow(e.getY() - getY(), 2) <
+                    Math.pow(temp.getX() - getX(), 2) + Math.pow(temp.getY() - getY(), 2)) {
+                temp = e;
+            }
+        }
+        return temp;
+    }
+    
     public void ouch() {
         fieldState = ActorSprite.SpriteModeField.OUCH;
         setPause(100);
