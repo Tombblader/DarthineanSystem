@@ -24,6 +24,7 @@ import com.ark.darthsystem.States.events.Teleport;
 
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObject;
@@ -412,20 +413,24 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
         MapProperties prop = object.getProperties();
         Event e = null;
         String[] parameters;
+        Sprite[] image;
         switch (Integer.parseInt(prop.get("eventID").toString())) {
             case 0:
                 break;
             case 1: //NovelMode
                 parameters = prop.get("parameters", String.class).split(",* ");
+                image = GraphicsDriver.getMasterSheet().createSprites(prop.get("image", String.class)).toArray(Sprite.class);
+//                System.out.println("IMAGE" + image.length + prop.get("image"));
                 e = new NovelMode(EventDatabase.chapters(parameters),
-                        null,
+                        image.length > 0 ? image : null,
                         prop.get("x", Float.class),
                         prop.get("y", Float.class),
                         6/60f);
                 break;
             case 2: //Teleport
                 parameters = prop.get("parameters", String.class).split(",* ");
-                e = new Teleport(null,
+                image = GraphicsDriver.getMasterSheet().createSprites(prop.get("image", String.class)).toArray(Sprite.class);
+                e = new Teleport(image.length > 0 ? image : null,
                         prop.get("x", Float.class),
                         prop.get("y", Float.class),
                         6/60f,

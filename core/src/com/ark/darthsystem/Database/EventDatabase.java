@@ -26,6 +26,8 @@ public class EventDatabase {
             case "chapter01":
                 event = new Chapter01();
                 break;
+            case "chapter1":
+                event = new Chapter1();
         }
         return event;
     };

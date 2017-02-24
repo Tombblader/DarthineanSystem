@@ -119,7 +119,8 @@ public class Actor {
         a.setFrameDuration(delay);
         animation = a;
         currentImage = (Sprite) a.getKeyFrame(0);
-    }
+    }    
+        
     public void changeDuringAnimation(Animation<Sprite> a) {
         a.setFrameDuration(delay);
         animation = a;

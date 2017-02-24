@@ -226,6 +226,7 @@ public class Player extends ActorCollision {
             animation.setY(this);
             setPause((int)((this.getDelay() * (this.getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.ATTACK, getFacing()).getKeyFrames().length - 1f)) * 1000f));
             addTimer(new GameTimer("Attack_Charge", this.getDelay() * getAttackAnimation().getChargeTime() * 1000f) {
+                @Override
                 public void event(Actor a) {
                     animation.playFieldSound();
                     animation.setFacing();

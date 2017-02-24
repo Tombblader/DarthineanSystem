@@ -70,7 +70,7 @@
     <property name="collision" value="TRUE"/>
     <property name="collisionType" value="wall"/>
     <property name="eventID" value="2"/>
-    <property name="parameters" value="complex, 10, 8"/>
+    <property name="parameters" value="testRoom, 17, 22"/>
    </properties>
   </object>
   <object id="8" name="collisionWater" type="wall" x="0" y="0" width="1024" height="64"/>
