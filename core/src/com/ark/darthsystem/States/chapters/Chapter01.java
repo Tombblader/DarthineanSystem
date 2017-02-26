@@ -9,7 +9,6 @@ import com.ark.darthsystem.BattleDriver;
 import com.ark.darthsystem.Database.Database2;
 import com.ark.darthsystem.Graphics.ActorSprite;
 import com.ark.darthsystem.Graphics.GraphicsDriver;
-import com.ark.darthsystem.States.Menu;
 
 /**
  *
