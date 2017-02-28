@@ -84,7 +84,7 @@ public abstract class Novel implements State {
             return choice;
         }
     }
-    public abstract class Page {
+    public interface Page {
         public abstract void run();
     }
     public abstract class TickEvent {
@@ -107,6 +107,10 @@ public abstract class Novel implements State {
         public String getName() {
             return name;
         }
+    }
+    
+    public boolean isFinished() {
+        return true;
     }
 
 }

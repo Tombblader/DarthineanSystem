@@ -250,7 +250,7 @@ public class ActorSkill extends ActorCollision {
         if (area != Area.SELF) {
             super.setX((relX + (a.getWidth() / 4 / (a.getFacing().y != 0 ? (float) Math.sqrt(2.0) : 1)) / PlayerCamera.PIXELS_TO_METERS) * a.getFacing().getX() + a.getMainBody().getPosition().x);
         } else {
-            super.setX((relX) + a.getMainBody().getPosition().x);
+            super.setX( a.getMainBody().getPosition().x);
         }
     }
 
@@ -259,7 +259,7 @@ public class ActorSkill extends ActorCollision {
         if (area != Area.SELF) {
             super.setY((relY + (a.getHeight() / 4 / (a.getFacing().x != 0 ? (float) Math.sqrt(2.0) : 1)) / PlayerCamera.PIXELS_TO_METERS) * a.getFacing().getY() + a.getMainBody().getPosition().y);
         } else {
-            super.setY((relY) + a.getMainBody().getPosition().y);
+            super.setY( a.getMainBody().getPosition().y);
         }
     }
 

@@ -420,11 +420,12 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
             case 1: //NovelMode
                 parameters = prop.get("parameters", String.class).split(",* ");
                 image = GraphicsDriver.getMasterSheet().createSprites(prop.get("image", String.class)).toArray(Sprite.class);
-//                System.out.println("IMAGE" + image.length + prop.get("image"));
+                System.out.println("IMAGE" + image.length + prop.get("image"));
+                System.out.println("Magine" + image.length);
                 e = new NovelMode(EventDatabase.chapters(parameters),
                         image.length > 0 ? image : null,
-                        prop.get("x", Float.class),
-                        prop.get("y", Float.class),
+                        prop.get("x", Float.class) / ppt,
+                        prop.get("y", Float.class) / ppt,
                         6/60f);
                 break;
             case 2: //Teleport

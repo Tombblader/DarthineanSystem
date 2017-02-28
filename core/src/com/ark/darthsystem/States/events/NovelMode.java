@@ -34,8 +34,10 @@ public class NovelMode extends Event {
 
     @Override
     public void run() {
-        GraphicsDriver.addState(novel);
-        isFinished = true;
+        if (!GraphicsDriver.getState().contains(novel, true)) {
+            GraphicsDriver.addState(novel);
+        }
+        isFinished = novel.isFinished();
     }
     
     public boolean isFinished() {
