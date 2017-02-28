@@ -104,7 +104,6 @@ public class CollisionDatabaseLoader {
         Ellipse circle = circleObject.getEllipse();
         CircleShape circleShape = new CircleShape();
         circleShape.setRadius(circle.height / 2 / ppt);
-//        circleShape.setPosition(new Vector2(circle.x / ppt, circle.y / ppt));
         return circleShape;
     }
     private static PolygonShape getPolygon(PolygonMapObject polygonObject) {

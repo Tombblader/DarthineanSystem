@@ -51,7 +51,7 @@ Red Lady: 'Sup!  Nice to meet you, intern.
 
 PAGE 5
 Airy Lady: Yoohoo!  You forgot me, meanie!
-Blue Lady: You as well?  I didn't need the entire party coming to pick up one person.
+Blue Lady: You as well?  I didn't need an entire party coming to pick up one person.
 Airy Lady: Intern!  Where is he?  Oh, I hope he's cute; I mean, yeah, no relationships with mortals, but still, nothing wrong with a little bit of eye candy, right, right?
 Blue Lady: The intern doesn't even have a body yet.  We don't even know if the intern is male or female.
 Airy Lady: But I'm so curious!  Hey, hey, intern, are you a boy?  A cute boy?  A really, really cute boy?
@@ -81,7 +81,7 @@ Airy Lady: But I'm so curious!  Hey, hey, intern, are you a boy?  A cute boy?  A
       =Hey Sexy Blue Lady.
         Blue Lady: Are you happy now?  She said it to me too.  Even in other worlds, women can swing either or both ways.
       =Hey Sexier Blue Lady.
-        Blue Lady: ......What?
+        Blue Lady: ......What?	
         Airy Lady: It looks like she liiiiiiiiikes you more!
         Red Lady: HOHOHOHOHOHOHOHOHOHOHO!
         
