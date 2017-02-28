@@ -168,7 +168,17 @@ public class ActorSkill extends ActorCollision {
         getMainFixture().setFilterData(filter);
         filter.maskBits = ((getInvoker() instanceof ActorAI) ? ActorCollision.CATEGORY_PLAYER : ActorCollision.CATEGORY_AI);
         getSensorFixture().setFilterData(filter);
-        if (invoker.getMainBody() != null && (translateX == 0 && (area == Area.FRONT || area == Area.SELF_BENEFIT))) {
+        if (invoker.getMainBody() != null && (translateX == 0 && (area == Area.FRONT))) {
+            WeldJointDef def = new WeldJointDef();
+            def.dampingRatio = 1f;
+            def.frequencyHz = 60;
+            def.collideConnected = false;
+            def.initialize(invoker.getMainBody(), getMainBody(), new Vector2(getX(), getY()));            
+            joint = (WeldJoint) map.getPhysicsWorld().createJoint(def);
+        }
+        else if (invoker.getMainBody() != null && (translateX == 0 && (area == Area.SELF_BENEFIT))) {
+            getMainBody().setTransform(invoker.getMainBody().getPosition(), getMainBody().getAngle());
+            getSensorBody().setTransform(invoker.getSensorBody().getPosition(), getSensorBody().getAngle());
             WeldJointDef def = new WeldJointDef();
             def.dampingRatio = 1f;
             def.frequencyHz = 60;
