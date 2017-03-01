@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="32" height="24" tilewidth="32" tileheight="32" nextobjectid="16">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="32" height="24" tilewidth="32" tileheight="32" nextobjectid="17">
  <properties>
   <property name="music" value="Forbidden Shrine of Heroes.mp3"/>
  </properties>
@@ -70,7 +70,7 @@
     <property name="collision" value="TRUE"/>
     <property name="collisionType" value="wall"/>
     <property name="eventID" value="2"/>
-    <property name="parameters" value="testRoom, 17, 22"/>
+    <property name="parameters" value="testRoom, 17, 21"/>
    </properties>
   </object>
   <object id="8" name="collisionWater" type="wall" x="0" y="0" width="1024" height="64"/>

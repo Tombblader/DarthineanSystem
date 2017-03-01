@@ -56,6 +56,7 @@ public class Chapter1 extends Novel {
                         BattleDriver.printline(Database2.Fire_Spirit_Actor, ActorSprite.SpriteModeFace.NORMAL, "Did you just hear what the intern said?");
                         BattleDriver.printline(Database2.player.getBattler(0), ActorSprite.SpriteModeFace.NORMAL, "...Yes.  This could be a problem.  It's only been a few minutes and the Intern has already begun flirting, without a body no less.");
                         BattleDriver.printline(Database2.Fire_Spirit_Actor, ActorSprite.SpriteModeFace.NORMAL, "I'm ALREADY dealing with a pervert.  Is it too late to return to sender?");
+                        BattleDriver.printline(Database2.player.getBattler(0), ActorSprite.SpriteModeFace.NORMAL, "If someoneone had something like that's child, it would be difficult to explain..");
                         BattleDriver.printline(Database2.Fire_Spirit_Actor, ActorSprite.SpriteModeFace.NORMAL, "Let's have a truce for now and keep an eye on the intern...");
                         BattleDriver.printline(Database2.player.getBattler(0), ActorSprite.SpriteModeFace.NORMAL, "Come on, Intern.");
                         break;
