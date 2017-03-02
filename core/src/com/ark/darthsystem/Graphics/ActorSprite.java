@@ -79,8 +79,7 @@ public class ActorSprite implements Serializable {
                 spriteSheetFace.put(face,
                         new Animation<>(DELAY,
                                 GraphicsDriver.getMasterSheet().
-                                createSprites(masterSpriteSheet +
-                                        "/face/" +
+                                createSprites(masterSpriteSheet + "/face/" +
                                         face.toString().toLowerCase()),
                                 Animation.PlayMode.LOOP));
             } catch (Exception e) {

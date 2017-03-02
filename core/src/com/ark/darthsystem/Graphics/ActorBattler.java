@@ -31,7 +31,11 @@ public class ActorBattler {
                 skillList.add(currentSkill);
             }
         }
-        currentSkill = skillList.get(0);
+        if (skillList != null && !skillList.isEmpty()) {
+            currentSkill = skillList.get(0);
+        } else {
+            currentSkill = null;
+        }
     }
 
     public ActorSkill activateCurrentSkill() {

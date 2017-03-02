@@ -6,6 +6,7 @@
 package com.ark.darthsystem.Database;
 
 import com.ark.darthsystem.*;
+import static com.ark.darthsystem.Database.CharacterDatabase.*;
 import com.ark.darthsystem.Graphics.*;
 import com.ark.darthsystem.States.events.*;
 
@@ -22,10 +23,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 public class Database2 extends Database1 {
 
     public static Player player;
-    public static ActorAI ProtoxAI;
-    public static ActorAI ErikAI;
     public static ArrayList<Event> events = new ArrayList<>();
-    private static ActorSprite Eyesore_Sprite;
 
     public Database2() {
         super();
@@ -73,57 +71,26 @@ public class Database2 extends Database1 {
             private static final long serialVersionUID = 1L;
 
         };
+        
+        new SpriteDatabase();
+        new CharacterDatabase();
+        new MonsterDatabase();
 
-        Database2.ErikSprite = new ActorSprite("characters/darth_invader");
-        Database2.DarthSprite = new ActorSprite("characters/darth_invader");
-        Database2.Water_Spirit_Sprite = new ActorSprite("characters/water_spirit");
-        Database2.Fire_Spirit_Sprite = new ActorSprite("characters/fire_spirit");
         
-        Database2.Eyesore_Sprite = new ActorSprite("monsters/eyesore");
-
-        Database2.Fire_Spirit_Actor = new ActorBattler(Fire_Spirit, Fire_Spirit_Sprite);
-        
-        
-        Database2.enemies = new ActorBattler[]{new ActorBattler((new BattlerAI(
-            "Erik the Red",
-            Erik,
-            Scenario.Standard,
-            50,
-            null,
-            0)),
-            ErikSprite)};
+//        Database2.enemies = new ActorBattler[];
 //        Database2.ProtoxAI = new ActorAI(new ArrayList<>(Arrays.asList(new ActorBattler[]{new ActorBattler(new BattlerAI("Protox Toxorp", Database1.Protox, Scenario.Standard, 50, null, 0), DarthSprite)})), 500, 400);
-        BattlerAI temp = new BattlerAI(
-            "Erik the Red",
-            Erik,
-            Scenario.Standard,
-            50,
-            null,
-            0);
+        ActorBattler[] battlers;
 
-        ArrayList<ActorBattler> ErikAIParty = new ArrayList<>();
-        ErikAIParty.add(new ActorBattler(temp, ErikSprite));
-        ErikAI = new ActorAI(ErikAIParty, 500, 500);
-        Database2.battlers = new ActorBattler[]{
-            new ActorBattler(Water_Spirit, Water_Spirit_Sprite)
-//            , new ActorBattler(Darth, DarthSprite) 
-//                , new ActorBattler(Erik, ErikSprite)
+        battlers = new ActorBattler[]{
+            Water_Spirit_Battler
         };
         player = new Player(new ArrayList<>(Arrays.asList(battlers)), 0, 0);
     }
 
     public static HashMap<Skill, ActorSkill> SkillToActor;
 
-    public static ActorSprite DarthSprite;
-    public static ActorSprite ErikSprite;
-    public static ActorSprite Water_Spirit_Sprite;
-    public static ActorSprite Fire_Spirit_Sprite;
-
-    public static ActorBattler Fire_Spirit_Actor;
     
 //    public static ActorAI DarthQuestionMark;
-    public static ActorBattler[] battlers;
-    public static ActorBattler[] enemies;
 
     public static ArrayList<Actor> enemySampleMap;
     public static Pickup GraphicsPotion;
