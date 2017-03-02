@@ -5,7 +5,7 @@
  */
 package com.ark.darthsystem;
 
-import com.ark.darthsystem.Graphics.GraphicsDriver;
+import com.ark.darthsystem.graphics.GraphicsDriver;
 import com.badlogic.gdx.backends.lwjgl3.*;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 

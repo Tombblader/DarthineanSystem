@@ -1,6 +1,6 @@
 package com.ark.darthsystem;
 
-import com.ark.darthsystem.States.Battle;
+import com.ark.darthsystem.states.Battle;
 import com.badlogic.gdx.utils.Pool.Poolable;
 import java.io.Serializable;
 import java.util.ArrayList;

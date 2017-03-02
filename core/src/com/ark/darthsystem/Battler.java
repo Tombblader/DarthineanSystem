@@ -1,6 +1,6 @@
 package com.ark.darthsystem;
 
-import com.ark.darthsystem.States.Battle;
+import com.ark.darthsystem.states.Battle;
 import static com.ark.darthsystem.BattleDriver.*;
 
 import java.io.*;

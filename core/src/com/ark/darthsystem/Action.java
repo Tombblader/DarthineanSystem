@@ -1,11 +1,11 @@
 package com.ark.darthsystem;
 
-import com.ark.darthsystem.States.Battle;
+import com.ark.darthsystem.states.Battle;
 
 import java.io.Serializable;
 
 import static com.ark.darthsystem.BattleDriver.*;
-import com.ark.darthsystem.Database.SoundDatabase;
+import com.ark.darthsystem.database.SoundDatabase;
 
 import java.util.ArrayList;
 

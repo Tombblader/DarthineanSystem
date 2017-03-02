@@ -1,7 +1,7 @@
 package com.ark.darthsystem;
 
-import com.ark.darthsystem.Graphics.ActorSkill;
-import com.ark.darthsystem.States.Battle;
+import com.ark.darthsystem.graphics.ActorSkill;
+import com.ark.darthsystem.states.Battle;
 import com.badlogic.gdx.utils.Pool.Poolable;
 import java.util.ArrayList;
 

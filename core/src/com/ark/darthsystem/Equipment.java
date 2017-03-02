@@ -1,9 +1,9 @@
 package com.ark.darthsystem;
 
-import com.ark.darthsystem.Database.Database2;
-import com.ark.darthsystem.Graphics.ActorSkill;
-import com.ark.darthsystem.Graphics.GraphicsDriver;
-import com.ark.darthsystem.States.Battle;
+import com.ark.darthsystem.database.Database2;
+import com.ark.darthsystem.graphics.ActorSkill;
+import com.ark.darthsystem.graphics.GraphicsDriver;
+import com.ark.darthsystem.states.Battle;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
 /**
