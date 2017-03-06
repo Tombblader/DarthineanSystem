@@ -44,7 +44,7 @@ public abstract class Novel implements State {
         for (State state : GraphicsDriver.getState()) {
             if (!(state instanceof Message)
                     && !(state instanceof Menu)
-                    && !(state instanceof Novel)//&& !(state instanceof Pause)
+                    && !(state instanceof Novel)
                     ) {
                 ste = state;
             }
@@ -53,7 +53,6 @@ public abstract class Novel implements State {
             ste.render(batch);
         }
     }
-    //    public abstract void run();
     
     public float update(float delta) {
         if (timers.isEmpty()) {
