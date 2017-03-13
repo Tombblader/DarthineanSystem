@@ -56,6 +56,7 @@ public class Database {
                 ActorSkill.Area.FRONT) {{
                     setShape("thinthrust");
                     setFieldSound(SoundDatabase.fieldSpearSound);
+                    setAftercastDelay(.5f);
                 }};
     }
     
@@ -64,6 +65,7 @@ public class Database {
                 1,
                 1,
                 1f/24f,
-                ActorSkill.Area.FRONT) {{setShape("monsterslash");}};
+                ActorSkill.Area.FRONT) {{setShape("monsterslash"); setAftercastDelay(1f);}
+        };
     }
 }

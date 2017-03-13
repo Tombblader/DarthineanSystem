@@ -229,7 +229,7 @@ public class Player extends ActorCollision {
                                 fieldState = ActorSprite.SpriteModeField.IDLE;
                                 attacking = false;
 //                                a.setPause(250);
-                                a.addTimer(new GameTimer("Delay", 500) {
+                                a.addTimer(new GameTimer("Delay", animation.getAftercastDelay() * 1000) {
                                     @Override
                                     public void event(Actor a) {
                                         canAttack = true;
@@ -420,8 +420,9 @@ public class Player extends ActorCollision {
                 }
 
                 public boolean update(float delta, Actor a) {
-                    getMainBody().setLinearVelocity(5 * getFacing().x * getSpeed() * (float) (delta), getMainBody().getLinearVelocity().y);
+                    getMainBody().setLinearVelocity(5 * getFacing().x * getSpeed() * (float) (delta), 5 * getSpeed() * (float) (delta) * getFacing().y);
                     changeX(getFacing().x);
+                    changeY(getFacing().y);
 //                    setWalking(true);
                     fieldState = ActorSprite.SpriteModeField.ROLL;
                     isDodging = true;
@@ -540,9 +541,6 @@ public class Player extends ActorCollision {
     }
     
     protected void applySprite() {
-        if (fieldState == ActorSprite.SpriteModeField.OUCH) {
-            System.out.println(fieldState);
-        }
         switch (getFacing()) {
             case UP:
             case DOWN:
@@ -627,6 +625,7 @@ public class Player extends ActorCollision {
     }
     
     public void reduceLife(int deltaLife) {
+        System.out.println(getTeam());
         currentLife -= deltaLife;
         if (currentLife < 0) {
             currentLife = 0;
@@ -687,10 +686,5 @@ public class Player extends ActorCollision {
                 return super.update(delta, a);
             }
         });
-    }
-    
-    public void setShadow() {
-        
-    }
-    
+    }    
 }

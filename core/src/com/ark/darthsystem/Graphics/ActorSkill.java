@@ -91,7 +91,7 @@ public class ActorSkill extends ActorCollision {
         }
         relX = getX;
         relY = getY;
-//        aftercastDelay = delay;
+        aftercastDelay = delay;
         translateX = 0;
         translateY = 0;
         area = getArea;
@@ -161,6 +161,11 @@ public class ActorSkill extends ActorCollision {
     public float getAftercastDelay() {
         return aftercastDelay;
     }
+    
+    public void setAftercastDelay(float delay) {
+        aftercastDelay = delay;
+    }
+    
 
     public float getAnimationDelay() {
         return ((float) (originalFieldImage.length - 1) * (this.getDelay()));

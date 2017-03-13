@@ -165,51 +165,28 @@ public class Monster extends Player {
     
     public void update(float delta) {
 //        setAttacking(false);
-        setElapsedTime(getElapsedTime() + GraphicsDriver.getRawDelta());
-        setCurrentImage((Sprite) getCurrentAnimation().getKeyFrame(getElapsedTime()));
+        if (!isWalking()) {
+            getMainBody().setLinearVelocity(0, 0);
+            if (!isAttacking()) {
+                setFieldState(ActorSprite.SpriteModeField.IDLE);
+            }
+        }
+        setWalking(false);        
+        if (canMove() && !isAttacking()) {
+            interpretAI(delta);
+        }
         for (GameTimer t : getTimers()) {
             if (t.update(delta, this)) {
                 getTimers().removeValue(t, true);
             }
         }
-        if (canMove() && !isAttacking()) {
-            interpretAI(delta);
-        }
+        
+        setElapsedTime(getElapsedTime() + GraphicsDriver.getRawDelta());
         setX(getMainBody().getPosition().x);
         setY(getMainBody().getPosition().y);
         
-        if (!isWalking()) {
-            getMainBody().setLinearVelocity(0, 0);
-            if (!isAttacking()) {
-                setFieldState(ActorSprite.SpriteModeField.IDLE);
-                resetSprite();
-
-//                switch (getFacing()) {
-//                    case RIGHT_DOWN:
-//                    case RIGHT_UP:
-//                        if (getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.IDLE, getFacing()) != null) {
-//                           changeAnimation(getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.IDLE, getFacing()));
-//                            break;
-//                        }
-//                     case RIGHT:
-//                        changeAnimation(getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.IDLE, Actor.Facing.RIGHT));
-//                        break;
-//                    case LEFT_DOWN:
-//                    case LEFT_UP:
-//                        if (getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.IDLE, getFacing()) != null) {
-//                           changeAnimation(getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.IDLE, getFacing()));
-//                            break;
-//                        }
-//                    case LEFT:
-//                        changeAnimation(getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.IDLE, Actor.Facing.LEFT));
-//                        break;
-//                    default:
-//                }
-            } else {
-                applySprite();
-            }
-        }
-        setWalking(false);
+        setCurrentImage((Sprite) getCurrentAnimation().getKeyFrame(getElapsedTime()));
+        applySprite();
     }
         
     public boolean vision() {
@@ -269,17 +246,7 @@ public class Monster extends Player {
         setFacing();
         setFieldState(ActorSprite.SpriteModeField.RUN);
         applySprite();
-
-//        switch (getFacing()) {
-//            case RIGHT:
-//                changeDuringAnimation(getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.RUN, Actor.Facing.RIGHT));
-//                break;
-//            case LEFT:
-//                changeDuringAnimation(getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.RUN, Actor.Facing.LEFT));
-//                break;
-//            default:
-//        }
-        this.setWalking(true);
+        setWalking(true);
     }
     
     public void setAttackAnimation() {
