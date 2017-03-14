@@ -64,7 +64,7 @@ public class Database {
         return new ActorSkill(GraphicsDriver.getMasterSheet().createSprites("items/equipment/sword/field/field").toArray(Sprite.class),
                 1,
                 1,
-                1f/24f,
+                1f/12f,
                 ActorSkill.Area.FRONT) {{setShape("monsterslash"); setAftercastDelay(1f);}
         };
     }

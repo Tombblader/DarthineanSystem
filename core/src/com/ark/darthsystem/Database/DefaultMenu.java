@@ -6,12 +6,9 @@
 package com.ark.darthsystem.Database;
 
 import com.ark.darthsystem.Graphics.GraphicsDriver;
-import com.ark.darthsystem.Item;
 import com.ark.darthsystem.States.Menu;
 import com.ark.darthsystem.States.Title;
 
-import java.util.ArrayList;
-import java.util.Collections;
 
 /**
  *

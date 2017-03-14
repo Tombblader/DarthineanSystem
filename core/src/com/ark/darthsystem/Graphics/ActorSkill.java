@@ -33,7 +33,6 @@ public class ActorSkill extends ActorCollision {
     private Sound fieldSound = SoundDatabase.fieldSwordSound;
     private Player invoker;
     private WeldJoint joint;
-    private Sprite[] originalBattlerImage;
     private Sprite[] originalFieldImage;
     private float relX;
     private float relY;
@@ -95,6 +94,18 @@ public class ActorSkill extends ActorCollision {
         translateX = 0;
         translateY = 0;
         area = getArea;
+    }
+
+    public ActorSkill(ActorSkill skill) {
+        super(skill.originalFieldImage, skill.relX, skill.relY, skill.getDelay(), true);
+        originalFieldImage = skill.originalFieldImage;
+        relX = skill.relX;
+        relY = skill.relY;
+        aftercastDelay = skill.aftercastDelay;
+        translateX = skill.translateX;
+        translateY = skill.translateY;
+        area = skill.area;
+        setShape(skill.getShape());
     }
 
     public void dispose() {
@@ -275,8 +286,6 @@ public class ActorSkill extends ActorCollision {
 
     public void update(float delta) {
         setFacing();
-//        currentX += translateX * getFacing().getX();
-//        currentY += translateY * getFacing().getY();
         if (translateX != 0) {
             getMainBody().setLinearVelocity(getFacing().getX() * translateX, getFacing().getY() * translateX);
         }
@@ -285,17 +294,14 @@ public class ActorSkill extends ActorCollision {
     }
     
     public ActorSkill clone() {
-        return new ActorSkill(originalFieldImage, relX, relX, translateX, translateY, aftercastDelay) {
-                {
-                    setFieldSound(fieldSound);
-                }
-            };
+        return new ActorSkill(this);
     }
 
     public enum Area {
 
         ALL,
         BOOMERANG,
+        RUSH,
         CONE,
         CROSS,
         FRONT,
@@ -312,6 +318,7 @@ public class ActorSkill extends ActorCollision {
             switch (this) {
                 case SELF:
                 case SELF_BENEFIT:
+                case RUSH:
                     return 0;
                 case FRONT:
                     return translateX * f.getX();
@@ -339,5 +346,50 @@ public class ActorSkill extends ActorCollision {
     
     public float getTranslateX() {
         return translateX;
+    }
+    
+    public Array<GameTimer> addSpecialTimers() {
+        return null;
+    }
+    
+    public void addTimers() {
+//            animation.setInvoker(this);
+//            animation.resetAnimation();
+//            animation.setX(this);
+//            animation.setY(this);
+////            setPause((int)((this.getDelay() * (this.getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.ATTACK, getFacing()).getKeyFrames().length - 1f)) * 1000f));
+//            addTimer(new GameTimer("Attack_Charge", this.getDelay() * ((this.getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.ATTACK, 
+//                    (getFacing() == Facing.UP || getFacing() == Facing.DOWN ? Facing.valueOf(getFacingBias().toString() + "_" + getFacing().toString()) : getFacing())
+//                    ).getKeyFrames().length - 1f)) * 1000f) {
+//                public void event(Actor a) {
+//                    animation.playFieldSound();
+//                    animation.setFacing();
+//                    fieldState = ActorSprite.SpriteModeField.ATTACK;
+////                    setPause(((animation.getAnimationDelay()) * 1000f));
+//                    if (!getCurrentMap().getPhysicsWorld().isLocked()) {
+//                        animation.setMap(getCurrentMap());
+//                        addTimer(new GameTimer("Attack", (getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.ATTACK, getFacingBias()).getKeyFrames().length - 1) * getDelay() * 1000f) {
+//                            @Override
+//                            public void event(Actor a) {
+//                                fieldState = ActorSprite.SpriteModeField.IDLE;
+//                                attacking = false;
+////                                a.setPause(250);
+//                                a.addTimer(new GameTimer("Delay", animation.getAftercastDelay() * 1000) {
+//                                    @Override
+//                                    public void event(Actor a) {
+//                                        canAttack = true;
+//                                    }
+//                                    public boolean update(float delta, Actor a) {
+//                                        canAttack = false;
+//                                        return super.update(delta, a);
+//                                    }
+//                            });
+//                            }
+//                            public boolean update(float delta, Actor a) {
+//                                fieldState = ActorSprite.SpriteModeField.ATTACK;
+//                                return super.update(delta, a);
+//                            }
+//                        });
+//                    }        
     }
 }

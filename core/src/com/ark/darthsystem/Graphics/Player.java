@@ -142,10 +142,7 @@ public class Player extends ActorCollision {
     }
 
     public ActorSkill getAttackAnimation() {
-        ActorSkill temp = Database.Basic();
-        temp.setInvoker(this);
-        return temp;
-//        return attackAnimation;
+        return attackAnimation;
     }
     public void skill() {
         if (currentSkill != null) {
@@ -208,7 +205,9 @@ public class Player extends ActorCollision {
     public void attack() {
         if (!getCurrentMap().getPhysicsWorld().isLocked()) {
             attacking = true;
-            ActorSkill animation = getAttackAnimation();
+            canAttack = false;
+            ActorSkill animation = getAttackAnimation().clone();
+            animation.setInvoker(this);
             animation.resetAnimation();
             animation.setX(this);
             animation.setY(this);
@@ -223,7 +222,7 @@ public class Player extends ActorCollision {
 //                    setPause(((animation.getAnimationDelay()) * 1000f));
                     if (!getCurrentMap().getPhysicsWorld().isLocked()) {
                         animation.setMap(getCurrentMap());
-                        addTimer(new GameTimer("Attack", animation.getAnimationDelay() * 1000) {
+                        addTimer(new GameTimer("Attack", (getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.ATTACK, getFacingBias()).getKeyFrames().length - 1) * getDelay() * 1000f) {
                             @Override
                             public void event(Actor a) {
                                 fieldState = ActorSprite.SpriteModeField.IDLE;

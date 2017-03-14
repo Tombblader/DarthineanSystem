@@ -32,13 +32,9 @@ public class Monster extends Player {
     public Monster(ActorSprite sprites, float getX, float getY) {
         super(Player.TeamColor.YELLOW, sprites, getX, getY);
         setMaxLife(15);
-        setCurrentLife(15);
+        setCurrentLife(20);
         setAttack(2);
         setShape("monster");
-    }
-    
-    public void attack() {
-        super.attack();
     }
     
     public void generateBody(OverheadMap map) {
@@ -49,15 +45,7 @@ public class Monster extends Player {
         getMainFixture().setFilterData(filter);
         filter.maskBits = ActorCollision.CATEGORY_BLUE_SKILL | ActorCollision.CATEGORY_RED_SKILL;
         getSensorFixture().setFilterData(filter);
-    }
-
-    public ActorSkill getAttackAnimation() {
-        ActorSkill temp = Database.BasicMonster();
-        temp.setInvoker(this);
-        return temp;
-//        return attackAnimation;
-    }
-    
+    }    
     
     public boolean isInRange() {
         final float RANGE = 228;
@@ -164,7 +152,6 @@ public class Monster extends Player {
     }
     
     public void update(float delta) {
-//        setAttacking(false);
         if (!isWalking()) {
             getMainBody().setLinearVelocity(0, 0);
             if (!isAttacking()) {
@@ -195,7 +182,7 @@ public class Monster extends Player {
     
     private void interpretAI(float delta) {
         closestPlayer = findClosestPlayer(vision, getCurrentMap().getAllPlayers());
-        if (isInRange()) {
+        if (isInRange() && canAttack()) {
             attack();
         } else if (vision()) {
             moveTowardsPlayer(delta);

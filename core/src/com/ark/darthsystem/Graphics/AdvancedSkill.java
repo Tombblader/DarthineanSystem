@@ -5,10 +5,27 @@
  */
 package com.ark.darthsystem.Graphics;
 
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.utils.Array;
+
 /**
  *
  * @author Keven
  */
-public class AdvancedSkill {
+public class AdvancedSkill extends ActorSkill {
+    
+    public Array<GameTimer> loadedTimers = new Array<>();
+    
+    public AdvancedSkill(Sprite[] img, float getX, float getY, float translateX, float translateY, float delay) {
+        super(img, getX, getY, translateX, translateY, delay);
+    }
+    
+    public void addTimer(GameTimer t) {
+        loadedTimers.add(t);
+    }
+    
+    public Array<GameTimer> getLoadedTimers() {
+        return loadedTimers;
+    }
     
 }

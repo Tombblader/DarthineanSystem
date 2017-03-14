@@ -83,6 +83,10 @@ public class ActorCollision extends Actor {
         shapeName = name;
     }
     
+    public String getShape() {
+        return shapeName;
+    }
+    
     public void generateBody(OverheadMap map) {
         BodyDef genericBodyType = new BodyDef();
         genericBodyType.type = BodyDef.BodyType.DynamicBody;
