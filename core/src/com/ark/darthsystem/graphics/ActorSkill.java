@@ -5,12 +5,17 @@
  */
 package com.ark.darthsystem.graphics;
 
+import com.ark.darthsystem.Action;
 import com.ark.darthsystem.database.SoundDatabase;
 import com.ark.darthsystem.Skill;
+import com.ark.darthsystem.database.Database1;
+import com.ark.darthsystem.states.Battle;
 import com.ark.darthsystem.states.OverheadMap;
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Filter;
 import com.badlogic.gdx.physics.box2d.Joint;
@@ -26,16 +31,19 @@ public class ActorSkill extends ActorCollision {
 
     private float aftercastDelay = 0;
     private Area area;
-    private Actor battlerAnimation;
-    private Sound battlerSound = SoundDatabase.battlerSwordSound;
+    private transient Actor battlerAnimation;
+    
+    private transient Sound battlerSound = SoundDatabase.battlerSwordSound;
     private float chargeTime = 0;
     private float currentX = 0;
     private float currentY = 0;
-    private Sound fieldSound = SoundDatabase.fieldSwordSound;
-    private Player invoker;
+    private transient Sound fieldSound = SoundDatabase.fieldSwordSound;
+    private transient Player invoker;
     private WeldJoint joint;
-    private Sprite[] originalBattlerImage;
-    private Sprite[] originalFieldImage;
+    private String originalBattlerImageName;
+    private transient Sprite[] originalBattlerImage;
+    private String originalFieldImageName;
+    private transient Sprite[] originalFieldImage;
     private float relX;
     private float relY;
     private Skill skill;
@@ -45,31 +53,11 @@ public class ActorSkill extends ActorCollision {
     public ActorSkill(Sprite[] img,
             float getX,
             float getY,
-            int translateX,
-            int translateY,
-            int delay,
-            Skill getSkill) {
-        super(img, getX, getY, delay, true);
-        originalFieldImage = img;
-        for (Sprite s : originalFieldImage) {
-            s.setCenter(s.getWidth() / 2f, s.getHeight() / 2f);
-            s.setOriginCenter();
-        }
-        relX = getX;
-        relY = getY;
-        skill = getSkill;
-        aftercastDelay = delay;
-        this.translateX = translateX;
-        this.translateY = translateY;
-        area = Area.FRONT;
-    }
-
-    public ActorSkill(Sprite[] img,
-            float getX,
-            float getY,
             float delay,
             Skill getSkill) {
         super(img, getX, getY, delay, true);
+        originalFieldImageName = "";
+        originalBattlerImageName = "";
         originalFieldImage = img;
         for (Sprite s : originalFieldImage) {
             s.setCenter(s.getWidth() / 2f, s.getHeight() / 2f);
@@ -82,29 +70,18 @@ public class ActorSkill extends ActorCollision {
         translateX = 0;
         translateY = 0;
         area = Area.FRONT;
-    }
-
+    }    
+    
     public ActorSkill(Sprite[] img,
             float getX,
             float getY,
             float delay,
             Skill getSkill,
             Area getArea) {
-        super(img, getX, getY, delay, true);
-        originalFieldImage = img;
-        for (Sprite s : originalFieldImage) {
-            s.setCenter(s.getWidth() / 2f, s.getHeight() / 2f);
-            s.setOriginCenter();
-        }
-        relX = getX;
-        relY = getY;
-        skill = getSkill;
-//        aftercastDelay = delay;
-        translateX = 0;
-        translateY = 0;
+        this(img, getX, getY, delay, getSkill);
         area = getArea;
     }
-
+    
     public ActorSkill(Sprite[] img,
             Sprite[] battlerImg,
             float getX,
@@ -119,6 +96,20 @@ public class ActorSkill extends ActorCollision {
             s.setOriginCenter();
         }
         battlerAnimation = new Actor(originalBattlerImage, 0, 0, delay, true);
+    }
+    
+
+    public ActorSkill(Sprite[] img,
+            float getX,
+            float getY,
+            int translateX,
+            int translateY,
+            int delay,
+            Skill getSkill) {
+        this(img, getX, getY, delay, getSkill);
+        this.translateX = translateX;
+        this.translateY = translateY;
+        area = Area.FRONT;
     }
 
     public ActorSkill(Sprite[] img,
@@ -146,10 +137,6 @@ public class ActorSkill extends ActorCollision {
         this(img, battlerImg, getX, getY, delay, castTime, getSkill, getArea);
         translateX = getTranslateX;
         translateY = getTranslateY;
-    }
-
-    public void dispose() {
-        super.dispose();
     }
 
     public void generateBody(OverheadMap map) {
@@ -371,6 +358,59 @@ public class ActorSkill extends ActorCollision {
                 skill,
                 area);
     
+    }
+    
+    public void activate(Player player) {
+        ActorSkill tempSkill = clone();
+        if (getFacing().getX() == -1) {
+            Array<Sprite> s = new Array<>(Sprite.class);
+            for (TextureRegion r : tempSkill.getCurrentAnimation().getKeyFrames()) {
+                s.add(new Sprite(r));
+                s.peek().flip(true, false);
+            }
+            Animation<Sprite> a = new Animation<>(tempSkill.getDelay(), s);
+            tempSkill.changeAnimation(a);
+        }
+        tempSkill.setInvoker(player);
+        tempSkill.setX(player);
+        tempSkill.setY(player);
+        player.setAttacking(true);
+        addTimer(new GameTimer("Skill", tempSkill.getChargeTime()+tempSkill.getAftercastDelay() * 1000f) {
+            @Override
+            public void event(Actor a) {
+//                playertrue;
+            }
+        });
+        setPause((tempSkill.getChargeTime() * 1000f));
+        addTimer(new GameTimer("Skill", getDelay() * 1000 * getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.ATTACK, getFacing()).getKeyFrames().length) {
+            @Override
+            public void event(Actor a) {
+                player.setAttacking(false);
+            }
+        });
+        addTimer(new GameTimer("Skill", tempSkill.getChargeTime() * 1000f) {
+            @Override
+            public void event(Actor a) {
+                tempSkill.playFieldSound();
+                player.setFieldState(ActorSprite.SpriteModeField.SKILL);
+                setPause((tempSkill.getAnimationDelay() * 1000f));
+                if (tempSkill.getSkill().getAlly()) {
+                    Action action = new Action(Battle.Command.Skill,
+                            tempSkill.getSkill().overrideCost(0),
+                            tempSkill.getInvoker()
+                            .getCurrentBattler().getBattler(),
+                            tempSkill.getInvoker().getCurrentBattler().getBattler(),
+                            player.getAllBattlers());
+                    action.calculateDamage(new Battle(tempSkill.getInvoker().getAllActorBattlers(), player.getAllActorBattlers(), Database1.inventory, null));
+                }
+                tempSkill.setMap(getCurrentMap());
+            }
+            public boolean update(float delta) {
+                player.setFieldState(ActorSprite.SpriteModeField.SKILL);
+                player.setAttacking(true);
+                return super.update(delta);
+            }
+        });
     }
 
 }

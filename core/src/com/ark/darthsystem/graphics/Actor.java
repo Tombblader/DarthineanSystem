@@ -7,12 +7,12 @@
 package com.ark.darthsystem.graphics;
 
 import com.ark.darthsystem.states.OverheadMap;
-import com.ark.darthsystem.states.events.Teleport;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Animation.PlayMode;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.utils.Array;
+import java.io.Serializable;
 
 /**
  * The Actor class is the basic entity class that directly interacts with the

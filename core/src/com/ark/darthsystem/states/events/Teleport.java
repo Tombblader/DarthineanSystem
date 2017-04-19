@@ -38,8 +38,8 @@ public class Teleport extends Event {
         super(img, getX, getY, getDelay);
         setTriggerMethod(TriggerMethod.TOUCH);
         map = newMap;
-        newX = xCoord * 32 / PlayerCamera.PIXELS_TO_METERS + 16 / PlayerCamera.PIXELS_TO_METERS + GraphicsDriver.getPlayerCamera().getScreenPositionX();
-        newY = yCoord * 32 / PlayerCamera.PIXELS_TO_METERS + 16 / PlayerCamera.PIXELS_TO_METERS + GraphicsDriver.getPlayerCamera().getScreenPositionY();
+        newX = xCoord * 32 / PlayerCamera.PIXELS_TO_METERS + 16 / PlayerCamera.PIXELS_TO_METERS + GraphicsDriver.getCamera().getScreenPositionX();
+        newY = yCoord * 32 / PlayerCamera.PIXELS_TO_METERS + 16 / PlayerCamera.PIXELS_TO_METERS + GraphicsDriver.getCamera().getScreenPositionY();
         setTriggerMethod(TriggerMethod.TOUCH);
         setID(2);
     }
@@ -53,7 +53,7 @@ public class Teleport extends Event {
                 GraphicsDriver.getState().set(GraphicsDriver.getState().indexOf(s, true), MapDatabase.getMaps().get(map));
                 GraphicsDriver.playMusic(MapDatabase.getMaps().get(map).getMusic());
                 GraphicsDriver.getPlayer().setMap(MapDatabase.getMaps().get(map), newX, newY);
-                ((OverheadMap) (GraphicsDriver.getCurrentState())).updatePartial(0);
+                ((OverheadMap) (MapDatabase.getMaps().get(map))).updatePartial(0);
             }
         }
     }

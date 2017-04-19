@@ -5,8 +5,6 @@
  */
 package com.ark.darthsystem.states.chapters;
 
-import com.ark.darthsystem.graphics.Actor;
-import com.ark.darthsystem.graphics.ActorCollision;
 import com.ark.darthsystem.graphics.GraphicsDriver;
 import com.ark.darthsystem.states.State;
 import com.ark.darthsystem.states.Menu;

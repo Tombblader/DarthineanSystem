@@ -419,8 +419,6 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
             case 1: //NovelMode
                 parameters = prop.get("parameters", String.class).split(",* ");
                 image = GraphicsDriver.getMasterSheet().createSprites(prop.get("image", String.class)).toArray(Sprite.class);
-                System.out.println("IMAGE" + image.length + prop.get("image"));
-                System.out.println("Magine" + image.length);
                 e = new NovelMode(EventDatabase.chapters(parameters),
                         image.length > 0 ? image : null,
                         prop.get("x", Float.class) / ppt,
@@ -683,11 +681,13 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
     public void dispose() {
         super.dispose();
         world.dispose();
+        debugRender.dispose();
     }
 
     public void setMap(String mapName) {
         Parameters parameters = new Parameters();
         parameters.flipY = false;
+//        this.getMap().dispose();
         TiledMap tiledMap = (new TmxMapLoader().load(mapName, parameters));
         for (MapLayer m : (tiledMap.getLayers())) {
             if (!(m instanceof TiledMapTileLayer)) {

@@ -6,14 +6,11 @@
 package com.ark.darthsystem.graphics;
 
 import com.ark.darthsystem.BattlerAI;
-import com.ark.darthsystem.database.Database2;
 import com.ark.darthsystem.states.OverheadMap;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Filter;
-import com.badlogic.gdx.utils.Array;
 import java.util.ArrayList;
 
 /**

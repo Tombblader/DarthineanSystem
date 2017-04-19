@@ -88,6 +88,7 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
         new Database1();
         new Database2();
         new MapDatabase();
+        
     }
 
     public static void drawMessage(Batch batch, String message, float x, float y) {
