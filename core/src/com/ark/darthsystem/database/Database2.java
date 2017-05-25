@@ -28,11 +28,9 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 public class Database2 extends Database1 {
 
     public static Player player;
-    public static ArrayList<Event> events;
 
     public Database2() {
         super();
-        events = new ArrayList<>();
         Database2.SkillToActor = new HashMap<Skill, ActorSkill>() {
             {
                 put(SkillDatabase.CrossCall,
