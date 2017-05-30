@@ -358,11 +358,9 @@ public class Player extends ActorCollision {
         return isJumping;
     }
 
-    public void setMap(OverheadMap map, float x, float y) { 
+    public void setMap(OverheadMap map, float x, float y) {        
         setInitialX(x);
         setInitialY(y);
-        setX(x);
-        setY(y);
         super.setMap(map);
     }
     

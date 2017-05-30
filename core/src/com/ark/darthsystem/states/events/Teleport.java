@@ -11,7 +11,6 @@ import com.ark.darthsystem.graphics.PlayerCamera;
 import com.ark.darthsystem.states.OverheadMap;
 import com.ark.darthsystem.states.State;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 /**
  *
@@ -55,7 +54,6 @@ public class Teleport extends Event {
                 GraphicsDriver.playMusic(MapDatabase.getMaps().get(map).getMusic());
                 GraphicsDriver.getPlayer().setMap(MapDatabase.getMaps().get(map), newX, newY);
                 ((OverheadMap) (MapDatabase.getMaps().get(map))).updatePartial(0);
-                ((OverheadMap) (MapDatabase.getMaps().get(map))).render((SpriteBatch) GraphicsDriver.getBatch());
             }
         }
     }

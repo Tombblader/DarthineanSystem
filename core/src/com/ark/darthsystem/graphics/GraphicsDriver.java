@@ -31,25 +31,19 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ScreenUtils;
-import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.badlogic.gdx.utils.viewport.StretchViewport;
-import com.badlogic.gdx.utils.viewport.Viewport;
 
 public class GraphicsDriver extends com.badlogic.gdx.Game {
 
-    private static final int WIDTH = 1024;
-    private static final int HEIGHT = 768;
     private static SpriteBatch batch;
     private static float delta;
     private static Camera camera;
-    private static Viewport viewport;
     private static PlayerCamera playerCamera;
-    private static Viewport playerViewport;
     private static BitmapFont font;
     private static float currentTime;
     private static Array<State> states;
     private static TextureAtlas masterSheet;
     private static Music backgroundMusic;
+//    private static final int WIDTH, HEIGHT;
     private static com.ark.darthsystem.graphics.Camera currentCamera;
     private static String backgroundMusicString = null;
     private static Sprite screenshot;
@@ -82,11 +76,11 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
     }
 
     public static int getHeight() {
-        return HEIGHT;
+        return Gdx.graphics.getHeight();
     }
 
     public static int getWidth() {
-        return WIDTH;
+        return Gdx.graphics.getWidth();
     }
 
     public static void newGame() {
@@ -280,14 +274,16 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
     @Override
     public void create() {
         input = new Input();
-        DisplayMode optimal = Gdx.graphics.getDisplayMode();
+        DisplayMode optimal = null;
+        for (DisplayMode d : Gdx.graphics.getDisplayModes()) {
+            if (d.width == 1024 && d.height == 768)
+            optimal = d;
+        }
 //        Gdx.graphics.setFullscreenMode(optimal);
         float w = Gdx.graphics.getWidth();
         float h = Gdx.graphics.getHeight();        
         camera = new Camera(w, h);
-        viewport = new FitViewport(1024, 768, camera);
         playerCamera = new PlayerCamera(w, h);
-        playerViewport = new FitViewport(32, 24, playerCamera);
         currentCamera = camera;
         batch = new SpriteBatch();
         masterSheet = new TextureAtlas(Gdx.files.internal("master/MasterSheet.atlas"));
@@ -344,11 +340,9 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         if (!(getCurrentState() instanceof OverheadMap)) {
             camera.update();
-            viewport.apply(true);
             batch.setProjectionMatrix(camera.combined);
         } else {
             playerCamera.update();
-            playerViewport.apply(true);
             batch.setProjectionMatrix(playerCamera.combined);
         }
         batch.begin();
@@ -378,8 +372,6 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
                 width +
                 "," +
                 height);
-        viewport.update(width, height, false);
-        playerViewport.update(width, height, true);        
     }
     public void resume() {
         System.out.println("Resumed");
