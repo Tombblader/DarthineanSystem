@@ -39,6 +39,7 @@ public class Player extends ActorCollision {
     private int moveDown = Keys.DOWN;
     private int moveLeft = Keys.LEFT;
     private int moveRight = Keys.RIGHT;
+    private boolean isRushing;
 
 //    private int slowButton = Keys.SHIFT_LEFT;
 
@@ -163,7 +164,7 @@ public class Player extends ActorCollision {
             tempSkill.setY(this);            
             if (tempSkill != null) {
                 attacking = true;
-                addTimer(new GameTimer("Skill", 3000) {
+                addTimer(new GameTimer("Skill", 2000) {
                     @Override
                     public void event(Actor a) {
                         canSkill = true;
@@ -174,7 +175,7 @@ public class Player extends ActorCollision {
                     }
                 });
                 setPause((tempSkill.getChargeTime() * 1000f));
-                addTimer(new GameTimer("Skill", getDelay() * 1000 * 2) {
+                addTimer(new GameTimer("Skill", getDelay() * 1000 * 1.5f) {
                     @Override
                     public void event(Actor a) {
                         attacking = false;
@@ -228,7 +229,7 @@ public class Player extends ActorCollision {
                                 fieldState = ActorSprite.SpriteModeField.IDLE;
                                 attacking = false;
 //                                a.setPause(250);
-                                a.addTimer(new GameTimer("Delay", animation.getAftercastDelay() * 1000) {
+                                a.addTimer(new GameTimer("Delay", animation.getAftercastDelay() * 500) {
                                     @Override
                                     public void event(Actor a) {
                                         canAttack = true;
@@ -378,6 +379,80 @@ public class Player extends ActorCollision {
         return SPEED;
     }
 
+    public void rush(ActorSkill a) {
+        final int RUSH_TIME = (int) (a.getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.ROLL, Facing.RIGHT).getKeyFrames().length * getDelay() * 1000f);
+        if (!isDodging) {
+            GameTimer tempTimer = new GameTimer("Rush", RUSH_TIME) {
+                public void event(Actor a) {
+                    isDodging = false;
+                    canAttack = true;
+                    canDodge = false;
+                    short mainFilter = 0;
+                    short subFilter = 0;
+                    switch (team) {
+                        case RED:
+                            mainFilter = ActorCollision.CATEGORY_RED;
+                            subFilter = (short) (ActorCollision.CATEGORY_BLUE_SKILL | ActorCollision.CATEGORY_AI_SKILL | ActorCollision.CATEGORY_EVENT);
+                            break;
+                        case BLUE:
+                            mainFilter = ActorCollision.CATEGORY_BLUE;
+                            subFilter = (short) (ActorCollision.CATEGORY_RED_SKILL | ActorCollision.CATEGORY_AI_SKILL | ActorCollision.CATEGORY_EVENT);
+                            break;
+                        case YELLOW:
+                            mainFilter = ActorCollision.CATEGORY_AI;
+                            subFilter = (short) (ActorCollision.CATEGORY_RED_SKILL | ActorCollision.CATEGORY_BLUE_SKILL | ActorCollision.CATEGORY_EVENT);
+                            break;
+                    }
+                    setMainFilter(mainFilter, (short)(ActorCollision.CATEGORY_WALLS | ActorCollision.CATEGORY_OBSTACLES | ActorCollision.CATEGORY_AI | ActorCollision.CATEGORY_RED | ActorCollision.CATEGORY_BLUE | subFilter));
+                    setSensorFilter(mainFilter, subFilter);
+                    fieldState = ActorSprite.SpriteModeField.IDLE;
+                    resetSprite();
+                    addTimer(new GameTimer("DODGE_DELAY", 2000) {
+                        @Override
+                        public void event(Actor a) {
+                            canDodge = true;
+                        }
+                        public boolean update(float delta, Actor a) {
+                            canDodge = false;
+                            return super.update(delta, a);                            
+                        }
+                    });
+                }
+
+                public boolean update(float delta, Actor a) {
+                    getMainBody().setLinearVelocity(5 * getFacing().x * getSpeed() * (float) (delta), 5 * getSpeed() * (float) (delta) * getFacing().y);
+                    changeX(getFacing().x);
+                    changeY(getFacing().y);
+//                    setWalking(true);
+                    fieldState = ActorSprite.SpriteModeField.ROLL;
+                    isDodging = true;
+                    canAttack = false;
+                    return super.update(delta, a);
+                }
+            };
+//            this.setInvulnerability(DODGE_TIME);
+            addTimer(tempTimer);
+            switch (team) {
+                case RED:
+                    setMainFilter(ActorCollision.CATEGORY_RED_SKILL, ActorCollision.CATEGORY_WALLS);
+                    setSensorFilter(ActorCollision.CATEGORY_RED, (short) (ActorCollision.CATEGORY_EVENT));
+                    break;
+                case BLUE:
+                    setMainFilter(ActorCollision.CATEGORY_BLUE_SKILL, ActorCollision.CATEGORY_WALLS);
+                    setSensorFilter(ActorCollision.CATEGORY_BLUE, (short) (ActorCollision.CATEGORY_EVENT));
+                    break;
+                case YELLOW:
+                    setMainFilter(ActorCollision.CATEGORY_AI_SKILL, ActorCollision.CATEGORY_WALLS);
+                    setSensorFilter(ActorCollision.CATEGORY_AI, (short) (ActorCollision.CATEGORY_EVENT));
+                    break;
+            }
+            
+            isDodging = true;
+            fieldState = ActorSprite.SpriteModeField.SKILL;
+            canAttack = false;
+        }
+    }    
+    
     public void dodge() {
         final int DODGE_TIME = (int) (this.getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.ROLL, Facing.RIGHT).getKeyFrames().length * getDelay() * 1000f);
         if (!isDodging) {

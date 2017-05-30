@@ -95,6 +95,27 @@ public class ActorSkill extends ActorCollision {
         translateY = 0;
         area = getArea;
     }
+    
+    public ActorSkill(Sprite[] img,
+            float getX,
+            float getY,
+            float translateX,
+            float translateY,
+            float delay,
+            Area getArea) {
+        super(img, getX, getY, delay, true);
+        originalFieldImage = img;
+        for (Sprite s : originalFieldImage) {
+            s.setCenter(s.getWidth() / 2f, s.getHeight() / 2f);
+            s.setOriginCenter();
+        }
+        relX = getX;
+        relY = getY;
+        this.translateX = translateX;
+        this.translateY = translateY;
+        aftercastDelay = delay;
+        area = getArea;
+    }    
 
     public ActorSkill(ActorSkill skill) {
         super(skill.originalFieldImage, skill.relX, skill.relY, skill.getDelay(), true);

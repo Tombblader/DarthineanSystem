@@ -17,12 +17,23 @@ public class SkillDatabase {
     public static ActorSkill Spear_Throw = new ActorSkill(GraphicsDriver.getMasterSheet().createSprites("skills/spear_throw/field/spear_throw").toArray(Sprite.class),
             0,
             0,
-            10f,
-            10f,
             1f/6f) {
                 {
                     setFieldSound(SoundDatabase.fieldSpearSound);
                 }
             };
-
+    
+//    public static ActorSkill Trample = new ActorSkill(GraphicsDriver.getMasterSheet().createSprites("skills/trample/field/trample").toArray(Sprite.class),
+//            0,
+//            0,
+//            10,
+//            10,
+//            1f/6f,
+//            ActorSkill.Area.RUSH) {
+//                {
+//                    setFieldSound(SoundDatabase.fieldSpearSound);
+//                }
+//            };
+            
+    
 }
