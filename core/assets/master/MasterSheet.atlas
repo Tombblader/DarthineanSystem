@@ -894,42 +894,42 @@ characters/flint_bow/field/skill/right
   index: 1
 characters/flint_spear/field/attack/right
   rotate: false
-  xy: 1454, 766
+  xy: 1260, 766
   size: 192, 203
   orig: 192, 203
   offset: 0, 0
   index: 1
 characters/flint_spear/field/attack/right_down
+  rotate: false
+  xy: 1576, 561
+  size: 192, 203
+  orig: 192, 203
+  offset: 0, 0
+  index: 0
+characters/flint_spear/field/attack/right_down
+  rotate: false
+  xy: 1770, 561
+  size: 192, 203
+  orig: 192, 203
+  offset: 0, 0
+  index: 1
+characters/flint_spear/field/attack/right_up
+  rotate: false
+  xy: 994, 356
+  size: 192, 203
+  orig: 192, 203
+  offset: 0, 0
+  index: 0
+characters/flint_spear/field/attack/right_up
   rotate: false
   xy: 1188, 356
-  size: 192, 203
-  orig: 192, 203
-  offset: 0, 0
-  index: 0
-characters/flint_spear/field/attack/right_down
-  rotate: false
-  xy: 1382, 356
-  size: 192, 203
-  orig: 192, 203
-  offset: 0, 0
-  index: 1
-characters/flint_spear/field/attack/right_up
-  rotate: false
-  xy: 1576, 356
-  size: 192, 203
-  orig: 192, 203
-  offset: 0, 0
-  index: 0
-characters/flint_spear/field/attack/right_up
-  rotate: false
-  xy: 1770, 356
   size: 192, 203
   orig: 192, 203
   offset: 0, 0
   index: 1
 characters/flint_spear/field/roll/right
   rotate: false
-  xy: 1648, 766
+  xy: 1454, 766
   size: 192, 203
   orig: 192, 203
   offset: 0, 0
@@ -943,49 +943,49 @@ characters/flint_spear/field/run/right
   index: 0
 characters/flint_spear/field/run/right
   rotate: false
-  xy: 1842, 766
+  xy: 1648, 766
   size: 192, 203
   orig: 192, 203
   offset: 0, 0
   index: 1
 characters/flint_spear/field/run/right
   rotate: false
-  xy: 800, 378
+  xy: 268, 34
   size: 192, 203
   orig: 192, 203
   offset: 0, 0
   index: 2
 characters/flint_spear/field/run/right
   rotate: false
-  xy: 1188, 561
+  xy: 534, 217
   size: 192, 203
   orig: 192, 203
   offset: 0, 0
   index: 3
 characters/flint_spear/field/run/right
   rotate: false
-  xy: 1382, 561
+  xy: 800, 378
   size: 192, 203
   orig: 192, 203
   offset: 0, 0
   index: 4
 characters/flint_spear/field/run/right
   rotate: false
-  xy: 1576, 561
+  xy: 994, 561
   size: 192, 203
   orig: 192, 203
   offset: 0, 0
   index: 5
 characters/flint_spear/field/run/right
   rotate: false
-  xy: 1770, 561
+  xy: 1188, 561
   size: 192, 203
   orig: 192, 203
   offset: 0, 0
   index: 6
 characters/flint_spear/field/run/right
   rotate: false
-  xy: 994, 356
+  xy: 1382, 561
   size: 192, 203
   orig: 192, 203
   offset: 0, 0
@@ -999,7 +999,7 @@ characters/flint_spear/field/skill/right
   index: 0
 characters/flint_spear/field/skill/right
   rotate: false
-  xy: 268, 34
+  xy: 1842, 766
   size: 192, 203
   orig: 192, 203
   offset: 0, 0
@@ -1523,51 +1523,51 @@ skills/red_spin/field/red_spin
   orig: 156, 156
   offset: 0, 0
   index: 5
-skills/spear_throw/field/right
+skills/spear_throw/field/spear_throw
   rotate: false
-  xy: 1260, 766
+  xy: 1382, 356
   size: 192, 203
   orig: 192, 203
   offset: 0, 0
   index: 0
-skills/spear_throw/field/right
+skills/spear_throw/field/spear_throw
   rotate: false
-  xy: 534, 217
+  xy: 1576, 356
   size: 192, 203
   orig: 192, 203
   offset: 0, 0
   index: 1
-skills/spear_throw/field/right
+skills/spear_throw/field/spear_throw
   rotate: false
-  xy: 994, 561
+  xy: 1770, 356
   size: 192, 203
   orig: 192, 203
   offset: 0, 0
   index: 2
-skills/spear_throw/field/right
+skills/spear_throw/field/spear_throw
   rotate: false
-  xy: 994, 561
-  size: 192, 203
-  orig: 192, 203
-  offset: 0, 0
-  index: 6
-skills/spear_throw/field/right
-  rotate: false
-  xy: 994, 561
+  xy: 1770, 356
   size: 192, 203
   orig: 192, 203
   offset: 0, 0
   index: 4
-skills/spear_throw/field/right
+skills/spear_throw/field/spear_throw
   rotate: false
-  xy: 994, 561
+  xy: 1770, 356
+  size: 192, 203
+  orig: 192, 203
+  offset: 0, 0
+  index: 6
+skills/spear_throw/field/spear_throw
+  rotate: false
+  xy: 1770, 356
   size: 192, 203
   orig: 192, 203
   offset: 0, 0
   index: 3
-skills/spear_throw/field/right
+skills/spear_throw/field/spear_throw
   rotate: false
-  xy: 994, 561
+  xy: 1770, 356
   size: 192, 203
   orig: 192, 203
   offset: 0, 0
@@ -1676,14 +1676,14 @@ skills/wiccan_cross/field/wiccan_cross
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
-  index: 21
+  index: 20
 skills/wiccan_cross/field/wiccan_cross
   rotate: false
   xy: 1562, 96
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
-  index: 20
+  index: 21
 tilesets/tileset
   rotate: false
   xy: 1324, 74

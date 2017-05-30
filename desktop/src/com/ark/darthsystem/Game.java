@@ -7,6 +7,7 @@ package com.ark.darthsystem;
 
 import com.ark.darthsystem.Graphics.GraphicsDriver;
 import com.badlogic.gdx.backends.lwjgl3.*;
+import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration.HdpiMode;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 
 /**

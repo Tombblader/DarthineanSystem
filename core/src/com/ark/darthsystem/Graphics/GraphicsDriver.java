@@ -198,7 +198,7 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
 //        tempMessage.add(getMessage);
 //        setMessage(tempMessage);
 //    }
-//
+//a
 //    public static void appendMessage(ArrayList<String> getMessage) {
 //        if ((getCurrentState() instanceof Message)) {
 //            ((Message) (getCurrentState())).appendMessage(getMessage);
@@ -273,17 +273,7 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
     @Override
     public void create() {
         input = new Input();
-        DisplayMode optimal = null;
-        
-        for (DisplayMode d : Gdx.graphics.getDisplayModes()) {            
-            if (optimal == null || (d.width > optimal.width 
-//                    && d.width <= WIDTH
-                    ) || (d.height > optimal.height
-//                    && d.height <= HEIGHT
-                    ))
-            optimal = d;
-        }
-//        Gdx.graphics.setWindowedMode(optimal.width, optimal.height);
+        DisplayMode optimal = Gdx.graphics.getDisplayMode();
         Gdx.graphics.setFullscreenMode(optimal);
         float w = WIDTH;
         float h = HEIGHT;        
@@ -339,11 +329,11 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         if (!(getCurrentState() instanceof OverheadMap)) {
             camera.update();
-              Gdx.gl.glViewport(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+//              Gdx.gl.glViewport(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
             batch.setProjectionMatrix(camera.combined);
         } else {
             playerCamera.update();
-              Gdx.gl.glViewport(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+//              Gdx.gl.glViewport(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
             batch.setProjectionMatrix(playerCamera.combined);
         }
         batch.begin();

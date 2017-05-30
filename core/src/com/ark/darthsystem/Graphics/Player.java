@@ -174,7 +174,7 @@ public class Player extends ActorCollision {
                     }
                 });
                 setPause((tempSkill.getChargeTime() * 1000f));
-                addTimer(new GameTimer("Skill", getDelay() * 1000 * getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.ATTACK, getFacing()).getKeyFrames().length) {
+                addTimer(new GameTimer("Skill", getDelay() * 1000 * 2) {
                     @Override
                     public void event(Actor a) {
                         attacking = false;
