@@ -25,6 +25,7 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFont
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 public class GraphicsDriver extends com.badlogic.gdx.Game {
@@ -32,7 +33,9 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
     private static SpriteBatch batch;
     private static float delta;
     private static Camera camera;
+    private static Viewport viewport;
     private static PlayerCamera playerCamera;
+    private static Viewport playerViewport;
     private static BitmapFont font;
     private static float currentTime;
     private static Array<State> states;
@@ -278,7 +281,9 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
         float w = WIDTH;
         float h = HEIGHT;        
         camera = new Camera(w, h);
+        viewport = new StretchViewport(1920, 1080, camera);
         playerCamera = new PlayerCamera(w, h);
+        playerViewport = new StretchViewport(1920, 1080, camera);
         currentCamera = camera;
         batch = new SpriteBatch();
         masterSheet = new TextureAtlas(Gdx.files.internal("master/MasterSheet.atlas"));
@@ -329,11 +334,11 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         if (!(getCurrentState() instanceof OverheadMap)) {
             camera.update();
-//              Gdx.gl.glViewport(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+            viewport.apply();
             batch.setProjectionMatrix(camera.combined);
         } else {
             playerCamera.update();
-//              Gdx.gl.glViewport(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+            playerViewport.apply();
             batch.setProjectionMatrix(playerCamera.combined);
         }
         batch.begin();
@@ -363,6 +368,8 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
                 width +
                 "," +
                 height);
+        viewport.update(width, height);
+        playerViewport.update(width, height);
     }
     public void resume() {
         System.out.println("Resumed");
