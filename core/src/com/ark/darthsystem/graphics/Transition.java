@@ -73,6 +73,7 @@ public class Transition {
     private Sprite screenshot() {
         Sprite tempScreenshot = new Sprite(ScreenUtils.getFrameBufferTexture());
         tempScreenshot.flip(false, true);
+        tempScreenshot.setSize(GraphicsDriver.getWidth(), GraphicsDriver.getHeight());
         return tempScreenshot;
     }
 

@@ -588,7 +588,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
             }
         }
     }
-    
+        
     @Override
     public void render(SpriteBatch batch) {
 
