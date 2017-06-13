@@ -10,6 +10,8 @@ import static com.ark.darthsystem.database.Database1.inventory;
 import static com.ark.darthsystem.database.Database2.player;
 import com.ark.darthsystem.graphics.GraphicsDriver;
 import com.ark.darthsystem.Item;
+import com.ark.darthsystem.Skill;
+import com.ark.darthsystem.graphics.ActorBattler;
 import com.ark.darthsystem.states.Battle;
 import com.ark.darthsystem.states.Menu;
 import com.ark.darthsystem.states.Title;
@@ -32,9 +34,9 @@ public class DefaultMenu extends Menu {
 
     @Override
     public String confirm(String choice) {
+        Battler caster = player.getCurrentBattler().getBattler();
         switch (choice) {
             case "Item":
-                final Battler caster = player.getCurrentBattler().getBattler();
                 if (inventory != null && !inventory.isEmpty()) {
                     String[] getItemList = new String[inventory.size()];
                     for (int i = 0; i < getItemList.length; i++) {
@@ -76,10 +78,44 @@ public class DefaultMenu extends Menu {
 
                 }
                 break;
-            case "Reorder":
-                final ArrayList<Battler> party = new ArrayList<>();
+            case "Skill":
+                ArrayList<Battler> party = new ArrayList<>();
                 party.addAll(Database2.player.getAllBattlers());
-                final String[] getPlayerList = new String[party.size()];
+                String[] getPlayerList = new String[party.size()];
+                for (int i = 0; i < getPlayerList.length; i++) {
+                    getPlayerList[i] = party.get(i).getName();
+                }
+                Menu skillBattlers = new Menu("Select a battler.",
+                        getPlayerList,
+                        true,
+                        true) {
+                    @Override
+                    public Object confirm(String choice) {
+                        final int sourceIndex = getCursorIndex();
+                        ActorBattler caster = Database2.player.getBattler(sourceIndex);
+                        String[] skillList = new String[caster.getSkillList().size()];
+                        for (int i = 0; i < skillList.length; i++) {
+                            skillList[i] = caster.getSkillList().get(i).getSkill().getName();
+                        }
+                        Menu menuTarget = new Menu("Select a Skill", skillList, true, true) {
+                            @Override
+                            public Object confirm(String choice) {
+                                caster.getSkillList().get(getCursorIndex()).activate(player);
+//                                if (caster.getBattler().getMP())
+                                return choice;
+                                
+                            }
+                        };
+                        GraphicsDriver.addMenu(menuTarget);
+                        return choice;
+                    }
+                };
+                GraphicsDriver.addMenu(skillBattlers);
+                break;
+            case "Reorder":
+                party = new ArrayList<>();
+                party.addAll(Database2.player.getAllBattlers());
+                getPlayerList = new String[party.size()];
                 for (int i = 0; i < getPlayerList.length; i++) {
                     getPlayerList[i] = party.get(i).getName();
                 }

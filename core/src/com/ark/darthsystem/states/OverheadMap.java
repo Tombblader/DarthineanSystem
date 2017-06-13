@@ -77,8 +77,6 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
     private int elapsed = 0;
     private final int MESSAGE_TIME = 3000;
     private Array<Actor> actorList;
-//    private Array<Actor> playerActors;
-//    private Array<Actor> enemyActors;
     private final int DRAW_SPRITES_AFTER_LAYER = 2;
     private World world;
     private Box2DDebugRenderer debugRender = new Box2DDebugRenderer();
@@ -162,12 +160,28 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
             public void postSolve(Contact cntct, ContactImpulse ci) {
 //                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
+            
+            private void renderKnockback(Fixture a, Fixture b) {
+                final float DISTANCE = (float) (30f * ((Player)(b.getBody().getUserData())).getCurrentBattler().getBattler().getDefend());
+                Vector2 result
+                        = new Vector2(((Actor) (b.getBody().getUserData())).getX(), ((Actor) (b.getBody().getUserData())).getY())
+                                .sub(new Vector2(((ActorSkill) (a.getBody().getUserData())).getInvoker().getX(), ((ActorSkill) (a.getBody().getUserData())).getInvoker().getY()));
+                result.set(result.scl(DISTANCE));
+                ((Actor)(b.getBody().getUserData())).addTimer(new GameTimer("KNOCKBACK", 99999) {
+                    @Override
+                    public void event(Actor a) {
+                        b.getBody().setLinearVelocity(result);
+                    }
+                    
+                    public boolean isFinished() {
+                        return !world.isLocked();
+                    }
+                    
+                });
+            }            
 
             private void renderCollision(Fixture a, Fixture b) {
-                final float KNOCKBACK = (float) (4f * ((Player)(a.getBody().getUserData())).getCurrentBattler().getBattler().getDefend());
-                a.getBody().setLinearVelocity(
-                        ((Actor)(b.getBody().getUserData())).getFacing().getX() * a.getBody().getPosition().add(b.getBody().getPosition()).x * KNOCKBACK, 
-                        ((Actor)(b.getBody().getUserData())).getFacing().getY() * a.getBody().getPosition().add(b.getBody().getPosition()).y * KNOCKBACK);
+                renderKnockback(b, a);
                 Player tempActor = (Player) a.getBody().getUserData();
                 ActorSkill tempSkill = (ActorSkill) b.getBody().getUserData();
                 Action action;
@@ -421,8 +435,8 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                 image = GraphicsDriver.getMasterSheet().createSprites(prop.get("image", String.class)).toArray(Sprite.class);
                 e = new NovelMode(EventDatabase.chapters(parameters),
                         image.length > 0 ? image : null,
-                        prop.get("x", Float.class) / ppt,
-                        prop.get("y", Float.class) / ppt,
+                        (prop.get("x", Float.class)) / ppt,
+                        (prop.get("y", Float.class)) / ppt,
                         6/60f);
                 break;
             case 2: //Teleport
@@ -569,7 +583,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
         clearTempRunningTimers(GraphicsDriver.getPlayer());
         
         GraphicsDriver.addState(new Battle(GraphicsDriver.getPlayer().getAllActorBattlers(), encounters, Database1.inventory, null).start());
-//        GraphicsDriver.transition(new Transition(Transition.TransitionType.FADE));
+        GraphicsDriver.getPlayer().setInvulnerability(1000);
     }    
 
     private void clearTempRunningTimers(Player tempPlayer) {

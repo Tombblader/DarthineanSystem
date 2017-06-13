@@ -16,7 +16,7 @@ import java.io.Serializable;
 import java.util.HashMap;
 
 /**
- * @author trankt1
+ * @author Keven Tran
  */
 public class ActorSprite implements Serializable {
 

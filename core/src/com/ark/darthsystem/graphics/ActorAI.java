@@ -50,14 +50,14 @@ public class ActorAI extends Player {
     }
     
     public boolean isInRange() {
-        final float RANGE = 52f;
+        final float RANGE = 2;
         if (closestPlayer == null) {
             return false;
         }
         float distance = (float) Math.sqrt(
                 Math.pow(closestPlayer.getX() - (this.getX()), 2)
                 + Math.pow((closestPlayer.getY() - (this.getY())), 2));
-        return distance < RANGE / PlayerCamera.PIXELS_TO_METERS;
+        return distance < RANGE;
     }
 
     public boolean isInRange(float range) {
@@ -90,10 +90,11 @@ public class ActorAI extends Player {
                 patrolling = false;
             }
             public boolean update(float delta, Actor a) {
-                if (x > (getX()) && x - (getX()) > 4.0 / PlayerCamera.PIXELS_TO_METERS) {
+                final float OFFSET = 1.5f;
+                if (x > (getX()) && x - (getX()) > OFFSET) {
                     changeX(1);
                     getMainBody().setLinearVelocity(speed * delta, getMainBody().getLinearVelocity().y);
-                } else if (x < (getX()) && (getX()) - x > 4.0 / PlayerCamera.PIXELS_TO_METERS) {
+                } else if (x < (getX()) && (getX()) - x > OFFSET) {
                     changeX(-1);
                     getMainBody().setLinearVelocity(-speed * delta, getMainBody().getLinearVelocity().y);
                 } else {
@@ -101,10 +102,10 @@ public class ActorAI extends Player {
                     getMainBody().setLinearVelocity(0, getMainBody().getLinearVelocity().y);
                 }
 
-                if (y > (getY()) && y - (getY()) > 4.0 / PlayerCamera.PIXELS_TO_METERS) {
+                if (y > (getY()) && y - (getY()) > OFFSET) {
                     changeY(1);
                    getMainBody().setLinearVelocity(getMainBody().getLinearVelocity().x, speed * (float) (delta));
-                 } else if (y < (getY()) && (getY()) - y > 4.0 / PlayerCamera.PIXELS_TO_METERS) {
+                 } else if (y < (getY()) && (getY()) - y > OFFSET) {
                     changeY(-1);
                     getMainBody().setLinearVelocity(getMainBody().getLinearVelocity().x, -speed * (float) (delta));
                 } else {
@@ -176,9 +177,9 @@ public class ActorAI extends Player {
     
     private void interpretAI(float delta) {
         closestPlayer = findClosestPlayer(vision, GraphicsDriver.getPlayer());
-        if (isInRange()) {
+        if (isInRange() && canAttack() && canMove()) {
             attack();
-        } else if (vision()) {
+        } else if (vision() && canMove()) {
             moveTowardsPlayer(delta);
         }
         else if (!patrolling) {
@@ -200,13 +201,14 @@ public class ActorAI extends Player {
     }
     
     private void moveTowardsPlayer(float delta) {
+        final float OFFSET = 1f;
         if (closestPlayer == null) {
             return;
         }
-        if ((closestPlayer.getX()) > (this.getX()) && (closestPlayer.getX()) - (this.getX()) > 4.0 / PlayerCamera.PIXELS_TO_METERS) {
+        if ((closestPlayer.getX()) > (this.getX()) && (closestPlayer.getX()) - (this.getX()) > OFFSET) {
             changeX(1);
             getMainBody().setLinearVelocity(speed * (float) (delta), getMainBody().getLinearVelocity().y);
-        } else if ((closestPlayer.getX()) < (this.getX()) && (this.getX()) - (closestPlayer.getX()) > 4.0 / PlayerCamera.PIXELS_TO_METERS) {
+        } else if ((closestPlayer.getX()) < (this.getX()) && (this.getX()) - (closestPlayer.getX()) > OFFSET) {
             changeX(-1);
             getMainBody().setLinearVelocity(-speed * (float) (delta), getMainBody().getLinearVelocity().y);
         } else {
@@ -214,10 +216,10 @@ public class ActorAI extends Player {
             getMainBody().setLinearVelocity(0, getMainBody().getLinearVelocity().y);
         }
         
-        if ((closestPlayer.getY()) > (this.getY()) && (closestPlayer.getY()) - (this.getY()) > 4.0 / PlayerCamera.PIXELS_TO_METERS) {
+        if ((closestPlayer.getY()) > (this.getY()) && (closestPlayer.getY()) - (this.getY()) > OFFSET) {
             changeY(1);
             getMainBody().setLinearVelocity(getMainBody().getLinearVelocity().x, speed * (float) (delta));
-        } else if ((closestPlayer.getY()) < (this.getY()) && (this.getY()) - (closestPlayer.getY()) > 4.0 / PlayerCamera.PIXELS_TO_METERS) {
+        } else if ((closestPlayer.getY()) < (this.getY()) && (this.getY()) - (closestPlayer.getY()) > OFFSET) {
             changeY(-1);
             getMainBody().setLinearVelocity(getMainBody().getLinearVelocity().x, -speed * (float) (delta));
         } else {
@@ -238,6 +240,24 @@ public class ActorAI extends Player {
 //            default:
 //        }
         this.setWalking(true);
+    }
+    
+    public void setDefaultFilter() {
+        setMainFilter(ActorCollision.CATEGORY_AI, (short)(ActorCollision.CATEGORY_WALLS | ActorCollision.CATEGORY_OBSTACLES));
+        setSensorFilter(ActorCollision.CATEGORY_AI, (short) (CATEGORY_PLAYER | ActorCollision.CATEGORY_PLAYER_SKILL));
+    }
+    
+    
+    public void setInvulnerability(int time) {
+        GameTimer tempTimer = new GameTimer("Invulnerable", time) {
+            public void event(Actor a) {
+                setDefaultFilter();
+            }
+
+        };
+        addTimer(tempTimer);
+        setMainFilter(ActorCollision.CATEGORY_AI, ActorCollision.CATEGORY_WALLS);
+        setSensorFilter(ActorCollision.CATEGORY_AI, (short) (ActorCollision.CATEGORY_PLAYER));
     }
         
     private void patrol(float delta) {

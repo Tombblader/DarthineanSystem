@@ -187,21 +187,22 @@ public class Actor {
     public float getHeight() {
         return currentImage.getRegionHeight();
     }
-    public void setInvulnerability(int time) {
-        isInvulnerable = true;
-        GameTimer tempTimer = new GameTimer("Invulnerable", time) {
-            public void event(Actor a) {
-                a.isInvulnerable = false;
-            }
-
-            public boolean update(float delta, Actor a) {
-                a.isInvulnerable = true;
-                return super.update(delta, a);
-            }
-        };
-        timers.add(tempTimer);
-        
-    }
+//    public void setInvulnerability(int time) {
+//        isInvulnerable = true;
+//        GameTimer tempTimer = new GameTimer("Invulnerable", time) {
+//            public void event(Actor a) {
+//                a.isInvulnerable = false;
+//            }
+//
+//            public boolean update(float delta, Actor a) {
+//                a.isInvulnerable = true;
+//                return super.update(delta, a);
+//            }
+//        };
+//        timers.add(tempTimer);
+//        
+//    }
+    
     public void setIsRotate(boolean getRotate) {
         isRotate = getRotate;
     }
@@ -273,9 +274,9 @@ public class Actor {
         return destroyAfterAnimation &&
                 animation.getKeyFrameIndex(elapsed) >= animation.getKeyFrames().length - 1;
     }
-    public boolean isInvulnerable() {
-        return isInvulnerable;
-    }
+//    public boolean isInvulnerable() {
+//        return isInvulnerable;
+//    }
     public boolean isRotate() {
         return isRotate;
     }
