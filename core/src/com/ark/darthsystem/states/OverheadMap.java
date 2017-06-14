@@ -476,16 +476,39 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
             }
         }
         worldStep = true;
-        for (ActorCollision a : createQueue) {
+        for (int i = 0; i < createQueue.size; i++ ) {
             if (!world.isLocked()) {
-                a.generateBody(this);
-                addActor(a);
-                createQueue.removeValue(a, true);
+                createQueue.get(i).generateBody(this);
+                addActor(createQueue.get(i));
+                createQueue.removeValue(createQueue.get(i), true);
+                i--;
             }
         }
     }
     
-        
+    public void updatePartialWithBodies(float delta) {
+        worldStep = true;
+        for (int i = 0; i < createQueue.size; i++ ) {
+            if (!world.isLocked()) {
+                createQueue.get(i).generateBody(this);
+                addActor(createQueue.get(i));
+                createQueue.removeValue(createQueue.get(i), true);
+                i--;
+            }
+        }
+        for (Actor a : actorList) {
+            if (a instanceof ActorAI && ((ActorAI) (a)).totalPartyKill()) {
+                removeActor(a);
+            } else {
+                a.update(delta);
+                if (a.isFinished()) {
+                    removeActor(a);
+                }
+            }
+        }
+    }
+
+    
     public void addBody(ActorCollision body) {
         createQueue.add(body);
     }
@@ -640,36 +663,57 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
         debugRender.render(world, GraphicsDriver.getCurrentCamera().combined);
         
         if (worldStep) {
-            for (ActorCollision a : createQueue) {
+            for (int i = 0; i < createQueue.size; i++ ) {
                 if (!world.isLocked()) {
-                    a.generateBody(this);
-                    addActor(a);
-                    createQueue.removeValue(a, true);
+                    createQueue.get(i).generateBody(this);
+                    addActor(createQueue.get(i));
+                    createQueue.removeValue(createQueue.get(i), true);
+                    i--;
                 }
             }
             world.step(1f/60f, 6, 2);  //Fix the second and third values.
             Array<Body> temp = new Array<>();
             world.getBodies(temp);
-            for (Body bodies : deleteQueue) {
+            for (int i = 0; i < deleteQueue.size; i++ ) {
                 if (!world.isLocked()) {
-                    if (temp.contains(bodies, true)) {
-                        world.destroyBody(bodies);
+                    if (temp.contains(deleteQueue.get(i), true)) {
+                        world.destroyBody(deleteQueue.get(i));
                     }
-                    deleteQueue.removeValue(bodies, true);
-                    bodies = null;
+                    deleteQueue.removeValue(deleteQueue.get(i), true);
+                    i--;
                 }
             }
+//            for (Body bodies : deleteQueue) {
+//                if (!world.isLocked()) {
+//                    if (temp.contains(bodies, true)) {
+//                        world.destroyBody(bodies);
+//                    }
+//                    deleteQueue.removeValue(bodies, true);
+//                    bodies = null;
+//                }
+//            }
             Array<Joint> temp2 = new Array<>();
             world.getJoints(temp2);            
-            for (Joint joints : deleteJointQueue) {
+
+            for (int i = 0; i < deleteJointQueue.size; i++ ) {
                 if (!world.isLocked()) {
-                    if (temp2.contains(joints, true)) {
-                        world.destroyJoint(joints);
+                    if (temp2.contains(deleteJointQueue.get(i), true)) {
+                        world.destroyJoint(deleteJointQueue.get(i));
                     }
-                    deleteJointQueue.removeValue(joints, true);
-                    joints = null;
+                    deleteJointQueue.removeValue(deleteJointQueue.get(i), true);
+                    i--;
                 }
             }
+
+//            for (Joint joints : deleteJointQueue) {
+//                if (!world.isLocked()) {
+//                    if (temp2.contains(joints, true)) {
+//                        world.destroyJoint(joints);
+//                    }
+//                    deleteJointQueue.removeValue(joints, true);
+//                    joints = null;
+//                }
+//            }
             worldStep = false;
         }        
     }

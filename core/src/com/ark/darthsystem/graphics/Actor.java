@@ -337,9 +337,11 @@ public class Actor {
             elapsed += delta / 1000f;
             currentImage = (Sprite) animation.getKeyFrame(elapsed);
         }
-        for (GameTimer t : timers) {
+        for (int i = 0; i < timers.size; i++) {
+            GameTimer t = timers.get(i);
             if (t.update(delta, this)) {
                 timers.removeValue(t, true);
+                i--;
             }
         }
         if (animation != null && elapsed > animation.getAnimationDuration()) {

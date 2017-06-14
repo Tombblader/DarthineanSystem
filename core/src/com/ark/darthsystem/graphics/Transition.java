@@ -7,6 +7,7 @@ package com.ark.darthsystem.graphics;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
 
 /**
@@ -158,6 +159,7 @@ public class Transition {
         if (type != TransitionType.PAUSE) {
             screenshot.draw(batch);
         }
+        
     }
     
     public boolean isFinished() {

@@ -148,9 +148,11 @@ public class ActorAI extends Player {
 //        setAttacking(false);
         setElapsedTime(getElapsedTime() + GraphicsDriver.getRawDelta());
         setCurrentImage((Sprite) getCurrentAnimation().getKeyFrame(getElapsedTime()));
-        for (GameTimer t : getTimers()) {
+        for (int i = 0; i < getTimers().size; i++) {
+            GameTimer t = getTimers().get(i);
             if (t.update(delta, this)) {
                 getTimers().removeValue(t, true);
+                i--;
             }
         }
         if (canMove() && !isAttacking()) {
