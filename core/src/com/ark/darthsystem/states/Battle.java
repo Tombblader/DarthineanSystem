@@ -397,7 +397,7 @@ public class Battle implements State {
         ArrayList<Item> dropped = new ArrayList<>();
         for (Battler enemy1 : enemy) {
             if (dropped.contains(((BattlerAI) (enemy1)).getDroppedItem()) && ((BattlerAI) (enemy1)).getDroppedItem() != null) {
-                dropped.get(partyItems.indexOf(((BattlerAI) (enemy1)). getDroppedItem())).increaseQuantity(((BattlerAI) (enemy1)).getDroppedItem().getQuantity());
+                dropped.get(dropped.indexOf(((BattlerAI) (enemy1)). getDroppedItem())).increaseQuantity(((BattlerAI) (enemy1)).getDroppedItem().getQuantity());
             } else {
                 dropped.add(((BattlerAI) (enemy1)).getDroppedItem());
             }
@@ -482,8 +482,8 @@ public class Battle implements State {
                 for (Battler party1 : party) {
                     party1.changeExperiencePoints(getTotalExperience());
                 }
-                for (int i = 0; i < enemy.size(); i++) {
-                    ArrayList<Item> allDropped = getAllItems();
+                ArrayList<Item> allDropped = getAllItems();
+                for (int i = 0; i < allDropped.size(); i++) {
                     if (allDropped.get(i) != null) {
                         BattleDriver.printline("You get "
                                 + allDropped.get(i).getQuantity()

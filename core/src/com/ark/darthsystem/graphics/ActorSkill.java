@@ -393,7 +393,7 @@ public class ActorSkill extends ActorCollision {
                     player.setAttacking(false);
                 }
             });
-            player.addTimer(new GameTimer("Skill", tempSkill.getChargeTime() * 1000f) {
+            player.addTimer(new GameTimer("Skill_Charge", tempSkill.getChargeTime() * 1000f) {
                 @Override
                 public void event(Actor a) {
                     tempSkill.playFieldSound();
@@ -415,6 +415,11 @@ public class ActorSkill extends ActorCollision {
                     player.setFieldState(ActorSprite.SpriteModeField.SKILL);
                     player.setAttacking(true);
                     return super.update(delta);
+                }
+                
+                public void clear() {
+                    player.setFieldState(ActorSprite.SpriteModeField.STAND);
+                    player.setAttacking(false);
                 }
             });
         }

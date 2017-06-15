@@ -43,7 +43,7 @@ public class Database1 implements Serializable {
                 Battle.Element.Physical,
                 Battler.Gender.Male,
                 1,
-                28, 12,
+                289999, 12,
                 7, 5, 6, 2, Swordsman_Class, Warrior);
         Protox = new Battler("Protox",
                 Battle.Element.Physical,
@@ -86,7 +86,7 @@ public class Database1 implements Serializable {
                 Battle.Element.Water,
                 Battler.Gender.Female,
                 1,
-                30, 30,
+                999930, 30,
                 3, 4, 7, 5, Water_Spirit_Moveset, Water_Spirit_Equipment);
         Wind_Spirit = new Battler("???",
                 Battle.Element.Wind,

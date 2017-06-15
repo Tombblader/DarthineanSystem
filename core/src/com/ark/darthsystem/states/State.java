@@ -7,8 +7,6 @@ package com.ark.darthsystem.states;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import com.ark.darthsystem.graphics.GraphicsDriver;
-
 /**
  *
  * @author Keven

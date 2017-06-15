@@ -244,6 +244,12 @@ public class Player extends ActorCollision {
                     setPause(((animation.getAnimationDelay()) * 1000f));
                     if (!getCurrentMap().getPhysicsWorld().isLocked()) {
                         animation.setMap(getCurrentMap());
+                        addTimer(new GameTimer("Attack", getDelay() * 1000 * getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.ATTACK, getFacing()).getKeyFrames().length) {
+                            @Override
+                            public void event(Actor a) {
+                                setAttacking(false);
+                            }
+                        });
                         addTimer(new GameTimer("Attack", animation.getAnimationDelay() * 1000) {
                             @Override
                             public void event(Actor a) {
@@ -435,7 +441,12 @@ public class Player extends ActorCollision {
             public void event(Actor a) {
                 setDefaultFilter();
             }
-
+            public boolean update(float delta, Actor a) {
+                setMainFilter(ActorCollision.CATEGORY_PLAYER, ActorCollision.CATEGORY_WALLS);
+                setSensorFilter(ActorCollision.CATEGORY_PLAYER, (short) (ActorCollision.CATEGORY_AI | ActorCollision.CATEGORY_EVENT));
+                return super.update(delta, a);
+            }
+            
         };
         addTimer(tempTimer);
         setMainFilter(ActorCollision.CATEGORY_PLAYER, ActorCollision.CATEGORY_WALLS);

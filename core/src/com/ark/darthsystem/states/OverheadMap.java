@@ -1,12 +1,11 @@
 package com.ark.darthsystem.states;
 
 import com.ark.darthsystem.Action;
-import com.ark.darthsystem.Battler;
-import com.ark.darthsystem.BattlerAI;
 import com.ark.darthsystem.database.Database1;
 import com.ark.darthsystem.database.Database2;
 import com.ark.darthsystem.database.EventDatabase;
 import com.ark.darthsystem.database.InterfaceDatabase;
+import com.ark.darthsystem.database.MonsterDatabase;
 import com.ark.darthsystem.graphics.Actor;
 import com.ark.darthsystem.graphics.ActorAI;
 import com.ark.darthsystem.graphics.ActorBattler;
@@ -203,11 +202,11 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                         tempActor.getAllActorBattlers(),
                         Database1.inventory, null));
                 if (tempActor instanceof ActorAI && tempActor.totalPartyKill()) {
-                    for (Battler battler : tempSkill.getInvoker().getAllBattlers()) {
-                        for (BattlerAI getBattlerAI : ((ActorAI) (tempActor)).getAllBattlerAI()) {
+                    tempSkill.getInvoker().getAllBattlers().forEach((battler) -> {
+                        ((ActorAI) (tempActor)).getAllBattlerAI().forEach((getBattlerAI) -> {
                             battler.changeExperiencePoints(getBattlerAI.getExperienceValue());
-                        }
-                    }
+                        });
+                    });
                     removeActor(tempActor);
                 }
 
@@ -370,8 +369,10 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                 }
 
                 MapProperties properties = object.getProperties();
-
+                properties.getKeys().forEachRemaining(k -> System.out.println(k));
                 if (properties.get("type", String.class) != null && properties.get("type", String.class).equalsIgnoreCase("actor")) {
+                    MonsterDatabase.monsters.get(object.getName().toUpperCase()
+                    ).clone().setMap(this, properties.get("x", Float.class) / ppt, properties.get("y", Float.class) / ppt);
                     continue;
                 }
 
@@ -610,7 +611,8 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
     }    
 
     private void clearTempRunningTimers(Player tempPlayer) {
-        for (GameTimer t : tempPlayer.getTimers()) {
+        for (int i = 0; i < tempPlayer.getTimers().size; i++) {
+            GameTimer t = tempPlayer.getTimers().get(i);
             switch (t.getName().toUpperCase()) {
                 case "ATTACK":
                 case "SKILL":
@@ -621,6 +623,8 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                 case "ATTACK_CHARGE":
                 case "SKILL_CHARGE":
                     tempPlayer.getTimers().removeValue(t, true);
+                    i--;
+                    t.clear();
                     break;
             }
         }

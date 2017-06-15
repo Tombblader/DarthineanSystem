@@ -14,6 +14,7 @@ import com.ark.darthsystem.graphics.ActorAI;
 import com.ark.darthsystem.Scenario;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 
 /**
  *
@@ -24,6 +25,7 @@ public class MonsterDatabase {
     public static ActorAI ProtoxAI;
     public static ActorAI ErikAI;
     public static ActorAI Eyesore_Actor;
+    public static HashMap<String, ActorAI> monsters = new HashMap<>();
 
     public MonsterDatabase() {
         ErikAI = new ActorAI(new ArrayList<>(Arrays.asList(new ActorBattler[]{new ActorBattler((new BattlerAI(
@@ -35,6 +37,8 @@ public class MonsterDatabase {
                     0)),
                     ErikSprite)})), 0, 0);
         Eyesore_Actor = new ActorAI(new ArrayList<>(Arrays.asList(new ActorBattler[]{new ActorBattler(Eyesore, Eyesore_Sprite)})), 0,0);
+        monsters.put("ERIK_AI", ErikAI);
+        monsters.put("EYESORE", Eyesore_Actor);
     }
     
 

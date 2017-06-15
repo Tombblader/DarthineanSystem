@@ -22,13 +22,21 @@ public class ActorAI extends Player {
     private Vector2 patrolCoordinates = Vector2.Zero;
     private boolean patrolling = false;
     private float speed = .2f;
-    private int vision = 32;
+    private int vision = 10;
     private float stopInterval;
     private State state;
     private Player closestPlayer = null;
     
     public ActorAI(ArrayList<ActorBattler> getBattlers, float getX, float getY) {
         super(getBattlers, getX, getY);
+    }
+    
+    public ActorAI clone() {
+        ArrayList<ActorBattler> temp = new ArrayList<ActorBattler>();
+        getAllActorBattlers().forEach((a) -> {
+            temp.add(a.clone());
+        });
+        return new ActorAI(temp, getX(), getY());
     }
         
     public void generateBody(OverheadMap map) {
@@ -255,13 +263,17 @@ public class ActorAI extends Player {
             public void event(Actor a) {
                 setDefaultFilter();
             }
-
+            public boolean update(float delta, Actor a) {
+                setMainFilter(ActorCollision.CATEGORY_AI, ActorCollision.CATEGORY_WALLS);
+                setSensorFilter(ActorCollision.CATEGORY_AI, ActorCollision.CATEGORY_PLAYER);
+                return super.update(delta, a);
+            }
+            
         };
         addTimer(tempTimer);
         setMainFilter(ActorCollision.CATEGORY_AI, ActorCollision.CATEGORY_WALLS);
-        setSensorFilter(ActorCollision.CATEGORY_AI, (short) (ActorCollision.CATEGORY_PLAYER));
-    }
-        
+        setSensorFilter(ActorCollision.CATEGORY_AI, ActorCollision.CATEGORY_PLAYER);
+    }        
     private void patrol(float delta) {
         patrolling = true;
         final Actor.Facing direction = Actor.Facing.values()[(int) (Math.random() * Actor.Facing.values().length)];

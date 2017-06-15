@@ -13,6 +13,7 @@ import com.ark.darthsystem.database.MapDatabase;
 import java.util.ArrayList;
 import com.ark.darthsystem.database.Database2;
 import com.ark.darthsystem.database.InterfaceDatabase;
+import com.ark.darthsystem.database.MonsterDatabase;
 import com.ark.darthsystem.database.SoundDatabase;
 
 import com.badlogic.gdx.Gdx;
@@ -93,6 +94,7 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
         states = new Array<>();
         new Database1();
         new Database2();
+        new MonsterDatabase();
         new MapDatabase();
         
     }
