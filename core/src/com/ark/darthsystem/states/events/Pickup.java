@@ -15,7 +15,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
  */
 public class Pickup extends Event {
 
-    private Item item;
+    private Item[] item;
     private boolean isFinished;
 
     public Pickup(Sprite[] img, float getX,
@@ -23,14 +23,27 @@ public class Pickup extends Event {
             float getDelay,
             Item getItem) {
         super(img, getX, getY, getDelay);
-        item = getItem;
+        item = new Item[1];
+        item[0] = getItem;
         isFinished = false;
         setTriggerMethod(TriggerMethod.TOUCH);
         setID(1);
     }
 
+    public Pickup(Sprite[] img, float getX,
+            float getY,
+            float getDelay,
+            Item[] getItems) {
+        super(img, getX, getY, getDelay);
+        item = getItems;
+        isFinished = false;
+        setTriggerMethod(TriggerMethod.TOUCH);
+        setID(1);
+    }
+    
+    
     public void run() {
-        BattleDriver.addItem(item);
+        BattleDriver.addItems(item);
         isFinished = true;
     }
 
@@ -39,6 +52,10 @@ public class Pickup extends Event {
     }
 
     public Item getItem() {
+        return item[0];
+    }
+    
+    public Item[] getAllItems() {
         return item;
     }
 

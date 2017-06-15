@@ -62,10 +62,12 @@ public abstract class Novel implements State {
                 pageIndex++;
             }
         } else {
-            for (TickEvent t : timers) {
+            for (int i = 0; i < timers.size(); i++) {
+                TickEvent t = timers.get(i);
                 t.update(delta);
                 if (t.isFinished()) {
                     timers.remove(t);
+                    i--;
                 }
             }
         }

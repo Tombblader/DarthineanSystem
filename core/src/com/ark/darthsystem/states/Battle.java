@@ -94,13 +94,22 @@ public class Battle implements State {
     
     private void renderPersistentActors(SpriteBatch batch) {
         final float BATTLER_Y = 400;
-        int divider = (enemyActors.size() > 1) ? 512 / enemyActors.size() : 0;
+        int divider = (enemyActors.size() > 1) ? 1024 / enemyActors.size() : 0;
         for (int i = 0; i < enemyActors.size(); i++) {
             if (enemy.get(i).isAlive()) {
                 Sprite s = (Sprite) (enemyActors.get(i).getSprite().getCurrentBattlerAnimation().getKeyFrame(elapsed));
                 batch.draw(s, 
-                    (float) ((GraphicsDriver.getWidth() + divider * (i - 1)) / 2 + divider * i) - s.getOriginX(),
-                    BATTLER_Y - s.getOriginY(),
+                    (float) ((
+                            GraphicsDriver.getWidth()
+                                    + divider * (i - 1))
+                             / 2 
+                            //+ divider * i
+                            )
+                        //    - s.getOriginX()
+                        ,
+                    BATTLER_Y 
+                    //        - s.getOriginY()
+                        ,
                     s.getOriginX(),
                     s.getOriginY(),
                     s.getWidth(),

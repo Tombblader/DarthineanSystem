@@ -1,6 +1,9 @@
 package com.ark.darthsystem.states;
 
 import com.ark.darthsystem.Action;
+import com.ark.darthsystem.Battler;
+import com.ark.darthsystem.BattlerAI;
+import com.ark.darthsystem.Item;
 import com.ark.darthsystem.database.Database1;
 import com.ark.darthsystem.database.Database2;
 import com.ark.darthsystem.database.EventDatabase;
@@ -18,6 +21,7 @@ import com.ark.darthsystem.graphics.Player;
 import com.ark.darthsystem.graphics.PlayerCamera;
 import com.ark.darthsystem.states.events.Event;
 import com.ark.darthsystem.states.events.NovelMode;
+import com.ark.darthsystem.states.events.Pickup;
 import com.ark.darthsystem.states.events.Teleport;
 
 import com.badlogic.gdx.Input.Keys;
@@ -202,6 +206,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                         tempActor.getAllActorBattlers(),
                         Database1.inventory, null));
                 if (tempActor instanceof ActorAI && tempActor.totalPartyKill()) {
+                    createPickupFromActor(tempActor);
                     tempSkill.getInvoker().getAllBattlers().forEach((battler) -> {
                         ((ActorAI) (tempActor)).getAllBattlerAI().forEach((getBattlerAI) -> {
                             battler.changeExperiencePoints(getBattlerAI.getExperienceValue());
@@ -211,10 +216,12 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                 }
 
                 //clear certain called events
-                for (Actor actors :  actorList) {
+                for (int i = 0; i < actorList.size; i++) {
+                    Actor actors = actorList.get(i); 
                     if (actors instanceof ActorSkill) {
                         if (((ActorSkill)(actors)).getInvoker().equals(tempActor)) {
                             removeActor(actors);
+                            i--;
                             ((ActorSkill)(actors)).stopFieldSound();
                         }
                     }
@@ -232,6 +239,18 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                 if (tempEvent.isTriggered(Event.TriggerMethod.PRESS)) {
                     tempPlayer.addButtonEvent(tempEvent);
                 }
+            }
+            
+            private void createPickupFromActor(Player a) {
+                ArrayList<Item> dropped = new ArrayList<>();
+                for (Battler enemy1 : a.getAllBattlers()) {
+                    if (dropped.contains(((BattlerAI) (enemy1)).getDroppedItem()) && ((BattlerAI) (enemy1)).getDroppedItem() != null) {
+                        dropped.get(dropped.indexOf(((BattlerAI) (enemy1)). getDroppedItem())).increaseQuantity(((BattlerAI) (enemy1)).getDroppedItem().getQuantity());
+                    } else {
+                        dropped.add(((BattlerAI) (enemy1)).getDroppedItem());
+                    }
+                }
+                new Pickup(GraphicsDriver.getMasterSheet().createSprites("items/potion/icon").toArray(Sprite.class), a.getX(), a.getY(), 1/12, dropped.toArray(new Item[dropped.size()])).setMap(OverheadMap.this);
             }
             
             private void endEvent(Fixture a, Fixture b) {
@@ -371,7 +390,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                 MapProperties properties = object.getProperties();
                 properties.getKeys().forEachRemaining(k -> System.out.println(k));
                 if (properties.get("type", String.class) != null && properties.get("type", String.class).equalsIgnoreCase("actor")) {
-                    MonsterDatabase.monsters.get(object.getName().toUpperCase()
+                    MonsterDatabase.monsters.get(properties.get("parameters", String.class).toUpperCase()
                     ).clone().setMap(this, properties.get("x", Float.class) / ppt, properties.get("y", Float.class) / ppt);
                     continue;
                 }
@@ -436,8 +455,8 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                 image = GraphicsDriver.getMasterSheet().createSprites(prop.get("image", String.class)).toArray(Sprite.class);
                 e = new NovelMode(EventDatabase.chapters(parameters),
                         image.length > 0 ? image : null,
-                        (prop.get("x", Float.class)) / ppt,
-                        (prop.get("y", Float.class)) / ppt,
+                        (prop.get("x", Float.class) + prop.get("width", Float.class) / 2) / ppt,
+                        (prop.get("y", Float.class) + prop.get("height", Float.class) / 2) / ppt,
                         6/60f);
                 break;
             case 2: //Teleport
@@ -466,9 +485,11 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
     }
     
     public void updatePartial(float delta) {
-        for (Actor a : actorList) {
+        for (int i = 0; i < actorList.size; i++) {
+            Actor a = actorList.get(i);
             if (a instanceof ActorAI && ((ActorAI) (a)).totalPartyKill()) {
                 removeActor(a);
+                i--;
             } else {
                 a.update(delta);
                 if (a.isFinished()) {
@@ -477,7 +498,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
             }
         }
         worldStep = true;
-        for (int i = 0; i < createQueue.size; i++ ) {
+        for (int i = 0; i < createQueue.size; i++) {
             if (!world.isLocked()) {
                 createQueue.get(i).generateBody(this);
                 addActor(createQueue.get(i));
@@ -487,28 +508,6 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
         }
     }
     
-    public void updatePartialWithBodies(float delta) {
-        worldStep = true;
-        for (int i = 0; i < createQueue.size; i++ ) {
-            if (!world.isLocked()) {
-                createQueue.get(i).generateBody(this);
-                addActor(createQueue.get(i));
-                createQueue.removeValue(createQueue.get(i), true);
-                i--;
-            }
-        }
-        for (Actor a : actorList) {
-            if (a instanceof ActorAI && ((ActorAI) (a)).totalPartyKill()) {
-                removeActor(a);
-            } else {
-                a.update(delta);
-                if (a.isFinished()) {
-                    removeActor(a);
-                }
-            }
-        }
-    }
-
     
     public void addBody(ActorCollision body) {
         createQueue.add(body);
@@ -523,9 +522,11 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
 
     @Override
     public float update(float delta) {
-        for (Actor a : actorList) {
+        for (int i = 0; i < actorList.size; i++) {
+            Actor a = actorList.get(i);
             if (a instanceof ActorAI && ((ActorAI) (a)).totalPartyKill()) {
                 removeActor(a);
+                i--;
             } else {
                 a.update(delta);
                 if (a.isFinished()) {
@@ -585,10 +586,12 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
         
         for (ActorAI tempAI : clear) {
             //clear certain called events
-            for (Actor actors :  actorList) {
+            for (int i = 0; i < actorList.size; i++) {
+                Actor actors = actorList.get(i);
                 if (actors instanceof ActorSkill) {
                     if (((ActorSkill)(actors)).getInvoker().equals(tempAI)) {
                         removeActor(actors);
+                        i--;
                         ((ActorSkill)(actors)).stopFieldSound();
                     }
                 }
@@ -596,10 +599,12 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
             clearTempRunningTimers(tempAI);
         }
 
-        for (Actor actors : actorList) {
-               if (actors instanceof ActorSkill) {
+           for (int i = 0; i < actorList.size; i++) {
+                Actor actors = actorList.get(i);
+                if (actors instanceof ActorSkill) {
                    if (((ActorSkill)(actors)).getInvoker().equals(GraphicsDriver.getPlayer())) {
                        removeActor(actors);
+                       i--;
                        ((ActorSkill)(actors)).stopFieldSound();
                    }
                }

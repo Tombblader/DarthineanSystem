@@ -252,6 +252,12 @@ public class BattleDriver {
             Database1.inventory.add(newItem);
         }
     }
+    
+    public static void addItems(Item[] item) {
+        for (Item i : item) {
+            addItem(i);
+        }
+    }
 
     /**
      *

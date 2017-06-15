@@ -93,19 +93,15 @@ public class CollisionDatabaseLoader {
                 rectangle.height * 0.5f / ppt);
         return polygon;
     }
-    private static CircleShape getEllipse(CircleMapObject circleObject) {
-        Circle circle = circleObject.getCircle();
-        CircleShape circleShape = new CircleShape();
-        circleShape.setRadius(circle.radius);
-//        circleShape.setPosition(new Vector2(circle.x / ppt, circle.y / ppt));
-        return circleShape;
-    }
+
     private static CircleShape getCircle(EllipseMapObject circleObject) {
         Ellipse circle = circleObject.getEllipse();
         CircleShape circleShape = new CircleShape();
         circleShape.setRadius(circle.height / 2 / ppt);
         return circleShape;
     }
+    
+    
     private static PolygonShape getPolygon(PolygonMapObject polygonObject) {
         PolygonShape polygon = new PolygonShape();
         polygonObject.getPolygon().setPosition(-polygonObject.getPolygon().getBoundingRectangle().width / 2, polygonObject.getPolygon().getBoundingRectangle().height / 2);
