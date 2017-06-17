@@ -128,6 +128,5 @@
   <object id="37" name="subwall8" type="wall" x="1920" y="1120" width="96" height="32"/>
   <object id="38" name="subwall7" type="wall" x="1952" y="1152" width="64" height="32"/>
   <object id="39" name="subwall6" type="wall" x="1984" y="1184" width="32" height="32"/>
-  <object id="40" name="subwall22" type="wall" x="3474.19" y="1116.13"/>
  </objectgroup>
 </map>

@@ -200,10 +200,8 @@ public class Battle implements State {
                 GraphicsDriver.getPlayer().getTimers().removeValue(t, true);
                 i--;
             }
-        
-                
         }
-        GraphicsDriver.getPlayer().setInvulnerability(BATTLE_DELAY);
+        GraphicsDriver.getPlayer().setSuperInvulnerability(BATTLE_DELAY);
         GraphicsDriver.removeState(this);
     }
 

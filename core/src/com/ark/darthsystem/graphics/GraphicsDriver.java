@@ -7,6 +7,7 @@ import com.ark.darthsystem.states.GameOver;
 import com.ark.darthsystem.states.State;
 import com.ark.darthsystem.states.OverheadMap;
 import com.ark.darthsystem.BattleDriver;
+import com.ark.darthsystem.database.CollisionDatabaseLoader;
 import com.ark.darthsystem.database.Database1;
 import com.ark.darthsystem.database.MapDatabase;
 
@@ -319,6 +320,7 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
         InterfaceDatabase.dispose();
         SoundDatabase.dispose();
         MapDatabase.dispose();
+        CollisionDatabaseLoader.dispose();
         font.dispose();
         batch.dispose();
         masterSheet.dispose();

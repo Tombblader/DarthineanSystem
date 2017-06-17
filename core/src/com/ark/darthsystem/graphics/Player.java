@@ -156,60 +156,6 @@ public class Player extends ActorCollision {
     public void skill() {
         if (currentSkill != null) {
             currentSkill.activate(this);
-//            currentSkill.setInvoker(this);
-//            ActorSkill tempSkill;
-//            if (getCurrentBattler().activateCurrentSkill() != null) {
-//                tempSkill = getCurrentBattler().getCurrentSkill().clone();
-//                if (getFacing().getX() == -1) {
-//                    Array<Sprite> s = new Array<>(Sprite.class);
-//                    for (TextureRegion r : tempSkill.getCurrentAnimation().getKeyFrames()) {
-//                        s.add(new Sprite(r));
-//                        s.peek().flip(true, false);
-//                    }
-//                    Animation<Sprite> a = new Animation<>(tempSkill.getDelay(), s);
-//                    tempSkill.changeAnimation(a);
-//                }
-//                tempSkill.setInvoker(this);
-//                tempSkill.setX(this);
-//                tempSkill.setY(this);
-//                attacking = true;
-//                addTimer(new GameTimer("Skill", tempSkill.getChargeTime()+tempSkill.getAftercastDelay() * 1000f) {
-//                    @Override
-//                    public void event(Actor a) {
-//                        canSkill = true;
-//                    }
-//                });
-//                setPause((tempSkill.getChargeTime() * 1000f));
-//                addTimer(new GameTimer("Skill", getDelay() * 1000 * getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.ATTACK, getFacing()).getKeyFrames().length) {
-//                    @Override
-//                    public void event(Actor a) {
-//                        attacking = false;
-//                    }
-//                });
-//                addTimer(new GameTimer("Skill", tempSkill.getChargeTime() * 1000f) {
-//                    @Override
-//                    public void event(Actor a) {
-//                        tempSkill.playFieldSound();
-//                        fieldState = ActorSprite.SpriteModeField.SKILL;
-//                        setPause((tempSkill.getAnimationDelay() * 1000f));
-//                        if (tempSkill.getSkill().getAlly()) {
-//                            Action action = new Action(Battle.Command.Skill,
-//                                    tempSkill.getSkill().overrideCost(0),
-//                                    tempSkill.getInvoker()
-//                                    .getCurrentBattler().getBattler(),
-//                                    tempSkill.getInvoker().getCurrentBattler().getBattler(),
-//                                    getAllBattlers());
-//                            action.calculateDamage(new Battle(tempSkill.getInvoker().getAllActorBattlers(), getAllActorBattlers(), Database1.inventory, null));
-//                        }
-//                        tempSkill.setMap(getCurrentMap());
-//                    }
-//                    public boolean update(float delta) {
-//                        fieldState = ActorSprite.SpriteModeField.SKILL;
-//                        attacking = true;
-//                        return super.update(delta);
-//                    }
-//                });
-//            }
         }
     }
     public void setAttackAnimation() {
@@ -436,6 +382,24 @@ public class Player extends ActorCollision {
         setSensorFilter(ActorCollision.CATEGORY_PLAYER, (short) (ActorCollision.CATEGORY_AI | ActorCollision.CATEGORY_AI_SKILL | ActorCollision.CATEGORY_EVENT));
     }
     
+    
+    public void setSuperInvulnerability(int time) {
+        GameTimer tempTimer = new GameTimer("Invulnerable", time) {
+            public void event(Actor a) {
+                setDefaultFilter();
+            }
+            public boolean update(float delta, Actor a) {
+                setMainFilter(ActorCollision.CATEGORY_PLAYER, ActorCollision.CATEGORY_WALLS);
+                setSensorFilter(ActorCollision.CATEGORY_PLAYER, ActorCollision.CATEGORY_EVENT);
+                return super.update(delta, a);
+            }
+            
+        };
+        addTimer(tempTimer);
+        setMainFilter(ActorCollision.CATEGORY_PLAYER, ActorCollision.CATEGORY_WALLS);
+        setSensorFilter(ActorCollision.CATEGORY_PLAYER, ActorCollision.CATEGORY_EVENT);
+    }    
+    
     public void setInvulnerability(int time) {
         GameTimer tempTimer = new GameTimer("Invulnerable", time) {
             public void event(Actor a) {
@@ -444,6 +408,8 @@ public class Player extends ActorCollision {
             public boolean update(float delta, Actor a) {
                 setMainFilter(ActorCollision.CATEGORY_PLAYER, ActorCollision.CATEGORY_WALLS);
                 setSensorFilter(ActorCollision.CATEGORY_PLAYER, (short) (ActorCollision.CATEGORY_AI | ActorCollision.CATEGORY_EVENT));
+                getMainBody().setAwake(true);
+                getSensorBody().setAwake(true);
                 return super.update(delta, a);
             }
             

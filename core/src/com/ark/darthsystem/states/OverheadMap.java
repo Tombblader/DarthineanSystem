@@ -129,7 +129,13 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                         }
                     }
                     if (a.getBody().getUserData() instanceof Player && b.getBody().getUserData() instanceof Player) {
-                        battleStart();
+                        boolean isInBattle = false;
+                        for (State s : GraphicsDriver.getState()) {
+                            isInBattle |= s instanceof Battle;
+                        }
+                        if (!isInBattle) {
+                            battleStart();
+                        }
                     }
                     if (a.getBody().getUserData() instanceof Player && b.getBody().getUserData() instanceof Event) {
                         renderEvent(a, b);
@@ -388,7 +394,6 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                 }
 
                 MapProperties properties = object.getProperties();
-                properties.getKeys().forEachRemaining(k -> System.out.println(k));
                 if (properties.get("type", String.class) != null && properties.get("type", String.class).equalsIgnoreCase("actor")) {
                     MonsterDatabase.monsters.get(properties.get("parameters", String.class).toUpperCase()
                     ).clone().setMap(this, properties.get("x", Float.class) / ppt, properties.get("y", Float.class) / ppt);
@@ -687,20 +692,11 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                 if (!world.isLocked()) {
                     if (temp.contains(deleteQueue.get(i), true)) {
                         world.destroyBody(deleteQueue.get(i));
+                        deleteQueue.removeValue(deleteQueue.get(i), true);
+                        i--;
                     }
-                    deleteQueue.removeValue(deleteQueue.get(i), true);
-                    i--;
                 }
             }
-//            for (Body bodies : deleteQueue) {
-//                if (!world.isLocked()) {
-//                    if (temp.contains(bodies, true)) {
-//                        world.destroyBody(bodies);
-//                    }
-//                    deleteQueue.removeValue(bodies, true);
-//                    bodies = null;
-//                }
-//            }
             Array<Joint> temp2 = new Array<>();
             world.getJoints(temp2);            
 
@@ -754,7 +750,6 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
     public void setMap(String mapName) {
         Parameters parameters = new Parameters();
         parameters.flipY = false;
-//        this.getMap().dispose();
         TiledMap tiledMap = (new TmxMapLoader().load(mapName, parameters));
         for (MapLayer m : (tiledMap.getLayers())) {
             if (!(m instanceof TiledMapTileLayer)) {

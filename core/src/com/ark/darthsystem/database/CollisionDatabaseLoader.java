@@ -7,13 +7,11 @@ package com.ark.darthsystem.database;
 
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObject;
-import com.badlogic.gdx.maps.objects.CircleMapObject;
 import com.badlogic.gdx.maps.objects.EllipseMapObject;
 import com.badlogic.gdx.maps.objects.PolygonMapObject;
 import com.badlogic.gdx.maps.objects.PolylineMapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Ellipse;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
@@ -130,7 +128,7 @@ public class CollisionDatabaseLoader {
         chain.createChain(worldVertices);
         return chain;
     }
-    public void dispose() {
-        
+    public static void dispose() {
+        shapes.forEach((k, v) -> v.dispose());
     }
 }

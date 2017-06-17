@@ -266,6 +266,8 @@ public class ActorAI extends Player {
             public boolean update(float delta, Actor a) {
                 setMainFilter(ActorCollision.CATEGORY_AI, ActorCollision.CATEGORY_WALLS);
                 setSensorFilter(ActorCollision.CATEGORY_AI, ActorCollision.CATEGORY_PLAYER);
+                getMainBody().setAwake(true);
+                getSensorBody().setAwake(true);
                 return super.update(delta, a);
             }
             
