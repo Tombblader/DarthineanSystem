@@ -496,7 +496,9 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                 removeActor(a);
                 i--;
             } else {
+                Input.disableInput();
                 a.update(delta);
+                Input.enableInput();
                 if (a.isFinished()) {
                     removeActor(a);
                 }

@@ -6,13 +6,24 @@ public class Input extends InputAdapter {
 
     public static int[] keys = new int[65536];
     public static boolean[] keyPressed = new boolean[65536];
+    private static boolean canInput = true;
 
     public void invoke(long window,
             int keycode,
             int scancode,
             int action,
             int mods) {
-        keys[keycode] = action;
+        if (canInput) {
+            keys[keycode] = action;
+        }
+    }
+    
+    public static void enableInput() {
+        canInput = true;
+    }
+    
+    public static void disableInput() {
+        canInput = true;
     }
 
     public static boolean getKeyRepeat(int keycode) {
