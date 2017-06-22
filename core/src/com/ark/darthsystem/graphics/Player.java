@@ -5,9 +5,7 @@
  */
 package com.ark.darthsystem.graphics;
 
-import com.ark.darthsystem.Action;
 import com.ark.darthsystem.Battler;
-import com.ark.darthsystem.database.Database1;
 import com.ark.darthsystem.database.Database2;
 import com.ark.darthsystem.database.DefaultMenu;
 import com.ark.darthsystem.database.InterfaceDatabase;
@@ -15,7 +13,6 @@ import com.ark.darthsystem.database.SoundDatabase;
 import com.ark.darthsystem.Equipment;
 import com.ark.darthsystem.states.OverheadMap;
 import com.ark.darthsystem.GameOverException;
-import com.ark.darthsystem.states.Battle;
 import com.ark.darthsystem.states.events.Event;
 
 
@@ -28,7 +25,6 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Filter;
 import com.badlogic.gdx.utils.Array;
 import java.util.ArrayList;
@@ -570,7 +566,7 @@ public class Player extends ActorCollision {
         final float NAME_Y = 10f;
         final float FONT_SIZE = GraphicsDriver.getFont().getCapHeight();
         for (int i = 0; i < getAllActorBattlers().size(); i++) {
-            Sprite temp = (Sprite) (getAllActorBattlers().get(i).getSprite().getCurrentFaceAnimation().getKeyFrame(getElapsedTime()));
+            Sprite temp = (Sprite) (getAllActorBattlers().get(i).getFace().getKeyFrame(getElapsedTime()));
             InterfaceDatabase.TEXT_BOX.draw(batch, SUB_WIDTH * i + GraphicsDriver.getCamera().getScreenPositionX(), (GraphicsDriver.getCamera().getScreenPositionY()), SUB_WIDTH, STAT_HEIGHT);
             batch.draw(temp,
                     (SUB_WIDTH * i + GraphicsDriver.getCamera().getScreenPositionX() + 5),
@@ -641,20 +637,32 @@ public class Player extends ActorCollision {
         return temp;
     }
     
+    public void runButtonPressedEvents() {
+        
+    }
+    
     public void ouch() {
         fieldState = ActorSprite.SpriteModeField.OUCH;
-        setPause(150);
-        setInvulnerability(1500);
+        getCurrentBattler().setFace(ActorSprite.SpriteModeFace.OUCH);
+        setPause(250);
+        setInvulnerability(550);
         SoundDatabase.ouchSound.play();
-        addTimer(new GameTimer("OUCH", 150) {
+        addTimer(new GameTimer("OUCH", 250) {
+            ActorBattler ouchBattler = Player.this.getCurrentBattler();
             @Override
             public void event(Actor a) {
-                fieldState = ActorSprite.SpriteModeField.STAND;
+                if (ouchBattler.getBattler().isAlive()) {
+                    fieldState = ActorSprite.SpriteModeField.STAND;
+                    ouchBattler.setFace(ActorSprite.SpriteModeFace.NORMAL);
+                }
             }
             
             @Override
             public boolean update(float delta, Actor a) {
-                fieldState = ActorSprite.SpriteModeField.OUCH;
+                if (ouchBattler.getBattler().isAlive()) {
+                    fieldState = ActorSprite.SpriteModeField.OUCH;
+                    ouchBattler.setFace(ActorSprite.SpriteModeFace.OUCH);
+                }
                 return super.update(delta, a);
             }
         });

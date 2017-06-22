@@ -187,6 +187,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                     }
                     
                 });
+                ((Player)(b.getBody().getUserData())).ouch();
             }            
 
             private void renderCollision(Fixture a, Fixture b) {
@@ -630,7 +631,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                 case "SKILL":
                 case "CHARGE":
                 case "JUMP":
-                case "OUCH":
+//                case "OUCH":
                     t.event(tempPlayer);
                 case "ATTACK_CHARGE":
                 case "SKILL_CHARGE":

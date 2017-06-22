@@ -239,16 +239,6 @@ public class ActorAI extends Player {
         setFacing();
         setFieldState(ActorSprite.SpriteModeField.WALK);
         applySprite();
-
-//        switch (getFacing()) {
-//            case RIGHT:
-//                changeDuringAnimation(getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.RUN, Actor.Facing.RIGHT));
-//                break;
-//            case LEFT:
-//                changeDuringAnimation(getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.RUN, Actor.Facing.LEFT));
-//                break;
-//            default:
-//        }
         this.setWalking(true);
     }
     

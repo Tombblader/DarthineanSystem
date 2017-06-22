@@ -8,6 +8,8 @@ package com.ark.darthsystem.graphics;
 import com.ark.darthsystem.database.Database2;
 import com.ark.darthsystem.Battler;
 import com.ark.darthsystem.Skill;
+import com.ark.darthsystem.graphics.ActorSprite.SpriteModeFace;
+import com.badlogic.gdx.graphics.g2d.Animation;
 
 import java.util.ArrayList;
 
@@ -21,6 +23,7 @@ public class ActorBattler {
     private ActorSkill currentSkill;
     private ArrayList<ActorSkill> skillList = new ArrayList<>();
     private ActorSprite spriteSheet;
+    private SpriteModeFace face = SpriteModeFace.NORMAL;
 
     public ActorBattler(Battler b, ActorSprite s) {
         battler = b;
@@ -112,5 +115,13 @@ public class ActorBattler {
     public ActorSprite getSprite() {
         return spriteSheet;
     }
+    
+    public void setFace(SpriteModeFace face) {
+        this.face = face;
+    }
 
+    public Animation getFace() {
+        return spriteSheet.getFaceAnimation(face);
+    }
+    
 }

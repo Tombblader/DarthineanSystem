@@ -12,7 +12,6 @@ import com.badlogic.gdx.graphics.g2d.Animation.PlayMode;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.utils.Array;
-import java.io.Serializable;
 
 /**
  * The Actor class is the basic entity class that directly interacts with the
@@ -31,7 +30,6 @@ public class Actor {
     private float elapsed = 0f;
     private Facing facing;
     private Sprite[] images;
-    private boolean isInvulnerable = false;
     private boolean isMovable = true;
     private boolean isRotate;
     private float lastX;
@@ -181,27 +179,14 @@ public class Actor {
     public Facing getFacing() {
         return facing;
     }
+
     public void setFacing(Facing direction) {
         facing = direction;
     }
+
     public float getHeight() {
         return currentImage.getRegionHeight();
     }
-//    public void setInvulnerability(int time) {
-//        isInvulnerable = true;
-//        GameTimer tempTimer = new GameTimer("Invulnerable", time) {
-//            public void event(Actor a) {
-//                a.isInvulnerable = false;
-//            }
-//
-//            public boolean update(float delta, Actor a) {
-//                a.isInvulnerable = true;
-//                return super.update(delta, a);
-//            }
-//        };
-//        timers.add(tempTimer);
-//        
-//    }
     
     public void setIsRotate(boolean getRotate) {
         isRotate = getRotate;

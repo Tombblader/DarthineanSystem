@@ -93,23 +93,31 @@ public class Battle implements State {
 
     
     private void renderPersistentActors(SpriteBatch batch) {
-        final float BATTLER_Y = 400;
-        int divider = (enemyActors.size() > 1) ? 1024 / enemyActors.size() : 0;
+        final float BATTLER_Y = 768/2;
+        int divider = (enemyActors.size() > 1) ? 1024 / (enemyActors.size() + 1) : 512;
         for (int i = 0; i < enemyActors.size(); i++) {
             if (enemy.get(i).isAlive()) {
                 Sprite s = (Sprite) (enemyActors.get(i).getSprite().getCurrentBattlerAnimation().getKeyFrame(elapsed));
-                batch.draw(s, 
-                    (float) ((
-                            GraphicsDriver.getWidth()
-                                    + divider * (i - 1))
-                             / 2 
-                            //+ divider * i
-                            )
-                        //    - s.getOriginX()
-                        ,
-                    BATTLER_Y 
-                    //        - s.getOriginY()
-                        ,
+                batch.draw(s,
+                        divider * (i + 1),
+                        BATTLER_Y,
+                        s.getOriginX(),
+                        s.getOriginY(),
+                        s.getWidth(),
+                        s.getHeight(),
+                        s.getScaleX(),
+                        s.getScaleY(),
+                        s.getRotation());
+            }
+        }
+    }
+    
+    private void renderTemporaryActors(SpriteBatch batch) {
+        for (int i = 0; i < animations.size(); i++) {
+            Sprite s = animations.get(i).getCurrentImage();
+            batch.draw(s,
+                    animations.get(i).getX(),
+                    animations.get(i).getY(),
                     s.getOriginX(),
                     s.getOriginY(),
                     s.getWidth(),
@@ -117,13 +125,6 @@ public class Battle implements State {
                     s.getScaleX(),
                     s.getScaleY(),
                     s.getRotation());
-            }
-        }
-    }
-    
-    private void renderTemporaryActors(SpriteBatch batch) {
-        for (int i = 0; i < animations.size(); i++) {
-            animations.get(i).render(batch);
         }
         
     }
@@ -153,16 +154,9 @@ public class Battle implements State {
         };
         return command;
     }
-
-    private void updatePersistentActors(float delta) {
-
-    }
     
     private void updateTemporaryActors(float delta) {
         elapsed += GraphicsDriver.getRawDelta();
-        if (elapsed >= Float.MAX_VALUE - 10000000000000f) { //Stopgap measure to prevent reaching max value?
-            elapsed = 0;
-        }
         for (Iterator<Actor> it = animations.iterator(); it.hasNext();) {
             Actor a = it.next();
             a.update(delta);
@@ -206,8 +200,8 @@ public class Battle implements State {
     }
 
     private void addAnimationAndSound(Action currentAction) {
-        final float BATTLER_Y = 400;
-        int divider = enemyActors.isEmpty() ? 512 / enemyActors.size() : 0;
+        final float BATTLER_Y = 768/2;
+        int divider = (enemyActors.size() > 1) ? 1024 / (enemyActors.size() + 1) : 512;
         Battler tempBattler = currentAction.getTarget();
         
         if (currentAction.getCommand() == Command.Skill && 
@@ -216,7 +210,10 @@ public class Battle implements State {
             ActorSkill tempSkill = Database2.SkillToActor(currentAction.getSkill());
             sounds.add(tempSkill.getBattlerSound());
             animations.add(tempSkill.getBattlerAnimation());
-            animations.get(animations.size() - 1).setX((float) ((GraphicsDriver.getWidth() + divider * (enemy.indexOf(tempBattler) - 1)) / 2 + divider * enemy.indexOf(tempBattler)));
+//            animations.get(animations.size() - 1).setX((float) ((GraphicsDriver.getWidth() + divider * (enemy.indexOf(tempBattler) - 1)) / 2 + divider * enemy.indexOf(tempBattler)));
+            animations.get(animations.size() - 1).setX(divider * ((enemy.indexOf(tempBattler) + 1)));
+                        
+
             animations.get(animations.size() - 1).setY(BATTLER_Y);
         }
         if (currentAction.getCommand() == Command.Skill && 
@@ -234,7 +231,7 @@ public class Battle implements State {
             ActorSkill tempSkill = (currentAction.getCaster().getEquipment(Equipment.EquipmentType.OffHand.getSlot()).getAnimation());
             sounds.add(tempSkill.getBattlerSound());
             animations.add(tempSkill.getBattlerAnimation());
-            animations.get(animations.size() - 1).setX((float) ((GraphicsDriver.getWidth() + divider * (enemy.indexOf(tempBattler) - 1)) / 2 + divider * enemy.indexOf(tempBattler)));
+            animations.get(animations.size() - 1).setX(divider * (enemy.indexOf(tempBattler) + 1));
             animations.get(animations.size() - 1).setY(BATTLER_Y);
         }
     }
@@ -246,13 +243,9 @@ public class Battle implements State {
 
 
     public Battle start() {
-//        previousMusic = BattleDriver.getCurrentMusic();
-//        GraphicsDriver.playMusic(BATTLE_MUSIC);
-        
         GraphicsDriver.setCurrentCamera(GraphicsDriver.getCamera());
         background = new Sprite(new Texture(Gdx.files.internal("backgrounds/title.png")));
         background.flip(false, true);
-        updatePersistentActors(0);
         
         state = State.START;
         return this;
@@ -452,6 +445,7 @@ public class Battle implements State {
 //                                        && currentAction.getCommand() == Battle.Command.Skill && 
 //                                        currentAction.getCaster().getMP() >= currentAction.getSkill().getCost()
                                         ) {
+                                    currentAction.setNewTarget();
                                         addAnimationAndSound(currentAction);
 //                                    animations.add(Database2.SkillToActor(allAction.get(State.ACTION.getTicks() / 2).getSkill()).getBattlerAnimation());
                                 }
@@ -480,8 +474,6 @@ public class Battle implements State {
                     exitBattle();
                     break;
             }        
-
-            updatePersistentActors(delta);
 
             if (hasWon() && state != State.END) {
                 BattleDriver.printline("Victory is yours!");
@@ -521,7 +513,6 @@ public class Battle implements State {
 
     @Override
     public void dispose() {
-        // TODO Auto-generated method stub
         background.getTexture().dispose();
     }
     public static enum Element {
@@ -692,7 +683,7 @@ public class Battle implements State {
                     break;
                 case Skill:
                     final ArrayList<Skill> getSkillList = new ArrayList<>();
-                    if (caster.getSkillList() != null) {
+                    if (caster.getSkillList() != null && caster.getSkillList().length > 0) {
                         for (Skill skillList1 : caster.getSkillList()) {
                             if (skillList1 != null && skillList1.getLevel() <= caster.getLevel()) {
                                 getSkillList.add(skillList1);
@@ -751,7 +742,7 @@ public class Battle implements State {
                     }
                     break;
                 case Item:
-                    if (b.getItem() != null) {
+                    if (b.getItem() != null && b.getItem().size() > 0) {
                         Menu menuItem = new Menu("Use which Item?",
                                 b.getItemNames(),
                                 true,
@@ -788,7 +779,7 @@ public class Battle implements State {
                                 };
                         GraphicsDriver.addMenu(menuItem);
                     } else {
-                        
+
                     }
                     break;
                 case Charge:

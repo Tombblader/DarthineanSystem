@@ -12,9 +12,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
  * @author Keven
  */
 public interface State {
-
-//    public final int WIDTH = GraphicsDriver.getWidth();
-//    public final int HEIGHT = GraphicsDriver.getHeight();
     
     public float update(float delta);
 
