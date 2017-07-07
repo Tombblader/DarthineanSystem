@@ -60,7 +60,11 @@ public class ActorSprite implements Serializable {
                     for (Sprite s : tempSprites) {
                         s.setOriginCenter();
                     }
-                    tempAnimation.put(direction, new Animation<Sprite>(DELAY, tempSprites, Animation.PlayMode.LOOP));
+                    tempAnimation.put(direction, new Animation<Sprite>(DELAY, tempSprites, 
+                            field == SpriteModeField.WALK || field == SpriteModeField.STAND ?
+                            Animation.PlayMode.LOOP : Animation.PlayMode.NORMAL
+                                    
+                    ));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

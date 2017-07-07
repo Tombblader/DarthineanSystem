@@ -20,6 +20,10 @@ import com.ark.darthsystem.states.Battle;
  * @author Keven
  */
 public class AIDatabase {
+    public static BattlerAI Veather_Mann =
+            new BattlerAI("Veather Mann", Battle.Element.Male, Battler.Gender.Male,
+            5, 200, 34, 9, 9, 9, 9, Gray_Mage_Moveset, Gray_Mage, Standard, 100, ItemDatabase.Hand_Axe,
+            1);
 
     public static BattlerAI Eyesore =
             new BattlerAI("Eyesore", Battle.Element.Physical, Battler.Gender.Male, 1,

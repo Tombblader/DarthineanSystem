@@ -442,6 +442,7 @@ public class Battle implements State {
                             if (!(currentAction == null) && currentAction.getCaster().canMove()) {
                                 currentAction.declareAttack(this);
                                 if (partyAction.contains(currentAction)
+                                        && currentAction.getAllTargets() != null
 //                                        && currentAction.getCommand() == Battle.Command.Skill && 
 //                                        currentAction.getCaster().getMP() >= currentAction.getSkill().getCost()
                                         ) {

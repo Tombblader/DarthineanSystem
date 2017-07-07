@@ -36,7 +36,7 @@ import java.util.Collections;
  */
 public class Player extends ActorCollision {
     private static final float SPEED = .4f;
-    private static final float DELAY =  1f/12f;
+    private static final float DELAY =  1f/10f;
 
     private int moveUp = Keys.UP;
     private int moveDown = Keys.DOWN;
@@ -176,7 +176,7 @@ public class Player extends ActorCollision {
             ActorSkill animation = getAttackAnimation();
             animation.setX(this);
             animation.setY(this);
-            setPause((int)((this.getDelay() * (this.getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.ATTACK, getFacing()).getKeyFrames().length - 1f)) * 1000f));
+//            setPause((int)((this.getDelay() * (this.getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.ATTACK, getFacing()).getKeyFrames().length - 1f)) * 1000f));
             addTimer(new GameTimer("Attack_Charge", this.getDelay() * getAttackAnimation().getChargeTime() * 1000f) {
                 @Override
                 public void event(Actor a) {
@@ -189,7 +189,7 @@ public class Player extends ActorCollision {
                         addTimer(new GameTimer("Attack", getDelay() * 1000 * getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.ATTACK, getFacing()).getKeyFrames().length) {
                             @Override
                             public void event(Actor a) {
-                                setAttacking(false);
+                                attacking = false;
                             }
                         });
                         addTimer(new GameTimer("Attack", animation.getAnimationDelay() * 1000) {
@@ -197,7 +197,7 @@ public class Player extends ActorCollision {
                             public void event(Actor a) {
                                 fieldState = ActorSprite.SpriteModeField.STAND;
                                 attacking = false;
-                                a.setPause(250);
+//                                a.setPause(250);
                             }
                             public boolean update(float delta, Actor a) {
                                 fieldState = ActorSprite.SpriteModeField.ATTACK;
@@ -301,14 +301,14 @@ public class Player extends ActorCollision {
         }
         isWalking = false;
         
-        if (canMove() && canAttack && !isJumping) {
-            attacking(delta);
-        }
         if (canMove()) {
             moving(delta);
         } else {
             changeX(0);
             changeY(0);
+        }
+        if (canMove() && canAttack && !isJumping) {
+            attacking(delta);
         }
         super.update(delta);
         speed = SPEED;
@@ -438,8 +438,7 @@ public class Player extends ActorCollision {
     
     protected void applySprite() {
         if (currentBattler.getSprite().getFieldAnimation(fieldState, getFacingBias()) != null && 
-                currentBattler.getSprite().getFieldAnimation(fieldState, getFacingBias())
-                        .getKeyFrames().length > 0) {
+                currentBattler.getSprite().getFieldAnimation(fieldState, getFacingBias()).getKeyFrames().length > 0) {
             changeDuringAnimation(currentBattler.getSprite().getFieldAnimation(fieldState, getFacingBias()));
         } else {
             changeDuringAnimation(currentBattler.getSprite().getFieldAnimation(ActorSprite.SpriteModeField.STAND, getFacingBias()));
@@ -481,6 +480,7 @@ public class Player extends ActorCollision {
         } else {
             if (Input.getKeyPressed(switchSkill)) {
                 getCurrentBattler().changeSkill(1);
+                currentSkill = getCurrentBattler().getCurrentSkill();
             }
             if (Input.getKeyPressed(switchBattlerButton)) {
                 switchBattler();

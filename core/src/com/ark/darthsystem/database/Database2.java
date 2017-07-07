@@ -38,7 +38,7 @@ public class Database2 extends Database1 {
                                 (Sprite[]) GraphicsDriver.getMasterSheet().createSprites("skills/crosscall/battler/crosscall").toArray(Sprite.class),
                                 1,
                                 1,
-                                1.0f / 24.0f,
+                                1.0f / 20.0f,
                                 SkillDatabase.CrossCall,
                                 ActorSkill.Area.FRONT));
                 put(SkillDatabase.Red_Spin,

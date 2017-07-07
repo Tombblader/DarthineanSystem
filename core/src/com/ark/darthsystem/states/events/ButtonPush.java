@@ -12,7 +12,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
  * @author Keven
  */
 public class ButtonPush extends Event {
-    Event event;
+    private Event event;
     public ButtonPush(Sprite[] img, float getX, float getY, float delay) {
         super(img, getX, getY, delay);
     }

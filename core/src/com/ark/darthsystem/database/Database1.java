@@ -62,7 +62,7 @@ public class Database1 implements Serializable {
                 Battler.Gender.Male,
                 6,
                 60, 21,
-                32, 18, 21, 10, Axeman_Class, Heavy_Warrior);
+                32, 18, 21, 10, Axeman_Class, Gray_Mage);
         Magia = new Battler("Magia",
                 Battle.Element.Physical,
                 Battler.Gender.Female,

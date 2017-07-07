@@ -23,7 +23,7 @@ public class GameOver implements State {
     private String BGM = "music/WhySuffering.mp3";
     
     public GameOver() {
-        gameOverTexture = new TextureRegion(new Texture(Gdx.files.internal("backgrounds/title.png"))) { {
+        gameOverTexture = new TextureRegion(new Texture(Gdx.files.internal("backgrounds/gameover.png"))) { {
                 this.flip(false, true);
                }
             };
