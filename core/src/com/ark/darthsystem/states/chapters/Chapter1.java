@@ -39,7 +39,6 @@ public class Chapter1 extends Novel {
                     break;
                 case "Loudmouth.":
                     BattleDriver.printline(Fire_Spirit_Battler, ActorSprite.SpriteModeFace.NORMAL, "HEY!  I'm not a loudmouth!!!");
-                    BattleDriver.printline(Database2.player.getBattler(0), ActorSprite.SpriteModeFace.NORMAL, "...Intern, one moment please.  Huddle.");
                     break;
                 case "Hey Sexy.":
                     BattleDriver.printline(Fire_Spirit_Battler, ActorSprite.SpriteModeFace.NORMAL, "Did you just say...?");

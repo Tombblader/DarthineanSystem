@@ -362,6 +362,97 @@ public class ActorSkill extends ActorCollision {
 
     }
 
+    public void activateRush(Player player) {
+            setInvoker(invoker);
+            ActorSkill tempSkill = clone();
+            Array<Sprite> s = new Array<>();
+            Animation leftAnimation;
+            for (TextureRegion r : tempSkill.getCurrentAnimation().getKeyFrames()) {
+                s.add(new Sprite(r));
+                s.peek().flip(true, false);
+            }
+            leftAnimation = new Animation(tempSkill.getDelay(), s);
+            leftAnimation.setPlayMode(Animation.PlayMode.LOOP);
+            tempSkill.setInvoker(invoker);
+            tempSkill.setX(invoker);
+            tempSkill.setY(invoker);
+            invoker.setAttacking(true);
+            GameTimer canSkill = new GameTimer("Skill", 7000) {
+                @Override
+                public void event(Actor a) {
+                    invoker.setCanSkill(true);
+                }
+
+                public boolean update(float delta, Actor a) {
+                    invoker.setCanSkill(false);
+                    return super.update(delta, a);
+                }
+            };
+            invoker.addTimer(canSkill);
+            invoker.setPause((1000f));
+            GameTimer isAttacking = new GameTimer("Skill", 2000f) {
+                @Override
+                public void event(Actor a) {
+                    invoker.setAttacking(false);
+                }
+            };
+            invoker.addTimer(isAttacking);
+
+            invoker.addTimer(new GameTimer("Skill_Charge", 1000f) {
+                @Override
+                public void event(Actor a) {
+                    tempSkill.playFieldSound();
+                    invoker.setFieldState(ActorSprite.SpriteModeField.CUSTOM);
+                    invoker.setPause(translateX == 0 ? tempSkill.getAnimationDelay() * 1000f : 400f);
+                    invoker.getSpriteSheet().setFieldAnimation(ActorSprite.SpriteModeField.CUSTOM, Facing.LEFT, leftAnimation);
+                    invoker.getSpriteSheet().setFieldAnimation(ActorSprite.SpriteModeField.CUSTOM, Facing.RIGHT, tempSkill.getCurrentAnimation());
+                    invoker.changeAnimation(tempSkill.getCurrentAnimation());
+                    invoker.resetAnimation();
+                    tempSkill.getCurrentAnimation().setPlayMode(Animation.PlayMode.LOOP);
+                    invoker.getSensorBody().setUserData(tempSkill);
+                    GameTimer tempTimer = new GameTimer("Skill", 1000) {
+                        public void event(Actor a) {
+                            invoker.getSensorBody().setUserData(invoker);
+                            invoker.setCanAttack(true);
+                            invoker.setDefaultFilter();
+                            invoker.setFieldState(ActorSprite.SpriteModeField.STAND);
+                            invoker.enableMovement();
+                            invoker.resetSprite();
+                        }
+
+                        public boolean update(float delta, Actor a) {
+                            invoker.setFieldState(ActorSprite.SpriteModeField.CUSTOM);
+                            invoker.getMainBody().setLinearVelocity(
+                                    5 * (invoker.getFacing().getX() - invoker.getFacing().getX() * Math.abs(invoker.getFacing().getY()) * (1 - .707f)) * invoker.getSpeed() * delta,
+                                    5 * invoker.getSpeed() * delta * (invoker.getFacing().getY() - invoker.getFacing().getY() * Math.abs(invoker.getFacing().getX()) * (1 - .707f)));
+                            invoker.changeX(invoker.getFacing().getX());
+                            invoker.changeY(invoker.getFacing().getY());
+
+                            invoker.setCanAttack(false);
+                            invoker.setWalking(true);
+                            invoker.disableMovement();
+                            return super.update(delta, a);
+                        }
+                    };
+                    invoker.setInvulnerability(1000);
+                    invoker.addTimer(tempTimer);
+                    Filter filter = new Filter();
+                    filter.categoryBits = !(getInvoker() instanceof ActorAI) ? ActorCollision.CATEGORY_PLAYER_SKILL : ActorCollision.CATEGORY_AI_SKILL;
+                    filter.maskBits = (short) (ActorCollision.CATEGORY_WALLS | ActorCollision.CATEGORY_OBSTACLES | ((getInvoker() instanceof ActorAI) ? ActorCollision.CATEGORY_PLAYER_SKILL : ActorCollision.CATEGORY_AI_SKILL));
+                    invoker.getMainFixture().setFilterData(filter);
+                    filter.maskBits = ((getInvoker() instanceof ActorAI) ? ActorCollision.CATEGORY_PLAYER : ActorCollision.CATEGORY_AI);
+                    invoker.getSensorFixture().setFilterData(filter);
+                }
+
+                public boolean update(float delta, Actor a) {
+                    invoker.setFieldState(ActorSprite.SpriteModeField.SKILL);
+                    return super.update(delta, a);
+                }
+
+            });        
+    }
+    
+    
     public void activate(Player player) {
 //        setInvoker(player);
         ActorSkill tempSkill;

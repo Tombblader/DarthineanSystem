@@ -125,6 +125,11 @@ public class ActorSprite implements Serializable {
         currentFieldImage = spriteSheetField.get(field).get(facing);
     }
 
+    public void setFieldAnimation(SpriteModeField field, Actor.Facing facing, Animation animation) {
+        currentFieldImage = animation;
+        spriteSheetField.get(field).put(facing, animation);
+    }
+
     public void setFaceAnimation(SpriteModeFace face) {
         currentFaceImage = spriteSheetFace.get(face);
     }

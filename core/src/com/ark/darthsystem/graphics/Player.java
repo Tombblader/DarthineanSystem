@@ -167,7 +167,7 @@ public class Player extends ActorCollision {
         } else {
             attackAnimation = Database2.Sword();
         }
-        attackAnimation.setInvoker(this);    
+        attackAnimation.setInvoker(this);   
     }
 
     public void attack() {
