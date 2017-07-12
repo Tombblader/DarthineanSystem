@@ -5,6 +5,8 @@
  */
 package com.ark.darthsystem.graphics;
 
+import com.ark.darthsystem.BattleDriver;
+import static com.ark.darthsystem.BattleDriver.printline;
 import com.ark.darthsystem.Battler;
 import com.ark.darthsystem.database.Database2;
 import com.ark.darthsystem.database.DefaultMenu;
@@ -13,6 +15,7 @@ import com.ark.darthsystem.database.SoundDatabase;
 import com.ark.darthsystem.Equipment;
 import com.ark.darthsystem.states.OverheadMap;
 import com.ark.darthsystem.GameOverException;
+import com.ark.darthsystem.states.Battle;
 import com.ark.darthsystem.states.events.Event;
 
 
@@ -291,6 +294,7 @@ public class Player extends ActorCollision {
         while (!currentBattler.getBattler().isAlive()) {
             switchBattler();
         }
+        checkStatusEffects();
         if (!isWalking) {
             if (!attacking && !skilling) {
                 fieldState = ActorSprite.SpriteModeField.STAND;
@@ -313,6 +317,79 @@ public class Player extends ActorCollision {
         super.update(delta);
         speed = SPEED;
         applySprite();
+    }
+    
+    public void checkStatusEffects() {
+        for (Battler b : getAllBattlers()) {
+            if (b.getStatus().getFade() > 0) {
+                boolean isAccountedFor = false;
+                for (GameTimer t : getTimers()) {
+                    if (t.getName().equals(b.toString() + b.getStatus().name())) {
+                        isAccountedFor = true;
+                    }
+                }
+                if (isAccountedFor) {
+                    continue;
+                }
+                addTimer(new GameTimer(b.toString() + b.getStatus().name(), 3000) {
+                    Battle.Stats stat = b.getStatus();
+                    @Override
+                    public void event(Actor a) {
+                        if (b.getStatus() == stat && b.getStatus().faded(b)) {
+                            BattleDriver.printline(b.getName() + "'s status effect faded away.");
+                            b.changeStatus(Battle.Stats.Normal, 0);
+                            Player.this.enableMovement();
+                            Player.this.setCanSkill(true);                            
+                            
+                        }
+                    }
+                    
+                    @Override
+                    public boolean update(float delta, Actor a) {
+                    switch (b.getStatus()) {
+                        case Sleep:
+                        case Petrify:
+                            if (Player.this.getCurrentBattler().getBattler().equals(b)) {
+                                Player.this.disableMovement();
+                            } else {
+                                Player.this.enableMovement();
+                            }
+                            
+                            break;
+                        case Silence:
+                            if (Player.this.getCurrentBattler().getBattler().equals(b)) {
+                                Player.this.setCanSkill(false);                            
+                            } else {
+                                Player.this.setCanSkill(true);                            
+                            }
+                            break;
+                        case Poison:
+                            printline(b.getName() + " takes " + (b.getMaxHP() / 14) + " damage from the poison.");
+                            if (b.changeHP(b.getMaxHP() / 14)) {
+                                BattleDriver.printline(b.getName() + " has collapsed from the poison!");
+                            }
+                            break;
+                        case Fog:
+                            break;
+                        case Confuse:
+                            int random = ((int)(Math.random() * 2)) - 1;
+                            Player.this.getMainBody().setLinearVelocity(random * getSpeed() * (float) (delta), Player.this.getMainBody().getLinearVelocity().y);
+                            Player.this.changeX(random);
+                            random = ((int)(Math.random() * 2)) - 1;
+                            Player.this.getMainBody().setLinearVelocity(Player.this.getMainBody().getLinearVelocity().x, random * getSpeed() * (float) (delta));
+                            Player.this.changeY(random);
+                            break;
+                    }
+                        return super.update(delta, a);
+                    }
+
+                    @Override
+                    public boolean isFinished() {
+                        return stat != b.getStatus() || super.isFinished(); //To change body of generated methods, choose Tools | Templates.
+                    }
+                });
+            }
+        }
     }
 
     public boolean isJumping() {
@@ -654,6 +731,9 @@ public class Player extends ActorCollision {
                 if (ouchBattler.getBattler().isAlive()) {
                     fieldState = ActorSprite.SpriteModeField.STAND;
                     ouchBattler.setFace(ActorSprite.SpriteModeFace.NORMAL);
+                }
+                else {
+                    
                 }
             }
             

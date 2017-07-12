@@ -677,18 +677,8 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
         GraphicsDriver.getPlayer().renderGlobalData(this.batch);
         drawMessage(this.batch);
         endRender();
-        debugRender.render(world, GraphicsDriver.getCurrentCamera().combined);
         
-        if (worldStep) {
-            for (int i = 0; i < createQueue.size; i++ ) {
-                if (!world.isLocked()) {
-                    createQueue.get(i).generateBody(this);
-                    addActor(createQueue.get(i));
-                    createQueue.removeValue(createQueue.get(i), true);
-                    i--;
-                }
-            }
-            world.step(1f/60f, 6, 2);  //Fix the second and third values.
+        debugRender.render(world, GraphicsDriver.getCurrentCamera().combined);
             Array<Body> temp = new Array<>();
             world.getBodies(temp);
             for (int i = 0; i < deleteQueue.size; i++ ) {
@@ -712,16 +702,18 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                     i--;
                 }
             }
+        
+        if (worldStep) {
+            for (int i = 0; i < createQueue.size; i++ ) {
+                if (!world.isLocked()) {
+                    createQueue.get(i).generateBody(this);
+                    addActor(createQueue.get(i));
+                    createQueue.removeValue(createQueue.get(i), true);
+                    i--;
+                }
+            }
+            world.step(1f/60f, 6, 2);  //Fix the second and third values.
 
-//            for (Joint joints : deleteJointQueue) {
-//                if (!world.isLocked()) {
-//                    if (temp2.contains(joints, true)) {
-//                        world.destroyJoint(joints);
-//                    }
-//                    deleteJointQueue.removeValue(joints, true);
-//                    joints = null;
-//                }
-//            }
             worldStep = false;
         }        
     }

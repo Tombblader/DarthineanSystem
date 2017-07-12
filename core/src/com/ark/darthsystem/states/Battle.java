@@ -615,6 +615,14 @@ public class Battle implements State {
             return turnCount;
         }
         
+        public double getFade() {
+            return fade;
+        }
+        
+        public double getAttackFade() {
+            return attackFade;
+        }
+        
         public boolean isSuccessful(Battler getCaster, Battler getTarget) {
             return (Math.random() <= success
                     - ((getCaster.getLevel()
