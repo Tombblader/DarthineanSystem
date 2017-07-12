@@ -39,7 +39,7 @@ public class DefaultMenu extends Menu {
                 if (inventory != null && !inventory.isEmpty()) {
                     String[] getItemList = new String[inventory.size()];
                     for (int i = 0; i < getItemList.length; i++) {
-                        getItemList[i] = inventory.get(i).getName();
+                        getItemList[i] = (i + 1) + ". " + inventory.get(i).getName() + " x" + inventory.get(i).getQuantity();
                     }
                     Menu menuItem = new Menu("Use which Item?",
                             getItemList,
@@ -53,7 +53,7 @@ public class DefaultMenu extends Menu {
                             if (!useItem.getAll()) {
                                 String[] temp = new String[targetList.size()];
                                 for (int i = 0; i < temp.length; i++) {
-                                    temp[i] = targetList.get(i).getName();
+                                    temp[i] = (i + 1) + ". " + targetList.get(i).getName();
                                 }
                                 Menu menuTarget = new Menu("Target?", temp, true, true) {
                                     @Override
@@ -82,7 +82,7 @@ public class DefaultMenu extends Menu {
                 party.addAll(Database2.player.getAllBattlers());
                 String[] getPlayerList = new String[party.size()];
                 for (int i = 0; i < getPlayerList.length; i++) {
-                    getPlayerList[i] = party.get(i).getName();
+                    getPlayerList[i] = (i + 1) + ". " + party.get(i).getName();
                 }
                 Menu skillBattlers = new Menu("Select a battler.",
                         getPlayerList,
@@ -94,7 +94,8 @@ public class DefaultMenu extends Menu {
                         ActorBattler caster = Database2.player.getBattler(sourceIndex);
                         String[] skillList = new String[caster.getSkillList().size()];
                         for (int i = 0; i < skillList.length; i++) {
-                            skillList[i] = caster.getSkillList().get(i).getSkill().getName();
+                            skillList[i] = (i + 1) + ". " + caster.getSkillList().get(i).getSkill().getName() + " " +
+                                    caster.getSkillList().get(i).getSkill().getCost() + " MP";
                         }
                         Menu menuTarget = new Menu("Select a Skill", skillList, true, true) {
                             @Override
