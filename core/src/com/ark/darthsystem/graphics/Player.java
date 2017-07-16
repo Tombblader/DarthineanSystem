@@ -28,7 +28,10 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Filter;
+import com.badlogic.gdx.physics.box2d.Fixture;
+import com.badlogic.gdx.physics.box2d.RayCastCallback;
 import com.badlogic.gdx.utils.Array;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -79,6 +82,8 @@ public class Player extends ActorCollision {
 //    private boolean isJumping;
     private ArrayList<ActorBattler> party = new ArrayList<>();
     private int currentBattlerIndex = 0;
+    private RayCastCallback buttonPushFinder;
+    private boolean hasEvent;
 
     public Player(ArrayList<ActorBattler> getBattler, float getX, float getY) {
         super(getBattler.get(0).getSprite(), getX, getY, DELAY);
@@ -564,7 +569,20 @@ public class Player extends ActorCollision {
             }
 
             if (Input.getKeyPressed(attackButton) && canAttack) {
-                attack();
+                hasEvent = false;
+                buttonPushFinder = (Fixture fxtr, Vector2 vctr, Vector2 vctr1, float f) -> {
+                    if (fxtr.getBody().getUserData() instanceof Event && ((Event) fxtr.getBody().getUserData()).isTriggered(Event.TriggerMethod.PRESS)) {
+                        ((Event) fxtr.getBody().getUserData()).run();
+                        Player.this.hasEvent = true;
+                        return 1;                        
+                    }
+                    return -1;        
+                };
+                getCurrentMap().getPhysicsWorld().rayCast(buttonPushFinder, getMainBody().getPosition(), new Vector2(getFacing().getVector()).add(getMainBody().getPosition()));
+                
+                if (!hasEvent) {
+                    attack();
+                }
             }
             if (Input.getKeyPressed(skillButton) && canAttack && canSkill) {
                 skill();

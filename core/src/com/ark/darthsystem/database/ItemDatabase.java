@@ -46,7 +46,6 @@ public class ItemDatabase {
     public static Equipment Metal_Cloak =
             new Equipment("Metal Cloak", Equipment.EquipmentType.Body, null,
             false, 0, 12, 1, 0);
-    public static Item Potion_All = new Item("Potion All", true, 35, 0, true);
     public static Equipment Knight_Armor =
             new Equipment("Knight Armor", Equipment.EquipmentType.Body, null,
             false, 0, 18, 0, 0);
@@ -77,15 +76,12 @@ public class ItemDatabase {
     public static Equipment Bronze_Spear =
             new Equipment("Bronze Spear", Equipment.EquipmentType.MainHand, null,
             false, 7, 0, 0, 0);
-    public static Item Charger = new Item("Charger", false, 0, 100, false);
     public static Equipment Iron_Armor =
             new Equipment("Iron Armor", Equipment.EquipmentType.Body, null,
             false, 0, 8, 0, 0);
     public static Equipment Iron_Shield =
             new Equipment("Iron Shield", Equipment.EquipmentType.OffHand, null,
             false, 0, 5, 0, 0);
-    public static Item Tonic =
-            new Item("Tonic", true, SkillDatabase.Revivify, false);
     public static Equipment Hand_Axe =
             new Equipment("Hand_Axe", Equipment.EquipmentType.MainHand, null,
             false, 8, 0, 0, 0);
@@ -110,6 +106,11 @@ public class ItemDatabase {
     public static Equipment Bronze_Helmet =
             new Equipment("Bronze Helmet", Equipment.EquipmentType.Head, null,
             false, 0, 3, 0, 0);
+
     public static Item Potion = new Item("Potion", true, 35, 0, false);
+    public static Item Potion_All = new Item("Potion All", true, 35, 0, true);
+    public static Item Tonic =
+            new Item("Tonic", true, SkillDatabase.Revivify, false);
+    public static Item Charger = new Item("Charger", false, 0, 100, false);
     
 }

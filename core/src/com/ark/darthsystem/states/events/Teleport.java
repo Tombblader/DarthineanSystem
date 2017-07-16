@@ -12,7 +12,6 @@ import com.ark.darthsystem.graphics.PlayerCamera;
 import com.ark.darthsystem.states.OverheadMap;
 import com.ark.darthsystem.states.State;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 /**
  *
@@ -30,7 +29,6 @@ public class Teleport extends Event {
         super(img, getX, getY, getDelay);
         map = newMap;
         setTriggerMethod(TriggerMethod.TOUCH);
-        setTriggerMethod(TriggerMethod.TOUCH);
         setID(2);
     }
     
@@ -42,7 +40,6 @@ public class Teleport extends Event {
         map = newMap;
         newX = xCoord * 32 / PlayerCamera.PIXELS_TO_METERS + 16 / PlayerCamera.PIXELS_TO_METERS + GraphicsDriver.getCamera().getScreenPositionX();
         newY = yCoord * 32 / PlayerCamera.PIXELS_TO_METERS + 16 / PlayerCamera.PIXELS_TO_METERS + GraphicsDriver.getCamera().getScreenPositionY();
-        setTriggerMethod(TriggerMethod.TOUCH);
         setID(2);
     }
     

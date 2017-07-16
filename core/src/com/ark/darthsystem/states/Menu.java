@@ -288,6 +288,14 @@ public abstract class Menu implements State {
         return null;
     }
     
+    public String[] getChoices() {
+        return choices;
+    }
+    
+    public void setChoices(String[] choices) {
+        this.choices = choices;
+    }
+    
     public void reset() {
         cursorIndex = 0;
         menuIndex = 0;

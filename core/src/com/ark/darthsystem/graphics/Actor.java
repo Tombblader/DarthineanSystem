@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Animation.PlayMode;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 
 /**
@@ -360,6 +361,10 @@ public class Actor {
         
         public float getY() {
             return y;
+        }
+        
+        public Vector2 getVector() {
+            return new Vector2(x, y);
         }
         
         public float getRotate() {

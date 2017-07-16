@@ -10,6 +10,8 @@ import static com.ark.darthsystem.database.Database1.inventory;
 import static com.ark.darthsystem.database.Database2.player;
 import com.ark.darthsystem.graphics.GraphicsDriver;
 import com.ark.darthsystem.Item;
+import com.ark.darthsystem.database.Database1;
+import com.ark.darthsystem.database.Database2;
 import com.ark.darthsystem.graphics.ActorBattler;
 import com.ark.darthsystem.states.Battle;
 import com.ark.darthsystem.states.Menu;
