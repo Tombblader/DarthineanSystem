@@ -38,7 +38,7 @@ import java.util.Collections;
 
 /**
  *
- * @author trankt1
+ * @author Keven Tran
  */
 public class Player extends ActorCollision {
     private static final float SPEED = .4f;
@@ -205,7 +205,6 @@ public class Player extends ActorCollision {
                             public void event(Actor a) {
                                 fieldState = ActorSprite.SpriteModeField.STAND;
                                 attacking = false;
-//                                a.setPause(250);
                             }
                             public boolean update(float delta, Actor a) {
                                 fieldState = ActorSprite.SpriteModeField.ATTACK;
@@ -419,7 +418,7 @@ public class Player extends ActorCollision {
 
     public void jump() {
         GraphicsDriver.setMessage("I believe I can fly!");
-        final int JUMP_TIME = 1050;
+        final int JUMP_TIME = 100;
         if (!isJumping) {
             GameTimer tempTimer = new GameTimer("JUMP", JUMP_TIME) {
                 public void event(Actor a) {
@@ -434,9 +433,24 @@ public class Player extends ActorCollision {
                 public boolean update(float delta, Actor a) {
                     isJumping = true;
                     canAttack = false;
+                    getMainBody().setLinearVelocity(4 * (getFacing().x - getFacing().x * Math.abs(getFacing().y) * (1 - .707f)) * getSpeed() * delta,
+                            4 * getSpeed() * delta * (getFacing().y - getFacing().y * Math.abs(getFacing().x) * (1 - .707f)));
+                    changeX(getFacing().x);
+                    changeY(getFacing().y);
                     return super.update(delta, a);
                 }
             };
+            addTimer(new GameTimer("JUMP_DELAY", 700) {
+                @Override
+                public void event(Actor a) {
+                    canDodge = true;
+                }
+
+                public boolean update(float delta, Actor a) {
+                    canDodge = false;
+                    return super.update(delta, a);
+                }
+            });
             addTimer(tempTimer);
             setMainFilter(ActorCollision.CATEGORY_PLAYER, ActorCollision.CATEGORY_WALLS);
             setSensorFilter(ActorCollision.CATEGORY_PLAYER, (short) (ActorCollision.CATEGORY_AI | ActorCollision.CATEGORY_EVENT));

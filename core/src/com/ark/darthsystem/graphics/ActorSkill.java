@@ -138,6 +138,10 @@ public class ActorSkill extends ActorCollision {
         translateY = getTranslateY;
     }
 
+    /**
+     * Generate the physics body of this actor.
+     * @param map The map to do this on.
+     */
     public void generateBody(OverheadMap map) {
         super.generateBody(map);
         getMainBody().setBullet(true);
@@ -349,7 +353,7 @@ public class ActorSkill extends ActorCollision {
     }
 
     public ActorSkill clone() {
-        return new ActorSkill(originalFieldImage,
+        ActorSkill a = new ActorSkill(originalFieldImage,
                 originalBattlerImage,
                 relX,
                 relY,
@@ -359,7 +363,8 @@ public class ActorSkill extends ActorCollision {
                 chargeTime,
                 skill,
                 area);
-
+        a.setShape(this.getShape());
+        return a;
     }
 
     public void activateRush(Player player) {

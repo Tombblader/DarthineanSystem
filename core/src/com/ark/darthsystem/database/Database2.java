@@ -60,6 +60,17 @@ public class Database2 extends Database1 {
                                 1f,
                                 SkillDatabase.Sap_Shot,
                                 ActorSkill.Area.FRONT));
+                put(SkillDatabase.Fireball,
+                        new ActorSkill((Sprite[]) GraphicsDriver.getMasterSheet().createSprites("skills/wiccan_cross/field/wiccan_cross").toArray(Sprite.class),
+                                GraphicsDriver.getMasterSheet().createSprites("skills/crosscall/battler/crosscall").toArray(Sprite.class),
+                                0,
+                                0,
+                                10f,
+                                0,
+                                1.0f / 24.0f,
+                                1f,
+                                SkillDatabase.Fireball,
+                                ActorSkill.Area.FRONT));
                 put(SkillDatabase.Heal,
                         new ActorSkill((Sprite[]) GraphicsDriver.getMasterSheet().createSprites("skills/wiccan_cross/field/wiccan_cross").toArray(Sprite.class),
                                 GraphicsDriver.getMasterSheet().createSprites("skills/crosscall/battler/crosscall").toArray(Sprite.class),

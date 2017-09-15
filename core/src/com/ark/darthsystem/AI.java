@@ -35,12 +35,12 @@ public class AI implements Serializable {
     private boolean dead;
     private Battle.Stats checkStatus;
 
-    AI(Type getType, int setPriority) {
+    public AI(Type getType, int setPriority) {
         AIType = getType;
         priority = setPriority;
     }
 
-    AI(Type getType, float disengageChance, int disengageTurn) {
+    public AI(Type getType, float disengageChance, int disengageTurn) {
         AIType = getType;
         priority = 1;
         this.disengageChance = disengageChance;
@@ -60,38 +60,38 @@ public class AI implements Serializable {
         return disengageTurn;
     }
 
-    int getPriority() {
+    public int getPriority() {
         return priority;
     }
 
-    void setPriority(int newPriority) {
+    public void setPriority(int newPriority) {
         priority = newPriority;
     }
 
-    void setLowHP(double newLow) {
+    public void setLowHP(double newLow) {
         lowHP = newLow;
     }
 
-    void setTurn(int newTurn) {
+    public void setTurn(int newTurn) {
         turn = newTurn;
     }
 
-    void setDead(boolean newDead) {
+    public void setDead(boolean newDead) {
         dead = newDead;
     }
 
-    void setStats(Battle.Stats newStats) {
+    public void setStats(Battle.Stats newStats) {
         checkStatus = newStats;
     }
 
-    boolean turnCondition(Battle b) {
+    public boolean turnCondition(Battle b) {
         return !(turn == NO_FLAG &&
                 turnInterval == NO_FLAG) &&
                 (b.getTurnCount() == turn ||
                 b.getTurnCount() % turnInterval == 0);
     }
 
-    boolean thereIsDead(Battle b) {
+    public boolean thereIsDead(Battle b) {
         boolean isDead = false;
         for (int i = 0; i < b.getAlly().size(); i++) {
             if (!b.getAlly(i).isAlive()) {
@@ -102,7 +102,7 @@ public class AI implements Serializable {
         return isDead && dead;
     }
 
-    boolean checkLowHP(Battle b) {
+    public boolean checkLowHP(Battle b) {
         boolean isLow = false;
         for (int i = 0; i < b.getAlly().size(); i++) {
             if (b.getAlly(i).getHP() / b.getAlly(i).getMaxHP() <= lowHP) {
@@ -113,7 +113,7 @@ public class AI implements Serializable {
         return (lowHP != (double) (NO_FLAG)) && isLow;
     }
 
-    boolean checkStatus(Battle b) {
+    public boolean checkStatus(Battle b) {
         boolean isAfflicted = false;
         for (int i = 0; i < b.getAlly().size(); i++) {
             isAfflicted = !isAfflicted && b.getAlly(i).getStatus() == checkStatus;
@@ -124,7 +124,7 @@ public class AI implements Serializable {
         return isAfflicted && checkStatus != null;
     }
 
-    boolean worthUsing(Battle b) {
+    public boolean worthUsing(Battle b) {
         boolean isUsable = checkStatus(b) ||
                 checkLowHP(b) ||
                 thereIsDead(b) ||

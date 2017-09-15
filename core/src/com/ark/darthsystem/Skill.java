@@ -13,13 +13,11 @@ public class Skill implements Serializable, Cloneable {
     private int base;
     private double levelRatio;
     private double casterHP;
-//  private double casterMP;
     private int casterAttack;
     private int casterDefense;
     private int casterSpeed;
     private int casterMagic;
     private double targetHP;
-//  private double targetMP;
     private double targetAttack;
     private double targetDefense;
     private double targetSpeed;
@@ -29,86 +27,81 @@ public class Skill implements Serializable, Cloneable {
     private int cost;
     private int level;
     private Battle.Element skillElement;
-    private String Target;
     private boolean isAlly;
     private boolean isAll;
-//  private boolean[] skillStats;
     private Battle.Stats statusEffect;
 
-    /**
-     *
-     */
     public Skill() {
 
     }
 
     /**
-     *
-     * @param initializeName
-     * @param initializeLevel
-     * @param initializeCost
-     * @param initializeElement
-     * @param initializeAlly
-     * @param initializeAll
-     * @param initializeStats
-     * @param initializeBase
-     * @param levelDifference
-     * @param initializeHP
-     * @param initializeAttack
-     * @param initializeDefense
-     * @param initializeSpeed
-     * @param initializeMagic
-     * @param initializeTargetAttack
-     * @param initializeTargetDefense
-     * @param initializeTargetSpeed
-     * @param initializeTargetMagic
-     * @param ratio
+     * A skill is a type of attack that has various parameters.
+     * @param name The name of the Skill
+     * @param level The minimum level required to learn the skill
+     * @param cost The MP cost of the Skill
+     * @param skillElement The Element of the skill.
+     * @param isAlly If true, affects allies instead of enemies.
+     * @param isAll If true, targets all enemies or allies.
+     * @param statusEffect The status effect to inflict.  Normal does not inflict a status effect.
+     * @param base The base value of the skill.
+     * @param levelRatio How much the level difference affects the skill.
+     * @param casterHP How much influence the caster's HP difference affects the skill.
+     * @param casterAttack How much influence the caster's Attack affects the skill.
+     * @param casterDefense How much influence the caster's Defense affects the skill.
+     * @param casterSpeed How much influence the caster's Speed affects the skill.
+     * @param casterMagic How much influence the caster's Magic affects the skill.
+     * @param targetAttack How much influence the target's Attack affects the skill.
+     * @param targetDefense How much influence the target's Defense affects the skill.
+     * @param targetSpeed How much influence the target's Speed affects the skill.
+     * @param targetMagic How much influence the target's Magic affects the skill.
+     * @param finalizeRatio Take all of these values and divide it by what to equalize.
      */
-    public Skill(String initializeName,
-            int initializeLevel,
-            int initializeCost,
-            Battle.Element initializeElement,
-            boolean initializeAlly,
-            boolean initializeAll,
-            Battle.Stats initializeStats,
-            int initializeBase,
-            double levelDifference,
-            double initializeHP,
-            int initializeAttack,
-            int initializeDefense,
-            int initializeSpeed,
-            int initializeMagic,
-            int initializeTargetAttack,
-            int initializeTargetDefense,
-            int initializeTargetSpeed,
-            int initializeTargetMagic,
-            double ratio) {
-        name = initializeName;
-        level = initializeLevel;
-        cost = initializeCost;
-        skillElement = initializeElement;
-        isAlly = initializeAlly;
-        isAll = initializeAll;
-        statusEffect = initializeStats;
-        levelRatio = levelDifference;
-        casterHP = initializeHP;
-        base = initializeBase;
-        casterAttack = initializeAttack;
-        casterDefense = initializeDefense;
-        casterSpeed = initializeSpeed;
-        casterMagic = initializeMagic;
-        targetAttack = initializeTargetAttack;
-        targetDefense = initializeTargetDefense;
-        targetSpeed = initializeTargetSpeed;
-        targetMagic = initializeTargetMagic;
-        finalizeRatio = ratio;
+    public Skill(String name,
+            int level,
+            int cost,
+            Battle.Element skillElement,
+            boolean isAlly,
+            boolean isAll,
+            Battle.Stats statusEffect,
+            int base,
+            double levelRatio,
+            double casterHP,
+            int casterAttack,
+            int casterDefense,
+            int casterSpeed,
+            int casterMagic,
+            int targetAttack,
+            int targetDefense,
+            int targetSpeed,
+            int targetMagic,
+            double finalizeRatio) {
+        this.name = name;
+        this.level = level;
+        this.cost = cost;
+        this.skillElement = skillElement;
+        this.isAlly = isAlly;
+        this.isAll = isAll;
+        this.statusEffect = statusEffect;
+        this.levelRatio = levelRatio;
+        this.casterHP = casterHP;
+        this.base = base;
+        this.casterAttack = casterAttack;
+        this.casterDefense = casterDefense;
+        this.casterSpeed = casterSpeed;
+        this.casterMagic = casterMagic;
+        this.targetAttack = targetAttack;
+        this.targetDefense = targetDefense;
+        this.targetSpeed = targetSpeed;
+        this.targetMagic = targetMagic;
+        this.finalizeRatio = finalizeRatio;
     }
 
     /**
-     *
-     * @param caster
-     * @param target
-     * @return
+     * Calculates the damage dealt to a target.
+     * @param caster The battler using the skill.
+     * @param target The battler being the skill is being used on.
+     * @return The damage that should be dealt to the target.
      */
     public int calculateDamage(Battler caster, Battler target) {
         return (int) (base +
@@ -146,21 +139,25 @@ public class Skill implements Serializable, Cloneable {
     }
 
     /**
-     *
-     * @return
+     * Get the MP cost of the skill.
+     * @return The MP cost of the skill
      */
     public int getCost() {
         return cost;
     }
     
+    /**
+     * Overrides the MP cost of the skill.
+     * @param cost The new MP cost of the skill.
+     */
     public void setCost(int cost) {
         this.cost = cost;
     }
 
     /**
-     *
-     * @param newLevel
-     * @return
+     * Overrides the level requirement to use this skill.
+     * @param newLevel The new minimum level.
+     * @return A copy of the skill that has this new level requirement.
      */
     public Skill overrideLevel(int newLevel) {
         Skill newSkill = null;
@@ -173,35 +170,36 @@ public class Skill implements Serializable, Cloneable {
     }
     
     /**
-     *
-     * @param newLevel
-     * @return
+     * Overrides the MP cost of the skill.  Unlike setCost,
+     * @param newCost The new MP cost of the skill.
+     * @return A copy of the skill that has the new cost.
+     * @see #setCost(int)
      */
     public Skill overrideCost(int newCost) {
         Skill newSkill = null;
         try {
             newSkill = (Skill) (this.clone());
             newSkill.cost = newCost;
-        } catch (Exception e) {
+        } catch (CloneNotSupportedException e) {
             e.printStackTrace();
         }
         return newSkill;
     }
 
     /**
-     *
-     * @return
+     * Gets the minimum level requirement to use this skill.
+     * @return The minimum level requirement.
      */
     public int getLevel() {
         return level;
     }
 
     /**
-     *
-     * @param caster
-     * @param target
-     * @param turnCount
-     * @return
+     * Determines whether a status change is successful and changes the status.
+     * @param caster The battler who used this Skill.
+     * @param target The target who the Skill is being used on.
+     * @param turnCount The current amount of turns elapsed this battle.
+     * @return The string that notes the results of the attempted status change.
      */
     public String changeStatus(Battler caster,
             Battler target,
@@ -227,40 +225,40 @@ public class Skill implements Serializable, Cloneable {
     }
 
     /**
-     *
-     * @return
+     * Gets the name of the skill.
+     * @return The name of the Skill.
      */
     public String getName() {
         return name;
     }
 
     /**
-     *
-     * @return
+     * Checks if this skill affects allies.
+     * @return True if it affects allies, false if it does not.
      */
     public boolean getAlly() {
         return isAlly;
     }
 
     /**
-     *
-     * @return
+     * Checks if this skill affects all on a side.
+     * @return True if it affects all, false if it does not.
      */
     public boolean getAll() {
         return isAll;
     }
 
     /**
-     *
-     * @return
+     * Gets the Element of the skill.
+     * @return The element of the skill.
      */
     public Battle.Element getElement() {
         return skillElement;
     }
 
     /**
-     *
-     * @return
+     * Gets the status effect that the skill has a chance of inflicting.
+     * @return The status effect of the skill.
      */
     public Battle.Stats getStatusEffect() {
         return statusEffect;

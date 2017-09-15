@@ -2,7 +2,7 @@ package com.ark.darthsystem.graphics;
 
 public class PlayerCamera extends Camera {
 
-    public static final float PIXELS_TO_METERS = 32.0F;
+    public static final float PIXELS_TO_METERS = 32.0f;
 
     public PlayerCamera(float width, float height) {
         super((int) width / PIXELS_TO_METERS, (int) height / PIXELS_TO_METERS);

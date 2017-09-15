@@ -58,7 +58,7 @@ public class CollisionDatabaseLoader {
     public static Shape getShape(String shapeName) {
         TiledMap tiledMap = MapDatabase.getMaps().get("skillshapes").getMap();
         Shape shape;
-        MapObject object = layer.getObjects().get(shapeName);
+        MapObject object = tiledMap.getLayers().get("collisions").getObjects().get(shapeName);
         if (object instanceof RectangleMapObject) {
             shape = getRectangle((RectangleMapObject)object);
         }

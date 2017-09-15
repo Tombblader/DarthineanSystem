@@ -32,7 +32,7 @@ public class ActorAI extends Player {
     }
     
     public ActorAI clone() {
-        ArrayList<ActorBattler> temp = new ArrayList<ActorBattler>();
+        ArrayList<ActorBattler> temp = new ArrayList<>();
         getAllActorBattlers().forEach((a) -> {
             temp.add(a.clone());
         });
@@ -58,7 +58,7 @@ public class ActorAI extends Player {
     }
     
     public boolean isInRange() {
-        final float RANGE = 2;
+        final float RANGE = 2.5f;
         if (closestPlayer == null) {
             return false;
         }
@@ -75,20 +75,6 @@ public class ActorAI extends Player {
     
     public Player findClosestPlayer(float range, Player player) {
         return player;
-//        ArrayList<Player> player = new ArrayList<Player>();
-//        Player closestPlayer = null;
-//        double distance = 99999;
-//        for (Player p : player) {
-//            if (!(p instanceof ActorAI)) {
-//                continue;
-//            }
-//            double newDistance = Math.sqrt(Math.pow(p.getX() - (this.getX()), 2) + Math.pow((p.getY() - (this.getY())), 2));
-//            if (newDistance < distance) {
-//                distance = newDistance;
-//                closestPlayer = p;
-//            }
-//        }
-//        return closestPlayer;
     }
     
     public void moveTowardsPoint(float x, float y, float delta) {

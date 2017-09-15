@@ -7,7 +7,7 @@ package com.ark.darthsystem.graphics;
 
 /**
  *
- * @author trankt1
+ * @author Keven
  */
 public abstract class GameTimer {
 

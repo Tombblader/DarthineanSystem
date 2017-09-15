@@ -61,8 +61,7 @@ public class BattleDriver {
      * @return
      */
     public static boolean isGood() {
-        return Database1.karma >
-                0;
+        return Database1.karma > 0;
     }
 
     /**
@@ -70,8 +69,7 @@ public class BattleDriver {
      * @return
      */
     public static boolean isBad() {
-        return Database1.karma <
-                0;
+        return Database1.karma < 0;
     }
 
     /**
@@ -282,41 +280,41 @@ public class BattleDriver {
         }
     }
 
-    /**
-     *
-     * @param party
-     * @param removed
-     */
-    public static void removePartyMember(Battler[] party, Battler removed) {
-        Battler[] tempParty = new Battler[party.length];
-        int position = Arrays.binarySearch(party, removed);
-        if (position == -1) {
-            return;
-        }
-        party[position] = null;
-        System.arraycopy(tempParty, 0, party, 0, position);
-        if (party.length > position + 1) {
-            System.arraycopy(tempParty,
-                    position,
-                    party,
-                    position + 1,
-                    party.length - position + 1);
-        }
-        party = tempParty;
-
-    }
-
-    /**
-     *
-     * @param party
-     * @param added
-     */
-    public static void addMember(Battler[] party, Battler added) {
-        Battler[] tempParty = new Battler[party.length + 1];
-        System.arraycopy(tempParty, 0, party, 0, party.length);
-        tempParty[tempParty.length - 1] = added;
-        party = tempParty;
-    }
+//    /**
+//     *
+//     * @param party
+//     * @param removed
+//     */
+//    public static void removePartyMember(Battler[] party, Battler removed) {
+//        Battler[] tempParty = new Battler[party.length];
+//        int position = Arrays.binarySearch(party, removed);
+//        if (position == -1) {
+//            return;
+//        }
+//        party[position] = null;
+//        System.arraycopy(tempParty, 0, party, 0, position);
+//        if (party.length > position + 1) {
+//            System.arraycopy(tempParty,
+//                    position,
+//                    party,
+//                    position + 1,
+//                    party.length - position + 1);
+//        }
+//        party = tempParty;
+//
+//    }
+//
+//    /**
+//     *
+//     * @param party
+//     * @param added
+//     */
+//    public static void addMember(Battler[] party, Battler added) {
+//        Battler[] tempParty = new Battler[party.length + 1];
+//        System.arraycopy(tempParty, 0, party, 0, party.length);
+//        tempParty[tempParty.length - 1] = added;
+//        party = tempParty;
+//    }
 
     /**
      *

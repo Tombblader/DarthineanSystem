@@ -81,6 +81,10 @@ public class ActorCollision extends Actor {
         shapeName = name;
     }
     
+    public String getShape() {
+        return shapeName;
+    }
+    
     public void generateBody(OverheadMap map) {
         BodyDef genericBodyType = new BodyDef();
         genericBodyType.type = BodyDef.BodyType.DynamicBody;
@@ -142,6 +146,14 @@ public class ActorCollision extends Actor {
         sensorBody = null;
         sensorBody = map.getPhysicsWorld().createBody(genericBodyType2);
         FixtureDef fixtureDef2 = new FixtureDef();
+//        if (CollisionDatabaseLoader.getShape(shapeName) == null) {
+//            fixtureDef2.shape = new CircleShape();
+//            
+//        }
+//        else {
+//            fixtureDef2.shape = CollisionDatabaseLoader.getShape(shapeName);
+//            
+//        }
         if (CollisionDatabaseLoader.getShapes() == null || CollisionDatabaseLoader.getShapes().isEmpty()
                 || (!MapDatabase.getMaps().containsKey("skillshapes") && map.getMap().getLayers().get("collisions") == null)) {
             fixtureDef2.shape = new CircleShape() {
@@ -231,8 +243,8 @@ public class ActorCollision extends Actor {
     public void update(float delta) {
         super.update(delta);
         if (body != null) {
-            setX(Math.round(body.getPosition().x * 100f) / 100f);
-            setY(Math.round(body.getPosition().y * 100f) / 100f);
+            setX(Math.round(body.getPosition().x * 1000f) / 1000f);
+            setY(Math.round(body.getPosition().y * 1000f) / 1000f);
         }
     }
     public void setBodyX(float x) {

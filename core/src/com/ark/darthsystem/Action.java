@@ -10,7 +10,8 @@ import com.ark.darthsystem.database.SoundDatabase;
 import java.util.ArrayList;
 
 /**
- *
+ * An action is a Battle object created when a battler declares an attack
+ * against another battler.
  * @author Keven
  */
 public class Action implements Serializable {
@@ -28,10 +29,10 @@ public class Action implements Serializable {
 
     /**
      *
-     * @param initializeCommand
+     * @param actionCommand
      */
-    public Action(Battle.Command initializeCommand) {
-        actionCommand = initializeCommand;
+    public Action(Battle.Command actionCommand) {
+        this.actionCommand = actionCommand;
     }
 
     /**
@@ -40,8 +41,8 @@ public class Action implements Serializable {
      * @param getCaster
      */
     public Action(Battle.Command initializeCommand, Battler getCaster) {
-        actionCommand = initializeCommand;
-        caster = getCaster;
+        this.actionCommand = initializeCommand;
+        this.caster = getCaster;
     }
 
     /**
@@ -55,10 +56,10 @@ public class Action implements Serializable {
             Battler getCaster,
             Battler getTarget,
             ArrayList<Battler> getAllTargets) {
-        actionCommand = initializeCommand;
-        target = getTarget;
-        allTargets = getAllTargets;
-        caster = getCaster;
+        this.actionCommand = initializeCommand;
+        this.target = getTarget;
+        this.allTargets = getAllTargets;
+        this.caster = getCaster;
     }
 
     /**
