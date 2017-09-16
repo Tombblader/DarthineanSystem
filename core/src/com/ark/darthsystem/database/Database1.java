@@ -23,7 +23,7 @@ public class Database1 implements Serializable {
     public static Battler Protox;
     public static Battler Gladia;
     public static Battler Veather;
-    public static Battler Magia;
+    public static Battler Karin;
     public static Battler Nairarum;
     public static Battler Fire_Spirit;
 
@@ -38,7 +38,7 @@ public class Database1 implements Serializable {
                 Battler.Gender.Male,
                 1,
                 20, 20,
-                5, 4, 5, 6, Magic_Knight_Class, MagicKnight);
+                5, 4, 5, 6, Magic_Knight_Class, Magic_Knight);
         Erik = new Battler("Erik",
                 Battle.Element.Physical,
                 Battler.Gender.Male,
@@ -62,8 +62,8 @@ public class Database1 implements Serializable {
                 Battler.Gender.Male,
                 6,
                 60, 21,
-                32, 18, 21, 10, Axeman_Class, Gray_Mage);
-        Magia = new Battler("Magia",
+                32, 18, 21, 10, Gray_Mage_Class, Gray_Mage);
+        Karin = new Battler("Karin",
                 Battle.Element.Physical,
                 Battler.Gender.Female,
                 8,
@@ -80,26 +80,26 @@ public class Database1 implements Serializable {
                 Battler.Gender.Female,
                 1,
                 32, 15,
-                7, 3, 4, 5, Fire_Spirit_Moveset, Water_Spirit_Equipment);
+                7, 3, 4, 5, Fire_Spirit_Class, Water_Spirit_Equipment);
 
         Water_Spirit = new Battler("???",
                 Battle.Element.Water,
                 Battler.Gender.Female,
                 1,
                 30, 30,
-                3, 4, 7, 5, Water_Spirit_Moveset, Water_Spirit_Equipment);
+                3, 4, 7, 5, Water_Spirit_Class, Water_Spirit_Equipment);
         Wind_Spirit = new Battler("???",
                 Battle.Element.Wind,
                 Battler.Gender.Female,
                 1,
                 20, 35,
-                5, 4, 5, 7, Water_Spirit_Moveset, Water_Spirit_Equipment);
+                5, 4, 5, 7, Water_Spirit_Class, Water_Spirit_Equipment);
         Earth_Spirit = new Battler("???",
                 Battle.Element.Earth,
                 Battler.Gender.Female,
                 1,
                 40, 10,
-                5, 7, 6, 4, Water_Spirit_Moveset, Water_Spirit_Equipment);
+                5, 7, 6, 4, Water_Spirit_Class, Water_Spirit_Equipment);
         battlers = new HashMap<>(12);
         
         battlers.put("You", you);
@@ -108,7 +108,7 @@ public class Database1 implements Serializable {
         battlers.put("Protox", Protox);
         battlers.put("Gladia", Gladia);
         battlers.put("Veather", Veather);
-        battlers.put("Karin", Magia);
+        battlers.put("Karin", Karin);
         battlers.put("Nairarum", Nairarum);
         battlers.put("Fire Spirit", Fire_Spirit);
         battlers.put("Water Spirit", Water_Spirit);
@@ -140,7 +140,7 @@ public class Database1 implements Serializable {
             objectStream.writeObject(Protox);
             objectStream.writeObject(Gladia);
             objectStream.writeObject(Veather);
-            objectStream.writeObject(Magia);
+            objectStream.writeObject(Karin);
             objectStream.writeObject(Nairarum);
             objectStream.writeObject(Fire_Spirit);
             objectStream.writeObject(Water_Spirit);
@@ -163,7 +163,7 @@ public class Database1 implements Serializable {
             Database1.Protox = (Battler) objectStream.readObject();
             Database1.Gladia = (Battler) objectStream.readObject();
             Database1.Veather = (Battler) objectStream.readObject();
-            Database1.Magia = (Battler) objectStream.readObject();
+            Database1.Karin = (Battler) objectStream.readObject();
             Database1.Nairarum = (Battler) objectStream.readObject();
             Database1.Fire_Spirit = (Battler) objectStream.readObject();
             Database1.Water_Spirit = (Battler) objectStream.readObject();

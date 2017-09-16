@@ -451,7 +451,7 @@ public class Action implements Serializable {
                         b.getAlly().size())) : b.getAlly((int) (Math.random() *
                         b.getAlly().size())));
 //                allTargets = (Math.random() > .5 ? b.getAlly() : (b.getEnemy()));
-                actionSkill = caster.getSkill((int) (Math.random() * caster.getSkillList().length));
+                actionSkill = caster.getSkill((int) (Math.random() * caster.getSkillList().size()));
                 actionCommand = (Math.random() > .5 ? Battle.Command.Attack : Battle.Command.Skill);
                 break;
         }

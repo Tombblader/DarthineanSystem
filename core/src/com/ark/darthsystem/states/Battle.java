@@ -446,8 +446,10 @@ public class Battle implements State {
 //                                        && currentAction.getCommand() == Battle.Command.Skill && 
 //                                        currentAction.getCaster().getMP() >= currentAction.getSkill().getCost()
                                         ) {
-                                    currentAction.setNewTarget();
-                                        addAnimationAndSound(currentAction);
+                                    if (currentAction.getSkill() == null || !currentAction.getSkill().getAll()) {
+                                        currentAction.setNewTarget();
+                                    }
+                                    addAnimationAndSound(currentAction);
 //                                    animations.add(Database2.SkillToActor(allAction.get(State.ACTION.getTicks() / 2).getSkill()).getBattlerAnimation());
                                 }
                             }
@@ -692,9 +694,9 @@ public class Battle implements State {
                     break;
                 case Skill:
                     final ArrayList<Skill> getSkillList = new ArrayList<>();
-                    if (caster.getSkillList() != null && caster.getSkillList().length > 0) {
+                    if (caster.getSkillList() != null && caster.getSkillList().size() > 0) {
                         for (Skill skillList1 : caster.getSkillList()) {
-                            if (skillList1 != null && skillList1.getLevel() <= caster.getLevel()) {
+                            if (skillList1 != null) {
                                 getSkillList.add(skillList1);
                             }
                         }

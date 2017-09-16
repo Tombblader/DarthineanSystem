@@ -26,7 +26,7 @@ public class Battler implements Serializable {
     private int defense;
     private int speed;
     private int magic;
-    private Skill[] skillList;
+    private ArrayList<Skill> skillList;
     private Equipment[] equipmentList = new Equipment[5];
     private HashMap<Battle.Stats, Boolean> isAfflicted = new HashMap<>();
     private Battle.Stats afflicted = Battle.Stats.Normal;
@@ -35,7 +35,7 @@ public class Battler implements Serializable {
     private Battle.Element battlerElement = Battle.Element.Physical;
     private Battler.Gender battlerGender;
     private boolean isDelaying = false;
-    private BattlerClass Class;
+    private BattlerClass battlerClass;
     private double damageModifier = 1.0;
     private int experiencePoints = 0;
     private double hpTier = HP / 50.0 / level;
@@ -50,15 +50,7 @@ public class Battler implements Serializable {
      *
      */
     public static enum Gender {
-
-        /**
-         *
-         */
         Male,
-
-        /**
-         *
-         */
         Female
     }
 
@@ -112,11 +104,18 @@ public class Battler implements Serializable {
         defenseTier = defense / 8.0 / level;
         speedTier = speed / 8.0 / level;
         magicTier = magic / 8.0 / level;
-        Class = initialClass;
+        battlerClass = initialClass;
         try {
-            skillList = initialClass.getSkillList().clone();
+            skillList = new ArrayList<>();
+            for(int i = 1; i <= level; i++) {
+                if (battlerClass != null && battlerClass.getSkillList() != null && battlerClass.getSkillList().containsKey(i)) {
+                    skillList.addAll(Arrays.asList(battlerClass.getSkillList().get(i)));
+                }
+            }
             equipmentList = initialEquipment.clone();
         } catch (NullPointerException e) {
+            e.printStackTrace();
+            System.err.println(name + " " + skillList);
         }
 //    boolean isAfflicted[] = {false};
         battlerGender = initializeGender;
@@ -147,7 +146,7 @@ public class Battler implements Serializable {
             int initialDefense,
             int initialSpeed,
             int initialMagic,
-            Skill[] initialSkill,
+            ArrayList<Skill> initialSkill,
             Equipment[] initialEquipment) {
         name = initialName;
         battlerElement = initialElement;
@@ -167,10 +166,11 @@ public class Battler implements Serializable {
         speedTier = speed / 8.0 / level;
         magicTier = magic / 8.0 / level;
         try {
-            skillList = initialSkill.clone();
+            skillList = new ArrayList<>();
+            skillList.addAll(initialSkill);
             equipmentList = initialEquipment.clone();
         } catch (NullPointerException e) {
-//            e.printStackTrace();
+            e.printStackTrace();
         }
 //    boolean isAfflicted[] = {false};
         battlerGender = initializeGender;
@@ -181,7 +181,7 @@ public class Battler implements Serializable {
      * @return
      */
     public BattlerClass getBattlerClass() {
-        return Class;
+        return battlerClass;
     }
 
     /**
@@ -302,30 +302,24 @@ public class Battler implements Serializable {
      * @return
      */
     public Skill getSkill(int skillSlot) {
-        return skillList[skillSlot];
+        return skillList.get(skillSlot);
     }
 
     /**
      *
      * @return
      */
-    public Skill[] getSkillList() {
+    public ArrayList<Skill> getSkillList() {
         return skillList;
     }
 
-    /**
-     *
-     * @return
-     */
-    public Skill[] getCurrentSkillList() {
-        ArrayList<Skill> getSkillList = new ArrayList<>();
-        for (Skill skillList1 : skillList) {
-            if (skillList1 != null && skillList1.getLevel() <= level) {
-                getSkillList.add(skillList1);
-            }
-        }
-        return (Skill[]) (getSkillList.toArray());
-    }
+//    /**
+//     *
+//     * @return
+//     */
+//    public Skill[] getCurrentSkillList() {
+//        return (Skill[]) (skillList.toArray());
+//    }
 
     /**
      *
@@ -333,7 +327,12 @@ public class Battler implements Serializable {
      * @return
      */
     public Skill getSkill(String skill) {
-        return skillList[Arrays.binarySearch(skillList, skill)];
+        try {
+            return skillList.get(skillList.indexOf(skill));
+        }
+        catch (Exception e) {
+            return null;
+        }
     }
 
     /**
@@ -447,11 +446,14 @@ public class Battler implements Serializable {
         level++;
         printline(name + " gained a level!");
         printline(name + " is now level " + level + ".");
-        for (Skill i : skillList) {
-            if (level == i.getLevel()) {
-                printline(name + " has learned " + i.getName() + "!");
+        if (battlerClass.getSkillList().get(level) != null) {
+            for(Skill s : battlerClass.getSkillList().get(level)) {
+                skillList.add(s);
+                printline(name + " has learned " + s.getName() + "!");
             }
         }
+            
+        
         return level;
     }
 
@@ -678,7 +680,7 @@ public class Battler implements Serializable {
      * @return
      */
     public Equipment equip(Equipment newEquipment) {
-        if (!Class.equippable(newEquipment)) {
+        if (!battlerClass.equippable(newEquipment)) {
             return newEquipment;
         }
         Equipment temp;
@@ -737,31 +739,17 @@ public class Battler implements Serializable {
      * @param newSkill
      */
     public void learnSkill(Skill newSkill) {
-        Skill[] tempList = new Skill[skillList.length + 1];
-        System.arraycopy(skillList,
-                0,
-                tempList,
-                0,
-                skillList.length);
-        tempList[skillList.length] = newSkill;
-        skillList = tempList;
+        skillList.add(newSkill);
     }
 
-    /**
-     *
-     * @param newSkill
-     * @param overrideLevel
-     */
-    public void learnSkill(Skill newSkill, int overrideLevel) {
-        Skill[] tempList = new Skill[skillList.length + 1];
-        System.arraycopy(skillList,
-                0,
-                tempList,
-                0,
-                skillList.length);
-        tempList[skillList.length] = newSkill.overrideLevel(overrideLevel);
-        skillList = tempList;
-    }
+//    /**
+//     *
+//     * @param newSkill
+//     * @param overrideLevel
+//     */
+//    public void learnSkill(Skill newSkill, int overrideLevel) {
+//        
+//    }
 
     /**
      *
@@ -785,7 +773,7 @@ public class Battler implements Serializable {
     }
 
     public Battler clone() {
-        return new Battler(name,
+        Battler b = new Battler(name,
                 battlerElement,
                 battlerGender,
                 level,
@@ -795,8 +783,10 @@ public class Battler implements Serializable {
                 defense,
                 speed,
                 magic,
-                skillList,
+                battlerClass,
                 equipmentList);
+        b.skillList = skillList;
+        return b;
     }
 
     public void reset() {

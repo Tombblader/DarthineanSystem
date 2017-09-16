@@ -18,20 +18,123 @@ import java.util.HashMap;
  * @author Keven
  */
 public class SystemDatabase {
-    public static final HashMap<Battle.Element, Double> weakness = new HashMap<>();
-    public static final HashMap<Battle.Stats, Double> statusVulnerability = new HashMap<>();
+    public static final HashMap<Battle.Element, Double> WEAKNESS = new HashMap<>();
+    public static final HashMap<Battle.Stats, Double> STATUS_VULNERABILITY = new HashMap<>();
 
-    public static Skill[] Magic_Knight_Moveset = {CrossCall, Heal, Darth_Fireball, Feint_Sword_Tackle, Frozen_Miasama, Tornado_Spin, Terra_Wall, Sword_Dancer, Four_Fury, Entropy};
-    public static Skill[] Warrior_Moveset = {Red_Spin, Red_Flail, Feint_Sword_Tackle, Red_Slayer, Seal_Breaker};
-    public static Skill[] Lancer_Moveset = {Leg_Sweep, Tiger_Thrust, Defense_Rush, Thunder_Thrust, Reign_of_Terror};
-    public static Skill[] Weapon_Master_Moveset = {Poison_Edge, Ray_Assassin, Tiger_Thrust, Feint_Sword_Tackle, Weapon_Master};
-    public static Skill[] Gray_Mage_Moveset = {Veather_Sprawl, Veather_Charm, Bladed_Din, Burial_Swipe, Brainwashing_Axe, Black_Miasama, Axe_Effect};
-    public static Skill[] Mage_Moveset = {Heal, Antidote, Awaken, Defog, Honey_Voice, Diffuse, Cell_Rejuvination, Storm_Gigas, Mud_Hand, Silver_Flame, Thunderstorm, Terra_Wall, Inferno, Crystal_Whirl, HealMore, HealAll, HealUs, Darknight};
-    public static Skill[] Angel_Moveset = {CrossCall, Storm_Gigas, Sword_Dancer, HealMore, HealAll, HealUs, Honey_Voice, Awaken, Revivify, White_Curse, Cell_Rejuvination, Fairy_Circle};
-    public static Skill[] Water_Spirit_Moveset = {CrossCall, Heal, Sap_Shot, Frozen_Miasama, Feint_Sword_Tackle, Crystal_Whirl, Sword_Dancer, HealMore, HealUs, Revivify};
-    public static Skill[] Fire_Spirit_Moveset = {Red_Spin, Fireball.overrideLevel(1), Red_Flail, Feint_Sword_Tackle, Red_Slayer, Seal_Breaker};
+    public static HashMap<Integer, Skill[]> Magic_Knight_Moveset = new HashMap<Integer, Skill[]>()
+    {
+        {
+            put(1, new Skill[]{CrossCall, Heal}); 
+            put(3, new Skill[]{Darth_Fireball}); 
+            put(5, new Skill[]{Feint_Sword_Tackle});
+            put(7, new Skill[]{Frozen_Miasama}); 
+            put(9, new Skill[]{Tornado_Spin}); 
+            put(10, new Skill[]{Terra_Wall}); 
+            put(11, new Skill[]{Sword_Dancer}); 
+            put(13, new Skill[]{Fours_Fury}); 
+            put(15, new Skill[]{Entropy});                    
+        }    
+    };
+    public static HashMap<Integer, Skill[]> Warrior_Moveset = new HashMap<Integer, Skill[]>()
+    {
+        {
+            put(1, new Skill[]{Red_Spin}); 
+            put(3, new Skill[]{Red_Flail}); 
+            put(5, new Skill[]{Feint_Sword_Tackle});
+            put(7, new Skill[]{Frozen_Miasama}); 
+            put(9, new Skill[]{Red_Slayer}); 
+            put(10, new Skill[]{Seal_Breaker}); 
+        }    
+    };
+    public static HashMap<Integer, Skill[]> Lancer_Moveset = new HashMap<Integer, Skill[]>(){
+        {
+            put(1, new Skill[]{Leg_Sweep}); 
+            put(3, new Skill[]{Tiger_Thrust});
+            put(5, new Skill[]{Defense_Rush}); 
+            put(7, new Skill[]{Thunder_Thrust});
+            put(9, new Skill[]{Reign_of_Terror});
+        }
+    };
+    public static HashMap<Integer, Skill[]> Weapon_Master_Moveset =  new HashMap<Integer, Skill[]>()
+    {
+        {
+            put(1, new Skill[]{Poison_Edge, Ray_Assassin});
+            put(3, new Skill[]{Tiger_Thrust});
+            put(5, new Skill[]{Feint_Sword_Tackle});
+            put(7, new Skill[]{Weapon_Master});
+        }
+    };
+    public static HashMap<Integer, Skill[]> Gray_Mage_Moveset = new HashMap<Integer, Skill[]>()
+    {
+        {
+            put(1, new Skill[]{Veather_Sprawl, Veather_Charm});
+            put(3, new Skill[]{Bladed_Din});
+            put(5, new Skill[]{Burial_Swipe}); 
+            put(7, new Skill[]{Brainwashing_Axe});
+            put(9, new Skill[]{Black_Miasama});
+            put(11, new Skill[]{Axe_Effect});
+        }
+    };
+    public static HashMap<Integer, Skill[]> Mage_Moveset = new HashMap<Integer, Skill[]>()
+    {
+        {
+            put(1, new Skill[]{Heal, Antidote, Awaken, Defog, Honey_Voice, Diffuse, Cell_Rejuvination});
+            put(3, new Skill[]{Storm_Gigas});
+            put(5, new Skill[]{Mud_Hand});
+            put(7, new Skill[]{Silver_Flame});
+            put(9, new Skill[]{Thunderstorm});
+            put(11, new Skill[]{Terra_Wall});
+            put(13, new Skill[]{Inferno});
+            put(15, new Skill[]{Crystal_Whirl});
+            put(17, new Skill[]{HealMore});
+            put(19, new Skill[]{HealAll});
+            put(21, new Skill[]{HealUs});
+            put(23, new Skill[]{Darknight});
+        }
+    };
+    public static HashMap<Integer, Skill[]> Angel_Moveset = new HashMap<Integer, Skill[]>()
+    {
+        {
+            put(1, new Skill[]{CrossCall});
+            put(3, new Skill[]{Storm_Gigas});
+            put(5, new Skill[]{Sword_Dancer});
+            put(7, new Skill[]{HealMore});
+            put(9, new Skill[]{HealAll});
+            put(11, new Skill[]{HealUs});
+            put(13, new Skill[]{Honey_Voice});
+            put(15, new Skill[]{Awaken});
+            put(17, new Skill[]{Revivify});
+            put(19, new Skill[]{White_Curse});
+            put(21, new Skill[]{Cell_Rejuvination});
+            put(23, new Skill[]{Fairy_Circle});
+        }            
+    };
+    public static HashMap<Integer, Skill[]> Water_Spirit_Moveset = new HashMap<Integer, Skill[]>()
+    {
+        {
+            put(1, new Skill[]{CrossCall, Heal, Sap_Shot});
+            put(3, new Skill[]{Frozen_Miasama});
+            put(5, new Skill[]{Feint_Sword_Tackle});
+            put(7, new Skill[]{Crystal_Whirl});
+            put(9, new Skill[]{Sword_Dancer});
+            put(11, new Skill[]{HealMore});
+            put(13, new Skill[]{HealUs});
+            put(15, new Skill[]{Revivify});
+        }
+    };
+    public static HashMap<Integer, Skill[]> Fire_Spirit_Moveset = new HashMap<Integer, Skill[]>()
+    {
+        {
+        
+            put(1, new Skill[]{Red_Spin, Fireball});
+            put(3, new Skill[]{Red_Flail});
+            put(5, new Skill[]{Feint_Sword_Tackle});
+            put(7, new Skill[]{Red_Slayer});
+            put(11, new Skill[]{Seal_Breaker});
+        }
+    };
 
-    public static Equipment[] MagicKnight = {Wooden_Sword, Wooden_Shield, Tunic, Headband, null};
+    public static Equipment[] Magic_Knight = {Wooden_Sword, Wooden_Shield, Tunic, Headband, null};
     public static Equipment[] Warrior = {Wooden_Sword, Wooden_Shield, Tunic, Headband, null};
     public static Equipment[] Lancer = {Wooden_Staff, Wooden_Shield, Tunic, null, null};
     public static Equipment[] Master = {Bronze_Sword, null, null, null, null};
@@ -45,7 +148,9 @@ public class SystemDatabase {
     public static BattlerClass Swordsman_Class = new BattlerClass("Swordsman", null, Warrior_Moveset);
     public static BattlerClass Lancer_Class = new BattlerClass("Lancer", null, Lancer_Moveset);
     public static BattlerClass Weapon_Master_Class = new BattlerClass("Weapon Master", null, Weapon_Master_Moveset);
-    public static BattlerClass Axeman_Class = new BattlerClass("Axeman", null, Gray_Mage_Moveset);
+    public static BattlerClass Gray_Mage_Class = new BattlerClass("Gray Mage", null, Gray_Mage_Moveset);
     public static BattlerClass Mage_Class = new BattlerClass("Mage", null, Mage_Moveset);
     public static BattlerClass Angel_Class = new BattlerClass("Angel", null, Angel_Moveset);
+    public static BattlerClass Water_Spirit_Class = new BattlerClass("Water Spirit", null, Water_Spirit_Moveset);
+    public static BattlerClass Fire_Spirit_Class = new BattlerClass("Fire Spirit", null, Fire_Spirit_Moveset);
 }

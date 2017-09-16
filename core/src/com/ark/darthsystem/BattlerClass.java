@@ -2,6 +2,7 @@ package com.ark.darthsystem;
 
 import java.util.Arrays;
 import java.io.Serializable;
+import java.util.HashMap;
 
 /**
  *
@@ -13,6 +14,7 @@ public class BattlerClass implements Serializable {
      *
      */
     public BattlerClass() {
+        skillList = new HashMap<>();
     }
 
     /**
@@ -21,7 +23,7 @@ public class BattlerClass implements Serializable {
      * @param equipmentSet
      * @param skillSet
      */
-    public BattlerClass(String initializeName, Equipment[] equipmentSet, Skill[] skillSet) {
+    public BattlerClass(String initializeName, Equipment[] equipmentSet, HashMap<Integer, Skill[]> skillSet) {
         name = initializeName;
         equipmentList = equipmentSet;
         skillList = skillSet;
@@ -48,7 +50,7 @@ public class BattlerClass implements Serializable {
      *
      * @return
      */
-    public Skill[] getSkillList() {
+    public HashMap<Integer, Skill[]> getSkillList() {
         return skillList;
     }
 
@@ -57,10 +59,10 @@ public class BattlerClass implements Serializable {
      * @param index
      * @return
      */
-    public Skill getSkill(int index) {
-        return skillList[index];
+    public Skill[] getSkill(int index) {
+        return skillList.get(index);
     }
     private String name;
     private Equipment[] equipmentList;
-    private Skill[] skillList;
+    private HashMap<Integer, Skill[]> skillList;
 }

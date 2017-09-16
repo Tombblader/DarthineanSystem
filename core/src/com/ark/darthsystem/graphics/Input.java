@@ -23,9 +23,16 @@ public class Input extends InputAdapter {
     }
     
     public static void disableInput() {
-        canInput = true;
+        canInput = false;
     }
 
+    public static void clearInput() {
+        for(int i = 0; i < keys.length; i++) {
+            keys[i] = 0;
+            keyPressed[i] = false;            
+        }
+    }
+    
     public static boolean getKeyRepeat(int keycode) {
         return keyPressed[keycode];
     }

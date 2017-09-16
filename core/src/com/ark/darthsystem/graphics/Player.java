@@ -88,7 +88,9 @@ public class Player extends ActorCollision {
     public Player(ArrayList<ActorBattler> getBattler, float getX, float getY) {
         super(getBattler.get(0).getSprite(), getX, getY, DELAY);
         currentBattler = getBattler.get(0);
-        currentSkill = Database2.SkillToActor(getBattler.get(0).getBattler().getSkill(0));
+        if (getBattler.get(0).getBattler().getSkillList() != null && getBattler.get(0).getBattler().getSkillList().size() != 0) {
+            currentSkill = Database2.SkillToActor(getBattler.get(0).getBattler().getSkill(0));
+        }
         party = getBattler;
         setAttackAnimation();
         FreeTypeFontGenerator gen = new FreeTypeFontGenerator(Gdx.files.internal(

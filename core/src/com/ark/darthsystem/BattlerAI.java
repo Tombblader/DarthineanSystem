@@ -6,10 +6,10 @@ import com.badlogic.gdx.utils.Pool.Poolable;
 import java.util.ArrayList;
 
 /**
- *
+ * A Battler, but also has AI data, Experience Points, and Items dropped.
  * @author Keven
  */
-public class BattlerAI extends Battler implements Poolable {
+public class BattlerAI extends Battler {
 
     private static final int MAX_PRIORITY = 10;
 
@@ -18,21 +18,21 @@ public class BattlerAI extends Battler implements Poolable {
     private Item drop;
 
     /**
-     *
-     * @param getName
-     * @param newBattler
-     * @param getAIData
-     * @param initializeExperience
-     * @param itemDrop
-     * @param itemQuantity
+     * Creates a new instance of a BattlerAI based on a copy of a Battler.
+     * @param name The name of the new BattlerAI
+     * @param newBattler The Battler to base the BattlerAI on.
+     * @param AIData The flags and priorities that the AI uses.
+     * @param experience The amount of experience points the BattlerAI gives when defeated.
+     * @param itemDrop The item dropped when defeated.
+     * @param itemQuantity The amount of items dropped when defeated.
      */
-    public BattlerAI(String getName,
+    public BattlerAI(String name,
             Battler newBattler,
-            AI[] getAIData,
-            int initializeExperience,
+            AI[] AIData,
+            int experience,
             Item itemDrop,
             int itemQuantity) {
-        super(getName,
+        super(name,
                 newBattler.getElement(),
                 newBattler.getGender(),
                 newBattler.getLevel(),
@@ -42,11 +42,10 @@ public class BattlerAI extends Battler implements Poolable {
                 newBattler.getBaseDefense(),
                 newBattler.getBaseSpeed(),
                 newBattler.getBaseMagic(),
-                newBattler.getSkillList(),
+                newBattler.getBattlerClass(),
                 newBattler.getEquipmentList());
-//         this.setSprite(newBattler.getBattlerSprite());
-        AIData = getAIData;
-        experience = initializeExperience;
+        this.AIData = AIData;
+        this.experience = experience;
         try {
             drop = (Item) (itemDrop.clone());
             itemDrop.setQuantity(itemQuantity);
@@ -55,54 +54,54 @@ public class BattlerAI extends Battler implements Poolable {
     }
 
     /**
-     *
-     * @param initializeName
-     * @param initializeElement
-     * @param initializeGender
-     * @param initializeLevel
-     * @param initializeHP
-     * @param initializeMP
-     * @param initializeAttack
-     * @param initializeDefense
-     * @param initializeSpeed
-     * @param initializeMagic
-     * @param initializeSkill
-     * @param initializeEquipment
-     * @param getAIData
-     * @param initializeExperience
-     * @param itemDrop
-     * @param itemQuantity
+     * Create a new Instance of BattlerAI.
+     * @param name The name of the BattlerAI
+     * @param element The Element of the BattlerAI
+     * @param gender The gender of the BattlerAI
+     * @param level The level of the BattlerAI
+     * @param HP How much damage can this Battler take before dying.
+     * @param MP The amount of magic usable before needing to recharge
+     * @param Attack The physical attack power of the Battler
+     * @param Defense How much damage reduction the Battler has
+     * @param Speed Determines whether or not the Battler goes first.  Also determines critical hit and dodge.
+     * @param Magic Effectiveness of magic attacks and status effects.  Reduces magic damage as well.
+     * @param skillList The skills the BattlerAI has access to immediately.
+     * @param equipment The equipment currently equipped.
+     * @param AIData The flags and priorities that the AI uses.
+     * @param experience The amount of experience points the BattlerAI gives when defeated.
+     * @param itemDrop The item dropped when defeated.
+     * @param itemQuantity The amount of items dropped when defeated.
      */
-    public BattlerAI(String initializeName,
-            Battle.Element initializeElement,
-            Battler.Gender initializeGender,
-            int initializeLevel,
-            int initializeHP,
-            int initializeMP,
-            int initializeAttack,
-            int initializeDefense,
-            int initializeSpeed,
-            int initializeMagic,
-            Skill[] initializeSkill,
-            Equipment[] initializeEquipment,
-            AI[] getAIData,
-            int initializeExperience,
+    public BattlerAI(String name,
+            Battle.Element element,
+            Battler.Gender gender,
+            int level,
+            int HP,
+            int MP,
+            int Attack,
+            int Defense,
+            int Speed,
+            int Magic,
+            ArrayList<Skill> skillList,
+            Equipment[] equipment,
+            AI[] AIData,
+            int experience,
             Item itemDrop,
             int itemQuantity) {
-        super(initializeName,
-                initializeElement,
-                initializeGender,
-                initializeLevel,
-                initializeHP,
-                initializeMP,
-                initializeAttack,
-                initializeDefense,
-                initializeSpeed,
-                initializeMagic,
-                initializeSkill,
-                initializeEquipment);
-        AIData = getAIData;
-        experience = initializeExperience;
+        super(name,
+                element,
+                gender,
+                level,
+                HP,
+                MP,
+                Attack,
+                Defense,
+                Speed,
+                Magic,
+                skillList,
+                equipment);
+        this.AIData = AIData;
+        this.experience = experience;
         try {
             drop = (Item) (itemDrop.clone());
             drop.setQuantity(itemQuantity);
@@ -110,36 +109,113 @@ public class BattlerAI extends Battler implements Poolable {
         }
     }
     
-    public BattlerAI(String initializeName,
-            Battle.Element initializeElement,
-            Battler.Gender initializeGender,
-            int initializeLevel,
-            int initializeHP,
-            int initializeMP,
-            int initializeAttack,
-            int initializeDefense,
-            int initializeSpeed,
-            int initializeMagic,
-            Skill[] initializeSkill,
-            ActorSkill initializeUnarmed,
-            AI[] getAIData,
-            int initializeExperience,
+    /**
+     * Create a new Instance of BattlerAI.
+     * @param name The name of the BattlerAI
+     * @param element The Element of the BattlerAI
+     * @param gender The gender of the BattlerAI
+     * @param level The level of the BattlerAI
+     * @param HP How much damage can this Battler take before dying.
+     * @param MP The amount of magic usable before needing to recharge
+     * @param Attack The physical attack power of the Battler
+     * @param Defense How much damage reduction the Battler has
+     * @param Speed Determines whether or not the Battler goes first.  Also determines critical hit and dodge.
+     * @param Magic Effectiveness of magic attacks and status effects.  Reduces magic damage as well.
+     * @param battlerClass The class the BattlerAI is.
+     * @param equipment The equipment currently equipped.
+     * @param AIData The flags and priorities that the AI uses.
+     * @param experience The amount of experience points the BattlerAI gives when defeated.
+     * @param itemDrop The item dropped when defeated.
+     * @param itemQuantity The amount of items dropped when defeated.
+     */
+    public BattlerAI(String name,
+            Battle.Element element,
+            Battler.Gender gender,
+            int level,
+            int HP,
+            int MP,
+            int Attack,
+            int Defense,
+            int Speed,
+            int Magic,
+            BattlerClass battlerClass,
+            Equipment[] equipment,
+            AI[] AIData,
+            int experience,
             Item itemDrop,
             int itemQuantity) {
-        this(initializeName,
-                initializeElement,
-                initializeGender,
-                initializeLevel,
-                initializeHP,
-                initializeMP,
-                initializeAttack,
-                initializeDefense,
-                initializeSpeed,
-                initializeMagic,
-                initializeSkill,
+        super(name,
+                element,
+                gender,
+                level,
+                HP,
+                MP,
+                Attack,
+                Defense,
+                Speed,
+                Magic,
+                battlerClass,
+                equipment);
+        this.AIData = AIData;
+        this.experience = experience;
+        try {
+            drop = (Item) (itemDrop.clone());
+            drop.setQuantity(itemQuantity);
+        } catch (Exception e) {
+        }
+    }
+        
+    
+    
+    /**
+     * Create a new Instance of BattlerAI.
+     * @param name The name of the BattlerAI
+     * @param element The Element of the BattlerAI
+     * @param gender The gender of the BattlerAI
+     * @param level The level of the BattlerAI
+     * @param HP How much damage can this Battler take before dying.
+     * @param MP The amount of magic usable before needing to recharge
+     * @param Attack The physical attack power of the Battler
+     * @param Defense How much damage reduction the Battler has
+     * @param Speed Determines whether or not the Battler goes first.  Also determines critical hit and dodge.
+     * @param Magic Effectiveness of magic attacks and status effects.  Reduces magic damage as well.
+     * @param skillList The skills the BattlerAI has access to immediately.
+     * @param unarmedStrikeAnimation The animation to use when it's unarmed.
+     * @param AIData The flags and priorities that the AI uses.
+     * @param experience The amount of experience points the BattlerAI gives when defeated.
+     * @param itemDrop The item dropped when defeated.
+     * @param itemQuantity The amount of items dropped when defeated.
+     */    
+    public BattlerAI(String name,
+            Battle.Element element,
+            Battler.Gender gender,
+            int level,
+            int HP,
+            int MP,
+            int Attack,
+            int Defense,
+            int Speed,
+            int Magic,
+            ArrayList<Skill> skillList,
+            ActorSkill unarmedStrikeAnimation,
+            AI[] AIData,
+            int experience,
+            Item itemDrop,
+            int itemQuantity) {
+        this(name,
+                element,
+                gender,
+                level,
+                HP,
+                MP,
+                Attack,
+                Defense,
+                Speed,
+                Magic,
+                skillList,
                 new Equipment[4], 
-                getAIData,
-                initializeExperience,
+                AIData,
+                experience,
                 itemDrop,
                 itemQuantity);
         Equipment temp = new Equipment("Unarmed",
@@ -150,7 +226,7 @@ public class BattlerAI extends Battler implements Poolable {
             0,
             0,
             0);
-        temp.setAnimation(initializeUnarmed);
+        temp.setAnimation(unarmedStrikeAnimation);
         equip(temp);
     }
     
@@ -182,9 +258,8 @@ public class BattlerAI extends Battler implements Poolable {
                 break;
             case Heal:
                 do {
-                    getSkill = this.getSkill((int) (Math.random() * this.getSkillList().length));
-                } while ((getSkill == null ||
-                        getSkill.getLevel() > getLevel()) ||
+                    getSkill = this.getSkill((int) (Math.random() * this.getSkillList().size()));
+                } while (getSkill == null ||
                         getSkill.getElement() != Battle.Element.Heal ||
                         getSkill.getStatusEffect() != Battle.Stats.Normal);
                 if (getSkill.getCost() > getMP()) {
@@ -208,9 +283,8 @@ public class BattlerAI extends Battler implements Poolable {
                 } while (deadBattler.isAlive());
                 
                 do {
-                    getSkill = this.getSkill((int) (Math.random() * this.getSkillList().length));
-                } while ((getSkill == null ||
-                        getSkill.getLevel() > getLevel()) ||
+                    getSkill = this.getSkill((int) (Math.random() * this.getSkillList().size()));
+                } while (getSkill == null ||
                         getSkill.getElement() != Battle.Element.Heal ||
                         getSkill.getStatusEffect() != Battle.Stats.Death);
                 
@@ -221,9 +295,9 @@ public class BattlerAI extends Battler implements Poolable {
                 break;
             case AttackSkill:
                 do {
-                    getSkill = this.getSkill((int) (Math.random() * this.getSkillList().length));
+                    getSkill = this.getSkill((int) (Math.random() * this.getSkillList().size()));
                 } while (getSkill == null ||
-                        getSkill.getLevel() > getLevel() ||
+//                        getSkill.getLevel() > getLevel() ||
                         getSkill.calculateDamage(this,  b.getAlly((int) (Math.random() *  b.getAlly().size()))) <= 0);
                 if (getSkill.getCost() > getMP()) {
                     tempAction = new Action(Battle.Command.Charge, this);
@@ -241,9 +315,8 @@ public class BattlerAI extends Battler implements Poolable {
                 break;
             case SupportSkill:
                 do {
-                    getSkill = this.getSkill((int) (Math.random() * this.getSkillList().length));
-                } while ((getSkill == null ||
-                        getSkill.getLevel() > getLevel()) &&
+                    getSkill = this.getSkill((int) (Math.random() * this.getSkillList().size()));
+                } while (getSkill == null ||
                         getSkill.getStatusEffect() != Battle.Stats.Normal);
                 if (getSkill.getCost() > getMP()) {
                     tempAction = new Action(Battle.Command.Charge, this);
@@ -286,10 +359,12 @@ public class BattlerAI extends Battler implements Poolable {
      */
     public Item getDroppedItem() {
         return drop;
-    }
+    }z
     
     public BattlerAI clone() {
-        return new BattlerAI(getName(), super.clone(), AIData, experience, drop, drop.getQuantity());
+        return new BattlerAI(getName(), getElement(), getGender(), getLevel(), 
+                getHP(), getMP(), getAttack(), getDefense(), getSpeed(), 
+                getMagic(), getSkillList(), getEquipmentList(), AIData, experience, drop, drop.getQuantity());
     }
 
     @Override

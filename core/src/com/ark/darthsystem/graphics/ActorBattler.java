@@ -104,9 +104,10 @@ public class ActorBattler {
     
     public ArrayList<ActorSkill> getSkillList() {
         ArrayList<ActorSkill> tempSkillList = new ArrayList<>();
-        for (ActorSkill a : skillList) {
-            if (a.getSkill().getLevel() <= battler.getLevel()) {
-                tempSkillList.add(a);
+        for (Skill skill : battler.getSkillList()) {
+            ActorSkill tempSkill = Database2.SkillToActor(skill);
+            if (tempSkill != null) {
+                tempSkillList.add(tempSkill);
             }
         }
         return tempSkillList;

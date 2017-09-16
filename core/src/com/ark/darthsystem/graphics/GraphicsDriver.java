@@ -340,6 +340,7 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
             if (transitions.get(0).isFinished()) {
                 transitions.remove(0);
             }
+            
         }
         else {
             getCurrentState().update(delta);

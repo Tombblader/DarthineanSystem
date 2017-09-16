@@ -25,7 +25,7 @@ public class Skill implements Serializable, Cloneable {
     private double finalizeRatio;
     private String name;
     private int cost;
-    private int level;
+//    private int level;
     private Battle.Element skillElement;
     private boolean isAlly;
     private boolean isAll;
@@ -38,7 +38,6 @@ public class Skill implements Serializable, Cloneable {
     /**
      * A skill is a type of attack that has various parameters.
      * @param name The name of the Skill
-     * @param level The minimum level required to learn the skill
      * @param cost The MP cost of the Skill
      * @param skillElement The Element of the skill.
      * @param isAlly If true, affects allies instead of enemies.
@@ -58,7 +57,6 @@ public class Skill implements Serializable, Cloneable {
      * @param finalizeRatio Take all of these values and divide it by what to equalize.
      */
     public Skill(String name,
-            int level,
             int cost,
             Battle.Element skillElement,
             boolean isAlly,
@@ -77,7 +75,6 @@ public class Skill implements Serializable, Cloneable {
             int targetMagic,
             double finalizeRatio) {
         this.name = name;
-        this.level = level;
         this.cost = cost;
         this.skillElement = skillElement;
         this.isAlly = isAlly;
@@ -154,20 +151,20 @@ public class Skill implements Serializable, Cloneable {
         this.cost = cost;
     }
 
-    /**
-     * Overrides the level requirement to use this skill.
-     * @param newLevel The new minimum level.
-     * @return A copy of the skill that has this new level requirement.
-     */
-    public Skill overrideLevel(int newLevel) {
-        Skill newSkill = null;
-        try {
-            newSkill = (Skill) (this.clone());
-            newSkill.level = newLevel;
-        } catch (Exception e) {
-        }
-        return newSkill;
-    }
+//    /**
+//     * Overrides the level requirement to use this skill.
+//     * @param newLevel The new minimum level.
+//     * @return A copy of the skill that has this new level requirement.
+//     */
+//    public Skill overrideLevel(int newLevel) {
+//        Skill newSkill = null;
+//        try {
+//            newSkill = (Skill) (this.clone());
+//            newSkill.level = newLevel;
+//        } catch (Exception e) {
+//        }
+//        return newSkill;
+//    }
     
     /**
      * Overrides the MP cost of the skill.  Unlike setCost,
@@ -186,14 +183,14 @@ public class Skill implements Serializable, Cloneable {
         return newSkill;
     }
 
-    /**
-     * Gets the minimum level requirement to use this skill.
-     * @return The minimum level requirement.
-     */
-    public int getLevel() {
-        return level;
-    }
-
+//    /**
+//     * Gets the minimum level requirement to use this skill.
+//     * @return The minimum level requirement.
+//     */
+//    public int getLevel() {
+//        return level;
+//    }
+//
     /**
      * Determines whether a status change is successful and changes the status.
      * @param caster The battler who used this Skill.

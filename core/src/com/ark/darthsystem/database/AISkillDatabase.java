@@ -14,7 +14,7 @@ import com.ark.darthsystem.states.Battle;
  */
 public class AISkillDatabase {
     public static Skill Eyebeam = new Skill("Eyebeam",
-            1,
+//            1,
             1,
             Battle.Element.Dark,
             false, //Targets ally?
