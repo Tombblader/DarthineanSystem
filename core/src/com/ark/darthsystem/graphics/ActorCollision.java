@@ -36,7 +36,7 @@ public class ActorCollision extends Actor {
     public static final short CATEGORY_PLAYER_SKILL = 0x0010;
     public static final short CATEGORY_WALLS = 0x0004;
     
-    private String shapeName = "basiccircle";
+    private String shapeName;
     private Body body;
     private Fixture fixture;
     private Body sensorBody;
@@ -47,14 +47,33 @@ public class ActorCollision extends Actor {
 
     public ActorCollision(Sprite[] img, float getX, float getY, float delay) {
         super(img, getX, getY, delay);
+        shapeName = "basiccircle";
     }
 
+    public ActorCollision(Sprite[] img, float getX, float getY, float delay, String shape) {
+        super(img, getX, getY, delay);
+        shapeName = shape;
+    }
+    
+    
     public ActorCollision(Sprite[] img, float getX, float getY, float delay, boolean destroy) {
         super(img, getX, getY, delay, destroy);
+        shapeName = "basiccircle";
+    }
+    
+    public ActorCollision(Sprite[] img, float getX, float getY, float delay, boolean destroy, String shape) {
+        this(img, getX, getY, delay, destroy);
+        shapeName = shape;
     }
 
     public ActorCollision(ActorSprite img, float getX, float getY, float delay) {
         super(img, getX, getY, delay);
+        shapeName = "basiccircle";
+    }
+
+    public ActorCollision(ActorSprite img, float getX, float getY, float delay, String shape) {
+        super(img, getX, getY, delay);
+        shapeName = shape;
     }
 
     public void setInitialX(float x) {
@@ -220,6 +239,8 @@ public class ActorCollision extends Actor {
         f.maskBits = mask;
         fixture.setFilterData(f);
     }
+    
+    @Override
     public void setMap(OverheadMap map) {
         if (getCurrentMap() != null) {
             Array<Body> temp = new Array<>();
@@ -240,6 +261,7 @@ public class ActorCollision extends Actor {
         f.maskBits = mask;
         sensorFixture.setFilterData(f);
     }
+    @Override
     public void update(float delta) {
         super.update(delta);
         if (body != null) {

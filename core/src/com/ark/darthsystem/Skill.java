@@ -168,6 +168,7 @@ public class Skill implements Serializable, Cloneable {
     
     /**
      * Overrides the MP cost of the skill.  Unlike setCost,
+     * overrideCost returns a new Skill object with the new cost.
      * @param newCost The new MP cost of the skill.
      * @return A copy of the skill that has the new cost.
      * @see #setCost(int)

@@ -263,15 +263,11 @@ public class Battle implements State {
         allAction.addAll(enemyAction);
         for (int i = 0; i < allAction.size(); i++) {
             for (int j = 0; j < allAction.size(); j++) {
-                Action tempAction;
                 if (!(allAction.get(i) == null ||  allAction.get(j) == null)) {
                     if (allAction.get(i).getCaster().getSpeed() > allAction.get(j).getCaster().getSpeed() ||
                             (allAction.get(j).getCaster().getSpeed() == allAction.get(j).getCaster().getSpeed() && 
                             Math.random() < .5)) {
                         Collections.swap(allAction, i, j);
-//                        tempAction = allAction.get(i);
-//                        allAction.set(i, allAction.get(j));
-//                        allAction.set(j, tempAction);
                     }
                 }
             }
@@ -518,6 +514,7 @@ public class Battle implements State {
     public void dispose() {
         background.getTexture().dispose();
     }
+    
     public static enum Element {
         
         Physical,
@@ -705,10 +702,7 @@ public class Battle implements State {
                             for (int i = 0; i < temp.length; i++) {
                                 temp[i] = getSkillList.get(i).getName();
                             }
-                            Menu skillMenu = new Menu("Activate which skill?",
-                                    temp,
-                                    true,
-                                    true) {
+                            Menu skillMenu = new Menu("Activate which skill?", temp, true, true) {
                                 @Override
                                 public Object confirm(String choice) {
                                     final Skill getSkill = getSkillList.get(getCursorIndex());
@@ -743,7 +737,7 @@ public class Battle implements State {
                                     }
                                     return null;
                                 }
-                                    };
+                            };
                             GraphicsDriver.addMenu(skillMenu);
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -754,40 +748,33 @@ public class Battle implements State {
                     break;
                 case Item:
                     if (b.getItem() != null && b.getItem().size() > 0) {
-                        Menu menuItem = new Menu("Use which Item?",
-                                b.getItemNames(),
-                                true,
-                                true) {
-                                    @Override
-                                    public Object confirm(String choice) {
-                                        final Item useItem;
-                                        useItem = b.getItem(this.getCursorIndex());
-                                        final ArrayList<Battler> targetList = (ArrayList<Battler>) (useItem.getAlly() ? b.getAlly() : b.getEnemy());
-                                        if (!useItem.getAll()) {
-                                            String[] temp = new String[targetList.size()];
-                                            for (int i = 0; i < temp.length; i++) {
-                                                temp[i] = targetList.get(i).getName();
-                                            }
-                                            Menu menuTarget = new Menu("Target?",
-                                                    temp,
-                                                    true,
-                                                    true) {
-                                                        @Override
-                                                        public Object confirm(String choice) {
-                                                            b.getPartyActions().add(useItem.use(caster,
-                                                                    targetList.get(getCursorIndex()),
-                                                                    targetList));
-                                                            return choice;
-                                                        }
-                                                    };
-                                            GraphicsDriver.addMenu(menuTarget);
-                                        } else {
-                                            b.getPartyActions().add(useItem.use(caster,
-                                                    targetList));
-                                        }
-                                        return choice;
+                        Menu menuItem = new Menu("Use which Item?", b.getItemNames(), true, true) {
+                            @Override
+                            public Object confirm(String choice) {
+                                final Item useItem;
+                                useItem = b.getItem(this.getCursorIndex());
+                                final ArrayList<Battler> targetList = (ArrayList<Battler>) (useItem.getAlly() ? b.getAlly() : b.getEnemy());
+                                if (!useItem.getAll()) {
+                                    String[] temp = new String[targetList.size()];
+                                    for (int i = 0; i < temp.length; i++) {
+                                        temp[i] = targetList.get(i).getName();
                                     }
-                                };
+                                    Menu menuTarget = new Menu("Target?", temp, true, true) {
+                                        @Override
+                                        public Object confirm(String choice) {
+                                            b.getPartyActions().add(useItem.use(caster,
+                                                    targetList.get(getCursorIndex()),
+                                                    targetList));
+                                            return choice;
+                                        }
+                                    };
+                                    GraphicsDriver.addMenu(menuTarget);
+                                } else {
+                                    b.getPartyActions().add(useItem.use(caster, targetList));
+                                }
+                                return choice;
+                            }
+                        };
                         GraphicsDriver.addMenu(menuItem);
                     } else {
 

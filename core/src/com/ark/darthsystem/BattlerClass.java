@@ -19,12 +19,12 @@ public class BattlerClass implements Serializable {
 
     /**
      *
-     * @param initializeName
+     * @param name
      * @param equipmentSet
      * @param skillSet
      */
-    public BattlerClass(String initializeName, Equipment[] equipmentSet, HashMap<Integer, Skill[]> skillSet) {
-        name = initializeName;
+    public BattlerClass(String name, Equipment[] equipmentSet, HashMap<Integer, Skill[]> skillSet) {
+        this.name = name;
         equipmentList = equipmentSet;
         skillList = skillSet;
     }

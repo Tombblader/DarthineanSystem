@@ -48,7 +48,8 @@ public class Database2 extends Database1 {
                                 0,
                                 1.0f / 12.0f,
                                 SkillDatabase.Red_Spin,
-                                ActorSkill.Area.SELF) {{setShape("widespin");}});
+                                ActorSkill.Area.SELF,
+                                "widespin"));
                 put(SkillDatabase.Sap_Shot,
                         new ActorSkill((Sprite[]) GraphicsDriver.getMasterSheet().createSprites("skills/wiccan_cross/field/wiccan_cross").toArray(Sprite.class),
                                 GraphicsDriver.getMasterSheet().createSprites("skills/crosscall/battler/crosscall").toArray(Sprite.class),
@@ -122,7 +123,8 @@ public class Database2 extends Database1 {
                 1,
                 1f/24f,
                 null,
-                ActorSkill.Area.FRONT) {{setShape("widesword");}};
+                ActorSkill.Area.FRONT,
+                "widesword");
     }
 
     //  public static GraphicsEvent Pickup;

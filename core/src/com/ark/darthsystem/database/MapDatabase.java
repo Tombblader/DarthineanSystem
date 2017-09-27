@@ -1,6 +1,5 @@
 package com.ark.darthsystem.database;
 
-import com.ark.darthsystem.graphics.GraphicsDriver;
 import com.ark.darthsystem.states.OverheadMap;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
@@ -27,8 +26,6 @@ public class MapDatabase {
         initializeMaps();
         new CollisionDatabaseLoader();
         setDefaultMap();
-        MonsterDatabase.ErikAI.setMap(maps.get("complex"), 200 / GraphicsDriver.getPlayerCamera().getConversion(), 200 / GraphicsDriver.getPlayerCamera().getConversion());
-//        Database2.ProtoxAI.setMap(maps.get("complex"), 200 / GraphicsDriver.getPlayerCamera().getConversion(), 200 / GraphicsDriver.getPlayerCamera().getConversion());
     }
     
     public static HashMap<String, OverheadMap> getMaps() {

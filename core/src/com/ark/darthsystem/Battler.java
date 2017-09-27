@@ -9,14 +9,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- *
+ * A battler represents a character in Battle mode.  It holds the character's
+ * stats and abilities.
  * @author Keven
  */
 public class Battler implements Serializable {
 
-    /**
-     *
-     */
     public static final long serialVersionUID = 553786374;
     private static final double DEFEND = 0.25;
     private String name;
@@ -46,16 +44,13 @@ public class Battler implements Serializable {
     private double magicTier = magic / 8.0 / level;
     private int tnl = 50;
 
-    /**
-     *
-     */
     public static enum Gender {
         Male,
         Female
     }
 
     /**
-     *
+     * Creates an empty Battler Object with no values initialized.
      */
     public Battler() {
     }
@@ -87,38 +82,36 @@ public class Battler implements Serializable {
             int initialMagic,
             BattlerClass initialClass,
             Equipment[] initialEquipment) {
-        name = initialName;
-        battlerElement = initialElement;
-        level = initialLevel;
-        maxHP = initialHP;
-        maxMP = initialMP;
-        HP = maxHP;
-        MP = maxMP;
-        attack = initialAttack;
-        defense = initialDefense;
-        speed = initialSpeed;
-        magic = initialMagic;
-        hpTier = HP / 50.0 / level;
-        mpTier = MP / 50.0 / level;
-        attackTier = attack / 8.0 / level;
-        defenseTier = defense / 8.0 / level;
-        speedTier = speed / 8.0 / level;
-        magicTier = magic / 8.0 / level;
-        battlerClass = initialClass;
+        this.name = initialName;
+        this.battlerElement = initialElement;
+        this.level = initialLevel;
+        this.maxHP = initialHP;
+        this.maxMP = initialMP;
+        this.HP = maxHP;
+        this.MP = maxMP;
+        this.attack = initialAttack;
+        this.defense = initialDefense;
+        this.speed = initialSpeed;
+        this.magic = initialMagic;
+        this.hpTier = HP / 50.0 / level;
+        this.mpTier = MP / 50.0 / level;
+        this.attackTier = attack / 8.0 / level;
+        this.defenseTier = defense / 8.0 / level;
+        this.speedTier = speed / 8.0 / level;
+        this.magicTier = magic / 8.0 / level;
+        this.battlerClass = initialClass;
         try {
-            skillList = new ArrayList<>();
+            this.skillList = new ArrayList<>();
             for(int i = 1; i <= level; i++) {
-                if (battlerClass != null && battlerClass.getSkillList() != null && battlerClass.getSkillList().containsKey(i)) {
-                    skillList.addAll(Arrays.asList(battlerClass.getSkillList().get(i)));
+                if (this.battlerClass != null && this.battlerClass.getSkillList() != null && this.battlerClass.getSkillList().containsKey(i)) {
+                    this.skillList.addAll(Arrays.asList(this.battlerClass.getSkillList().get(i)));
                 }
             }
-            equipmentList = initialEquipment.clone();
+            this.equipmentList = initialEquipment.clone();
         } catch (NullPointerException e) {
-            e.printStackTrace();
-            System.err.println(name + " " + skillList);
         }
 //    boolean isAfflicted[] = {false};
-        battlerGender = initializeGender;
+        this.battlerGender = initializeGender;
     }
 
     /**
@@ -742,14 +735,6 @@ public class Battler implements Serializable {
         skillList.add(newSkill);
     }
 
-//    /**
-//     *
-//     * @param newSkill
-//     * @param overrideLevel
-//     */
-//    public void learnSkill(Skill newSkill, int overrideLevel) {
-//        
-//    }
 
     /**
      *

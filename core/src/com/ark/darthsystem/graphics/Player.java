@@ -419,10 +419,10 @@ public class Player extends ActorCollision {
     }
 
     public void jump() {
-        GraphicsDriver.setMessage("I believe I can fly!");
         final int JUMP_TIME = 100;
         if (!isJumping) {
             GameTimer tempTimer = new GameTimer("JUMP", JUMP_TIME) {
+                @Override
                 public void event(Actor a) {
                     isJumping = false;
                     canAttack = true;
@@ -432,11 +432,12 @@ public class Player extends ActorCollision {
                     resetAnimation();
                 }
 
+                @Override
                 public boolean update(float delta, Actor a) {
                     isJumping = true;
                     canAttack = false;
-                    getMainBody().setLinearVelocity(4 * (getFacing().x - getFacing().x * Math.abs(getFacing().y) * (1 - .707f)) * getSpeed() * delta,
-                            4 * getSpeed() * delta * (getFacing().y - getFacing().y * Math.abs(getFacing().x) * (1 - .707f)));
+                    getMainBody().setLinearVelocity(3 * (getFacing().x - getFacing().x * Math.abs(getFacing().y) * (1 - .707f)) * getSpeed() * delta,
+                            3 * getSpeed() * delta * (getFacing().y - getFacing().y * Math.abs(getFacing().x) * (1 - .707f)));
                     changeX(getFacing().x);
                     changeY(getFacing().y);
                     return super.update(delta, a);
@@ -448,6 +449,7 @@ public class Player extends ActorCollision {
                     canDodge = true;
                 }
 
+                @Override
                 public boolean update(float delta, Actor a) {
                     canDodge = false;
                     return super.update(delta, a);
@@ -521,6 +523,7 @@ public class Player extends ActorCollision {
         return fieldState;
     }
     
+    @Override
     public void generateBody(OverheadMap map) {
         setX(getInitialX());
         setY(getInitialY());
@@ -631,6 +634,25 @@ public class Player extends ActorCollision {
             applySprite();
         }
     }
+    
+    public void switchBattler(int index) {
+        if (totalPartyKill()) {
+            return;
+        }
+        currentBattlerIndex = index;
+        if (!party.isEmpty()) {
+//            Collections.rotate(party, -1);
+
+            while (!party.get(0).getBattler().isAlive()) {
+                Collections.rotate(party, -1);
+            }
+            currentBattler = party.get(0);
+            setAttackAnimation();
+            currentSkill = currentBattler.getCurrentSkill();
+            fieldState = ActorSprite.SpriteModeField.STAND;
+            applySprite();
+        }
+    }    
 
     
     public void switchSkill(ActorSkill skill) {
@@ -722,6 +744,7 @@ public class Player extends ActorCollision {
                 enableMovement();
             }
             
+            @Override
             public boolean isFinished() {
                 return !Input.getKeyRepeat(defendButton);
             }

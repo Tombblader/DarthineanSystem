@@ -5,6 +5,8 @@
  */
 package com.ark.darthsystem.states.events;
 
+import com.ark.darthsystem.graphics.ActorCollision;
+import com.ark.darthsystem.graphics.GraphicsDriver;
 import static com.ark.darthsystem.states.events.Event.setID;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
@@ -13,14 +15,27 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
  * @author keven
  */
 public class CreateShape extends Event {
+    private Sprite[] openImage;
+    private String shape;
+    private boolean isFinished;
     
-    public CreateShape(Sprite[] img, Sprite[] openImage, float getX, float getY, float getDelay, String newMap, int xCoord, int yCoord) {
+    public CreateShape(Sprite[] img, Sprite[] openImage, float getX, float getY, float getDelay, String newMap, String shape) {
         super(img, getX, getY, getDelay);
         setID(4);
+        this.shape = shape;
     }
+    
+    
     @Override
     public void run() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ActorCollision a = new ActorCollision(openImage, getX(), getY(), getDelay(), shape);
+        a.setMap(getCurrentMap());
+        isFinished = true;
+    }
+    
+    @Override
+    public boolean isFinished() {
+        return isFinished;
     }
     
 }

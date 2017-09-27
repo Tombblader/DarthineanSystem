@@ -2,7 +2,6 @@ package com.ark.darthsystem;
 
 import com.ark.darthsystem.graphics.ActorSkill;
 import com.ark.darthsystem.states.Battle;
-import com.badlogic.gdx.utils.Pool.Poolable;
 import java.util.ArrayList;
 
 /**
@@ -232,7 +231,7 @@ public class BattlerAI extends Battler {
     
 
     /**
-     *
+     * Gets the command determined by the AI and ensures it is usable.
      * @param b : The battle that this entity is currently in.
      * @return : The resulting action.
      */
@@ -359,7 +358,7 @@ public class BattlerAI extends Battler {
      */
     public Item getDroppedItem() {
         return drop;
-    }z
+    }
     
     public BattlerAI clone() {
         return new BattlerAI(getName(), getElement(), getGender(), getLevel(), 
@@ -367,8 +366,4 @@ public class BattlerAI extends Battler {
                 getMagic(), getSkillList(), getEquipmentList(), AIData, experience, drop, drop.getQuantity());
     }
 
-    @Override
-    public void reset() {
-        fullHeal();
-    }
 }

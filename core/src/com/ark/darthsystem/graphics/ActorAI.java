@@ -6,6 +6,7 @@
 package com.ark.darthsystem.graphics;
 
 import com.ark.darthsystem.BattlerAI;
+import static com.ark.darthsystem.graphics.ActorAI.State.*;
 import com.ark.darthsystem.states.OverheadMap;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -139,7 +140,6 @@ public class ActorAI extends Player {
     }
     
     public void update(float delta) {
-//        setAttacking(false);
         setElapsedTime(getElapsedTime() + GraphicsDriver.getRawDelta());
         setCurrentImage((Sprite) getCurrentAnimation().getKeyFrame(getElapsedTime()));
         for (int i = 0; i < getTimers().size; i++) {
@@ -173,24 +173,37 @@ public class ActorAI extends Player {
     
     private void interpretAI(float delta) {
         closestPlayer = findClosestPlayer(vision, GraphicsDriver.getPlayer());
-        if (isInRange() && canAttack() && canMove()) {
+//        if (isInRange() && canAttack() && canMove()) {
+//            state = SKILL;
+//        }
+//        else 
+            if (isInRange() && canAttack() && canMove()) {
+//            state = ATTACK;
             attack();
         } else if (vision() && canMove()) {
+//            state = PURSUIT;
             moveTowardsPlayer(delta);
         }
         else if (!patrolling) {
+//            state = PATROL;
             patrol(delta);
         }
+//        interpretAIState(delta);
     }
     
     private void interpretAIState(float delta) {
         switch (state) {
             case PATROL:
+                patrol(delta);
                 break;
             case PURSUIT:
+                moveTowardsPlayer(delta);
                 break;
             case ATTACK:
+                attack();
                 break;
+            case SKILL:
+                skill();
             case RECHARGE:
                 break;
         }
@@ -228,17 +241,21 @@ public class ActorAI extends Player {
         this.setWalking(true);
     }
     
+    @Override
     public void setDefaultFilter() {
         setMainFilter(ActorCollision.CATEGORY_AI, (short)(ActorCollision.CATEGORY_WALLS | ActorCollision.CATEGORY_OBSTACLES));
         setSensorFilter(ActorCollision.CATEGORY_AI, (short) (CATEGORY_PLAYER | ActorCollision.CATEGORY_PLAYER_SKILL));
     }
     
     
+    @Override
     public void setInvulnerability(int time) {
         GameTimer tempTimer = new GameTimer("Invulnerable", time) {
+            @Override
             public void event(Actor a) {
                 setDefaultFilter();
             }
+            @Override
             public boolean update(float delta, Actor a) {
                 setMainFilter(ActorCollision.CATEGORY_AI, ActorCollision.CATEGORY_WALLS);
                 setSensorFilter(ActorCollision.CATEGORY_AI, ActorCollision.CATEGORY_PLAYER);
@@ -263,6 +280,7 @@ public class ActorAI extends Player {
         PATROL,
         PURSUIT,
         ATTACK,
+        SKILL,
         RECHARGE
     }
 }

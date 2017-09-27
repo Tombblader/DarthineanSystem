@@ -28,12 +28,12 @@ public class ActorBattler {
     public ActorBattler(Battler b, ActorSprite s) {
         battler = b;
         spriteSheet = s;
-        for (Skill skill : b.getSkillList()) {
+        b.getSkillList().stream().map((skill) -> {
             currentSkill = Database2.SkillToActor(skill);
-            if (currentSkill != null) {
-                skillList.add(currentSkill);
-            }
-        }
+            return skill;
+        }).filter((_item) -> (currentSkill != null)).forEachOrdered((_item) -> {
+            skillList.add(currentSkill);
+        });
         if (skillList != null && !skillList.isEmpty()) {
             currentSkill = skillList.get(0);
         } else {

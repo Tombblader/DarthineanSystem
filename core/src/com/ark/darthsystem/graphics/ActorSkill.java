@@ -71,6 +71,29 @@ public class ActorSkill extends ActorCollision {
         translateY = 0;
         area = Area.FRONT;
     }
+    
+    public ActorSkill(Sprite[] img,
+            float getX,
+            float getY,
+            float delay,
+            Skill getSkill,
+            String shape) {
+        super(img, getX, getY, delay, true, shape);
+        originalFieldImageName = "";
+        originalBattlerImageName = "";
+        originalFieldImage = img;
+        for (Sprite s : originalFieldImage) {
+            s.setCenter(s.getWidth() / 2f, s.getHeight() / 2f);
+            s.setOriginCenter();
+        }
+        relX = getX;
+        relY = getY;
+        skill = getSkill;
+        aftercastDelay = delay;
+        translateX = 0;
+        translateY = 0;
+        area = Area.FRONT;
+    }
 
     public ActorSkill(Sprite[] img,
             float getX,
@@ -79,6 +102,16 @@ public class ActorSkill extends ActorCollision {
             Skill getSkill,
             Area getArea) {
         this(img, getX, getY, delay, getSkill);
+        area = getArea;
+    }
+    public ActorSkill(Sprite[] img,
+            float getX,
+            float getY,
+            float delay,
+            Skill getSkill,
+            Area getArea,
+            String shape) {
+        this(img, getX, getY, delay, getSkill, shape);
         area = getArea;
     }
 
@@ -98,6 +131,24 @@ public class ActorSkill extends ActorCollision {
         battlerAnimation = new Actor(originalBattlerImage, 0, 0, delay, true);
     }
 
+    public ActorSkill(Sprite[] img,
+            Sprite[] battlerImg,
+            float getX,
+            float getY,
+            float delay,
+            Skill getSkill,
+            Area getArea,
+            String shape) {
+        this(img, getX, getY, delay, getSkill, getArea, shape);
+        originalBattlerImage = battlerImg;
+        for (Sprite s : originalBattlerImage) {
+            s.setCenter(s.getWidth() / 2f, s.getHeight() / 2f);
+            s.setOriginCenter();
+        }
+        battlerAnimation = new Actor(originalBattlerImage, 0, 0, delay, true);
+    }
+    
+    
     public ActorSkill(Sprite[] img,
             float getX,
             float getY,
@@ -137,11 +188,12 @@ public class ActorSkill extends ActorCollision {
         translateX = getTranslateX;
         translateY = getTranslateY;
     }
-
+    
     /**
      * Generate the physics body of this actor.
      * @param map The map to do this on.
      */
+    @Override
     public void generateBody(OverheadMap map) {
         super.generateBody(map);
         getMainBody().setBullet(true);

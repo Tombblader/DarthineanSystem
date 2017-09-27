@@ -1,7 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Name: Keven Tran
+ * Course Number: COSC 9999
+ * Assignment 1
+ * Instructor: Ms. Doreschuk
+ * Due: 9/19/2017
+ * BattleDriver is a bunch of static functions used to assist the Battle State.
+ * Java, compiled in eclipse.
  */
 package com.ark.darthsystem;
 
@@ -13,18 +17,18 @@ import com.ark.darthsystem.states.Battle;
 import static com.ark.darthsystem.BattleDriver.*;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
 
 /**
- *
- * @author trankt1
+ * com.ark.darthsystem.BattleDriver
+ * A list of helper static methods mainly used in Battle State.
+ * @author Keven Tran
  */
 public class BattleDriver {
 
     public static String textCondition = "";
-    public static final int WRAP_LENGTH = 80;
+    public static final int WRAP_LENGTH = 80; 
 
     /**
      *
@@ -279,42 +283,6 @@ public class BattleDriver {
             BattleDriver.printline("Magic: " + party1.getMagic());
         }
     }
-
-//    /**
-//     *
-//     * @param party
-//     * @param removed
-//     */
-//    public static void removePartyMember(Battler[] party, Battler removed) {
-//        Battler[] tempParty = new Battler[party.length];
-//        int position = Arrays.binarySearch(party, removed);
-//        if (position == -1) {
-//            return;
-//        }
-//        party[position] = null;
-//        System.arraycopy(tempParty, 0, party, 0, position);
-//        if (party.length > position + 1) {
-//            System.arraycopy(tempParty,
-//                    position,
-//                    party,
-//                    position + 1,
-//                    party.length - position + 1);
-//        }
-//        party = tempParty;
-//
-//    }
-//
-//    /**
-//     *
-//     * @param party
-//     * @param added
-//     */
-//    public static void addMember(Battler[] party, Battler added) {
-//        Battler[] tempParty = new Battler[party.length + 1];
-//        System.arraycopy(tempParty, 0, party, 0, party.length);
-//        tempParty[tempParty.length - 1] = added;
-//        party = tempParty;
-//    }
 
     /**
      *
