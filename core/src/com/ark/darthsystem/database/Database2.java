@@ -81,7 +81,15 @@ public class Database2 extends Database1 {
                                 1.0f,
                                 SkillDatabase.Heal,
                                 ActorSkill.Area.SELF_BENEFIT));
-                
+                put(AISkillDatabase.Eyebeam,
+                        new ActorSkill((Sprite[]) GraphicsDriver.getMasterSheet().createSprites("skills/wiccan_cross/field/wiccan_cross").toArray(Sprite.class),
+                                GraphicsDriver.getMasterSheet().createSprites("skills/crosscall/battler/crosscall").toArray(Sprite.class),
+                                1,
+                                1,
+                                1.0f / 24.0f,
+                                .3f,
+                                AISkillDatabase.Eyebeam,
+                                ActorSkill.Area.FRONT));
 //                put(Leg_Sweep, new ActorSkill(new Sprite("com.ark.darthsystem/GraphicsPack/assets/WiccanCross.png", false).getImages(), 1, 0, 17, Database1.Leg_Sweep));
             }
             private static final long serialVersionUID = 1L;

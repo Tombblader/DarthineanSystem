@@ -333,6 +333,7 @@ public class BattlerAI extends Battler {
         }
         return tempAction;
     }
+        
 
     private AI.Type interpretAI(Battle b) {
         AI tempAI;
@@ -343,6 +344,17 @@ public class BattlerAI extends Battler {
         } while (tempAI == null || !tempAI.worthUsing(b));
         return tempAI.getType();
     }
+    
+    public AI.Type interpretAI(Battler b) {
+        AI tempAI;
+        int tempPosition;
+        do {
+            tempPosition = (int) (Math.random() * AIData.length);
+            tempAI = AIData[tempPosition].getPriority() <= Math.random() * MAX_PRIORITY + 1 ? AIData[tempPosition] : null;
+        } while (tempAI == null || !tempAI.worthUsing(b));
+        return tempAI.getType();
+    }
+    
 
     /**
      *
@@ -358,6 +370,10 @@ public class BattlerAI extends Battler {
      */
     public Item getDroppedItem() {
         return drop;
+    }
+    
+    public AI[] getAIData() {
+        return AIData;
     }
     
     public BattlerAI clone() {

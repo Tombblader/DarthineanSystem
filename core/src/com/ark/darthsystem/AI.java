@@ -2,6 +2,7 @@ package com.ark.darthsystem;
 
 import com.ark.darthsystem.states.Battle;
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  *
@@ -45,7 +46,6 @@ public class AI implements Serializable {
         priority = 1;
         this.disengageChance = disengageChance;
         turnInterval = disengageTurn;
-//        this.disengageTurn = disengageTurn;
     }
     
     public Type getType() {
@@ -137,4 +137,26 @@ public class AI implements Serializable {
                 turnInterval == NO_FLAG));
         return isUsable;
     }
+    
+    public boolean checkLowHP(Battler b) {
+        boolean isLow = b.getHP() / b.getMaxHP() <= lowHP;
+        return (lowHP != (double) (NO_FLAG)) && isLow;
+    }
+
+    public boolean checkStatus(Battler b) {
+        boolean isAfflicted =  b.getStatus() == checkStatus;
+        return isAfflicted && checkStatus != null;
+    }
+
+    public boolean worthUsing(Battler b) {
+        boolean isUsable = checkStatus(b) ||
+                checkLowHP(b);
+        isUsable = isUsable ||
+                (checkStatus == null &&
+                lowHP == (double) (NO_FLAG) &&
+                !dead &&
+                (turn == NO_FLAG &&
+                turnInterval == NO_FLAG));
+        return isUsable;
+    }    
 }

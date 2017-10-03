@@ -94,8 +94,8 @@ public class ActorBattler {
         return new ActorBattler(battler.clone(), spriteSheet);
     }
     
-    public Battler getBattler() {
-        return battler;
+    public <T extends Battler> T getBattler() {
+        return (T) battler;
     }
     
     public ActorSkill getCurrentSkill() {

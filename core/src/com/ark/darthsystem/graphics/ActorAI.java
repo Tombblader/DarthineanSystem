@@ -5,6 +5,7 @@
  */
 package com.ark.darthsystem.graphics;
 
+import com.ark.darthsystem.AI;
 import com.ark.darthsystem.BattlerAI;
 import static com.ark.darthsystem.graphics.ActorAI.State.*;
 import com.ark.darthsystem.states.OverheadMap;
@@ -13,6 +14,8 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Filter;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Optional;
 
 /**
  *
@@ -27,9 +30,11 @@ public class ActorAI extends Player {
     private float stopInterval;
     private State state;
     private Player closestPlayer = null;
+    private ArrayList<AI> aiData;
     
     public ActorAI(ArrayList<ActorBattler> getBattlers, float getX, float getY) {
         super(getBattlers, getX, getY);
+        aiData = new ArrayList<>(Arrays.asList(((BattlerAI) (getBattlers.get(0).getBattler())).getAIData()));
     }
     
     public ActorAI clone() {
@@ -59,13 +64,13 @@ public class ActorAI extends Player {
     }
     
     public boolean isInRange() {
-        final float RANGE = 2.5f;
+        final float RANGE = 2.2f;
         if (closestPlayer == null) {
             return false;
         }
         float distance = (float) Math.sqrt(
-                Math.pow(closestPlayer.getX() - (this.getX()), 2)
-                + Math.pow((closestPlayer.getY() - (this.getY())), 2));
+                Math.pow(closestPlayer.getX() - (this.getX()), 2.0)
+                + Math.pow((closestPlayer.getY() - (this.getY())), 2.0));
         return distance < RANGE;
     }
 
@@ -173,22 +178,28 @@ public class ActorAI extends Player {
     
     private void interpretAI(float delta) {
         closestPlayer = findClosestPlayer(vision, GraphicsDriver.getPlayer());
-//        if (isInRange() && canAttack() && canMove()) {
-//            state = SKILL;
-//        }
-//        else 
+        state = IDLE;
+        Optional<AI> skillResult = aiData.stream().filter(obj -> 
+                obj.getType() == AI.Type.AttackSkill 
+                || AI.Type.SupportSkill == obj.getType()
+                || AI.Type.Heal == obj.getType()
+        ).findFirst();
+        if (skillResult.isPresent() && canSkill() && isInRange() && canAttack() && canMove()) {
+            state = SKILL;
+        }
+        else
             if (isInRange() && canAttack() && canMove()) {
-//            state = ATTACK;
-            attack();
+            state = ATTACK;
+//            attack();
         } else if (vision() && canMove()) {
-//            state = PURSUIT;
-            moveTowardsPlayer(delta);
+            state = PURSUIT;
+//            moveTowardsPlayer(delta);
         }
         else if (!patrolling) {
-//            state = PATROL;
-            patrol(delta);
+            state = PATROL;
+//            patrol(delta);
         }
-//        interpretAIState(delta);
+        interpretAIState(delta);
     }
     
     private void interpretAIState(float delta) {
@@ -273,10 +284,11 @@ public class ActorAI extends Player {
         patrolling = true;
         final Actor.Facing direction = Actor.Facing.values()[(int) (Math.random() * Actor.Facing.values().length)];
         final float distance = 4;
-        moveTowardsPoint(getX() + direction.x * distance, getY() + direction.getY() * distance, delta);
+        moveTowardsPoint(getX() + direction.getX() * distance, getY() + direction.getY() * distance, delta);
     }
     
     public enum State {
+        IDLE,
         PATROL,
         PURSUIT,
         ATTACK,

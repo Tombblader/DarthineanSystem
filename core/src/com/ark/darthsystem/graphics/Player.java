@@ -145,6 +145,11 @@ public class Player extends ActorCollision {
         return canAttack;        
     }
 
+    public boolean canSkill() {
+        return canSkill;        
+    }
+    
+    
     public ActorSkill getAttackAnimation() {
         ActorSkill temp = attackAnimation.clone();
         if (getFacing().getX() == -1) {
