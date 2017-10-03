@@ -58,16 +58,16 @@ public class Actor {
         isRotate = false;
     }
 
-    public Actor(Sprite[] img,
+    public Actor(String img,
             float getX,
             float getY,
             float delay) {
         x = getX;
         y = getY;
         this.delay = delay;
-        images = img;
-        if (images != null) {
-            animation = new Animation<>(delay, img);
+        images = GraphicsDriver.getMasterSheet().createSprites(img).toArray(Sprite.class);
+        if (images != null && images.length > 0) {
+            animation = new Animation<>(delay, new Array<>(images));
             animation.setPlayMode(PlayMode.LOOP);
             currentImage = (Sprite) animation.getKeyFrame(0);
         }
@@ -77,7 +77,7 @@ public class Actor {
         isRotate = false;
     }
 
-    public Actor(Sprite[] img,
+    public Actor(String img,
             float getX,
             float getY,
             float delay,
@@ -148,7 +148,7 @@ public class Actor {
     public void enableMovement() {
         isMovable = true;
     }
-    public Animation<Sprite> getCurrentAnimation() {
+    public Animation getCurrentAnimation() {
         return animation;
     }
     public Sprite getCurrentImage() {
@@ -281,7 +281,7 @@ public class Actor {
         }
     }
     public void resetAnimation() {
-        if (images != null) {
+        if (images != null && images.length > 0) {
             elapsed = 0;
             animation = new Animation<>(delay, images);
             currentImage = (Sprite) animation.getKeyFrame(0);

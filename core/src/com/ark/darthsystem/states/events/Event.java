@@ -26,7 +26,7 @@ public abstract class Event extends ActorCollision {
     private TriggerMethod trigger = null;
     private int eventID;
     
-    public Event(Sprite[] img, float getX, float getY, float delay) {
+    public Event(String img, float getX, float getY, float delay) {
         super(img, getX, getY, delay);
     }
 
@@ -43,6 +43,8 @@ public abstract class Event extends ActorCollision {
     }
     
     public abstract void run();
+    
+    public abstract boolean isFinished();
     
     public final LocalSwitch getLocalSwitch() {
         return localSwitch;

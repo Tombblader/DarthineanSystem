@@ -13,13 +13,18 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
  */
 public class ButtonPush extends Event {
     private Event event;
-    public ButtonPush(Sprite[] img, float getX, float getY, float delay) {
+    public ButtonPush(String img, float getX, float getY, float delay) {
         super(img, getX, getY, delay);
     }
 
     @Override
     public void run() {
         event.run();
+    }
+
+    @Override
+    public boolean isFinished() {
+        return false;
     }
     
 }

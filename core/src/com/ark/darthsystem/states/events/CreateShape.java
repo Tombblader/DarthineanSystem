@@ -15,11 +15,11 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
  * @author keven
  */
 public class CreateShape extends Event {
-    private Sprite[] openImage;
+    private String openImage;
     private String shape;
     private boolean isFinished;
     
-    public CreateShape(Sprite[] img, Sprite[] openImage, float getX, float getY, float getDelay, String newMap, String shape) {
+    public CreateShape(String img, String openImage, float getX, float getY, float getDelay, String newMap, String shape) {
         super(img, getX, getY, getDelay);
         setID(4);
         this.shape = shape;

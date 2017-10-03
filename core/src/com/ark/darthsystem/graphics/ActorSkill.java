@@ -50,15 +50,15 @@ public class ActorSkill extends ActorCollision {
     private float translateX;
     private float translateY;
 
-    public ActorSkill(Sprite[] img,
+    public ActorSkill(String img,
             float getX,
             float getY,
             float delay,
             Skill getSkill) {
         super(img, getX, getY, delay, true);
-        originalFieldImageName = "";
+        originalFieldImageName = img;
         originalBattlerImageName = "";
-        originalFieldImage = img;
+        originalFieldImage = GraphicsDriver.getMasterSheet().createSprites(img).toArray(Sprite.class);
         for (Sprite s : originalFieldImage) {
             s.setCenter(s.getWidth() / 2f, s.getHeight() / 2f);
             s.setOriginCenter();
@@ -72,16 +72,16 @@ public class ActorSkill extends ActorCollision {
         area = Area.FRONT;
     }
     
-    public ActorSkill(Sprite[] img,
+    public ActorSkill(String img,
             float getX,
             float getY,
             float delay,
             Skill getSkill,
             String shape) {
         super(img, getX, getY, delay, true, shape);
-        originalFieldImageName = "";
+        originalFieldImageName = img;
         originalBattlerImageName = "";
-        originalFieldImage = img;
+        originalFieldImage = GraphicsDriver.getMasterSheet().createSprites(img).toArray(Sprite.class);
         for (Sprite s : originalFieldImage) {
             s.setCenter(s.getWidth() / 2f, s.getHeight() / 2f);
             s.setOriginCenter();
@@ -95,7 +95,7 @@ public class ActorSkill extends ActorCollision {
         area = Area.FRONT;
     }
 
-    public ActorSkill(Sprite[] img,
+    public ActorSkill(String img,
             float getX,
             float getY,
             float delay,
@@ -104,7 +104,7 @@ public class ActorSkill extends ActorCollision {
         this(img, getX, getY, delay, getSkill);
         area = getArea;
     }
-    public ActorSkill(Sprite[] img,
+    public ActorSkill(String img,
             float getX,
             float getY,
             float delay,
@@ -115,24 +115,25 @@ public class ActorSkill extends ActorCollision {
         area = getArea;
     }
 
-    public ActorSkill(Sprite[] img,
-            Sprite[] battlerImg,
+    public ActorSkill(String img,
+            String battlerImg,
             float getX,
             float getY,
             float delay,
             Skill getSkill,
             Area getArea) {
         this(img, getX, getY, delay, getSkill, getArea);
-        originalBattlerImage = battlerImg;
+        originalBattlerImageName = battlerImg;
+        originalBattlerImage = GraphicsDriver.getMasterSheet().createSprites(battlerImg).toArray(Sprite.class);
         for (Sprite s : originalBattlerImage) {
             s.setCenter(s.getWidth() / 2f, s.getHeight() / 2f);
             s.setOriginCenter();
         }
-        battlerAnimation = new Actor(originalBattlerImage, 0, 0, delay, true);
+        battlerAnimation = new Actor(originalBattlerImageName, 0, 0, delay, true);
     }
 
-    public ActorSkill(Sprite[] img,
-            Sprite[] battlerImg,
+    public ActorSkill(String img,
+            String battlerImg,
             float getX,
             float getY,
             float delay,
@@ -140,16 +141,17 @@ public class ActorSkill extends ActorCollision {
             Area getArea,
             String shape) {
         this(img, getX, getY, delay, getSkill, getArea, shape);
-        originalBattlerImage = battlerImg;
+        originalBattlerImageName = battlerImg;
+        originalBattlerImage = GraphicsDriver.getMasterSheet().createSprites(battlerImg).toArray(Sprite.class);
         for (Sprite s : originalBattlerImage) {
             s.setCenter(s.getWidth() / 2f, s.getHeight() / 2f);
             s.setOriginCenter();
         }
-        battlerAnimation = new Actor(originalBattlerImage, 0, 0, delay, true);
+        battlerAnimation = new Actor(originalBattlerImageName, 0, 0, delay, true);
     }
     
     
-    public ActorSkill(Sprite[] img,
+    public ActorSkill(String img,
             float getX,
             float getY,
             int translateX,
@@ -162,8 +164,8 @@ public class ActorSkill extends ActorCollision {
         area = Area.FRONT;
     }
 
-    public ActorSkill(Sprite[] img,
-            Sprite[] battlerImg,
+    public ActorSkill(String img,
+            String battlerImg,
             float getX,
             float getY,
             float delay,
@@ -174,8 +176,8 @@ public class ActorSkill extends ActorCollision {
         chargeTime = castTime;
     }
 
-    public ActorSkill(Sprite[] img,
-            Sprite[] battlerImg,
+    public ActorSkill(String img,
+            String battlerImg,
             float getX,
             float getY,
             float getTranslateX,
@@ -405,8 +407,8 @@ public class ActorSkill extends ActorCollision {
     }
 
     public ActorSkill clone() {
-        ActorSkill a = new ActorSkill(originalFieldImage,
-                originalBattlerImage,
+        ActorSkill a = new ActorSkill(originalFieldImageName,
+                originalBattlerImageName,
                 relX,
                 relY,
                 translateX,
@@ -424,8 +426,8 @@ public class ActorSkill extends ActorCollision {
             ActorSkill tempSkill = clone();
             Array<Sprite> s = new Array<>();
             Animation leftAnimation;
-            for (TextureRegion r : tempSkill.getCurrentAnimation().getKeyFrames()) {
-                s.add(new Sprite(r));
+            for (Object r : tempSkill.getCurrentAnimation().getKeyFrames()) {
+                s.add(new Sprite((TextureRegion) r));
                 s.peek().flip(true, false);
             }
             leftAnimation = new Animation(tempSkill.getDelay(), s);
@@ -517,8 +519,8 @@ public class ActorSkill extends ActorCollision {
         if (player.getCurrentBattler().activateCurrentSkill() != null) {
             if (player.getFacing().getX() == -1) {
                 Array<Sprite> s = new Array<>(Sprite.class);
-                for (TextureRegion r : tempSkill.getCurrentAnimation().getKeyFrames()) {
-                    s.add(new Sprite(r));
+                for (Object r : tempSkill.getCurrentAnimation().getKeyFrames()) {
+                    s.add(new Sprite((TextureRegion) r));
                     s.peek().flip(true, false);
                 }
                 Animation<Sprite> a = new Animation<>(tempSkill.getDelay(), s);

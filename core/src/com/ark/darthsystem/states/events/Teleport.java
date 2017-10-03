@@ -23,7 +23,7 @@ public class Teleport extends Event {
     private float newX;
     private float newY;
     
-    public Teleport(Sprite[] img, float getX,
+    public Teleport(String img, float getX,
             float getY,
             float getDelay, String newMap, float xCoord, float yCoord) {
         super(img, getX, getY, getDelay);
@@ -32,7 +32,7 @@ public class Teleport extends Event {
         setID(2);
     }
     
-    public Teleport(Sprite[] img, float getX,
+    public Teleport(String img, float getX,
             float getY,
             float getDelay, String newMap, int xCoord, int yCoord) {
         super(img, getX, getY, getDelay);
@@ -58,4 +58,7 @@ public class Teleport extends Event {
         }
     }
     
+    public boolean isFinished() {
+        return false;
+    }
 }

@@ -18,7 +18,7 @@ public class Pickup extends Event {
     private Item[] item;
     private boolean isFinished;
 
-    public Pickup(Sprite[] img, float getX,
+    public Pickup(String img, float getX,
             float getY,
             float getDelay,
             Item getItem) {
@@ -30,7 +30,7 @@ public class Pickup extends Event {
         setID(1);
     }
 
-    public Pickup(Sprite[] img, float getX,
+    public Pickup(String img, float getX,
             float getY,
             float getDelay,
             Item[] getItems) {

@@ -45,23 +45,23 @@ public class ActorCollision extends Actor {
     private float initialX;
     private float initialY;
 
-    public ActorCollision(Sprite[] img, float getX, float getY, float delay) {
+    public ActorCollision(String img, float getX, float getY, float delay) {
         super(img, getX, getY, delay);
         shapeName = "basiccircle";
     }
 
-    public ActorCollision(Sprite[] img, float getX, float getY, float delay, String shape) {
+    public ActorCollision(String img, float getX, float getY, float delay, String shape) {
         super(img, getX, getY, delay);
         shapeName = shape;
     }
     
     
-    public ActorCollision(Sprite[] img, float getX, float getY, float delay, boolean destroy) {
+    public ActorCollision(String img, float getX, float getY, float delay, boolean destroy) {
         super(img, getX, getY, delay, destroy);
         shapeName = "basiccircle";
     }
     
-    public ActorCollision(Sprite[] img, float getX, float getY, float delay, boolean destroy, String shape) {
+    public ActorCollision(String img, float getX, float getY, float delay, boolean destroy, String shape) {
         this(img, getX, getY, delay, destroy);
         shapeName = shape;
     }

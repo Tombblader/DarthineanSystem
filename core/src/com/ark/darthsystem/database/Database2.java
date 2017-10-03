@@ -34,16 +34,16 @@ public class Database2 extends Database1 {
         Database2.SkillToActor = new HashMap<Skill, ActorSkill>() {
             {
                 put(SkillDatabase.CrossCall,
-                        new ActorSkill(GraphicsDriver.getMasterSheet().createSprites("skills/wiccan_cross/field/wiccan_cross").toArray(Sprite.class),
-                                (Sprite[]) GraphicsDriver.getMasterSheet().createSprites("skills/crosscall/battler/crosscall").toArray(Sprite.class),
+                        new ActorSkill("skills/wiccan_cross/field/wiccan_cross",
+                                "skills/crosscall/battler/crosscall",
                                 1,
                                 1,
                                 1.0f / 20.0f,
                                 SkillDatabase.CrossCall,
                                 ActorSkill.Area.FRONT));
                 put(SkillDatabase.Red_Spin,
-                        new ActorSkill((Sprite[]) GraphicsDriver.getMasterSheet().createSprites("skills/red_spin/field/red_spin").toArray(Sprite.class),
-                                GraphicsDriver.getMasterSheet().createSprites("skills/crosscall/battler/crosscall").toArray(Sprite.class),
+                        new ActorSkill("skills/red_spin/field/red_spin",
+                                "skills/crosscall/battler/crosscall",
                                 0,
                                 0,
                                 1.0f / 12.0f,
@@ -51,8 +51,8 @@ public class Database2 extends Database1 {
                                 ActorSkill.Area.SELF,
                                 "widespin"));
                 put(SkillDatabase.Sap_Shot,
-                        new ActorSkill((Sprite[]) GraphicsDriver.getMasterSheet().createSprites("skills/wiccan_cross/field/wiccan_cross").toArray(Sprite.class),
-                                GraphicsDriver.getMasterSheet().createSprites("skills/crosscall/battler/crosscall").toArray(Sprite.class),
+                        new ActorSkill("skills/wiccan_cross/field/wiccan_cross",
+                                "skills/crosscall/battler/crosscall",
                                 0,
                                 0,
                                 10f,
@@ -62,8 +62,8 @@ public class Database2 extends Database1 {
                                 SkillDatabase.Sap_Shot,
                                 ActorSkill.Area.FRONT));
                 put(SkillDatabase.Fireball,
-                        new ActorSkill((Sprite[]) GraphicsDriver.getMasterSheet().createSprites("skills/wiccan_cross/field/wiccan_cross").toArray(Sprite.class),
-                                GraphicsDriver.getMasterSheet().createSprites("skills/crosscall/battler/crosscall").toArray(Sprite.class),
+                        new ActorSkill("skills/wiccan_cross/field/wiccan_cross",
+                                "skills/crosscall/battler/crosscall",
                                 0,
                                 0,
                                 10f,
@@ -73,8 +73,8 @@ public class Database2 extends Database1 {
                                 SkillDatabase.Fireball,
                                 ActorSkill.Area.FRONT));
                 put(SkillDatabase.Heal,
-                        new ActorSkill((Sprite[]) GraphicsDriver.getMasterSheet().createSprites("skills/wiccan_cross/field/wiccan_cross").toArray(Sprite.class),
-                                GraphicsDriver.getMasterSheet().createSprites("skills/crosscall/battler/crosscall").toArray(Sprite.class),
+                        new ActorSkill("skills/wiccan_cross/field/wiccan_cross",
+                                "skills/crosscall/battler/crosscall",
                                 0,
                                 0,
                                 1.0f / 24.0f,
@@ -82,12 +82,12 @@ public class Database2 extends Database1 {
                                 SkillDatabase.Heal,
                                 ActorSkill.Area.SELF_BENEFIT));
                 put(AISkillDatabase.Eyebeam,
-                        new ActorSkill((Sprite[]) GraphicsDriver.getMasterSheet().createSprites("skills/wiccan_cross/field/wiccan_cross").toArray(Sprite.class),
-                                GraphicsDriver.getMasterSheet().createSprites("skills/crosscall/battler/crosscall").toArray(Sprite.class),
+                        new ActorSkill("skills/wiccan_cross/field/wiccan_cross",
+                                "skills/crosscall/battler/crosscall",
                                 1,
                                 1,
                                 1.0f / 24.0f,
-                                .3f,
+                                .2f,
                                 AISkillDatabase.Eyebeam,
                                 ActorSkill.Area.FRONT));
 //                put(Leg_Sweep, new ActorSkill(new Sprite("com.ark.darthsystem/GraphicsPack/assets/WiccanCross.png", false).getImages(), 1, 0, 17, Database1.Leg_Sweep));
@@ -116,17 +116,15 @@ public class Database2 extends Database1 {
     public static Pickup GraphicsPotion;
     public static NovelMode chapter1;
 
-    public static final ActorSkill Spear = new ActorSkill(
-            GraphicsDriver.getMasterSheet().
-            createSprites("items/equipment/spear/field/field").toArray(Sprite.class),
+    public static final ActorSkill Spear = new ActorSkill("items/equipment/spear/field/field",
             1,
             1,
             1f/24f,
             null);
 
     public static ActorSkill Sword() {
-        return new ActorSkill(GraphicsDriver.getMasterSheet().createSprites("items/equipment/sword/field/field").toArray(Sprite.class),
-                GraphicsDriver.getMasterSheet().createSprites("items/equipment/sword/battler/battler").toArray(Sprite.class),
+        return new ActorSkill("items/equipment/sword/field/field",
+                "items/equipment/sword/battler/battler",
                 1,
                 1,
                 1f/24f,

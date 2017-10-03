@@ -9,10 +9,14 @@ import com.ark.darthsystem.AI;
 import com.ark.darthsystem.BattlerAI;
 import static com.ark.darthsystem.graphics.ActorAI.State.*;
 import com.ark.darthsystem.states.OverheadMap;
+import com.ark.darthsystem.states.events.Event;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Filter;
+import com.badlogic.gdx.physics.box2d.Fixture;
+import com.badlogic.gdx.physics.box2d.RayCastCallback;
+import com.badlogic.gdx.utils.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Optional;
@@ -31,6 +35,7 @@ public class ActorAI extends Player {
     private State state;
     private Player closestPlayer = null;
     private ArrayList<AI> aiData;
+    private RayCastCallback rayVision;
     
     public ActorAI(ArrayList<ActorBattler> getBattlers, float getX, float getY) {
         super(getBattlers, getX, getY);
@@ -65,18 +70,26 @@ public class ActorAI extends Player {
     
     public boolean isInRange() {
         final float RANGE = 2.2f;
+        return isInRange(RANGE);
+    }
+
+    public boolean isInRange(float range) {
+        final Array<Fixture> contacts = new Array<>();
         if (closestPlayer == null) {
             return false;
         }
         float distance = (float) Math.sqrt(
                 Math.pow(closestPlayer.getX() - (this.getX()), 2.0)
                 + Math.pow((closestPlayer.getY() - (this.getY())), 2.0));
-        return distance < RANGE;
-    }
-
-    public boolean isInRange(float range) {
-        double distance = Math.sqrt(Math.pow(GraphicsDriver.getPlayer().getX() - (this.getX()), 2) + Math.pow((GraphicsDriver.getPlayer().getY() - (this.getY())), 2));
-        return distance < range;
+        rayVision = (Fixture fxtr, Vector2 vctr, Vector2 vctr1, float f) -> {
+            if (fxtr.getFilterData().categoryBits == ActorCollision.CATEGORY_WALLS || fxtr.getFilterData().categoryBits == ActorCollision.CATEGORY_OBSTACLES) {
+                contacts.add(fxtr);
+                return 0;
+            }
+            return -1;
+        };
+        getCurrentMap().getPhysicsWorld().rayCast(rayVision, getMainBody().getPosition(), new Vector2(closestPlayer.getMainBody().getPosition()));
+        return contacts.size == 0 && distance < range   ;
     }
     
     public Player findClosestPlayer(float range, Player player) {

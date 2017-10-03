@@ -154,8 +154,8 @@ public class Player extends ActorCollision {
         ActorSkill temp = attackAnimation.clone();
         if (getFacing().getX() == -1) {
             Array<Sprite> s = new Array<>(Sprite.class);
-            for (TextureRegion r : temp.getCurrentAnimation().getKeyFrames()) {
-                s.add(new Sprite(r));
+            for (Object r : temp.getCurrentAnimation().getKeyFrames()) {
+                s.add(new Sprite((TextureRegion) r));
                 s.peek().flip(true, false);
             }
             Animation<Sprite> a = new Animation<>(temp.getDelay(), s);
@@ -598,7 +598,7 @@ public class Player extends ActorCollision {
                     if (fxtr.getBody().getUserData() instanceof Event && ((Event) fxtr.getBody().getUserData()).isTriggered(Event.TriggerMethod.PRESS)) {
                         ((Event) fxtr.getBody().getUserData()).run();
                         Player.this.hasEvent = true;
-                        return 1;                        
+                        return 1;
                     }
                     return -1;        
                 };

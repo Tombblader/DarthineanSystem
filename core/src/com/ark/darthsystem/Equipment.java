@@ -135,8 +135,8 @@ public class Equipment extends Item implements Cloneable {
                 initializeDefense,
                 initializeSpeed,
                 initializeMagic);
-            animation = new ActorSkill((Sprite[]) GraphicsDriver.getMasterSheet().createSprites(battleAnimation).toArray(Sprite.class),
-                    (Sprite[]) GraphicsDriver.getMasterSheet().createSprites(fieldAnimation).toArray(Sprite.class), 
+            animation = new ActorSkill(fieldAnimation,
+                    battleAnimation, 
                     1, 1, 1.0f/12f, null, ActorSkill.Area.FRONT);
     }
 
