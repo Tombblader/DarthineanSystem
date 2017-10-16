@@ -8,7 +8,7 @@ import java.util.HashMap;
  *
  * @author keven
  */
-public class BattlerClass implements Serializable {
+public class BattlerClass implements Serializable, Nameable {
 
     /**
      *

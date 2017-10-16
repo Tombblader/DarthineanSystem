@@ -7,6 +7,7 @@ package com.ark.darthsystem.states;
 
 import com.ark.darthsystem.database.InterfaceDatabase;
 import com.ark.darthsystem.GameOverException;
+import com.ark.darthsystem.Nameable;
 import com.ark.darthsystem.graphics.GraphicsDriver;
 import com.ark.darthsystem.graphics.Input;
 import static com.ark.darthsystem.graphics.GraphicsDriver.getCurrentState;
@@ -21,6 +22,8 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.utils.Array;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -50,45 +53,18 @@ public abstract class Menu implements State {
     private BitmapFont font;
 
     public Menu(String header, String[] choices) {
-        this.MESSAGE_HEIGHT = GraphicsDriver.getHeight() / 8;
-        this.choices = choices;
+        this(choices);
         this.header = header;
-        isPause = true;
-        destroyOnExit = false;
-        subMenuList = new Array<>();
-        subMenuList.add(this);
-        cursorTexture = GraphicsDriver.getMasterSheet().createSprite("interface/cursor");
-        FreeTypeFontGenerator gen = new FreeTypeFontGenerator(Gdx.files.internal("fonts/monofont.ttf"));
-        FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
-        parameter.size = 24;
-        parameter.flip = true;
-        parameter.borderColor = Color.BLACK;
-        parameter.color = Color.WHITE;
-        font = gen.generateFont(parameter);
-        gen.dispose();
-        MENU_X = GraphicsDriver.getWidth() - 200;
-        MENU_Y = GraphicsDriver.getHeight() - MESSAGE_HEIGHT - (24 + choices.length * (int) (GraphicsDriver.getFont().getData().capHeight * GraphicsDriver.getFont().getData().scaleY + PADDING));
-    }
+     }
 
     public Menu(String header, String[] choices, boolean pause, boolean mutable) {
-        this.MESSAGE_HEIGHT = GraphicsDriver.getHeight() / 8;
-        this.choices = choices;
-        this.header = header;
+        this(header, choices);
         isPause = pause;
-        subMenuList = new Array<>();
         destroyOnExit = mutable;
-        subMenuList.add(this);
-        cursorTexture = GraphicsDriver.getMasterSheet().createSprite("interface/cursor");
-        FreeTypeFontGenerator gen = new FreeTypeFontGenerator(Gdx.files.internal("fonts/monofont.ttf"));
-        FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
-        parameter.size = 24;
-        parameter.flip = true;
-        parameter.borderColor = Color.BLACK;
-        parameter.color = Color.WHITE;
-        font = gen.generateFont(parameter);
-        gen.dispose();
-        MENU_X = GraphicsDriver.getWidth() - 200;
-        MENU_Y = GraphicsDriver.getHeight() - MESSAGE_HEIGHT - (24 + choices.length * (int) (GraphicsDriver.getFont().getData().capHeight * GraphicsDriver.getFont().getData().scaleY + PADDING));
+    }
+    
+    public <T extends Nameable> Menu(String header, T[] choices) {
+        this(header, Arrays.stream(choices).map(i -> i.getName()).collect(Collectors.toList()).toArray(new String[0]));
     }
 
     public Menu(String[] choices) {
@@ -141,6 +117,7 @@ public abstract class Menu implements State {
         return temp;
     }
 
+    @Override
     public void dispose() {
 
     }
@@ -294,6 +271,10 @@ public abstract class Menu implements State {
     
     public void setChoices(String[] choices) {
         this.choices = choices;
+    }
+    
+    public void setHeader(String header) {
+        this.header = header;
     }
     
     public void reset() {

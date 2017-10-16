@@ -92,7 +92,7 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
     }
 
     public static void newGame() {
-        states = new Array<>();
+        states = new Array<>(State.class);
         new Database1();
         new Database2();
         new MonsterDatabase();
@@ -311,7 +311,7 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
         gen.dispose();
         Gdx.input.setInputProcessor(input);
         new Database2();
-        states = new Array();
+        states = new Array<>();
         states.add(new Title());
     }
     

@@ -351,6 +351,14 @@ public class Player extends ActorCollision {
                             b.changeStatus(Battle.Stats.Normal, 0);
                             Player.this.enableMovement();
                             Player.this.setCanSkill(true);                            
+                        } else {
+                            if (stat == Battle.Stats.Poison) {
+                                printline(b.getName() + " takes " + (b.getHP() / 16) + " damage from the poison.");
+                                b.changeHP(b.getHP() / 16);
+                                if (b.changeHP(b.getHP() / 16)) {
+                                    BattleDriver.printline(b.getName() + " has collapsed from the poison!");
+                                }
+                            }
                             
                         }
                     }
@@ -359,6 +367,8 @@ public class Player extends ActorCollision {
                     public boolean update(float delta, Actor a) {
                     switch (b.getStatus()) {
                         case Sleep:
+                        case Paralyze:
+                        case Stun:
                         case Petrify:
                             if (Player.this.getCurrentBattler().getBattler().equals(b)) {
                                 Player.this.disableMovement();
@@ -374,12 +384,13 @@ public class Player extends ActorCollision {
                                 Player.this.setCanSkill(true);                            
                             }
                             break;
-                        case Poison:
-                            printline(b.getName() + " takes " + (b.getMaxHP() / 14) + " damage from the poison.");
-                            if (b.changeHP(b.getMaxHP() / 14)) {
-                                BattleDriver.printline(b.getName() + " has collapsed from the poison!");
-                            }
-                            break;
+//                        case Poison:
+//                            printline(b.getName() + " takes " + (b.getHP() / 16) + " damage from the poison.");
+//                            b.changeHP(b.getHP() / 16);
+//                            if (b.changeHP(b.getHP() / 16)) {
+//                                BattleDriver.printline(b.getName() + " has collapsed from the poison!");
+//                            }
+//                            break;
                         case Fog:
                             break;
                         case Confuse:

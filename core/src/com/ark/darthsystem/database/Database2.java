@@ -95,7 +95,7 @@ public class Database2 extends Database1 {
             private static final long serialVersionUID = 1L;
 
         };
-        
+        new SkillDatabase();
         new SpriteDatabase();
         new CharacterDatabase();
         new MonsterDatabase();

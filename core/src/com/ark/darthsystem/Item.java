@@ -8,7 +8,7 @@ import java.util.ArrayList;
  *
  * @author Keven
  */
-public class Item implements Serializable, Cloneable {
+public class Item implements Serializable, Cloneable, Nameable {
 
     private int HPValue;
     private int MPValue;
@@ -17,6 +17,8 @@ public class Item implements Serializable, Cloneable {
     private Skill invoke;
     private boolean useMP;
     private String name;
+    private String description;
+    private int price;
     private int quantity;
 
     /**

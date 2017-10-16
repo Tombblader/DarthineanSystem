@@ -74,7 +74,7 @@ public class ActorAI extends Player {
     }
 
     public boolean isInRange(float range) {
-        final Array<Fixture> contacts = new Array<>();
+        final Array<Fixture> contacts = new Array<>(Fixture.class);
         if (closestPlayer == null) {
             return false;
         }

@@ -428,6 +428,8 @@ public class Action implements Serializable {
         boolean move = true;
         switch (caster.getStatus()) {
             case Sleep:
+            case Paralyze:
+            case Stun:
             case Petrify:
             case Death:
                 move = false;

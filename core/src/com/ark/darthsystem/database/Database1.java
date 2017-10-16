@@ -117,12 +117,15 @@ public class Database1 implements Serializable {
         
         
         inventory = new ArrayList<>();
+        money = 0;
         karma = 0;
         switches = new HashMap<>();
         variables = new HashMap<>();
     }
 
     public static ArrayList<Item> inventory;
+    
+    public static int money;
 
     public static int karma;//Positive Karma is good, Negative is bad.
 

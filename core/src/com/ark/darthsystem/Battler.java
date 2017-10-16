@@ -13,7 +13,7 @@ import java.util.HashMap;
  * stats and abilities.
  * @author Keven
  */
-public class Battler implements Serializable {
+public class Battler implements Serializable, Nameable {
 
     public static final long serialVersionUID = 553786374;
     private static final double DEFEND = 0.25;

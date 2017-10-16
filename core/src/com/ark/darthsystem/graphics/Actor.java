@@ -39,7 +39,7 @@ public class Actor {
     private int lastYFacing = 0;
     private float speed;
     private ActorSprite sprite;
-    private Array<GameTimer> timers = new Array<>();
+    private Array<GameTimer> timers = new Array<>(GameTimer.class);
     private float x;
     private float y;
     private Facing xFacingBias = Facing.DOWN;
@@ -67,7 +67,7 @@ public class Actor {
         this.delay = delay;
         images = GraphicsDriver.getMasterSheet().createSprites(img).toArray(Sprite.class);
         if (images != null && images.length > 0) {
-            animation = new Animation<>(delay, new Array<>(images));
+            animation = new Animation<Sprite>(delay, new Array<Sprite>(images));
             animation.setPlayMode(PlayMode.LOOP);
             currentImage = (Sprite) animation.getKeyFrame(0);
         }

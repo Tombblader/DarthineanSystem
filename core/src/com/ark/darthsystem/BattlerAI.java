@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * A Battler, but also has AI data, Experience Points, and Items dropped.
  * @author Keven
  */
-public class BattlerAI extends Battler {
+public class BattlerAI extends Battler implements Nameable {
 
     private static final int MAX_PRIORITY = 10;
 

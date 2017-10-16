@@ -562,12 +562,15 @@ public class Battle implements State {
             return weakness;
         }
     }
+
     public enum Stats {
         
         Normal(1, 1.0, 0.0, 0, "'s wounds are healed!"),
         Death(8, .10, 0.0, 0, " has instantly died!"),
         Poison(3, .25, 0.1, 7, " has been poisoned!"),
-        Sleep(4, .25, 0.1, 8, 0.5, " has fallen asleep!"),
+        Stun(4, .25, 0.1, 1, 0.0, " has fallen asleep!"),
+        Paralyze(3, .25, 0.1, 4, 0.0, " is paralyzed!"),
+        Sleep(3, .25, 0.1, 8, 0.5, " has fallen asleep!"),
         Silence(5, .25, 0.16, 6, "'s skills have been sealed!"),
         Fog(2, .5, .15, 7, 0.2, " is covered in a hallucinating fog!"),
         Confuse(6, .25, 0.15, 5, 0.25, " has become confused!"),

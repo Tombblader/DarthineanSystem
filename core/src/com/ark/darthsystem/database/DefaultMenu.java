@@ -101,9 +101,11 @@ public class DefaultMenu extends Menu {
                             @Override
                             public Object confirm(String choice) {
                                 caster.getSkillList().get(getCursorIndex()).activate(player);
-//                                if (caster.getBattler().getMP())
                                 return choice;
-                                
+                            }
+                            public void updateMenu(float delta) {
+                                super.updateMenu(delta);
+                                setHeader(caster.getSkillList().get(getCursorIndex()).getSkill().getDescription());
                             }
                         };
                         GraphicsDriver.addMenu(menuTarget);

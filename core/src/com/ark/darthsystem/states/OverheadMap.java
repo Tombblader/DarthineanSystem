@@ -109,7 +109,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
         updateProperties(prop);
         width = prop.get("width", Integer.class) * prop.get("tilewidth", Integer.class);
         height = prop.get("height", Integer.class) * prop.get("tileheight", Integer.class);        
-        actorList = new Array<>();
+        actorList = new Array<>(Actor.class);
         world = new World(new Vector2(0, 0), true);
         world.setContactListener(new ContactListener() {
 
@@ -470,7 +470,6 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
             case 2: //Teleport
                 parameters = prop.get("parameters", String.class).split(",* ");
                 image = prop.get("image", String.class);
-                System.out.println(image);
 //                image = GraphicsDriver.getMasterSheet().createSprites(prop.get("image", String.class)).toArray(Sprite.class);
 //                e = new Teleport(image.length > 0 ? image : null,
                   e = new Teleport(image,

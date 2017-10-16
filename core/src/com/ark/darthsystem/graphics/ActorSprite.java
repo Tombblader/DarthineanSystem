@@ -44,7 +44,7 @@ public class ActorSprite implements Serializable {
         setupFace();
         setupBattler();
     }
-
+    
     private void setupWalking() {
         final int DELAY = 10;
         for (SpriteModeField field : SpriteModeField.values()) {

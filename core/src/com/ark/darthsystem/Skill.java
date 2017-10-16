@@ -8,7 +8,7 @@ import java.io.Serializable;
  *
  * @author Keven
  */
-public class Skill implements Serializable, Cloneable {
+public class Skill implements Serializable, Cloneable, Nameable {
 
     private int base;
     private double levelRatio;
@@ -24,6 +24,7 @@ public class Skill implements Serializable, Cloneable {
     private double targetMagic;
     private double finalizeRatio;
     private String name;
+    private String description;
     private int cost;
 //    private int level;
     private Battle.Element skillElement;
@@ -37,8 +38,9 @@ public class Skill implements Serializable, Cloneable {
 
     /**
      * A skill is a type of attack that has various parameters.
-     * @param name The name of the Skill
-     * @param cost The MP cost of the Skill
+     * @param name The name of the Skill.
+     * @param description A concise description of the Skill.
+     * @param cost The MP cost of the Skill.
      * @param skillElement The Element of the skill.
      * @param isAlly If true, affects allies instead of enemies.
      * @param isAll If true, targets all enemies or allies.
@@ -57,6 +59,7 @@ public class Skill implements Serializable, Cloneable {
      * @param finalizeRatio Take all of these values and divide it by what to equalize.
      */
     public Skill(String name,
+            String description,
             int cost,
             Battle.Element skillElement,
             boolean isAlly,
@@ -75,6 +78,7 @@ public class Skill implements Serializable, Cloneable {
             int targetMagic,
             double finalizeRatio) {
         this.name = name;
+        this.description = description;
         this.cost = cost;
         this.skillElement = skillElement;
         this.isAlly = isAlly;
@@ -260,6 +264,10 @@ public class Skill implements Serializable, Cloneable {
      */
     public Battle.Stats getStatusEffect() {
         return statusEffect;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
 }
