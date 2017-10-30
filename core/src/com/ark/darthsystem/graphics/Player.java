@@ -154,7 +154,7 @@ public class Player extends ActorCollision {
         ActorSkill temp = attackAnimation.clone();
         if (getFacing().getX() == -1) {
             Array<Sprite> s = new Array<>(Sprite.class);
-            for (Object r : temp.getCurrentAnimation().getKeyFrames()) {
+            for (TextureRegion r : temp.getCurrentAnimation().getKeyFrames()) {
                 s.add(new Sprite((TextureRegion) r));
                 s.peek().flip(true, false);
             }
@@ -332,7 +332,7 @@ public class Player extends ActorCollision {
     
     public void checkStatusEffects() {
         for (Battler b : getAllBattlers()) {
-            if (b.getStatus().getFade() > 0) {
+            if (b.getStatus() != Battle.Stats.Normal && b.getStatus() != Battle.Stats.Death) {
                 boolean isAccountedFor = false;
                 for (GameTimer t : getTimers()) {
                     if (t.getName().equals(b.toString() + b.getStatus().name())) {
@@ -353,13 +353,14 @@ public class Player extends ActorCollision {
                             Player.this.setCanSkill(true);                            
                         } else {
                             if (stat == Battle.Stats.Poison) {
-                                printline(b.getName() + " takes " + (b.getHP() / 16) + " damage from the poison.");
-                                b.changeHP(b.getHP() / 16);
-                                if (b.changeHP(b.getHP() / 16)) {
+                                BattleDriver.printline(b.getName() + " takes " + (b.getMaxHP() / 20) + " damage from the poison.");
+                                b.changeHP(b.getMaxHP() / 20);
+                                if (b.changeHP(b.getMaxHP() / 20)) {
                                     BattleDriver.printline(b.getName() + " has collapsed from the poison!");
                                 }
                             }
-                            
+                            Player.this.addTimer(this);
+                            this.resetTimer();
                         }
                     }
                     
@@ -384,13 +385,6 @@ public class Player extends ActorCollision {
                                 Player.this.setCanSkill(true);                            
                             }
                             break;
-//                        case Poison:
-//                            printline(b.getName() + " takes " + (b.getHP() / 16) + " damage from the poison.");
-//                            b.changeHP(b.getHP() / 16);
-//                            if (b.changeHP(b.getHP() / 16)) {
-//                                BattleDriver.printline(b.getName() + " has collapsed from the poison!");
-//                            }
-//                            break;
                         case Fog:
                             break;
                         case Confuse:
@@ -405,10 +399,6 @@ public class Player extends ActorCollision {
                         return super.update(delta, a);
                     }
 
-                    @Override
-                    public boolean isFinished() {
-                        return stat != b.getStatus() || super.isFinished(); //To change body of generated methods, choose Tools | Templates.
-                    }
                 });
             }
         }

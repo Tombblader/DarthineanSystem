@@ -60,7 +60,11 @@ public abstract class GameTimer {
     
     public float getCurrentTime() {
         return currentTime;
-    }    
+    }
+    
+    public void resetTimer() {
+        currentTime = 0;
+    }
 
     public abstract void event(Actor a);
 

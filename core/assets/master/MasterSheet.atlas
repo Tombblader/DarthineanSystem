@@ -1,2406 +1,2406 @@
 
 MasterSheet.png
-size: 2048,1024
+size: 2048,2048
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
 characters/darth_invader/battler/battler
   rotate: false
-  xy: 146, 510
+  xy: 2, 427
   size: 82, 237
   orig: 82, 237
   offset: 0, 0
   index: 1
 characters/fire_spirit/battler/battler
   rotate: false
-  xy: 146, 510
+  xy: 2, 427
   size: 82, 237
   orig: 82, 237
   offset: 0, 0
   index: 1
 characters/water_spirit/battler/battler
   rotate: false
-  xy: 146, 510
+  xy: 2, 427
   size: 82, 237
   orig: 82, 237
   offset: 0, 0
   index: 1
 monsters/eyesore/battler/battler
   rotate: false
-  xy: 146, 510
+  xy: 2, 427
   size: 82, 237
   orig: 82, 237
   offset: 0, 0
   index: 1
 characters/darth_invader/face/angry
   rotate: false
-  xy: 390, 208
+  xy: 86, 612
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
   index: 1
 monsters/eyesore/face/angry
   rotate: false
-  xy: 390, 208
+  xy: 86, 612
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
   index: 1
 characters/darth_invader/face/angry
   rotate: false
-  xy: 444, 154
+  xy: 1508, 1226
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
   index: 2
 monsters/eyesore/face/angry
   rotate: false
-  xy: 444, 154
+  xy: 1508, 1226
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
   index: 2
 characters/darth_invader/face/normal
   rotate: false
-  xy: 552, 208
+  xy: 330, 374
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
   index: 1
 monsters/eyesore/face/normal
   rotate: false
-  xy: 552, 208
+  xy: 330, 374
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
   index: 1
 characters/darth_invader/face/ouch
   rotate: false
-  xy: 660, 208
+  xy: 132, 56
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
   index: 1
 monsters/eyesore/face/ouch
   rotate: false
-  xy: 660, 208
+  xy: 132, 56
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
   index: 1
+characters/darth_invader/field/dead/down
+  rotate: false
+  xy: 1220, 860
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
 characters/darth_invader/field/attack/down
   rotate: false
-  xy: 185, 760
+  xy: 1220, 860
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 1
 characters/darth_invader/field/cast/down
   rotate: false
-  xy: 185, 760
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 1
-characters/darth_invader/field/dead/down
-  rotate: false
-  xy: 185, 760
+  xy: 1220, 860
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 1
 characters/darth_invader/field/jump/down
   rotate: false
-  xy: 185, 760
+  xy: 1220, 860
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 1
 characters/darth_invader/field/ouch/down
   rotate: false
-  xy: 185, 760
+  xy: 1220, 860
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 1
 characters/darth_invader/field/stand/down
   rotate: false
-  xy: 185, 760
+  xy: 1220, 860
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 1
 characters/darth_invader/field/walk/down
   rotate: false
-  xy: 185, 760
+  xy: 1220, 860
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 1
 characters/fire_spirit/field/attack/down
   rotate: false
-  xy: 185, 760
+  xy: 1220, 860
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 1
 characters/fire_spirit/field/cast/down
   rotate: false
-  xy: 185, 760
+  xy: 1220, 860
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 1
 characters/fire_spirit/field/dead/down
   rotate: false
-  xy: 185, 760
+  xy: 1220, 860
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 1
 characters/fire_spirit/field/jump/down
   rotate: false
-  xy: 185, 760
+  xy: 1220, 860
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 1
 characters/fire_spirit/field/ouch/down
   rotate: false
-  xy: 185, 760
+  xy: 1220, 860
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 1
 characters/water_spirit/field/cast/down
   rotate: false
-  xy: 185, 760
+  xy: 1220, 860
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 1
 characters/water_spirit/field/dead/down
   rotate: false
-  xy: 185, 760
+  xy: 1220, 860
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 1
 characters/water_spirit/field/jump/down
   rotate: false
-  xy: 185, 760
+  xy: 1220, 860
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 1
 characters/water_spirit/field/ouch/down
   rotate: false
-  xy: 185, 760
+  xy: 1220, 860
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 1
-characters/darth_invader/field/attack/down
-  rotate: false
-  xy: 378, 46
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 2
-characters/darth_invader/field/cast/down
-  rotate: false
-  xy: 378, 46
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 2
 characters/darth_invader/field/dead/down
   rotate: false
-  xy: 378, 46
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 2
-characters/darth_invader/field/jump/down
-  rotate: false
-  xy: 378, 46
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 2
-characters/darth_invader/field/ouch/down
-  rotate: false
-  xy: 378, 46
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 2
-characters/darth_invader/field/walk/down
-  rotate: false
-  xy: 378, 46
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 2
-characters/fire_spirit/field/attack/down
-  rotate: false
-  xy: 378, 46
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 2
-characters/fire_spirit/field/cast/down
-  rotate: false
-  xy: 378, 46
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 2
-characters/fire_spirit/field/dead/down
-  rotate: false
-  xy: 378, 46
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 2
-characters/fire_spirit/field/jump/down
-  rotate: false
-  xy: 378, 46
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 2
-characters/fire_spirit/field/ouch/down
-  rotate: false
-  xy: 378, 46
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 2
-characters/water_spirit/field/cast/down
-  rotate: false
-  xy: 378, 46
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 2
-characters/water_spirit/field/dead/down
-  rotate: false
-  xy: 378, 46
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 2
-characters/water_spirit/field/jump/down
-  rotate: false
-  xy: 378, 46
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 2
-characters/water_spirit/field/ouch/down
-  rotate: false
-  xy: 378, 46
+  xy: 1220, 806
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 2
 characters/darth_invader/field/attack/down
   rotate: false
-  xy: 419, 46
+  xy: 1220, 806
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
-  index: 3
+  index: 2
 characters/darth_invader/field/cast/down
   rotate: false
-  xy: 419, 46
+  xy: 1220, 806
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
-  index: 3
-characters/darth_invader/field/dead/down
-  rotate: false
-  xy: 419, 46
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 3
+  index: 2
 characters/darth_invader/field/jump/down
   rotate: false
-  xy: 419, 46
+  xy: 1220, 806
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
-  index: 3
+  index: 2
 characters/darth_invader/field/ouch/down
   rotate: false
-  xy: 419, 46
+  xy: 1220, 806
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
-  index: 3
+  index: 2
 characters/darth_invader/field/walk/down
   rotate: false
-  xy: 419, 46
+  xy: 1220, 806
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
-  index: 3
+  index: 2
 characters/fire_spirit/field/attack/down
   rotate: false
-  xy: 419, 46
+  xy: 1220, 806
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
-  index: 3
+  index: 2
 characters/fire_spirit/field/cast/down
   rotate: false
-  xy: 419, 46
+  xy: 1220, 806
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
-  index: 3
+  index: 2
 characters/fire_spirit/field/dead/down
   rotate: false
-  xy: 419, 46
+  xy: 1220, 806
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
-  index: 3
+  index: 2
 characters/fire_spirit/field/jump/down
   rotate: false
-  xy: 419, 46
+  xy: 1220, 806
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
-  index: 3
+  index: 2
 characters/fire_spirit/field/ouch/down
   rotate: false
-  xy: 419, 46
+  xy: 1220, 806
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
-  index: 3
+  index: 2
 characters/water_spirit/field/cast/down
   rotate: false
-  xy: 419, 46
+  xy: 1220, 806
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
-  index: 3
+  index: 2
 characters/water_spirit/field/dead/down
   rotate: false
-  xy: 419, 46
+  xy: 1220, 806
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
-  index: 3
+  index: 2
 characters/water_spirit/field/jump/down
   rotate: false
-  xy: 419, 46
+  xy: 1220, 806
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
-  index: 3
+  index: 2
 characters/water_spirit/field/ouch/down
   rotate: false
-  xy: 419, 46
+  xy: 1220, 806
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/darth_invader/field/dead/down
+  rotate: false
+  xy: 1016, 436
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 3
 characters/darth_invader/field/attack/down
   rotate: false
-  xy: 460, 46
+  xy: 1016, 436
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/darth_invader/field/cast/down
+  rotate: false
+  xy: 1016, 436
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/darth_invader/field/jump/down
+  rotate: false
+  xy: 1016, 436
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/darth_invader/field/ouch/down
+  rotate: false
+  xy: 1016, 436
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/darth_invader/field/walk/down
+  rotate: false
+  xy: 1016, 436
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/fire_spirit/field/attack/down
+  rotate: false
+  xy: 1016, 436
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/fire_spirit/field/cast/down
+  rotate: false
+  xy: 1016, 436
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/fire_spirit/field/dead/down
+  rotate: false
+  xy: 1016, 436
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/fire_spirit/field/jump/down
+  rotate: false
+  xy: 1016, 436
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/fire_spirit/field/ouch/down
+  rotate: false
+  xy: 1016, 436
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/water_spirit/field/cast/down
+  rotate: false
+  xy: 1016, 436
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/water_spirit/field/dead/down
+  rotate: false
+  xy: 1016, 436
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/water_spirit/field/jump/down
+  rotate: false
+  xy: 1016, 436
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/water_spirit/field/ouch/down
+  rotate: false
+  xy: 1016, 436
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/darth_invader/field/dead/down
+  rotate: false
+  xy: 1666, 1336
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/darth_invader/field/attack/down
+  rotate: false
+  xy: 1666, 1336
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 4
 characters/darth_invader/field/cast/down
   rotate: false
-  xy: 460, 46
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 4
-characters/darth_invader/field/dead/down
-  rotate: false
-  xy: 460, 46
+  xy: 1666, 1336
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 4
 characters/darth_invader/field/jump/down
   rotate: false
-  xy: 460, 46
+  xy: 1666, 1336
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 4
 characters/darth_invader/field/ouch/down
   rotate: false
-  xy: 460, 46
+  xy: 1666, 1336
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 4
 characters/darth_invader/field/walk/down
   rotate: false
-  xy: 460, 46
+  xy: 1666, 1336
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 4
 characters/fire_spirit/field/attack/down
   rotate: false
-  xy: 460, 46
+  xy: 1666, 1336
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 4
 characters/fire_spirit/field/cast/down
   rotate: false
-  xy: 460, 46
+  xy: 1666, 1336
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 4
 characters/fire_spirit/field/dead/down
   rotate: false
-  xy: 460, 46
+  xy: 1666, 1336
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 4
 characters/fire_spirit/field/jump/down
   rotate: false
-  xy: 460, 46
+  xy: 1666, 1336
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 4
 characters/fire_spirit/field/ouch/down
   rotate: false
-  xy: 460, 46
+  xy: 1666, 1336
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 4
 characters/water_spirit/field/cast/down
   rotate: false
-  xy: 460, 46
+  xy: 1666, 1336
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 4
 characters/water_spirit/field/dead/down
   rotate: false
-  xy: 460, 46
+  xy: 1666, 1336
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 4
 characters/water_spirit/field/jump/down
   rotate: false
-  xy: 460, 46
+  xy: 1666, 1336
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 4
 characters/water_spirit/field/ouch/down
   rotate: false
-  xy: 460, 46
+  xy: 1666, 1336
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 4
+characters/darth_invader/field/dead/left
+  rotate: false
+  xy: 1694, 1473
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
 characters/darth_invader/field/attack/left
   rotate: false
-  xy: 501, 46
+  xy: 1694, 1473
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 1
 characters/darth_invader/field/cast/left
   rotate: false
-  xy: 501, 46
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 1
-characters/darth_invader/field/dead/left
-  rotate: false
-  xy: 501, 46
+  xy: 1694, 1473
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 1
 characters/darth_invader/field/jump/left
   rotate: false
-  xy: 501, 46
+  xy: 1694, 1473
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 1
 characters/darth_invader/field/ouch/left
   rotate: false
-  xy: 501, 46
+  xy: 1694, 1473
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 1
 characters/darth_invader/field/stand/left
   rotate: false
-  xy: 501, 46
+  xy: 1694, 1473
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 1
 characters/darth_invader/field/walk/left
   rotate: false
-  xy: 501, 46
+  xy: 1694, 1473
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 1
 characters/fire_spirit/field/cast/left
   rotate: false
-  xy: 501, 46
+  xy: 1694, 1473
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 1
 characters/fire_spirit/field/dead/left
   rotate: false
-  xy: 501, 46
+  xy: 1694, 1473
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 1
 characters/fire_spirit/field/jump/left
   rotate: false
-  xy: 501, 46
+  xy: 1694, 1473
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 1
 characters/fire_spirit/field/ouch/left
   rotate: false
-  xy: 501, 46
+  xy: 1694, 1473
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 1
 characters/water_spirit/field/cast/left
   rotate: false
-  xy: 501, 46
+  xy: 1694, 1473
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 1
 characters/water_spirit/field/dead/left
   rotate: false
-  xy: 501, 46
+  xy: 1694, 1473
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 1
 characters/water_spirit/field/jump/left
   rotate: false
-  xy: 501, 46
+  xy: 1694, 1473
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 1
 characters/water_spirit/field/ouch/left
   rotate: false
-  xy: 501, 46
+  xy: 1694, 1473
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 1
-characters/darth_invader/field/attack/left
-  rotate: false
-  xy: 542, 46
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 2
-characters/darth_invader/field/cast/left
-  rotate: false
-  xy: 542, 46
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 2
 characters/darth_invader/field/dead/left
   rotate: false
-  xy: 542, 46
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 2
-characters/darth_invader/field/jump/left
-  rotate: false
-  xy: 542, 46
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 2
-characters/darth_invader/field/ouch/left
-  rotate: false
-  xy: 542, 46
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 2
-characters/darth_invader/field/walk/left
-  rotate: false
-  xy: 542, 46
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 2
-characters/fire_spirit/field/cast/left
-  rotate: false
-  xy: 542, 46
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 2
-characters/fire_spirit/field/dead/left
-  rotate: false
-  xy: 542, 46
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 2
-characters/fire_spirit/field/jump/left
-  rotate: false
-  xy: 542, 46
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 2
-characters/fire_spirit/field/ouch/left
-  rotate: false
-  xy: 542, 46
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 2
-characters/water_spirit/field/cast/left
-  rotate: false
-  xy: 542, 46
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 2
-characters/water_spirit/field/dead/left
-  rotate: false
-  xy: 542, 46
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 2
-characters/water_spirit/field/jump/left
-  rotate: false
-  xy: 542, 46
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 2
-characters/water_spirit/field/ouch/left
-  rotate: false
-  xy: 542, 46
+  xy: 1694, 1419
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 2
 characters/darth_invader/field/attack/left
   rotate: false
-  xy: 583, 46
+  xy: 1694, 1419
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
-  index: 3
+  index: 2
 characters/darth_invader/field/cast/left
   rotate: false
-  xy: 583, 46
+  xy: 1694, 1419
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
-  index: 3
-characters/darth_invader/field/dead/left
-  rotate: false
-  xy: 583, 46
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 3
+  index: 2
 characters/darth_invader/field/jump/left
   rotate: false
-  xy: 583, 46
+  xy: 1694, 1419
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
-  index: 3
+  index: 2
 characters/darth_invader/field/ouch/left
   rotate: false
-  xy: 583, 46
+  xy: 1694, 1419
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
-  index: 3
+  index: 2
 characters/darth_invader/field/walk/left
   rotate: false
-  xy: 583, 46
+  xy: 1694, 1419
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
-  index: 3
+  index: 2
 characters/fire_spirit/field/cast/left
   rotate: false
-  xy: 583, 46
+  xy: 1694, 1419
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
-  index: 3
+  index: 2
 characters/fire_spirit/field/dead/left
   rotate: false
-  xy: 583, 46
+  xy: 1694, 1419
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
-  index: 3
+  index: 2
 characters/fire_spirit/field/jump/left
   rotate: false
-  xy: 583, 46
+  xy: 1694, 1419
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
-  index: 3
+  index: 2
 characters/fire_spirit/field/ouch/left
   rotate: false
-  xy: 583, 46
+  xy: 1694, 1419
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
-  index: 3
+  index: 2
 characters/water_spirit/field/cast/left
   rotate: false
-  xy: 583, 46
+  xy: 1694, 1419
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
-  index: 3
+  index: 2
 characters/water_spirit/field/dead/left
   rotate: false
-  xy: 583, 46
+  xy: 1694, 1419
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
-  index: 3
+  index: 2
 characters/water_spirit/field/jump/left
   rotate: false
-  xy: 583, 46
+  xy: 1694, 1419
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
-  index: 3
+  index: 2
 characters/water_spirit/field/ouch/left
   rotate: false
-  xy: 583, 46
+  xy: 1694, 1419
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/darth_invader/field/dead/left
+  rotate: false
+  xy: 1724, 1527
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 3
 characters/darth_invader/field/attack/left
   rotate: false
-  xy: 624, 46
+  xy: 1724, 1527
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/darth_invader/field/cast/left
+  rotate: false
+  xy: 1724, 1527
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/darth_invader/field/jump/left
+  rotate: false
+  xy: 1724, 1527
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/darth_invader/field/ouch/left
+  rotate: false
+  xy: 1724, 1527
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/darth_invader/field/walk/left
+  rotate: false
+  xy: 1724, 1527
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/fire_spirit/field/cast/left
+  rotate: false
+  xy: 1724, 1527
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/fire_spirit/field/dead/left
+  rotate: false
+  xy: 1724, 1527
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/fire_spirit/field/jump/left
+  rotate: false
+  xy: 1724, 1527
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/fire_spirit/field/ouch/left
+  rotate: false
+  xy: 1724, 1527
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/water_spirit/field/cast/left
+  rotate: false
+  xy: 1724, 1527
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/water_spirit/field/dead/left
+  rotate: false
+  xy: 1724, 1527
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/water_spirit/field/jump/left
+  rotate: false
+  xy: 1724, 1527
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/water_spirit/field/ouch/left
+  rotate: false
+  xy: 1724, 1527
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/darth_invader/field/dead/left
+  rotate: false
+  xy: 1735, 1473
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/darth_invader/field/attack/left
+  rotate: false
+  xy: 1735, 1473
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 4
 characters/darth_invader/field/cast/left
   rotate: false
-  xy: 624, 46
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 4
-characters/darth_invader/field/dead/left
-  rotate: false
-  xy: 624, 46
+  xy: 1735, 1473
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 4
 characters/darth_invader/field/jump/left
   rotate: false
-  xy: 624, 46
+  xy: 1735, 1473
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 4
 characters/darth_invader/field/ouch/left
   rotate: false
-  xy: 624, 46
+  xy: 1735, 1473
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 4
 characters/darth_invader/field/walk/left
   rotate: false
-  xy: 624, 46
+  xy: 1735, 1473
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 4
 characters/fire_spirit/field/cast/left
   rotate: false
-  xy: 624, 46
+  xy: 1735, 1473
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 4
 characters/fire_spirit/field/dead/left
   rotate: false
-  xy: 624, 46
+  xy: 1735, 1473
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 4
 characters/fire_spirit/field/jump/left
   rotate: false
-  xy: 624, 46
+  xy: 1735, 1473
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 4
 characters/fire_spirit/field/ouch/left
   rotate: false
-  xy: 624, 46
+  xy: 1735, 1473
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 4
 characters/water_spirit/field/cast/left
   rotate: false
-  xy: 624, 46
+  xy: 1735, 1473
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 4
 characters/water_spirit/field/dead/left
   rotate: false
-  xy: 624, 46
+  xy: 1735, 1473
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 4
 characters/water_spirit/field/jump/left
   rotate: false
-  xy: 624, 46
+  xy: 1735, 1473
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 4
 characters/water_spirit/field/ouch/left
   rotate: false
-  xy: 624, 46
+  xy: 1735, 1473
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 4
+characters/darth_invader/field/dead/right
+  rotate: false
+  xy: 1735, 1419
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
 characters/darth_invader/field/attack/right
   rotate: false
-  xy: 665, 46
+  xy: 1735, 1419
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 1
 characters/darth_invader/field/cast/right
   rotate: false
-  xy: 665, 46
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 1
-characters/darth_invader/field/dead/right
-  rotate: false
-  xy: 665, 46
+  xy: 1735, 1419
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 1
 characters/darth_invader/field/jump/right
   rotate: false
-  xy: 665, 46
+  xy: 1735, 1419
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 1
 characters/darth_invader/field/ouch/right
   rotate: false
-  xy: 665, 46
+  xy: 1735, 1419
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 1
 characters/darth_invader/field/stand/right
   rotate: false
-  xy: 665, 46
+  xy: 1735, 1419
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 1
 characters/darth_invader/field/walk/right
   rotate: false
-  xy: 665, 46
+  xy: 1735, 1419
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 1
 characters/fire_spirit/field/cast/right
   rotate: false
-  xy: 665, 46
+  xy: 1735, 1419
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 1
 characters/fire_spirit/field/dead/right
   rotate: false
-  xy: 665, 46
+  xy: 1735, 1419
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 1
 characters/fire_spirit/field/jump/right
   rotate: false
-  xy: 665, 46
+  xy: 1735, 1419
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 1
 characters/fire_spirit/field/ouch/right
   rotate: false
-  xy: 665, 46
+  xy: 1735, 1419
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 1
 characters/water_spirit/field/cast/right
   rotate: false
-  xy: 665, 46
+  xy: 1735, 1419
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 1
 characters/water_spirit/field/dead/right
   rotate: false
-  xy: 665, 46
+  xy: 1735, 1419
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 1
 characters/water_spirit/field/jump/right
   rotate: false
-  xy: 665, 46
+  xy: 1735, 1419
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 1
 characters/water_spirit/field/ouch/right
   rotate: false
-  xy: 665, 46
+  xy: 1735, 1419
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 1
-characters/darth_invader/field/attack/right
-  rotate: false
-  xy: 1808, 658
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 2
-characters/darth_invader/field/cast/right
-  rotate: false
-  xy: 1808, 658
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 2
 characters/darth_invader/field/dead/right
   rotate: false
-  xy: 1808, 658
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 2
-characters/darth_invader/field/jump/right
-  rotate: false
-  xy: 1808, 658
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 2
-characters/darth_invader/field/ouch/right
-  rotate: false
-  xy: 1808, 658
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 2
-characters/darth_invader/field/walk/right
-  rotate: false
-  xy: 1808, 658
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 2
-characters/fire_spirit/field/cast/right
-  rotate: false
-  xy: 1808, 658
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 2
-characters/fire_spirit/field/dead/right
-  rotate: false
-  xy: 1808, 658
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 2
-characters/fire_spirit/field/jump/right
-  rotate: false
-  xy: 1808, 658
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 2
-characters/fire_spirit/field/ouch/right
-  rotate: false
-  xy: 1808, 658
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 2
-characters/water_spirit/field/cast/right
-  rotate: false
-  xy: 1808, 658
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 2
-characters/water_spirit/field/dead/right
-  rotate: false
-  xy: 1808, 658
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 2
-characters/water_spirit/field/jump/right
-  rotate: false
-  xy: 1808, 658
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 2
-characters/water_spirit/field/ouch/right
-  rotate: false
-  xy: 1808, 658
+  xy: 1765, 1544
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 2
 characters/darth_invader/field/attack/right
   rotate: false
-  xy: 1808, 604
+  xy: 1765, 1544
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
-  index: 3
+  index: 2
 characters/darth_invader/field/cast/right
   rotate: false
-  xy: 1808, 604
+  xy: 1765, 1544
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
-  index: 3
-characters/darth_invader/field/dead/right
-  rotate: false
-  xy: 1808, 604
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 3
+  index: 2
 characters/darth_invader/field/jump/right
   rotate: false
-  xy: 1808, 604
+  xy: 1765, 1544
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
-  index: 3
+  index: 2
 characters/darth_invader/field/ouch/right
   rotate: false
-  xy: 1808, 604
+  xy: 1765, 1544
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
-  index: 3
+  index: 2
 characters/darth_invader/field/walk/right
   rotate: false
-  xy: 1808, 604
+  xy: 1765, 1544
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
-  index: 3
+  index: 2
 characters/fire_spirit/field/cast/right
   rotate: false
-  xy: 1808, 604
+  xy: 1765, 1544
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
-  index: 3
+  index: 2
 characters/fire_spirit/field/dead/right
   rotate: false
-  xy: 1808, 604
+  xy: 1765, 1544
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
-  index: 3
+  index: 2
 characters/fire_spirit/field/jump/right
   rotate: false
-  xy: 1808, 604
+  xy: 1765, 1544
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
-  index: 3
+  index: 2
 characters/fire_spirit/field/ouch/right
   rotate: false
-  xy: 1808, 604
+  xy: 1765, 1544
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
-  index: 3
+  index: 2
 characters/water_spirit/field/cast/right
   rotate: false
-  xy: 1808, 604
+  xy: 1765, 1544
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
-  index: 3
+  index: 2
 characters/water_spirit/field/dead/right
   rotate: false
-  xy: 1808, 604
+  xy: 1765, 1544
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
-  index: 3
+  index: 2
 characters/water_spirit/field/jump/right
   rotate: false
-  xy: 1808, 604
+  xy: 1765, 1544
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
-  index: 3
+  index: 2
 characters/water_spirit/field/ouch/right
   rotate: false
-  xy: 1808, 604
+  xy: 1765, 1544
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/darth_invader/field/dead/right
+  rotate: false
+  xy: 1806, 1544
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 3
 characters/darth_invader/field/attack/right
   rotate: false
-  xy: 948, 496
+  xy: 1806, 1544
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/darth_invader/field/cast/right
+  rotate: false
+  xy: 1806, 1544
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/darth_invader/field/jump/right
+  rotate: false
+  xy: 1806, 1544
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/darth_invader/field/ouch/right
+  rotate: false
+  xy: 1806, 1544
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/darth_invader/field/walk/right
+  rotate: false
+  xy: 1806, 1544
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/fire_spirit/field/cast/right
+  rotate: false
+  xy: 1806, 1544
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/fire_spirit/field/dead/right
+  rotate: false
+  xy: 1806, 1544
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/fire_spirit/field/jump/right
+  rotate: false
+  xy: 1806, 1544
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/fire_spirit/field/ouch/right
+  rotate: false
+  xy: 1806, 1544
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/water_spirit/field/cast/right
+  rotate: false
+  xy: 1806, 1544
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/water_spirit/field/dead/right
+  rotate: false
+  xy: 1806, 1544
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/water_spirit/field/jump/right
+  rotate: false
+  xy: 1806, 1544
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/water_spirit/field/ouch/right
+  rotate: false
+  xy: 1806, 1544
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/darth_invader/field/dead/right
+  rotate: false
+  xy: 1847, 1544
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/darth_invader/field/attack/right
+  rotate: false
+  xy: 1847, 1544
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 4
 characters/darth_invader/field/cast/right
   rotate: false
-  xy: 948, 496
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 4
-characters/darth_invader/field/dead/right
-  rotate: false
-  xy: 948, 496
+  xy: 1847, 1544
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 4
 characters/darth_invader/field/jump/right
   rotate: false
-  xy: 948, 496
+  xy: 1847, 1544
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 4
 characters/darth_invader/field/ouch/right
   rotate: false
-  xy: 948, 496
+  xy: 1847, 1544
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 4
 characters/darth_invader/field/walk/right
   rotate: false
-  xy: 948, 496
+  xy: 1847, 1544
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 4
 characters/fire_spirit/field/cast/right
   rotate: false
-  xy: 948, 496
+  xy: 1847, 1544
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 4
 characters/fire_spirit/field/dead/right
   rotate: false
-  xy: 948, 496
+  xy: 1847, 1544
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 4
 characters/fire_spirit/field/jump/right
   rotate: false
-  xy: 948, 496
+  xy: 1847, 1544
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 4
 characters/fire_spirit/field/ouch/right
   rotate: false
-  xy: 948, 496
+  xy: 1847, 1544
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 4
 characters/water_spirit/field/cast/right
   rotate: false
-  xy: 948, 496
+  xy: 1847, 1544
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 4
 characters/water_spirit/field/dead/right
   rotate: false
-  xy: 948, 496
+  xy: 1847, 1544
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 4
 characters/water_spirit/field/jump/right
   rotate: false
-  xy: 948, 496
+  xy: 1847, 1544
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 4
 characters/water_spirit/field/ouch/right
   rotate: false
-  xy: 948, 496
+  xy: 1847, 1544
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 4
+characters/darth_invader/field/dead/up
+  rotate: false
+  xy: 1888, 1544
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
 characters/darth_invader/field/attack/up
   rotate: false
-  xy: 989, 500
+  xy: 1888, 1544
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 1
 characters/darth_invader/field/cast/up
   rotate: false
-  xy: 989, 500
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 1
-characters/darth_invader/field/dead/up
-  rotate: false
-  xy: 989, 500
+  xy: 1888, 1544
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 1
 characters/darth_invader/field/jump/up
   rotate: false
-  xy: 989, 500
+  xy: 1888, 1544
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 1
 characters/darth_invader/field/ouch/up
   rotate: false
-  xy: 989, 500
+  xy: 1888, 1544
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 1
 characters/darth_invader/field/stand/up
   rotate: false
-  xy: 989, 500
+  xy: 1888, 1544
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 1
 characters/darth_invader/field/walk/up
   rotate: false
-  xy: 989, 500
+  xy: 1888, 1544
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 1
 characters/fire_spirit/field/attack/up
   rotate: false
-  xy: 989, 500
+  xy: 1888, 1544
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 1
 characters/fire_spirit/field/cast/up
   rotate: false
-  xy: 989, 500
+  xy: 1888, 1544
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 1
 characters/fire_spirit/field/dead/up
   rotate: false
-  xy: 989, 500
+  xy: 1888, 1544
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 1
 characters/fire_spirit/field/jump/up
   rotate: false
-  xy: 989, 500
+  xy: 1888, 1544
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 1
 characters/fire_spirit/field/ouch/up
   rotate: false
-  xy: 989, 500
+  xy: 1888, 1544
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 1
 characters/water_spirit/field/attack/up
   rotate: false
-  xy: 989, 500
+  xy: 1888, 1544
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 1
 characters/water_spirit/field/cast/up
   rotate: false
-  xy: 989, 500
+  xy: 1888, 1544
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 1
 characters/water_spirit/field/dead/up
   rotate: false
-  xy: 989, 500
+  xy: 1888, 1544
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 1
 characters/water_spirit/field/jump/up
   rotate: false
-  xy: 989, 500
+  xy: 1888, 1544
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 1
 characters/water_spirit/field/ouch/up
   rotate: false
-  xy: 989, 500
+  xy: 1888, 1544
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 1
-characters/darth_invader/field/attack/up
-  rotate: false
-  xy: 714, 72
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 2
-characters/darth_invader/field/cast/up
-  rotate: false
-  xy: 714, 72
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 2
 characters/darth_invader/field/dead/up
   rotate: false
-  xy: 714, 72
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 2
-characters/darth_invader/field/jump/up
-  rotate: false
-  xy: 714, 72
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 2
-characters/darth_invader/field/ouch/up
-  rotate: false
-  xy: 714, 72
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 2
-characters/darth_invader/field/walk/up
-  rotate: false
-  xy: 714, 72
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 2
-characters/fire_spirit/field/attack/up
-  rotate: false
-  xy: 714, 72
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 2
-characters/fire_spirit/field/cast/up
-  rotate: false
-  xy: 714, 72
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 2
-characters/fire_spirit/field/dead/up
-  rotate: false
-  xy: 714, 72
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 2
-characters/fire_spirit/field/jump/up
-  rotate: false
-  xy: 714, 72
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 2
-characters/fire_spirit/field/ouch/up
-  rotate: false
-  xy: 714, 72
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 2
-characters/water_spirit/field/attack/up
-  rotate: false
-  xy: 714, 72
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 2
-characters/water_spirit/field/cast/up
-  rotate: false
-  xy: 714, 72
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 2
-characters/water_spirit/field/dead/up
-  rotate: false
-  xy: 714, 72
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 2
-characters/water_spirit/field/jump/up
-  rotate: false
-  xy: 714, 72
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 2
-characters/water_spirit/field/ouch/up
-  rotate: false
-  xy: 714, 72
+  xy: 1776, 1490
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 2
 characters/darth_invader/field/attack/up
   rotate: false
-  xy: 755, 72
+  xy: 1776, 1490
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
-  index: 3
+  index: 2
 characters/darth_invader/field/cast/up
   rotate: false
-  xy: 755, 72
+  xy: 1776, 1490
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
-  index: 3
-characters/darth_invader/field/dead/up
-  rotate: false
-  xy: 755, 72
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 3
+  index: 2
 characters/darth_invader/field/jump/up
   rotate: false
-  xy: 755, 72
+  xy: 1776, 1490
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
-  index: 3
+  index: 2
 characters/darth_invader/field/ouch/up
   rotate: false
-  xy: 755, 72
+  xy: 1776, 1490
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
-  index: 3
+  index: 2
 characters/darth_invader/field/walk/up
   rotate: false
-  xy: 755, 72
+  xy: 1776, 1490
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
-  index: 3
+  index: 2
 characters/fire_spirit/field/attack/up
   rotate: false
-  xy: 755, 72
+  xy: 1776, 1490
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
-  index: 3
+  index: 2
 characters/fire_spirit/field/cast/up
   rotate: false
-  xy: 755, 72
+  xy: 1776, 1490
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
-  index: 3
+  index: 2
 characters/fire_spirit/field/dead/up
   rotate: false
-  xy: 755, 72
+  xy: 1776, 1490
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
-  index: 3
+  index: 2
 characters/fire_spirit/field/jump/up
   rotate: false
-  xy: 755, 72
+  xy: 1776, 1490
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
-  index: 3
+  index: 2
 characters/fire_spirit/field/ouch/up
   rotate: false
-  xy: 755, 72
+  xy: 1776, 1490
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
-  index: 3
+  index: 2
 characters/water_spirit/field/attack/up
   rotate: false
-  xy: 755, 72
+  xy: 1776, 1490
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
-  index: 3
+  index: 2
 characters/water_spirit/field/cast/up
   rotate: false
-  xy: 755, 72
+  xy: 1776, 1490
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
-  index: 3
+  index: 2
 characters/water_spirit/field/dead/up
   rotate: false
-  xy: 755, 72
+  xy: 1776, 1490
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
-  index: 3
+  index: 2
 characters/water_spirit/field/jump/up
   rotate: false
-  xy: 755, 72
+  xy: 1776, 1490
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
-  index: 3
+  index: 2
 characters/water_spirit/field/ouch/up
   rotate: false
-  xy: 755, 72
+  xy: 1776, 1490
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/darth_invader/field/dead/up
+  rotate: false
+  xy: 1776, 1436
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 3
 characters/darth_invader/field/attack/up
   rotate: false
-  xy: 796, 72
+  xy: 1776, 1436
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/darth_invader/field/cast/up
+  rotate: false
+  xy: 1776, 1436
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/darth_invader/field/jump/up
+  rotate: false
+  xy: 1776, 1436
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/darth_invader/field/ouch/up
+  rotate: false
+  xy: 1776, 1436
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/darth_invader/field/walk/up
+  rotate: false
+  xy: 1776, 1436
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/fire_spirit/field/attack/up
+  rotate: false
+  xy: 1776, 1436
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/fire_spirit/field/cast/up
+  rotate: false
+  xy: 1776, 1436
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/fire_spirit/field/dead/up
+  rotate: false
+  xy: 1776, 1436
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/fire_spirit/field/jump/up
+  rotate: false
+  xy: 1776, 1436
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/fire_spirit/field/ouch/up
+  rotate: false
+  xy: 1776, 1436
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/water_spirit/field/attack/up
+  rotate: false
+  xy: 1776, 1436
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/water_spirit/field/cast/up
+  rotate: false
+  xy: 1776, 1436
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/water_spirit/field/dead/up
+  rotate: false
+  xy: 1776, 1436
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/water_spirit/field/jump/up
+  rotate: false
+  xy: 1776, 1436
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/water_spirit/field/ouch/up
+  rotate: false
+  xy: 1776, 1436
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/darth_invader/field/dead/up
+  rotate: false
+  xy: 1817, 1490
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/darth_invader/field/attack/up
+  rotate: false
+  xy: 1817, 1490
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 4
 characters/darth_invader/field/cast/up
   rotate: false
-  xy: 796, 72
-  size: 39, 52
-  orig: 39, 52
-  offset: 0, 0
-  index: 4
-characters/darth_invader/field/dead/up
-  rotate: false
-  xy: 796, 72
+  xy: 1817, 1490
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 4
 characters/darth_invader/field/jump/up
   rotate: false
-  xy: 796, 72
+  xy: 1817, 1490
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 4
 characters/darth_invader/field/ouch/up
   rotate: false
-  xy: 796, 72
+  xy: 1817, 1490
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 4
 characters/darth_invader/field/walk/up
   rotate: false
-  xy: 796, 72
+  xy: 1817, 1490
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 4
 characters/fire_spirit/field/attack/up
   rotate: false
-  xy: 796, 72
+  xy: 1817, 1490
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 4
 characters/fire_spirit/field/cast/up
   rotate: false
-  xy: 796, 72
+  xy: 1817, 1490
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 4
 characters/fire_spirit/field/dead/up
   rotate: false
-  xy: 796, 72
+  xy: 1817, 1490
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 4
 characters/fire_spirit/field/jump/up
   rotate: false
-  xy: 796, 72
+  xy: 1817, 1490
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 4
 characters/fire_spirit/field/ouch/up
   rotate: false
-  xy: 796, 72
+  xy: 1817, 1490
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 4
 characters/water_spirit/field/attack/up
   rotate: false
-  xy: 796, 72
+  xy: 1817, 1490
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 4
 characters/water_spirit/field/cast/up
   rotate: false
-  xy: 796, 72
+  xy: 1817, 1490
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 4
 characters/water_spirit/field/dead/up
   rotate: false
-  xy: 796, 72
+  xy: 1817, 1490
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 4
 characters/water_spirit/field/jump/up
   rotate: false
-  xy: 796, 72
+  xy: 1817, 1490
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 4
 characters/water_spirit/field/ouch/up
   rotate: false
-  xy: 796, 72
+  xy: 1817, 1490
   size: 39, 52
   orig: 39, 52
   offset: 0, 0
   index: 4
 characters/erik_the_red/battler/battler
   rotate: false
-  xy: 2, 41
+  xy: 1196, 1097
   size: 188, 183
   orig: 188, 183
   offset: 0, 0
   index: 1
 characters/erik_the_red/face/happy
   rotate: false
-  xy: 498, 208
+  xy: 198, 242
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
   index: 1
 characters/erik_the_red/face/normal
   rotate: false
-  xy: 552, 154
+  xy: 132, 110
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
   index: 1
 characters/erik_the_red/face/ouch
   rotate: false
-  xy: 660, 154
+  xy: 438, 374
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
   index: 1
 characters/erik_the_red/face/sad
   rotate: false
-  xy: 716, 288
+  xy: 822, 598
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
   index: 1
 characters/fire_spirit/face/angry
   rotate: false
-  xy: 1742, 646
+  xy: 906, 718
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 1
 characters/water_spirit/face/angry
   rotate: false
-  xy: 1742, 646
+  xy: 906, 718
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 1
 characters/fire_spirit/face/angry
   rotate: false
-  xy: 146, 444
+  xy: 972, 718
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 2
 characters/water_spirit/face/angry
   rotate: false
-  xy: 146, 444
+  xy: 972, 718
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 2
 characters/fire_spirit/face/happy
   rotate: false
-  xy: 188, 246
+  xy: 416, 560
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 1
 characters/water_spirit/face/happy
   rotate: false
-  xy: 188, 246
+  xy: 416, 560
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 1
 characters/fire_spirit/face/normal
   rotate: false
-  xy: 740, 450
+  xy: 1802, 1598
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 1
 characters/fire_spirit/face/ouch
   rotate: false
-  xy: 882, 484
+  xy: 1868, 1598
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 1
 characters/water_spirit/face/ouch
   rotate: false
-  xy: 882, 484
+  xy: 1868, 1598
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 1
 characters/fire_spirit/field/attack/left
   rotate: false
-  xy: 212, 444
+  xy: 416, 494
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 1
 characters/fire_spirit/field/attack/left
   rotate: false
-  xy: 476, 460
+  xy: 614, 550
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 2
 characters/fire_spirit/field/attack/left
   rotate: false
-  xy: 674, 460
+  xy: 614, 484
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 3
 characters/fire_spirit/field/attack/left
   rotate: false
-  xy: 192, 114
+  xy: 1670, 1647
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 4
 characters/fire_spirit/field/attack/right
   rotate: false
-  xy: 254, 378
+  xy: 1562, 1222
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 1
 characters/fire_spirit/field/attack/right
   rotate: false
-  xy: 258, 114
+  xy: 1620, 1156
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 2
 characters/fire_spirit/field/attack/right
   rotate: false
-  xy: 386, 394
+  xy: 972, 652
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 3
 characters/fire_spirit/field/attack/right
   rotate: false
-  xy: 386, 328
+  xy: 152, 428
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 4
+characters/fire_spirit/field/walk/down
+  rotate: false
+  xy: 1038, 718
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
 characters/fire_spirit/field/stand/down
   rotate: false
-  xy: 122, 378
+  xy: 1038, 718
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 1
 characters/fire_spirit/field/walk/down
   rotate: false
-  xy: 122, 378
+  xy: 1038, 718
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 3
 characters/fire_spirit/field/walk/down
   rotate: false
-  xy: 122, 378
+  xy: 86, 546
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+characters/fire_spirit/field/walk/down
+  rotate: false
+  xy: 218, 494
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+characters/fire_spirit/field/walk/left
+  rotate: false
+  xy: 482, 560
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 1
 characters/fire_spirit/field/stand/left
   rotate: false
-  xy: 278, 460
+  xy: 482, 560
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 1
 characters/fire_spirit/field/walk/left
   rotate: false
-  xy: 278, 460
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 1
-characters/fire_spirit/field/walk/left
-  rotate: false
-  xy: 278, 460
+  xy: 482, 560
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 3
 characters/water_spirit/field/stand/left
   rotate: false
-  xy: 278, 460
+  xy: 482, 560
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 1
 characters/water_spirit/field/walk/left
   rotate: false
-  xy: 278, 460
+  xy: 482, 560
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 3
 characters/water_spirit/field/walk/left
   rotate: false
-  xy: 278, 460
+  xy: 482, 560
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/fire_spirit/field/walk/left
+  rotate: false
+  xy: 680, 550
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+characters/water_spirit/field/walk/left
+  rotate: false
+  xy: 680, 550
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+characters/fire_spirit/field/walk/left
+  rotate: false
+  xy: 1670, 1581
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+characters/water_spirit/field/walk/left
+  rotate: false
+  xy: 1670, 1581
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+characters/fire_spirit/field/walk/right
+  rotate: false
+  xy: 1488, 1160
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 1
 characters/fire_spirit/field/stand/right
   rotate: false
-  xy: 254, 312
+  xy: 1488, 1160
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 1
 characters/fire_spirit/field/walk/right
   rotate: false
-  xy: 254, 312
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 1
-characters/fire_spirit/field/walk/right
-  rotate: false
-  xy: 254, 312
+  xy: 1488, 1160
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 3
 characters/water_spirit/field/stand/right
   rotate: false
-  xy: 254, 312
+  xy: 1488, 1160
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 1
 characters/water_spirit/field/walk/right
   rotate: false
-  xy: 254, 312
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 1
-characters/water_spirit/field/walk/right
-  rotate: false
-  xy: 254, 312
+  xy: 1488, 1160
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 3
+characters/water_spirit/field/walk/right
+  rotate: false
+  xy: 1488, 1160
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/fire_spirit/field/walk/right
+  rotate: false
+  xy: 774, 652
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+characters/water_spirit/field/walk/right
+  rotate: false
+  xy: 774, 652
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+characters/fire_spirit/field/walk/right
+  rotate: false
+  xy: 218, 428
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+characters/water_spirit/field/walk/right
+  rotate: false
+  xy: 218, 428
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+characters/fire_spirit/field/walk/up
+  rotate: false
+  xy: 482, 428
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
 characters/fire_spirit/field/stand/up
   rotate: false
-  xy: 452, 262
+  xy: 482, 428
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 1
 characters/fire_spirit/field/walk/up
   rotate: false
-  xy: 452, 262
+  xy: 482, 428
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 3
 characters/fire_spirit/field/walk/up
   rotate: false
-  xy: 452, 262
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 1
-characters/fire_spirit/field/walk/down
-  rotate: false
-  xy: 1676, 576
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 2
-characters/fire_spirit/field/walk/down
-  rotate: false
-  xy: 1262, 516
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 4
-characters/fire_spirit/field/walk/left
-  rotate: false
-  xy: 542, 460
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 2
-characters/water_spirit/field/walk/left
-  rotate: false
-  xy: 542, 460
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 2
-characters/fire_spirit/field/walk/left
-  rotate: false
-  xy: 192, 48
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 4
-characters/water_spirit/field/walk/left
-  rotate: false
-  xy: 192, 48
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 4
-characters/fire_spirit/field/walk/right
-  rotate: false
-  xy: 258, 48
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 2
-characters/water_spirit/field/walk/right
-  rotate: false
-  xy: 258, 48
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 2
-characters/fire_spirit/field/walk/right
-  rotate: false
-  xy: 452, 394
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 4
-characters/water_spirit/field/walk/right
-  rotate: false
-  xy: 452, 394
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 4
-characters/fire_spirit/field/walk/up
-  rotate: false
-  xy: 518, 262
+  xy: 680, 418
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 2
 characters/fire_spirit/field/walk/up
   rotate: false
-  xy: 650, 394
+  xy: 132, 296
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 4
 characters/gladia_macabre/battler/battler
   rotate: false
-  xy: 2, 749
+  xy: 1550, 1767
   size: 181, 273
   orig: 181, 273
   offset: 0, 0
   index: 1
 characters/gladia_macabre/face/angry
   rotate: false
-  xy: 324, 76
+  xy: 1670, 1713
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
   index: 1
 characters/gladia_macabre/face/normal
   rotate: false
-  xy: 606, 208
+  xy: 198, 188
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
   index: 1
 characters/gladia_macabre/face/ouch
   rotate: false
-  xy: 716, 396
+  xy: 492, 374
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
   index: 1
 characters/gladia_macabre/face/sad
   rotate: false
-  xy: 770, 342
+  xy: 876, 598
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
   index: 1
 characters/magia_karnedit/battler/battler
   rotate: false
-  xy: 2, 473
+  xy: 2, 666
   size: 142, 274
   orig: 142, 274
   offset: 0, 0
   index: 1
 characters/magia_karnedit/face/angry
   rotate: false
-  xy: 390, 154
+  xy: 1508, 1280
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
   index: 1
 characters/magia_karnedit/face/normal
   rotate: false
-  xy: 606, 154
+  xy: 384, 374
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
   index: 1
 characters/magia_karnedit/face/ouch
   rotate: false
-  xy: 716, 342
+  xy: 134, 2
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
   index: 1
 characters/magia_karnedit/face/sad
   rotate: false
-  xy: 770, 288
+  xy: 930, 598
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
   index: 1
 characters/protox_toxorp/Battler/battler
   rotate: false
-  xy: 2, 226
+  xy: 1550, 1520
   size: 118, 245
   orig: 118, 245
   offset: 0, 0
   index: 1
 characters/protox_toxorp/Face/angry
   rotate: false
-  xy: 444, 208
+  xy: 1670, 1527
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
   index: 1
 characters/protox_toxorp/Face/happy
   rotate: false
-  xy: 498, 154
+  xy: 264, 308
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
   index: 1
 characters/protox_toxorp/Face/ouch
   rotate: false
-  xy: 770, 396
+  xy: 768, 598
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
   index: 1
 characters/water_spirit/face/normal
   rotate: false
-  xy: 806, 450
+  xy: 1868, 1664
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 1
 characters/water_spirit/field/attack/down
   rotate: false
-  xy: 122, 312
+  xy: 570, 616
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 1
 characters/water_spirit/field/attack/down
   rotate: false
-  xy: 1742, 580
+  xy: 86, 480
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 2
 characters/water_spirit/field/attack/down
   rotate: false
-  xy: 1196, 516
+  xy: 218, 560
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 3
 characters/water_spirit/field/attack/down
   rotate: false
-  xy: 1328, 516
+  xy: 284, 560
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 4
 characters/water_spirit/field/attack/left
   rotate: false
-  xy: 344, 460
+  xy: 482, 494
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 1
 characters/water_spirit/field/attack/left
   rotate: false
-  xy: 608, 460
+  xy: 548, 484
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 2
 characters/water_spirit/field/attack/left
   rotate: false
-  xy: 192, 180
+  xy: 680, 484
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 3
 characters/water_spirit/field/attack/left
   rotate: false
-  xy: 1460, 506
+  xy: 1736, 1664
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 4
 characters/water_spirit/field/attack/right
   rotate: false
-  xy: 254, 246
+  xy: 1554, 1156
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 1
 characters/water_spirit/field/attack/right
   rotate: false
-  xy: 320, 394
+  xy: 840, 652
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 2
 characters/water_spirit/field/attack/right
   rotate: false
-  xy: 320, 262
+  xy: 1038, 652
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 3
 characters/water_spirit/field/attack/right
   rotate: false
-  xy: 386, 262
+  xy: 284, 428
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 4
+characters/water_spirit/field/walk/down
+  rotate: false
+  xy: 636, 616
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
 characters/water_spirit/field/stand/down
   rotate: false
-  xy: 122, 246
+  xy: 636, 616
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 1
 characters/water_spirit/field/walk/down
   rotate: false
-  xy: 122, 246
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 1
-characters/water_spirit/field/walk/down
-  rotate: false
-  xy: 122, 246
+  xy: 636, 616
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 3
-characters/water_spirit/field/stand/up
-  rotate: false
-  xy: 518, 328
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 1
-characters/water_spirit/field/walk/up
-  rotate: false
-  xy: 518, 328
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 3
-characters/water_spirit/field/walk/up
-  rotate: false
-  xy: 518, 328
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 1
 characters/water_spirit/field/walk/down
   rotate: false
-  xy: 1064, 516
+  xy: 152, 560
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 2
 characters/water_spirit/field/walk/down
   rotate: false
-  xy: 1394, 516
+  xy: 284, 494
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 4
 characters/water_spirit/field/walk/up
   rotate: false
-  xy: 584, 328
+  xy: 548, 418
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/water_spirit/field/stand/up
+  rotate: false
+  xy: 548, 418
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/water_spirit/field/walk/up
+  rotate: false
+  xy: 548, 418
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
+characters/water_spirit/field/walk/up
+  rotate: false
+  xy: 132, 362
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 2
 characters/water_spirit/field/walk/up
   rotate: false
-  xy: 584, 262
+  xy: 198, 362
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 4
 interface/cursor
   rotate: false
-  xy: 2, 2
+  xy: 1666, 1297
   size: 29, 37
   orig: 29, 37
   offset: 0, 0
   index: -1
 interface/window
   rotate: false
-  xy: 862, 656
+  xy: 1250, 939
   size: 156, 156
   split: 15, 15, 15, 15
   orig: 156, 156
@@ -2408,2395 +2408,2437 @@ interface/window
   index: -1
 items/equipment/spear/field/field
   rotate: false
-  xy: 1410, 708
+  xy: 1114, 808
   size: 104, 104
   orig: 104, 104
   offset: 0, 0
   index: 1
 items/equipment/spear/field/field
   rotate: false
-  xy: 750, 550
+  xy: 146, 626
   size: 104, 104
   orig: 104, 104
   offset: 0, 0
   index: 2
 items/equipment/spear/field/field
   rotate: false
-  xy: 1516, 708
+  xy: 252, 626
   size: 104, 104
   orig: 104, 104
   offset: 0, 0
   index: 3
 items/equipment/spear/field/field
   rotate: false
-  xy: 856, 550
+  xy: 358, 626
   size: 104, 104
   orig: 104, 104
   offset: 0, 0
   index: 4
 items/equipment/spear/field/field
   rotate: false
-  xy: 1622, 708
+  xy: 464, 626
   size: 104, 104
   orig: 104, 104
   offset: 0, 0
   index: 5
 items/equipment/sword/battler/battler
   rotate: false
-  xy: 185, 814
+  xy: 776, 1282
   size: 208, 208
   orig: 208, 208
   offset: 0, 0
   index: 1
 items/equipment/wooden_sword/battler/battler
   rotate: false
-  xy: 185, 814
+  xy: 776, 1282
   size: 208, 208
   orig: 208, 208
   offset: 0, 0
   index: 1
 items/equipment/sword/battler/battler
   rotate: false
-  xy: 395, 814
+  xy: 1733, 1832
   size: 208, 208
   orig: 208, 208
   offset: 0, 0
   index: 2
 items/equipment/wooden_sword/battler/battler
   rotate: false
-  xy: 395, 814
+  xy: 1733, 1832
   size: 208, 208
   orig: 208, 208
   offset: 0, 0
   index: 2
 items/equipment/sword/battler/battler
   rotate: false
-  xy: 605, 814
+  xy: 776, 1072
   size: 208, 208
   orig: 208, 208
   offset: 0, 0
   index: 3
 items/equipment/wooden_sword/battler/battler
   rotate: false
-  xy: 605, 814
+  xy: 776, 1072
   size: 208, 208
   orig: 208, 208
   offset: 0, 0
   index: 3
 items/equipment/sword/battler/battler
   rotate: false
-  xy: 815, 814
+  xy: 986, 1282
   size: 208, 208
   orig: 208, 208
   offset: 0, 0
   index: 4
 items/equipment/wooden_sword/battler/battler
   rotate: false
-  xy: 815, 814
+  xy: 986, 1282
   size: 208, 208
   orig: 208, 208
   offset: 0, 0
   index: 4
 items/equipment/sword/battler/battler
   rotate: false
-  xy: 1025, 814
+  xy: 146, 732
   size: 208, 208
   orig: 208, 208
   offset: 0, 0
   index: 5
 items/equipment/wooden_sword/battler/battler
   rotate: false
-  xy: 1025, 814
+  xy: 146, 732
   size: 208, 208
   orig: 208, 208
   offset: 0, 0
   index: 5
 items/equipment/sword/battler/battler
   rotate: false
-  xy: 1235, 814
+  xy: 986, 1072
   size: 208, 208
   orig: 208, 208
   offset: 0, 0
   index: 6
 items/equipment/wooden_sword/battler/battler
   rotate: false
-  xy: 1235, 814
+  xy: 986, 1072
   size: 208, 208
   orig: 208, 208
   offset: 0, 0
   index: 6
 items/equipment/sword/battler/battler
   rotate: false
-  xy: 1445, 814
+  xy: 1196, 1282
   size: 208, 208
   orig: 208, 208
   offset: 0, 0
   index: 7
 items/equipment/wooden_sword/battler/battler
   rotate: false
-  xy: 1445, 814
+  xy: 1196, 1282
   size: 208, 208
   orig: 208, 208
   offset: 0, 0
   index: 7
 items/equipment/sword/battler/battler
   rotate: false
-  xy: 1655, 814
+  xy: 356, 732
   size: 208, 208
   orig: 208, 208
   offset: 0, 0
   index: 8
 items/equipment/wooden_sword/battler/battler
   rotate: false
-  xy: 1655, 814
+  xy: 356, 732
   size: 208, 208
   orig: 208, 208
   offset: 0, 0
   index: 8
 items/equipment/sword/field/field
   rotate: false
-  xy: 33, 7
+  xy: 2, 3
   size: 64, 32
   orig: 64, 32
   offset: 0, 0
   index: 1
 items/equipment/sword/field/field
   rotate: false
-  xy: 33, 7
+  xy: 2, 3
   size: 64, 32
   orig: 64, 32
   offset: 0, 0
   index: 2
 items/equipment/sword/field/field
   rotate: false
-  xy: 99, 7
+  xy: 86, 446
   size: 64, 32
   orig: 64, 32
   offset: 0, 0
   index: 3
 items/equipment/sword/field/field
   rotate: false
-  xy: 1472, 572
+  xy: 1488, 1126
   size: 64, 32
   orig: 64, 32
   offset: 0, 0
   index: 4
 items/equipment/sword/field/field
   rotate: false
-  xy: 1538, 572
+  xy: 68, 3
   size: 64, 32
   orig: 64, 32
   offset: 0, 0
   index: 5
 items/equipment/sword/field/field
   rotate: false
-  xy: 1604, 572
+  xy: 546, 384
   size: 64, 32
   orig: 64, 32
   offset: 0, 0
   index: 6
 items/equipment/sword/field/field
   rotate: false
-  xy: 750, 516
+  xy: 612, 384
   size: 64, 32
   orig: 64, 32
   offset: 0, 0
   index: 7
 items/equipment/sword/field/field
   rotate: false
-  xy: 816, 516
+  xy: 678, 384
   size: 64, 32
   orig: 64, 32
   offset: 0, 0
   index: 8
 items/equipment/wooden_sword/field/field
   rotate: false
-  xy: 230, 526
+  xy: 2, 297
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: 1
 items/equipment/wooden_sword/field/field
   rotate: false
-  xy: 1020, 684
+  xy: 2, 167
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: 2
 items/equipment/wooden_sword/field/field
   rotate: false
-  xy: 360, 526
+  xy: 2, 37
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: 3
 items/equipment/wooden_sword/field/field
   rotate: false
-  xy: 1150, 684
+  xy: 1564, 1390
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: 4
 items/equipment/wooden_sword/field/field
   rotate: false
-  xy: 490, 526
+  xy: 724, 784
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: 5
 items/equipment/wooden_sword/field/field
   rotate: false
-  xy: 1280, 684
+  xy: 854, 784
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: 6
 items/equipment/wooden_sword/field/field
   rotate: false
-  xy: 620, 526
+  xy: 984, 784
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: 7
 items/equipment/wooden_sword/field/field
   rotate: false
-  xy: 620, 526
+  xy: 984, 784
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: 8
 items/potion/icon
   rotate: false
-  xy: 1830, 780
+  xy: 1817, 1456
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: 1
 monsters/eyesore/Eyesore2
   rotate: false
-  xy: 1967, 800
+  xy: 774, 718
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 monsters/eyesore/field/attack/left
   rotate: false
-  xy: 1967, 800
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 3
-monsters/eyesore/field/attack/left
-  rotate: false
-  xy: 1967, 800
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 2
-monsters/eyesore/field/attack/left
-  rotate: false
-  xy: 1967, 800
+  xy: 774, 718
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 4
 monsters/eyesore/field/attack/left
   rotate: false
-  xy: 1967, 800
+  xy: 774, 718
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
+monsters/eyesore/field/attack/left
+  rotate: false
+  xy: 774, 718
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 7
 monsters/eyesore/field/attack/left
   rotate: false
-  xy: 1967, 800
+  xy: 774, 718
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+monsters/eyesore/field/attack/left
+  rotate: false
+  xy: 774, 718
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 8
 monsters/eyesore/field/cast/left
   rotate: false
-  xy: 1967, 800
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 3
-monsters/eyesore/field/cast/left
-  rotate: false
-  xy: 1967, 800
+  xy: 774, 718
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 7
 monsters/eyesore/field/cast/left
   rotate: false
-  xy: 1967, 800
+  xy: 774, 718
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 2
 monsters/eyesore/field/cast/left
   rotate: false
-  xy: 1967, 800
+  xy: 774, 718
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 8
+monsters/eyesore/field/cast/left
+  rotate: false
+  xy: 774, 718
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 4
 monsters/eyesore/field/cast/left
   rotate: false
-  xy: 1967, 800
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 8
-monsters/eyesore/field/dead/left
-  rotate: false
-  xy: 1967, 800
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 7
-monsters/eyesore/field/dead/left
-  rotate: false
-  xy: 1967, 800
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 4
-monsters/eyesore/field/dead/left
-  rotate: false
-  xy: 1967, 800
+  xy: 774, 718
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 3
 monsters/eyesore/field/dead/left
   rotate: false
-  xy: 1967, 800
+  xy: 774, 718
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 8
+  index: 3
 monsters/eyesore/field/dead/left
   rotate: false
-  xy: 1967, 800
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 2
-monsters/eyesore/field/jump/left
-  rotate: false
-  xy: 1967, 800
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 3
-monsters/eyesore/field/jump/left
-  rotate: false
-  xy: 1967, 800
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 2
-monsters/eyesore/field/jump/left
-  rotate: false
-  xy: 1967, 800
+  xy: 774, 718
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 4
-monsters/eyesore/field/jump/left
+monsters/eyesore/field/dead/left
   rotate: false
-  xy: 1967, 800
+  xy: 774, 718
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+monsters/eyesore/field/dead/left
+  rotate: false
+  xy: 774, 718
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 7
+monsters/eyesore/field/dead/left
+  rotate: false
+  xy: 774, 718
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 8
 monsters/eyesore/field/jump/left
   rotate: false
-  xy: 1967, 800
+  xy: 774, 718
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+monsters/eyesore/field/jump/left
+  rotate: false
+  xy: 774, 718
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 7
-monsters/eyesore/field/ouch/left
+monsters/eyesore/field/jump/left
   rotate: false
-  xy: 1967, 800
+  xy: 774, 718
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
+monsters/eyesore/field/jump/left
+  rotate: false
+  xy: 774, 718
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 8
+monsters/eyesore/field/jump/left
+  rotate: false
+  xy: 774, 718
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 2
 monsters/eyesore/field/ouch/left
   rotate: false
-  xy: 1967, 800
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 3
-monsters/eyesore/field/ouch/left
-  rotate: false
-  xy: 1967, 800
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 8
-monsters/eyesore/field/ouch/left
-  rotate: false
-  xy: 1967, 800
+  xy: 774, 718
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 7
 monsters/eyesore/field/ouch/left
   rotate: false
-  xy: 1967, 800
+  xy: 774, 718
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 4
-monsters/eyesore/field/stand/left
+monsters/eyesore/field/ouch/left
   rotate: false
-  xy: 1967, 800
+  xy: 774, 718
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 8
+monsters/eyesore/field/ouch/left
+  rotate: false
+  xy: 774, 718
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+monsters/eyesore/field/ouch/left
+  rotate: false
+  xy: 774, 718
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 3
 monsters/eyesore/field/stand/left
   rotate: false
-  xy: 1967, 800
+  xy: 774, 718
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 4
+  index: 2
 monsters/eyesore/field/stand/left
   rotate: false
-  xy: 1967, 800
+  xy: 774, 718
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 7
+  index: 3
 monsters/eyesore/field/stand/left
   rotate: false
-  xy: 1967, 800
+  xy: 774, 718
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 8
 monsters/eyesore/field/stand/left
   rotate: false
-  xy: 1967, 800
+  xy: 774, 718
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 7
+monsters/eyesore/field/stand/left
+  rotate: false
+  xy: 774, 718
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+monsters/eyesore/field/walk/left
+  rotate: false
+  xy: 774, 718
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+monsters/eyesore/field/walk/left
+  rotate: false
+  xy: 774, 718
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
+monsters/eyesore/field/walk/left
+  rotate: false
+  xy: 774, 718
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 7
+monsters/eyesore/field/walk/left
+  rotate: false
+  xy: 774, 718
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 2
 monsters/eyesore/field/walk/left
   rotate: false
-  xy: 1967, 800
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 7
-monsters/eyesore/field/walk/left
-  rotate: false
-  xy: 1967, 800
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 3
-monsters/eyesore/field/walk/left
-  rotate: false
-  xy: 1967, 800
+  xy: 774, 718
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 8
-monsters/eyesore/field/walk/left
-  rotate: false
-  xy: 1967, 800
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 2
-monsters/eyesore/field/walk/left
-  rotate: false
-  xy: 1967, 800
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 4
 monsters/eyesore/Eyesoreback
   rotate: false
-  xy: 1676, 642
+  xy: 840, 718
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 monsters/eyesore/field/attack/up
   rotate: false
-  xy: 1676, 642
+  xy: 840, 718
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 2
+  index: 3
 monsters/eyesore/field/attack/up
   rotate: false
-  xy: 1676, 642
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 9
-monsters/eyesore/field/attack/up
-  rotate: false
-  xy: 1676, 642
+  xy: 840, 718
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 8
 monsters/eyesore/field/attack/up
   rotate: false
-  xy: 1676, 642
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 3
-monsters/eyesore/field/cast/up
-  rotate: false
-  xy: 1676, 642
+  xy: 840, 718
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 2
-monsters/eyesore/field/cast/up
+monsters/eyesore/field/attack/up
   rotate: false
-  xy: 1676, 642
+  xy: 840, 718
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 9
 monsters/eyesore/field/cast/up
   rotate: false
-  xy: 1676, 642
+  xy: 840, 718
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 9
+monsters/eyesore/field/cast/up
+  rotate: false
+  xy: 840, 718
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 8
 monsters/eyesore/field/cast/up
   rotate: false
-  xy: 1676, 642
+  xy: 840, 718
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+monsters/eyesore/field/cast/up
+  rotate: false
+  xy: 840, 718
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 3
 monsters/eyesore/field/dead/up
   rotate: false
-  xy: 1676, 642
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 2
-monsters/eyesore/field/dead/up
-  rotate: false
-  xy: 1676, 642
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 3
-monsters/eyesore/field/dead/up
-  rotate: false
-  xy: 1676, 642
+  xy: 840, 718
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 9
 monsters/eyesore/field/dead/up
   rotate: false
-  xy: 1676, 642
+  xy: 840, 718
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+monsters/eyesore/field/dead/up
+  rotate: false
+  xy: 840, 718
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 8
-monsters/eyesore/field/jump/up
+monsters/eyesore/field/dead/up
   rotate: false
-  xy: 1676, 642
+  xy: 840, 718
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 3
 monsters/eyesore/field/jump/up
   rotate: false
-  xy: 1676, 642
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 8
-monsters/eyesore/field/jump/up
-  rotate: false
-  xy: 1676, 642
+  xy: 840, 718
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 2
 monsters/eyesore/field/jump/up
   rotate: false
-  xy: 1676, 642
+  xy: 840, 718
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 8
+monsters/eyesore/field/jump/up
+  rotate: false
+  xy: 840, 718
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
+monsters/eyesore/field/jump/up
+  rotate: false
+  xy: 840, 718
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 9
 monsters/eyesore/field/ouch/up
   rotate: false
-  xy: 1676, 642
+  xy: 840, 718
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 3
 monsters/eyesore/field/ouch/up
   rotate: false
-  xy: 1676, 642
+  xy: 840, 718
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 8
 monsters/eyesore/field/ouch/up
   rotate: false
-  xy: 1676, 642
+  xy: 840, 718
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 2
+  index: 9
 monsters/eyesore/field/ouch/up
   rotate: false
-  xy: 1676, 642
+  xy: 840, 718
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 9
+  index: 2
 monsters/eyesore/field/stand/up
   rotate: false
-  xy: 1676, 642
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 9
-monsters/eyesore/field/stand/up
-  rotate: false
-  xy: 1676, 642
+  xy: 840, 718
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 8
 monsters/eyesore/field/stand/up
   rotate: false
-  xy: 1676, 642
+  xy: 840, 718
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 3
+  index: 9
 monsters/eyesore/field/stand/up
   rotate: false
-  xy: 1676, 642
+  xy: 840, 718
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 2
-monsters/eyesore/field/walk/up
+monsters/eyesore/field/stand/up
   rotate: false
-  xy: 1676, 642
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 8
-monsters/eyesore/field/walk/up
-  rotate: false
-  xy: 1676, 642
+  xy: 840, 718
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 3
 monsters/eyesore/field/walk/up
   rotate: false
-  xy: 1676, 642
+  xy: 840, 718
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 9
 monsters/eyesore/field/walk/up
   rotate: false
-  xy: 1676, 642
+  xy: 840, 718
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 8
+monsters/eyesore/field/walk/up
+  rotate: false
+  xy: 840, 718
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 2
-monsters/eyesore/field/attack/down
+monsters/eyesore/field/walk/up
   rotate: false
-  xy: 1967, 734
+  xy: 840, 718
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
+monsters/eyesore/field/dead/down
+  rotate: false
+  xy: 702, 616
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 1
 monsters/eyesore/field/attack/down
   rotate: false
-  xy: 1967, 734
+  xy: 702, 616
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+monsters/eyesore/field/attack/down
+  rotate: false
+  xy: 702, 616
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 10
 monsters/eyesore/field/cast/down
   rotate: false
-  xy: 1967, 734
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 10
-monsters/eyesore/field/cast/down
-  rotate: false
-  xy: 1967, 734
+  xy: 702, 616
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 1
-monsters/eyesore/field/dead/down
+monsters/eyesore/field/cast/down
   rotate: false
-  xy: 1967, 734
+  xy: 702, 616
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 10
 monsters/eyesore/field/dead/down
   rotate: false
-  xy: 1967, 734
+  xy: 702, 616
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 10
+monsters/eyesore/field/jump/down
+  rotate: false
+  xy: 702, 616
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 10
+monsters/eyesore/field/jump/down
+  rotate: false
+  xy: 702, 616
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 1
-monsters/eyesore/field/jump/down
+monsters/eyesore/field/ouch/down
   rotate: false
-  xy: 1967, 734
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 1
-monsters/eyesore/field/jump/down
-  rotate: false
-  xy: 1967, 734
+  xy: 702, 616
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 10
 monsters/eyesore/field/ouch/down
   rotate: false
-  xy: 1967, 734
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 10
-monsters/eyesore/field/ouch/down
-  rotate: false
-  xy: 1967, 734
+  xy: 702, 616
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 1
 monsters/eyesore/field/stand/down
   rotate: false
-  xy: 1967, 734
+  xy: 702, 616
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 10
 monsters/eyesore/field/stand/down
   rotate: false
-  xy: 1967, 734
+  xy: 702, 616
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 1
 monsters/eyesore/field/walk/down
   rotate: false
-  xy: 1967, 734
+  xy: 702, 616
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+monsters/eyesore/field/walk/down
+  rotate: false
+  xy: 702, 616
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 10
-monsters/eyesore/field/walk/down
+monsters/eyesore/field/dead/down
   rotate: false
-  xy: 1967, 734
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 1
-monsters/eyesore/field/attack/down
-  rotate: false
-  xy: 1130, 516
+  xy: 152, 494
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 2
 monsters/eyesore/field/attack/down
   rotate: false
-  xy: 1130, 516
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 9
-monsters/eyesore/field/attack/down
-  rotate: false
-  xy: 1130, 516
+  xy: 152, 494
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 8
 monsters/eyesore/field/attack/down
   rotate: false
-  xy: 1130, 516
+  xy: 152, 494
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 3
-monsters/eyesore/field/cast/down
-  rotate: false
-  xy: 1130, 516
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 2
-monsters/eyesore/field/cast/down
-  rotate: false
-  xy: 1130, 516
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 3
-monsters/eyesore/field/cast/down
-  rotate: false
-  xy: 1130, 516
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 9
-monsters/eyesore/field/cast/down
-  rotate: false
-  xy: 1130, 516
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 8
-monsters/eyesore/field/dead/down
-  rotate: false
-  xy: 1130, 516
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 9
-monsters/eyesore/field/dead/down
-  rotate: false
-  xy: 1130, 516
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 2
-monsters/eyesore/field/dead/down
-  rotate: false
-  xy: 1130, 516
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 8
-monsters/eyesore/field/dead/down
-  rotate: false
-  xy: 1130, 516
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 3
-monsters/eyesore/field/jump/down
-  rotate: false
-  xy: 1130, 516
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 9
-monsters/eyesore/field/jump/down
-  rotate: false
-  xy: 1130, 516
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 2
-monsters/eyesore/field/jump/down
-  rotate: false
-  xy: 1130, 516
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 3
-monsters/eyesore/field/jump/down
-  rotate: false
-  xy: 1130, 516
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 8
-monsters/eyesore/field/ouch/down
-  rotate: false
-  xy: 1130, 516
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 8
-monsters/eyesore/field/ouch/down
-  rotate: false
-  xy: 1130, 516
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 3
-monsters/eyesore/field/ouch/down
-  rotate: false
-  xy: 1130, 516
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 9
-monsters/eyesore/field/ouch/down
-  rotate: false
-  xy: 1130, 516
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 2
-monsters/eyesore/field/stand/down
-  rotate: false
-  xy: 1130, 516
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 2
-monsters/eyesore/field/stand/down
-  rotate: false
-  xy: 1130, 516
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 8
-monsters/eyesore/field/stand/down
-  rotate: false
-  xy: 1130, 516
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 3
-monsters/eyesore/field/stand/down
-  rotate: false
-  xy: 1130, 516
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 9
-monsters/eyesore/field/walk/down
-  rotate: false
-  xy: 1130, 516
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 9
-monsters/eyesore/field/walk/down
-  rotate: false
-  xy: 1130, 516
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 3
-monsters/eyesore/field/walk/down
-  rotate: false
-  xy: 1130, 516
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 2
-monsters/eyesore/field/walk/down
-  rotate: false
-  xy: 1130, 516
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 8
 monsters/eyesore/field/attack/down
   rotate: false
-  xy: 188, 378
+  xy: 152, 494
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 4
+  index: 2
 monsters/eyesore/field/attack/down
   rotate: false
-  xy: 188, 378
+  xy: 152, 494
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 6
-monsters/eyesore/field/attack/down
-  rotate: false
-  xy: 188, 378
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 7
+  index: 9
 monsters/eyesore/field/cast/down
   rotate: false
-  xy: 188, 378
+  xy: 152, 494
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 4
+  index: 9
 monsters/eyesore/field/cast/down
   rotate: false
-  xy: 188, 378
+  xy: 152, 494
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 6
+  index: 2
 monsters/eyesore/field/cast/down
   rotate: false
-  xy: 188, 378
+  xy: 152, 494
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 7
+  index: 3
+monsters/eyesore/field/cast/down
+  rotate: false
+  xy: 152, 494
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 8
 monsters/eyesore/field/dead/down
   rotate: false
-  xy: 188, 378
+  xy: 152, 494
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 7
+  index: 3
 monsters/eyesore/field/dead/down
   rotate: false
-  xy: 188, 378
+  xy: 152, 494
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 6
+  index: 9
 monsters/eyesore/field/dead/down
   rotate: false
-  xy: 188, 378
+  xy: 152, 494
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 4
+  index: 8
 monsters/eyesore/field/jump/down
   rotate: false
-  xy: 188, 378
+  xy: 152, 494
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 6
+  index: 3
 monsters/eyesore/field/jump/down
   rotate: false
-  xy: 188, 378
+  xy: 152, 494
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 7
+  index: 9
 monsters/eyesore/field/jump/down
   rotate: false
-  xy: 188, 378
+  xy: 152, 494
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 4
+  index: 2
+monsters/eyesore/field/jump/down
+  rotate: false
+  xy: 152, 494
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 8
 monsters/eyesore/field/ouch/down
   rotate: false
-  xy: 188, 378
+  xy: 152, 494
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 7
+  index: 2
 monsters/eyesore/field/ouch/down
   rotate: false
-  xy: 188, 378
+  xy: 152, 494
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 4
+  index: 8
 monsters/eyesore/field/ouch/down
   rotate: false
-  xy: 188, 378
+  xy: 152, 494
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 6
+  index: 3
+monsters/eyesore/field/ouch/down
+  rotate: false
+  xy: 152, 494
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 9
 monsters/eyesore/field/stand/down
   rotate: false
-  xy: 188, 378
+  xy: 152, 494
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 4
+  index: 8
 monsters/eyesore/field/stand/down
   rotate: false
-  xy: 188, 378
+  xy: 152, 494
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 6
+  index: 9
 monsters/eyesore/field/stand/down
   rotate: false
-  xy: 188, 378
+  xy: 152, 494
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 7
-monsters/eyesore/field/walk/down
+  index: 2
+monsters/eyesore/field/stand/down
   rotate: false
-  xy: 188, 378
+  xy: 152, 494
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 6
+  index: 3
 monsters/eyesore/field/walk/down
   rotate: false
-  xy: 188, 378
+  xy: 152, 494
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 7
+  index: 2
 monsters/eyesore/field/walk/down
   rotate: false
-  xy: 188, 378
+  xy: 152, 494
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 9
+monsters/eyesore/field/walk/down
+  rotate: false
+  xy: 152, 494
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 8
+monsters/eyesore/field/walk/down
+  rotate: false
+  xy: 152, 494
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
+monsters/eyesore/field/dead/down
+  rotate: false
+  xy: 350, 560
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 4
 monsters/eyesore/field/attack/down
   rotate: false
-  xy: 188, 312
+  xy: 350, 560
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 7
+monsters/eyesore/field/attack/down
+  rotate: false
+  xy: 350, 560
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 6
+monsters/eyesore/field/attack/down
+  rotate: false
+  xy: 350, 560
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+monsters/eyesore/field/cast/down
+  rotate: false
+  xy: 350, 560
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+monsters/eyesore/field/cast/down
+  rotate: false
+  xy: 350, 560
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 7
+monsters/eyesore/field/cast/down
+  rotate: false
+  xy: 350, 560
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 6
+monsters/eyesore/field/dead/down
+  rotate: false
+  xy: 350, 560
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 7
+monsters/eyesore/field/dead/down
+  rotate: false
+  xy: 350, 560
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 6
+monsters/eyesore/field/jump/down
+  rotate: false
+  xy: 350, 560
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 6
+monsters/eyesore/field/jump/down
+  rotate: false
+  xy: 350, 560
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 7
+monsters/eyesore/field/jump/down
+  rotate: false
+  xy: 350, 560
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+monsters/eyesore/field/ouch/down
+  rotate: false
+  xy: 350, 560
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 6
+monsters/eyesore/field/ouch/down
+  rotate: false
+  xy: 350, 560
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 7
+monsters/eyesore/field/ouch/down
+  rotate: false
+  xy: 350, 560
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+monsters/eyesore/field/stand/down
+  rotate: false
+  xy: 350, 560
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 6
+monsters/eyesore/field/stand/down
+  rotate: false
+  xy: 350, 560
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 7
+monsters/eyesore/field/stand/down
+  rotate: false
+  xy: 350, 560
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+monsters/eyesore/field/walk/down
+  rotate: false
+  xy: 350, 560
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+monsters/eyesore/field/walk/down
+  rotate: false
+  xy: 350, 560
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 6
+monsters/eyesore/field/walk/down
+  rotate: false
+  xy: 350, 560
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 7
+monsters/eyesore/field/dead/down
+  rotate: false
+  xy: 350, 494
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 5
+monsters/eyesore/field/attack/down
+  rotate: false
+  xy: 350, 494
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 5
 monsters/eyesore/field/cast/down
   rotate: false
-  xy: 188, 312
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 5
-monsters/eyesore/field/dead/down
-  rotate: false
-  xy: 188, 312
+  xy: 350, 494
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 5
 monsters/eyesore/field/jump/down
   rotate: false
-  xy: 188, 312
+  xy: 350, 494
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 5
 monsters/eyesore/field/ouch/down
   rotate: false
-  xy: 188, 312
+  xy: 350, 494
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 5
 monsters/eyesore/field/stand/down
   rotate: false
-  xy: 188, 312
+  xy: 350, 494
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 5
 monsters/eyesore/field/walk/down
   rotate: false
-  xy: 188, 312
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 5
-monsters/eyesore/field/attack/left
-  rotate: false
-  xy: 410, 460
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 1
-monsters/eyesore/field/attack/left
-  rotate: false
-  xy: 410, 460
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 9
-monsters/eyesore/field/cast/left
-  rotate: false
-  xy: 410, 460
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 9
-monsters/eyesore/field/cast/left
-  rotate: false
-  xy: 410, 460
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 1
-monsters/eyesore/field/dead/left
-  rotate: false
-  xy: 410, 460
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 1
-monsters/eyesore/field/dead/left
-  rotate: false
-  xy: 410, 460
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 9
-monsters/eyesore/field/jump/left
-  rotate: false
-  xy: 410, 460
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 1
-monsters/eyesore/field/jump/left
-  rotate: false
-  xy: 410, 460
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 9
-monsters/eyesore/field/ouch/left
-  rotate: false
-  xy: 410, 460
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 1
-monsters/eyesore/field/ouch/left
-  rotate: false
-  xy: 410, 460
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 9
-monsters/eyesore/field/stand/left
-  rotate: false
-  xy: 410, 460
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 9
-monsters/eyesore/field/stand/left
-  rotate: false
-  xy: 410, 460
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 1
-monsters/eyesore/field/walk/left
-  rotate: false
-  xy: 410, 460
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 9
-monsters/eyesore/field/walk/left
-  rotate: false
-  xy: 410, 460
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 1
-monsters/eyesore/field/attack/left
-  rotate: false
-  xy: 1526, 506
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 5
-monsters/eyesore/field/cast/left
-  rotate: false
-  xy: 1526, 506
+  xy: 350, 494
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 5
 monsters/eyesore/field/dead/left
   rotate: false
-  xy: 1526, 506
+  xy: 548, 550
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 5
+  index: 1
+monsters/eyesore/field/attack/left
+  rotate: false
+  xy: 548, 550
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+monsters/eyesore/field/attack/left
+  rotate: false
+  xy: 548, 550
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 9
+monsters/eyesore/field/cast/left
+  rotate: false
+  xy: 548, 550
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+monsters/eyesore/field/cast/left
+  rotate: false
+  xy: 548, 550
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 9
+monsters/eyesore/field/dead/left
+  rotate: false
+  xy: 548, 550
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 9
 monsters/eyesore/field/jump/left
   rotate: false
-  xy: 1526, 506
+  xy: 548, 550
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 5
+  index: 1
+monsters/eyesore/field/jump/left
+  rotate: false
+  xy: 548, 550
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 9
 monsters/eyesore/field/ouch/left
   rotate: false
-  xy: 1526, 506
+  xy: 548, 550
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 5
+  index: 1
+monsters/eyesore/field/ouch/left
+  rotate: false
+  xy: 548, 550
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 9
 monsters/eyesore/field/stand/left
   rotate: false
-  xy: 1526, 506
+  xy: 548, 550
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 5
+  index: 1
+monsters/eyesore/field/stand/left
+  rotate: false
+  xy: 548, 550
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 9
 monsters/eyesore/field/walk/left
   rotate: false
-  xy: 1526, 506
+  xy: 548, 550
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 9
+monsters/eyesore/field/walk/left
+  rotate: false
+  xy: 548, 550
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+monsters/eyesore/field/dead/left
+  rotate: false
+  xy: 1736, 1598
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 5
 monsters/eyesore/field/attack/left
   rotate: false
-  xy: 1592, 506
+  xy: 1736, 1598
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 5
+monsters/eyesore/field/cast/left
+  rotate: false
+  xy: 1736, 1598
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 5
+monsters/eyesore/field/jump/left
+  rotate: false
+  xy: 1736, 1598
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 5
+monsters/eyesore/field/ouch/left
+  rotate: false
+  xy: 1736, 1598
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 5
+monsters/eyesore/field/stand/left
+  rotate: false
+  xy: 1736, 1598
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 5
+monsters/eyesore/field/walk/left
+  rotate: false
+  xy: 1736, 1598
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 5
+monsters/eyesore/field/dead/left
+  rotate: false
+  xy: 1802, 1664
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 6
+monsters/eyesore/field/attack/left
+  rotate: false
+  xy: 1802, 1664
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 6
 monsters/eyesore/field/cast/left
   rotate: false
-  xy: 1592, 506
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 6
-monsters/eyesore/field/dead/left
-  rotate: false
-  xy: 1592, 506
+  xy: 1802, 1664
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 6
 monsters/eyesore/field/jump/left
   rotate: false
-  xy: 1592, 506
+  xy: 1802, 1664
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 6
 monsters/eyesore/field/ouch/left
   rotate: false
-  xy: 1592, 506
+  xy: 1802, 1664
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 6
 monsters/eyesore/field/stand/left
   rotate: false
-  xy: 1592, 506
+  xy: 1802, 1664
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 6
 monsters/eyesore/field/walk/left
   rotate: false
-  xy: 1592, 506
+  xy: 1802, 1664
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 6
-monsters/eyesore/field/attack/right
+monsters/eyesore/field/dead/right
   rotate: false
-  xy: 258, 180
+  xy: 1628, 1222
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 1
 monsters/eyesore/field/attack/right
   rotate: false
-  xy: 258, 180
+  xy: 1628, 1222
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+monsters/eyesore/field/attack/right
+  rotate: false
+  xy: 1628, 1222
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 9
 monsters/eyesore/field/cast/right
   rotate: false
-  xy: 258, 180
+  xy: 1628, 1222
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+monsters/eyesore/field/cast/right
+  rotate: false
+  xy: 1628, 1222
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 9
-monsters/eyesore/field/cast/right
-  rotate: false
-  xy: 258, 180
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 1
 monsters/eyesore/field/dead/right
   rotate: false
-  xy: 258, 180
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 1
-monsters/eyesore/field/dead/right
-  rotate: false
-  xy: 258, 180
+  xy: 1628, 1222
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 9
 monsters/eyesore/field/jump/right
   rotate: false
-  xy: 258, 180
+  xy: 1628, 1222
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 1
 monsters/eyesore/field/jump/right
   rotate: false
-  xy: 258, 180
+  xy: 1628, 1222
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 9
 monsters/eyesore/field/ouch/right
   rotate: false
-  xy: 258, 180
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 9
-monsters/eyesore/field/ouch/right
-  rotate: false
-  xy: 258, 180
+  xy: 1628, 1222
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 1
-monsters/eyesore/field/stand/right
+monsters/eyesore/field/ouch/right
   rotate: false
-  xy: 258, 180
+  xy: 1628, 1222
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 9
 monsters/eyesore/field/stand/right
   rotate: false
-  xy: 258, 180
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 1
-monsters/eyesore/field/walk/right
-  rotate: false
-  xy: 258, 180
+  xy: 1628, 1222
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 9
-monsters/eyesore/field/walk/right
+monsters/eyesore/field/stand/right
   rotate: false
-  xy: 258, 180
+  xy: 1628, 1222
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 1
-monsters/eyesore/field/attack/right
+monsters/eyesore/field/walk/right
   rotate: false
-  xy: 320, 328
+  xy: 1628, 1222
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+monsters/eyesore/field/walk/right
+  rotate: false
+  xy: 1628, 1222
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 9
+monsters/eyesore/field/dead/right
+  rotate: false
+  xy: 906, 652
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 2
 monsters/eyesore/field/attack/right
   rotate: false
-  xy: 320, 328
+  xy: 906, 652
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 4
 monsters/eyesore/field/attack/right
   rotate: false
-  xy: 320, 328
+  xy: 906, 652
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 7
+monsters/eyesore/field/attack/right
+  rotate: false
+  xy: 906, 652
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+monsters/eyesore/field/attack/right
+  rotate: false
+  xy: 906, 652
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 3
 monsters/eyesore/field/attack/right
   rotate: false
-  xy: 320, 328
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 8
-monsters/eyesore/field/attack/right
-  rotate: false
-  xy: 320, 328
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 7
-monsters/eyesore/field/cast/right
-  rotate: false
-  xy: 320, 328
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 3
-monsters/eyesore/field/cast/right
-  rotate: false
-  xy: 320, 328
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 4
-monsters/eyesore/field/cast/right
-  rotate: false
-  xy: 320, 328
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 7
-monsters/eyesore/field/cast/right
-  rotate: false
-  xy: 320, 328
+  xy: 906, 652
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 8
 monsters/eyesore/field/cast/right
   rotate: false
-  xy: 320, 328
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 2
-monsters/eyesore/field/dead/right
-  rotate: false
-  xy: 320, 328
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 4
-monsters/eyesore/field/dead/right
-  rotate: false
-  xy: 320, 328
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 2
-monsters/eyesore/field/dead/right
-  rotate: false
-  xy: 320, 328
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 8
-monsters/eyesore/field/dead/right
-  rotate: false
-  xy: 320, 328
+  xy: 906, 652
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 3
-monsters/eyesore/field/dead/right
-  rotate: false
-  xy: 320, 328
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 7
-monsters/eyesore/field/jump/right
-  rotate: false
-  xy: 320, 328
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 2
-monsters/eyesore/field/jump/right
-  rotate: false
-  xy: 320, 328
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 8
-monsters/eyesore/field/jump/right
-  rotate: false
-  xy: 320, 328
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 4
-monsters/eyesore/field/jump/right
-  rotate: false
-  xy: 320, 328
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 3
-monsters/eyesore/field/jump/right
-  rotate: false
-  xy: 320, 328
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 7
-monsters/eyesore/field/ouch/right
-  rotate: false
-  xy: 320, 328
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 8
-monsters/eyesore/field/ouch/right
-  rotate: false
-  xy: 320, 328
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 2
-monsters/eyesore/field/ouch/right
-  rotate: false
-  xy: 320, 328
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 3
-monsters/eyesore/field/ouch/right
-  rotate: false
-  xy: 320, 328
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 4
-monsters/eyesore/field/ouch/right
-  rotate: false
-  xy: 320, 328
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 7
-monsters/eyesore/field/stand/right
-  rotate: false
-  xy: 320, 328
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 4
-monsters/eyesore/field/stand/right
-  rotate: false
-  xy: 320, 328
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 3
-monsters/eyesore/field/stand/right
-  rotate: false
-  xy: 320, 328
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 2
-monsters/eyesore/field/stand/right
-  rotate: false
-  xy: 320, 328
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 7
-monsters/eyesore/field/stand/right
-  rotate: false
-  xy: 320, 328
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 8
-monsters/eyesore/field/walk/right
-  rotate: false
-  xy: 320, 328
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 2
-monsters/eyesore/field/walk/right
-  rotate: false
-  xy: 320, 328
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 8
-monsters/eyesore/field/walk/right
-  rotate: false
-  xy: 320, 328
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 4
-monsters/eyesore/field/walk/right
-  rotate: false
-  xy: 320, 328
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 7
-monsters/eyesore/field/walk/right
-  rotate: false
-  xy: 320, 328
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 3
-monsters/eyesore/field/attack/right
-  rotate: false
-  xy: 452, 328
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 5
 monsters/eyesore/field/cast/right
   rotate: false
-  xy: 452, 328
+  xy: 906, 652
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 5
+  index: 7
+monsters/eyesore/field/cast/right
+  rotate: false
+  xy: 906, 652
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 8
+monsters/eyesore/field/cast/right
+  rotate: false
+  xy: 906, 652
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+monsters/eyesore/field/cast/right
+  rotate: false
+  xy: 906, 652
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
 monsters/eyesore/field/dead/right
   rotate: false
-  xy: 452, 328
+  xy: 906, 652
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 5
+  index: 4
+monsters/eyesore/field/dead/right
+  rotate: false
+  xy: 906, 652
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 7
+monsters/eyesore/field/dead/right
+  rotate: false
+  xy: 906, 652
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
+monsters/eyesore/field/dead/right
+  rotate: false
+  xy: 906, 652
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 8
 monsters/eyesore/field/jump/right
   rotate: false
-  xy: 452, 328
+  xy: 906, 652
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 5
+  index: 4
+monsters/eyesore/field/jump/right
+  rotate: false
+  xy: 906, 652
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+monsters/eyesore/field/jump/right
+  rotate: false
+  xy: 906, 652
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 8
+monsters/eyesore/field/jump/right
+  rotate: false
+  xy: 906, 652
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
+monsters/eyesore/field/jump/right
+  rotate: false
+  xy: 906, 652
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 7
 monsters/eyesore/field/ouch/right
   rotate: false
-  xy: 452, 328
+  xy: 906, 652
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 5
+  index: 4
+monsters/eyesore/field/ouch/right
+  rotate: false
+  xy: 906, 652
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+monsters/eyesore/field/ouch/right
+  rotate: false
+  xy: 906, 652
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
+monsters/eyesore/field/ouch/right
+  rotate: false
+  xy: 906, 652
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 7
+monsters/eyesore/field/ouch/right
+  rotate: false
+  xy: 906, 652
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 8
 monsters/eyesore/field/stand/right
   rotate: false
-  xy: 452, 328
+  xy: 906, 652
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 5
+  index: 3
+monsters/eyesore/field/stand/right
+  rotate: false
+  xy: 906, 652
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+monsters/eyesore/field/stand/right
+  rotate: false
+  xy: 906, 652
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 8
+monsters/eyesore/field/stand/right
+  rotate: false
+  xy: 906, 652
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 7
+monsters/eyesore/field/stand/right
+  rotate: false
+  xy: 906, 652
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
 monsters/eyesore/field/walk/right
   rotate: false
-  xy: 452, 328
+  xy: 906, 652
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 7
+monsters/eyesore/field/walk/right
+  rotate: false
+  xy: 906, 652
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
+monsters/eyesore/field/walk/right
+  rotate: false
+  xy: 906, 652
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 8
+monsters/eyesore/field/walk/right
+  rotate: false
+  xy: 906, 652
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+monsters/eyesore/field/walk/right
+  rotate: false
+  xy: 906, 652
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+monsters/eyesore/field/dead/right
+  rotate: false
+  xy: 350, 428
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 5
 monsters/eyesore/field/attack/right
   rotate: false
-  xy: 518, 394
+  xy: 350, 428
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 5
+monsters/eyesore/field/cast/right
+  rotate: false
+  xy: 350, 428
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 5
+monsters/eyesore/field/jump/right
+  rotate: false
+  xy: 350, 428
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 5
+monsters/eyesore/field/ouch/right
+  rotate: false
+  xy: 350, 428
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 5
+monsters/eyesore/field/stand/right
+  rotate: false
+  xy: 350, 428
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 5
+monsters/eyesore/field/walk/right
+  rotate: false
+  xy: 350, 428
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 5
+monsters/eyesore/field/dead/right
+  rotate: false
+  xy: 416, 428
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 6
+monsters/eyesore/field/attack/right
+  rotate: false
+  xy: 416, 428
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 6
 monsters/eyesore/field/cast/right
   rotate: false
-  xy: 518, 394
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 6
-monsters/eyesore/field/dead/right
-  rotate: false
-  xy: 518, 394
+  xy: 416, 428
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 6
 monsters/eyesore/field/jump/right
   rotate: false
-  xy: 518, 394
+  xy: 416, 428
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 6
 monsters/eyesore/field/ouch/right
   rotate: false
-  xy: 518, 394
+  xy: 416, 428
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 6
 monsters/eyesore/field/stand/right
   rotate: false
-  xy: 518, 394
+  xy: 416, 428
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 6
 monsters/eyesore/field/walk/right
   rotate: false
-  xy: 518, 394
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 6
-monsters/eyesore/field/attack/up
-  rotate: false
-  xy: 584, 394
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 1
-monsters/eyesore/field/attack/up
-  rotate: false
-  xy: 584, 394
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 10
-monsters/eyesore/field/cast/up
-  rotate: false
-  xy: 584, 394
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 10
-monsters/eyesore/field/cast/up
-  rotate: false
-  xy: 584, 394
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 1
-monsters/eyesore/field/dead/up
-  rotate: false
-  xy: 584, 394
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 1
-monsters/eyesore/field/dead/up
-  rotate: false
-  xy: 584, 394
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 10
-monsters/eyesore/field/jump/up
-  rotate: false
-  xy: 584, 394
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 1
-monsters/eyesore/field/jump/up
-  rotate: false
-  xy: 584, 394
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 10
-monsters/eyesore/field/ouch/up
-  rotate: false
-  xy: 584, 394
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 10
-monsters/eyesore/field/ouch/up
-  rotate: false
-  xy: 584, 394
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 1
-monsters/eyesore/field/stand/up
-  rotate: false
-  xy: 584, 394
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 10
-monsters/eyesore/field/stand/up
-  rotate: false
-  xy: 584, 394
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 1
-monsters/eyesore/field/walk/up
-  rotate: false
-  xy: 584, 394
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 1
-monsters/eyesore/field/walk/up
-  rotate: false
-  xy: 584, 394
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 10
-monsters/eyesore/field/attack/up
-  rotate: false
-  xy: 650, 328
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 4
-monsters/eyesore/field/cast/up
-  rotate: false
-  xy: 650, 328
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 4
-monsters/eyesore/field/dead/up
-  rotate: false
-  xy: 650, 328
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 4
-monsters/eyesore/field/jump/up
-  rotate: false
-  xy: 650, 328
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 4
-monsters/eyesore/field/ouch/up
-  rotate: false
-  xy: 650, 328
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 4
-monsters/eyesore/field/stand/up
-  rotate: false
-  xy: 650, 328
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 4
-monsters/eyesore/field/walk/up
-  rotate: false
-  xy: 650, 328
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 4
-monsters/eyesore/field/attack/up
-  rotate: false
-  xy: 650, 262
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 5
-monsters/eyesore/field/cast/up
-  rotate: false
-  xy: 650, 262
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 5
-monsters/eyesore/field/dead/up
-  rotate: false
-  xy: 650, 262
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 5
-monsters/eyesore/field/jump/up
-  rotate: false
-  xy: 650, 262
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 5
-monsters/eyesore/field/ouch/up
-  rotate: false
-  xy: 650, 262
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 5
-monsters/eyesore/field/stand/up
-  rotate: false
-  xy: 650, 262
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 5
-monsters/eyesore/field/walk/up
-  rotate: false
-  xy: 650, 262
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 5
-monsters/eyesore/field/attack/up
-  rotate: false
-  xy: 324, 196
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 6
-monsters/eyesore/field/cast/up
-  rotate: false
-  xy: 324, 196
+  xy: 416, 428
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 6
 monsters/eyesore/field/dead/up
   rotate: false
-  xy: 324, 196
+  xy: 614, 418
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 6
+  index: 1
+monsters/eyesore/field/attack/up
+  rotate: false
+  xy: 614, 418
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 10
+monsters/eyesore/field/attack/up
+  rotate: false
+  xy: 614, 418
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+monsters/eyesore/field/cast/up
+  rotate: false
+  xy: 614, 418
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+monsters/eyesore/field/cast/up
+  rotate: false
+  xy: 614, 418
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 10
+monsters/eyesore/field/dead/up
+  rotate: false
+  xy: 614, 418
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 10
 monsters/eyesore/field/jump/up
   rotate: false
-  xy: 324, 196
+  xy: 614, 418
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 6
+  index: 1
+monsters/eyesore/field/jump/up
+  rotate: false
+  xy: 614, 418
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 10
 monsters/eyesore/field/ouch/up
   rotate: false
-  xy: 324, 196
+  xy: 614, 418
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 6
+  index: 1
+monsters/eyesore/field/ouch/up
+  rotate: false
+  xy: 614, 418
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 10
 monsters/eyesore/field/stand/up
   rotate: false
-  xy: 324, 196
+  xy: 614, 418
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 6
+  index: 1
+monsters/eyesore/field/stand/up
+  rotate: false
+  xy: 614, 418
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 10
 monsters/eyesore/field/walk/up
   rotate: false
-  xy: 324, 196
+  xy: 614, 418
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+monsters/eyesore/field/walk/up
+  rotate: false
+  xy: 614, 418
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 10
+monsters/eyesore/field/dead/up
+  rotate: false
+  xy: 132, 230
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+monsters/eyesore/field/attack/up
+  rotate: false
+  xy: 132, 230
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+monsters/eyesore/field/cast/up
+  rotate: false
+  xy: 132, 230
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+monsters/eyesore/field/jump/up
+  rotate: false
+  xy: 132, 230
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+monsters/eyesore/field/ouch/up
+  rotate: false
+  xy: 132, 230
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+monsters/eyesore/field/stand/up
+  rotate: false
+  xy: 132, 230
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+monsters/eyesore/field/walk/up
+  rotate: false
+  xy: 132, 230
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+monsters/eyesore/field/dead/up
+  rotate: false
+  xy: 198, 296
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 5
+monsters/eyesore/field/attack/up
+  rotate: false
+  xy: 198, 296
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 5
+monsters/eyesore/field/cast/up
+  rotate: false
+  xy: 198, 296
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 5
+monsters/eyesore/field/jump/up
+  rotate: false
+  xy: 198, 296
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 5
+monsters/eyesore/field/ouch/up
+  rotate: false
+  xy: 198, 296
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 5
+monsters/eyesore/field/stand/up
+  rotate: false
+  xy: 198, 296
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 5
+monsters/eyesore/field/walk/up
+  rotate: false
+  xy: 198, 296
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 5
+monsters/eyesore/field/dead/up
+  rotate: false
+  xy: 264, 362
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 6
 monsters/eyesore/field/attack/up
   rotate: false
-  xy: 324, 130
+  xy: 264, 362
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 6
+monsters/eyesore/field/cast/up
+  rotate: false
+  xy: 264, 362
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 6
+monsters/eyesore/field/jump/up
+  rotate: false
+  xy: 264, 362
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 6
+monsters/eyesore/field/ouch/up
+  rotate: false
+  xy: 264, 362
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 6
+monsters/eyesore/field/stand/up
+  rotate: false
+  xy: 264, 362
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 6
+monsters/eyesore/field/walk/up
+  rotate: false
+  xy: 264, 362
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 6
+monsters/eyesore/field/dead/up
+  rotate: false
+  xy: 132, 164
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 7
+monsters/eyesore/field/attack/up
+  rotate: false
+  xy: 132, 164
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 7
 monsters/eyesore/field/cast/up
   rotate: false
-  xy: 324, 130
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 7
-monsters/eyesore/field/dead/up
-  rotate: false
-  xy: 324, 130
+  xy: 132, 164
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 7
 monsters/eyesore/field/jump/up
   rotate: false
-  xy: 324, 130
+  xy: 132, 164
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 7
 monsters/eyesore/field/ouch/up
   rotate: false
-  xy: 324, 130
+  xy: 132, 164
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 7
 monsters/eyesore/field/stand/up
   rotate: false
-  xy: 324, 130
+  xy: 132, 164
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 7
 monsters/eyesore/field/walk/up
   rotate: false
-  xy: 324, 130
+  xy: 132, 164
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 7
 skills/crosscall/battler/crosscall
   rotate: false
-  xy: 1728, 712
+  xy: 1943, 1940
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: 1
 skills/crosscall/battler/crosscall
   rotate: false
-  xy: 962, 554
+  xy: 1943, 1838
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: 2
 skills/crosscall/battler/crosscall
   rotate: false
-  xy: 1064, 582
+  xy: 1733, 1730
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: 3
 skills/crosscall/battler/crosscall
   rotate: false
-  xy: 1166, 582
+  xy: 1835, 1730
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: 4
 skills/crosscall/battler/crosscall
   rotate: false
-  xy: 1268, 582
+  xy: 1564, 1288
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: 5
 skills/crosscall/battler/crosscall
   rotate: false
-  xy: 1865, 764
+  xy: 1406, 1232
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: 6
 skills/crosscall/battler/crosscall
   rotate: false
-  xy: 1370, 582
+  xy: 1386, 1130
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: 7
 skills/crosscall/battler/crosscall
   rotate: false
-  xy: 1472, 606
+  xy: 570, 682
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: 8
 skills/crosscall/battler/crosscall
   rotate: false
-  xy: 1574, 606
+  xy: 672, 682
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: 9
+skills/red_spin/battler/red_spin
+  rotate: false
+  xy: 2, 1767
+  size: 772, 273
+  orig: 772, 273
+  offset: 0, 0
+  index: 1
+skills/red_spin/battler/red_spin
+  rotate: false
+  xy: 2, 1492
+  size: 772, 273
+  orig: 772, 273
+  offset: 0, 0
+  index: 2
+skills/red_spin/battler/red_spin
+  rotate: false
+  xy: 776, 1767
+  size: 772, 273
+  orig: 772, 273
+  offset: 0, 0
+  index: 3
+skills/red_spin/battler/red_spin
+  rotate: false
+  xy: 2, 1217
+  size: 772, 273
+  orig: 772, 273
+  offset: 0, 0
+  index: 4
+skills/red_spin/battler/red_spin
+  rotate: false
+  xy: 776, 1492
+  size: 772, 273
+  orig: 772, 273
+  offset: 0, 0
+  index: 5
+skills/red_spin/battler/red_spin
+  rotate: false
+  xy: 2, 942
+  size: 772, 273
+  orig: 772, 273
+  offset: 0, 0
+  index: 6
 skills/red_spin/field/red_spin
   rotate: false
-  xy: 1865, 866
+  xy: 566, 784
   size: 156, 156
   orig: 156, 156
   offset: 0, 0
   index: 1
 skills/red_spin/field/red_spin
   rotate: false
-  xy: 230, 656
+  xy: 1406, 1334
   size: 156, 156
   orig: 156, 156
   offset: 0, 0
   index: 2
 skills/red_spin/field/red_spin
   rotate: false
-  xy: 388, 656
+  xy: 776, 914
   size: 156, 156
   orig: 156, 156
   offset: 0, 0
   index: 3
 skills/red_spin/field/red_spin
   rotate: false
-  xy: 546, 656
+  xy: 934, 914
   size: 156, 156
   orig: 156, 156
   offset: 0, 0
   index: 4
 skills/red_spin/field/red_spin
   rotate: false
-  xy: 704, 656
+  xy: 1092, 914
   size: 156, 156
   orig: 156, 156
   offset: 0, 0
   index: 5
 skills/wiccan_cross/field/wiccan_cross
   rotate: false
-  xy: 824, 396
+  xy: 1196, 1079
+  size: 52, 16
+  orig: 52, 16
+  offset: 0, 0
+  index: 22
+skills/wiccan_cross/field/wiccan_cross
+  rotate: false
+  xy: 984, 598
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
   index: 1
 skills/wiccan_cross/field/wiccan_cross
   rotate: false
-  xy: 824, 342
+  xy: 1038, 598
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
   index: 2
 skills/wiccan_cross/field/wiccan_cross
   rotate: false
-  xy: 824, 288
+  xy: 746, 544
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
   index: 3
 skills/wiccan_cross/field/wiccan_cross
   rotate: false
-  xy: 324, 22
+  xy: 746, 490
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
   index: 4
 skills/wiccan_cross/field/wiccan_cross
   rotate: false
-  xy: 716, 234
+  xy: 800, 544
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
   index: 5
 skills/wiccan_cross/field/wiccan_cross
   rotate: false
-  xy: 770, 234
+  xy: 746, 436
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
   index: 6
 skills/wiccan_cross/field/wiccan_cross
   rotate: false
-  xy: 824, 234
+  xy: 800, 490
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
   index: 7
 skills/wiccan_cross/field/wiccan_cross
   rotate: false
-  xy: 714, 180
+  xy: 854, 544
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
   index: 8
 skills/wiccan_cross/field/wiccan_cross
   rotate: false
-  xy: 768, 180
+  xy: 800, 436
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
   index: 9
 skills/wiccan_cross/field/wiccan_cross
   rotate: false
-  xy: 822, 180
+  xy: 854, 490
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
   index: 10
 skills/wiccan_cross/field/wiccan_cross
   rotate: false
-  xy: 714, 126
+  xy: 908, 544
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
   index: 11
 skills/wiccan_cross/field/wiccan_cross
   rotate: false
-  xy: 768, 126
+  xy: 854, 436
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
   index: 12
 skills/wiccan_cross/field/wiccan_cross
   rotate: false
-  xy: 822, 126
+  xy: 908, 490
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
   index: 13
 skills/wiccan_cross/field/wiccan_cross
   rotate: false
-  xy: 390, 100
+  xy: 962, 544
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
   index: 14
 skills/wiccan_cross/field/wiccan_cross
   rotate: false
-  xy: 444, 100
+  xy: 908, 436
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
   index: 15
 skills/wiccan_cross/field/wiccan_cross
   rotate: false
-  xy: 498, 100
+  xy: 962, 490
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
   index: 16
 skills/wiccan_cross/field/wiccan_cross
   rotate: false
-  xy: 552, 100
+  xy: 1016, 544
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
   index: 17
 skills/wiccan_cross/field/wiccan_cross
   rotate: false
-  xy: 606, 100
+  xy: 962, 436
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
   index: 18
 skills/wiccan_cross/field/wiccan_cross
   rotate: false
-  xy: 660, 100
+  xy: 1016, 490
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
   index: 19
 skills/wiccan_cross/field/wiccan_cross
   rotate: false
-  xy: 660, 100
+  xy: 1016, 490
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
   index: 21
 skills/wiccan_cross/field/wiccan_cross
   rotate: false
-  xy: 660, 100
+  xy: 1016, 490
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
   index: 20
-skills/wiccan_cross/field/wiccan_cross
-  rotate: false
-  xy: 1410, 690
-  size: 52, 16
-  orig: 52, 16
-  offset: 0, 0
-  index: 22

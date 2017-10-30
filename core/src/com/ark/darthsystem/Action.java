@@ -175,102 +175,100 @@ public class Action implements Serializable {
      */
     public void calculateDamage(Battle b) {
         damage = 0;
-        if (checkStatus(b)) {
-            switch (actionCommand) {
-                case Attack:
-                    damage = (int) ((caster.getAttack() *
-                            ATTACK_CONSTANT -
-                            target.getDefense() * DEFENSE_CONSTANT) /
-                            ATTACK_RATIO *
-                            (caster.getEquipment(Equipment.EquipmentType.MainHand.getSlot()) != null &&
-                            caster.getEquipment(Equipment.EquipmentType.MainHand.getSlot()).getElement() != Battle.Element.Physical &&
-                            caster.getEquipment(Equipment.EquipmentType.MainHand.getSlot()).getElement() ==
-                            target.getElement().getWeakness() ? 2 : 1) * (caster.getEquipment(Equipment.EquipmentType.MainHand.getSlot()) != null &&
-                            caster.getEquipment(Equipment.EquipmentType.MainHand.getSlot()).getElement() != Battle.Element.Physical &&
-                            caster.getEquipment(Equipment.EquipmentType.MainHand.getSlot()).getElement() ==
-                            caster.getElement() ? 1.5 : 1) *
-                            (caster.getEquipment(Equipment.EquipmentType.MainHand.getSlot()) != null &&
-                            caster.getEquipment(Equipment.EquipmentType.MainHand.getSlot()).getElement() != Battle.Element.Physical &&
-                            caster.getEquipment(Equipment.EquipmentType.MainHand.getSlot()).getElement() == target.getElement() ? -1 : 1) * (caster.getEquipment(Equipment.EquipmentType.MainHand.getSlot()) !=null &&
-                            caster.getEquipment(Equipment.EquipmentType.MainHand.getSlot()).getElement() != Battle.Element.Physical &&
-                            target.getEquipment(Equipment.EquipmentType.OffHand.getSlot()) != null &&
-                            caster.getEquipment(Equipment.EquipmentType.MainHand.getSlot()).getElement() == target.getEquipment(Equipment.EquipmentType.OffHand.getSlot()).getElement() ? .5 : 1) * (.9 + Math.random() * .25));
-                    setNewTarget();
-                    damageStep(b, damage);
-                    break;
-                case Defend:
-                    break;
-                case Skill:
-                    if (actionSkill.getCost() > caster.getMP()) {
-                        print("However, " + caster.getName() + " doesn't have enough MP!");
+        switch (actionCommand) {
+            case Attack:
+                damage = (int) ((caster.getAttack() *
+                        ATTACK_CONSTANT -
+                        target.getDefense() * DEFENSE_CONSTANT) /
+                        ATTACK_RATIO *
+                        (caster.getEquipment(Equipment.EquipmentType.MainHand.getSlot()) != null &&
+                        caster.getEquipment(Equipment.EquipmentType.MainHand.getSlot()).getElement() != Battle.Element.Physical &&
+                        caster.getEquipment(Equipment.EquipmentType.MainHand.getSlot()).getElement() ==
+                        target.getElement().getWeakness() ? 2 : 1) * (caster.getEquipment(Equipment.EquipmentType.MainHand.getSlot()) != null &&
+                        caster.getEquipment(Equipment.EquipmentType.MainHand.getSlot()).getElement() != Battle.Element.Physical &&
+                        caster.getEquipment(Equipment.EquipmentType.MainHand.getSlot()).getElement() ==
+                        caster.getElement() ? 1.5 : 1) *
+                        (caster.getEquipment(Equipment.EquipmentType.MainHand.getSlot()) != null &&
+                        caster.getEquipment(Equipment.EquipmentType.MainHand.getSlot()).getElement() != Battle.Element.Physical &&
+                        caster.getEquipment(Equipment.EquipmentType.MainHand.getSlot()).getElement() == target.getElement() ? -1 : 1) * (caster.getEquipment(Equipment.EquipmentType.MainHand.getSlot()) !=null &&
+                        caster.getEquipment(Equipment.EquipmentType.MainHand.getSlot()).getElement() != Battle.Element.Physical &&
+                        target.getEquipment(Equipment.EquipmentType.OffHand.getSlot()) != null &&
+                        caster.getEquipment(Equipment.EquipmentType.MainHand.getSlot()).getElement() == target.getEquipment(Equipment.EquipmentType.OffHand.getSlot()).getElement() ? .5 : 1) * (.9 + Math.random() * .25));
+                setNewTarget();
+                damageStep(b, damage);
+                break;
+            case Defend:
+                break;
+            case Skill:
+                if (actionSkill.getCost() > caster.getMP()) {
+                    print("However, " + caster.getName() + " doesn't have enough MP!");
+                } else {
+                    caster.changeMP(actionSkill.getCost());
+                    if (!actionSkill.getAll()) {
+                        setNewTarget();
+                        damage = actionSkill.calculateDamage(caster, target);
+                        damageStep(b, damage);
                     } else {
-                        caster.changeMP(actionSkill.getCost());
-                        if (!actionSkill.getAll()) {
-                            setNewTarget();
-                            damage = actionSkill.calculateDamage(caster, target);
-                            damageStep(b, damage);
-                        } else {
-                            allDamageStep(b);
-                        }
+                        allDamageStep(b);
                     }
-                    break;
-                case Charge:
-                    caster.charge();
-                    print(caster.getName() +
-                            "'s MP has been restored!");
-                    break;
-                case Item:
-                    if (actionItem.getInvoke() == null) {
-                        while (!target.isAlive()) {
-                            setNewTarget();
-                        }
-                        if (actionItem.getHPValue() > 0) {
-                            print(target.getName() +
-                                    "'s HP is restored by " +
-                                    actionItem.getHPValue() +
-                                    "!");
-                        }
-                        if (actionItem.getMPValue() >
-                                0) {
-                            print(target.getName() +
-                                    "'s MP is restored by " +
-                                    actionItem.getMPValue() +
-                                    "!");
-                        }
-                        target.changeHP(-actionItem.getHPValue());
-                        target.changeMP(-actionItem.getMPValue());
+                }
+                break;
+            case Charge:
+                caster.charge();
+                print(caster.getName() +
+                        "'s MP has been restored!");
+                break;
+            case Item:
+                if (actionItem.getInvoke() == null) {
+                    while (!target.isAlive()) {
+                        setNewTarget();
+                    }
+                    if (actionItem.getHPValue() > 0) {
+                        print(target.getName() +
+                                "'s HP is restored by " +
+                                actionItem.getHPValue() +
+                                "!");
+                    }
+                    if (actionItem.getMPValue() > 0) {
+                        print(target.getName() +
+                                "'s MP is restored by " +
+                                actionItem.getMPValue() +
+                                "!");
+                    }
+                    target.changeHP(-actionItem.getHPValue());
+                    target.changeMP(-actionItem.getMPValue());
+                } else {
+                    actionSkill = actionItem.getInvoke();
+                    if ((actionItem.useMP() &&
+                            actionSkill.getCost() > caster.getMP())) {
+                        print("However, " +
+                                caster.getName() +
+                                " doesn't have enough MP!");
+                    }
+                    if (actionItem.getAll()) {
+                        allDamageStep(b);
                     } else {
-                        actionSkill = actionItem.getInvoke();
-                        if ((actionItem.useMP() &&
-                                actionSkill.getCost() > caster.getMP())) {
-                            print("However, " +
-                                    caster.getName() +
-                                    " doesn't have enough MP!");
-                        }
-                        if (actionItem.getAll()) {
-                            allDamageStep(b);
-                        } else {
-                            damageStep(b, actionSkill.calculateDamage(caster, target));
-                        }
+                        damageStep(b, actionSkill.calculateDamage(caster, target));
                     }
-                    if (actionItem.getExpendable()) {
-                        actionItem.decreaseQuantity(1);
-                        if (actionItem.getQuantity() <= 0) {
-                            b.getItem().remove(actionItem);
-                        }
+                }
+                if (actionItem.getExpendable()) {
+                    actionItem.decreaseQuantity(1);
+                    if (actionItem.getQuantity() <= 0) {
+                        b.getItem().remove(actionItem);
                     }
-                    break;
-                case Delay:
+                }
+                break;
+            case Delay:
 //                    (b).calculateDamage(b);
-                    break;
-                case Analyze:
+                break;
+            case Analyze:
 //                    printline(caster.getName() + " analyzes the situation.");
 //                    printStats(b.getEnemy());
-                    break;
-                case Run:
-                    b.exitBattle();
-            }
+                break;
+            case Run:
+                b.exitBattle();
         }
+
 
     }
 
@@ -402,8 +400,7 @@ public class Action implements Serializable {
     }
 
     private int criticalHit() {
-        if (damage >
-                0 &&
+        if (damage > 0 &&
                 caster.getAttack() / 255 +
                 caster.getSpeed() / 255 +
                 caster.getMagic() / 510 >
@@ -424,7 +421,7 @@ public class Action implements Serializable {
         return 1;
     }
 
-    private boolean checkStatus(Battle b) {
+    public boolean checkStatus(Battle b) {
         boolean move = true;
         switch (caster.getStatus()) {
             case Sleep:
@@ -440,8 +437,8 @@ public class Action implements Serializable {
                 }
                 break;
             case Poison:
-                printline(caster.getName() + " takes " + (caster.getMaxHP() / 14) + " damage from the poison.");
-                if (caster.changeHP(caster.getMaxHP() / 14)) {
+                printline(caster.getName() + " takes " + (caster.getMaxHP() / 20) + " damage from the poison.");
+                if (caster.changeHP(caster.getMaxHP() / 20)) {
                     printline(caster.getName() + " has collapsed from the poison!");
                     move = false;
                 }

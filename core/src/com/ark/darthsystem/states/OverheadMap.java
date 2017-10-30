@@ -397,7 +397,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                 MapProperties properties = object.getProperties();
                 if (properties.get("type", String.class) != null && properties.get("type", String.class).equalsIgnoreCase("actor")) {
                     MonsterDatabase.monsters.get(properties.get("parameters", String.class).toUpperCase()
-                    ).clone().setMap(this, properties.get("x", Float.class) / ppt, properties.get("y", Float.class) / ppt);
+                    ).clone().setMap(this, properties.get("x", Float.class) / PlayerCamera.PIXELS_TO_METERS, properties.get("y", Float.class) / PlayerCamera.PIXELS_TO_METERS);
                     continue;
                 }
 

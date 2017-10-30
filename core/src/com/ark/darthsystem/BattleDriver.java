@@ -1,12 +1,3 @@
-/**
- * Name: Keven Tran
- * Course Number: COSC 9999
- * Assignment 1
- * Instructor: Ms. Doreschuk
- * Due: 9/19/2017
- * BattleDriver is a bunch of static functions used to assist the Battle State.
- * Java, compiled in eclipse.
- */
 package com.ark.darthsystem;
 
 import com.ark.darthsystem.graphics.GraphicsDriver;

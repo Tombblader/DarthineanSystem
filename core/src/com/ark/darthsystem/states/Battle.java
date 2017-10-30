@@ -14,6 +14,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import java.util.ArrayList;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 
 public class Battle implements State {
@@ -211,10 +212,8 @@ public class Battle implements State {
             sounds.add(tempSkill.getBattlerSound());
             animations.add(tempSkill.getBattlerAnimation());
 //            animations.get(animations.size() - 1).setX((float) ((GraphicsDriver.getWidth() + divider * (enemy.indexOf(tempBattler) - 1)) / 2 + divider * enemy.indexOf(tempBattler)));
-            animations.get(animations.size() - 1).setX(divider * ((enemy.indexOf(tempBattler) + 1)));
-                        
-
-            animations.get(animations.size() - 1).setY(BATTLER_Y);
+                animations.get(animations.size() - 1).setX(divider * ((enemy.indexOf(tempBattler) + 1)));
+                animations.get(animations.size() - 1).setY(BATTLER_Y);
         }
         if (currentAction.getCommand() == Command.Skill && 
                 (currentAction.getSkill().getAll()) &&
@@ -223,8 +222,8 @@ public class Battle implements State {
             ActorSkill tempSkill = Database2.SkillToActor(currentAction.getSkill());
             sounds.add(tempSkill.getBattlerSound());
             animations.add(tempSkill.getBattlerAnimation());
-            animations.get(animations.size() - 1).setX(GraphicsDriver.getWidth() / 2f);
-            animations.get(animations.size() - 1).setY(GraphicsDriver.getHeight() / 2f);
+            animations.get(animations.size() - 1).setX((GraphicsDriver.getWidth() - animations.get(0).getWidth()) / 2);
+            animations.get(animations.size() - 1).setY((GraphicsDriver.getHeight() - animations.get(0).getHeight()) / 2f);
         }
         if (currentAction.getCommand() == Command.Attack && 
                 currentAction.getTarget() instanceof BattlerAI) {
@@ -261,23 +260,39 @@ public class Battle implements State {
     public void reorder() {
         allAction.addAll(partyAction);
         allAction.addAll(enemyAction);
-        for (int i = 0; i < allAction.size(); i++) {
-            for (int j = 0; j < allAction.size(); j++) {
-                if (!(allAction.get(i) == null ||  allAction.get(j) == null)) {
-                    if (allAction.get(i).getCaster().getSpeed() > allAction.get(j).getCaster().getSpeed() ||
-                            (allAction.get(j).getCaster().getSpeed() == allAction.get(j).getCaster().getSpeed() && 
-                            Math.random() < .5)) {
-                        Collections.swap(allAction, i, j);
-                    }
-                }
+        Collections.sort(allAction, (Comparator<Action>) (a1, a2) -> {
+            if (a1 == null) {
+                return 1;
             }
-        }
+            if (a2 == null) {
+                return -1;
+            }
+            if (a1.getCaster().getSpeed() > a2.getCaster().getSpeed() ||
+                    (a1.getCaster().getSpeed() == a2.getCaster().getSpeed() && 
+                    Math.random() < .5)) {
+                return -1;
+            }
+            return 1;
+        });
+//        for (int i = 0; i < allAction.size(); i++) {
+//            for (int j = 0; j < allAction.size(); j++) {
+//                if (!(allAction.get(i) == null ||  allAction.get(j) == null)) {
+//                    if (allAction.get(i).getCaster().getSpeed() > allAction.get(j).getCaster().getSpeed() ||
+//                            (allAction.get(j).getCaster().getSpeed() == allAction.get(j).getCaster().getSpeed() && 
+//                            Math.random() < .5)) {
+//                        Collections.swap(allAction, i, j);
+//                    }
+//                }
+//            }
+//        }
     }
 
     public void actionCalculator() {
         for (Action allAction1 : allAction) {
             if (!(allAction1 == null) && allAction1.getCaster().isAlive()) {
-                allAction1.calculateDamage(this);
+                if (allAction1.checkStatus(this)) {
+                    allAction1.calculateDamage(this);
+                }
                 if (hasWon() || hasLost()) {
                     break;
                 }
@@ -452,7 +467,9 @@ public class Battle implements State {
                         } else if (State.ACTION.getTicks() % 2 == 0) {
                             currentAction = allAction.get(State.ACTION.getTicks() / 2 - 1);
                             if (!(currentAction == null) && currentAction.getCaster().isAlive()) {
-                                currentAction.calculateDamage(this);
+                                if (currentAction.checkStatus(this)) {
+                                    currentAction.calculateDamage(this);
+                                }
                                 if (!allAction.isEmpty() && currentAction.getCommand() != Command.Run) {
                                 
                                 }
@@ -567,7 +584,7 @@ public class Battle implements State {
         
         Normal(1, 1.0, 0.0, 0, "'s wounds are healed!"),
         Death(8, .10, 0.0, 0, " has instantly died!"),
-        Poison(3, .25, 0.1, 7, " has been poisoned!"),
+        Poison(3, .25, 0, 0, " has been poisoned!"),
         Stun(4, .25, 0.1, 1, 0.0, " has fallen asleep!"),
         Paralyze(3, .25, 0.1, 4, 0.0, " is paralyzed!"),
         Sleep(3, .25, 0.1, 8, 0.5, " has fallen asleep!"),

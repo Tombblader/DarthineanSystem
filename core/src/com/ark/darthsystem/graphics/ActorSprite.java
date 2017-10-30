@@ -109,15 +109,15 @@ public class ActorSprite implements Serializable {
         currentBattlerImage = spriteSheetBattler.get(SpriteModeBattler.BATTLER);
     }
 
-    public Animation getFieldAnimation(SpriteModeField field, Actor.Facing facing) {
+    public Animation<Sprite> getFieldAnimation(SpriteModeField field, Actor.Facing facing) {
         return (spriteSheetField.get(field)).get(facing);
     }
 
-    public Animation getFaceAnimation(SpriteModeFace face) {
+    public Animation<Sprite> getFaceAnimation(SpriteModeFace face) {
         return spriteSheetFace.get(face);
     }
 
-    public Animation getBattlerAnimation(SpriteModeBattler battler) {
+    public Animation<Sprite> getBattlerAnimation(SpriteModeBattler battler) {
         return spriteSheetBattler.get(battler);
     }
 
@@ -138,15 +138,15 @@ public class ActorSprite implements Serializable {
         currentBattlerImage = spriteSheetBattler.get(battler);
     }
 
-    public Animation getCurrentFieldAnimation() {
+    public Animation<Sprite> getCurrentFieldAnimation() {
         return currentFieldImage;
     }
 
-    public Animation getCurrentFaceAnimation() {
+    public Animation<Sprite> getCurrentFaceAnimation() {
         return currentFaceImage;
     }
 
-    public Animation getCurrentBattlerAnimation() {
+    public Animation<Sprite> getCurrentBattlerAnimation() {
         return currentBattlerImage;
     }
     public enum SpriteModeFace {

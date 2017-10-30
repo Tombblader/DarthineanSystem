@@ -9,7 +9,6 @@ import com.ark.darthsystem.AI;
 import com.ark.darthsystem.BattlerAI;
 import static com.ark.darthsystem.graphics.ActorAI.State.*;
 import com.ark.darthsystem.states.OverheadMap;
-import com.ark.darthsystem.states.events.Event;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;

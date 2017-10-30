@@ -10,11 +10,17 @@ import java.util.HashMap;
  */
 public class BattlerClass implements Serializable, Nameable {
 
+    private String name;
+    private Equipment[] equipmentList;
+    private HashMap<Integer, Skill[]> skillList;
+    private int[] growthList;
+
     /**
      *
      */
     public BattlerClass() {
         skillList = new HashMap<>();
+        growthList = new int[]{0, 0, 0, 0, 0, 0};
     }
 
     /**
@@ -27,6 +33,7 @@ public class BattlerClass implements Serializable, Nameable {
         this.name = name;
         equipmentList = equipmentSet;
         skillList = skillSet;
+        growthList = new int[]{0, 0, 0, 0, 0, 0};
     }
 
     /**
@@ -62,7 +69,4 @@ public class BattlerClass implements Serializable, Nameable {
     public Skill[] getSkill(int index) {
         return skillList.get(index);
     }
-    private String name;
-    private Equipment[] equipmentList;
-    private HashMap<Integer, Skill[]> skillList;
 }

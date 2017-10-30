@@ -43,7 +43,7 @@ public class Database2 extends Database1 {
                                 ActorSkill.Area.FRONT));
                 put(SkillDatabase.Red_Spin,
                         new ActorSkill("skills/red_spin/field/red_spin",
-                                "skills/crosscall/battler/crosscall",
+                                "skills/red_spin/battler/red_spin",
                                 0,
                                 0,
                                 1.0f / 12.0f,

@@ -430,7 +430,7 @@ public class ActorSkill extends ActorCollision {
                 s.add(new Sprite((TextureRegion) r));
                 s.peek().flip(true, false);
             }
-            leftAnimation = new Animation(tempSkill.getDelay(), s);
+            leftAnimation = new Animation<>(tempSkill.getDelay(), s);
             leftAnimation.setPlayMode(Animation.PlayMode.LOOP);
             tempSkill.setInvoker(invoker);
             tempSkill.setX(invoker);

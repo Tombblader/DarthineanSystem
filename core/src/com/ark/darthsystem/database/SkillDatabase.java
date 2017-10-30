@@ -19,10 +19,10 @@ public class SkillDatabase {
     public static final HashMap<String, Skill> SKILL_LIST = new HashMap<>();
     
     public SkillDatabase() {
-        FileHandle file = Gdx.files.internal("databases/skills.csv");
+        FileHandle file = Gdx.files.internal("databases/skills.tsv");
         String[] massiveString = file.readString().split("(\r\n|\r|\n)");
         for (String token : massiveString) {
-            String[] data = token.split(",");
+            String[] data = token.split("\t");
             if (data[0].equals("Name")) {
                 continue;
             }

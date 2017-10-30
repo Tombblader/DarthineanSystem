@@ -23,7 +23,7 @@ import com.badlogic.gdx.utils.Array;
 public class Actor {
     
 
-    private Animation animation;
+    private Animation<Sprite> animation;
     private Sprite currentImage;
     private OverheadMap currentMap;
     private float delay;
@@ -148,7 +148,7 @@ public class Actor {
     public void enableMovement() {
         isMovable = true;
     }
-    public Animation getCurrentAnimation() {
+    public Animation<Sprite> getCurrentAnimation() {
         return animation;
     }
     public Sprite getCurrentImage() {

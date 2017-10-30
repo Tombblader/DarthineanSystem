@@ -55,7 +55,7 @@ public class Message implements State {
     }
 
     public Message(ArrayList<String> getMessage) {
-        this.MESSAGE_HEIGHT = GraphicsDriver.getHeight() / 8;
+        this();
         messageQueue = new LinkedList<>();
         message = new Message();
         currentMessage = getMessage;

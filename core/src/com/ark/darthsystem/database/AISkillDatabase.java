@@ -20,7 +20,7 @@ public class AISkillDatabase {
             Battle.Element.Dark,
             false, //Targets ally?
             false, //Targets all?
-            Battle.Stats.Normal, //Inflict Status?
+            Battle.Stats.Poison, //Inflict Status?
             0, 0.0, 0.0, //Level Difference/HP%/MP%
             0, 0,
             0, 11,

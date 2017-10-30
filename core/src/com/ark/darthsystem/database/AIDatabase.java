@@ -38,7 +38,7 @@ public class AIDatabase {
             26, 9, 7, 4, 4, 4, new BattlerClass(),
             new Equipment[]{null, null, null, null, null}, Brainless,
             20, ItemDatabase.Potion, 1);
-    public static BattlerAI Undead_Darth =
+    public static BattlerAI Undead_Darth = 
             new BattlerAI("Darth???", Battle.Element.Dark, Battler.Gender.Male,
             5, 250, 34, 13, 9, 13, 13, Magic_Knight_Class, Magic_Knight, Standard, 100, ItemDatabase.Bronze_Sword,
             1);

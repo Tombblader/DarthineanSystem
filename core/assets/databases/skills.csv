@@ -1,61 +1,61 @@
-CrossCall,Light Elemental Sword Tech.  Deals damage based on both ATK and MAG.,5,Light,TRUE,FALSE,Normal,0,0,0,6,0,0,6,0,3,0,3,5.5
-Witches' Cross,Dark Elemental Sword Tech.  Based on the Devil's Number.,6,Dark,TRUE,FALSE,Normal,6,0,0,6,0,6,6,0,5,5,5,6.66
+CrossCall,Light Sword Tech.  Deals damage based on both ATK and MAG.,5,Light,TRUE,FALSE,Normal,0,0,0,6,0,0,6,0,3,0,3,5.5
+Witches' Cross,Dark Sword Tech.  Based on the Devil's Number.,6,Dark,TRUE,FALSE,Normal,6,0,0,6,0,6,6,0,5,5,5,6.66
 Leg Sweep,Spear Tech.  Deals damage based on how slow you are compared to your enemy.,5,Physical,FALSE,FALSE,Normal,0,1,0,0,0,-6,0,0,0,-10,0,6
-Red Spin,Physical Sword Tech.  Deals damage to all enemies in a circle.,6,Physical,FALSE,TRUE,Normal,2,0.5,0,10,0,0,0,0,6,0,0,6
+Red Spin,Sword Tech.  Deals damage to all enemies in a circle.,6,Physical,FALSE,TRUE,Normal,2,0.5,0,10,0,0,0,0,6,0,0,6
 Poison Edge,Dark Dagger Tech.  Weak attack that also poisons the enemy.,7,Dark,FALSE,FALSE,Poison,0,0,0,10,0,0,0,0,8,0,0,6
 Sap Shot,Water Magic Tech.  Fires a single shot of water at range.,4,Water,FALSE,FALSE,Normal,10,0,0,0,0,0,6,0,3,0,3,5
 Heal,Healing Magic Tech.  Heals at least 25 HP.,3,Heal,TRUE,FALSE,Normal,-20,0,0,0,0,0,-1,0,0,0,1,1
-Darth Fireball,Fire Magic Tech.  Fires a single shot of fire at range.,4,Fire,FALSE,FALSE,Normal,20,0,0,0,0,0,6,0,3,0,3,5
+Darth Fireball,Fire Darth Magic Tech.  Fires a single shot of fire at range.,4,Fire,FALSE,FALSE,Normal,10,0,0,0,0,0,6,0,3,0,3,5
 Fireball,Fire Magic Tech.  Fires a single shot of fire at range.,4,Fire,FALSE,FALSE,Normal,10,0,0,0,0,0,7,0,0,0,5,5
-Red Flail,,9,Physical,FALSE,FALSE,Normal,6,0,0.6,6,0,0,0,0,6,0,0,6
-Tiger Thrust,,10,Physical,FALSE,FALSE,Normal,0,0,0,12,0,0,0,0,6,0,0,5.5
-Ray Assassin,,7,Physical,FALSE,FALSE,Normal,0,0,0,6,0,6,0,3,0,3,0,5.5
-Veather Report,,10,Male,FALSE,FALSE,Fog,0,0,0,0,0,0,0,0,0,0,0,1
-Nutcracker,,10,Female,FALSE,FALSE,Normal,0,0,0,1,0,0,0,1,-1,0,0,1
-Tornado Spin,,10,Wind,FALSE,TRUE,Normal,0,0,0,4,0,4,4,1,2,2,2,5.5
-Sword Dancer,,17,Physical,FALSE,TRUE,Normal,10,1,0,6,7,0,0,0,3,3,0,5.5
-Defense Rush,,12,Physical,FALSE,FALSE,Normal,0,0,0,3,9,0,0,1,5,0,0,5.5
-Thunder Thrust,,18,Wind,FALSE,TRUE,Normal,0,1,0,11,0,0,0,0,3,0,3,5.5
-Red Slayer,,9,Fire,FALSE,FALSE,Normal,0,0,0,10,0,0,0,5,0,0,0,5
-Veather Sprawl,,7,Male,FALSE,FALSE,Normal,0,0,0,1,0,0,3,0,2,0,-5,1.5
-Bladed Din,,9,Physical,FALSE,TRUE,Normal,0,0,0,12,0,0,0,6,0,0,0,6.5
-Brainwashing Axe,,14,Physical,FALSE,FALSE,Confuse,0,0,0,10,0,0,0,0,4,0,4,4.5
-Burial Swipe,,9,Earth,FALSE,FALSE,Normal,0,0,0,6,0,0,2,0,3,0,1,3.5
-Frozen Miasama,,12,Water,FALSE,TRUE,Normal,30,0,0,0,0,0,8,0,0,0,8,4
-Storm Gigas,,13,Wind,FALSE,TRUE,Normal,45,0,0,0,0,0,1,0,0,0,1,1
-Mud Hand,,12,Earth,FALSE,FALSE,Normal,55,0,0,0,0,0,1,0,0,0,1,1
-Silver Flame,,14,Fire,FALSE,FALSE,Normal,60,0,0,0,0,0,1,0,0,0,1,1
-Crystal Whirl,,18,Water,FALSE,FALSE,Normal,80,0,0,0,0,0,1,0,0,0,1,1
-Thunderstorm,,19,Wind,FALSE,FALSE,Normal,90,0,0,0,0,0,1,0,0,0,1,1
-Terra Wall,,20,Earth,FALSE,TRUE,Normal,67,0,0,0,0,0,6,0,3,0,3,6
-Inferno,,17,Fire,FALSE,TRUE,Normal,120,0,0,0,0,0,1,0,0,0,1,1
-Sleep,,3,Physical,FALSE,FALSE,Sleep,0,0,0,0,0,0,0,0,0,0,0,1
-Venomater,,4,Physical,FALSE,FALSE,Poison,0,0,0,0,0,0,0,0,0,0,0,1
-Hallucination,,9,Physical,FALSE,FALSE,Confuse,0,0,0,0,0,0,0,0,0,0,0,2
-Silence,,18,Physical,FALSE,FALSE,Silence,0,0,0,0,0,0,3,0,0,0,2,2
-Petrify,,20,Earth,FALSE,FALSE,Petrify,0,0,0,0,0,0,3,0,0,0,2,2
-Veather Charm,,10,Physical,FALSE,FALSE,Confuse,0,0,0,0,0,0,0,0,0,0,0,1
-Hypnosis Echo,,10,Physical,FALSE,TRUE,Sleep,0,0,0,0,0,0,0,0,0,0,0,1
-Toxic River,,13,Physical,FALSE,TRUE,Poison,0,0,0,0,0,0,0,0,0,0,0,1
-Black Miasama,,13,Dark,FALSE,TRUE,Fog,0,0,0,0,0,0,3,0,0,0,2,2
-White Curse,,25,Light,FALSE,TRUE,Silence,0,0,0,0,0,0,0,0,0,0,0,1
-Mass Hallucination,,26,Physical,FALSE,TRUE,Confuse,0,0,0,0,0,0,0,0,0,0,0,1
-Fossilize,,40,Physical,FALSE,TRUE,Petrify,0,0,0,0,0,0,0,0,0,0,0,1
-HealMore,,7,Heal,TRUE,FALSE,Normal,-70,0,0,0,0,0,-6,0,0,0,6,6
-HealAll,,12,Heal,TRUE,FALSE,Normal,-999,0,0,0,0,0,0,0,0,0,0,1
-HealUs,,15,Heal,TRUE,TRUE,Normal,-100,0,0,0,0,0,-6,0,0,0,6,6
-Antidote,,5,Heal,TRUE,FALSE,Poison,0,0,0,0,0,0,0,0,0,0,0,1
-Awaken,,7,Heal,TRUE,TRUE,Sleep,0,0,0,0,0,0,0,0,0,0,0,1
-Defog,,11,Heal,TRUE,TRUE,Fog,0,0,0,0,0,0,0,0,0,0,0,1
-Honey Voice,,9,Heal,TRUE,FALSE,Silence,0,0,0,0,0,0,0,0,0,0,0,1
-Diffuse,,12,Heal,TRUE,TRUE,Confuse,0,0,0,0,0,0,0,0,0,0,0,1
-Cell Rejuvination,,15,Heal,TRUE,FALSE,Petrify,0,0,0,0,0,0,0,0,0,0,0,1
-Revivify,,20,Heal,TRUE,FALSE,Death,-30,0.3,0,0,0,0,-6,0,0,0,6,6
-Seal Breaker,,23,Physical,FALSE,FALSE,Normal,0,0,0,10,0,0,-4,0,7,0,-8,6
-Reign of Terror,,21,Physical,FALSE,TRUE,Normal,0,0,0,13,0,0,0,0,7,0,0,5.5
-Weapon Master,,7,Physical,FALSE,TRUE,Normal,0,0,0,6,0,6,0,0,3,3,0,5
-Entropy,,7,Dark,FALSE,TRUE,Normal,0,0.35,0,0,0,0,13,0,0,0,6,8
-Four's Fury,,25,Light,FALSE,FALSE,Normal,0,0,0,7,0,0,7,0,3,0,4,7
-Axe Effect,,25,Earth,FALSE,TRUE,Fog,0,0,0,7,0,0,-7,0,3,0,-3,5
-Fairy Circle,,25,Light,FALSE,TRUE,Normal,0,0,0,7,0,7,7,0,3,3,4,5.5
-Darknight,,30,Dark,FALSE,FALSE,Normal,70,0,0,0,0,0,16,0,0,0,8,8
+Red Flail,Sword Tech.  Deals more damage the less HP you currently have.,9,Physical,FALSE,FALSE,Normal,6,0,0.6,6,0,0,0,0,6,0,0,6
+Tiger Thrust,Spear Tech.  High physical attack damage skill that rushes the enemy.,10,Physical,FALSE,FALSE,Normal,0,0,0,12,0,0,0,0,6,0,0,5.5
+Ray Assassin,Dagger Tech.  Quick shot of Mana Power hits enemy at a range and improves the faster you are.,7,Physical,FALSE,FALSE,Normal,0,0,0,6,0,6,0,3,0,3,0,5.5
+Veather Report,"Veather Tech.  Scans the enemy, but fogs up their judgment in the process.",10,Male,FALSE,FALSE,Fog,0,0,0,0,0,0,0,0,0,0,0,1
+Nutcracker,Physical attack.  An auto-crit against people with certain anatomies.,10,Female,FALSE,FALSE,Normal,0,0,0,1,0,0,0,1,-1,0,0,1
+Tornado Spin,"Wind Sword Tech.  Deals damage to all enemies based on Attack, Magic, and Speed.",10,Wind,FALSE,TRUE,Normal,0,0,0,4,0,4,4,1,2,2,2,5.5
+Sword Dancer,Sword Tech.  Damages all enemies around you.,17,Physical,FALSE,TRUE,Normal,10,1,0,6,7,0,0,0,3,3,0,5.5
+Defense Rush,Shield Tech.  Deals damage based on your defense.,12,Physical,FALSE,FALSE,Normal,0,0,0,3,9,0,0,1,5,0,0,5.5
+Thunder Thrust,Wind Spear Tech.  Deals lots of damage.,18,Wind,FALSE,TRUE,Normal,0,1,0,11,0,0,0,0,3,0,3,5.5
+Red Slayer,"Fire Sword Tech.  The less ATK the enemy has, the more damage this skill does.",9,Fire,FALSE,FALSE,Normal,0,0,0,10,0,0,0,5,0,0,0,5
+Veather Sprawl,Veather Tech.  Attack with your belly.,7,Male,FALSE,FALSE,Normal,0,0,0,1,0,0,3,0,2,0,-5,1.5
+Bladed Din,Axe Tech.  Silence target.,9,Physical,FALSE,TRUE,Silence,0,0,0,12,0,0,0,6,0,0,0,6.5
+Brainwashing Axe,Axe Tech.  Confuses target.,14,Physical,FALSE,FALSE,Confuse,0,0,0,10,0,0,0,0,4,0,4,4.5
+Burial Swipe,Earth Axe Tech.  Resisted by MAG as well.,9,Earth,FALSE,FALSE,Normal,0,0,0,6,0,0,2,0,3,0,1,3.5
+Frozen Miasama,Water Magic Tech.  Hits all enemies,12,Water,FALSE,TRUE,Normal,30,0,0,0,0,0,8,0,0,0,8,4
+Storm Gigas,Wind Magic Tech.  Hits all enemies.,13,Wind,FALSE,TRUE,Normal,45,0,0,0,0,0,1,0,0,0,1,1
+Mud Hand,Earth Magic Tech.  Slows enemy.,12,Earth,FALSE,FALSE,Normal,55,0,0,0,0,0,1,0,0,0,1,1
+Silver Flame,Fire Magic Tech.  Blinds enemy.,14,Fire,FALSE,FALSE,Fog,60,0,0,0,0,0,1,0,0,0,1,1
+Crystal Whirl,Water Magic Tech.,18,Water,FALSE,FALSE,Normal,80,0,0,0,0,0,1,0,0,0,1,1
+Thunderstorm,Wind Magic Tech.  Hits all enemies.,19,Wind,FALSE,TRUE,Normal,90,0,0,0,0,0,1,0,0,0,1,1
+Terra Wall,Earth Magic Tech.  Hits all enemies,20,Earth,FALSE,TRUE,Normal,67,0,0,0,0,0,6,0,3,0,3,6
+Inferno,Fire Magic Tech.  Hits all enemies.,17,Fire,FALSE,TRUE,Normal,120,0,0,0,0,0,1,0,0,0,1,1
+Sleep,Gray Magic Tech.  Puts one enemy to sleep.,3,Physical,FALSE,FALSE,Sleep,0,0,0,0,0,0,0,0,0,0,0,1
+Venomater,Gray Magic Tech.  Poisons one enemy.,4,Physical,FALSE,FALSE,Poison,0,0,0,0,0,0,0,0,0,0,0,1
+Hallucination,Gray Magic Tech.  Confuses one enemy.,9,Physical,FALSE,FALSE,Confuse,0,0,0,0,0,0,0,0,0,0,0,2
+Silence,Gray Magic Tech.  Silences one enemy.,18,Physical,FALSE,FALSE,Silence,0,0,0,0,0,0,3,0,0,0,2,2
+Petrify,Gray Magic Tech.  Petrify one enemy.,20,Earth,FALSE,FALSE,Petrify,0,0,0,0,0,0,3,0,0,0,2,2
+Veather Charm,"Veather Tech.  Perform a one-liner on the enemy and hope it's not a dude, but that's okay, because it'd just confuse them anyways.",10,Male,FALSE,FALSE,Confuse,0,0,0,0,0,0,0,0,0,0,0,1
+Hypnosis Echo,Gray Magic Tech.  Puts all enemies to sleep.,10,Physical,FALSE,TRUE,Sleep,0,0,0,0,0,0,0,0,0,0,0,1
+Toxic River,Gray Magic Tech.  Poisons all enemies.,13,Physical,FALSE,TRUE,Poison,0,0,0,0,0,0,0,0,0,0,0,1
+Black Miasama,Gray Magic Tech.  Blinds all enemies,13,Dark,FALSE,TRUE,Fog,0,0,0,0,0,0,3,0,0,0,2,2
+White Curse,Gray Magic Tech.  Silences all enemies.,25,Light,FALSE,TRUE,Silence,0,0,0,0,0,0,0,0,0,0,0,1
+Mass Hallucination,Gray Magic Tech.  Confuses all enemies.,26,Physical,FALSE,TRUE,Confuse,0,0,0,0,0,0,0,0,0,0,0,1
+Fossilize,Gray Magic Tech.  Petrify one enemy.,40,Physical,FALSE,TRUE,Petrify,0,0,0,0,0,0,0,0,0,0,0,1
+HealMore,Healing Tech.  Heals for at least 70 HP.,7,Heal,TRUE,FALSE,Normal,-70,0,0,0,0,0,-6,0,0,0,6,6
+HealAll,Healing Tech.  Heals an ally fully (probably).,12,Heal,TRUE,FALSE,Normal,-999,0,0,0,0,0,0,0,0,0,0,1
+HealUs,Healing Tech.  Heals all alies.,15,Heal,TRUE,TRUE,Normal,-100,0,0,0,0,0,-6,0,0,0,6,6
+Antidote,Healing Tech.  Removes poison from one ally.,5,Heal,TRUE,FALSE,Poison,0,0,0,0,0,0,0,0,0,0,0,1
+Awaken,Healing Tech.  Awakens all allies.,7,Heal,TRUE,TRUE,Sleep,0,0,0,0,0,0,0,0,0,0,0,1
+Defog,Healing Tech.  Removes Blindness from all allies.,11,Heal,TRUE,TRUE,Fog,0,0,0,0,0,0,0,0,0,0,0,1
+Honey Voice,Healing Tech.  Removes silence from one ally.,9,Heal,TRUE,FALSE,Silence,0,0,0,0,0,0,0,0,0,0,0,1
+Diffuse,Healing Tech.  Removes confusion from all allies,12,Heal,TRUE,TRUE,Confuse,0,0,0,0,0,0,0,0,0,0,0,1
+Cell Rejuvination,Healing Tech.  Removes Petrify from one ally.,15,Heal,TRUE,FALSE,Petrify,0,0,0,0,0,0,0,0,0,0,0,1
+Revivify,Healing Tech.  Raises the dead with at least 30 HP.,20,Heal,TRUE,FALSE,Death,-30,0.3,0,0,0,0,-6,0,0,0,6,6
+Seal Breaker,"Erik Tech.  Breaks barriers, and deals tons of damage to one enemy.",23,Physical,FALSE,FALSE,Normal,0,0,0,10,0,0,-4,0,7,0,-8,6
+Reign of Terror,Protox Tech.  Rains death on all enemies in a wide radius.,21,Physical,FALSE,TRUE,Normal,0,0,0,13,0,0,0,0,7,0,0,5.5
+Weapon Master,Gladia Tech.  Deals damage to all enemies.,7,Physical,FALSE,TRUE,Normal,0,0,0,6,0,6,0,0,3,3,0,5
+Entropy,Dark Darth Darth Tech.  Damage all enemies with darkness.,7,Dark,FALSE,TRUE,Normal,0,0.35,0,0,0,0,13,0,0,0,6,8
+Four's Fury,Light Darth Tech.  Warp to nearby enemy and smite.,25,Light,FALSE,FALSE,Normal,0,0,0,7,0,0,7,0,3,0,4,7
+Axe Effect,Veather Tech.  Legendary Ladies' Mann technique inflicts all status effects except death.,25,Earth,FALSE,TRUE,Fog,0,0,0,7,0,0,-7,0,3,0,-3,5
+Fairy Circle,NULL,25,Light,FALSE,TRUE,Normal,0,0,0,7,0,7,7,0,3,3,4,5.5
+Darknite,Dark Karin Tech.  Karn Edikt,30,Dark,FALSE,FALSE,Normal,70,0,0,0,0,0,16,0,0,0,8,8
