@@ -26,7 +26,7 @@ public class ChapterVeather extends Novel {
             BattleDriver.printline("Gladly!  I am the Ladies' Mann Veather Mann!  Ooooooh yeah!");
             BattleDriver.printline(Database2.player.getBattler(1), "I am so tired of you!  Why are you even here?!  Last I checked, you keep invading my temple!");
             BattleDriver.printline("Don't worry, I know you're the shy type!  You just pretend to be mean while on the inside you're just head over heels for me!"
-                    + "I'm here because I saw something fall here!  And.. I've found something amazing!");
+                    + "  I'm here because I saw something fall here!  And.. I've found something amazing!");
             BattleDriver.printline(Database2.player.getBattler(0), "Oh.. is that so...?");
             BattleDriver.printline("This is a body maker!  With this, I can create the perfect hottie!");
             BattleDriver.printline(Database2.player.getBattler(0), "Intern, that is your body!  If he takes control of it, then-");

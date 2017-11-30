@@ -8,7 +8,6 @@ package com.ark.darthsystem.graphics;
 import com.ark.darthsystem.database.CollisionDatabaseLoader;
 import com.ark.darthsystem.database.MapDatabase;
 import com.ark.darthsystem.states.OverheadMap;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;

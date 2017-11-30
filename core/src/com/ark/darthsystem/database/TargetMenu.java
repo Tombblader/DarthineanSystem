@@ -11,7 +11,7 @@ import com.ark.darthsystem.states.Menu;
  *
  * @author keven
  */
-public class TargetMenu  extends Menu {
+public class TargetMenu extends Menu {
 
     public TargetMenu(String header, String[] choices) {
         super(header, choices);

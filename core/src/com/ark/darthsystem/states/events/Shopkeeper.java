@@ -6,20 +6,21 @@
 package com.ark.darthsystem.states.events;
 
 import com.ark.darthsystem.Item;
+import com.ark.darthsystem.database.ShopMenu;
 
 /**
  *
  * @author keven
  */
 public class Shopkeeper extends Event {
-    Item[] inventory;
+    private Item[] inventory;
+    private ShopMenu menu;
     public Shopkeeper(String img, float getX, float getY, float delay) {
         super(img, getX, getY, delay);
     }
 
     @Override
     public void run() {
-        
     }
 
     @Override

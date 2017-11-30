@@ -795,12 +795,15 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
 
     public void appendMessage(String message) {
         this.message.add(message);
+        while (this.message.size() > 3) {
+            this.message.remove(0);
+        }
         elapsed = 0;
     }
 
     public void appendMessage(ArrayList<String> message) {
         this.message.addAll(message);
-        while (this.message.size() > 4) {
+        while (this.message.size() > 3) {
             this.message.remove(0);
         }
         elapsed = 0;

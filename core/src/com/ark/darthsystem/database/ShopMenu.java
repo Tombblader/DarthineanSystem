@@ -16,7 +16,10 @@ import java.util.stream.Collectors;
  */
 public class ShopMenu extends Menu {
     
-    Item[] itemList;
+    private Item[] itemList;
+    private TextBox descriptionWindow;
+    private Menu itemMenu;
+    private TextBox moneyMenu;
     public ShopMenu(String header, Item[] choices) {
         super(header, Arrays.stream(choices).map(i -> i.getName()).collect(Collectors.toList()).toArray(new String[0]));
         itemList = choices;

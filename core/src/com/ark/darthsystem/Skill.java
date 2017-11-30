@@ -211,17 +211,17 @@ public class Skill implements Serializable, Cloneable, Nameable {
                 statusEffect.isSuccessful(caster, target) &&
                 !(getElement() == Battle.Element.Heal)) {
             target.changeStatus(statusEffect, turnCount);
-            message = target.getName() + statusEffect.getMessage() + "\n";
+            message = target.getName() + statusEffect.getMessage();
         } else if ((target.getStatus() == statusEffect) &&
                 getElement() == Battle.Element.Heal) {
             message = target.getName() +
-                    (target.getStatus() == Battle.Stats.Death ? " has returned to life!\n" : "'s status has returned to normal!\n");
+                    (target.getStatus() == Battle.Stats.Death ? " has returned to life!" : "'s status has returned to normal!");
             if (statusEffect == Battle.Stats.Normal) {
                 message = target.getName() + statusEffect.getMessage() + "";
             }
             target.changeStatus(Battle.Stats.Normal, turnCount);
         } else {
-            message = (finalizeRatio > 0.0) ? "" : "But nothing happens! \n";
+            message = (finalizeRatio > 0.0) ? "" : "But nothing happens!";
         }
         return message;
     }

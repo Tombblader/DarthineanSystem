@@ -584,8 +584,8 @@ public class Battle implements State {
         
         Normal(1, 1.0, 0.0, 0, "'s wounds are healed!"),
         Death(8, .10, 0.0, 0, " has instantly died!"),
-        Poison(3, .25, 0, 0, " has been poisoned!"),
-        Stun(4, .25, 0.1, 1, 0.0, " has fallen asleep!"),
+        Poison(3, .25, .1, 0, " has been poisoned!"),
+        Stun(4, .25, 0.1, 1, 0.0, " is stunned!"),
         Paralyze(3, .25, 0.1, 4, 0.0, " is paralyzed!"),
         Sleep(3, .25, 0.1, 8, 0.5, " has fallen asleep!"),
         Silence(5, .25, 0.16, 6, "'s skills have been sealed!"),
@@ -656,13 +656,13 @@ public class Battle implements State {
         
         public boolean faded(Battler getCaster) {
             return (this != Battle.Stats.Normal
-                    && turnCount != 0
-                    && (turnCount >= getTurnCount() - getCaster.getTurnCount()
+                    && (turnCount != 0
+                    && (turnCount >= getTurnCount() - getCaster.getTurnCount()))
                     || (Math.random() <= fade
                     //                    - (1.0 / (101.1 - getCaster.getLevel())
                     //                    / (getCaster.getDefense() - getCaster.getLevel())
                     //                    / (getCaster.getMagic() - getCaster.getLevel()))
-                    )));
+                    ));
         }
         
         public boolean attackFaded() {

@@ -6,7 +6,6 @@
 package com.ark.darthsystem.graphics;
 
 import com.ark.darthsystem.BattleDriver;
-import static com.ark.darthsystem.BattleDriver.printline;
 import com.ark.darthsystem.Battler;
 import com.ark.darthsystem.database.Database2;
 import com.ark.darthsystem.database.DefaultMenu;
@@ -354,13 +353,14 @@ public class Player extends ActorCollision {
                         } else {
                             if (stat == Battle.Stats.Poison) {
                                 BattleDriver.printline(b.getName() + " takes " + (b.getMaxHP() / 20) + " damage from the poison.");
-                                b.changeHP(b.getMaxHP() / 20);
                                 if (b.changeHP(b.getMaxHP() / 20)) {
                                     BattleDriver.printline(b.getName() + " has collapsed from the poison!");
                                 }
                             }
-                            Player.this.addTimer(this);
-                            this.resetTimer();
+                            if (b.getStatus() != Battle.Stats.Death) {
+                                Player.this.addTimer(this);
+                                this.resetTimer();
+                            }
                         }
                     }
                     
