@@ -9,8 +9,12 @@ import com.ark.darthsystem.graphics.GraphicsDriver;
 import com.ark.darthsystem.states.State;
 import com.ark.darthsystem.states.Menu;
 import com.ark.darthsystem.states.Message;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.StringTokenizer;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
@@ -86,6 +90,32 @@ public abstract class Novel implements State {
     public interface Page {
         public abstract void run();
     }
+    
+    public class Dialogue implements Page {
+        private String textFile;
+        public Dialogue(String text) {
+            textFile = text;
+            try (Scanner s = new Scanner(Gdx.files.internal(text).read())) {
+                StringTokenizer parser = new StringTokenizer(":");
+                while (s.hasNextLine()) {
+                    String input = s.nextLine();
+                    if (parser.countTokens() <= 1) {
+                        
+                    } else {
+                    
+                        while (parser.hasMoreTokens()) {
+                            parser.nextToken();
+                        }
+                    }
+                }
+                
+            }
+        }
+        public void run() {
+            
+        }
+    }
+    
     public abstract class TickEvent {
         private String name;
         private int frameTime;
@@ -107,7 +137,6 @@ public abstract class Novel implements State {
             return name;
         }
     }
-    
     public boolean isFinished() {
         return true;
     }

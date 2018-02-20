@@ -32,6 +32,7 @@ import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.objects.CircleMapObject;
+import com.badlogic.gdx.maps.objects.EllipseMapObject;
 import com.badlogic.gdx.maps.objects.PolygonMapObject;
 import com.badlogic.gdx.maps.objects.PolylineMapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
@@ -44,6 +45,7 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Circle;
+import com.badlogic.gdx.math.Ellipse;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -289,11 +291,11 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                 0.0f);
         return polygon;
     }
-    private CircleShape getCircle(CircleMapObject circleObject) {
-        Circle circle = circleObject.getCircle();
+    private CircleShape getCircle(EllipseMapObject circleObject) {
+        Ellipse circle = circleObject.getEllipse();
         CircleShape circleShape = new CircleShape();
-        circleShape.setRadius(circle.radius / ppt);
-        circleShape.setPosition(new Vector2(circle.x / ppt, circle.y / ppt));
+        circleShape.setRadius(circle.width / ppt / 2);
+        circleShape.setPosition(new Vector2(circle.x / ppt + .5f, circle.y / ppt + .5f));
         return circleShape;
     }
     private PolygonShape getPolygon(PolygonMapObject polygonObject) {
@@ -389,16 +391,46 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
 //        MapObjects objects = map.getLayers().get("collision").getObjects();
         Array<Body> bodies = new Array<>();
         for (MapLayer layer: map.getLayers()) {
+            if (layer != null && layer instanceof TiledMapTileLayer) {
+                TiledMapTileLayer tileLayer = (TiledMapTileLayer) layer;
+                for (int x = 0; x < tileLayer.getWidth(); x++) {
+                    for (int y = 0; y < tileLayer.getHeight(); y++) {
+                        if (tileLayer.getCell(x, y) != null && tileLayer.getCell(x, y).getTile() != null) {
+                            for (MapObject object : tileLayer.getCell(x, y).getTile().getObjects()) {
+                                if (object == null) {
+                                    continue;
+                                }
+                                
+                                Body b = genTile(object);
+                                if (b != null) {
+                                    b.setTransform(x, y, 0);                                    
+                                    bodies.add(b);
+                                }
+                            }
+                        }
+                    }
+                }
+                
+            }
             for(MapObject object : layer.getObjects()) {
                 if (object instanceof TextureMapObject) {
                     continue;
                 }
-
-                MapProperties properties = object.getProperties();
+                Body b = genTile(object);
+                if (b != null) {
+                    bodies.add(b);
+                }
+            }
+        }
+        return bodies;
+    }
+    
+    private Body genTile (MapObject object) {
+               MapProperties properties = object.getProperties();
                 if (properties.get("type", String.class) != null && properties.get("type", String.class).equalsIgnoreCase("actor")) {
                     MonsterDatabase.monsters.get(properties.get("parameters", String.class).toUpperCase()
                     ).clone().setMap(this, properties.get("x", Float.class) / PlayerCamera.PIXELS_TO_METERS, properties.get("y", Float.class) / PlayerCamera.PIXELS_TO_METERS);
-                    continue;
+                    return null;
                 }
 
                 Shape shape;
@@ -411,11 +443,11 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                 else if (object instanceof PolylineMapObject) {
                     shape = getPolyline((PolylineMapObject)object);
                 }
-                else if (object instanceof CircleMapObject) {
-                    shape = getCircle((CircleMapObject)object);
+                else if (object instanceof EllipseMapObject) {
+                    shape = getCircle((EllipseMapObject)object);
                 }
                 else {
-                    continue;
+                    return null;
                 }
 
                 BodyDef bd = new BodyDef();
@@ -440,12 +472,9 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                 }
 
                 f.setFilterData(filter);
-                bodies.add(body);
+                shape.dispose();        
+                return body;
 
-                shape.dispose();
-            }
-        }
-        return bodies;
     }
     
     private Event addEventFromMap(MapObject object) {
