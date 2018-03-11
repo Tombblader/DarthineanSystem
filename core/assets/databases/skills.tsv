@@ -1,5 +1,5 @@
-CrossCall	Light Sword Tech.  Deals damage based on both ATK and MAG.	5	Light	TRUE	FALSE	Normal	0	0	0	6	0	0	6	0	3	0	3	5.5
-Witches' Cross	Dark Sword Tech.  Based on the Devil's Number.	6	Dark	TRUE	FALSE	Normal	6	0	0	6	0	6	6	0	5	5	5	6.66
+CrossCall	Light Sword Tech.  Deals damage based on both ATK and MAG.	5	Light	FALSE	FALSE	Normal	0	0	0	6	0	0	6	0	3	0	3	5.5
+Witches' Cross	Dark Sword Tech.  Based on the Devil's Number.	6	Dark	FALSE	FALSE	Normal	6	0	0	6	0	6	6	0	5	5	5	6.66
 Leg Sweep	Spear Tech.  Deals damage based on how slow you are compared to your enemy.	5	Physical	FALSE	FALSE	Normal	0	1	0	0	0	-6	0	0	0	-10	0	6
 Red Spin	Sword Tech.  Deals damage to all enemies in a circle.	6	Physical	FALSE	TRUE	Normal	2	0.5	0	10	0	0	0	0	6	0	0	6
 Poison Edge	Dark Dagger Tech.  Weak attack that also poisons the enemy.	7	Dark	FALSE	FALSE	Poison	0	0	0	10	0	0	0	0	8	0	0	6
@@ -54,7 +54,7 @@ Revivify	Healing Tech.  Raises the dead with at least 30 HP.	20	Heal	TRUE	FALSE	
 Seal Breaker	Erik Tech.  Breaks barriers, and deals tons of damage to one enemy.	23	Physical	FALSE	FALSE	Normal	0	0	0	10	0	0	-4	0	7	0	-8	6
 Reign of Terror	Protox Tech.  Rains death on all enemies in a wide radius.	21	Physical	FALSE	TRUE	Normal	0	0	0	13	0	0	0	0	7	0	0	5.5
 Weapon Master	Gladia Tech.  Deals damage to all enemies.	7	Physical	FALSE	TRUE	Normal	0	0	0	6	0	6	0	0	3	3	0	5
-Entropy	Dark Darth Darth Tech.  Damage all enemies with darkness.	7	Dark	FALSE	TRUE	Normal	0	0.35	0	0	0	0	13	0	0	0	6	8
+Entropy	Dark Darth Tech.  Damage all enemies with darkness.	7	Dark	FALSE	TRUE	Normal	0	0.35	0	0	0	0	13	0	0	0	6	8
 Four's Fury	Light Darth Tech.  Warp to nearby enemy and smite.	25	Light	FALSE	FALSE	Normal	0	0	0	7	0	0	7	0	3	0	4	7
 Axe Effect	Veather Tech.  Legendary Ladies' Mann technique inflicts all status effects except death.	25	Earth	FALSE	TRUE	Fog	0	0	0	7	0	0	-7	0	3	0	-3	5
 Fairy Circle	NULL	25	Light	FALSE	TRUE	Normal	0	0	0	7	0	7	7	0	3	3	4	5.5

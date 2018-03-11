@@ -17,9 +17,9 @@ public class MapDatabase {
     private static HashMap<String, OverheadMap> maps;
     private static final int MIN_X_TILES = 32;
     private static final int MIN_Y_TILES = 24;
-    public static final String DEFAULT_MAP = "nowhere";
-    private static final float DEFAULT_X = 9;
-    private static final float DEFAULT_Y = 9;
+    public static final String DEFAULT_MAP = "dungeon_00";
+    private static final float DEFAULT_X = 14;
+    private static final float DEFAULT_Y = 21;
     
     public MapDatabase() {
         maps = new HashMap<>();        
@@ -33,7 +33,7 @@ public class MapDatabase {
     }
     
     private void setDefaultMap() {
-        Database2.player.setMap(maps.get(DEFAULT_MAP), 9, 9);
+        Database2.player.setMap(maps.get(DEFAULT_MAP), DEFAULT_X, DEFAULT_Y);
     }
     
     private void initializeMaps() {

@@ -33,6 +33,19 @@ public class AIDatabase {
             34, 99, 7, 4, 4, 7, new ArrayList<Skill>(Arrays.asList(new Skill[]{AISkillDatabase.Eyebeam})),
             new Equipment[]{null, null, null, null, null}, Brainless_Skill,
             20, ItemDatabase.Potion, 1);
+
+    public static BattlerAI Mouthsore =
+            new BattlerAI("Mouthsore", Battle.Element.Physical, Battler.Gender.Male, 1,
+            34, 99, 7, 4, 4, 7, new ArrayList<Skill>(Arrays.asList(new Skill[]{AISkillDatabase.Eyebeam})),
+            new Equipment[]{null, null, null, null, null}, Brainless_Skill,
+            20, ItemDatabase.Potion, 1);
+
+    public static BattlerAI Living_Sword =
+            new BattlerAI("Living Sword", Battle.Element.Physical, Battler.Gender.Female, 1,
+            34, 99, 7, 4, 4, 7, new ArrayList<Skill>(Arrays.asList(new Skill[]{SkillDatabase.SKILL_LIST.get("Wide Slash")})),
+            new Equipment[]{null, null, null, null, null}, Brainless_Skill,
+            20, ItemDatabase.Potion, 1);
+            
     public static BattlerAI Ghost =
             new BattlerAI("Ghost", Battle.Element.Dark, Battler.Gender.Male, 1,
             26, 9, 7, 4, 4, 4, new BattlerClass(),

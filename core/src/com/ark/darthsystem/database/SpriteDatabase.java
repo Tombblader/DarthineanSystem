@@ -18,6 +18,8 @@ public class SpriteDatabase {
     public static ActorSprite Water_Spirit_Sprite;
     public static ActorSprite Fire_Spirit_Sprite;
     public static ActorSprite Eyesore_Sprite;
+    public static ActorSprite Mouthsore_Sprite;
+    public static ActorSprite Living_Sword_Sprite;
 
     public SpriteDatabase() {
         ErikSprite = new ActorSprite("characters/darth_invader");
@@ -25,5 +27,7 @@ public class SpriteDatabase {
         Water_Spirit_Sprite = new ActorSprite("characters/water_spirit");
         Fire_Spirit_Sprite = new ActorSprite("characters/fire_spirit");
         Eyesore_Sprite = new ActorSprite("monsters/eyesore");
+        Mouthsore_Sprite = new ActorSprite("monsters/mouthsore");
+        Living_Sword_Sprite = new ActorSprite("monsters/eyesore");
     }
 }

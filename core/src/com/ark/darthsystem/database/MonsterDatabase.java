@@ -25,6 +25,8 @@ public class MonsterDatabase {
     public static ActorAI ProtoxAI;
     public static ActorAI ErikAI;
     public static ActorAI Eyesore_Actor;
+    public static ActorAI Mouthsore_Actor;
+    public static ActorAI Living_Sword_Actor;
     public static HashMap<String, ActorAI> monsters = new HashMap<>();
 
     public MonsterDatabase() {
@@ -37,8 +39,13 @@ public class MonsterDatabase {
                     0)),
                     ErikSprite)})), 0, 0);
         Eyesore_Actor = new ActorAI(new ArrayList<>(Arrays.asList(new ActorBattler[]{new ActorBattler(Eyesore, Eyesore_Sprite)})), 0,0);
+        Mouthsore_Actor = new ActorAI(new ArrayList<>(Arrays.asList(new ActorBattler[]{new ActorBattler(Mouthsore, Mouthsore_Sprite)})), 0,0);
+        Living_Sword_Actor = new ActorAI(new ArrayList<>(Arrays.asList(new ActorBattler[]{new ActorBattler(Living_Sword, Living_Sword_Sprite)})), 0,0);
         monsters.put("ERIK_AI", ErikAI);
         monsters.put("EYESORE", Eyesore_Actor);
+        monsters.put("MOUTHSORE", Mouthsore_Actor);
+        monsters.put("LIVING_SWORD", Living_Sword_Actor);
+        
     }
     
 

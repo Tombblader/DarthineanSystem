@@ -292,7 +292,6 @@ public class ActorSkill extends ActorCollision {
     }
 
     public void setX(ActorCollision a) {
-        System.out.println(a.getFacing());
         super.changeX(a.getFacing().getX());
         if (area != Area.SELF) {
             super.setX(((relX + .5f) / (a.getFacing().y != 0 ? 1.414f : 1)) * a.getFacing().x + a.getMainBody().getPosition().x);

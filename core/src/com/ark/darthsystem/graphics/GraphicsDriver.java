@@ -53,7 +53,7 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
     private static TextureAtlas masterSheet;
     private static Music backgroundMusic;
     private static com.ark.darthsystem.graphics.Camera currentCamera;
-    private static String backgroundMusicString = null;
+    private static String backgroundMusicString = "";
     private static Sprite screenshot;
     private static ArrayList<Transition> transitions = new ArrayList<>();
     private static final float FONT_SCALE = 1f;

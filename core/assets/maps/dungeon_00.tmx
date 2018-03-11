@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="32" height="24" tilewidth="32" tileheight="32" nextobjectid="7">
+ <tileset firstgid="1" source="tileset.tsx"/>
+ <layer name="background" width="32" height="24">
+  <data encoding="base64" compression="zlib">
+   eJzF1kEOgCAMRNGGY7gzXJyjeDQ1bggp0EJnXMxOeT8kJmaRkr9d5JVmrvcPEXkX5Z/PWfUSeDMf3dD6SfGRDZrPbOj5rAavH90x8mcNEV0zf7XD2mL1UQ21fRiej25g+KMGz/0j7mDFj/w2dnxvB8r3tKB9Sw/T73Ww/d5dMH2tge23Dcr/p2vV/+fWOX/vBqBQuPs=
+  </data>
+ </layer>
+ <layer name="object" width="32" height="24">
+  <data encoding="base64" compression="zlib">
+   eJztwQEBAAAAgiD/r25IQAEAAC8GDAAAAQ==
+  </data>
+ </layer>
+ <objectgroup name="collisions">
+  <object id="2" name="door_to_02" type="event" x="32" y="352" width="32" height="64">
+   <properties>
+    <property name="collision" value="TRUE"/>
+    <property name="collisionType" value="wall"/>
+    <property name="eventID" value="2"/>
+    <property name="parameters" value="dungeon_02, 34, 11"/>
+   </properties>
+  </object>
+  <object id="4" name="door_to_01" type="event" x="448" y="32" width="64" height="32">
+   <properties>
+    <property name="collision" value="TRUE"/>
+    <property name="collisionType" value="wall"/>
+    <property name="eventID" value="2"/>
+    <property name="parameters" value="testRoom, 17, 21"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <layer name="overlay" width="32" height="24">
+  <data encoding="base64" compression="zlib">
+   eJztwQEBAAAAgiD/r25IQAEAAC8GDAAAAQ==
+  </data>
+ </layer>
+</map>

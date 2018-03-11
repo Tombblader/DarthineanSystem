@@ -8,6 +8,7 @@ import com.ark.darthsystem.database.Database1;
 import com.ark.darthsystem.database.Database2;
 import com.ark.darthsystem.database.EventDatabase;
 import com.ark.darthsystem.database.InterfaceDatabase;
+import com.ark.darthsystem.database.ItemDatabase;
 import com.ark.darthsystem.database.MonsterDatabase;
 import com.ark.darthsystem.graphics.Actor;
 import com.ark.darthsystem.graphics.ActorAI;
@@ -23,6 +24,7 @@ import com.ark.darthsystem.states.events.Event;
 import com.ark.darthsystem.states.events.NovelMode;
 import com.ark.darthsystem.states.events.Pickup;
 import com.ark.darthsystem.states.events.Teleport;
+import com.ark.darthsystem.states.events.Treasure;
 
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -426,10 +428,10 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
     }
     
     private Body genTile (MapObject object) {
-               MapProperties properties = object.getProperties();
+                MapProperties properties = object.getProperties();
                 if (properties.get("type", String.class) != null && properties.get("type", String.class).equalsIgnoreCase("actor")) {
-                    MonsterDatabase.monsters.get(properties.get("parameters", String.class).toUpperCase()
-                    ).clone().setMap(this, properties.get("x", Float.class) / PlayerCamera.PIXELS_TO_METERS, properties.get("y", Float.class) / PlayerCamera.PIXELS_TO_METERS);
+                    MonsterDatabase.monsters.get(properties.get("parameters", String.class).toUpperCase())
+                            .clone().setMap(this, properties.get("x", Float.class) / PlayerCamera.PIXELS_TO_METERS, properties.get("y", Float.class) / PlayerCamera.PIXELS_TO_METERS);
                     return null;
                 }
 
@@ -457,7 +459,6 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                 Fixture f = body.createFixture(shape, 1);
                 Filter filter = new Filter();
                 body.setUserData(object);
-
                 if (properties.get("type", String.class).equalsIgnoreCase("wall")) {
                     filter.categoryBits = ActorCollision.CATEGORY_WALLS;
                     filter.maskBits = -1;
@@ -508,6 +509,17 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                         parameters[0],
                         Integer.parseInt(parameters[1]),
                         Integer.parseInt(parameters[2]));
+                break;
+            case 3: //Treasure
+//                parameters = prop.get("parameters", String.class).split(",* ");
+                image = prop.get("image", String.class);
+//                image = GraphicsDriver.getMasterSheet().createSprites(prop.get("image", String.class)).toArray(Sprite.class);
+//                e = new Teleport(image.length > 0 ? image : null,
+                  e = new Treasure(image,
+                        prop.get("x", Float.class),
+                        prop.get("y", Float.class),
+                        6/60f,
+                        ItemDatabase.Tonic);
                 break;
             default:
                 break;

@@ -369,6 +369,18 @@ public class Battler implements Serializable, Nameable {
         return afflicted;
     }
 
+    public boolean getStatus(Battle.Stats statusCheck) {
+        return isAfflicted.get(statusCheck);
+    }
+    
+    /**
+     *
+     * @return
+     */
+    public HashMap<Battle.Stats, Boolean> getAllStatus() {
+        return isAfflicted;
+    }
+
     /**
      *
      * @return

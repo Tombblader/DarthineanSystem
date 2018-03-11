@@ -23,7 +23,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
  */
 public abstract class Novel implements State {
 
-    ArrayList<Page> chapters;
+    public ArrayList<Page> chapters;
     
     
     String choices;

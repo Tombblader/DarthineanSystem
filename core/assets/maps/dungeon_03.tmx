@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="32" height="24" tilewidth="32" tileheight="32" nextobjectid="6">
+ <tileset firstgid="1" source="TileSet.tsx"/>
+ <layer name="background" width="32" height="24">
+  <data encoding="base64" compression="zlib">
+   eJxTZmA4oDyweAG5eqWAeqUo0A+1G4yZGBgY6ImR7R61f9T+UftHrv1SA2C/1CCyf6DDf9T+UftH7R/Z9itDxOiJB9JuuBsA8pGF2w==
+  </data>
+ </layer>
+ <layer name="object" width="32" height="24">
+  <data encoding="base64" compression="zlib">
+   eJztwQEBAAAAgiD/r25IQAEAAC8GDAAAAQ==
+  </data>
+ </layer>
+ <objectgroup name="collisions">
+  <object id="1" name="door_to_02" type="event" x="960" y="352" width="32" height="64">
+   <properties>
+    <property name="collision" value="TRUE"/>
+    <property name="collisionType" value="wall"/>
+    <property name="eventID" value="2"/>
+    <property name="parameters" value="dungeon_02, 03, 11"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="collisionactors">
+  <object id="3" name="eyesore" type="actor" x="352" y="256" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="4" name="eyesore" type="actor" x="608" y="256" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="5" name="mouthsore" type="actor" x="480" y="384" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Mouthsore"/>
+   </properties>
+   <ellipse/>
+  </object>
+ </objectgroup>
+ <layer name="overlay" width="32" height="24">
+  <data encoding="base64" compression="zlib">
+   eJztwQEBAAAAgiD/r25IQAEAAC8GDAAAAQ==
+  </data>
+ </layer>
+</map>
