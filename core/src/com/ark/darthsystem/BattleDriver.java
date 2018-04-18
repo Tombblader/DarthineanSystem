@@ -6,6 +6,7 @@ import com.ark.darthsystem.graphics.ActorBattler;
 import com.ark.darthsystem.database.Database1;
 import com.ark.darthsystem.states.Battle;
 import static com.ark.darthsystem.BattleDriver.*;
+import com.ark.darthsystem.statusEffects.Normal;
 
 import java.util.ArrayList;
 import java.util.StringTokenizer;
@@ -101,7 +102,7 @@ public class BattleDriver {
         for (Battler group1 : group) {
             if (group1 != null) {
                 group1.fullHeal();
-                group1.changeStatus(Battle.Stats.Normal);
+                group1.changeStatus(new Normal());
             }
         }
     }
@@ -241,7 +242,7 @@ public class BattleDriver {
             if (Database1.inventory.get(Database1.inventory.indexOf(newItem)) == newItem) {
                 Database1.inventory.get(Database1.inventory.indexOf(newItem)).increaseQuantity(1);
             } else {
-                Database1.inventory.get(Database1.inventory.indexOf(newItem)).increaseQuantity(newItem.getQuantity());
+                Database1.inventory.get(Database1.inventory.indexOf(newItem)).increaseQuantity(newItem.getCharges());
             }
         } else {
             Database1.inventory.add(newItem);

@@ -21,7 +21,7 @@ import java.util.HashMap;
 public class ActorSprite implements Serializable {
 
 
-    private transient String masterSpriteSheet;
+    private String masterSpriteSheet;
     private transient HashMap<SpriteModeFace, Animation<Sprite>> spriteSheetFace = new HashMap<>();
     private transient HashMap<SpriteModeBattler, Animation<Sprite>> spriteSheetBattler = new HashMap<>();
     private transient HashMap<SpriteModeField, HashMap<Actor.Facing, Animation<Sprite>>> spriteSheetField = new HashMap<SpriteModeField, HashMap<Actor.Facing, Animation<Sprite>>>();

@@ -1,6 +1,7 @@
 package com.ark.darthsystem;
 
 import com.ark.darthsystem.states.Battle;
+import com.ark.darthsystem.statusEffects.StatusEffect;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -34,7 +35,7 @@ public class AI implements Serializable {
     private int turn = NO_FLAG;
     private int turnInterval = NO_FLAG;
     private boolean dead;
-    private Battle.Stats checkStatus;
+    private StatusEffect checkStatus;
 
     public AI(Type getType, int setPriority) {
         AIType = getType;
@@ -80,7 +81,7 @@ public class AI implements Serializable {
         dead = newDead;
     }
 
-    public void setStats(Battle.Stats newStats) {
+    public void setStats(StatusEffect newStats) {
         checkStatus = newStats;
     }
 
@@ -116,7 +117,7 @@ public class AI implements Serializable {
     public boolean checkStatus(Battle b) {
         boolean isAfflicted = false;
         for (int i = 0; i < b.getAlly().size(); i++) {
-            isAfflicted = !isAfflicted && b.getAlly(i).getStatus() == checkStatus;
+            isAfflicted = !isAfflicted && b.getAlly(i).getAllStatus().contains(checkStatus);
             if (isAfflicted) {
                 break;
             }
@@ -144,7 +145,7 @@ public class AI implements Serializable {
     }
 
     public boolean checkStatus(Battler b) {
-        boolean isAfflicted =  b.getStatus() == checkStatus;
+        boolean isAfflicted =  b.getStatus(checkStatus);
         return isAfflicted && checkStatus != null;
     }
 

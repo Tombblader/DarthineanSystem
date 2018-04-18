@@ -1,13 +1,29 @@
 package com.ark.darthsystem.graphics;
 
 import com.badlogic.gdx.InputAdapter;
+import java.util.EnumMap;
 
 public class Input extends InputAdapter {
 
     public static int[] keys = new int[65536];
     public static boolean[] keyPressed = new boolean[65536];
     private static boolean canInput = true;
-
+    public enum Key {
+        UP,
+        DOWN,
+        LEFT,
+        RIGHT,        
+        BUTTON1,
+        BUTTON2,
+        BUTTON3,
+        BUTTON4;
+    }
+    
+    public Input() {
+        super();
+    }
+    
+    
     public void invoke(long window,
             int keycode,
             int scancode,
@@ -60,5 +76,7 @@ public class Input extends InputAdapter {
         keyPressed[keycode] = false;
         return false;
     }
+    
+    
 
 }

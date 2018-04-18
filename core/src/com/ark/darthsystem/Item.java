@@ -12,14 +12,15 @@ public class Item implements Serializable, Cloneable, Nameable {
 
     private int HPValue;
     private int MPValue;
-    private boolean expendable;
+    private boolean stackable;
     private boolean isAll;
     private Skill invoke;
     private boolean useMP;
     private String name;
     private String description;
     private int price;
-    private int quantity;
+    private int maxCharges;
+    private int charges;
 
     /**
      *
@@ -30,22 +31,29 @@ public class Item implements Serializable, Cloneable, Nameable {
     /**
      *
      * @param getName
+     * @param getDescription
      * @param initializeExpendable
+     * @param price
      * @param initializeHP
      * @param initializeMP
      * @param all
      */
     public Item(String getName,
-            boolean initializeExpendable,
+            String getDescription,
+            int price,
+            int charges,
             int initializeHP,
             int initializeMP,
             boolean all) {
         name = getName;
+        description = getDescription;
+        this.price = price;
         HPValue = initializeHP;
         MPValue = initializeMP;
         isAll = all;
-        expendable = initializeExpendable;
-        quantity = 1;
+        maxCharges = charges;
+        this.charges = maxCharges;
+        stackable = charges <= 1;
     }
 
     /**
@@ -56,15 +64,20 @@ public class Item implements Serializable, Cloneable, Nameable {
      * @param initializeUseMP
      */
     public Item(String getName,
-            boolean initializeExpendable,
+            String getDescription,
+            int price,
+            int charges,
             Skill initializeSkill,
             boolean initializeUseMP) {
         name = getName;
+        description = getDescription;
+        this.price = price;
+        maxCharges = charges;
         invoke = initializeSkill;
         useMP = initializeUseMP;
         isAll = initializeSkill != null ? initializeSkill.getAll() : false;
-        expendable = initializeExpendable;
-        quantity = 1;
+        stackable = maxCharges <= 1;
+        this.charges = maxCharges;
     }
 
     /**
@@ -102,8 +115,12 @@ public class Item implements Serializable, Cloneable, Nameable {
      *
      * @return
      */
-    public int getQuantity() {
-        return quantity;
+    public int getCharges() {
+        return charges;
+    }
+    
+    public int getPrice() {
+        return price;
     }
 
     /**
@@ -112,7 +129,7 @@ public class Item implements Serializable, Cloneable, Nameable {
      * @return
      */
     public Item setQuantity(int amount) {
-        quantity = amount;
+        charges = amount;
         return this;
     }
 
@@ -122,7 +139,7 @@ public class Item implements Serializable, Cloneable, Nameable {
      * @return
      */
     public Item increaseQuantity(int amount) {
-        quantity += amount;
+        charges += amount;
         return this;
     }
 
@@ -133,7 +150,7 @@ public class Item implements Serializable, Cloneable, Nameable {
      */
     public Item decreaseQuantity(int amount) {
         Item thisItem = this;
-        quantity -= amount;
+        charges -= amount;
         if (amount <= 0) {
             thisItem = null;
         }
@@ -168,8 +185,8 @@ public class Item implements Serializable, Cloneable, Nameable {
      *
      * @return
      */
-    public boolean getExpendable() {
-        return expendable;
+    public boolean getStackable() {
+        return stackable;
     }
 
     /**
@@ -204,21 +221,29 @@ public class Item implements Serializable, Cloneable, Nameable {
      *
      * @return
      */
+    @Override
     public String getName() {
         return name;
+    }
+    
+    public String getDescription() {
+        return description;
     }
 
     public Object clone() {
         Item cloned = new Item();
+        cloned.name = this.name;
+        cloned.description = this.description;
+        cloned.price = this.price;
         cloned.HPValue = this.HPValue;
         cloned.MPValue = this.MPValue;
-        cloned.expendable = this.expendable;
+        cloned.stackable = this.stackable;
         cloned.isAll = this.isAll;
         cloned.invoke = this.invoke;
 
         cloned.useMP = this.useMP;
-        cloned.name = this.name;
-        cloned.quantity = this.quantity;
+        cloned.maxCharges = this.maxCharges;
+        cloned.charges = this.charges;
         return cloned;
     }
 
@@ -227,6 +252,6 @@ public class Item implements Serializable, Cloneable, Nameable {
     }
 
     public void reset() {
-        quantity = 1;
+        charges = 1;
     }
 }

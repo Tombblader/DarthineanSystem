@@ -6,10 +6,9 @@
 package com.ark.darthsystem;
 
 /**
- *
+ * Contains and organizes all Status Effects for the Battler class.
  * @author keven
  */
-public interface Nameable {
-    public String getName();
-    public String getDescription();
+public class StatusArray {
+    
 }

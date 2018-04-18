@@ -35,8 +35,6 @@ public class ActorSkill extends ActorCollision {
 
     private transient Sound battlerSound = SoundDatabase.battlerSwordSound;
     private float chargeTime = 0;
-    private float currentX = 0;
-    private float currentY = 0;
     private transient Sound fieldSound = SoundDatabase.fieldSwordSound;
     private transient Player invoker;
     private WeldJoint joint;
@@ -199,8 +197,6 @@ public class ActorSkill extends ActorCollision {
     public void generateBody(OverheadMap map) {
         super.generateBody(map);
         getMainBody().setBullet(true);
-        currentX = 0;
-        currentY = 0;
         Array<Joint> temp = new Array<>();
         map.getPhysicsWorld().getJoints(temp);
         if (joint != null && temp.contains(joint, true)) {
@@ -352,8 +348,6 @@ public class ActorSkill extends ActorCollision {
 
     public void update(float delta) {
         setFacing();
-//        currentX += translateX * getFacing().getX();
-//        currentY += translateY * getFacing().getY();
         if (translateX != 0) {
             getMainBody().setLinearVelocity(getFacing().getX() * translateX, getFacing().getY() * translateX);
         }

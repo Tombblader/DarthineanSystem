@@ -2,6 +2,8 @@ package com.ark.darthsystem;
 
 import com.ark.darthsystem.graphics.ActorSkill;
 import com.ark.darthsystem.states.Battle;
+import com.ark.darthsystem.statusEffects.Death;
+import com.ark.darthsystem.statusEffects.Normal;
 import java.util.ArrayList;
 
 /**
@@ -32,6 +34,7 @@ public class BattlerAI extends Battler implements Nameable {
             Item itemDrop,
             int itemQuantity) {
         super(name,
+                newBattler.getDescription(),
                 newBattler.getElement(),
                 newBattler.getGender(),
                 newBattler.getLevel(),
@@ -72,6 +75,7 @@ public class BattlerAI extends Battler implements Nameable {
      * @param itemQuantity The amount of items dropped when defeated.
      */
     public BattlerAI(String name,
+            String description,
             Battle.Element element,
             Battler.Gender gender,
             int level,
@@ -88,6 +92,7 @@ public class BattlerAI extends Battler implements Nameable {
             Item itemDrop,
             int itemQuantity) {
         super(name,
+                description,
                 element,
                 gender,
                 level,
@@ -128,6 +133,7 @@ public class BattlerAI extends Battler implements Nameable {
      * @param itemQuantity The amount of items dropped when defeated.
      */
     public BattlerAI(String name,
+            String description,
             Battle.Element element,
             Battler.Gender gender,
             int level,
@@ -144,6 +150,7 @@ public class BattlerAI extends Battler implements Nameable {
             Item itemDrop,
             int itemQuantity) {
         super(name,
+                description,
                 element,
                 gender,
                 level,
@@ -186,6 +193,7 @@ public class BattlerAI extends Battler implements Nameable {
      * @param itemQuantity The amount of items dropped when defeated.
      */    
     public BattlerAI(String name,
+            String description,
             Battle.Element element,
             Battler.Gender gender,
             int level,
@@ -202,6 +210,7 @@ public class BattlerAI extends Battler implements Nameable {
             Item itemDrop,
             int itemQuantity) {
         this(name,
+                description,
                 element,
                 gender,
                 level,
@@ -212,19 +221,23 @@ public class BattlerAI extends Battler implements Nameable {
                 Speed,
                 Magic,
                 skillList,
-                new Equipment[4], 
+                new Equipment[5], 
                 AIData,
                 experience,
                 itemDrop,
                 itemQuantity);
         Equipment temp = new Equipment("Unarmed",
-            Equipment.EquipmentType.OffHand,
-            null,
-            false,
-            0,
-            0,
-            0,
-            0);
+                "",
+                0,
+                new Equipment.Type[]{Equipment.Type.HAND},
+                Equipment.Slot.OffHand,
+                null,
+                Battle.Element.Physical,
+                false,
+                0,
+                0,
+                0,
+                0);
         temp.setAnimation(unarmedStrikeAnimation);
         equip(temp);
     }
@@ -260,7 +273,7 @@ public class BattlerAI extends Battler implements Nameable {
                     getSkill = this.getSkill((int) (Math.random() * this.getSkillList().size()));
                 } while (getSkill == null ||
                         getSkill.getElement() != Battle.Element.Heal ||
-                        getSkill.getStatusEffect() != Battle.Stats.Normal);
+                        getSkill.getStatusEffect() instanceof Normal);
                 if (getSkill.getCost() > getMP()) {
                     tempAction = new Action(Battle.Command.Charge, this);
                 } else if (getSkill.getAll()) {
@@ -285,7 +298,7 @@ public class BattlerAI extends Battler implements Nameable {
                     getSkill = this.getSkill((int) (Math.random() * this.getSkillList().size()));
                 } while (getSkill == null ||
                         getSkill.getElement() != Battle.Element.Heal ||
-                        getSkill.getStatusEffect() != Battle.Stats.Death);
+                        getSkill.getStatusEffect() instanceof Death);
                 
                 tempAction = new Action(Battle.Command.Skill,
                         getSkill, this,
@@ -316,7 +329,7 @@ public class BattlerAI extends Battler implements Nameable {
                 do {
                     getSkill = this.getSkill((int) (Math.random() * this.getSkillList().size()));
                 } while (getSkill == null ||
-                        getSkill.getStatusEffect() != Battle.Stats.Normal);
+                        getSkill.getStatusEffect() instanceof Normal);
                 if (getSkill.getCost() > getMP()) {
                     tempAction = new Action(Battle.Command.Charge, this);
                 } else if (getSkill.getAll()) {
@@ -377,9 +390,9 @@ public class BattlerAI extends Battler implements Nameable {
     }
     
     public BattlerAI clone() {
-        return new BattlerAI(getName(), getElement(), getGender(), getLevel(), 
+        return new BattlerAI(getName(), getDescription(), getElement(), getGender(), getLevel(), 
                 getHP(), getMP(), getAttack(), getDefense(), getSpeed(), 
-                getMagic(), getSkillList(), getEquipmentList(), AIData, experience, drop, drop.getQuantity());
+                getMagic(), getSkillList(), getEquipmentList(), AIData, experience, drop, drop.getCharges());
     }
 
 }

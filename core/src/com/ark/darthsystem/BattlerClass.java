@@ -8,10 +8,10 @@ import java.util.HashMap;
  *
  * @author keven
  */
-public class BattlerClass implements Serializable, Nameable {
+public class BattlerClass implements Serializable {
 
     private String name;
-    private Equipment[] equipmentList;
+    private Equipment.Type[] equipmentList;
     private HashMap<Integer, Skill[]> skillList;
     private int[] growthList;
 
@@ -29,7 +29,7 @@ public class BattlerClass implements Serializable, Nameable {
      * @param equipmentSet
      * @param skillSet
      */
-    public BattlerClass(String name, Equipment[] equipmentSet, HashMap<Integer, Skill[]> skillSet) {
+    public BattlerClass(String name, Equipment.Type[] equipmentSet, HashMap<Integer, Skill[]> skillSet) {
         this.name = name;
         equipmentList = equipmentSet;
         skillList = skillSet;
@@ -38,11 +38,32 @@ public class BattlerClass implements Serializable, Nameable {
 
     /**
      *
+     * @param name
+     * @param equipmentSet
+     * @param skillSet
+     */
+    public BattlerClass(String name, String[] equipmentSet, HashMap<Integer, Skill[]> skillSet) {
+        this.name = name;
+        equipmentList = new Equipment.Type[equipmentSet.length];
+        for (int i = 0; i < equipmentSet.length; i++) {
+            equipmentList[i] = Equipment.Type.valueOf(equipmentSet[i]);
+        }
+        skillList = skillSet;
+        growthList = new int[]{0, 0, 0, 0, 0, 0};
+    }
+    
+    
+    /**
+     *
      * @param equipped
      * @return
      */
     public boolean equippable(Equipment equipped) {
-        return equipmentList == null || Arrays.binarySearch(equipmentList, equipped) >= 0;
+        boolean equippable = false;
+        for (Equipment.Type type : equipped.getType()) {
+            equippable |= equipmentList == null || Arrays.binarySearch(equipmentList, equipped.getType()) >= 0;
+        }
+        return equippable;
     }
 
     /**

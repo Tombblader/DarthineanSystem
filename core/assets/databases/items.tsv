@@ -1,0 +1,5 @@
+Name	Description	Market Price	Charges	HP Effect	MP Effect	Is All
+Potion	Heals 20 HP.  Tastes weird.	10	1	20	0	FALSE
+Charger	Heals all MP.	20	1	0	9999	FALSE
+All-Potion	Heals 20 HP to all allies.  How does this work?	200	1	20	0	TRUE
+Eye Key A	A hastily put together key made of an eye and bones.	0	0	0	0	FALSE

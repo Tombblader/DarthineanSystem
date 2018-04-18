@@ -15,29 +15,38 @@ import com.ark.darthsystem.states.Battle;
  *
  * @author keven
  */
-public class Normal extends StatusEffect {
-    
-    public Normal() {
-        super("Normal", 1, 1.0, 0.0, 0, false, "'s wounds are healed!");
+public class Stun extends StatusEffect {
+    public Stun() {
+        super("Stun", 3, .5, 0, 1, true, " is stunned!");
         setInitialTurnCount(0);
     }
-
-    @Override
+    
+    public Stun(int turn) {
+        this();
+        setInitialTurnCount(turn);
+    }
+    
     public boolean checkStatus(Action action, Battle b) {
-        return true;
+        return false;
     }
 
     @Override
     public String getDescription() {
-        return "";
+        return "Victim can't move for a single turn.";
     }
-    
+
     @Override
     public void checkFieldStatus(Player player, GameTimer timer) {
 
     }
+
     @Override
     public void updateFieldStatus(Player player, Battler battler, GameTimer timer, float delta) {
+        if (player.getCurrentBattler().getBattler().equals(battler)) {
+            player.disableMovement();
+        } else {
+            player.enableMovement();
+        }
 
     }
     

@@ -38,7 +38,7 @@ public class Treasure extends Event {
             {
             chapters.add((Novel.Page) () -> {
                 for (Item i : item) {
-                    BattleDriver.printline("Obtained " + i.getQuantity() + " " + i.getName() + "!");
+                    BattleDriver.printline("Obtained " + i.getCharges() + " " + i.getName() + "!");
                 }
                 BattleDriver.addItems(item);
                 Treasure.this.changeAnimation(opened);
@@ -67,7 +67,7 @@ public class Treasure extends Event {
             {
             chapters.add((Novel.Page) () -> {
                 for (Item i : item) {
-                    BattleDriver.printline("Obtained " + i.getQuantity() + " " + i.getName() + "!");
+                    BattleDriver.printline("Obtained " + i.getCharges() + " " + i.getName() + "!");
                 }
                 BattleDriver.addItems(item);
                 Treasure.this.changeAnimation(opened);

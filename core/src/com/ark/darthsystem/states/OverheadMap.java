@@ -256,7 +256,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                 ArrayList<Item> dropped = new ArrayList<>();
                 for (Battler enemy1 : a.getAllBattlers()) {
                     if (dropped.contains(((BattlerAI) (enemy1)).getDroppedItem()) && ((BattlerAI) (enemy1)).getDroppedItem() != null) {
-                        dropped.get(dropped.indexOf(((BattlerAI) (enemy1)). getDroppedItem())).increaseQuantity(((BattlerAI) (enemy1)).getDroppedItem().getQuantity());
+                        dropped.get(dropped.indexOf(((BattlerAI) (enemy1)). getDroppedItem())).increaseQuantity(((BattlerAI) (enemy1)).getDroppedItem().getCharges());
                     } else {
                         dropped.add(((BattlerAI) (enemy1)).getDroppedItem());
                     }
@@ -519,7 +519,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                         prop.get("x", Float.class),
                         prop.get("y", Float.class),
                         6/60f,
-                        ItemDatabase.Tonic);
+                        ItemDatabase.ITEM_LIST.get("TONIC"));
                 break;
             default:
                 break;

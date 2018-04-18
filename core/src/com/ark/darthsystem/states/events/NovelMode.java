@@ -7,7 +7,6 @@ package com.ark.darthsystem.states.events;
 
 import com.ark.darthsystem.graphics.GraphicsDriver;
 import com.ark.darthsystem.states.chapters.Novel;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 
 /**
  *

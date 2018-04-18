@@ -16,6 +16,9 @@ import com.ark.darthsystem.states.OverheadMap;
 import com.ark.darthsystem.GameOverException;
 import com.ark.darthsystem.states.Battle;
 import com.ark.darthsystem.states.events.Event;
+import com.ark.darthsystem.statusEffects.Death;
+import com.ark.darthsystem.statusEffects.Normal;
+import com.ark.darthsystem.statusEffects.StatusEffect;
 
 
 import com.badlogic.gdx.Gdx;
@@ -331,75 +334,78 @@ public class Player extends ActorCollision {
     
     public void checkStatusEffects() {
         for (Battler b : getAllBattlers()) {
-            if (b.getStatus() != Battle.Stats.Normal && b.getStatus() != Battle.Stats.Death) {
-                boolean isAccountedFor = false;
-                for (GameTimer t : getTimers()) {
-                    if (t.getName().equals(b.toString() + b.getStatus().name())) {
-                        isAccountedFor = true;
-                    }
-                }
-                if (isAccountedFor) {
-                    continue;
-                }
-                addTimer(new GameTimer(b.toString() + b.getStatus().name(), 3000) {
-                    Battle.Stats stat = b.getStatus();
-                    @Override
-                    public void event(Actor a) {
-                        if (b.getStatus() == stat && b.getStatus().faded(b)) {
-                            BattleDriver.printline(b.getName() + "'s status effect faded away.");
-                            b.changeStatus(Battle.Stats.Normal, 0);
-                            Player.this.enableMovement();
-                            Player.this.setCanSkill(true);                            
-                        } else {
-                            if (stat == Battle.Stats.Poison) {
-                                BattleDriver.printline(b.getName() + " takes " + (b.getMaxHP() / 20) + " damage from the poison.");
-                                if (b.changeHP(b.getMaxHP() / 20)) {
-                                    BattleDriver.printline(b.getName() + " has collapsed from the poison!");
-                                }
-                            }
-                            if (b.getStatus() != Battle.Stats.Death) {
-                                Player.this.addTimer(this);
-                                this.resetTimer();
-                            }
+            for (StatusEffect status : b.getAllStatus()) {
+                if (!b.getStatus("Normal") && !b.getStatus("Death")) {
+                    boolean isAccountedFor = false;
+                    for (GameTimer t : getTimers()) {
+                        if (t.getName().equals(b.toString() + status.getName())) {
+                            isAccountedFor = true;
                         }
                     }
-                    
-                    @Override
-                    public boolean update(float delta, Actor a) {
-                    switch (b.getStatus()) {
-                        case Sleep:
-                        case Paralyze:
-                        case Stun:
-                        case Petrify:
-                            if (Player.this.getCurrentBattler().getBattler().equals(b)) {
-                                Player.this.disableMovement();
-                            } else {
+                    if (isAccountedFor) {
+                        continue;
+                    }
+                    addTimer(new GameTimer(b.toString() + status.getName(), 3000) {
+                        StatusEffect stat = status;
+                        int turnCount = 0;
+                        @Override
+                        public void event(Actor a) {
+                            if (b.getStatus(stat) && stat.faded(b, turnCount)) {
+                                BattleDriver.printline(b.getName() + "'s status effect faded away.");
+                                b.getAllStatus().remove(stat);
+                                if (b.getAllStatus().isEmpty()) {
+                                    b.changeStatus(new Normal());
+                                }
                                 Player.this.enableMovement();
-                            }
-                            
-                            break;
-                        case Silence:
-                            if (Player.this.getCurrentBattler().getBattler().equals(b)) {
-                                Player.this.setCanSkill(false);                            
-                            } else {
                                 Player.this.setCanSkill(true);                            
+                            } else {
+                                stat.checkFieldStatus(Player.this, this);
+                                if (!b.getStatus("Death")) {
+                                    Player.this.addTimer(this);
+                                    this.resetTimer();
+                                    turnCount++;
+                                }
                             }
-                            break;
-                        case Fog:
-                            break;
-                        case Confuse:
-                            int random = ((int)(Math.random() * 2)) - 1;
-                            Player.this.getMainBody().setLinearVelocity(random * getSpeed() * (float) (delta), Player.this.getMainBody().getLinearVelocity().y);
-                            Player.this.changeX(random);
-                            random = ((int)(Math.random() * 2)) - 1;
-                            Player.this.getMainBody().setLinearVelocity(Player.this.getMainBody().getLinearVelocity().x, random * getSpeed() * (float) (delta));
-                            Player.this.changeY(random);
-                            break;
-                    }
-                        return super.update(delta, a);
-                    }
+                        }
 
-                });
+                        @Override
+                        public boolean update(float delta, Actor a) {
+                            stat.updateFieldStatus(Player.this, b, this, delta);
+        //                    switch (b.getStatus()) {
+        ////                        case Sleep:
+        ////                        case Paralyze:
+        ////                        case Stun:
+        ////                        case Petrify:
+        ////                            if (Player.this.getCurrentBattler().getBattler().equals(b)) {
+        ////                                Player.this.disableMovement();
+        ////                            } else {
+        ////                                Player.this.enableMovement();
+        ////                            }
+        ////                            
+        ////                            break;
+        //                        case Silence:
+        ////                            if (Player.this.getCurrentBattler().getBattler().equals(b)) {
+        ////                                Player.this.setCanSkill(false);                            
+        ////                            } else {
+        ////                                Player.this.setCanSkill(true);                            
+        ////                            }
+        //                            break;
+        //                        case Fog:
+        //                            break;
+        //                        case Confuse:
+        //                            int random = ((int)(Math.random() * 2)) - 1;
+        //                            Player.this.getMainBody().setLinearVelocity(random * getSpeed() * (float) (delta), Player.this.getMainBody().getLinearVelocity().y);
+        //                            Player.this.changeX(random);
+        //                            random = ((int)(Math.random() * 2)) - 1;
+        //                            Player.this.getMainBody().setLinearVelocity(Player.this.getMainBody().getLinearVelocity().x, random * getSpeed() * (float) (delta));
+        //                            Player.this.changeY(random);
+        //                            break;
+        //                    }
+                            return super.update(delta, a);
+                        }
+
+                    });
+                }
             }
         }
     }

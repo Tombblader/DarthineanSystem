@@ -5,7 +5,6 @@
  */
 package com.ark.darthsystem.database;
 
-import com.ark.darthsystem.graphics.GraphicsDriver;
 import com.ark.darthsystem.graphics.ActorSkill;
 import com.ark.darthsystem.graphics.Player;
 import com.ark.darthsystem.graphics.ActorBattler;
@@ -33,24 +32,24 @@ public class Database2 extends Database1 {
         super();
         Database2.SkillToActor = new HashMap<Skill, ActorSkill>() {
             {
-                put(SkillDatabase.CrossCall,
+                put(SkillDatabase.SKILL_LIST.get("Crosscall"),
                         new ActorSkill("skills/wiccan_cross/field/wiccan_cross",
                                 "skills/crosscall/battler/crosscall",
                                 1,
                                 1,
                                 1.0f / 20.0f,
-                                SkillDatabase.CrossCall,
+                                SkillDatabase.SKILL_LIST.get("Crosscall"),
                                 ActorSkill.Area.FRONT));
-                put(SkillDatabase.Red_Spin,
+                put(SkillDatabase.SKILL_LIST.get("Red Spin"),
                         new ActorSkill("skills/red_spin/field/red_spin",
                                 "skills/red_spin/battler/red_spin",
                                 0,
                                 0,
                                 1.0f / 12.0f,
-                                SkillDatabase.Red_Spin,
+                                SkillDatabase.SKILL_LIST.get("Red Spin"),
                                 ActorSkill.Area.SELF,
                                 "widespin"));
-                put(SkillDatabase.Sap_Shot,
+                put(SkillDatabase.SKILL_LIST.get("Sap Shot"),
                         new ActorSkill("skills/wiccan_cross/field/wiccan_cross",
                                 "skills/crosscall/battler/crosscall",
                                 0,
@@ -59,9 +58,9 @@ public class Database2 extends Database1 {
                                 0,
                                 1.0f / 24.0f,
                                 1f,
-                                SkillDatabase.Sap_Shot,
+                                SkillDatabase.SKILL_LIST.get("Sap Shot"),
                                 ActorSkill.Area.FRONT));
-                put(SkillDatabase.Fireball,
+                put(SkillDatabase.SKILL_LIST.get("Fireball"),
                         new ActorSkill("skills/wiccan_cross/field/wiccan_cross",
                                 "skills/crosscall/battler/crosscall",
                                 0,
@@ -70,25 +69,25 @@ public class Database2 extends Database1 {
                                 0,
                                 1.0f / 24.0f,
                                 1f,
-                                SkillDatabase.Fireball,
+                                SkillDatabase.SKILL_LIST.get("Fireball"),
                                 ActorSkill.Area.FRONT));
-                put(SkillDatabase.Heal,
+                put(SkillDatabase.SKILL_LIST.get("Fireball"),
                         new ActorSkill("skills/wiccan_cross/field/wiccan_cross",
                                 "skills/crosscall/battler/crosscall",
                                 0,
                                 0,
                                 1.0f / 24.0f,
                                 1.0f,
-                                SkillDatabase.Heal,
+                                SkillDatabase.SKILL_LIST.get("Fireball"),
                                 ActorSkill.Area.SELF_BENEFIT));
-                put(AISkillDatabase.Eyebeam,
+                put(AISkillDatabase.SKILL_LIST.get("Eyebeam"),
                         new ActorSkill("skills/wiccan_cross/field/wiccan_cross",
                                 "skills/crosscall/battler/crosscall",
                                 1,
                                 1,
                                 1.0f / 24.0f,
                                 .2f,
-                                AISkillDatabase.Eyebeam,
+                                AISkillDatabase.SKILL_LIST.get("Eyebeam"),
                                 ActorSkill.Area.FRONT));
 //                put(Leg_Sweep, new ActorSkill(new Sprite("com.ark.darthsystem/GraphicsPack/assets/WiccanCross.png", false).getImages(), 1, 0, 17, Database1.Leg_Sweep));
             }

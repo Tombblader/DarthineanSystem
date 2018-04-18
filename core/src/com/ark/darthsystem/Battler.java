@@ -2,6 +2,7 @@ package com.ark.darthsystem;
 
 import com.ark.darthsystem.states.Battle;
 import static com.ark.darthsystem.BattleDriver.*;
+import com.ark.darthsystem.statusEffects.*;
 
 import java.io.*;
 import java.util.Arrays;
@@ -18,6 +19,7 @@ public class Battler implements Serializable, Nameable {
     public static final long serialVersionUID = 553786374;
     private static final double DEFEND = 0.25;
     private String name;
+    private String description;
     private int HP, maxHP;
     private int MP, maxMP;
     private int attack;
@@ -26,9 +28,9 @@ public class Battler implements Serializable, Nameable {
     private int magic;
     private ArrayList<Skill> skillList;
     private Equipment[] equipmentList = new Equipment[5];
-    private HashMap<Battle.Stats, Boolean> isAfflicted = new HashMap<>();
-    private Battle.Stats afflicted = Battle.Stats.Normal;
-    private int turnCount = 0;
+//    private HashMap<StatusEffect, Boolean> isAfflicted;
+//    private Battle.Stats afflicted = Battle.Stats.Normal;
+    private ArrayList<StatusEffect> isAfflicted;
     private int level;
     private Battle.Element battlerElement = Battle.Element.Physical;
     private Battler.Gender battlerGender;
@@ -44,6 +46,11 @@ public class Battler implements Serializable, Nameable {
     private double magicTier = magic / 8.0 / level;
     private int tnl = 50;
 
+    @Override
+    public String getDescription() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public static enum Gender {
         Male,
         Female
@@ -53,11 +60,14 @@ public class Battler implements Serializable, Nameable {
      * Creates an empty Battler Object with no values initialized.
      */
     public Battler() {
+        this.isAfflicted = new ArrayList<>();
+        isAfflicted.add(new Normal());
     }
 
     /**
      *
      * @param initialName
+     * @param initialDescription
      * @param initialElement
      * @param initializeGender
      * @param initialLevel
@@ -71,6 +81,7 @@ public class Battler implements Serializable, Nameable {
      * @param initialEquipment
      */
     public Battler(String initialName,
+            String initialDescription,
             Battle.Element initialElement,
             Battler.Gender initializeGender,
             int initialLevel,
@@ -82,7 +93,10 @@ public class Battler implements Serializable, Nameable {
             int initialMagic,
             BattlerClass initialClass,
             Equipment[] initialEquipment) {
+        this.isAfflicted = new ArrayList<>();
+        this.isAfflicted.add(new Normal());
         this.name = initialName;
+        this.description = initialDescription;
         this.battlerElement = initialElement;
         this.level = initialLevel;
         this.maxHP = initialHP;
@@ -114,6 +128,47 @@ public class Battler implements Serializable, Nameable {
         this.battlerGender = initializeGender;
     }
 
+   public Battler(String initialName,
+            String initialDescription,
+            BattlerClass initialClass,
+            Battle.Element initialElement,
+            Battler.Gender initialGender,
+            int initialLevel,
+            int initialHP,
+            int initialMP,
+            int initialAttack,
+            int initialDefense,
+            int initialSpeed,
+            int initialMagic,
+            int initialHPTier,
+            int initialMPTier,
+            int initialAttackTier,
+            int initialDefenseTier,
+            int initialSpeedTier,
+            int initialMagicTier,
+            Equipment[] initialEquipment) {
+        this(initialName,
+                initialDescription,
+                initialElement,
+                initialGender, 
+                initialLevel, 
+                initialHP,
+                initialMP,
+                initialAttack, 
+                initialDefense, 
+                initialSpeed, 
+                initialMagic, 
+                initialClass, 
+                initialEquipment);
+        this.hpTier = initialHPTier;
+        this.mpTier = initialMPTier;
+        this.attackTier = initialAttackTier;
+        this.defenseTier = initialDefenseTier;
+        this.speedTier = initialSpeedTier;
+        this.magicTier = initialMagicTier;
+
+    }
+    
     /**
      *
      * @param initialName
@@ -130,6 +185,7 @@ public class Battler implements Serializable, Nameable {
      * @param initialEquipment
      */
     public Battler(String initialName,
+            String getDescription,
             Battle.Element initialElement,
             Battler.Gender initializeGender,
             int initialLevel,
@@ -141,7 +197,10 @@ public class Battler implements Serializable, Nameable {
             int initialMagic,
             ArrayList<Skill> initialSkill,
             Equipment[] initialEquipment) {
-        name = initialName;
+         this.isAfflicted = new ArrayList<>();
+        this.isAfflicted.add(new Normal());
+       name = initialName;
+       description = getDescription;
         battlerElement = initialElement;
         level = initialLevel;
         maxHP = initialHP;
@@ -361,32 +420,37 @@ public class Battler implements Serializable, Nameable {
         return battlerElement;
     }
 
-    /**
-     *
-     * @return
-     */
-    public Battle.Stats getStatus() {
-        return afflicted;
+//    /**
+//     *
+//     * @return
+//     */
+//    public Battle.Stats getStatus() {
+//        return afflicted;
+//    }
+
+    public StatusEffect getStatus(int index) {
+        return isAfflicted.get(index);
     }
 
-    public boolean getStatus(Battle.Stats statusCheck) {
-        return isAfflicted.get(statusCheck);
+    public boolean getStatus(StatusEffect effect) {
+        return isAfflicted.contains(effect);
     }
+
+    public boolean getStatus(String effect) {
+        boolean afflicted = false;
+        for (StatusEffect se : isAfflicted) {
+            afflicted |= se.getName().equalsIgnoreCase(effect);
+        }
+        return afflicted;
+    }
+    
     
     /**
      *
      * @return
      */
-    public HashMap<Battle.Stats, Boolean> getAllStatus() {
+    public ArrayList<StatusEffect> getAllStatus() {
         return isAfflicted;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public int getTurnCount() {
-        return turnCount;
     }
 
     /**
@@ -559,20 +623,12 @@ public class Battler implements Serializable, Nameable {
      *
      * @param getStats
      */
-    public void changeStatus(Battle.Stats getStats) {
-        afflicted = getStats;
-        turnCount = 0;
-    }
-
-    /**
-     *
-     * @param getStats
-     * @param initialTurnCount
-     */
-    public void changeStatus(Battle.Stats getStats,
-            int initialTurnCount) {
-        afflicted = getStats;
-        turnCount = initialTurnCount;
+    public void changeStatus(StatusEffect getStats) {
+        if (isAfflicted.contains(getStats) && isAfflicted.get(isAfflicted.indexOf(getStats)).getInitialTurnCount() < getStats.getInitialTurnCount()) {
+            isAfflicted.get(isAfflicted.indexOf(getStats)).setInitialTurnCount(getStats.getInitialTurnCount());
+        } else if (!isAfflicted.contains(getStats)) {
+            isAfflicted.add(getStats);
+        }
     }
 
     /**
@@ -591,7 +647,8 @@ public class Battler implements Serializable, Nameable {
             HP = 0;
             resetDefend();
             isDelaying = false;
-            afflicted = Battle.Stats.Death;
+            isAfflicted.clear();
+            isAfflicted.add(new Death());
         }
         return isDead;
     }
@@ -626,9 +683,9 @@ public class Battler implements Serializable, Nameable {
      */
     public boolean canMove() {
         isDelaying = false;
-        return afflicted != Battle.Stats.Petrify &&
-                afflicted != Battle.Stats.Death &&
-                afflicted != Battle.Stats.Sleep;
+        boolean canMove = true;
+        canMove = isAfflicted.stream().map((status) -> status.canMove()).reduce(canMove, (accumulator, _item) -> accumulator & _item);
+        return canMove;
     }
 
     /**
@@ -771,6 +828,7 @@ public class Battler implements Serializable, Nameable {
 
     public Battler clone() {
         Battler b = new Battler(name,
+                description,
                 battlerElement,
                 battlerGender,
                 level,

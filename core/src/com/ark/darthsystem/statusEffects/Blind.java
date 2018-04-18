@@ -5,14 +5,42 @@
  */
 package com.ark.darthsystem.statusEffects;
 
+import com.ark.darthsystem.Action;
+import com.ark.darthsystem.Battler;
+import com.ark.darthsystem.graphics.GameTimer;
+import com.ark.darthsystem.graphics.Player;
+import com.ark.darthsystem.states.Battle;
+
 /**
  *
  * @author keven
  */
 public class Blind extends StatusEffect {
-    
     public Blind() {
-        super(2, .5, .15, 7, 0.2, " is unable to see!");
-    }
+        super("Blind", 2, .5, .15, 7, 0.2, false, " is unable to see!");
+        setInitialTurnCount(0);
+    }    
     
+    public Blind(int turn) {
+        this();
+        setInitialTurnCount(turn);
+    }    
+    @Override
+    public boolean checkStatus(Action action, Battle b) {
+        return true;
+    }    
+
+    @Override
+    public String getDescription() {
+        return "Victim has a 50% miss chance, and a -50% dodge chance";
+    }
+
+    @Override
+    public void checkFieldStatus(Player player, GameTimer timer) {
+
+    }
+    @Override
+    public void updateFieldStatus(Player player, Battler battler, GameTimer timer, float delta) {
+
+    }
 }

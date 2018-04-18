@@ -1,0 +1,4 @@
+Eyebeam	An eyebeam.  Hits two squares away	0	Dark	FALSE	FALSE	Normal	0	0	0	0	0	0	11	0	0	0	6	5.5
+Bunny Kick	Erik hates the bunny kick.	0	Physical	FALSE	FALSE	Normal	0	0	0	0	0	11	0	0	3	3	0	5.5
+Mouthbeam	A mouthbeam.  Hits two squres away.	0	Dark	FALSE	FALSE	Silence	30	0	0	0	0	0	10	0	0	0	6	5.5
+Fire Breath	A fire breath attack.  Blows up a cone.	7	Fire	FALSE	TRUE	Normal	30	0	0	0	0	0	7	0	0	0	6	5

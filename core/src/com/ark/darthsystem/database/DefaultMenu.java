@@ -39,7 +39,7 @@ public class DefaultMenu extends Menu {
                 if (inventory != null && !inventory.isEmpty()) {
                     String[] getItemList = new String[inventory.size()];
                     for (int i = 0; i < getItemList.length; i++) {
-                        getItemList[i] = (i + 1) + ". " + inventory.get(i).getName() + " x" + inventory.get(i).getQuantity();
+                        getItemList[i] = (i + 1) + ". " + inventory.get(i).getName() + " x" + inventory.get(i).getCharges();
                     }
                     Menu menuItem = new Menu("Use which Item?",
                             getItemList,

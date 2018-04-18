@@ -44,7 +44,7 @@ public class Pickup extends Event {
     
     public void run() {
         for (Item i : item) {
-            BattleDriver.printline("Obtained " + i.getQuantity() + " " + i.getName() + "!");
+            BattleDriver.printline("Obtained " + i.getCharges() + " " + i.getName() + "!");
         }
         BattleDriver.addItems(item);
         isFinished = true;

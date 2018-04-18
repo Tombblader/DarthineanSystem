@@ -15,30 +15,30 @@ import com.ark.darthsystem.states.Battle;
  *
  * @author keven
  */
-public class Normal extends StatusEffect {
+public class Death extends StatusEffect {
     
-    public Normal() {
-        super("Normal", 1, 1.0, 0.0, 0, false, "'s wounds are healed!");
+    public Death() {
+        super("Death", 8, .10, 0.0, 0, true, " has instantly died!");
         setInitialTurnCount(0);
     }
-
     @Override
     public boolean checkStatus(Action action, Battle b) {
-        return true;
-    }
+        return false;
+    }    
 
     @Override
     public String getDescription() {
-        return "";
+        return "Victim has 0 HP and thus is a lifeless pile of flesh.  Victim cannot act until revived.";
     }
-    
+
     @Override
     public void checkFieldStatus(Player player, GameTimer timer) {
 
     }
+    
     @Override
     public void updateFieldStatus(Player player, Battler battler, GameTimer timer, float delta) {
 
     }
-    
+
 }

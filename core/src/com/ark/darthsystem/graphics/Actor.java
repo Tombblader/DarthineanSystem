@@ -224,6 +224,7 @@ public class Actor {
         timers.add(tempTimer);
         isMovable = false;
     }
+    
     public float getSpeed() {
         return speed;
     }

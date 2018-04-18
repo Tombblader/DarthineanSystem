@@ -15,30 +15,33 @@ import com.ark.darthsystem.states.Battle;
  *
  * @author keven
  */
-public class Normal extends StatusEffect {
-    
-    public Normal() {
-        super("Normal", 1, 1.0, 0.0, 0, false, "'s wounds are healed!");
-        setInitialTurnCount(0);
+public class Silence extends StatusEffect {
+
+    public Silence() {
+        super("Silence", 5, .25, 0.16, 6, false, "'s skills have been sealed!");
     }
 
     @Override
     public boolean checkStatus(Action action, Battle b) {
-        return true;
+        return (action.getCommand() == Battle.Command.Skill);
+    }
+
+    @Override
+    public void checkFieldStatus(Player player, GameTimer timer) {
+    }
+
+    @Override
+    public void updateFieldStatus(Player player, Battler battler, GameTimer timer, float delta) {
+        if (player.getCurrentBattler().getBattler().equals(battler)) {
+            player.setCanSkill(false);                            
+        } else {
+            player.setCanSkill(true);                            
+        }
     }
 
     @Override
     public String getDescription() {
-        return "";
-    }
-    
-    @Override
-    public void checkFieldStatus(Player player, GameTimer timer) {
-
-    }
-    @Override
-    public void updateFieldStatus(Player player, Battler battler, GameTimer timer, float delta) {
-
+        return "Victim cannot use skills.";
     }
     
 }

@@ -30,21 +30,21 @@ public class MonsterDatabase {
     public static HashMap<String, ActorAI> monsters = new HashMap<>();
 
     public MonsterDatabase() {
-        ErikAI = new ActorAI(new ArrayList<>(Arrays.asList(new ActorBattler[]{new ActorBattler((new BattlerAI(
-                    "Erik the Red",
-                    Erik,
-                    Scenario.Standard,
-                    50,
-                    null,
-                    0)),
-                    ErikSprite)})), 0, 0);
-        Eyesore_Actor = new ActorAI(new ArrayList<>(Arrays.asList(new ActorBattler[]{new ActorBattler(Eyesore, Eyesore_Sprite)})), 0,0);
-        Mouthsore_Actor = new ActorAI(new ArrayList<>(Arrays.asList(new ActorBattler[]{new ActorBattler(Mouthsore, Mouthsore_Sprite)})), 0,0);
-        Living_Sword_Actor = new ActorAI(new ArrayList<>(Arrays.asList(new ActorBattler[]{new ActorBattler(Living_Sword, Living_Sword_Sprite)})), 0,0);
-        monsters.put("ERIK_AI", ErikAI);
-        monsters.put("EYESORE", Eyesore_Actor);
-        monsters.put("MOUTHSORE", Mouthsore_Actor);
-        monsters.put("LIVING_SWORD", Living_Sword_Actor);
+//        ErikAI = new ActorAI(new ArrayList<>(Arrays.asList(new ActorBattler[]{new ActorBattler((new BattlerAI(
+//                    "Erik the Red",
+//                    Erik,
+//                    Scenario.Standard,
+//                    50,
+//                    null,
+//                    0)),
+//                    ErikSprite)})), 0, 0);
+//        Eyesore_Actor = new ActorAI(new ArrayList<>(Arrays.asList(new ActorBattler[]{new ActorBattler(Eyesore, Eyesore_Sprite)})), 0,0);
+//        Mouthsore_Actor = new ActorAI(new ArrayList<>(Arrays.asList(new ActorBattler[]{new ActorBattler(Mouthsore, Mouthsore_Sprite)})), 0,0);
+//        Living_Sword_Actor = new ActorAI(new ArrayList<>(Arrays.asList(new ActorBattler[]{new ActorBattler(Living_Sword, Living_Sword_Sprite)})), 0,0);
+//        monsters.put("ERIK_AI", ErikAI);
+//        monsters.put("EYESORE", Eyesore_Actor);
+//        monsters.put("MOUTHSORE", Mouthsore_Actor);
+//        monsters.put("LIVING_SWORD", Living_Sword_Actor);
         
     }
     

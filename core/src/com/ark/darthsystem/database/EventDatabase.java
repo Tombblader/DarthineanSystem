@@ -16,7 +16,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
  * @author Keven
  */
 public class EventDatabase {
-    public static Pickup GraphicsPotion = new Pickup("items/potion/icon", 350.0f, 350.0f, .1f, ItemDatabase.Potion);
+    public static Pickup GraphicsPotion = new Pickup("items/potion/icon", 350.0f, 350.0f, .1f, ItemDatabase.ITEM_LIST.get("POTION"));
     public static Novel chapters(String[] parameters){
         Novel event = null;
         switch (parameters[0]) {

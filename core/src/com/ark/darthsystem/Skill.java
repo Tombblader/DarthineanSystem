@@ -1,8 +1,13 @@
 package com.ark.darthsystem;
 
 import com.ark.darthsystem.states.Battle;
+import com.ark.darthsystem.statusEffects.Death;
+import com.ark.darthsystem.statusEffects.Normal;
+import com.ark.darthsystem.statusEffects.StatusEffect;
 
 import java.io.Serializable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -30,7 +35,7 @@ public class Skill implements Serializable, Cloneable, Nameable {
     private Battle.Element skillElement;
     private boolean isAlly;
     private boolean isAll;
-    private Battle.Stats statusEffect;
+    private StatusEffect statusEffect;
 
     public Skill() {
 
@@ -64,7 +69,7 @@ public class Skill implements Serializable, Cloneable, Nameable {
             Battle.Element skillElement,
             boolean isAlly,
             boolean isAll,
-            Battle.Stats statusEffect,
+            String statusEffect,
             int base,
             double levelRatio,
             double casterHP,
@@ -83,7 +88,16 @@ public class Skill implements Serializable, Cloneable, Nameable {
         this.skillElement = skillElement;
         this.isAlly = isAlly;
         this.isAll = isAll;
-        this.statusEffect = statusEffect;
+        try {
+            this.statusEffect = (StatusEffect) Class.forName("com.ark.darthsystem.statusEffects." + statusEffect).newInstance();
+        }
+        catch (NullPointerException ex) {
+            System.out.println(statusEffect + " not found.");
+        }
+        catch (ClassNotFoundException | IllegalAccessException | InstantiationException ex) {
+            ex.printStackTrace();
+            this.statusEffect = new Normal();
+        }
         this.levelRatio = levelRatio;
         this.casterHP = casterHP;
         this.base = base;
@@ -130,13 +144,13 @@ public class Skill implements Serializable, Cloneable, Nameable {
                 targetMagic)) /
                 finalizeRatio *
                 (this.getElement() == target.getElement().getWeakness() ? 2 : 1) *
-                (caster.getEquipment(Equipment.EquipmentType.MainHand.getSlot()) != null &&
-                caster.getEquipment(Equipment.EquipmentType.MainHand.getSlot()).getElement() != Battle.Element.Physical &&
+                (caster.getEquipment(Equipment.Slot.MainHand.getSlot()) != null &&
+                caster.getEquipment(Equipment.Slot.MainHand.getSlot()).getElement() != Battle.Element.Physical &&
                 this.getElement() == caster.getElement() ? 1.5 : 1) * (this.getElement() != Battle.Element.Physical &&
-                this.getElement() == target.getElement() ? -1 : 1) * (caster.getEquipment(Equipment.EquipmentType.MainHand.getSlot()) != null &&
-                caster.getEquipment(Equipment.EquipmentType.MainHand.getSlot()).getElement() != Battle.Element.Physical &&
-                target.getEquipment(Equipment.EquipmentType.OffHand.getSlot()) != null &&
-                this.getElement() == target.getEquipment(Equipment.EquipmentType.OffHand.getSlot()).getElement() ? .5 : 1)) * (.9 + Math.random() * .25)));
+                this.getElement() == target.getElement() ? -1 : 1) * (caster.getEquipment(Equipment.Slot.MainHand.getSlot()) != null &&
+                caster.getEquipment(Equipment.Slot.MainHand.getSlot()).getElement() != Battle.Element.Physical &&
+                target.getEquipment(Equipment.Slot.OffHand.getSlot()) != null &&
+                this.getElement() == target.getEquipment(Equipment.Slot.OffHand.getSlot()).getElement() ? .5 : 1)) * (.9 + Math.random() * .25)));
     }
 
     /**
@@ -207,19 +221,19 @@ public class Skill implements Serializable, Cloneable, Nameable {
             Battler target,
             int turnCount) {
         String message;
-        if (target.getStatus().getPriority() < statusEffect.getPriority() &&
+        if (target.getStatus(0).getPriority() < statusEffect.getPriority() &&
                 statusEffect.isSuccessful(caster, target) &&
                 !(getElement() == Battle.Element.Heal)) {
-            target.changeStatus(statusEffect, turnCount);
+            target.changeStatus(statusEffect);
             message = target.getName() + statusEffect.getMessage();
-        } else if ((target.getStatus() == statusEffect) &&
+        } else if ((target.getStatus(statusEffect)) &&
                 getElement() == Battle.Element.Heal) {
             message = target.getName() +
-                    (target.getStatus() == Battle.Stats.Death ? " has returned to life!" : "'s status has returned to normal!");
-            if (statusEffect == Battle.Stats.Normal) {
+                    (target.getStatus("Death") ? " has returned to life!" : "'s status has returned to normal!");
+            if (statusEffect instanceof Normal) {
                 message = target.getName() + statusEffect.getMessage() + "";
             }
-            target.changeStatus(Battle.Stats.Normal, turnCount);
+            target.changeStatus(new Normal());
         } else {
             message = (finalizeRatio > 0.0) ? "" : "But nothing happens!";
         }
@@ -262,7 +276,7 @@ public class Skill implements Serializable, Cloneable, Nameable {
      * Gets the status effect that the skill has a chance of inflicting.
      * @return The status effect of the skill.
      */
-    public Battle.Stats getStatusEffect() {
+    public StatusEffect getStatusEffect() {
         return statusEffect;
     }
 

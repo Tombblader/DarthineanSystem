@@ -2,9 +2,7 @@ package com.ark.darthsystem;
 
 import com.ark.darthsystem.database.Database2;
 import com.ark.darthsystem.graphics.ActorSkill;
-import com.ark.darthsystem.graphics.GraphicsDriver;
 import com.ark.darthsystem.states.Battle;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 
 /**
  *
@@ -12,7 +10,11 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
  */
 public class Equipment extends Item implements Cloneable {
 
-    public enum EquipmentType {
+    public Type[] getType() {
+        return type;
+    }
+
+    public enum Slot {
 
         MainHand(0),
         OffHand(1),
@@ -21,7 +23,7 @@ public class Equipment extends Item implements Cloneable {
         Accessory(4);
         int slot;
 
-        private EquipmentType(int setSlot) {
+        private Slot(int setSlot) {
             slot = setSlot;
         }
 
@@ -29,7 +31,38 @@ public class Equipment extends Item implements Cloneable {
             return slot;
         }
     }
-    private EquipmentType equipmentSlot;
+    public enum Type {
+        HAND,
+        SWORD,
+        DAGGER,
+        STAFF,
+        SPEAR,
+        BOOMERANG,
+        HAMMER,
+        AXE,
+        HEAVY,
+        LIGHT,
+        MALE,
+        FEMALE,
+        PRISMATIC,
+        GRAY,
+        RED,
+        BLUE,
+        YELLOW,
+        GREEN,
+        WHITE,
+        BLACK,
+        DARCY,
+        ERIK,
+        PROTOX,
+        GLADIA,
+        KARIN,
+        VEATHER,
+        LAVENDER
+        
+    }
+    private Slot equipmentSlot;
+    private Type[] type;
     private int attack, defense, speed, magic;
     private Battle.Element equipElement;
     private transient ActorSkill animation;
@@ -42,40 +75,44 @@ public class Equipment extends Item implements Cloneable {
         this.equipElement = Battle.Element.Physical;
     }
 
-    /**
-     *
-     * @param getName
-     * @param initializeType
-     * @param invoke
-     * @param useMP
-     * @param initializeAttack
-     * @param initializeDefense
-     * @param initializeSpeed
-     * @param initializeMagic
-     */
-    public Equipment(String getName,
-            EquipmentType initializeType,
-            Skill invoke,
-            boolean useMP,
-            int initializeAttack,
-            int initializeDefense,
-            int initializeSpeed,
-            int initializeMagic) {
-        super(getName, false, invoke, useMP);
-        this.equipElement = Battle.Element.Physical;
-        equipmentSlot = initializeType;
-        attack = initializeAttack;
-        defense = initializeDefense;
-        speed = initializeSpeed;
-        magic = initializeMagic;
-        equipElement = Battle.Element.Physical;
-        animation = Database2.Sword();
-    }
+//    /**
+//     *
+//     * @param getName
+//     * @param initializeType
+//     * @param invoke
+//     * @param useMP
+//     * @param initializeAttack
+//     * @param initializeDefense
+//     * @param initializeSpeed
+//     * @param initializeMagic
+//     */
+//    public Equipment(String getName,
+//            EquipmentType initializeType,
+//            Skill invoke,
+//            boolean useMP,
+//            int initializeAttack,
+//            int initializeDefense,
+//            int initializeSpeed,
+//            int initializeMagic) {
+//        super(getName, "", 0, false, invoke, useMP);
+//        this.equipElement = Battle.Element.Physical;
+//        equipmentSlot = initializeType;
+//        attack = initializeAttack;
+//        defense = initializeDefense;
+//        speed = initializeSpeed;
+//        magic = initializeMagic;
+//        equipElement = Battle.Element.Physical;
+//        animation = Database2.Sword();
+//    }
 
     /**
      *
      * @param getName
-     * @param initializeType
+     * @param getDescription
+     * @param getMarketPrice
+     * @param type
+     * 
+     * @param slot
      * @param invoke
      * @param initializeElement
      * @param useMP
@@ -85,7 +122,10 @@ public class Equipment extends Item implements Cloneable {
      * @param initializeMagic
      */
     public Equipment(String getName,
-            EquipmentType initializeType,
+            String getDescription,
+            int getMarketPrice,
+            String[] type,
+            Slot slot,
             Skill invoke,
             Battle.Element initializeElement,
             boolean useMP,
@@ -93,9 +133,13 @@ public class Equipment extends Item implements Cloneable {
             int initializeDefense,
             int initializeSpeed,
             int initializeMagic) {
-        super(getName, false, invoke, useMP);
+        super(getName, getDescription, getMarketPrice, -1, invoke, useMP);
         this.equipElement = Battle.Element.Physical;
-        equipmentSlot = initializeType;
+        this.type = new Type[type.length];
+        for (int i = 0; i < this.type.length; i++) {
+            this.type[i] = Type.valueOf(type[i]);
+        }
+        equipmentSlot = slot;
         attack = initializeAttack;
         defense = initializeDefense;
         speed = initializeSpeed;
@@ -107,44 +151,84 @@ public class Equipment extends Item implements Cloneable {
     /**
      *
      * @param getName
-     * @param initializeType
+     * @param getDescription
+     * @param getMarketPrice
+     * @param type
+     * 
+     * @param slot
      * @param invoke
+     * @param initializeElement
      * @param useMP
      * @param initializeAttack
      * @param initializeDefense
      * @param initializeSpeed
      * @param initializeMagic
-     * @param battleAnimation
-     * @param fieldAnimation
      */
     public Equipment(String getName,
-            EquipmentType initializeType,
+            String getDescription,
+            int getMarketPrice,
+            Type[] type,
+            Slot slot,
             Skill invoke,
+            Battle.Element initializeElement,
             boolean useMP,
             int initializeAttack,
             int initializeDefense,
             int initializeSpeed,
-            int initializeMagic,
-            String battleAnimation,
-            String fieldAnimation) {
-        this(getName,
-                initializeType,
-                invoke,
-                useMP,
-                initializeAttack,
-                initializeDefense,
-                initializeSpeed,
-                initializeMagic);
-            animation = new ActorSkill(fieldAnimation,
-                    battleAnimation, 
-                    1, 1, 1.0f/12f, null, ActorSkill.Area.FRONT);
-    }
+            int initializeMagic) {
+        super(getName, getDescription, getMarketPrice, -1, invoke, useMP);
+        this.equipElement = Battle.Element.Physical;
+        this.type = type;
+        equipmentSlot = slot;
+        attack = initializeAttack;
+        defense = initializeDefense;
+        speed = initializeSpeed;
+        magic = initializeMagic;
+        equipElement = initializeElement;
+        animation = Database2.Sword();
+    }    
+    
+//    /**
+//     *
+//     * @param getName
+//     * @param initializeType
+//     * @param invoke
+//     * @param useMP
+//     * @param initializeAttack
+//     * @param initializeDefense
+//     * @param initializeSpeed
+//     * @param initializeMagic
+//     * @param battleAnimation
+//     * @param fieldAnimation
+//     */
+//    public Equipment(String getName,
+//            EquipmentType initializeType,
+//            Skill invoke,
+//            boolean useMP,
+//            int initializeAttack,
+//            int initializeDefense,
+//            int initializeSpeed,
+//            int initializeMagic,
+//            String battleAnimation,
+//            String fieldAnimation) {
+//        this(getName,
+//                initializeType,
+//                invoke,
+//                useMP,
+//                initializeAttack,
+//                initializeDefense,
+//                initializeSpeed,
+//                initializeMagic);
+//            animation = new ActorSkill(fieldAnimation,
+//                    battleAnimation, 
+//                    1, 1, 1.0f/12f, null, ActorSkill.Area.FRONT);
+//    }
 
     /**
      *
      * @return
      */
-    public EquipmentType getEquipmentType() {
+    public Slot getEquipmentType() {
         return equipmentSlot;
     }
 
@@ -201,14 +285,7 @@ public class Equipment extends Item implements Cloneable {
     }
 
     public Equipment clone() {
-        Equipment temp = new Equipment();
-        temp.equipElement = equipElement;
-        temp.equipmentSlot = equipmentSlot;
-        temp.attack = attack;
-        temp.defense = defense;
-        temp.speed = speed;
-        temp.magic = magic;
-        temp.equipElement = equipElement;
+        Equipment temp = new Equipment(getName(), getDescription(), getPrice(), type, equipmentSlot, getInvoke(), getElement(), useMP(), attack, defense, speed, magic);        
         return temp;
     }
 }

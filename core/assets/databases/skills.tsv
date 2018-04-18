@@ -5,7 +5,7 @@ Red Spin	Sword Tech.  Deals damage to all enemies in a circle.	6	Physical	FALSE	
 Poison Edge	Dark Dagger Tech.  Weak attack that also poisons the enemy.	7	Dark	FALSE	FALSE	Poison	0	0	0	10	0	0	0	0	8	0	0	6
 Sap Shot	Water Magic Tech.  Fires a single shot of water at range.	4	Water	FALSE	FALSE	Normal	10	0	0	0	0	0	6	0	3	0	3	5
 Heal	Healing Magic Tech.  Heals at least 25 HP.	3	Heal	TRUE	FALSE	Normal	-20	0	0	0	0	0	-1	0	0	0	1	1
-Darth Fireball	Fire Darth Magic Tech.  Fires a single shot of fire at range.	4	Fire	FALSE	FALSE	Normal	10	0	0	0	0	0	6	0	3	0	3	5
+Darce Fireball	Fire Darcy Magic Tech.  Fires a single shot of fire at range.	4	Fire	FALSE	FALSE	Normal	10	0	0	0	0	0	6	0	3	0	3	5
 Fireball	Fire Magic Tech.  Fires a single shot of fire at range.	4	Fire	FALSE	FALSE	Normal	10	0	0	0	0	0	7	0	0	0	5	5
 Red Flail	Sword Tech.  Deals more damage the less HP you currently have.	9	Physical	FALSE	FALSE	Normal	6	0	0.6	6	0	0	0	0	6	0	0	6
 Tiger Thrust	Spear Tech.  High physical attack damage skill that rushes the enemy.	10	Physical	FALSE	FALSE	Normal	0	0	0	12	0	0	0	0	6	0	0	5.5
@@ -48,14 +48,14 @@ Antidote	Healing Tech.  Removes poison from one ally.	5	Heal	TRUE	FALSE	Poison	0
 Awaken	Healing Tech.  Awakens all allies.	7	Heal	TRUE	TRUE	Sleep	0	0	0	0	0	0	0	0	0	0	0	1
 Defog	Healing Tech.  Removes Blindness from all allies.	11	Heal	TRUE	TRUE	Fog	0	0	0	0	0	0	0	0	0	0	0	1
 Honey Voice	Healing Tech.  Removes silence from one ally.	9	Heal	TRUE	FALSE	Silence	0	0	0	0	0	0	0	0	0	0	0	1
-Diffuse	Healing Tech.  Removes confusion from all allies	12	Heal	TRUE	TRUE	Confuse	0	0	0	0	0	0	0	0	0	0	0	1
-Cell Rejuvination	Healing Tech.  Removes Petrify from one ally.	15	Heal	TRUE	FALSE	Petrify	0	0	0	0	0	0	0	0	0	0	0	1
+Illusion Break	Healing Tech.  Removes confusion from all allies	12	Heal	TRUE	TRUE	Confuse	0	0	0	0	0	0	0	0	0	0	0	1
+Cell Rejuvenation	Healing Tech.  Removes Petrify from one ally.	15	Heal	TRUE	FALSE	Petrify	0	0	0	0	0	0	0	0	0	0	0	1
 Revivify	Healing Tech.  Raises the dead with at least 30 HP.	20	Heal	TRUE	FALSE	Death	-30	0.3	0	0	0	0	-6	0	0	0	6	6
 Seal Breaker	Erik Tech.  Breaks barriers, and deals tons of damage to one enemy.	23	Physical	FALSE	FALSE	Normal	0	0	0	10	0	0	-4	0	7	0	-8	6
-Reign of Terror	Protox Tech.  Rains death on all enemies in a wide radius.	21	Physical	FALSE	TRUE	Normal	0	0	0	13	0	0	0	0	7	0	0	5.5
+Reign of Terror	Protox Tech.  Rains death on all enemies in a wide radius.	21	Physical	FALSE	TRUE	Normal	0	0	0	13	0	-7	0	0	7	-9	0	5.5
 Weapon Master	Gladia Tech.  Deals damage to all enemies.	7	Physical	FALSE	TRUE	Normal	0	0	0	6	0	6	0	0	3	3	0	5
-Entropy	Dark Darth Tech.  Damage all enemies with darkness.	7	Dark	FALSE	TRUE	Normal	0	0.35	0	0	0	0	13	0	0	0	6	8
-Four's Fury	Light Darth Tech.  Warp to nearby enemy and smite.	25	Light	FALSE	FALSE	Normal	0	0	0	7	0	0	7	0	3	0	4	7
+Entropy	Dark Darcy Tech.  Damage all enemies with darkness.	7	Dark	FALSE	TRUE	Normal	0	0.35	0	0	0	0	13	0	0	0	6	8
+Four's Fury	Light Darcy Tech.  Warp to nearby enemy and smite.	25	Light	FALSE	FALSE	Normal	0	0	0	7	0	0	7	0	3	0	4	7
 Axe Effect	Veather Tech.  Legendary Ladies' Mann technique inflicts all status effects except death.	25	Earth	FALSE	TRUE	Fog	0	0	0	7	0	0	-7	0	3	0	-3	5
 Fairy Circle	NULL	25	Light	FALSE	TRUE	Normal	0	0	0	7	0	7	7	0	3	3	4	5.5
 Darknite	Dark Karin Tech.  Karn Edikt	30	Dark	FALSE	FALSE	Normal	70	0	0	0	0	0	16	0	0	0	8	8

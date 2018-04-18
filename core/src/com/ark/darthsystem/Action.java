@@ -6,6 +6,8 @@ import java.io.Serializable;
 
 import static com.ark.darthsystem.BattleDriver.*;
 import com.ark.darthsystem.database.SoundDatabase;
+import com.ark.darthsystem.statusEffects.*;
+
 
 import java.util.ArrayList;
 
@@ -37,105 +39,101 @@ public class Action implements Serializable {
 
     /**
      *
-     * @param initializeCommand
-     * @param getCaster
+     * @param command
+     * @param caster
      */
-    public Action(Battle.Command initializeCommand, Battler getCaster) {
-        this.actionCommand = initializeCommand;
-        this.caster = getCaster;
+    public Action(Battle.Command command, Battler caster) {
+        this(command);
+        this.caster = caster;
     }
 
     /**
      *
-     * @param initializeCommand
-     * @param getCaster
-     * @param getTarget
-     * @param getAllTargets
+     * @param command
+     * @param caster
+     * @param target
+     * @param allTargets
      */
-    public Action(Battle.Command initializeCommand,
-            Battler getCaster,
-            Battler getTarget,
-            ArrayList<Battler> getAllTargets) {
-        this.actionCommand = initializeCommand;
-        this.target = getTarget;
-        this.allTargets = getAllTargets;
-        this.caster = getCaster;
+    public Action(Battle.Command command,
+            Battler caster,
+            Battler target,
+            ArrayList<Battler> allTargets) {
+        this(command, caster);
+        this.target = target;
+        this.allTargets = allTargets;
     }
 
     /**
      *
-     * @param initializeCommand
-     * @param initializeItem
-     * @param initializeCaster
-     * @param initializeTarget
-     * @param initializeAllTargets
+     * @param command
+     * @param item
+     * @param caster
+     * @param target
+     * @param allTargets
      */
-    public Action(Battle.Command initializeCommand,
-            Item initializeItem,
-            Battler initializeCaster,
-            Battler initializeTarget,
-            ArrayList<Battler> initializeAllTargets) {
-        actionCommand = initializeCommand;
-        actionItem = initializeItem;
-        caster = initializeCaster;
-        target = initializeTarget;
-        allTargets = initializeAllTargets;
+    public Action(Battle.Command command,
+            Item item,
+            Battler caster,
+            Battler target,
+            ArrayList<Battler> allTargets) {
+        this(command, caster, target, allTargets);
+        this.actionItem = item;
     }
 
     /**
      *
-     * @param initializeCommand
+     * @param command
      * @param initializeItem
      * @param initializeCaster
      * @param initializeTarget
      */
-    public Action(Battle.Command initializeCommand,
+    public Action(Battle.Command command,
             Item initializeItem,
             Battler initializeCaster,
             ArrayList<Battler> initializeTarget) {
-        actionCommand = initializeCommand;
-        actionItem = initializeItem;
-        caster = initializeCaster;
-        allTargets = initializeTarget;
+        this.actionCommand = command;
+        this.actionItem = initializeItem;
+        this.caster = initializeCaster;
+        this.allTargets = initializeTarget;
     }
 
     /**
      *
-     * @param initializeCommand
+     * @param command
      * @param initializeSkill
      * @param initializeCaster
      * @param initializeTarget
      * @param initializeAllTargets
      */
-    public Action(Battle.Command initializeCommand,
+    public Action(Battle.Command command,
             Skill initializeSkill,
             Battler initializeCaster,
             Battler initializeTarget,
             ArrayList<Battler> initializeAllTargets) {
-        actionCommand = initializeCommand;
-        actionSkill = initializeSkill;
-        caster = initializeCaster;
-        target = initializeTarget;
+        this.actionCommand = command;
+        this.actionSkill = initializeSkill;
+        this.caster = initializeCaster;
+        this.target = initializeTarget;
 //        isAll = false;
-        allTargets = initializeAllTargets;
+        this.allTargets = initializeAllTargets;
     }
 
     /**
      *
-     * @param initializeCommand
+     * @param command
      * @param initializeSkill
      * @param initializeCaster
      * @param initializeTarget
      */
-    public Action(Battle.Command initializeCommand,
+    public Action(Battle.Command command,
             Skill initializeSkill,
             Battler initializeCaster,
             ArrayList<Battler> initializeTarget) {
-        actionCommand = initializeCommand;
-        caster = initializeCaster;
-        allTargets = initializeTarget;
+        this.actionCommand = command;
+        this.caster = initializeCaster;
+        this.allTargets = initializeTarget;
 //        isAll = true;
-        actionSkill = initializeSkill;
+        this.actionSkill = initializeSkill;
     }
 
     /**
@@ -181,19 +179,19 @@ public class Action implements Serializable {
                         ATTACK_CONSTANT -
                         target.getDefense() * DEFENSE_CONSTANT) /
                         ATTACK_RATIO *
-                        (caster.getEquipment(Equipment.EquipmentType.MainHand.getSlot()) != null &&
-                        caster.getEquipment(Equipment.EquipmentType.MainHand.getSlot()).getElement() != Battle.Element.Physical &&
-                        caster.getEquipment(Equipment.EquipmentType.MainHand.getSlot()).getElement() ==
-                        target.getElement().getWeakness() ? 2 : 1) * (caster.getEquipment(Equipment.EquipmentType.MainHand.getSlot()) != null &&
-                        caster.getEquipment(Equipment.EquipmentType.MainHand.getSlot()).getElement() != Battle.Element.Physical &&
-                        caster.getEquipment(Equipment.EquipmentType.MainHand.getSlot()).getElement() ==
+                        (caster.getEquipment(Equipment.Slot.MainHand.getSlot()) != null &&
+                        caster.getEquipment(Equipment.Slot.MainHand.getSlot()).getElement() != Battle.Element.Physical &&
+                        caster.getEquipment(Equipment.Slot.MainHand.getSlot()).getElement() ==
+                        target.getElement().getWeakness() ? 2 : 1) * (caster.getEquipment(Equipment.Slot.MainHand.getSlot()) != null &&
+                        caster.getEquipment(Equipment.Slot.MainHand.getSlot()).getElement() != Battle.Element.Physical &&
+                        caster.getEquipment(Equipment.Slot.MainHand.getSlot()).getElement() ==
                         caster.getElement() ? 1.5 : 1) *
-                        (caster.getEquipment(Equipment.EquipmentType.MainHand.getSlot()) != null &&
-                        caster.getEquipment(Equipment.EquipmentType.MainHand.getSlot()).getElement() != Battle.Element.Physical &&
-                        caster.getEquipment(Equipment.EquipmentType.MainHand.getSlot()).getElement() == target.getElement() ? -1 : 1) * (caster.getEquipment(Equipment.EquipmentType.MainHand.getSlot()) !=null &&
-                        caster.getEquipment(Equipment.EquipmentType.MainHand.getSlot()).getElement() != Battle.Element.Physical &&
-                        target.getEquipment(Equipment.EquipmentType.OffHand.getSlot()) != null &&
-                        caster.getEquipment(Equipment.EquipmentType.MainHand.getSlot()).getElement() == target.getEquipment(Equipment.EquipmentType.OffHand.getSlot()).getElement() ? .5 : 1) * (.9 + Math.random() * .25));
+                        (caster.getEquipment(Equipment.Slot.MainHand.getSlot()) != null &&
+                        caster.getEquipment(Equipment.Slot.MainHand.getSlot()).getElement() != Battle.Element.Physical &&
+                        caster.getEquipment(Equipment.Slot.MainHand.getSlot()).getElement() == target.getElement() ? -1 : 1) * (caster.getEquipment(Equipment.Slot.MainHand.getSlot()) !=null &&
+                        caster.getEquipment(Equipment.Slot.MainHand.getSlot()).getElement() != Battle.Element.Physical &&
+                        target.getEquipment(Equipment.Slot.OffHand.getSlot()) != null &&
+                        caster.getEquipment(Equipment.Slot.MainHand.getSlot()).getElement() == target.getEquipment(Equipment.Slot.OffHand.getSlot()).getElement() ? .5 : 1) * (.9 + Math.random() * .25));
                 setNewTarget();
                 damageStep(b, damage);
                 break;
@@ -215,8 +213,7 @@ public class Action implements Serializable {
                 break;
             case Charge:
                 caster.charge();
-                print(caster.getName() +
-                        "'s MP has been restored!");
+                print(caster.getName() + "'s MP has been restored!");
                 break;
             case Item:
                 if (actionItem.getInvoke() == null) {
@@ -251,9 +248,9 @@ public class Action implements Serializable {
                         damageStep(b, actionSkill.calculateDamage(caster, target));
                     }
                 }
-                if (actionItem.getExpendable()) {
+                if (actionItem.getStackable()) {
                     actionItem.decreaseQuantity(1);
-                    if (actionItem.getQuantity() <= 0) {
+                    if (actionItem.getCharges() <= 0) {
                         b.getItem().remove(actionItem);
                     }
                 }
@@ -301,9 +298,12 @@ public class Action implements Serializable {
         if (actionSkill != null) {
             printline(actionSkill.changeStatus(caster, target, b.getTurnCount()));
         }
-        if (getDamage > 0 && target.getStatus().attackFaded()) {
-            target.changeStatus(Battle.Stats.Normal, b.getTurnCount());
-            printline(target.getName() + "'s status effect faded away.\n");
+        for (int i = 0; i < target.getAllStatus().size(); i++) {
+            if (getDamage > 0 && target.getStatus(i).attackFaded()) {
+                target.getAllStatus().remove(i);
+                printline(target.getName() + "'s status effect faded away.\n");
+                i--;
+            }
         }
         temp = target.changeHP(getDamage) ? target.getName() + " has fallen!\n" : "";
         if (!temp.equals("")) {
@@ -315,9 +315,9 @@ public class Action implements Serializable {
         for (Battler allTarget : allTargets) {
             damage = actionSkill.calculateDamage(caster, allTarget);
             if (allTarget.isAlive() ||
-                    (actionSkill.getStatusEffect() == Battle.Stats.Death &&
+                    (actionSkill.getStatusEffect() instanceof Death) &&
                     actionSkill.getElement() == Battle.Element.Heal &&
-                    !allTarget.isAlive())) {
+                    !allTarget.isAlive()) {
                 damage = damage <= 0 &&
                         (actionSkill == null ||
                         (actionSkill != null &&
@@ -341,9 +341,12 @@ public class Action implements Serializable {
                 if (!tempMessage.equals("\n") && !tempMessage.equals("")) {
                     print(tempMessage);
                 }
-                if (damage > 0 && allTarget.getStatus().attackFaded()) {
-                    allTarget.changeStatus(Battle.Stats.Normal, b.getTurnCount());
-                    printline(allTarget.getName() + "'s status effect faded away.");
+                for (int i = 0; i < allTarget.getAllStatus().size(); i++ ) {
+                    if (damage > 0 && allTarget.getAllStatus().get(i).attackFaded()) {
+                        allTarget.getAllStatus().remove(i);                        
+                        printline(allTarget.getName() + "'s status effect faded away.");
+                        i--;
+                    }
                 }
                 tempMessage = allTarget.changeHP(damage) ? allTarget.getName() + " has fallen!\n" : "";
                 if (!tempMessage.equals("\n") && !tempMessage.equals("")) {
@@ -379,12 +382,12 @@ public class Action implements Serializable {
         }
         if (!allAlive) {
             while ((actionSkill != null &&
-                    actionSkill.getStatusEffect() == Battle.Stats.Death &&
+                    actionSkill.getStatusEffect() instanceof Death &&
                     actionSkill.getElement() == Battle.Element.Heal &&
                     target.isAlive()) ||
                     (!target.isAlive() &&
                     (actionSkill == null ||
-                    !(actionSkill.getStatusEffect() == Battle.Stats.Death &&
+                    !(actionSkill.getStatusEffect() instanceof Death &&
                     actionSkill.getElement() == Battle.Element.Heal)))) {
                 target = allTargets.get((int) (Math.random() * allTargets.size()));
             }
@@ -401,9 +404,9 @@ public class Action implements Serializable {
 
     private int criticalHit() {
         if (damage > 0 &&
-                caster.getAttack() / 255 +
-                caster.getSpeed() / 255 +
-                caster.getMagic() / 510 >
+                caster.getAttack() / 255f +
+                caster.getSpeed() / 255f +
+                caster.getMagic() / 510f >
                 Math.random()) {
             print("A critical hit!");
             return damage;
@@ -414,7 +417,7 @@ public class Action implements Serializable {
     private int dodge() {
         if ((damage > 0) &&
                 (target != null) && 
-                ((target.getSpeed() - caster.getSpeed()) / 255 + target.getSpeed() * 2 / 512 > Math.random())) {
+                ((target.getSpeed() - caster.getSpeed()) / 255f + target.getSpeed() * 2f / 512f > Math.random())) {
             print("Miss!");
             return 0;
         }
@@ -423,37 +426,39 @@ public class Action implements Serializable {
 
     public boolean checkStatus(Battle b) {
         boolean move = true;
-        switch (caster.getStatus()) {
-            case Sleep:
-            case Paralyze:
-            case Stun:
-            case Petrify:
-            case Death:
-                move = false;
-                break;
-            case Silence:
-                if (actionCommand == Battle.Command.Skill) {
-                    move = false;
-                }
-                break;
-            case Poison:
-                printline(caster.getName() + " takes " + (caster.getMaxHP() / 20) + " damage from the poison.");
-                if (caster.changeHP(caster.getMaxHP() / 20)) {
-                    printline(caster.getName() + " has collapsed from the poison!");
-                    move = false;
-                }
-                break;
-            case Fog:
-                break;
-            case Confuse:
-                target = (Math.random() > .5 ? b.getAlly((int) (Math.random() *
-                        b.getAlly().size())) : b.getAlly((int) (Math.random() *
-                        b.getAlly().size())));
-//                allTargets = (Math.random() > .5 ? b.getAlly() : (b.getEnemy()));
-                actionSkill = caster.getSkill((int) (Math.random() * caster.getSkillList().size()));
-                actionCommand = (Math.random() > .5 ? Battle.Command.Attack : Battle.Command.Skill);
-                break;
-        }
+        move = caster.getAllStatus().stream().map((status) -> status.checkStatus(this, b)).reduce(move, (accumulator, _item) -> accumulator & _item);
+        
+//        switch (caster.getStatus()) {
+//            case Sleep:
+//            case Paralyze:
+//            case Stun:
+//            case Petrify:
+//            case Death:
+//                move = false;
+//                break;
+//            case Silence:
+//                if (actionCommand == Battle.Command.Skill) {
+//                    move = false;
+//                }
+//                break;
+//            case Poison:
+//                printline(caster.getName() + " takes " + (caster.getMaxHP() / 20) + " damage from the poison.");
+//                if (caster.changeHP(caster.getMaxHP() / 20)) {
+//                    printline(caster.getName() + " has collapsed from the poison!");
+//                    move = false;
+//                }
+//                break;
+//            case Fog:
+//                break;
+//            case Confuse:
+//                target = (Math.random() > .5 ? b.getAlly((int) (Math.random() *
+//                        b.getAlly().size())) : b.getAlly((int) (Math.random() *
+//                        b.getAlly().size())));
+////                allTargets = (Math.random() > .5 ? b.getAlly() : (b.getEnemy()));
+//                actionSkill = caster.getSkill((int) (Math.random() * caster.getSkillList().size()));
+//                actionCommand = (Math.random() > .5 ? Battle.Command.Attack : Battle.Command.Skill);
+//                break;
+//        }
         return move;
     }
 
@@ -464,6 +469,14 @@ public class Action implements Serializable {
     public Skill getSkill() {
         return actionSkill;
     }
+    
+    public void setTarget(Battler target) {
+        this.target = target;
+    }
+
+    public void setAllTarget(ArrayList<Battler> targets) {
+        this.allTargets = targets;
+    }
 
     /**
      *
@@ -472,4 +485,13 @@ public class Action implements Serializable {
     public ArrayList<Battler> getAllTargets() {
         return allTargets;
     }
+
+    public void setSkill(Skill skill) {
+        actionSkill = skill;
+    }
+
+    public void setCommand(Battle.Command command) {
+        actionCommand = command;
+    }
+
 }
