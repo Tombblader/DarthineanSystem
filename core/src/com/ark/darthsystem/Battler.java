@@ -7,14 +7,13 @@ import com.ark.darthsystem.statusEffects.*;
 import java.io.*;
 import java.util.Arrays;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * A battler represents a character in Battle mode.  It holds the character's
  * stats and abilities.
  * @author Keven
  */
-public class Battler implements Serializable, Nameable {
+public class Battler implements Serializable, Nameable, Cloneable {
 
     public static final long serialVersionUID = 553786374;
     private static final double DEFEND = 0.25;
@@ -44,16 +43,18 @@ public class Battler implements Serializable, Nameable {
     private double defenseTier = defense / 8.0 / level;
     private double speedTier = speed / 8.0 / level;
     private double magicTier = magic / 8.0 / level;
-    private int tnl = 50;
+    private int tnl = 1000;
 
     @Override
     public String getDescription() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return description;
     }
 
     public static enum Gender {
         Male,
-        Female
+        Female,
+        None,
+        Random
     }
 
     /**
@@ -123,6 +124,7 @@ public class Battler implements Serializable, Nameable {
             }
             this.equipmentList = initialEquipment.clone();
         } catch (NullPointerException e) {
+            e.printStackTrace();
         }
 //    boolean isAfflicted[] = {false};
         this.battlerGender = initializeGender;
@@ -172,6 +174,7 @@ public class Battler implements Serializable, Nameable {
     /**
      *
      * @param initialName
+     * @param getDescription
      * @param initialElement
      * @param initializeGender
      * @param initialLevel
@@ -826,22 +829,15 @@ public class Battler implements Serializable, Nameable {
         name = newName;
     }
 
-    public Battler clone() {
-        Battler b = new Battler(name,
-                description,
-                battlerElement,
-                battlerGender,
-                level,
-                HP,
-                MP,
-                attack,
-                defense,
-                speed,
-                magic,
-                battlerClass,
-                equipmentList);
-        b.skillList = skillList;
-        return b;
+    @Override
+    public Object clone() {
+        try {
+            return (Battler) super.clone();
+        }
+        catch (CloneNotSupportedException e) {
+            // This should never happen
+        }
+        return null;
     }
 
     public void reset() {

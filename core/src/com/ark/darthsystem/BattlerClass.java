@@ -46,7 +46,7 @@ public class BattlerClass implements Serializable {
         this.name = name;
         equipmentList = new Equipment.Type[equipmentSet.length];
         for (int i = 0; i < equipmentSet.length; i++) {
-            equipmentList[i] = Equipment.Type.valueOf(equipmentSet[i]);
+            equipmentList[i] = Equipment.Type.valueOf(equipmentSet[i].toUpperCase());
         }
         skillList = skillSet;
         growthList = new int[]{0, 0, 0, 0, 0, 0};

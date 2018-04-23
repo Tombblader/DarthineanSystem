@@ -5,18 +5,21 @@ import com.ark.darthsystem.states.Battle;
 import com.ark.darthsystem.statusEffects.Death;
 import com.ark.darthsystem.statusEffects.Normal;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * A Battler, but also has AI data, Experience Points, and Items dropped.
  * @author Keven
  */
-public class BattlerAI extends Battler implements Nameable {
+public class BattlerAI extends Battler implements Nameable, Cloneable {
 
     private static final int MAX_PRIORITY = 10;
 
     private AI[] AIData;
     private int experience;
-    private Item drop;
+    private Item[] drop;
+    private double[] dropPercent;
 
     /**
      * Creates a new instance of a BattlerAI based on a copy of a Battler.
@@ -31,8 +34,9 @@ public class BattlerAI extends Battler implements Nameable {
             Battler newBattler,
             AI[] AIData,
             int experience,
-            Item itemDrop,
-            int itemQuantity) {
+            Item[] itemDrop,
+            double[] dropPercent,
+            int[] itemQuantity) {
         super(name,
                 newBattler.getDescription(),
                 newBattler.getElement(),
@@ -49,8 +53,11 @@ public class BattlerAI extends Battler implements Nameable {
         this.AIData = AIData;
         this.experience = experience;
         try {
-            drop = (Item) (itemDrop.clone());
-            itemDrop.setQuantity(itemQuantity);
+            drop = (Item[]) (itemDrop.clone());
+            this.dropPercent = dropPercent;
+            for (int i = 0; i < drop.length; i++){ 
+                drop[i].setQuantity(itemQuantity[i]);
+            }
         } catch (Exception e) {
         }
     }
@@ -58,6 +65,7 @@ public class BattlerAI extends Battler implements Nameable {
     /**
      * Create a new Instance of BattlerAI.
      * @param name The name of the BattlerAI
+     * @param description
      * @param element The Element of the BattlerAI
      * @param gender The gender of the BattlerAI
      * @param level The level of the BattlerAI
@@ -72,6 +80,7 @@ public class BattlerAI extends Battler implements Nameable {
      * @param AIData The flags and priorities that the AI uses.
      * @param experience The amount of experience points the BattlerAI gives when defeated.
      * @param itemDrop The item dropped when defeated.
+     * @param dropRate
      * @param itemQuantity The amount of items dropped when defeated.
      */
     public BattlerAI(String name,
@@ -89,8 +98,9 @@ public class BattlerAI extends Battler implements Nameable {
             Equipment[] equipment,
             AI[] AIData,
             int experience,
-            Item itemDrop,
-            int itemQuantity) {
+            Item[] itemDrop,
+            double[] dropRate,
+            int[] itemQuantity) {
         super(name,
                 description,
                 element,
@@ -107,8 +117,11 @@ public class BattlerAI extends Battler implements Nameable {
         this.AIData = AIData;
         this.experience = experience;
         try {
-            drop = (Item) (itemDrop.clone());
-            drop.setQuantity(itemQuantity);
+            drop = (Item[]) (itemDrop.clone());
+            this.dropPercent = dropRate;
+            for (int i = 0; i < drop.length; i++){ 
+                drop[i].setQuantity(itemQuantity[i]);
+            }
         } catch (Exception e) {
         }
     }
@@ -147,8 +160,9 @@ public class BattlerAI extends Battler implements Nameable {
             Equipment[] equipment,
             AI[] AIData,
             int experience,
-            Item itemDrop,
-            int itemQuantity) {
+            Item[] itemDrop,
+            double[] dropRate,
+            int[] itemQuantity) {
         super(name,
                 description,
                 element,
@@ -165,8 +179,11 @@ public class BattlerAI extends Battler implements Nameable {
         this.AIData = AIData;
         this.experience = experience;
         try {
-            drop = (Item) (itemDrop.clone());
-            drop.setQuantity(itemQuantity);
+            drop = (Item[]) (itemDrop.clone());
+            this.dropPercent = dropRate;
+            for (int i = 0; i < drop.length; i++){ 
+                drop[i].setQuantity(itemQuantity[i]);
+            }
         } catch (Exception e) {
         }
     }
@@ -207,8 +224,9 @@ public class BattlerAI extends Battler implements Nameable {
             ActorSkill unarmedStrikeAnimation,
             AI[] AIData,
             int experience,
-            Item itemDrop,
-            int itemQuantity) {
+            Item[] itemDrop,
+            double[] dropRate,
+            int[] itemQuantity) {
         this(name,
                 description,
                 element,
@@ -225,6 +243,7 @@ public class BattlerAI extends Battler implements Nameable {
                 AIData,
                 experience,
                 itemDrop,
+                dropRate,
                 itemQuantity);
         Equipment temp = new Equipment("Unarmed",
                 "",
@@ -381,18 +400,30 @@ public class BattlerAI extends Battler implements Nameable {
      *
      * @return
      */
-    public Item getDroppedItem() {
+    public Item[] getDroppedItem() {
         return drop;
+    }
+
+    public double[] getDropRate() {
+        return dropPercent;
+    }
+    
+    public int[] getDropNumber() {
+        int[] temp = new int[drop.length];
+        for (int i = 0; i < temp.length; i++) {
+            if (drop[i] != null) {
+                temp[i] = drop[i].getCharges();
+            }
+        }
+        return temp;
     }
     
     public AI[] getAIData() {
         return AIData;
     }
     
-    public BattlerAI clone() {
-        return new BattlerAI(getName(), getDescription(), getElement(), getGender(), getLevel(), 
-                getHP(), getMP(), getAttack(), getDefense(), getSpeed(), 
-                getMagic(), getSkillList(), getEquipmentList(), AIData, experience, drop, drop.getCharges());
+    public Object clone() {
+        return (BattlerAI) super.clone();
     }
 
 }

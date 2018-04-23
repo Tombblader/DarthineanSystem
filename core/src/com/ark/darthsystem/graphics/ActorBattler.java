@@ -91,7 +91,7 @@ public class ActorBattler {
 
 
     public ActorBattler clone() {
-        return new ActorBattler(battler.clone(), spriteSheet);
+        return new ActorBattler((Battler) battler.clone(), spriteSheet);
     }
     
     public <T extends Battler> T getBattler() {

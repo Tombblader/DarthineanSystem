@@ -64,3 +64,19 @@ Name	Prismatic Summoner
 Equipment	Staff	Light	Lavender	White	Prismatic	Female				
 Skills										
 1	Heal									
+Name	Water Spirit									
+Equipment	Staff	Blue	Heavy	Light	Sword	Female				
+Skills										
+1	Crosscall	Heal								
+Name	Fire Spirit									
+Equipment	Staff	Red	Heavy	Light	Sword	Female				
+Skills										
+1	Red Spin									
+Name	Wind Spirit									
+Equipment	Staff	Yellow	Heavy	Light	Boomerang	Female				
+Skills										
+1	Heal									
+Name	Earth Spirit									
+Equipment	Staff	Green	Heavy	Light	Hammer	Female				
+Skills										
+1	Heal									

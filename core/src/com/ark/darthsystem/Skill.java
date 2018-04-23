@@ -93,6 +93,7 @@ public class Skill implements Serializable, Cloneable, Nameable {
         }
         catch (NullPointerException ex) {
             System.out.println(statusEffect + " not found.");
+            this.statusEffect = new Normal();
         }
         catch (ClassNotFoundException | IllegalAccessException | InstantiationException ex) {
             ex.printStackTrace();

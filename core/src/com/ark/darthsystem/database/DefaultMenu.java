@@ -65,12 +65,18 @@ public class DefaultMenu extends Menu {
                                 GraphicsDriver.addMenu(menuTarget);
                             } else {
                                 (useItem.use(caster, targetList)).calculateDamage(new Battle(player.getAllActorBattlers(),
-                                                player.getAllActorBattlers(),
-                                                Database1.inventory,
-                                                null));
+                                        player.getAllActorBattlers(),
+                                        Database1.inventory,
+                                        null));
                             }
                             return choice;
                         }
+
+                        public void updateMenu(float delta) {
+                            super.updateMenu(delta);
+                            setHeader(Database1.inventory.get(getCursorIndex()).getDescription());
+                        }
+
                     };
                     GraphicsDriver.addMenu(menuItem);
                 } else {
@@ -94,8 +100,8 @@ public class DefaultMenu extends Menu {
                         ActorBattler caster = Database2.player.getBattler(sourceIndex);
                         String[] skillList = new String[caster.getSkillList().size()];
                         for (int i = 0; i < skillList.length; i++) {
-                            skillList[i] = (i + 1) + ". " + caster.getSkillList().get(i).getSkill().getName() + " " +
-                                    caster.getSkillList().get(i).getSkill().getCost() + " MP";
+                            skillList[i] = (i + 1) + ". " + caster.getSkillList().get(i).getSkill().getName() + " "
+                                    + caster.getSkillList().get(i).getSkill().getCost() + " MP";
                         }
                         Menu menuTarget = new Menu("Select a Skill", skillList, true, true) {
                             @Override
@@ -103,6 +109,7 @@ public class DefaultMenu extends Menu {
                                 caster.getSkillList().get(getCursorIndex()).activate(player);
                                 return choice;
                             }
+
                             public void updateMenu(float delta) {
                                 super.updateMenu(delta);
                                 setHeader(caster.getSkillList().get(getCursorIndex()).getSkill().getDescription());
@@ -138,7 +145,7 @@ public class DefaultMenu extends Menu {
                                     cancel();
                                 }
                                 return choice;
-                                
+
                             }
                         };
                         GraphicsDriver.addMenu(menuTarget);

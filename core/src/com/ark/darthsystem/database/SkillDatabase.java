@@ -7,12 +7,9 @@ package com.ark.darthsystem.database;
 
 import com.ark.darthsystem.Skill;
 import com.ark.darthsystem.states.Battle;
-import com.ark.darthsystem.statusEffects.StatusEffect;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import java.util.HashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -31,12 +28,12 @@ public class SkillDatabase {
             }
             int i = 0;
             
-            SKILL_LIST.put(data[i], new Skill(data[i], //Name
+            SKILL_LIST.put(data[i].toUpperCase(), new Skill(data[i], //Name
                     data[++i], //Description
                     Integer.parseInt(data[++i]), //Cost
                     Battle.Element.valueOf(data[++i]), //Element
-                    Boolean.getBoolean(data[++i].toLowerCase()), //Targets ally?
-                    Boolean.getBoolean(data[++i].toLowerCase()),
+                    Boolean.valueOf(data[++i]), //Targets ally?
+                    Boolean.valueOf(data[++i]), //Is All
                     data[++i], //Inflicts stats?
                     Integer.parseInt(data[++i]), //Base Damage
                     Double.parseDouble(data[++i]), //Level Difference Multiplier
@@ -51,8 +48,35 @@ public class SkillDatabase {
                     Integer.parseInt(data[++i]), //Enemy Magic Multiplier
                     Double.parseDouble(data[++i]))); //Divider
         }
-    }
-//    public static Skill CrossCall = new Skill("CrossCall",
+        file = Gdx.files.internal("databases/skillsai.tsv");
+        massiveString = file.readString().split("(\r\n|\r|\n)");
+        for (String token : massiveString) {
+            String[] data = token.split("\t");
+            if (data[0].equals("Name")) {
+                continue;
+            }
+            int i = 0;
+            SKILL_LIST.put(data[i].toUpperCase(), new Skill(data[i], //Name
+                    data[++i], //Description
+                    Integer.parseInt(data[++i]), //Cost
+                    Battle.Element.valueOf(data[++i]), //Element
+                    Boolean.valueOf(data[++i]), //Targets ally?
+                    Boolean.valueOf(data[++i]),
+                    data[++i], //Inflicts stats?
+                    Integer.parseInt(data[++i]), //Base Damage
+                    Double.parseDouble(data[++i]), //Level Difference Multiplier
+                    Double.parseDouble(data[++i]), //HP %
+                    Integer.parseInt(data[++i]), //Attack Multiplier
+                    Integer.parseInt(data[++i]), //Defense Multiplier
+                    Integer.parseInt(data[++i]), //Speed Multiplier
+                    Integer.parseInt(data[++i]), //Magic Multiplier
+                    Integer.parseInt(data[++i]), //Enemy Attack Multiplier
+                    Integer.parseInt(data[++i]), //Enemy Defense Multiplier
+                    Integer.parseInt(data[++i]), //Enemy Speed Multiplier
+                    Integer.parseInt(data[++i]), //Enemy Magic Multiplier
+                    Double.parseDouble(data[++i]))); //Divider
+        }
+    }//    public static Skill CrossCall = new Skill("CrossCall",
 //            "Physical Attack",
 //            5,
 //            Battle.Element.Light,

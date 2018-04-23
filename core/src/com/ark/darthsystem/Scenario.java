@@ -1,6 +1,7 @@
 package com.ark.darthsystem;
 
 import com.ark.darthsystem.states.Battle;
+import java.util.HashMap;
 
 /**
  *
@@ -24,6 +25,18 @@ public interface Scenario {
     public static final AI[] Standard_Support = {new AI(AI.Type.Attack, 5),
         new AI(AI.Type.AttackSkill, 5),
         new AI(AI.Type.SupportSkill, 5)};
+    public static HashMap<String, AI[]> AI_TYPE = new HashMap<String, AI[]>() { {
+        put("Standard_Heal".toUpperCase(), Standard_Heal);
+        put("Brainless".toUpperCase(), Brainless);
+        put("Brainless_Skill".toUpperCase(), Brainless_Skill);
+        put("Brainless_Heal".toUpperCase(), Brainless_Heal);
+        put("Standard".toUpperCase(), Standard);
+        put("Standard_Support".toUpperCase(), Standard_Support);
+        put("Offense".toUpperCase(), Standard);
+
+
+    }
+    };
 
     /**
      *

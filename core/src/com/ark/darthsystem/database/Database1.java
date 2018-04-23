@@ -48,7 +48,7 @@ public class Database1 implements Serializable {
             
             BATTLER_LIST.put(data[i].toUpperCase(), new Battler(data[i], //Name
                     data[++i],
-                    SystemDatabase.CLASS_LIST.get(data[++i]), //Class
+                    SystemDatabase.CLASS_LIST.get(data[++i].toUpperCase()), //Class
                     Battle.Element.valueOf(data[++i]), //Element
                     Battler.Gender.valueOf(data[++i]), //Gender                    
                     Integer.parseInt(data[++i]), //Level

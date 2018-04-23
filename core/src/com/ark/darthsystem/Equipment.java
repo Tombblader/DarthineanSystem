@@ -137,7 +137,7 @@ public class Equipment extends Item implements Cloneable {
         this.equipElement = Battle.Element.Physical;
         this.type = new Type[type.length];
         for (int i = 0; i < this.type.length; i++) {
-            this.type[i] = Type.valueOf(type[i]);
+            this.type[i] = Type.valueOf(type[i].toUpperCase());
         }
         equipmentSlot = slot;
         attack = initializeAttack;

@@ -737,7 +737,11 @@ public class Player extends ActorCollision {
                     ((NAME_X + SUB_WIDTH * i) + GraphicsDriver.getCamera().getScreenPositionX()),
                     ((NAME_Y + FONT_SIZE * 2f) + GraphicsDriver.getCamera().getScreenPositionY()));
             GraphicsDriver.drawMessage(batch, font,
-                    getAllActorBattlers().get(i).getCurrentSkill().getSkill().getName(),
+                    getAllActorBattlers().
+                            get(i).
+                            getCurrentSkill().
+                            getSkill().
+                            getName(),
                     ((NAME_X + SUB_WIDTH * i) + GraphicsDriver.getCamera().getScreenPositionX()),
                     ((NAME_Y + FONT_SIZE * 3f) + GraphicsDriver.getCamera().getScreenPositionY()));
         }

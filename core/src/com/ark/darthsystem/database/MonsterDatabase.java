@@ -38,12 +38,12 @@ public class MonsterDatabase {
 //                    null,
 //                    0)),
 //                    ErikSprite)})), 0, 0);
-//        Eyesore_Actor = new ActorAI(new ArrayList<>(Arrays.asList(new ActorBattler[]{new ActorBattler(Eyesore, Eyesore_Sprite)})), 0,0);
-//        Mouthsore_Actor = new ActorAI(new ArrayList<>(Arrays.asList(new ActorBattler[]{new ActorBattler(Mouthsore, Mouthsore_Sprite)})), 0,0);
+        Eyesore_Actor = new ActorAI(new ArrayList<>(Arrays.asList(new ActorBattler[]{new ActorBattler(AIDatabase.BATTLER_LIST.get("EYESORE"), Eyesore_Sprite)})), 0,0);
+        Mouthsore_Actor = new ActorAI(new ArrayList<>(Arrays.asList(new ActorBattler[]{new ActorBattler(AIDatabase.BATTLER_LIST.get("MOUTHSORE"), Mouthsore_Sprite)})), 0,0);
 //        Living_Sword_Actor = new ActorAI(new ArrayList<>(Arrays.asList(new ActorBattler[]{new ActorBattler(Living_Sword, Living_Sword_Sprite)})), 0,0);
 //        monsters.put("ERIK_AI", ErikAI);
-//        monsters.put("EYESORE", Eyesore_Actor);
-//        monsters.put("MOUTHSORE", Mouthsore_Actor);
+        monsters.put("EYESORE", Eyesore_Actor);
+        monsters.put("MOUTHSORE", Mouthsore_Actor);
 //        monsters.put("LIVING_SWORD", Living_Sword_Actor);
         
     }

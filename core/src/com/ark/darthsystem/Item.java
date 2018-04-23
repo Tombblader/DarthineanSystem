@@ -32,8 +32,8 @@ public class Item implements Serializable, Cloneable, Nameable {
      *
      * @param getName
      * @param getDescription
-     * @param initializeExpendable
      * @param price
+     * @param charges
      * @param initializeHP
      * @param initializeMP
      * @param all
@@ -59,7 +59,9 @@ public class Item implements Serializable, Cloneable, Nameable {
     /**
      *
      * @param getName
-     * @param initializeExpendable
+     * @param getDescription
+     * @param price
+     * @param charges
      * @param initializeSkill
      * @param initializeUseMP
      */
@@ -185,7 +187,7 @@ public class Item implements Serializable, Cloneable, Nameable {
      *
      * @return
      */
-    public boolean getStackable() {
+    public boolean isStackable() {
         return stackable;
     }
 
@@ -226,11 +228,13 @@ public class Item implements Serializable, Cloneable, Nameable {
         return name;
     }
     
+    @Override
     public String getDescription() {
         return description;
     }
 
-    public Object clone() {
+    @Override
+    public Object clone() throws CloneNotSupportedException {
         Item cloned = new Item();
         cloned.name = this.name;
         cloned.description = this.description;
@@ -247,6 +251,7 @@ public class Item implements Serializable, Cloneable, Nameable {
         return cloned;
     }
 
+    @Override
     public boolean equals(Object o) {
         return o != null && ((Item) (o)).getName().equals(this.getName());
     }

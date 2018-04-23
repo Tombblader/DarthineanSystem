@@ -35,9 +35,9 @@ public class ItemDatabase {
                     Integer.parseInt(data[++i]), //Market Price
                     data[++i].split(", "), //Equipment Types
                     Equipment.Slot.valueOf(data[++i]), //Slot
-                    SkillDatabase.SKILL_LIST.get(data[i++]),
+                    SkillDatabase.SKILL_LIST.get(data[++i].toUpperCase()),
                     Battle.Element.valueOf(data[++i]), //Element
-                    Boolean.getBoolean(data[++i].toLowerCase()), //Use MP?
+                    Boolean.valueOf(data[++i].toLowerCase()), //Use MP?
                     Integer.parseInt(data[++i]), //Attack
                     Integer.parseInt(data[++i]), //Defense Multiplier
                     Integer.parseInt(data[++i]), //Speed Multiplier
@@ -59,7 +59,7 @@ public class ItemDatabase {
                     Integer.parseInt(data[++i]), //Charges
                     Integer.parseInt(data[++i]), //HP Effect
                     Integer.parseInt(data[++i]), //MP Effect
-                    Boolean.getBoolean(data[++i].toLowerCase()) //Is All?
+                    Boolean.valueOf(data[++i].toLowerCase()) //Is All?
                     ));
             
         }
@@ -77,7 +77,7 @@ public class ItemDatabase {
                     Integer.parseInt(data[++i]), //Market Price
                     Integer.parseInt(data[++i]), //Charges
                     SkillDatabase.SKILL_LIST.get(data[++i]), //Skill Effect
-                    Boolean.getBoolean(data[++i].toLowerCase()) //Is All?
+                    Boolean.valueOf(data[++i].toLowerCase()) //Is All?
                     ));
             
         }

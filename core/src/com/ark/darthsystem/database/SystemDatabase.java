@@ -20,13 +20,14 @@ import java.util.HashMap;
  * @author Keven
  */
 public class SystemDatabase {
+
     public static final HashMap<Battle.Element, Double> WEAKNESS = new HashMap<>();
     public static final HashMap<String, BattlerClass> CLASS_LIST = new HashMap<>();
-    
+
     public SystemDatabase() {
         FileHandle file = Gdx.files.internal("databases/classes.tsv");
         String[] massiveString = file.readString().split("(\r\n|\r|\n)");
-        
+
         ArrayList<String> relevantData = new ArrayList<>();
         String mode = "";
         HashMap<Integer, Skill[]> tempMap = new HashMap<>();
@@ -34,18 +35,20 @@ public class SystemDatabase {
             String[] data = token.split("\t");
             if (data[0].equalsIgnoreCase("Name")) {
                 mode = "Name";
-                CLASS_LIST.put(relevantData.get(0).toUpperCase(), new BattlerClass(relevantData.get(0), //Name
-                                    relevantData.get(1).split("\n"), //Description
-                                    tempMap
-                                    ));
-                relevantData.clear();
+                if (!relevantData.isEmpty()) {
+                    CLASS_LIST.put(relevantData.get(0).toUpperCase(), new BattlerClass(relevantData.get(0), //Name
+                            relevantData.get(1).split("\n"), //Description
+                            tempMap
+                    ));
+                    relevantData.clear();
+                }
                 relevantData.add(data[1]);
-                tempMap.clear();
+                tempMap = new HashMap<>();
                 continue;
             }
             if (data[0].equalsIgnoreCase("Equipment")) {
                 mode = "Equipment";
-                relevantData.add(String.join("\n", Arrays.copyOfRange(data, 1, data.length - 1)));
+                relevantData.add(String.join("\n", Arrays.copyOfRange(data, 1, data.length)));
                 continue;
             }
             if (data[0].equalsIgnoreCase("Skills")) {
@@ -54,21 +57,21 @@ public class SystemDatabase {
             }
             if (mode.equalsIgnoreCase("Skills")) {
                 tempMap.put(Integer.parseInt(data[0]),
-                        Arrays.stream(Arrays.copyOfRange(data, 1, data.length - 1))
-                                .map(skill -> SKILL_LIST.get(skill))
-                                .toArray(size -> new Skill[size])
+                        Arrays.stream(Arrays.copyOfRange(data, 1, data.length))
+                                .map(skill -> SKILL_LIST.get(skill.toUpperCase()))
+                                .toArray(Skill[]::new)
                 );
+
             }
-            
-            
+
         }
-            int i = 0;
-            
-            CLASS_LIST.put(relevantData.get(i).toUpperCase(), new BattlerClass(relevantData.get(i), //Name
-                    relevantData.get(++i).split("\n"), //Description
-                    tempMap
-                    )); //Divider
-        }
+        int i = 0;
+
+        CLASS_LIST.put(relevantData.get(i).toUpperCase(), new BattlerClass(relevantData.get(i), //Name
+                relevantData.get(++i).split("\n"), //Description
+                tempMap
+        )); //Divider
+    }
 
 //    public static final HashMap<Battle.Stats, Double> STATUS_VULNERABILITY = new HashMap<>();
 //
@@ -193,8 +196,6 @@ public class SystemDatabase {
 //    public static Equipment[] Angel = {White_Sword, Grooved_Gauntlet, Queens_Robe, Silver_Ribbon, null};
 //    public static Equipment[] Nothing = {null, null, null, null, null};
 //    public static Equipment[] Water_Spirit_Equipment = {Bronze_Sword, Bronze_Shield, Bronze_Armor, Bronze_Helmet, null};
-
-
 //    public static BattlerClass Magic_Knight_Class = new BattlerClass("Magic Knight", null, Magic_Knight_Moveset);
 //    public static BattlerClass Swordsman_Class = new BattlerClass("Swordsman", null, Warrior_Moveset);
 //    public static BattlerClass Lancer_Class = new BattlerClass("Lancer", null, Lancer_Moveset);

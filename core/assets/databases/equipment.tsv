@@ -10,9 +10,9 @@ Blue Javelin	A blue pointy stick.  Goes well with blue armor.  Seems to be perpe
 Red Hood	A magical red hood.  Looks kind of fairytale-ish.	120	Light	Head		Physical	FALSE	0	7	2	2
 White Sword	A sword with a white blade.  Its magical property allows the sword to deal light damage.	1000	Sword	MainHand		Light	FALSE	15	0	0	15
 Chain Cloak	A heavy cloak made of chains.  Chafes, but protects well.	100	Light	Body		Physical	FALSE	0	12	0	0
-Knight Armor	A heavy suit of armor.  Hard to move in.	1000	Heavy	Body			FALSE	0	18	0	0
+Knight Armor	A heavy suit of armor.  Hard to move in.	1000	Heavy	Body		Physical	FALSE	0	18	0	0
 Golden Axe	An axe made of gold.  Shiny and magically enhanced so it won't bend.	4000	Axe	MainHand	Burial Swipe	Earth	FALSE	21	0	0	0
-Bronze Armor	A light, archer-style armor made of bronze.  Leaves significant parts of the body exposed, but it looks decent at least?	100	Armor	Body		Physical	FALSE	0	4	0	0
+Bronze Armor	A light, archer-style armor made of bronze.  Leaves significant parts of the body exposed, but it looks decent at least?	100	Heavy	Body		Physical	FALSE	0	4	0	0
 Amber Staff	A stony, amber staff, carefully smoothed out like a warm, sunny breeze.  It can cast Storm Gigas in battle.	10000	Staff	MainHand	Storm Gigas	Wind	FALSE	2	0	20	0
 Dark Saber	A violet, curved sword.  Its thin, dark blade pulsates with darkness.	166666	Sword	MainHand		Dark	FALSE	31	0	0	5
 Red Sword	A red short blade that is easy to hold in one hand.  Deals fire damage.  It is said that a hero's lingering resolve is contained in its core.  Must be really red hot, like a viking!	10000	Sword	MainHand	Red Flail	Fire	FALSE	17	0	0	0

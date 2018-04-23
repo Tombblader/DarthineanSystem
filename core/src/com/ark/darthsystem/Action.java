@@ -248,7 +248,7 @@ public class Action implements Serializable {
                         damageStep(b, actionSkill.calculateDamage(caster, target));
                     }
                 }
-                if (actionItem.getStackable()) {
+                if (actionItem.isStackable()) {
                     actionItem.decreaseQuantity(1);
                     if (actionItem.getCharges() <= 0) {
                         b.getItem().remove(actionItem);
