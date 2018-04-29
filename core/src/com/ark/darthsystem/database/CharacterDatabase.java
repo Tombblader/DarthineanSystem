@@ -5,7 +5,6 @@
  */
 package com.ark.darthsystem.database;
 
-import static com.ark.darthsystem.database.Database1.*;
 import static com.ark.darthsystem.database.SpriteDatabase.*;
 import com.ark.darthsystem.graphics.ActorBattler;
 

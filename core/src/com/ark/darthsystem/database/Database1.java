@@ -1,9 +1,7 @@
 package com.ark.darthsystem.database;
 
 import com.ark.darthsystem.Battler;
-import com.ark.darthsystem.BattlerClass;
 import com.ark.darthsystem.Equipment;
-import static com.ark.darthsystem.database.SystemDatabase.*;
 import com.ark.darthsystem.states.Battle;
 import com.ark.darthsystem.Item;
 
@@ -17,22 +15,6 @@ import java.util.ArrayList;
 public class Database1 implements Serializable {
 
     public static final long serialVersionUID = 553786371;
-
-//    public static BattlerClass Custom_Class;
-//
-//    public static Battler Darth;
-//    public static Battler Erik;
-//    public static Battler Protox;
-//    public static Battler Gladia;
-//    public static Battler Veather;
-//    public static Battler Karin;
-//    public static Battler Naira;
-//    public static Battler Fire_Spirit;
-//
-//    public static Battler Water_Spirit;
-//    public static Battler Wind_Spirit;
-//    public static Battler Earth_Spirit;
-//    public static Battler you;
 
     public static final HashMap<String, Battler> BATTLER_LIST = new HashMap<>();
     

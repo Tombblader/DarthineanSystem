@@ -4,7 +4,6 @@ import com.ark.darthsystem.graphics.GraphicsDriver;
 import com.ark.darthsystem.graphics.ActorSprite;
 import com.ark.darthsystem.graphics.ActorBattler;
 import com.ark.darthsystem.database.Database1;
-import com.ark.darthsystem.states.Battle;
 import static com.ark.darthsystem.BattleDriver.*;
 import com.ark.darthsystem.statusEffects.Normal;
 

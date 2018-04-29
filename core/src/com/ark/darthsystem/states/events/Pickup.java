@@ -7,7 +7,6 @@ package com.ark.darthsystem.states.events;
 
 import com.ark.darthsystem.BattleDriver;
 import com.ark.darthsystem.Item;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 
 /**
  *

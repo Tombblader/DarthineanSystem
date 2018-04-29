@@ -6,7 +6,6 @@
 package com.ark.darthsystem.statusEffects;
 
 import com.ark.darthsystem.Action;
-import static com.ark.darthsystem.BattleDriver.printline;
 import com.ark.darthsystem.Battler;
 import com.ark.darthsystem.graphics.GameTimer;
 import com.ark.darthsystem.graphics.Player;
@@ -16,26 +15,17 @@ import com.ark.darthsystem.states.Battle;
  *
  * @author keven
  */
-public class Poison extends StatusEffect {
+public class Fog extends StatusEffect {
 
-    public Poison() {
-        super("Poisoned", 3, .25, .1, 0, false, " has been poisoned!");
-    }
-    
-    public Poison(int turn) {
-        this();
-        setInitialTurnCount(turn);
+    public Fog() {
+        super("Fog", 2, .5, .15, 7, 0.2, false, " is covered in a hallucinating fog!");
     }
 
+    @Override
     public boolean checkStatus(Action action, Battle b) {
-        printline(action.getCaster().getName() + " takes " + (action.getCaster().getMaxHP() / 20) + " damage from the poison.");
-        if (action.getCaster().changeHP(action.getCaster().getMaxHP() / 20)) {
-            printline(action.getCaster().getName() + " has collapsed from the poison!");
-            return false;
-        }
-    return true;
+        return true;
     }
-    
+
     @Override
     public void checkFieldStatus(Player player, GameTimer timer) {
 
@@ -45,11 +35,10 @@ public class Poison extends StatusEffect {
     public void updateFieldStatus(Player player, Battler battler, GameTimer timer, float delta) {
 
     }
-    
-    
+
     @Override
     public String getDescription() {
-        return "Victim takes damage each turn.";
+        return "Victim is caught up by illusions.  50% chance of missing its target.";
     }
-
+    
 }

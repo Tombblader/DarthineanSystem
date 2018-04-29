@@ -155,8 +155,8 @@ public abstract class StatusEffect implements Nameable, Cloneable {
     public abstract void updateFieldStatus(Player player, Battler battler, GameTimer timer, float delta);
 
     @Override
-    protected Object clone() throws CloneNotSupportedException {
-        return super.clone(); 
+    public Object clone() throws CloneNotSupportedException {
+        return (StatusEffect) super.clone(); 
     }
     
 }

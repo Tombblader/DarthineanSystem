@@ -25,9 +25,15 @@ import java.util.HashMap;
 public class Database2 {
 
     public static Player player;
+//    public static HashMap<Skill, ActorSkill> SkillToActor;
 
     public Database2() {
-        new SkillDatabase();        
+        new SkillDatabase();  
+        SkillToActor = new HashMap<>();
+//        for (Skill skills : SkillDatabase.SKILL_LIST.values()) {
+//            
+//            put(skills, new ActorSkill("skills/" + ""))
+//        }
         Database2.SkillToActor = new HashMap<Skill, ActorSkill>() {
             {
                 put(SkillDatabase.SKILL_LIST.get("CROSSCALL"),

@@ -832,10 +832,18 @@ public class Battler implements Serializable, Nameable, Cloneable {
     @Override
     public Object clone() {
         try {
-            return (Battler) super.clone();
+            Battler temp = (Battler) super.clone();
+            ArrayList<StatusEffect> tempEffect = new ArrayList<>();
+            for (StatusEffect e : isAfflicted) {
+                tempEffect.add((StatusEffect) e.clone());
+            }
+            temp.skillList = (ArrayList<Skill>) skillList.clone();
+            temp.equipmentList = Arrays.copyOf(equipmentList, equipmentList.length);
+            temp.isAfflicted = tempEffect;
+            return temp;
         }
         catch (CloneNotSupportedException e) {
-            // This should never happen
+
         }
         return null;
     }

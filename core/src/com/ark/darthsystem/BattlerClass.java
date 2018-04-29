@@ -61,7 +61,7 @@ public class BattlerClass implements Serializable {
     public boolean equippable(Equipment equipped) {
         boolean equippable = false;
         for (Equipment.Type type : equipped.getType()) {
-            equippable |= equipmentList == null || Arrays.binarySearch(equipmentList, equipped.getType()) >= 0;
+            equippable |= equipmentList == null || Arrays.binarySearch(equipmentList, type) >= 0;
         }
         return equippable;
     }

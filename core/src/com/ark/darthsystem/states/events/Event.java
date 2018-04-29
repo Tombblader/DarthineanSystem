@@ -7,7 +7,6 @@ package com.ark.darthsystem.states.events;
 
 import com.ark.darthsystem.graphics.ActorCollision;
 import com.ark.darthsystem.states.OverheadMap;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 
 /**
  *

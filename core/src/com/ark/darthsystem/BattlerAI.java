@@ -423,7 +423,11 @@ public class BattlerAI extends Battler implements Nameable, Cloneable {
     }
     
     public Object clone() {
-        return (BattlerAI) super.clone();
+        BattlerAI clone = (BattlerAI) super.clone();
+        clone.AIData = AIData;
+        clone.getAllStatus().clear();
+        clone.changeStatus(new Normal());
+        return clone;
     }
 
 }

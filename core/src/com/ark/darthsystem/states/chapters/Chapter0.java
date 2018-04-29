@@ -15,6 +15,7 @@ import com.ark.darthsystem.graphics.GraphicsDriver;
  * @author Keven
  */
 public class Chapter0 extends Novel {
+    
     public Chapter0() {
         chapters.add((Page) () -> {
             BattleDriver.printline(Database2.player.getBattler(0), ActorSprite.SpriteModeFace.NORMAL, "I'm glad you've answered our call.  It seems like the vessel you were going to use crashed around here somewhere.");
@@ -27,6 +28,8 @@ public class Chapter0 extends Novel {
             BattleDriver.printline(Database2.player.getBattler(0), ActorSprite.SpriteModeFace.HAPPY, "Guide me to you.  I shall explain the rules of this world along the way.");
         });
     }
+    
+    @Override
     public String getMusic() {
         return null;
     }
