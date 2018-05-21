@@ -335,7 +335,7 @@ public class Player extends ActorCollision {
     public void checkStatusEffects() {
         for (Battler b : getAllBattlers()) {
             for (StatusEffect status : b.getAllStatus()) {
-                if (!b.getStatus("Normal") && !b.getStatus("Death")) {
+                if (!status.equals("Normal") && !status.equals("Death")) {
                     boolean isAccountedFor = false;
                     for (GameTimer t : getTimers()) {
                         if (t.getName().equals(b.toString() + status.getName())) {
@@ -350,6 +350,7 @@ public class Player extends ActorCollision {
                         int turnCount = 0;
                         @Override
                         public void event(Actor a) {
+                            System.out.println("Turn " + turnCount + (b.getStatus(stat) && stat.faded(b, turnCount)));
                             if (b.getStatus(stat) && stat.faded(b, turnCount)) {
                                 BattleDriver.printline(b.getName() + "'s status effect faded away.");
                                 b.getAllStatus().remove(stat);

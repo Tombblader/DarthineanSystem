@@ -234,7 +234,7 @@ public class Item implements Serializable, Cloneable, Nameable {
     }
 
     @Override
-    public Object clone() throws CloneNotSupportedException {
+    public Object clone() {
         Item cloned = new Item();
         cloned.name = this.name;
         cloned.description = this.description;

@@ -59,3 +59,5 @@ Four's Fury	Light Darcy Tech.  Warp to nearby enemy and smite.	25	Light	FALSE	FA
 Axe Effect	Veather Tech.  Legendary Ladies' Mann technique inflicts all status effects except death.	25	Earth	FALSE	TRUE	Fog	0	0	0	7	0	0	-7	0	3	0	-3	5
 Fairy Circle	NULL	25	Light	FALSE	TRUE	Normal	0	0	0	7	0	7	7	0	3	3	4	5.5
 Darknite	Dark Karin Tech.  Karn Edikt	30	Dark	FALSE	FALSE	Normal	70	0	0	0	0	0	16	0	0	0	8	8
+Attack Boost	Red Magic Tech.  Boosts ATK.	5	Fire	TRUE	FALSE	AttackBoost	0	0	0	0	0	0	0	0	0	0	0	1
+Barrier	White Magic Tech.  Halves Damage.	5	Light	TRUE	FALSE	Barrier	0	0	0	0	0	0	0	0	0	0	0	1

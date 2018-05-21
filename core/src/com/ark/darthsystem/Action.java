@@ -271,10 +271,10 @@ public class Action implements Serializable {
 
     private void damageStep(Battle b, int getDamage) {
 //        setNewTarget();
-        getDamage = getDamage <= 0 &&
-                (actionSkill == null ||
-                (actionSkill != null &&
-                actionSkill.getElement() != Battle.Element.Heal)) ? (int) (Math.random() + 5) : getDamage;
+//        getDamage = getDamage <= 0 &&
+//                (actionSkill == null ||
+//                (actionSkill != null &&
+//                actionSkill.getElement() != Battle.Element.Heal)) ? (int) (Math.random() + 5) : getDamage;
         if (getDamage > 0) {
             if (b.getAlly().contains(target)) {
 //                GraphicsDriver.getPlayer().hasTakenDamage(target);
@@ -286,7 +286,7 @@ public class Action implements Serializable {
         }
         String temp = ((actionSkill == null ||
                 actionSkill.getElement() != Battle.Element.Heal) ? target.getName() +
-                        " took " + ((int) (getDamage * target.getDefend())) + " damage!" : "");
+                        " took " + ((int) (getDamage * target.getDefend() * target.getStatusDamageModifier())) + " damage!" : "");
         if (!temp.equals("")) {
             printline(temp);
         }

@@ -102,6 +102,24 @@ public class Database2 {
                                 .2f,
                                 SkillDatabase.SKILL_LIST.get("MOUTHBEAM"),
                                 ActorSkill.Area.FRONT));
+                put(SkillDatabase.SKILL_LIST.get("ATTACK BOOST"),
+                        new ActorSkill("skills/wiccan_cross/field/wiccan_cross",
+                                "skills/crosscall/battler/crosscall",
+                                1,
+                                1,
+                                1.0f / 24.0f,
+                                .2f,
+                                SkillDatabase.SKILL_LIST.get("ATTACK BOOST"),
+                                ActorSkill.Area.SELF));
+                put(SkillDatabase.SKILL_LIST.get("BARRIER"),
+                        new ActorSkill("skills/wiccan_cross/field/wiccan_cross",
+                                "skills/crosscall/battler/crosscall",
+                                1,
+                                1,
+                                1.0f / 24.0f,
+                                .2f,
+                                SkillDatabase.SKILL_LIST.get("BARRIER"),
+                                ActorSkill.Area.SELF));
 //                put(Leg_Sweep, new ActorSkill(new Sprite("com.ark.darthsystem/GraphicsPack/assets/WiccanCross.png", false).getImages(), 1, 0, 17, Database1.Leg_Sweep));
             }
             private static final long serialVersionUID = 1L;

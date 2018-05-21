@@ -94,7 +94,7 @@ public abstract class StatusEffect implements Nameable, Cloneable {
 
     public boolean faded(Battler caster, int currentTurn) {
         return (turnCount != 0
-                && (turnCount >= currentTurn - getInitialTurnCount()
+                && (currentTurn >= turnCount + getInitialTurnCount()
                 || (Math.random() <= fade //                    - (1.0 / (101.1 - getCaster.getLevel())
                 //                    / (getCaster.getDefense() - getCaster.getLevel())
                 //                    / (getCaster.getMagic() - getCaster.getLevel()))
@@ -133,6 +133,10 @@ public abstract class StatusEffect implements Nameable, Cloneable {
         return hash;
     }
 
+    public boolean equals(String obj) {
+        return name.equalsIgnoreCase(obj);
+    }
+    
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -146,6 +150,34 @@ public abstract class StatusEffect implements Nameable, Cloneable {
         }
         final StatusEffect other = (StatusEffect) obj;
         return Objects.equals(this.name, other.name);
+    }
+    
+    public float getAttack() {
+        return 0;
+    }
+    
+    public float getDefense() {
+        return 0;
+    }
+    
+    public float getSpeed() {
+        return 0;
+    }
+    
+    public float getMagic() {
+        return 0;
+    }
+    
+    public float getDodge() {
+        return 0;
+    }
+    
+    public float getAccuracy() {
+        return 0;
+    }
+    
+    public float getDamageModifier() {
+        return 0;
     }
     
     public abstract boolean checkStatus(Action action, Battle b);

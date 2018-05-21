@@ -292,7 +292,7 @@ public class Battler implements Serializable, Nameable, Cloneable {
      * @return
      */
     public int getAttack() {
-        return attack + getEquipmentAttack();
+        return (int) ((attack + getEquipmentAttack()) * getStatusAttack());
     }
 
     /**
@@ -308,7 +308,7 @@ public class Battler implements Serializable, Nameable, Cloneable {
      * @return
      */
     public int getDefense() {
-        return defense + getEquipmentDefense();
+        return (int) ((defense + getEquipmentDefense()) * getStatusDefense());
     }
 
     /**
@@ -324,7 +324,7 @@ public class Battler implements Serializable, Nameable, Cloneable {
      * @return
      */
     public int getSpeed() {
-        return isDelaying ? 1 : speed + getEquipmentSpeed();
+        return (int) (isDelaying ? 1 : (speed + getEquipmentSpeed()) * getStatusSpeed());
     }
 
     /**
@@ -340,7 +340,7 @@ public class Battler implements Serializable, Nameable, Cloneable {
      * @return
      */
     public int getMagic() {
-        return magic + getEquipmentMagic();
+        return (int) ((magic + getEquipmentMagic()) * getStatusMagic());
     }
 
     /**
@@ -641,7 +641,7 @@ public class Battler implements Serializable, Nameable, Cloneable {
      */
     public boolean changeHP(int value) {
         boolean isDead;
-        HP -= ((value > 0) ? (value * damageModifier) : value);
+        HP -= ((value > 0) ? (value * damageModifier * getStatusDamageModifier()) : value);
         if (HP > maxHP) {
             HP = maxHP;
         }
@@ -728,7 +728,7 @@ public class Battler implements Serializable, Nameable, Cloneable {
      *
      */
     public void resetDefend() {
-        damageModifier = 1.0;
+        damageModifier = 1f;
     }
 
     /**
@@ -768,6 +768,17 @@ public class Battler implements Serializable, Nameable, Cloneable {
         }
         return equipmentAttack;
     }
+    
+    private float getStatusAttack() {
+        float statusAttack = 1;
+        for (StatusEffect status : isAfflicted) {
+            if (status != null) {
+                statusAttack += status.getAttack();
+            }
+        }
+        return statusAttack;
+    }
+    
 
     private int getEquipmentDefense() {
         int equipmentDefense = 0;
@@ -778,7 +789,17 @@ public class Battler implements Serializable, Nameable, Cloneable {
         }
         return equipmentDefense;
     }
-
+    
+    private float getStatusDefense() {
+        float statusDefense = 1;
+        for (StatusEffect status : isAfflicted) {
+            if (status != null) {
+                statusDefense += status.getDefense();
+            }
+        }
+        return statusDefense;
+    }
+    
     private int getEquipmentSpeed() {
         int equipmentSpeed = 0;
         for (Equipment equipmentList1 : equipmentList) {
@@ -788,7 +809,28 @@ public class Battler implements Serializable, Nameable, Cloneable {
         }
         return equipmentSpeed;
     }
+    
+    private float getStatusSpeed() {
+        float statusSpeed = 1;
+        for (StatusEffect status : isAfflicted) {
+            if (status != null) {
+                statusSpeed += status.getSpeed();
+            }
+        }
+        return statusSpeed;
+    }
 
+    private float getStatusMagic() {
+        float statusMagic = 1;
+        for (StatusEffect status : isAfflicted) {
+            if (status != null) {
+                statusMagic += status.getMagic();
+            }
+        }
+        return statusMagic;
+    }
+    
+    
     private int getEquipmentMagic() {
         int equipmentMagic = 0;
         for (Equipment equipmentList1 : equipmentList) {
@@ -797,6 +839,16 @@ public class Battler implements Serializable, Nameable, Cloneable {
             }
         }
         return equipmentMagic;
+    }
+    
+    public float getStatusDamageModifier() {
+        float statusDamage = 1;
+        for (StatusEffect status : isAfflicted) {
+            if (status != null) {
+                statusDamage += status.getDamageModifier();
+            }
+        }
+        return statusDamage;        
     }
 
     /**

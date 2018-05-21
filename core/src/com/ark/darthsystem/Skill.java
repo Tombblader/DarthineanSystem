@@ -1,13 +1,10 @@
 package com.ark.darthsystem;
 
 import com.ark.darthsystem.states.Battle;
-import com.ark.darthsystem.statusEffects.Death;
 import com.ark.darthsystem.statusEffects.Normal;
 import com.ark.darthsystem.statusEffects.StatusEffect;
 
 import java.io.Serializable;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -121,28 +118,17 @@ public class Skill implements Serializable, Cloneable, Nameable {
      */
     public int calculateDamage(Battler caster, Battler target) {
         return (int) (base +
-                ((int) (((caster.getLevel() -
-                target.getLevel()) *
-                levelRatio) +
-                (((caster.getHP() /
-                caster.getMaxHP() *
-                casterHP) +
-                caster.getAttack() *
-                casterAttack +
-                caster.getDefense() *
-                casterDefense +
-                caster.getSpeed() *
-                casterSpeed +
-                caster.getMagic() *
-                casterMagic) -
-                (target.getAttack() *
-                targetAttack +
-                target.getDefense() *
-                targetDefense +
-                target.getSpeed() *
-                targetSpeed +
-                target.getMagic() *
-                targetMagic)) /
+                ((int) 
+                (((caster.getLevel() - target.getLevel()) * levelRatio) +
+                ((caster.getHP() / caster.getMaxHP() * casterHP) +
+                caster.getAttack() * casterAttack +
+                caster.getDefense() * casterDefense +
+                caster.getSpeed() * casterSpeed +
+                caster.getMagic() * casterMagic) -
+                (target.getAttack() * targetAttack +
+                target.getDefense() * targetDefense +
+                target.getSpeed() * targetSpeed +
+                target.getMagic() * targetMagic)) /
                 finalizeRatio *
                 (this.getElement() == target.getElement().getWeakness() ? 2 : 1) *
                 (caster.getEquipment(Equipment.Slot.MainHand.getSlot()) != null &&
@@ -151,7 +137,7 @@ public class Skill implements Serializable, Cloneable, Nameable {
                 this.getElement() == target.getElement() ? -1 : 1) * (caster.getEquipment(Equipment.Slot.MainHand.getSlot()) != null &&
                 caster.getEquipment(Equipment.Slot.MainHand.getSlot()).getElement() != Battle.Element.Physical &&
                 target.getEquipment(Equipment.Slot.OffHand.getSlot()) != null &&
-                this.getElement() == target.getEquipment(Equipment.Slot.OffHand.getSlot()).getElement() ? .5 : 1)) * (.9 + Math.random() * .25)));
+                this.getElement() == target.getEquipment(Equipment.Slot.OffHand.getSlot()).getElement() ? .5 : 1)) * (.9 + Math.random() * .25));
     }
 
     /**
@@ -161,7 +147,7 @@ public class Skill implements Serializable, Cloneable, Nameable {
     public int getCost() {
         return cost;
     }
-    
+
     /**
      * Overrides the MP cost of the skill.
      * @param cost The new MP cost of the skill.
@@ -184,7 +170,7 @@ public class Skill implements Serializable, Cloneable, Nameable {
 //        }
 //        return newSkill;
 //    }
-    
+
     /**
      * Overrides the MP cost of the skill.  Unlike setCost,
      * overrideCost returns a new Skill object with the new cost.
@@ -225,6 +211,7 @@ public class Skill implements Serializable, Cloneable, Nameable {
         if (target.getStatus(0).getPriority() < statusEffect.getPriority() &&
                 statusEffect.isSuccessful(caster, target) &&
                 !(getElement() == Battle.Element.Heal)) {
+            statusEffect.setInitialTurnCount(turnCount);
             target.changeStatus(statusEffect);
             message = target.getName() + statusEffect.getMessage();
         } else if ((target.getStatus(statusEffect)) &&

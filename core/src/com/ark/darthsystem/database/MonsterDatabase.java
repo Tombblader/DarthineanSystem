@@ -5,13 +5,9 @@
  */
 package com.ark.darthsystem.database;
 
-import com.ark.darthsystem.BattlerAI;
-import static com.ark.darthsystem.database.AIDatabase.*;
-import static com.ark.darthsystem.database.Database1.*;
 import static com.ark.darthsystem.database.SpriteDatabase.*;
 import com.ark.darthsystem.graphics.ActorBattler;
 import com.ark.darthsystem.graphics.ActorAI;
-import com.ark.darthsystem.Scenario;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;

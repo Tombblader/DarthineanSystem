@@ -17,7 +17,7 @@ import com.ark.darthsystem.states.Battle;
  */
 public class Blind extends StatusEffect {
     public Blind() {
-        super("Blind", 2, .5, .15, 7, 0.2, false, " is unable to see!");
+        super("Blind", 2, .5, .15, 7, 0.2, false, " is blinded!");
         setInitialTurnCount(0);
     }    
     
@@ -33,6 +33,10 @@ public class Blind extends StatusEffect {
     @Override
     public String getDescription() {
         return "Victim has a 50% miss chance, and a -50% dodge chance";
+    }
+    
+    public float getAccuracy() {
+        return .5f;
     }
 
     @Override

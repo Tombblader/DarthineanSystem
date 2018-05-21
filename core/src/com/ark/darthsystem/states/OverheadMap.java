@@ -255,16 +255,18 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
             private void createPickupFromActor(Player a) {
                 ArrayList<Item> dropped = new ArrayList<>();
                 for (Battler enemy1 : a.getAllBattlers()) {
-                    for (Item item : ((BattlerAI) (enemy1)).getDroppedItem()) {
-                        if (item.isStackable() && dropped.contains(item)) {
-                            dropped.get(dropped.indexOf(item)).increaseQuantity(item.getCharges());
-                        } else {
+                    for (int i = 0; i < ((BattlerAI) enemy1).getDroppedItem().length; i++) {
+                        Item item = ((Math.random() < ((BattlerAI) enemy1).getDropRate()[i]) ? ((BattlerAI) enemy1).getDroppedItem()[i] : null);
+                        if (item != null && item.isStackable() && dropped.contains(item)) {
+                            dropped.get(dropped.indexOf(item)).increaseQuantity(((BattlerAI) enemy1).getDropNumber()[i]);
+                        } else if (item != null) {
                             dropped.add(item);
                         }
                     } 
                 }        
-        
-                new Pickup("items/potion/icon", a.getX(), a.getY(), 1/12, dropped.toArray(new Item[dropped.size()])).setMap(OverheadMap.this);
+                if (!dropped.isEmpty()) {
+                    new Pickup("items/potion/icon", a.getX(), a.getY(), 1/12, dropped.toArray(new Item[dropped.size()])).setMap(OverheadMap.this);
+                }
             }
             
             private void endEvent(Fixture a, Fixture b) {
@@ -550,6 +552,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                 Input.enableInput();
                 if (a.isFinished()) {
                     removeActor(a);
+                    i--;
                 }
             }
         }
@@ -587,6 +590,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                 a.update(delta);
                 if (a.isFinished()) {
                     removeActor(a);
+                    i--;
                 }
             }
         }

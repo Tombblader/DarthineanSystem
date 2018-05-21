@@ -7,7 +7,6 @@ import com.ark.darthsystem.graphics.ActorBattler;
 import com.ark.darthsystem.graphics.ActorSkill;
 import com.ark.darthsystem.graphics.GameTimer;
 import com.ark.darthsystem.graphics.GraphicsDriver;
-import com.ark.darthsystem.statusEffects.Normal;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
@@ -38,7 +37,7 @@ public class Battle implements State {
     private ArrayList<GameTimer> timers;
     private String bgm;
     private ArrayList<Sound> sounds;
-    
+
     public Battle(ArrayList<ActorBattler> initializeParty,
             ArrayList<ActorBattler> initializeEnemy,
             ArrayList<Item> initializeItems,
@@ -65,6 +64,7 @@ public class Battle implements State {
         turnCount = 1;
         bgm = BATTLE_MUSIC;
     }
+
     public Battle(ArrayList<ActorBattler> initializeParty,
             ArrayList<ActorBattler> initializeEnemy,
             ArrayList<Item> initializeItems,
@@ -93,9 +93,8 @@ public class Battle implements State {
         turnCount = 1;
     }
 
-    
     private void renderPersistentActors(SpriteBatch batch) {
-        final float BATTLER_Y = 768/2;
+        final float BATTLER_Y = 768 / 2;
         int divider = (enemyActors.size() > 1) ? 1024 / (enemyActors.size() + 1) : 512;
         for (int i = 0; i < enemyActors.size(); i++) {
             if (enemy.get(i).isAlive()) {
@@ -113,7 +112,7 @@ public class Battle implements State {
             }
         }
     }
-    
+
     private void renderTemporaryActors(SpriteBatch batch) {
         for (int i = 0; i < animations.size(); i++) {
             Sprite s = animations.get(i).getCurrentImage();
@@ -128,7 +127,7 @@ public class Battle implements State {
                     s.getScaleY(),
                     s.getRotation());
         }
-        
+
     }
 
     public Menu menuCommand(final Battle b, final Battler battler) {
@@ -156,7 +155,7 @@ public class Battle implements State {
         };
         return command;
     }
-    
+
     private void updateTemporaryActors(float delta) {
         elapsed += GraphicsDriver.getRawDelta();
         for (Iterator<Actor> it = animations.iterator(); it.hasNext();) {
@@ -165,11 +164,11 @@ public class Battle implements State {
             if (a.isFinished()) {
                 a.resetAnimation();
                 it.remove();
-            } 
+            }
         }
         playSounds();
     }
-    
+
     private void playSounds() {
         for (Iterator<Sound> it = sounds.iterator(); it.hasNext();) {
             Sound s = it.next();
@@ -182,7 +181,7 @@ public class Battle implements State {
     public void addSounds(Sound s) {
         sounds.add(s);
     }
-    
+
     public void exitBattle() {
         state = State.END;
         allAction.clear();
@@ -190,7 +189,7 @@ public class Battle implements State {
         partyAction.clear();
         final int BATTLE_DELAY = 3000;
         for (int i = 0; i < GraphicsDriver.getPlayer().getTimers().size; i++) {
-        GameTimer t = GraphicsDriver.getPlayer().getTimers().get(i);
+            GameTimer t = GraphicsDriver.getPlayer().getTimers().get(i);
             if (t.getName().equalsIgnoreCase("Invulnerable") || t.getName().equalsIgnoreCase("Jump")) {
                 t.event(GraphicsDriver.getPlayer());
                 GraphicsDriver.getPlayer().getTimers().removeValue(t, true);
@@ -202,13 +201,13 @@ public class Battle implements State {
     }
 
     private void addAnimationAndSound(Action currentAction) {
-        final float BATTLER_Y = 768/2;
+        final float BATTLER_Y = 768 / 2;
         int divider = (enemyActors.size() > 1) ? 1024 / (enemyActors.size() + 1) : 512;
         Battler tempBattler = currentAction.getTarget();
-        
-        if (currentAction.getCommand() == Command.Skill && 
-                (currentAction.getTarget() instanceof BattlerAI) &&
-                currentAction.getCaster().getMP() >= currentAction.getSkill().getCost()) {
+
+        if (currentAction.getCommand() == Command.Skill
+                && (currentAction.getTarget() instanceof BattlerAI)
+                && currentAction.getCaster().getMP() >= currentAction.getSkill().getCost()) {
             ActorSkill tempSkill = Database2.SkillToActor(currentAction.getSkill());
             sounds.add(tempSkill.getBattlerSound());
             animations.add(tempSkill.getBattlerAnimation());
@@ -216,10 +215,10 @@ public class Battle implements State {
             animations.get(animations.size() - 1).setX(divider * ((enemy.indexOf(tempBattler) + 1)));
             animations.get(animations.size() - 1).setY(BATTLER_Y);
         }
-        if (currentAction.getCommand() == Command.Skill && 
-                (currentAction.getSkill().getAll()) &&
-                (currentAction.getAllTargets().get(0) instanceof BattlerAI) &&
-                currentAction.getCaster().getMP() >= currentAction.getSkill().getCost()) {
+        if (currentAction.getCommand() == Command.Skill
+                && (currentAction.getSkill().getAll())
+                && (currentAction.getAllTargets().get(0) instanceof BattlerAI)
+                && currentAction.getCaster().getMP() >= currentAction.getSkill().getCost()) {
             ActorSkill tempSkill = Database2.SkillToActor(currentAction.getSkill());
             sounds.add(tempSkill.getBattlerSound());
             animations.add(tempSkill.getBattlerAnimation());
@@ -227,8 +226,8 @@ public class Battle implements State {
             animations.get(animations.size() - 1).setY((GraphicsDriver.getHeight() - animations.get(0).getHeight()) / 2f);
         }
         ActorSkill tempSkill;
-        if (currentAction.getCommand() == Command.Attack && 
-                currentAction.getTarget() instanceof BattlerAI) {
+        if (currentAction.getCommand() == Command.Attack
+                && currentAction.getTarget() instanceof BattlerAI) {
             try {
                 tempSkill = (currentAction.getCaster().
                         getEquipment(Equipment.Slot.OffHand.getSlot()).
@@ -248,12 +247,11 @@ public class Battle implements State {
         return bgm;
     }
 
-
     public Battle start() {
         GraphicsDriver.setCurrentCamera(GraphicsDriver.getCamera());
         background = new Sprite(new Texture(Gdx.files.internal("backgrounds/title.png")));
         background.flip(false, true);
-        
+
         state = State.START;
         return this;
     }
@@ -275,9 +273,9 @@ public class Battle implements State {
             if (a2 == null) {
                 return -1;
             }
-            if (a1.getCaster().getSpeed() > a2.getCaster().getSpeed() ||
-                    (a1.getCaster().getSpeed() == a2.getCaster().getSpeed() && 
-                    Math.random() < .5)) {
+            if (a1.getCaster().getSpeed() > a2.getCaster().getSpeed()
+                    || (a1.getCaster().getSpeed() == a2.getCaster().getSpeed()
+                    && Math.random() < .5)) {
                 return -1;
             }
             return 1;
@@ -421,20 +419,21 @@ public class Battle implements State {
     public ArrayList<Item> getAllItems() {
         ArrayList<Item> dropped = new ArrayList<>();
         for (Battler enemy1 : enemy) {
-            for (Item item : ((BattlerAI) (enemy1)).getDroppedItem()) {
-                if (item.isStackable() && dropped.contains(item)) {
-                    dropped.get(dropped.indexOf(item)).increaseQuantity(item.getCharges());
-                } else {
+            for (int i = 0; i < ((BattlerAI) enemy1).getDroppedItem().length; i++) {
+                Item item = ((Math.random() < ((BattlerAI) enemy1).getDropRate()[i]) ? (Item) (((BattlerAI) enemy1).getDroppedItem()[i].clone()) : null);
+                if (item != null && item.isStackable() && dropped.contains(item)) {
+                    dropped.get(dropped.indexOf(item)).increaseQuantity(((BattlerAI) enemy1).getDropNumber()[i]);
+                } else if (item != null) {
                     dropped.add(item);
                 }
-            } 
-        }        
+            }
+        }
         return dropped;
     }
 
     public float update(float delta) {
         GraphicsDriver.setCurrentCamera(GraphicsDriver.getCamera());
-        updateTemporaryActors(delta);        
+        updateTemporaryActors(delta);
         if (animations.isEmpty()) {
             switch (state) {
                 case START:
@@ -444,8 +443,8 @@ public class Battle implements State {
                     break;
                 case COMMAND:
                     if (!(State.COMMAND.update())) {
-                        if (State.COMMAND.getTicks() - 1 >= 0 && 
-                                party.get(State.COMMAND.getTicks() - 1).canMove()) {
+                        if (State.COMMAND.getTicks() - 1 >= 0
+                                && party.get(State.COMMAND.getTicks() - 1).canMove()) {
                             GraphicsDriver.addMenu(menuCommand(this, party.get(State.COMMAND.getTicks() - 1)));
                         } else {
                             partyAction.add(null);
@@ -469,9 +468,8 @@ public class Battle implements State {
                             if (!(currentAction == null) && currentAction.getCaster().canMove()) {
                                 currentAction.declareAttack(this);
                                 if (partyAction.contains(currentAction)
-                                        && currentAction.getAllTargets() != null
-//                                        && currentAction.getCommand() == Battle.Command.Skill && 
-//                                        currentAction.getCaster().getMP() >= currentAction.getSkill().getCost()
+                                        && currentAction.getAllTargets() != null //                                        && currentAction.getCommand() == Battle.Command.Skill && 
+                                        //                                        currentAction.getCaster().getMP() >= currentAction.getSkill().getCost()
                                         ) {
                                     if (currentAction.getSkill() == null || !currentAction.getSkill().getAll()) {
                                         currentAction.setNewTarget();
@@ -487,7 +485,7 @@ public class Battle implements State {
                                     currentAction.calculateDamage(this);
                                 }
                                 if (!allAction.isEmpty() && currentAction.getCommand() != Command.Run) {
-                                
+
                                 }
                             }
                         }
@@ -505,7 +503,7 @@ public class Battle implements State {
                 case END:
                     exitBattle();
                     break;
-            }        
+            }
 
             if (hasWon() && state != State.END) {
                 BattleDriver.printline("Victory is yours!");
@@ -547,9 +545,9 @@ public class Battle implements State {
     public void dispose() {
         background.getTexture().dispose();
     }
-    
+
     public static enum Element {
-        
+
         Physical,
         Heal,
         Male,
@@ -560,10 +558,10 @@ public class Battle implements State {
         Earth,
         Light,
         Dark;
-        
+
         private Element() {
         }
-        
+
         public Element getWeakness() {
             Element weakness = null;
             switch (this) {
@@ -693,7 +691,7 @@ public class Battle implements State {
 //        
 //    }
     public enum Command {
-        
+
         Attack,
         Defend,
         Skill,
@@ -702,7 +700,7 @@ public class Battle implements State {
         Delay,
         Item,
         Run;
-        
+
         public void run(final Battle b, final Battler caster) {
             caster.setDelaying(false);
             switch (this) {
@@ -711,7 +709,7 @@ public class Battle implements State {
                     for (int i = 0; i < temp.length; i++) {
                         temp[i] = b.getEnemy().get(i).getName();
                     }
-                    
+
                     Menu targetMenu = new Menu("Target?", temp, true, true) {
                         @Override
                         public Object confirm(String choice) {
@@ -742,7 +740,7 @@ public class Battle implements State {
                                 @Override
                                 public Object confirm(String choice) {
                                     final Skill getSkill = getSkillList.get(getCursorIndex());
-                                    final ArrayList<Battler> targetList = (ArrayList<Battler>) (getSkill. getAlly() ? b.getAlly() : b. getEnemy());
+                                    final ArrayList<Battler> targetList = (ArrayList<Battler>) (getSkill.getAlly() ? b.getAlly() : b.getEnemy());
                                     if (getSkill.getCost() <= caster.getMP()) {
                                         if (!getSkill.getAll()) {
                                             String[] temp = new String[targetList.size()];
@@ -779,7 +777,7 @@ public class Battle implements State {
                             e.printStackTrace();
                         }
                     } else {
-                        
+
                     }
                     break;
                 case Item:
@@ -828,29 +826,30 @@ public class Battle implements State {
             }
         }
     }
+
     public enum State {
-        
+
         START,
         COMMAND,
         ENEMY_COMMAND,
         ACTION,
         END;
-        
+
         State() {
             maxTicks = 0;
             ticks = 0;
         }
         private int maxTicks;
         private int ticks;
-        
+
         public int getMaxTicks() {
             return maxTicks;
         }
-        
+
         public int getTicks() {
             return ticks;
         }
-        
+
         public boolean update() {
             ticks++;
             if (ticks > maxTicks) {
@@ -859,11 +858,11 @@ public class Battle implements State {
             }
             return false;
         }
-        
+
         public void setMaxTicks(int size) {
             maxTicks = size;
         }
-        
+
         private void setTicks(int i) {
             ticks = i;
         }

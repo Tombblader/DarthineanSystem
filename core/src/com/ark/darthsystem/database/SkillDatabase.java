@@ -75,8 +75,9 @@ public class SkillDatabase {
                     Integer.parseInt(data[++i]), //Enemy Speed Multiplier
                     Integer.parseInt(data[++i]), //Enemy Magic Multiplier
                     Double.parseDouble(data[++i]))); //Divider
-        }
-    }//    public static Skill CrossCall = new Skill("CrossCall",
+        }  
+    }
+//    public static Skill CrossCall = new Skill("CrossCall",
 //            "Physical Attack",
 //            5,
 //            Battle.Element.Light,

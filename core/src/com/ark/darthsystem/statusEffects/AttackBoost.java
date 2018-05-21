@@ -15,15 +15,15 @@ import com.ark.darthsystem.states.Battle;
  *
  * @author keven
  */
-public class Silence extends StatusEffect {
+public class AttackBoost extends StatusEffect {
 
-    public Silence() {
-        super("Silence", 5, .25, 0.16, 6, false, "'s skills have been sealed!");
+    public AttackBoost() {
+        super("AttackBoost", 3, 2, -1, 5, 0, false, " recieved an attack boost!");
     }
 
     @Override
     public boolean checkStatus(Action action, Battle b) {
-        return (action.getCommand() == Battle.Command.Skill);
+        return true;
     }
 
     @Override
@@ -32,16 +32,17 @@ public class Silence extends StatusEffect {
 
     @Override
     public void updateFieldStatus(Player player, Battler battler, GameTimer timer, float delta) {
-        if (player.getCurrentBattler().getBattler().equals(battler)) {
-            player.setCanSkill(false);
-        } else {
-            player.setCanSkill(true);
-        }
+
+    }
+    
+    @Override
+    public float getAttack() {
+        return .5f;
     }
 
     @Override
     public String getDescription() {
-        return "Victim cannot use skills.";
+        return "Increases attack slightly.";
     }
-
+    
 }

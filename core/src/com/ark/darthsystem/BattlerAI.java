@@ -5,8 +5,6 @@ import com.ark.darthsystem.states.Battle;
 import com.ark.darthsystem.statusEffects.Death;
 import com.ark.darthsystem.statusEffects.Normal;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * A Battler, but also has AI data, Experience Points, and Items dropped.
@@ -28,6 +26,7 @@ public class BattlerAI extends Battler implements Nameable, Cloneable {
      * @param AIData The flags and priorities that the AI uses.
      * @param experience The amount of experience points the BattlerAI gives when defeated.
      * @param itemDrop The item dropped when defeated.
+     * @param dropPercent
      * @param itemQuantity The amount of items dropped when defeated.
      */
     public BattlerAI(String name,
@@ -144,6 +143,7 @@ public class BattlerAI extends Battler implements Nameable, Cloneable {
      * @param experience The amount of experience points the BattlerAI gives when defeated.
      * @param itemDrop The item dropped when defeated.
      * @param itemQuantity The amount of items dropped when defeated.
+     * @param dropRate
      */
     public BattlerAI(String name,
             String description,
@@ -425,8 +425,6 @@ public class BattlerAI extends Battler implements Nameable, Cloneable {
     public Object clone() {
         BattlerAI clone = (BattlerAI) super.clone();
         clone.AIData = AIData;
-        clone.getAllStatus().clear();
-        clone.changeStatus(new Normal());
         return clone;
     }
 

@@ -7,14 +7,9 @@ package com.ark.darthsystem.database;
 
 import com.ark.darthsystem.Battler;
 import com.ark.darthsystem.BattlerAI;
-import com.ark.darthsystem.BattlerClass;
 import com.ark.darthsystem.Equipment;
 import com.ark.darthsystem.Item;
 import com.ark.darthsystem.Scenario;
-import static com.ark.darthsystem.Scenario.*;
-import static com.ark.darthsystem.database.Database1.*;
-import static com.ark.darthsystem.database.SystemDatabase.*;
-import static com.ark.darthsystem.database.SkillDatabase.*;
 import com.ark.darthsystem.Skill;
 import com.ark.darthsystem.states.Battle;
 import com.badlogic.gdx.Gdx;
