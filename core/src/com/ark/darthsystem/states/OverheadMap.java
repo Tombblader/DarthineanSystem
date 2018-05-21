@@ -256,14 +256,15 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                 ArrayList<Item> dropped = new ArrayList<>();
                 for (Battler enemy1 : a.getAllBattlers()) {
                     for (int i = 0; i < ((BattlerAI) enemy1).getDroppedItem().length; i++) {
-                        Item item = ((Math.random() < ((BattlerAI) enemy1).getDropRate()[i]) ? ((BattlerAI) enemy1).getDroppedItem()[i] : null);
+                        Item item = ((Math.random() < ((BattlerAI) enemy1).getDropRate()[i]) ? (Item) (((BattlerAI) enemy1).getDroppedItem()[i].clone()) : null);
                         if (item != null && item.isStackable() && dropped.contains(item)) {
                             dropped.get(dropped.indexOf(item)).increaseQuantity(((BattlerAI) enemy1).getDropNumber()[i]);
                         } else if (item != null) {
                             dropped.add(item);
                         }
-                    } 
-                }        
+                    }
+                }
+       
                 if (!dropped.isEmpty()) {
                     new Pickup("items/potion/icon", a.getX(), a.getY(), 1/12, dropped.toArray(new Item[dropped.size()])).setMap(OverheadMap.this);
                 }

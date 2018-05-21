@@ -18,13 +18,8 @@ import com.ark.darthsystem.states.Battle;
 public class Blind extends StatusEffect {
     public Blind() {
         super("Blind", 2, .5, .15, 7, 0.2, false, " is blinded!");
-        setInitialTurnCount(0);
     }    
     
-    public Blind(int turn) {
-        this();
-        setInitialTurnCount(turn);
-    }    
     @Override
     public boolean checkStatus(Action action, Battle b) {
         return true;

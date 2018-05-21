@@ -309,19 +309,23 @@ public class Battle implements State {
     public void statusCheck() {
         for (Battler party1 : party) {
             for (int i = 0; i < party1.getAllStatus().size(); i++) {
-                if (party1.getStatus(i).faded(party1, turnCount)) {
-                    BattleDriver.printline(party1.getName() + "'s status effect faded away.");
+                if (party1.getStatus(i).faded(party1)) {
+                    BattleDriver.printline(party1.getName() + "'s " + party1.getStatus(i).getName() + " faded away.");
                     party1.getAllStatus().remove(i);
                     i--;
+                } else {
+                    party1.getStatus(i).incrementTurn();
                 }
             }
         }
         for (Battler enemy1 : enemy) {
             for (int i = 0; i < enemy1.getAllStatus().size(); i++) {
-                if (enemy1.getStatus(i).faded(enemy1, turnCount)) {
-                    BattleDriver.printline(enemy1.getName() + "'s status effect faded away.");
+                if (enemy1.getStatus(i).faded(enemy1)) {
+                    BattleDriver.printline(enemy1.getName() + "'s " + enemy1.getStatus(i) + " faded away.");
                     enemy1.getAllStatus().remove(i);
                     i--;
+                } else {
+                    enemy1.getStatus(i).incrementTurn();
                 }
             }
         }
@@ -594,102 +598,6 @@ public class Battle implements State {
         }
     }
 
-//    public enum Stats {
-//        
-//        Normal(1, 1.0, 0.0, 0, "'s wounds are healed!"),
-//        Death(8, .10, 0.0, 0, " has instantly died!"),
-//        Poison(3, .25, .1, 0, " has been poisoned!"),
-//        Stun(4, .25, 0.1, 1, 0.0, " is stunned!"),
-//        Paralyze(3, .25, 0.1, 4, 0.0, " is paralyzed!"),
-//        Sleep(3, .25, 0.1, 8, 0.5, " has fallen asleep!"),
-//        Silence(5, .25, 0.16, 6, "'s skills have been sealed!"),
-//        Fog(2, .5, .15, 7, 0.2, " is covered in a hallucinating fog!"),
-//        Confuse(6, .25, 0.15, 5, 0.25, " has become confused!"),
-//        Petrify(7, .10, 0.0, 0, " is now petrified!");
-//        private int priority;
-//        private int turnCount;
-//        private double success;
-//        private double fade;
-//        private double attackFade;
-//        private String message;
-//        
-//        private Stats(int setPriority,
-//                double setSuccess,
-//                double setFade,
-//                int setTurnCount,
-//                double setAttackFade,
-//                String getMessage) {
-//            priority = setPriority;
-//            success = setSuccess;
-//            fade = setFade;
-//            turnCount = setTurnCount;
-//            attackFade = setAttackFade;
-//            message = getMessage;
-//        }
-//        
-//        private Stats(int setPriority,
-//                double setSuccess,
-//                double setFade,
-//                int setTurnCount,
-//                String getMessage) {
-//            priority = setPriority;
-//            success = setSuccess;
-//            fade = setFade;
-//            turnCount = setTurnCount;
-//            attackFade = 0.0;
-//            message = getMessage;
-//        }
-//        
-//        public int getPriority() {
-//            return priority;
-//        }
-//        
-//        public int getTurnCount() {
-//            return turnCount;
-//        }
-//        
-//        public double getFade() {
-//            return fade;
-//        }
-//        
-//        public double getAttackFade() {
-//            return attackFade;
-//        }
-//        
-//        public boolean isSuccessful(Battler getCaster, Battler getTarget) {
-//            return (Math.random() <= success
-//                    - ((getCaster.getLevel()
-//                    - getTarget.getLevel())
-//                    / (getCaster.getLevel()
-//                    + getTarget.getLevel())
-//                    + (getCaster.getMagic()
-//                    - getTarget.getMagic())
-//                    / (getCaster.getMagic()
-//                    + getTarget.getMagic())));
-//        }
-//        
-//        public boolean faded(Battler getCaster) {
-//            return (this != Battle.Stats.Normal
-//                    && (turnCount != 0
-//                    && (turnCount >= getTurnCount() - getCaster.getTurnCount()))
-//                    || (Math.random() <= fade
-//                    //                    - (1.0 / (101.1 - getCaster.getLevel())
-//                    //                    / (getCaster.getDefense() - getCaster.getLevel())
-//                    //                    / (getCaster.getMagic() - getCaster.getLevel()))
-//                    ));
-//        }
-//        
-//        public boolean attackFaded() {
-//            return ((this != Battle.Stats.Normal)
-//                    && attackFade != 0.0
-//                    && Math.random() < attackFade);
-//        }
-//        
-//        public String getMessage() {
-//            return message;
-//        }
-//        
-//    }
     public enum Command {
 
         Attack,

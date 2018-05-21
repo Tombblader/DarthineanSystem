@@ -44,7 +44,7 @@ public abstract class StatusEffect implements Nameable, Cloneable {
         attackFade = setAttackFade;
         this.restrictMove = restrictMove;
         message = getMessage;
-        initialTurnCount = 0;
+        initialTurnCount = turnCount;
     }
     
     public StatusEffect(String name, int setPriority,
@@ -61,7 +61,7 @@ public abstract class StatusEffect implements Nameable, Cloneable {
         attackFade = 0.0;
         this.restrictMove = restrictMove;
         message = getMessage;
-        initialTurnCount = 0;
+        initialTurnCount = turnCount;
      }
        
     public int getPriority() {
@@ -92,9 +92,9 @@ public abstract class StatusEffect implements Nameable, Cloneable {
                 + target.getMagic())));
     }
 
-    public boolean faded(Battler caster, int currentTurn) {
-        return (turnCount != 0
-                && (currentTurn >= turnCount + getInitialTurnCount()
+    public boolean faded(Battler caster) {
+        return (initialTurnCount > 0
+                && (turnCount <= 0
                 || (Math.random() <= fade //                    - (1.0 / (101.1 - getCaster.getLevel())
                 //                    / (getCaster.getDefense() - getCaster.getLevel())
                 //                    / (getCaster.getMagic() - getCaster.getLevel()))
@@ -115,6 +115,15 @@ public abstract class StatusEffect implements Nameable, Cloneable {
     
     public final void setInitialTurnCount(int turnCount) {
         initialTurnCount = turnCount;
+    }
+    
+    public void reset() {
+        turnCount = initialTurnCount;
+    }
+    
+    public void incrementTurn() {
+        if (initialTurnCount > 0)
+            turnCount--;
     }
     
     @Override
@@ -187,8 +196,13 @@ public abstract class StatusEffect implements Nameable, Cloneable {
     public abstract void updateFieldStatus(Player player, Battler battler, GameTimer timer, float delta);
 
     @Override
-    public Object clone() throws CloneNotSupportedException {
-        return (StatusEffect) super.clone(); 
+    public Object clone() {
+        try {
+            return (StatusEffect) super.clone(); 
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
     
 }

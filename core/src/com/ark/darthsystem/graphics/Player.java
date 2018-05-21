@@ -347,12 +347,10 @@ public class Player extends ActorCollision {
                     }
                     addTimer(new GameTimer(b.toString() + status.getName(), 3000) {
                         StatusEffect stat = status;
-                        int turnCount = 0;
                         @Override
                         public void event(Actor a) {
-                            System.out.println("Turn " + turnCount + (b.getStatus(stat) && stat.faded(b, turnCount)));
-                            if (b.getStatus(stat) && stat.faded(b, turnCount)) {
-                                BattleDriver.printline(b.getName() + "'s status effect faded away.");
+                            if (b.getStatus(stat) && stat.faded(b)) {
+                                BattleDriver.printline(b.getName() + "'s " + stat.getName() + " faded away.");
                                 b.getAllStatus().remove(stat);
                                 if (b.getAllStatus().isEmpty()) {
                                     b.changeStatus(new Normal());
@@ -364,7 +362,7 @@ public class Player extends ActorCollision {
                                 if (!b.getStatus("Death")) {
                                     Player.this.addTimer(this);
                                     this.resetTimer();
-                                    turnCount++;
+                                    stat.incrementTurn();
                                 }
                             }
                         }

@@ -93,9 +93,9 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
 
     public static void newGame() {
         states = new Array<>(State.class);
-        new Database1();
+//        new Database1();
         new Database2();
-        new MonsterDatabase();
+//        new MonsterDatabase();
         new MapDatabase();
         
     }

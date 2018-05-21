@@ -285,7 +285,7 @@ public class Action implements Serializable {
             SoundDatabase.ouchSound.play();
         }
         String temp = ((actionSkill == null ||
-                actionSkill.getElement() != Battle.Element.Heal) ? target.getName() +
+                !actionSkill.getAlly()) ? target.getName() +
                         " took " + ((int) (getDamage * target.getDefend() * target.getStatusDamageModifier())) + " damage!" : "");
         if (!temp.equals("")) {
             printline(temp);
@@ -296,12 +296,12 @@ public class Action implements Serializable {
             }
         }
         if (actionSkill != null) {
-            printline(actionSkill.changeStatus(caster, target, b.getTurnCount()));
+            printline(actionSkill.changeStatus(caster, target));
         }
         for (int i = 0; i < target.getAllStatus().size(); i++) {
             if (getDamage > 0 && target.getStatus(i).attackFaded()) {
+                printline(target.getName() + "'s " + target.getStatus(i).getName() + " faded away.\n");
                 target.getAllStatus().remove(i);
-                printline(target.getName() + "'s status effect faded away.\n");
                 i--;
             }
         }
@@ -330,21 +330,21 @@ public class Action implements Serializable {
                     }
                 }
                 String tempMessage = ((actionSkill == null ||
-                        actionSkill.getElement() != Battle.Element.Heal) ? 
+                        !actionSkill.getAlly()) ? 
                         allTarget.getName() + " took " +
-                                ((int) (damage * allTarget.getDefend())) +
+                                ((int) (damage * allTarget.getDefend() * allTarget.getStatusDamageModifier())) +
                                 " damage!\n" : "");
                 if (!tempMessage.equals("\n") && !tempMessage.equals("")) {
                     print(tempMessage);
                 }
-                tempMessage = actionSkill.changeStatus(caster, allTarget, b.getTurnCount());
+                tempMessage = actionSkill.changeStatus(caster, allTarget);
                 if (!tempMessage.equals("\n") && !tempMessage.equals("")) {
                     print(tempMessage);
                 }
                 for (int i = 0; i < allTarget.getAllStatus().size(); i++ ) {
                     if (damage > 0 && allTarget.getAllStatus().get(i).attackFaded()) {
+                        printline(allTarget.getName() + "'s " + target.getStatus(i).getName() + " faded away.");
                         allTarget.getAllStatus().remove(i);                        
-                        printline(allTarget.getName() + "'s status effect faded away.");
                         i--;
                     }
                 }

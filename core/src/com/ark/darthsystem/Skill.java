@@ -201,27 +201,25 @@ public class Skill implements Serializable, Cloneable, Nameable {
      * Determines whether a status change is successful and changes the status.
      * @param caster The battler who used this Skill.
      * @param target The target who the Skill is being used on.
-     * @param turnCount The current amount of turns elapsed this battle.
      * @return The string that notes the results of the attempted status change.
      */
-    public String changeStatus(Battler caster,
-            Battler target,
-            int turnCount) {
+    public String changeStatus(Battler caster, Battler target) {
         String message;
         if (target.getStatus(0).getPriority() < statusEffect.getPriority() &&
                 statusEffect.isSuccessful(caster, target) &&
                 !(getElement() == Battle.Element.Heal)) {
-            statusEffect.setInitialTurnCount(turnCount);
-            target.changeStatus(statusEffect);
+            target.changeStatus((StatusEffect) statusEffect.clone());
             message = target.getName() + statusEffect.getMessage();
-        } else if ((target.getStatus(statusEffect)) &&
-                getElement() == Battle.Element.Heal) {
-            message = target.getName() +
-                    (target.getStatus("Death") ? " has returned to life!" : "'s status has returned to normal!");
+        } else if ((target.getStatus(statusEffect)) && getElement() == Battle.Element.Heal) {
+            message = target.getName() + (target.getStatus("Death") ? " has returned to life!" : "'s " + statusEffect.getName() + " has been removed!");
             if (statusEffect instanceof Normal) {
                 message = target.getName() + statusEffect.getMessage() + "";
+            } else {
+                target.getAllStatus().remove(statusEffect);
             }
-            target.changeStatus(new Normal());
+           if (target.getAllStatus().isEmpty()) {
+               target.changeStatus(new Normal());
+           }
         } else {
             message = (finalizeRatio > 0.0) ? "" : "But nothing happens!";
         }

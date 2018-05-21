@@ -627,8 +627,8 @@ public class Battler implements Serializable, Nameable, Cloneable {
      * @param getStats
      */
     public void changeStatus(StatusEffect getStats) {
-        if (isAfflicted.contains(getStats) && isAfflicted.get(isAfflicted.indexOf(getStats)).getInitialTurnCount() < getStats.getInitialTurnCount()) {
-            isAfflicted.get(isAfflicted.indexOf(getStats)).setInitialTurnCount(getStats.getInitialTurnCount());
+        if (isAfflicted.contains(getStats)) {
+            isAfflicted.get(isAfflicted.indexOf(getStats)).reset();
         } else if (!isAfflicted.contains(getStats)) {
             isAfflicted.add(getStats);
         }
