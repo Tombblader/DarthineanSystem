@@ -7,6 +7,7 @@ package com.ark.darthsystem.states.events;
 
 import com.ark.darthsystem.Item;
 import com.ark.darthsystem.database.ShopMenu;
+import com.ark.darthsystem.graphics.GraphicsDriver;
 
 /**
  *
@@ -17,10 +18,12 @@ public class Shopkeeper extends Event {
     private ShopMenu menu;
     public Shopkeeper(String img, float getX, float getY, float delay) {
         super(img, getX, getY, delay);
+//        menu = new ShopMenu("", inventory, null);
     }
 
     @Override
     public void run() {
+        GraphicsDriver.addMenu(menu);
     }
 
     @Override

@@ -18,7 +18,7 @@ import com.ark.darthsystem.states.Battle;
 public class Silence extends StatusEffect {
 
     public Silence() {
-        super("Silence", 5, .25, 0.16, 6, false, "'s skills have been sealed!");
+        super("Silence", 2, .25, 0.16, 6, false, "'s skills have been sealed!");
     }
 
     @Override
@@ -27,7 +27,7 @@ public class Silence extends StatusEffect {
     }
 
     @Override
-    public void checkFieldStatus(Player player, GameTimer timer) {
+    public void checkFieldStatus(Player player, Battler battler, GameTimer timer) {
     }
 
     @Override

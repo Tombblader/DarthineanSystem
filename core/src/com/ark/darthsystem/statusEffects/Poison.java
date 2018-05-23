@@ -19,7 +19,7 @@ import com.ark.darthsystem.states.Battle;
 public class Poison extends StatusEffect {
 
     public Poison() {
-        super("Poisoned", 3, .25, .1, 0, false, " has been poisoned!");
+        super("Poisoned", 2, .25, .1, 0, false, " has been poisoned!");
     }
     
     public Poison(int turn) {
@@ -33,12 +33,15 @@ public class Poison extends StatusEffect {
             printline(action.getCaster().getName() + " has collapsed from the poison!");
             return false;
         }
-    return true;
+        return true;
     }
     
     @Override
-    public void checkFieldStatus(Player player, GameTimer timer) {
-
+    public void checkFieldStatus(Player player, Battler battler, GameTimer timer) {
+        printline(battler.getName() + " takes " + (battler.getMaxHP() / 20) + " damage from the poison.");
+        if (battler.changeHP(battler.getMaxHP() / 20)) {
+            printline(battler.getName() + " has collapsed from the poison!");
+        }
     }
 
     @Override

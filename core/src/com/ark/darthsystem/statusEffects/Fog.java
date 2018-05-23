@@ -27,7 +27,7 @@ public class Fog extends StatusEffect {
     }
 
     @Override
-    public void checkFieldStatus(Player player, GameTimer timer) {
+    public void checkFieldStatus(Player player, Battler battler, GameTimer timer) {
 
     }
 

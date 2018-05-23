@@ -156,21 +156,6 @@ public class Skill implements Serializable, Cloneable, Nameable {
         this.cost = cost;
     }
 
-//    /**
-//     * Overrides the level requirement to use this skill.
-//     * @param newLevel The new minimum level.
-//     * @return A copy of the skill that has this new level requirement.
-//     */
-//    public Skill overrideLevel(int newLevel) {
-//        Skill newSkill = null;
-//        try {
-//            newSkill = (Skill) (this.clone());
-//            newSkill.level = newLevel;
-//        } catch (Exception e) {
-//        }
-//        return newSkill;
-//    }
-
     /**
      * Overrides the MP cost of the skill.  Unlike setCost,
      * overrideCost returns a new Skill object with the new cost.
@@ -266,6 +251,7 @@ public class Skill implements Serializable, Cloneable, Nameable {
         return statusEffect;
     }
 
+    @Override
     public String getDescription() {
         return description;
     }

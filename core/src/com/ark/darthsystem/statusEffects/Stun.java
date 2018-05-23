@@ -17,7 +17,7 @@ import com.ark.darthsystem.states.Battle;
  */
 public class Stun extends StatusEffect {
     public Stun() {
-        super("Stun", 3, .5, 0, 1, true, " is stunned!");
+        super("Stun", 2, .5, 0, 1, true, " is stunned!");
         setInitialTurnCount(0);
     }
     
@@ -26,6 +26,7 @@ public class Stun extends StatusEffect {
         setInitialTurnCount(turn);
     }
     
+    @Override
     public boolean checkStatus(Action action, Battle b) {
         return false;
     }
@@ -36,7 +37,7 @@ public class Stun extends StatusEffect {
     }
 
     @Override
-    public void checkFieldStatus(Player player, GameTimer timer) {
+    public void checkFieldStatus(Player player, Battler battler, GameTimer timer) {
 
     }
 

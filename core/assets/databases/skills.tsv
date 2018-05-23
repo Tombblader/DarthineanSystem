@@ -52,7 +52,7 @@ Illusion Break	Healing Tech.  Removes confusion from all allies	12	Heal	TRUE	TRU
 Cell Rejuvenation	Healing Tech.  Removes Petrify from one ally.	15	Heal	TRUE	FALSE	Petrify	0	0	0	0	0	0	0	0	0	0	0	1
 Revivify	Healing Tech.  Raises the dead with at least 30 HP.	20	Heal	TRUE	FALSE	Death	-30	0.3	0	0	0	0	-6	0	0	0	6	6
 Seal Breaker	Erik Tech.  Breaks barriers, and deals tons of damage to one enemy.	23	Physical	FALSE	FALSE	Normal	0	0	0	10	0	0	-4	0	7	0	-8	6
-Reign of Terror	Protox Tech.  Rains death on all enemies in a wide radius.	21	Physical	FALSE	TRUE	Normal	0	0	0	13	0	-7	0	0	7	-9	0	5.5
+Reign of Terror	Orly Tech.  Rains death on all enemies in a wide radius.	21	Physical	FALSE	TRUE	Normal	0	0	0	13	0	-7	0	0	7	-9	0	5.5
 Weapon Master	Gladia Tech.  Deals damage to all enemies.	7	Physical	FALSE	TRUE	Normal	0	0	0	6	0	6	0	0	3	3	0	5
 Entropy	Dark Darcy Tech.  Damage all enemies with darkness.	7	Dark	FALSE	TRUE	Normal	0	0.35	0	0	0	0	13	0	0	0	6	8
 Four's Fury	Light Darcy Tech.  Warp to nearby enemy and smite.	25	Light	FALSE	FALSE	Normal	0	0	0	7	0	0	7	0	3	0	4	7

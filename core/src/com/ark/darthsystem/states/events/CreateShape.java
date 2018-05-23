@@ -6,9 +6,7 @@
 package com.ark.darthsystem.states.events;
 
 import com.ark.darthsystem.graphics.ActorCollision;
-import com.ark.darthsystem.graphics.GraphicsDriver;
 import static com.ark.darthsystem.states.events.Event.setID;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 
 /**
  *

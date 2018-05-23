@@ -32,7 +32,7 @@ public class Barrier extends StatusEffect {
     }
 
     @Override
-    public void checkFieldStatus(Player player, GameTimer timer) {
+    public void checkFieldStatus(Player player, Battler battler, GameTimer timer) {
     }
 
     @Override
@@ -41,7 +41,7 @@ public class Barrier extends StatusEffect {
 
     @Override
     public String getDescription() {
-        return "Halves damage.";
+        return "Halves damage.  May break when hit with an attack.";
     }
     
 }

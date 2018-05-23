@@ -56,7 +56,12 @@ public class ActorSkill extends ActorCollision {
         super(img, getX, getY, delay, true);
         originalFieldImageName = img;
         originalBattlerImageName = "";
-        originalFieldImage = GraphicsDriver.getMasterSheet().createSprites(img).toArray(Sprite.class);
+        try {
+            originalFieldImage = GraphicsDriver.getMasterSheet().createSprites(img).toArray(Sprite.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+            originalFieldImage = GraphicsDriver.getMasterSheet().createSprites("skills/wiccan_cross/field/wiccan_cross").toArray(Sprite.class);
+        }
         for (Sprite s : originalFieldImage) {
             s.setCenter(s.getWidth() / 2f, s.getHeight() / 2f);
             s.setOriginCenter();
@@ -79,7 +84,12 @@ public class ActorSkill extends ActorCollision {
         super(img, getX, getY, delay, true, shape);
         originalFieldImageName = img;
         originalBattlerImageName = "";
-        originalFieldImage = GraphicsDriver.getMasterSheet().createSprites(img).toArray(Sprite.class);
+        try {
+            originalFieldImage = GraphicsDriver.getMasterSheet().createSprites(img).toArray(Sprite.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+            originalFieldImage = GraphicsDriver.getMasterSheet().createSprites("skills/wiccan_cross/field/wiccan_cross").toArray(Sprite.class);
+        }
         for (Sprite s : originalFieldImage) {
             s.setCenter(s.getWidth() / 2f, s.getHeight() / 2f);
             s.setOriginCenter();
@@ -122,7 +132,12 @@ public class ActorSkill extends ActorCollision {
             Area getArea) {
         this(img, getX, getY, delay, getSkill, getArea);
         originalBattlerImageName = battlerImg;
-        originalBattlerImage = GraphicsDriver.getMasterSheet().createSprites(battlerImg).toArray(Sprite.class);
+        try {
+            originalBattlerImage = GraphicsDriver.getMasterSheet().createSprites(battlerImg).toArray(Sprite.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+            originalBattlerImage = GraphicsDriver.getMasterSheet().createSprites("skills/wiccan_cross/battler/wiccan_cross").toArray(Sprite.class);
+        }        
         for (Sprite s : originalBattlerImage) {
             s.setCenter(s.getWidth() / 2f, s.getHeight() / 2f);
             s.setOriginCenter();
@@ -140,7 +155,12 @@ public class ActorSkill extends ActorCollision {
             String shape) {
         this(img, getX, getY, delay, getSkill, getArea, shape);
         originalBattlerImageName = battlerImg;
-        originalBattlerImage = GraphicsDriver.getMasterSheet().createSprites(battlerImg).toArray(Sprite.class);
+        try {
+            originalBattlerImage = GraphicsDriver.getMasterSheet().createSprites(battlerImg).toArray(Sprite.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+            originalBattlerImage = GraphicsDriver.getMasterSheet().createSprites("skills/wiccan_cross/battler/wiccan_cross").toArray(Sprite.class);
+        }        
         for (Sprite s : originalBattlerImage) {
             s.setCenter(s.getWidth() / 2f, s.getHeight() / 2f);
             s.setOriginCenter();
@@ -189,6 +209,49 @@ public class ActorSkill extends ActorCollision {
         translateY = getTranslateY;
     }
     
+    public ActorSkill(String img,
+            float getX,
+            float getY,
+            float getTranslateX,
+            float getTranslateY,
+            float fps,
+            float castTime,
+            float delay,
+            Skill getSkill,
+            Area getArea,
+            String shape) {
+        super(img, getX, getY, fps, true, shape);
+        originalFieldImageName = img;
+        try {
+            originalFieldImage = GraphicsDriver.getMasterSheet().createSprites("skills/" + img + "/field/" + img).toArray(Sprite.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+            originalFieldImage = GraphicsDriver.getMasterSheet().createSprites("skills/wiccan_cross/field/wiccan_cross").toArray(Sprite.class);
+        }
+        for (Sprite s : originalFieldImage) {
+            s.setCenter(s.getWidth() / 2f, s.getHeight() / 2f);
+            s.setOriginCenter();
+        }
+        try {
+            originalBattlerImage = GraphicsDriver.getMasterSheet().createSprites("skills/" + img + "/battler/" + img).toArray(Sprite.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+            originalBattlerImage = GraphicsDriver.getMasterSheet().createSprites("skills/wiccan_cross/battler/wiccan_cross").toArray(Sprite.class);
+        }
+        for (Sprite s : originalFieldImage) {
+            s.setCenter(s.getWidth() / 2f, s.getHeight() / 2f);
+            s.setOriginCenter();
+        }
+        relX = getX;
+        relY = getY;
+        chargeTime = castTime;
+        skill = getSkill;
+        aftercastDelay = delay;
+        translateX = getTranslateX;
+        translateY = getTranslateY;
+        area = getArea;
+    }
+    
     /**
      * Generate the physics body of this actor.
      * @param map The map to do this on.
@@ -232,6 +295,10 @@ public class ActorSkill extends ActorCollision {
 
     }
 
+    /**
+     * Gets the aftercast delay of this skill.
+     * @return The aftercast delay in seconds.
+     */
     public float getAftercastDelay() {
         return aftercastDelay;
     }
@@ -407,11 +474,22 @@ public class ActorSkill extends ActorCollision {
                 relY,
                 translateX,
                 translateY,
-                this.getDelay(),
+                getDelay(),
                 chargeTime,
                 skill,
                 area);
-        a.setShape(this.getShape());
+        a.setShape(getShape());
+//        ActorSkill a = new ActorSkill(originalFieldImageName,
+//                relX,
+//                relY,
+//                translateX,
+//                translateY,
+//                getDelay(),
+//                chargeTime,
+//                aftercastDelay,
+//                skill,
+//                area, 
+//                getShape());
         return a;
     }
 
@@ -510,6 +588,7 @@ public class ActorSkill extends ActorCollision {
 //        setInvoker(player);
         ActorSkill tempSkill;
         tempSkill = clone();
+        System.out.println(tempSkill.getCurrentAnimation().getAnimationDuration());
         if (player.getCurrentBattler().activateCurrentSkill() != null) {
             if (player.getFacing().getX() == -1) {
                 Array<Sprite> s = new Array<>(Sprite.class);
@@ -531,7 +610,7 @@ public class ActorSkill extends ActorCollision {
                 }
             });
             player.setPause((tempSkill.getChargeTime() * 1000f));
-            player.addTimer(new GameTimer("Skill", player.getDelay() * 1000 * player.getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.ATTACK, player.getFacing()).getKeyFrames().length) {
+            player.addTimer(new GameTimer("Skill", tempSkill.getAftercastDelay() + player.getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.ATTACK, player.getFacing()).getAnimationDuration() * 1000f) {
                 @Override
                 public void event(Actor a) {
                     player.setAttacking(false);

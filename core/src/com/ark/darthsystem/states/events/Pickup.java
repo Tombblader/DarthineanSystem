@@ -7,6 +7,7 @@ package com.ark.darthsystem.states.events;
 
 import com.ark.darthsystem.BattleDriver;
 import com.ark.darthsystem.Item;
+import com.ark.darthsystem.database.Database1;
 
 /**
  *
@@ -15,6 +16,7 @@ import com.ark.darthsystem.Item;
 public class Pickup extends Event {
 
     private Item[] item;
+    private int money;
     private boolean isFinished;
 
     public Pickup(String img, float getX,
@@ -24,6 +26,7 @@ public class Pickup extends Event {
         super(img, getX, getY, getDelay);
         item = new Item[1];
         item[0] = getItem;
+        money = 0;
         isFinished = false;
         setTriggerMethod(TriggerMethod.TOUCH);
         setID(1);
@@ -35,6 +38,20 @@ public class Pickup extends Event {
             Item[] getItems) {
         super(img, getX, getY, getDelay);
         item = getItems;
+        money = 0;
+        isFinished = false;
+        setTriggerMethod(TriggerMethod.TOUCH);
+        setID(1);
+    }
+
+    public Pickup(String img, float getX,
+            float getY,
+            float getDelay,
+            Item[] getItems,
+            int getMoney) {
+        super(img, getX, getY, getDelay);
+        item = getItems;
+        money = getMoney;
         isFinished = false;
         setTriggerMethod(TriggerMethod.TOUCH);
         setID(1);
@@ -46,6 +63,10 @@ public class Pickup extends Event {
             BattleDriver.printline("Obtained " + i.getCharges() + " " + i.getName() + "!");
         }
         BattleDriver.addItems(item);
+        if (money != 0) {
+            BattleDriver.printline("Got " + money + " GP!");            
+            Database1.money += money;
+        }
         isFinished = true;
     }
 

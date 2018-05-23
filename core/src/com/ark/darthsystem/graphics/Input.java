@@ -1,7 +1,6 @@
 package com.ark.darthsystem.graphics;
 
 import com.badlogic.gdx.InputAdapter;
-import java.util.EnumMap;
 
 public class Input extends InputAdapter {
 

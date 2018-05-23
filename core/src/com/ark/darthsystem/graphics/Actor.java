@@ -69,6 +69,7 @@ public class Actor {
         if (images != null && images.length > 0) {
             animation = new Animation<Sprite>(delay, new Array<Sprite>(images));
             animation.setPlayMode(PlayMode.LOOP);
+            animation.setFrameDuration(delay);
             currentImage = (Sprite) animation.getKeyFrame(0);
         }
         speed = 0;
@@ -84,7 +85,7 @@ public class Actor {
             boolean destroy) {
         this(img, getX, getY, delay);
         destroyAfterAnimation = destroy;
-        animation.setPlayMode(PlayMode.LOOP);
+        animation.setPlayMode(destroy ? PlayMode.LOOP : PlayMode.NORMAL);
         isRotate = false;
     }
 
@@ -97,7 +98,7 @@ public class Actor {
         y = getY;
         animation = sprite.getFieldAnimation(ActorSprite.SpriteModeField.STAND, Facing.DOWN);
         animation.setPlayMode(PlayMode.LOOP);
-        animation.setFrameDuration(delay);
+        animation.setFrameDuration(delay);        
         currentImage = (Sprite) animation.getKeyFrame(elapsed);
         isMovable = true;
         speed = 0;

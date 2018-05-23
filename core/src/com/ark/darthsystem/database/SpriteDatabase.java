@@ -22,8 +22,8 @@ public class SpriteDatabase {
     public static ActorSprite Living_Sword_Sprite;
 
     public SpriteDatabase() {
-        ErikSprite = new ActorSprite("characters/darth_invader");
-        DarthSprite = new ActorSprite("characters/darth_invader");
+        ErikSprite = new ActorSprite("characters/darcy_alma");
+        DarthSprite = new ActorSprite("characters/darcy_alma");
         Water_Spirit_Sprite = new ActorSprite("characters/water_spirit");
         Fire_Spirit_Sprite = new ActorSprite("characters/fire_spirit");
         Eyesore_Sprite = new ActorSprite("monsters/eyesore");

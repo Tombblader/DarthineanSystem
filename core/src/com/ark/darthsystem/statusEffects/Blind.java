@@ -30,12 +30,13 @@ public class Blind extends StatusEffect {
         return "Victim has a 50% miss chance, and a -50% dodge chance";
     }
     
+    @Override
     public float getAccuracy() {
         return .5f;
     }
 
     @Override
-    public void checkFieldStatus(Player player, GameTimer timer) {
+    public void checkFieldStatus(Player player, Battler battler, GameTimer timer) {
 
     }
     @Override

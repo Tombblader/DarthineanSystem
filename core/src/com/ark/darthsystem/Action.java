@@ -6,6 +6,7 @@ import java.io.Serializable;
 
 import static com.ark.darthsystem.BattleDriver.*;
 import com.ark.darthsystem.database.SoundDatabase;
+import com.ark.darthsystem.graphics.GraphicsDriver;
 import com.ark.darthsystem.statusEffects.*;
 
 
@@ -277,6 +278,7 @@ public class Action implements Serializable {
 //                actionSkill.getElement() != Battle.Element.Heal)) ? (int) (Math.random() + 5) : getDamage;
         if (getDamage > 0) {
             if (b.getAlly().contains(target)) {
+//                GraphicsDriver.getPlayer().ouch(target);
 //                GraphicsDriver.getPlayer().hasTakenDamage(target);
             } else {
 //               shakeScreen(DAMAGE_SHAKE);

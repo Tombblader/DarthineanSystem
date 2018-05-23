@@ -18,7 +18,7 @@ import com.ark.darthsystem.states.Battle;
 public class AttackBoost extends StatusEffect {
 
     public AttackBoost() {
-        super("AttackBoost", 3, 2, -1, 5, 0, false, " recieved an attack boost!");
+        super("AttackBoost", 2, 2, -1, 5, 0, false, " received an attack boost!");
     }
 
     @Override
@@ -27,7 +27,7 @@ public class AttackBoost extends StatusEffect {
     }
 
     @Override
-    public void checkFieldStatus(Player player, GameTimer timer) {
+    public void checkFieldStatus(Player player, Battler battler, GameTimer timer) {
     }
 
     @Override
@@ -37,7 +37,7 @@ public class AttackBoost extends StatusEffect {
     
     @Override
     public float getAttack() {
-        return .5f;
+        return .3f;
     }
 
     @Override

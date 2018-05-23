@@ -41,7 +41,7 @@ public class Database2 {
                                 "skills/crosscall/battler/crosscall",
                                 1,
                                 1,
-                                1.0f / 20.0f,
+                                1.0f / 24.0f,
                                 SkillDatabase.SKILL_LIST.get("CROSSCALL"),
                                 ActorSkill.Area.FRONT));
                 put(SkillDatabase.SKILL_LIST.get("RED SPIN"),

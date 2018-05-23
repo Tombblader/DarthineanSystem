@@ -40,6 +40,23 @@ public class ActorBattler {
             currentSkill = null;
         }
     }
+    
+    public ActorBattler(Battler b, String s) {
+        battler = b;
+        spriteSheet = new ActorSprite(s);
+        b.getSkillList().stream().map((skill) -> {
+            currentSkill = Database2.SkillToActor(skill);
+            return skill;
+        }).filter((_item) -> (currentSkill != null)).forEachOrdered((_item) -> {
+            skillList.add(currentSkill);
+        });
+        if (skillList != null && !skillList.isEmpty()) {
+            currentSkill = skillList.get(0);
+        } else {
+            currentSkill = null;
+        }
+    }
+    
 
     public ActorSkill activateCurrentSkill() {
         if (battler.getMP() >= currentSkill.getSkill().getCost()) {

@@ -16,6 +16,7 @@ public class BattlerAI extends Battler implements Nameable, Cloneable {
 
     private AI[] AIData;
     private int experience;
+    private int money;
     private Item[] drop;
     private double[] dropPercent;
 
@@ -49,6 +50,7 @@ public class BattlerAI extends Battler implements Nameable, Cloneable {
                 newBattler.getBaseMagic(),
                 newBattler.getBattlerClass(),
                 newBattler.getEquipmentList());
+        this.money = 0;
         this.AIData = AIData;
         this.experience = experience;
         try {
@@ -113,6 +115,7 @@ public class BattlerAI extends Battler implements Nameable, Cloneable {
                 Magic,
                 skillList,
                 equipment);
+        this.money = 0;
         this.AIData = AIData;
         this.experience = experience;
         try {
@@ -128,6 +131,7 @@ public class BattlerAI extends Battler implements Nameable, Cloneable {
     /**
      * Create a new Instance of BattlerAI.
      * @param name The name of the BattlerAI
+     * @param description
      * @param element The Element of the BattlerAI
      * @param gender The gender of the BattlerAI
      * @param level The level of the BattlerAI
@@ -176,6 +180,7 @@ public class BattlerAI extends Battler implements Nameable, Cloneable {
                 Magic,
                 battlerClass,
                 equipment);
+        this.money = 0;
         this.AIData = AIData;
         this.experience = experience;
         try {
@@ -193,6 +198,7 @@ public class BattlerAI extends Battler implements Nameable, Cloneable {
     /**
      * Create a new Instance of BattlerAI.
      * @param name The name of the BattlerAI
+     * @param description
      * @param element The Element of the BattlerAI
      * @param gender The gender of the BattlerAI
      * @param level The level of the BattlerAI
@@ -208,6 +214,7 @@ public class BattlerAI extends Battler implements Nameable, Cloneable {
      * @param experience The amount of experience points the BattlerAI gives when defeated.
      * @param itemDrop The item dropped when defeated.
      * @param itemQuantity The amount of items dropped when defeated.
+     * @param dropRate
      */    
     public BattlerAI(String name,
             String description,
@@ -245,6 +252,7 @@ public class BattlerAI extends Battler implements Nameable, Cloneable {
                 itemDrop,
                 dropRate,
                 itemQuantity);
+        this.money = 0;
         Equipment temp = new Equipment("Unarmed",
                 "",
                 0,
@@ -261,7 +269,15 @@ public class BattlerAI extends Battler implements Nameable, Cloneable {
         equip(temp);
     }
     
-
+    
+    public int getMoney() {
+        return money;
+    }
+    
+    public void setMoney(int money) {
+        this.money = money;
+    }
+    
     /**
      * Gets the command determined by the AI and ensures it is usable.
      * @param b : The battle that this entity is currently in.
@@ -422,6 +438,7 @@ public class BattlerAI extends Battler implements Nameable, Cloneable {
         return AIData;
     }
     
+    @Override
     public Object clone() {
         BattlerAI clone = (BattlerAI) super.clone();
         clone.AIData = AIData;

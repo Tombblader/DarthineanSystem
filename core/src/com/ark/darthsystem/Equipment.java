@@ -54,7 +54,7 @@ public class Equipment extends Item implements Cloneable {
         BLACK,
         DARCY,
         ERIK,
-        PROTOX,
+        ORLY,
         GLADIA,
         KARIN,
         VEATHER,
@@ -65,6 +65,7 @@ public class Equipment extends Item implements Cloneable {
     private Type[] type;
     private int attack, defense, speed, magic;
     private Battle.Element equipElement;
+    private String animationName;
     private transient ActorSkill animation;
 
     /**
@@ -154,7 +155,6 @@ public class Equipment extends Item implements Cloneable {
      * @param getDescription
      * @param getMarketPrice
      * @param type
-     * 
      * @param slot
      * @param invoke
      * @param initializeElement
@@ -186,7 +186,28 @@ public class Equipment extends Item implements Cloneable {
         magic = initializeMagic;
         equipElement = initializeElement;
         animation = Database2.Sword();
-    }    
+    }   
+    
+    public Equipment(String getName,
+            String getDescription,
+            String getAnimation,
+            ActorSkill.Area getArea,
+            String getShape,
+            int getMarketPrice,
+            Type[] type,
+            Slot slot,
+            Skill invoke,
+            Battle.Element initializeElement,
+            boolean useMP,
+            int initializeAttack,
+            int initializeDefense,
+            int initializeSpeed,
+            int initializeMagic) {
+        animationName = getAnimation;
+        animation = new ActorSkill("equipment/" + getAnimation + "/field/" + getAnimation,
+                    "equipment/" + getAnimation + "/battler/" + getAnimation, 
+                    1, 1, 1.0f/12f, null, getArea, getShape);  
+    }      
     
 //    /**
 //     *
@@ -286,6 +307,8 @@ public class Equipment extends Item implements Cloneable {
 
     public Equipment clone() {
         Equipment temp = new Equipment(getName(), getDescription(), getPrice(), type, equipmentSlot, getInvoke(), getElement(), useMP(), attack, defense, speed, magic);        
+        temp.animation = animation.clone();
+        temp.animationName = animationName;
         return temp;
     }
 }

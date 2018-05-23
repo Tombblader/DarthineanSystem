@@ -744,7 +744,7 @@ public class Battler implements Serializable, Nameable, Cloneable {
      * @param newEquipment
      * @return
      */
-    public Equipment equip(Equipment newEquipment) {
+    public final Equipment equip(Equipment newEquipment) {
         if (!battlerClass.equippable(newEquipment)) {
             return newEquipment;
         }
@@ -770,7 +770,7 @@ public class Battler implements Serializable, Nameable, Cloneable {
     }
     
     private float getStatusAttack() {
-        float statusAttack = 1;
+        float statusAttack = 1f;
         for (StatusEffect status : isAfflicted) {
             if (status != null) {
                 statusAttack += status.getAttack();
@@ -791,7 +791,7 @@ public class Battler implements Serializable, Nameable, Cloneable {
     }
     
     private float getStatusDefense() {
-        float statusDefense = 1;
+        float statusDefense = 1f;
         for (StatusEffect status : isAfflicted) {
             if (status != null) {
                 statusDefense += status.getDefense();
@@ -811,7 +811,7 @@ public class Battler implements Serializable, Nameable, Cloneable {
     }
     
     private float getStatusSpeed() {
-        float statusSpeed = 1;
+        float statusSpeed = 1f;
         for (StatusEffect status : isAfflicted) {
             if (status != null) {
                 statusSpeed += status.getSpeed();
@@ -821,7 +821,7 @@ public class Battler implements Serializable, Nameable, Cloneable {
     }
 
     private float getStatusMagic() {
-        float statusMagic = 1;
+        float statusMagic = 1f;
         for (StatusEffect status : isAfflicted) {
             if (status != null) {
                 statusMagic += status.getMagic();

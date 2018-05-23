@@ -191,7 +191,7 @@ public abstract class StatusEffect implements Nameable, Cloneable {
     
     public abstract boolean checkStatus(Action action, Battle b);
 
-    public abstract void checkFieldStatus(Player player, GameTimer timer);
+    public abstract void checkFieldStatus(Player player, Battler battler, GameTimer timer);
     
     public abstract void updateFieldStatus(Player player, Battler battler, GameTimer timer, float delta);
 

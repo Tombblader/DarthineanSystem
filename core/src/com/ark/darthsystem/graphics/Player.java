@@ -14,9 +14,7 @@ import com.ark.darthsystem.database.SoundDatabase;
 import com.ark.darthsystem.Equipment;
 import com.ark.darthsystem.states.OverheadMap;
 import com.ark.darthsystem.GameOverException;
-import com.ark.darthsystem.states.Battle;
 import com.ark.darthsystem.states.events.Event;
-import com.ark.darthsystem.statusEffects.Death;
 import com.ark.darthsystem.statusEffects.Normal;
 import com.ark.darthsystem.statusEffects.StatusEffect;
 
@@ -64,7 +62,7 @@ public class Player extends ActorCollision {
     private int menuButton = Keys.ENTER;
     private int jumpButton = Keys.V;
 
-    ActorSkill attackAnimation;
+    private ActorSkill attackAnimation;
     private float speed = SPEED;
     private boolean canAttack = true;
     private boolean canSkill = true;
@@ -77,9 +75,9 @@ public class Player extends ActorCollision {
     private ActorSkill currentSkill;
 
     private Input playerInput;
-    private BitmapFont font;
-    private ActorBattler currentBattler;
-    private Array<Event> eventQueue = new Array<>();
+    private transient BitmapFont font;
+    private transient ActorBattler currentBattler;
+    private transient Array<Event> eventQueue = new Array<>();
     
 //    private boolean isJumping;
     private ArrayList<ActorBattler> party = new ArrayList<>();
@@ -194,26 +192,31 @@ public class Player extends ActorCollision {
             animation.setX(this);
             animation.setY(this);
 //            setPause((int)((this.getDelay() * (this.getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.ATTACK, getFacing()).getKeyFrames().length - 1f)) * 1000f));
-            addTimer(new GameTimer("Attack_Charge", this.getDelay() * getAttackAnimation().getChargeTime() * 1000f) {
+            addTimer(new GameTimer("Attack_Charge", this.getDelay() * animation.getChargeTime() * 1000f) {
                 @Override
                 public void event(Actor a) {
                     animation.playFieldSound();
                     animation.setFacing();
                     fieldState = ActorSprite.SpriteModeField.ATTACK;
                     setPause(((animation.getAnimationDelay()) * 1000f));
+                    changeAnimation(currentBattler.getSprite().getFieldAnimation(ActorSprite.SpriteModeField.ATTACK, getFacingBias()));
                     if (!getCurrentMap().getPhysicsWorld().isLocked()) {
                         animation.setMap(getCurrentMap());
-                        addTimer(new GameTimer("Attack", getDelay() * 1000 * getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.ATTACK, getFacing()).getKeyFrames().length) {
+                        addTimer(new GameTimer("Attack", 
+                                1000f * (getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.ATTACK, getFacingBias()).getAnimationDuration() + animation.getAftercastDelay())) {
                             @Override
                             public void event(Actor a) {
                                 attacking = false;
                             }
+                            public boolean update(float delta, Actor a) {
+                                attacking = true;
+                                return super.update(delta, a);
+                            }
                         });
-                        addTimer(new GameTimer("Attack", animation.getAnimationDelay() * 1000) {
+                        addTimer(new GameTimer("Attack", 1000f * getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.ATTACK, getFacingBias()).getAnimationDuration()) {
                             @Override
                             public void event(Actor a) {
                                 fieldState = ActorSprite.SpriteModeField.STAND;
-                                attacking = false;
                             }
                             public boolean update(float delta, Actor a) {
                                 fieldState = ActorSprite.SpriteModeField.ATTACK;
@@ -225,7 +228,7 @@ public class Player extends ActorCollision {
                 public boolean update(float delta, Actor a) {
                     attacking = true;
 //                    canAttack = false;
-                    fieldState = ActorSprite.SpriteModeField.ATTACK;
+//                    fieldState = ActorSprite.SpriteModeField.ATTACK;
                     return super.update(delta, a);
                 }
                 
@@ -358,7 +361,7 @@ public class Player extends ActorCollision {
                                 Player.this.enableMovement();
                                 Player.this.setCanSkill(true);                            
                             } else {
-                                stat.checkFieldStatus(Player.this, this);
+                                stat.checkFieldStatus(Player.this, b, this);
                                 if (!b.getStatus("Death")) {
                                     Player.this.addTimer(this);
                                     this.resetTimer();
@@ -789,6 +792,39 @@ public class Player extends ActorCollision {
     public void runButtonPressedEvents() {
         
     }
+
+    public void ouch(Battler b) {
+        ActorBattler ouchBattler = getAllActorBattlers().get(getAllBattlers().indexOf(b));
+        fieldState = ActorSprite.SpriteModeField.OUCH;
+        ouchBattler.setFace(ActorSprite.SpriteModeFace.OUCH);
+        setPause(250);
+        setInvulnerability(550);
+        SoundDatabase.ouchSound.play();
+        addTimer(new GameTimer("OUCH", 250) {
+            ActorBattler ouchBattler2 = ouchBattler;
+            @Override
+            public void event(Actor a) {
+                if (ouchBattler2.getBattler().isAlive()) {
+                    fieldState = ActorSprite.SpriteModeField.STAND;
+                    ouchBattler2.setFace(ActorSprite.SpriteModeFace.NORMAL);
+                }
+                else {
+
+                }
+            }
+
+            @Override
+            public boolean update(float delta, Actor a) {
+                if (ouchBattler.getBattler().isAlive()) {
+                    fieldState = ActorSprite.SpriteModeField.OUCH;
+                    ouchBattler.setFace(ActorSprite.SpriteModeFace.OUCH);
+                }
+                return super.update(delta, a);
+            }
+        });
+
+    }
+
     
     public void ouch() {
         fieldState = ActorSprite.SpriteModeField.OUCH;

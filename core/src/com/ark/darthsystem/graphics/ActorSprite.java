@@ -46,10 +46,9 @@ public class ActorSprite implements Serializable {
     }
     
     private void setupWalking() {
-        final int DELAY = 10;
+        final float DELAY = 1/10f;
         for (SpriteModeField field : SpriteModeField.values()) {
             HashMap<Actor.Facing, Animation<Sprite>> tempAnimation = new HashMap<>();
-
             for (Actor.Facing direction : Actor.Facing.values()) {
                 try {
                     Array<Sprite> tempSprites = GraphicsDriver.getMasterSheet().createSprites(masterSpriteSheet +
@@ -57,10 +56,17 @@ public class ActorSprite implements Serializable {
                                     field.toString().toLowerCase() +
                                     '/' +
                                     direction.toString().toLowerCase());
+                    if (tempSprites.size == 0) {
+                        tempSprites = GraphicsDriver.getMasterSheet().createSprites("characters/darcy_alma" +
+                                    "/field/" +
+                                    field.toString().toLowerCase() +
+                                    '/' +
+                                    direction.toString().toLowerCase());
+                    }
                     for (Sprite s : tempSprites) {
                         s.setOriginCenter();
                     }
-                    tempAnimation.put(direction, new Animation<Sprite>(DELAY, tempSprites, 
+                    tempAnimation.put(direction, new Animation<>(DELAY, tempSprites, 
                             field == SpriteModeField.WALK || field == SpriteModeField.STAND ?
                             Animation.PlayMode.LOOP : Animation.PlayMode.NORMAL
                                     
@@ -80,12 +86,12 @@ public class ActorSprite implements Serializable {
         final int DELAY = 10;
         for (SpriteModeFace face : SpriteModeFace.values()) {
             try {
+                Array<Sprite> tempSprites = GraphicsDriver.getMasterSheet().createSprites(masterSpriteSheet + "/face/" + face.toString().toLowerCase());
+                if (tempSprites.size == 0) {
+                    tempSprites = GraphicsDriver.getMasterSheet().createSprites("characters/darcy_alma" + "/face/" + face.toString().toLowerCase());                    
+                }
                 spriteSheetFace.put(face,
-                        new Animation<>(DELAY,
-                                GraphicsDriver.getMasterSheet().
-                                createSprites(masterSpriteSheet + "/face/" +
-                                        face.toString().toLowerCase()),
-                                Animation.PlayMode.LOOP));
+                        new Animation<>(DELAY, tempSprites, Animation.PlayMode.LOOP));
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -97,10 +103,14 @@ public class ActorSprite implements Serializable {
         final int DELAY = 10;
         for (SpriteModeBattler battler : SpriteModeBattler.values()) {
             try {
+                Array<Sprite> tempSprites = GraphicsDriver.getMasterSheet().createSprites(masterSpriteSheet + 
+                                "/battler/" + battler.toString().toLowerCase());
+                if (tempSprites.size == 0) {
+                    tempSprites = GraphicsDriver.getMasterSheet().createSprites("darcy_alma/" + 
+                                "/battler/" + battler.toString().toLowerCase());               
+                }
                 spriteSheetBattler.put(battler, new Animation<>(DELAY, 
-                        GraphicsDriver.getMasterSheet().createSprites(masterSpriteSheet + 
-                                "/battler/" + 
-                                battler.toString().toLowerCase()),
+                        tempSprites,
                         Animation.PlayMode.LOOP));
             } catch (Exception e) {
                 e.printStackTrace();

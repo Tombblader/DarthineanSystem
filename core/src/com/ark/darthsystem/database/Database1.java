@@ -145,26 +145,13 @@ public class Database1 implements Serializable {
     public static int karma;//Positive Karma is good, Negative is bad.
 
     public static HashMap<String, Boolean> switches;
-    
-    public static HashMap<String, Battler> battlers;
 
     public static HashMap<String, Integer> variables;
 
     public static void save(String fileName) throws FileNotFoundException, IOException {
         try (ObjectOutputStream objectStream
                 = new ObjectOutputStream(Gdx.files.local(fileName).write(false))) {
-//            objectStream.writeObject(Darth);
-//            objectStream.writeObject(Erik);
-//            objectStream.writeObject(Protox);
-//            objectStream.writeObject(Gladia);
-//            objectStream.writeObject(Veather);
-//            objectStream.writeObject(Karin);
-//            objectStream.writeObject(Naira);
-//            objectStream.writeObject(Fire_Spirit);
-//            objectStream.writeObject(Water_Spirit);
-//            objectStream.writeObject(Wind_Spirit);
-//            objectStream.writeObject(Earth_Spirit);
-//            objectStream.writeObject(you);
+            objectStream.writeObject(BATTLER_LIST);
             objectStream.writeObject(inventory);
             objectStream.writeInt(karma);
             objectStream.writeObject(switches);
@@ -188,8 +175,11 @@ public class Database1 implements Serializable {
 //            Database1.Wind_Spirit = (Battler) objectStream.readObject();
 //            Database1.Earth_Spirit = (Battler) objectStream.readObject();
 //            Database1.you = (Battler) objectStream.readObject();
+            Database1.BATTLER_LIST.clear();
+            Database1.BATTLER_LIST.putAll((HashMap<String, Battler>) objectStream.readObject());
             Database1.inventory = (ArrayList<Item>) objectStream.readObject();
             Database1.karma = objectStream.readInt();
+            Database1.money = objectStream.readInt();
             Database1.switches = (HashMap<String, Boolean>) objectStream.readObject();
             Database1.variables = (HashMap<String, Integer>) objectStream.readObject();
         }

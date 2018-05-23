@@ -17,14 +17,16 @@ import java.util.stream.Collectors;
 public class ShopMenu extends Menu {
     
     private Item[] itemList;
+    private String[] messages;
     private TextBox descriptionWindow;
     private Menu itemMenu;
     private TextBox moneyMenu;
-    public ShopMenu(String header, Item[] choices) {
+    public ShopMenu(String header, Item[] choices, String[] messages) {
         super(header, Arrays.stream(choices).map(i -> i.getName()).collect(Collectors.toList()).toArray(new String[0]));
         itemList = choices;
+        this.messages = messages;
     }
-
+    
     @Override
     public Object confirm(String choice) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

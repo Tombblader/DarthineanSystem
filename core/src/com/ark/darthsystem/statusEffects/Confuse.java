@@ -17,7 +17,7 @@ import com.ark.darthsystem.states.Battle;
  */
 public class Confuse extends StatusEffect {
     public Confuse() {
-        super("Confuse", 6, .25, 0.15, 5, 0.25, false, " has become confused!");
+        super("Confuse", 2, .25, 0.15, 5, 0.25, false, " has become confused!");
         setInitialTurnCount(0);
     }
     
@@ -44,7 +44,7 @@ public class Confuse extends StatusEffect {
     }
 
     @Override
-    public void checkFieldStatus(Player player, GameTimer timer) {
+    public void checkFieldStatus(Player player, Battler battler, GameTimer timer) {
 
     }
     
