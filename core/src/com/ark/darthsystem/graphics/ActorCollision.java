@@ -36,11 +36,11 @@ public class ActorCollision extends Actor {
     public static final short CATEGORY_WALLS = 0x0004;
     
     private String shapeName;
-    private Body body;
-    private Fixture fixture;
-    private Body sensorBody;
-    private Fixture sensorFixture;
-    private WeldJoint sensorJoint;
+    private transient Body body;
+    private transient Fixture fixture;
+    private transient Body sensorBody;
+    private transient Fixture sensorFixture;
+    private transient WeldJoint sensorJoint;
     private float initialX;
     private float initialY;
 

@@ -154,6 +154,7 @@ public class Database1 implements Serializable {
             objectStream.writeObject(BATTLER_LIST);
             objectStream.writeObject(inventory);
             objectStream.writeInt(karma);
+            objectStream.writeInt(money);
             objectStream.writeObject(switches);
             objectStream.writeObject(variables);
         }
@@ -162,19 +163,7 @@ public class Database1 implements Serializable {
     public static void load(String fileName)
             throws FileNotFoundException, IOException, ClassNotFoundException {
         try (ObjectInputStream objectStream
-                = new ObjectInputStream(Gdx.files.internal(fileName).read())) {
-//            Database1.Darth = (Battler) objectStream.readObject();
-//            Database1.Erik = (Battler) objectStream.readObject();
-//            Database1.Protox = (Battler) objectStream.readObject();
-//            Database1.Gladia = (Battler) objectStream.readObject();
-//            Database1.Veather = (Battler) objectStream.readObject();
-//            Database1.Karin = (Battler) objectStream.readObject();
-//            Database1.Naira = (Battler) objectStream.readObject();
-//            Database1.Fire_Spirit = (Battler) objectStream.readObject();
-//            Database1.Water_Spirit = (Battler) objectStream.readObject();
-//            Database1.Wind_Spirit = (Battler) objectStream.readObject();
-//            Database1.Earth_Spirit = (Battler) objectStream.readObject();
-//            Database1.you = (Battler) objectStream.readObject();
+                = new ObjectInputStream(Gdx.files.local(fileName).read())) {
             Database1.BATTLER_LIST.clear();
             Database1.BATTLER_LIST.putAll((HashMap<String, Battler>) objectStream.readObject());
             Database1.inventory = (ArrayList<Item>) objectStream.readObject();

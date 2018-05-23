@@ -50,7 +50,8 @@ public class AIDatabase {
                     new ArrayList<>(Arrays.asList(Arrays.stream(data[++i].split(", ")).map(j -> SkillDatabase.SKILL_LIST.get(j.toUpperCase())).toArray(Skill[] :: new))),
                     new Equipment[5],
                     Scenario.AI_TYPE.get(data[++i].toUpperCase()),
-                    Integer.parseInt(data[++i]),
+                    Integer.parseInt(data[++i]), // XP
+                    Integer.parseInt(data[++i]), // Money
                     Arrays.stream(data[++i].split(", ")).map(j -> ItemDatabase.ITEM_LIST.get(j.toUpperCase())).toArray(Item[] :: new),
                     Arrays.stream(data[++i].split(", ")).mapToDouble(j -> Double.parseDouble(j)).toArray(),
                     Arrays.stream(data[++i].split(", ")).mapToInt(j -> Integer.parseInt(j)).toArray()

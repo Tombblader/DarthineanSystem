@@ -13,6 +13,7 @@ import com.ark.darthsystem.graphics.Actor;
 import com.ark.darthsystem.*;
 import static com.ark.darthsystem.database.CharacterDatabase.*;
 import com.ark.darthsystem.states.events.*;
+import java.io.IOException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -27,7 +28,7 @@ public class Database2 {
     public static Player player;
 //    public static HashMap<Skill, ActorSkill> SkillToActor;
 
-    public Database2() {
+    public Database2(String load) {
         new SkillDatabase();  
         SkillToActor = new HashMap<>();
 //        for (Skill skills : SkillDatabase.SKILL_LIST.values()) {
@@ -129,7 +130,16 @@ public class Database2 {
         new SystemDatabase();
         new ItemDatabase();
         new AIDatabase();
-        new Database1();
+        if (!load.equals("")) {
+            try {
+                Database1.load(load);
+            } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+                new Database1();
+            }
+        } else {
+            new Database1();
+        }
         new CharacterDatabase();
         new MonsterDatabase();
         
@@ -140,6 +150,10 @@ public class Database2 {
             Water_Spirit_Battler
         };
         player = new Player(new ArrayList<>(Arrays.asList(battlers)), 0, 0);
+    }
+    
+    public Database2() {
+        this("");
     }
 
     public static HashMap<Skill, ActorSkill> SkillToActor;

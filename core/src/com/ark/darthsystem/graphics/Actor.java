@@ -13,6 +13,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
+import java.util.logging.Logger;
 
 /**
  * The Actor class is the basic entity class that directly interacts with the
@@ -23,14 +24,14 @@ import com.badlogic.gdx.utils.Array;
 public class Actor {
     
 
-    private Animation<Sprite> animation;
-    private Sprite currentImage;
-    private OverheadMap currentMap;
+    private transient Animation<Sprite> animation;
+    private transient Sprite currentImage;
+    private transient OverheadMap currentMap;
     private float delay;
     private boolean destroyAfterAnimation = false;
     private float elapsed = 0f;
     private Facing facing;
-    private Sprite[] images;
+    private transient Sprite[] images;
     private boolean isMovable = true;
     private boolean isRotate;
     private float lastX;
@@ -38,11 +39,12 @@ public class Actor {
     private float lastY;
     private int lastYFacing = 0;
     private float speed;
-    private ActorSprite sprite;
+    private transient ActorSprite sprite;
     private Array<GameTimer> timers = new Array<>(GameTimer.class);
     private float x;
     private float y;
     private Facing xFacingBias = Facing.DOWN;
+    private String imageName;
 
     public Actor(Sprite img,
             float getX,
@@ -65,6 +67,7 @@ public class Actor {
         x = getX;
         y = getY;
         this.delay = delay;
+        imageName = img;
         images = GraphicsDriver.getMasterSheet().createSprites(img).toArray(Sprite.class);
         if (images != null && images.length > 0) {
             animation = new Animation<Sprite>(delay, new Array<Sprite>(images));
@@ -377,5 +380,7 @@ public class Actor {
     public Facing getFacingBias() {
         return xFacingBias;
     }
+    
+    
 
 }

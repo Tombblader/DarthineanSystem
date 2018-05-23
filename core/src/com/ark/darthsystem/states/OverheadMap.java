@@ -28,12 +28,10 @@ import com.ark.darthsystem.states.events.Treasure;
 
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.MapProperties;
-import com.badlogic.gdx.maps.objects.CircleMapObject;
 import com.badlogic.gdx.maps.objects.EllipseMapObject;
 import com.badlogic.gdx.maps.objects.PolygonMapObject;
 import com.badlogic.gdx.maps.objects.PolylineMapObject;
@@ -46,7 +44,6 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Ellipse;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
@@ -73,7 +70,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
-    private float ppt = 0;    
+
+    private float ppt = 0;
     private Fixture boundXMinFixture, boundYMinFixture, boundXMaxFixture, boundYMaxFixture;
     private boolean worldStep;
     private Array<Body> deleteQueue = new Array<>();
@@ -90,10 +88,13 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
     private int width;
     private int height;
     private Body boundXMin, boundXMax, boundYMin, boundYMax;
-    
 
-    public OverheadMap(String mapName) {
-        super((new TmxMapLoader().load(mapName, new Parameters() {{this.flipY = false;}})), 1f / PlayerCamera.PIXELS_TO_METERS);
+    public OverheadMap(String mapName, boolean isLoaded) {
+        super((new TmxMapLoader().load(mapName, new Parameters() {
+            {
+                this.flipY = false;
+            }
+        })), 1f / PlayerCamera.PIXELS_TO_METERS);
         for (MapLayer m : (getMap().getLayers())) {
             if (!(m instanceof TiledMapTileLayer)) {
                 for (MapObject mo : m.getObjects()) {
@@ -112,7 +113,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
         MapProperties prop = getMap().getProperties();
         updateProperties(prop);
         width = prop.get("width", Integer.class) * prop.get("tilewidth", Integer.class);
-        height = prop.get("height", Integer.class) * prop.get("tileheight", Integer.class);        
+        height = prop.get("height", Integer.class) * prop.get("tileheight", Integer.class);
         actorList = new Array<>(Actor.class);
         world = new World(new Vector2(0, 0), true);
         world.setContactListener(new ContactListener() {
@@ -173,26 +174,26 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
             public void postSolve(Contact cntct, ContactImpulse ci) {
 //                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
-            
+
             private void renderKnockback(Fixture a, Fixture b) {
-                final float DISTANCE = (float) (30f * ((Player)(b.getBody().getUserData())).getCurrentBattler().getBattler().getDefend());
+                final float DISTANCE = (float) (30f * ((Player) (b.getBody().getUserData())).getCurrentBattler().getBattler().getDefend());
                 Vector2 result
                         = new Vector2(((Actor) (b.getBody().getUserData())).getX(), ((Actor) (b.getBody().getUserData())).getY())
                                 .sub(new Vector2(((ActorSkill) (a.getBody().getUserData())).getInvoker().getX(), ((ActorSkill) (a.getBody().getUserData())).getInvoker().getY()));
                 result.set(result.scl(DISTANCE));
-                ((Actor)(b.getBody().getUserData())).addTimer(new GameTimer("KNOCKBACK", 99999) {
+                ((Actor) (b.getBody().getUserData())).addTimer(new GameTimer("KNOCKBACK", 99999) {
                     @Override
                     public void event(Actor a) {
                         b.getBody().setLinearVelocity(result);
                     }
-                    
+
                     public boolean isFinished() {
                         return !world.isLocked();
                     }
-                    
+
                 });
-                ((Player)(b.getBody().getUserData())).ouch();
-            }            
+                ((Player) (b.getBody().getUserData())).ouch();
+            }
 
             private void renderCollision(Fixture a, Fixture b) {
                 renderKnockback(b, a);
@@ -202,14 +203,14 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                 if (tempSkill.getSkill() == null) {
                     action = new Action(Battle.Command.Attack,
                             tempSkill.getInvoker()
-                            .getCurrentBattler().getBattler(),
+                                    .getCurrentBattler().getBattler(),
                             tempActor.getCurrentBattler().getBattler(),
                             tempActor.getAllBattlers());
                 } else {
                     action = new Action(Battle.Command.Skill,
                             tempSkill.getSkill().overrideCost(0),
                             tempSkill.getInvoker()
-                            .getCurrentBattler().getBattler(),
+                                    .getCurrentBattler().getBattler(),
                             tempActor.getCurrentBattler().getBattler(),
                             tempActor.getAllBattlers());
                 }
@@ -228,12 +229,12 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
 
                 //clear certain called events
                 for (int i = 0; i < actorList.size; i++) {
-                    Actor actors = actorList.get(i); 
+                    Actor actors = actorList.get(i);
                     if (actors instanceof ActorSkill) {
-                        if (((ActorSkill)(actors)).getInvoker().equals(tempActor)) {
+                        if (((ActorSkill) (actors)).getInvoker().equals(tempActor)) {
                             removeActor(actors);
                             i--;
-                            ((ActorSkill)(actors)).stopFieldSound();
+                            ((ActorSkill) (actors)).stopFieldSound();
                         }
                     }
                 }
@@ -243,7 +244,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
             private void renderEvent(Fixture a, Fixture b) {
                 Event tempEvent = (Event) b.getBody().getUserData();
                 Player tempPlayer = (Player) a.getBody().getUserData();
-                
+
                 if (tempEvent.isTriggered(Event.TriggerMethod.TOUCH)) {
                     tempEvent.run();
                 }
@@ -251,7 +252,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                     tempPlayer.addButtonEvent(tempEvent);
                 }
             }
-            
+
             private void createPickupFromActor(Player a) {
                 ArrayList<Item> dropped = new ArrayList<>();
                 int money = 0;
@@ -264,43 +265,45 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                             dropped.add(item);
                         }
                     }
-                    money += ((BattlerAI)(enemy1)).getMoney();
+                    money += ((BattlerAI) (enemy1)).getMoney();
                 }
 //                if (dropped.get(0).getIcon())
                 if (!dropped.isEmpty() || money > 0) {
-                    new Pickup("items/potion/icon", a.getX(), a.getY(), 1/12, dropped.toArray(new Item[dropped.size()]), money).setMap(OverheadMap.this);
+                    new Pickup("items/potion/icon", a.getX(), a.getY(), 1 / 12, dropped.toArray(new Item[dropped.size()]), money).setMap(OverheadMap.this);
                 }
             }
-            
+
             private void endEvent(Fixture a, Fixture b) {
                 Event tempEvent = (Event) b.getBody().getUserData();
                 Player tempPlayer = (Player) a.getBody().getUserData();
                 if (tempEvent.isTriggered(Event.TriggerMethod.PRESS)) {
                     tempPlayer.removeButtonEvent(tempEvent);
                 }
-                
+
             }
-            
+
         });
         generateBounds();
         generateObjects();
     }
-    
+
     public OverheadMap(String mapName, String bgmName) {
-        this(mapName);
+        this(mapName, false);
         bgm = bgmName;
     }
+
     private PolygonShape getRectangle(RectangleMapObject rectangleObject) {
         Rectangle rectangle = rectangleObject.getRectangle();
         PolygonShape polygon = new PolygonShape();
         Vector2 size = new Vector2((rectangle.x + rectangle.width * 0.5f) / ppt,
-                (rectangle.y + rectangle.height * 0.5f ) / ppt);
+                (rectangle.y + rectangle.height * 0.5f) / ppt);
         polygon.setAsBox(rectangle.width * 0.5f / ppt,
                 rectangle.height * 0.5f / ppt,
                 size,
                 0.0f);
         return polygon;
     }
+
     private CircleShape getCircle(EllipseMapObject circleObject) {
         Ellipse circle = circleObject.getEllipse();
         CircleShape circleShape = new CircleShape();
@@ -308,42 +311,48 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
         circleShape.setPosition(new Vector2(circle.x / ppt + .5f, circle.y / ppt + .5f));
         return circleShape;
     }
+
     private PolygonShape getPolygon(PolygonMapObject polygonObject) {
         PolygonShape polygon = new PolygonShape();
         float[] vertices = polygonObject.getPolygon().getTransformedVertices();
-        
+
         float[] worldVertices = new float[vertices.length];
-        
+
         for (int i = 0; i < vertices.length; ++i) {
             worldVertices[i] = vertices[i] / ppt;
         }
-        
+
         polygon.set(worldVertices);
         return polygon;
     }
+
     private ChainShape getPolyline(PolylineMapObject polylineObject) {
         float[] vertices = polylineObject.getPolyline().getTransformedVertices();
         Vector2[] worldVertices = new Vector2[vertices.length / 2];
-        
+
         for (int i = 0; i < vertices.length / 2; ++i) {
             worldVertices[i] = new Vector2();
             worldVertices[i].x = vertices[i * 2] / ppt;
             worldVertices[i].y = vertices[i * 2 + 1] / ppt;
         }
-        
+
         ChainShape chain = new ChainShape();
         chain.createChain(worldVertices);
         return chain;
     }
+
     public float getWidth() {
         return Math.round(width / PlayerCamera.PIXELS_TO_METERS);
     }
+
     public float getHeight() {
         return Math.round(height / PlayerCamera.PIXELS_TO_METERS);
     }
+
     public String getMusic() {
         return bgm;
     }
+
     private void generateBounds() {
         BodyDef genericBodyType = new BodyDef();
         genericBodyType.type = BodyDef.BodyType.StaticBody;
@@ -394,13 +403,14 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
         shape2.dispose();
         shape3.dispose();
         shape4.dispose();
-        
+
     }
+
     private Array<Body> generateObjects() {
         ppt = PlayerCamera.PIXELS_TO_METERS;
 //        MapObjects objects = map.getLayers().get("collision").getObjects();
         Array<Body> bodies = new Array<>();
-        for (MapLayer layer: map.getLayers()) {
+        for (MapLayer layer : map.getLayers()) {
             if (layer != null && layer instanceof TiledMapTileLayer) {
                 TiledMapTileLayer tileLayer = (TiledMapTileLayer) layer;
                 for (int x = 0; x < tileLayer.getWidth(); x++) {
@@ -410,19 +420,19 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                                 if (object == null) {
                                     continue;
                                 }
-                                
+
                                 Body b = genTile(object);
                                 if (b != null) {
-                                    b.setTransform(x, y, 0);                                    
+                                    b.setTransform(x, y, 0);
                                     bodies.add(b);
                                 }
                             }
                         }
                     }
                 }
-                
+
             }
-            for(MapObject object : layer.getObjects()) {
+            for (MapObject object : layer.getObjects()) {
                 if (object instanceof TextureMapObject) {
                     continue;
                 }
@@ -434,58 +444,54 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
         }
         return bodies;
     }
-    
-    private Body genTile (MapObject object) {
-                MapProperties properties = object.getProperties();
-                if (properties.get("type", String.class) != null && properties.get("type", String.class).equalsIgnoreCase("actor")) {
-                    MonsterDatabase.monsters.get(properties.get("parameters", String.class).toUpperCase())
-                            .clone().setMap(this, properties.get("x", Float.class) / PlayerCamera.PIXELS_TO_METERS, properties.get("y", Float.class) / PlayerCamera.PIXELS_TO_METERS);
-                    return null;
-                }
 
-                Shape shape;
-                if (object instanceof RectangleMapObject) {
-                    shape = getRectangle((RectangleMapObject)object);
-                }
-                else if (object instanceof PolygonMapObject) {
-                    shape = getPolygon((PolygonMapObject)object);
-                }
-                else if (object instanceof PolylineMapObject) {
-                    shape = getPolyline((PolylineMapObject)object);
-                }
-                else if (object instanceof EllipseMapObject) {
-                    shape = getCircle((EllipseMapObject)object);
-                }
-                else {
-                    return null;
-                }
+    private Body genTile(MapObject object) {
+        MapProperties properties = object.getProperties();
+        if (properties.get("type", String.class) != null && properties.get("type", String.class).equalsIgnoreCase("actor")) {
+            MonsterDatabase.monsters.get(properties.get("parameters", String.class).toUpperCase())
+                    .clone().setMap(this, properties.get("x", Float.class) / PlayerCamera.PIXELS_TO_METERS, properties.get("y", Float.class) / PlayerCamera.PIXELS_TO_METERS);
+            return null;
+        }
 
-                BodyDef bd = new BodyDef();
-                bd.type = BodyType.StaticBody;
-                Body body = world.createBody(bd);
+        Shape shape;
+        if (object instanceof RectangleMapObject) {
+            shape = getRectangle((RectangleMapObject) object);
+        } else if (object instanceof PolygonMapObject) {
+            shape = getPolygon((PolygonMapObject) object);
+        } else if (object instanceof PolylineMapObject) {
+            shape = getPolyline((PolylineMapObject) object);
+        } else if (object instanceof EllipseMapObject) {
+            shape = getCircle((EllipseMapObject) object);
+        } else {
+            return null;
+        }
 
-                Fixture f = body.createFixture(shape, 1);
-                Filter filter = new Filter();
-                body.setUserData(object);
-                if (properties.get("type", String.class).equalsIgnoreCase("wall")) {
-                    filter.categoryBits = ActorCollision.CATEGORY_WALLS;
-                    filter.maskBits = -1;
-                } else if (properties.get("type", String.class).equalsIgnoreCase("obstacle")) {
-                    filter.categoryBits = ActorCollision.CATEGORY_OBSTACLES;
-                    filter.maskBits = ActorCollision.CATEGORY_AI | ActorCollision.CATEGORY_PLAYER;
-                } else if (properties.get("type", String.class).equalsIgnoreCase("event")) {
-                    body.setUserData(addEventFromMap(object));
-                    filter.categoryBits = ActorCollision.CATEGORY_EVENT;
-                    f.setSensor(true);
-                    filter.maskBits = ActorCollision.CATEGORY_PLAYER;
-                }
+        BodyDef bd = new BodyDef();
+        bd.type = BodyType.StaticBody;
+        Body body = world.createBody(bd);
 
-                f.setFilterData(filter);
-                shape.dispose();        
-                return body;
+        Fixture f = body.createFixture(shape, 1);
+        Filter filter = new Filter();
+        body.setUserData(object);
+        if (properties.get("type", String.class).equalsIgnoreCase("wall")) {
+            filter.categoryBits = ActorCollision.CATEGORY_WALLS;
+            filter.maskBits = -1;
+        } else if (properties.get("type", String.class).equalsIgnoreCase("obstacle")) {
+            filter.categoryBits = ActorCollision.CATEGORY_OBSTACLES;
+            filter.maskBits = ActorCollision.CATEGORY_AI | ActorCollision.CATEGORY_PLAYER;
+        } else if (properties.get("type", String.class).equalsIgnoreCase("event")) {
+            body.setUserData(addEventFromMap(object));
+            filter.categoryBits = ActorCollision.CATEGORY_EVENT;
+            f.setSensor(true);
+            filter.maskBits = ActorCollision.CATEGORY_PLAYER;
+        }
+
+        f.setFilterData(filter);
+        shape.dispose();
+        return body;
 
     }
-    
+
     private Event addEventFromMap(MapObject object) {
         MapProperties prop = object.getProperties();
         Event e = null;
@@ -503,17 +509,17 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                         image,
                         (prop.get("x", Float.class) + prop.get("width", Float.class) / 2) / ppt,
                         (prop.get("y", Float.class) + prop.get("height", Float.class) / 2) / ppt,
-                        6/60f);
+                        6 / 60f);
                 break;
             case 2: //Teleport
                 parameters = prop.get("parameters", String.class).split(",* ");
                 image = prop.get("image", String.class);
 //                image = GraphicsDriver.getMasterSheet().createSprites(prop.get("image", String.class)).toArray(Sprite.class);
 //                e = new Teleport(image.length > 0 ? image : null,
-                  e = new Teleport(image,
+                e = new Teleport(image,
                         prop.get("x", Float.class),
                         prop.get("y", Float.class),
-                        6/60f,
+                        6 / 60f,
                         parameters[0],
                         Integer.parseInt(parameters[1]),
                         Integer.parseInt(parameters[2]));
@@ -523,10 +529,10 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                 image = prop.get("image", String.class);
 //                image = GraphicsDriver.getMasterSheet().createSprites(prop.get("image", String.class)).toArray(Sprite.class);
 //                e = new Teleport(image.length > 0 ? image : null,
-                  e = new Treasure(image,
+                e = new Treasure(image,
                         prop.get("x", Float.class),
                         prop.get("y", Float.class),
-                        6/60f,
+                        6 / 60f,
                         ItemDatabase.ITEM_LIST.get("TONIC"));
                 break;
             default:
@@ -535,6 +541,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
         e.setMap(this);
         return e;
     }
+
     private void updateProperties(MapProperties prop) {
         try {
             bgm = "music/" + prop.get("music", String.class);
@@ -542,7 +549,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
             e.printStackTrace();
         }
     }
-    
+
     public void updatePartial(float delta) {
         for (int i = 0; i < actorList.size; i++) {
             Actor a = actorList.get(i);
@@ -569,15 +576,15 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
             }
         }
     }
-    
-    
+
     public void addBody(ActorCollision body) {
         createQueue.add(body);
     }
-    
+
     public void removeJoint(Joint joint) {
         deleteJointQueue.add(joint);
     }
+
     public void removeBody(Body body) {
         deleteQueue.add(body);
     }
@@ -621,27 +628,27 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
 
     public void removeActor(Actor a) {
         actorList.removeValue(a, true);
-        
+
         if (!(a instanceof Player)) {
             a.resetAnimation();
         }
         if (a instanceof ActorCollision) {
             Array<Body> temp = new Array<>();
             world.getBodies(temp);
-            if (!deleteQueue.contains(((ActorCollision) (a)).getMainBody() , true) && temp.contains(((ActorCollision) (a)).getMainBody() , true)) {
+            if (!deleteQueue.contains(((ActorCollision) (a)).getMainBody(), true) && temp.contains(((ActorCollision) (a)).getMainBody(), true)) {
                 deleteQueue.add(((ActorCollision) (a)).getMainBody());
             }
             if (!deleteQueue.contains(((ActorCollision) (a)).getSensorBody(), true) && temp.contains(((ActorCollision) (a)).getSensorBody(), true)) {
                 deleteQueue.add(((ActorCollision) (a)).getSensorBody());
             }
         }
-    }    
-    
+    }
+
     private void battleStart() {
         Array<ActorAI> clear = new Array<>();
         ArrayList<ActorBattler> encounters = new ArrayList<>();
         for (Actor enemyActors2 : actorList) {
-            if (enemyActors2 instanceof ActorAI && ((ActorAI) (enemyActors2)).vision()) {                
+            if (enemyActors2 instanceof ActorAI && ((ActorAI) (enemyActors2)).vision()) {
                 encounters.addAll(((ActorAI) (enemyActors2)).getAllActorBattlers());
                 clear.add((ActorAI) enemyActors2);
             }
@@ -653,37 +660,37 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
             }
         }
         if (clear.size > 0) {
-        
+
             for (ActorAI tempAI : clear) {
                 //clear certain called events
                 for (int i = 0; i < actorList.size; i++) {
                     Actor actors = actorList.get(i);
                     if (actors instanceof ActorSkill) {
-                        if (((ActorSkill)(actors)).getInvoker().equals(tempAI)) {
+                        if (((ActorSkill) (actors)).getInvoker().equals(tempAI)) {
                             removeActor(actors);
                             i--;
-                            ((ActorSkill)(actors)).stopFieldSound();
+                            ((ActorSkill) (actors)).stopFieldSound();
                         }
                     }
                 }
                 clearTempRunningTimers(tempAI);
             }
 
-               for (int i = 0; i < actorList.size; i++) {
-                    Actor actors = actorList.get(i);
-                    if (actors instanceof ActorSkill) {
-                       if (((ActorSkill)(actors)).getInvoker().equals(GraphicsDriver.getPlayer())) {
-                           removeActor(actors);
-                           i--;
-                           ((ActorSkill)(actors)).stopFieldSound();
-                       }
-                   }
-               }
+            for (int i = 0; i < actorList.size; i++) {
+                Actor actors = actorList.get(i);
+                if (actors instanceof ActorSkill) {
+                    if (((ActorSkill) (actors)).getInvoker().equals(GraphicsDriver.getPlayer())) {
+                        removeActor(actors);
+                        i--;
+                        ((ActorSkill) (actors)).stopFieldSound();
+                    }
+                }
+            }
             clearTempRunningTimers(GraphicsDriver.getPlayer());
             GraphicsDriver.addState(new Battle(GraphicsDriver.getPlayer().getAllActorBattlers(), encounters, Database1.inventory, null).start());
             GraphicsDriver.getPlayer().setInvulnerability(1000);
         }
-    }    
+    }
 
     private void clearTempRunningTimers(Player tempPlayer) {
         for (int i = 0; i < tempPlayer.getTimers().size; i++) {
@@ -704,14 +711,14 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
             }
         }
     }
-        
+
     @Override
     public void render(SpriteBatch batch) {
 
         GraphicsDriver.setCurrentCamera(GraphicsDriver.getPlayerCamera());
         GraphicsDriver.getPlayerCamera().followPlayer(
-                Math.round(Database2.player.getX() * 25f) / 25f,
-                Math.round(Database2.player.getY() * 25f) / 25f,
+                Math.round(Database2.player.getX() * 32f) / 32f,
+                Math.round(Database2.player.getY() * 32f) / 32f,
                 width < GraphicsDriver.getWidth() ? GraphicsDriver.getWidth() : width,
                 height);
         GraphicsDriver.getPlayerCamera().update();
@@ -739,34 +746,34 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
         GraphicsDriver.getPlayer().renderGlobalData(this.batch);
         drawMessage(this.batch);
         endRender();
-        
-        debugRender.render(world, GraphicsDriver.getCurrentCamera().combined);
-            Array<Body> temp = new Array<>();
-            world.getBodies(temp);
-            for (int i = 0; i < deleteQueue.size; i++ ) {
-                if (!world.isLocked()) {
-                    if (temp.contains(deleteQueue.get(i), true)) {
-                        world.destroyBody(deleteQueue.get(i));
-                        deleteQueue.removeValue(deleteQueue.get(i), true);
-                        i--;
-                    }
-                }
-            }
-            Array<Joint> temp2 = new Array<>();
-            world.getJoints(temp2);            
 
-            for (int i = 0; i < deleteJointQueue.size; i++ ) {
-                if (!world.isLocked()) {
-                    if (temp2.contains(deleteJointQueue.get(i), true)) {
-                        world.destroyJoint(deleteJointQueue.get(i));
-                    }
-                    deleteJointQueue.removeValue(deleteJointQueue.get(i), true);
+        debugRender.render(world, GraphicsDriver.getCurrentCamera().combined);
+        Array<Body> temp = new Array<>();
+        world.getBodies(temp);
+        for (int i = 0; i < deleteQueue.size; i++) {
+            if (!world.isLocked()) {
+                if (temp.contains(deleteQueue.get(i), true)) {
+                    world.destroyBody(deleteQueue.get(i));
+                    deleteQueue.removeValue(deleteQueue.get(i), true);
                     i--;
                 }
             }
-        
+        }
+        Array<Joint> temp2 = new Array<>();
+        world.getJoints(temp2);
+
+        for (int i = 0; i < deleteJointQueue.size; i++) {
+            if (!world.isLocked()) {
+                if (temp2.contains(deleteJointQueue.get(i), true)) {
+                    world.destroyJoint(deleteJointQueue.get(i));
+                }
+                deleteJointQueue.removeValue(deleteJointQueue.get(i), true);
+                i--;
+            }
+        }
+
         if (worldStep) {
-            for (int i = 0; i < createQueue.size; i++ ) {
+            for (int i = 0; i < createQueue.size; i++) {
                 if (!world.isLocked()) {
                     createQueue.get(i).generateBody(this);
                     addActor(createQueue.get(i));
@@ -774,10 +781,10 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                     i--;
                 }
             }
-            world.step(1f/60f, 6, 2);  //Fix the second and third values.
+            world.step(1f / 60f, 6, 2);  //Fix the second and third values.
 
             worldStep = false;
-        }        
+        }
     }
 
     @Override
@@ -828,11 +835,11 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
         width = prop.get("width", Integer.class) * prop.get("tilewidth", Integer.class);
         height = prop.get("height", Integer.class) * prop.get("tileheight", Integer.class);
     }
-    
+
     public World getPhysicsWorld() {
         return world;
     }
-    
+
     public void setMessage(String message) {
         this.message.clear();
         this.message.add(message);
@@ -859,37 +866,37 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
         }
         elapsed = 0;
     }
-    
+
     public void clearMessages() {
         this.message.clear();
         elapsed = 0;
     }
-    
+
     private void drawMessage(Batch batch) {
         final int PADDING_X = 15;
         final int PADDING_Y = 12;
         final int MESSAGE_HEIGHT = GraphicsDriver.getHeight() / 8;
         final float FONT_HEIGHT = GraphicsDriver.getFont().getLineHeight();
-        
+
         InterfaceDatabase.TEXT_BOX.draw(batch, GraphicsDriver.getCamera().getScreenPositionX(), GraphicsDriver.getHeight() - MESSAGE_HEIGHT + GraphicsDriver.getCamera().getScreenPositionY(), GraphicsDriver.getWidth(), MESSAGE_HEIGHT);
-        
+
         int i = 0;
-        
+
         for (String m : message) {
             GraphicsDriver.drawMessage(batch, GraphicsDriver.getPlayer().getFont(), m,
-                PADDING_X + GraphicsDriver.getCamera().getScreenPositionX(),
-                ((PADDING_Y + GraphicsDriver.getHeight() - MESSAGE_HEIGHT + FONT_HEIGHT * i) + GraphicsDriver.getCamera().getScreenPositionY()));
+                    PADDING_X + GraphicsDriver.getCamera().getScreenPositionX(),
+                    ((PADDING_Y + GraphicsDriver.getHeight() - MESSAGE_HEIGHT + FONT_HEIGHT * i) + GraphicsDriver.getCamera().getScreenPositionY()));
             i++;
         }
     }
-    
+
     private enum TileType {
-        
+
         WALL,
         OBSTACLE, //You can jump over these.
         EVENT,
         PIT;
-        
+
         @Override
         public String toString() {
             return super.toString().toLowerCase();

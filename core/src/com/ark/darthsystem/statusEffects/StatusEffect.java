@@ -116,6 +116,11 @@ public abstract class StatusEffect implements Nameable, Cloneable {
     public final void setInitialTurnCount(int turnCount) {
         initialTurnCount = turnCount;
     }
+
+    public void setTurnCount(int turnCount) {
+        this.turnCount = turnCount;
+    }
+    
     
     public void reset() {
         turnCount = initialTurnCount;

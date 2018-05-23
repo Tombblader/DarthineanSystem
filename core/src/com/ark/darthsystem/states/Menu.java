@@ -8,6 +8,7 @@ package com.ark.darthsystem.states;
 import com.ark.darthsystem.database.InterfaceDatabase;
 import com.ark.darthsystem.GameOverException;
 import com.ark.darthsystem.Nameable;
+import com.ark.darthsystem.graphics.Actor;
 import com.ark.darthsystem.graphics.GraphicsDriver;
 import com.ark.darthsystem.graphics.Input;
 import static com.ark.darthsystem.graphics.GraphicsDriver.getCurrentState;
@@ -49,25 +50,30 @@ public abstract class Menu implements State {
     private final int MENU_Y;
     private int menuIndex = 0;
     private Array<Menu> subMenuList;
+    private Array<Actor> subActors;
     private final int UP_BUTTON = Keys.UP;
     private BitmapFont font;
 
     public Menu(String header, String[] choices) {
         this(choices);
+        this.subActors = new Array<>();
         this.header = header;
      }
 
     public Menu(String header, String[] choices, boolean pause, boolean mutable) {
         this(header, choices);
+        this.subActors = new Array<>();
         isPause = pause;
         destroyOnExit = mutable;
     }
     
     public <T extends Nameable> Menu(String header, T[] choices) {
         this(header, Arrays.stream(choices).map(i -> i.getName()).collect(Collectors.toList()).toArray(new String[0]));
+        this.subActors = new Array<>();
     }
 
     public Menu(String[] choices) {
+        this.subActors = new Array<>();
         this.MESSAGE_HEIGHT = GraphicsDriver.getHeight() / 8;
         this.choices = choices;
         header = "";
@@ -90,6 +96,10 @@ public abstract class Menu implements State {
 
     public void addSubMenu(Menu m) {
         subMenuList.add(m);
+    }
+    
+    public void addActor(Actor a) {
+        subActors.add(a);
     }
 
     public String cancel() {
@@ -212,6 +222,9 @@ public abstract class Menu implements State {
                 header,
                 15 + GraphicsDriver.getCamera().getScreenPositionX(),
                 (12 + (GraphicsDriver.getHeight() - MESSAGE_HEIGHT) + GraphicsDriver.getCamera().getScreenPositionY()));
+        for (Actor a : subActors) {
+            a.render(batch);
+        }
         if (isOverhead) {
             batch.end();
             batch.setProjectionMatrix(GraphicsDriver.getPlayerCamera().combined);
@@ -259,6 +272,17 @@ public abstract class Menu implements State {
         if (Input.getKeyPressed(Keys.ESCAPE)) {
             throw new GameOverException();
         }
+        for (int i = 0; i < subActors.size; i++) {
+            subActors.get(i).update(delta);
+            if (subActors.get(i).isFinished()) {
+                subActors.removeIndex(i);
+                i--;
+            }
+        }
+    }
+    
+    public void addSubActors(Actor a) {
+        subActors.add(a);
     }
     
     public String getMusic() {

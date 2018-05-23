@@ -57,7 +57,7 @@ public class MapDatabase {
         if (f.size > 0) {
             for (FileHandle file : f) {
                 if (file.extension().equalsIgnoreCase("tmx")) {
-                    maps.put(file.nameWithoutExtension(), new OverheadMap(file.path()));
+                    maps.put(file.nameWithoutExtension(), new OverheadMap(file.path(), false));
                 }
             }
         } else {
@@ -69,7 +69,7 @@ public class MapDatabase {
         FileHandle[] f = Gdx.files.internal("maps").list(); //CANNOT LIST INSIDE JAR
         for (FileHandle file : f) {
              if (file.extension().equalsIgnoreCase("tmx")) {
-                maps.put(file.nameWithoutExtension(), new OverheadMap(file.path()));
+                maps.put(file.nameWithoutExtension(), new OverheadMap(file.path(), false));
             }
         }
     }

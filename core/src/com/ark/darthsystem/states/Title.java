@@ -46,7 +46,11 @@ public class Title implements State {
                             true) {
                         @Override
                         public Object confirm(String choice) {
-                            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                            GraphicsDriver.loadGame("save" + getCursorIndex() + ".sav");
+                            GraphicsDriver.addState((State) (MapDatabase.getMaps().get(MapDatabase.DEFAULT_MAP))); //Need to fix loaded map..
+                            GraphicsDriver.transition();
+                            ((OverheadMap) (GraphicsDriver.getCurrentState())).updatePartial(0);
+                            return choice;
                         }
                     });
                 }

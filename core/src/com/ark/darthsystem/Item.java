@@ -10,6 +10,7 @@ import java.util.ArrayList;
  */
 public class Item implements Serializable, Cloneable, Nameable {
 
+    private static final long serialVersionUID = 553786344;    
     private int HPValue;
     private int MPValue;
     private boolean stackable;
@@ -258,5 +259,5 @@ public class Item implements Serializable, Cloneable, Nameable {
 
     public void reset() {
         charges = 1;
-    }
+    }    
 }

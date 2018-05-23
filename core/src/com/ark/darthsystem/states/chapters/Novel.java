@@ -10,7 +10,6 @@ import com.ark.darthsystem.states.State;
 import com.ark.darthsystem.states.Menu;
 import com.ark.darthsystem.states.Message;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import java.util.ArrayList;
 import java.util.Scanner;

@@ -7,6 +7,7 @@ package com.ark.darthsystem.states.events;
 
 import com.ark.darthsystem.BattleDriver;
 import com.ark.darthsystem.Item;
+import com.ark.darthsystem.database.Database1;
 import com.ark.darthsystem.graphics.GraphicsDriver;
 import com.ark.darthsystem.states.chapters.Novel;
 import static com.ark.darthsystem.states.events.Event.setID;
@@ -19,6 +20,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 public class Treasure extends Event {
 
     private Item[] item;
+    private int money;
     private boolean isFinished;
     private Novel pickedUpMessage;
     private Animation opened;
@@ -31,6 +33,7 @@ public class Treasure extends Event {
         opened = new Animation(getDelay, GraphicsDriver.getMasterSheet().createSprites("event/chest/field/custom/down"));
         item = new Item[1];
         item[0] = getItem;
+        money = 0;
         isFinished = false;
         setTriggerMethod(TriggerMethod.PRESS);
         setID(3);
@@ -39,6 +42,10 @@ public class Treasure extends Event {
             chapters.add((Novel.Page) () -> {
                 for (Item i : item) {
                     BattleDriver.printline("Obtained " + i.getCharges() + " " + i.getName() + "!");
+                }
+                if (money != 0) {
+                    BattleDriver.printline("Got " + money + " GP!");            
+                    Database1.money += money;
                 }
                 BattleDriver.addItems(item);
                 Treasure.this.changeAnimation(opened);
@@ -60,6 +67,7 @@ public class Treasure extends Event {
         super("event/chest/field/stand/down", getX, getY, getDelay);
         opened = new Animation(getDelay, GraphicsDriver.getMasterSheet().createSprites("event/chest/field/custom/down"));
         item = getItems;
+        money = 0;
         isFinished = false;
         setTriggerMethod(TriggerMethod.PRESS);
         setID(3);
@@ -70,6 +78,10 @@ public class Treasure extends Event {
                     BattleDriver.printline("Obtained " + i.getCharges() + " " + i.getName() + "!");
                 }
                 BattleDriver.addItems(item);
+                if (money != 0) {
+                    BattleDriver.printline("Got " + money + " GP!");            
+                    Database1.money += money;
+                }
                 Treasure.this.changeAnimation(opened);
             });
         }

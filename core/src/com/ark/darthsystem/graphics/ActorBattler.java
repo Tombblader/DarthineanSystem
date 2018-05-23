@@ -21,8 +21,9 @@ public class ActorBattler {
 
     private Battler battler;
     private ActorSkill currentSkill;
-    private ArrayList<ActorSkill> skillList = new ArrayList<>();
-    private ActorSprite spriteSheet;
+    private transient ArrayList<ActorSkill> skillList = new ArrayList<>();
+    private transient ActorSprite spriteSheet;
+    private String spriteSheetName;
     private SpriteModeFace face = SpriteModeFace.NORMAL;
 
     public ActorBattler(Battler b, ActorSprite s) {
@@ -43,8 +44,13 @@ public class ActorBattler {
     
     public ActorBattler(Battler b, String s) {
         battler = b;
-        spriteSheet = new ActorSprite(s);
-        b.getSkillList().stream().map((skill) -> {
+        spriteSheetName = s;
+        initialize();
+    }
+    
+    private void initialize() {
+        spriteSheet = new ActorSprite(spriteSheetName);
+        battler.getSkillList().stream().map((skill) -> {
             currentSkill = Database2.SkillToActor(skill);
             return skill;
         }).filter((_item) -> (currentSkill != null)).forEachOrdered((_item) -> {
@@ -55,6 +61,7 @@ public class ActorBattler {
         } else {
             currentSkill = null;
         }
+        
     }
     
 

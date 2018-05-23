@@ -97,7 +97,11 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
         new Database2();
 //        new MonsterDatabase();
         new MapDatabase();
-        
+    }
+    
+    public static void loadGame(String load) {
+        new Database2(load);
+        new MapDatabase();
     }
 
     public static void drawMessage(Batch batch, String message, float x, float y) {
@@ -328,7 +332,7 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
     
     
     public void render() {
-        if (getPlayer().totalPartyKill()) {
+        if (getPlayer() != null && getPlayer().totalPartyKill()) {
             BattleDriver.fullHeal(getPlayer().getAllBattlers());
             removeAllstates();
             addState(new GameOver());

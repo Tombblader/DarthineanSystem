@@ -14,6 +14,8 @@ import com.ark.darthsystem.graphics.ActorBattler;
 import com.ark.darthsystem.states.Battle;
 import com.ark.darthsystem.states.Menu;
 import com.ark.darthsystem.states.Title;
+import com.ark.darthsystem.statusEffects.StatusEffect;
+import java.io.IOException;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -153,6 +155,93 @@ public class DefaultMenu extends Menu {
                     }
                 };
                 GraphicsDriver.addMenu(menuBattlers);
+                break;
+            case "Status":
+                ArrayList<ActorBattler> actorParty = new ArrayList<>();
+                actorParty.addAll(Database2.player.getAllActorBattlers());
+                getPlayerList = new String[actorParty.size()];
+                for (int i = 0; i < getPlayerList.length; i++) {
+                    getPlayerList[i] = actorParty.get(i).getBattler().getName();
+                }
+                GraphicsDriver.addMenu(new Menu("Status",
+                        getPlayerList,
+                        true,
+                        true) {
+                    TextBox statusBox = new TextBox("interface/window", 1024 / 4, 768 / 4, 1024 / 2, 768 / 2);
+                    String status = "";
+                    {    
+                        {
+                            addActor(statusBox);
+                        }
+                    }
+                    @Override
+                    public Object confirm(String choice) {
+                        cancel();
+                        return choice;
+                    }
+                    @Override
+                    public void updateMenu(float delta) {
+                        super.updateMenu(delta);
+                        statusBox.setMessage(formatBattler(actorParty.get(getCursorIndex())));
+                    }
+                    
+                    private String formatBattler(ActorBattler b) {
+                        StringBuilder formatted = new StringBuilder();
+                        Battler tempBattler = b.getBattler();
+                        formatted.append(tempBattler.getName());
+                        formatted.append('\n');
+                        
+                        if (tempBattler.getAllStatus().size() < 2) {
+                            formatted.append(tempBattler.getAllStatus().get(0).getName());                            
+                        } else {
+                            for (int i = 0; i < tempBattler.getAllStatus().size(); i++) {
+                                StatusEffect effect = tempBattler.getAllStatus().get(i);
+                                if (!effect.getName().equals("Normal")) {
+                                    formatted.append(effect.getName());
+                                }
+                                if (i + 1 != tempBattler.getAllStatus().size()) {
+                                    formatted.append(", ");
+                                }
+                            }
+                        }
+                        formatted.append('\n');
+                        formatted.append(tempBattler.getHP());
+                        formatted.append(" / ");
+                        formatted.append(tempBattler.getMaxHP());
+                        formatted.append('\n');
+                        formatted.append(tempBattler.getMP());
+                        formatted.append(" / ");
+                        formatted.append(tempBattler.getMaxMP());
+                        formatted.append('\n');
+                        formatted.append(tempBattler.getBaseAttack());
+                        formatted.append('\n');
+                        formatted.append(tempBattler.getBaseDefense());
+                        formatted.append('\n');
+                        formatted.append(tempBattler.getBaseSpeed());
+                        formatted.append('\n');
+                        formatted.append(tempBattler.getBaseMagic());
+                        formatted.append('\n');
+                        return formatted.toString();
+                    }
+
+                });
+                
+                break;
+            case "Save":
+                GraphicsDriver.addMenu(new Menu("Save to which slot?",
+                        new String[]{"Slot 1", "Slot 2", "Slot 3"},
+                        true,
+                        true) {
+                    @Override
+                    public Object confirm(String choice) {
+                        try {
+                        Database1.save("save" + getCursorIndex() + ".sav");
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        return choice;
+                    }
+                });
                 break;
             case "Return to Title":
                 GraphicsDriver.getState().clear();

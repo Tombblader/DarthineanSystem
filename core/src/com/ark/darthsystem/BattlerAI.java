@@ -99,6 +99,7 @@ public class BattlerAI extends Battler implements Nameable, Cloneable {
             Equipment[] equipment,
             AI[] AIData,
             int experience,
+            int money,
             Item[] itemDrop,
             double[] dropRate,
             int[] itemQuantity) {
@@ -115,7 +116,7 @@ public class BattlerAI extends Battler implements Nameable, Cloneable {
                 Magic,
                 skillList,
                 equipment);
-        this.money = 0;
+        this.money = money;
         this.AIData = AIData;
         this.experience = experience;
         try {
@@ -164,6 +165,7 @@ public class BattlerAI extends Battler implements Nameable, Cloneable {
             Equipment[] equipment,
             AI[] AIData,
             int experience,
+            int money,
             Item[] itemDrop,
             double[] dropRate,
             int[] itemQuantity) {
@@ -180,7 +182,7 @@ public class BattlerAI extends Battler implements Nameable, Cloneable {
                 Magic,
                 battlerClass,
                 equipment);
-        this.money = 0;
+        this.money = money;
         this.AIData = AIData;
         this.experience = experience;
         try {
@@ -212,6 +214,7 @@ public class BattlerAI extends Battler implements Nameable, Cloneable {
      * @param unarmedStrikeAnimation The animation to use when it's unarmed.
      * @param AIData The flags and priorities that the AI uses.
      * @param experience The amount of experience points the BattlerAI gives when defeated.
+     * @param money
      * @param itemDrop The item dropped when defeated.
      * @param itemQuantity The amount of items dropped when defeated.
      * @param dropRate
@@ -231,6 +234,7 @@ public class BattlerAI extends Battler implements Nameable, Cloneable {
             ActorSkill unarmedStrikeAnimation,
             AI[] AIData,
             int experience,
+            int money,
             Item[] itemDrop,
             double[] dropRate,
             int[] itemQuantity) {
@@ -249,6 +253,7 @@ public class BattlerAI extends Battler implements Nameable, Cloneable {
                 new Equipment[5], 
                 AIData,
                 experience,
+                money,
                 itemDrop,
                 dropRate,
                 itemQuantity);

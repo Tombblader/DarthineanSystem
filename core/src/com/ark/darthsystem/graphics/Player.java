@@ -74,7 +74,7 @@ public class Player extends ActorCollision {
     private ActorSprite.SpriteModeField fieldState = ActorSprite.SpriteModeField.STAND;
     private ActorSkill currentSkill;
 
-    private Input playerInput;
+    private transient Input playerInput;
     private transient BitmapFont font;
     private transient ActorBattler currentBattler;
     private transient Array<Event> eventQueue = new Array<>();
@@ -82,7 +82,7 @@ public class Player extends ActorCollision {
 //    private boolean isJumping;
     private ArrayList<ActorBattler> party = new ArrayList<>();
     private int currentBattlerIndex = 0;
-    private RayCastCallback buttonPushFinder;
+    private transient RayCastCallback buttonPushFinder;
     private boolean hasEvent;
 
     public Player(ArrayList<ActorBattler> getBattler, float getX, float getY) {

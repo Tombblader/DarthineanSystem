@@ -19,7 +19,7 @@ import com.ark.darthsystem.states.Battle;
 public class Poison extends StatusEffect {
 
     public Poison() {
-        super("Poisoned", 2, .25, .1, 0, false, " has been poisoned!");
+        super("Poison", 2, .25, .1, 0, false, " has been poisoned!");
     }
     
     public Poison(int turn) {

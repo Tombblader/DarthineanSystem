@@ -7,6 +7,8 @@ import com.ark.darthsystem.statusEffects.*;
 import java.io.*;
 import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * A battler represents a character in Battle mode.  It holds the character's
@@ -15,7 +17,7 @@ import java.util.ArrayList;
  */
 public class Battler implements Serializable, Nameable, Cloneable {
 
-    public static final long serialVersionUID = 553786374;
+    private static final long serialVersionUID = 553786374;
     private static final double DEFEND = 0.25;
     private String name;
     private String description;
@@ -29,7 +31,7 @@ public class Battler implements Serializable, Nameable, Cloneable {
     private Equipment[] equipmentList = new Equipment[5];
 //    private HashMap<StatusEffect, Boolean> isAfflicted;
 //    private Battle.Stats afflicted = Battle.Stats.Normal;
-    private ArrayList<StatusEffect> isAfflicted;
+    private transient ArrayList<StatusEffect> isAfflicted;
     private int level;
     private Battle.Element battlerElement = Battle.Element.Physical;
     private Battler.Gender battlerGender;
@@ -903,4 +905,35 @@ public class Battler implements Serializable, Nameable, Cloneable {
     public void reset() {
         fullHeal();
     }    
+    private void readObject(ObjectInputStream in) throws IOException,ClassNotFoundException {
+        in.defaultReadObject();
+        ArrayList<String> afflicted = (ArrayList<String>) in.readObject();
+        ArrayList<Integer> afflictedTurn = (ArrayList<Integer>) in.readObject();
+        isAfflicted = new ArrayList<>();
+        for (int i = 0; i < afflicted.size(); i++) {
+            try {
+                StatusEffect temp = (StatusEffect) Class.forName("com.ark.darthsystem.statusEffects." + afflicted.get(i)).newInstance();
+                temp.setTurnCount(afflictedTurn.get(i));
+                isAfflicted.add(temp);
+            } catch (InstantiationException ex) {
+                Logger.getLogger(Battler.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IllegalAccessException ex) {
+                Logger.getLogger(Battler.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+    }
+    
+    private void writeObject(ObjectOutputStream out) throws IOException {
+        out.defaultWriteObject();
+        ArrayList<String> currentStatusEffects = new ArrayList<>();
+        ArrayList<Integer> currentStatusEffectsTurnCount = new ArrayList<>();
+        for (StatusEffect effect : isAfflicted) {
+            currentStatusEffects.add(effect.getName());
+            currentStatusEffectsTurnCount.add(effect.getTurnCount());
+        }
+        out.writeObject(currentStatusEffects);
+        out.writeObject(currentStatusEffectsTurnCount);
+    }
+
 }

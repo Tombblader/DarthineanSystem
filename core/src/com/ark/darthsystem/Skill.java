@@ -3,8 +3,14 @@ package com.ark.darthsystem;
 import com.ark.darthsystem.states.Battle;
 import com.ark.darthsystem.statusEffects.Normal;
 import com.ark.darthsystem.statusEffects.StatusEffect;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 import java.io.Serializable;
+import java.util.Objects;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -28,11 +34,12 @@ public class Skill implements Serializable, Cloneable, Nameable {
     private String name;
     private String description;
     private int cost;
+    private static final long serialVersionUID = 558633274;
 //    private int level;
     private Battle.Element skillElement;
     private boolean isAlly;
     private boolean isAll;
-    private StatusEffect statusEffect;
+    private transient StatusEffect statusEffect;
 
     public Skill() {
 
@@ -255,5 +262,47 @@ public class Skill implements Serializable, Cloneable, Nameable {
     public String getDescription() {
         return description;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 83 * hash + Objects.hashCode(this.name);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Skill other = (Skill) obj;
+        if (!Objects.equals(this.name, other.name)) {
+            return false;
+        }
+        return true;
+    }    
+    
+    private void readObject(ObjectInputStream in) throws IOException,ClassNotFoundException {
+        in.defaultReadObject();
+        String afflicted = (String) in.readObject();
+        try {
+            StatusEffect temp = (StatusEffect) Class.forName("com.ark.darthsystem.statusEffects." + afflicted).newInstance();
+            statusEffect = temp;
+        } catch (InstantiationException | IllegalAccessException ex) {
+            Logger.getLogger(Battler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    
+    private void writeObject(ObjectOutputStream out) throws IOException {
+        out.defaultWriteObject();
+        out.writeObject(statusEffect.getName());
+    }    
 
 }
