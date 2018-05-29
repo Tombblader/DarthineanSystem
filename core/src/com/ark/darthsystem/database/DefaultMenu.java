@@ -198,27 +198,33 @@ public class DefaultMenu extends Menu {
                                 StatusEffect effect = tempBattler.getAllStatus().get(i);
                                 if (!effect.getName().equals("Normal")) {
                                     formatted.append(effect.getName());
-                                }
-                                if (i + 1 != tempBattler.getAllStatus().size()) {
-                                    formatted.append(", ");
+                                    if (i + 1 != tempBattler.getAllStatus().size()) {
+                                        formatted.append(", ");
+                                    }
                                 }
                             }
                         }
                         formatted.append('\n');
+                        formatted.append("HP:  ");
                         formatted.append(tempBattler.getHP());
                         formatted.append(" / ");
                         formatted.append(tempBattler.getMaxHP());
                         formatted.append('\n');
+                        formatted.append("MP:  ");
                         formatted.append(tempBattler.getMP());
                         formatted.append(" / ");
                         formatted.append(tempBattler.getMaxMP());
                         formatted.append('\n');
+                        formatted.append("ATK: ");
                         formatted.append(tempBattler.getBaseAttack());
                         formatted.append('\n');
+                        formatted.append("DEF: ");
                         formatted.append(tempBattler.getBaseDefense());
                         formatted.append('\n');
+                        formatted.append("SPD: ");
                         formatted.append(tempBattler.getBaseSpeed());
                         formatted.append('\n');
+                        formatted.append("MAG: ");
                         formatted.append(tempBattler.getBaseMagic());
                         formatted.append('\n');
                         return formatted.toString();

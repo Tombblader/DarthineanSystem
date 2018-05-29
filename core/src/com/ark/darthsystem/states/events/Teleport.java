@@ -11,7 +11,7 @@ import com.ark.darthsystem.graphics.GraphicsDriver;
 import com.ark.darthsystem.graphics.PlayerCamera;
 import com.ark.darthsystem.states.OverheadMap;
 import com.ark.darthsystem.states.State;
-import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.maps.MapProperties;
 
 /**
  *
@@ -22,12 +22,20 @@ public class Teleport extends Event {
     private String map;
     private float newX;
     private float newY;
+
+    public Teleport() {
+        super("", 0, 0, 6/60f);
+    }
+    
+    
     
     public Teleport(String img, float getX,
             float getY,
             float getDelay, String newMap, float xCoord, float yCoord) {
         super(img, getX, getY, getDelay);
         map = newMap;
+        newX = xCoord * 32 / PlayerCamera.PIXELS_TO_METERS + 16 / PlayerCamera.PIXELS_TO_METERS + GraphicsDriver.getCamera().getScreenPositionX();
+        newY = yCoord * 32 / PlayerCamera.PIXELS_TO_METERS + 16 / PlayerCamera.PIXELS_TO_METERS + GraphicsDriver.getCamera().getScreenPositionY();
         setTriggerMethod(TriggerMethod.TOUCH);
         setID(2);
     }
@@ -43,6 +51,30 @@ public class Teleport extends Event {
         setID(2);
     }
     
+    @Override
+    public Event createFromMap(MapProperties prop) {
+        String[] parameters = prop.get("parameters", String.class).split(",* ");
+        String image = prop.get("image", String.class);
+        this.setCurrentImage(GraphicsDriver.getMasterSheet().createSprite(image));
+        setX(prop.get("x", Float.class));
+        setY(prop.get("y", Float.class));
+        map = parameters[0];
+        newX = Integer.parseInt(parameters[1]);
+        newY = Integer.parseInt(parameters[2]);
+        Teleport t = new Teleport(image, prop.get("x", Float.class), prop.get("y", Float.class), 6 / 60f, map, newX, newY);
+        t.setTriggerMethod(TriggerMethod.valueOf(prop.get("trigger", String.class).toUpperCase()));
+        return t;
+//        return this;
+//                image = GraphicsDriver.getMasterSheet().createSprites(prop.get("image", String.class)).toArray(Sprite.class);
+//                e = new Teleport(image.length > 0 ? image : null,
+//         new Teleport(image,
+//                        prop.get("x", Float.class),
+//                        prop.get("y", Float.class),
+//                        6 / 60f,
+//                        parameters[0],
+//                        Integer.parseInt(parameters[1]),
+//                        Integer.parseInt(parameters[2]));        
+    }
     
     @Override
     public void run() {

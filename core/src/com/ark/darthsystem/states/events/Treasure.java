@@ -8,10 +8,12 @@ package com.ark.darthsystem.states.events;
 import com.ark.darthsystem.BattleDriver;
 import com.ark.darthsystem.Item;
 import com.ark.darthsystem.database.Database1;
+import com.ark.darthsystem.database.ItemDatabase;
 import com.ark.darthsystem.graphics.GraphicsDriver;
 import com.ark.darthsystem.states.chapters.Novel;
 import static com.ark.darthsystem.states.events.Event.setID;
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.maps.MapProperties;
 
 /**
  *
@@ -25,6 +27,10 @@ public class Treasure extends Event {
     private Novel pickedUpMessage;
     private Animation opened;
 
+    public Treasure() {
+        super("event/chest/field/stand/down", 0, 0, 6/60f);
+    }
+    
     public Treasure(String img, float getX,
             float getY,
             float getDelay,
@@ -111,6 +117,16 @@ public class Treasure extends Event {
     
     public Item[] getAllItems() {
         return item;
+    }
+
+    @Override
+    public Event createFromMap(MapProperties prop) {
+        String image = prop.get("image", String.class);
+        return new Treasure(image,
+                prop.get("x", Float.class),
+                prop.get("y", Float.class),
+                6 / 60f,
+                ItemDatabase.ITEM_LIST.get(prop.get("parameters", String.class).toUpperCase()));
     }
 
 }

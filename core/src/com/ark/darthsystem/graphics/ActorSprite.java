@@ -35,7 +35,7 @@ public class ActorSprite implements Serializable {
     }
 
     public void setImage(String imageName) {
-        masterSpriteSheet = imageName;
+        setMasterSpriteSheet(imageName);
         setupImage();
     }
 
@@ -51,7 +51,7 @@ public class ActorSprite implements Serializable {
             HashMap<Actor.Facing, Animation<Sprite>> tempAnimation = new HashMap<>();
             for (Actor.Facing direction : Actor.Facing.values()) {
                 try {
-                    Array<Sprite> tempSprites = GraphicsDriver.getMasterSheet().createSprites(masterSpriteSheet +
+                    Array<Sprite> tempSprites = GraphicsDriver.getMasterSheet().createSprites(getMasterSpriteSheet() +
                                     "/field/" +
                                     field.toString().toLowerCase() +
                                     '/' +
@@ -86,7 +86,7 @@ public class ActorSprite implements Serializable {
         final int DELAY = 10;
         for (SpriteModeFace face : SpriteModeFace.values()) {
             try {
-                Array<Sprite> tempSprites = GraphicsDriver.getMasterSheet().createSprites(masterSpriteSheet + "/face/" + face.toString().toLowerCase());
+                Array<Sprite> tempSprites = GraphicsDriver.getMasterSheet().createSprites(getMasterSpriteSheet() + "/face/" + face.toString().toLowerCase());
                 if (tempSprites.size == 0) {
                     tempSprites = GraphicsDriver.getMasterSheet().createSprites("characters/darcy_alma" + "/face/" + face.toString().toLowerCase());                    
                 }
@@ -103,7 +103,7 @@ public class ActorSprite implements Serializable {
         final int DELAY = 10;
         for (SpriteModeBattler battler : SpriteModeBattler.values()) {
             try {
-                Array<Sprite> tempSprites = GraphicsDriver.getMasterSheet().createSprites(masterSpriteSheet + 
+                Array<Sprite> tempSprites = GraphicsDriver.getMasterSheet().createSprites(getMasterSpriteSheet() + 
                                 "/battler/" + battler.toString().toLowerCase());
                 if (tempSprites.size == 0) {
                     tempSprites = GraphicsDriver.getMasterSheet().createSprites("darcy_alma/" + 
@@ -159,6 +159,22 @@ public class ActorSprite implements Serializable {
     public Animation<Sprite> getCurrentBattlerAnimation() {
         return currentBattlerImage;
     }
+
+    /**
+     * @return the masterSpriteSheet
+     */
+    public String getMasterSpriteSheet() {
+        return masterSpriteSheet;
+    }
+
+    /**
+     * @param masterSpriteSheet the masterSpriteSheet to set
+     */
+    public void setMasterSpriteSheet(String masterSpriteSheet) {
+        this.masterSpriteSheet = masterSpriteSheet;
+        setupImage();
+    }
+    
     public enum SpriteModeFace {
         ANGRY,
         HAPPY,

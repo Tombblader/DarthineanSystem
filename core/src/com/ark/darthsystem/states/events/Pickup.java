@@ -8,6 +8,7 @@ package com.ark.darthsystem.states.events;
 import com.ark.darthsystem.BattleDriver;
 import com.ark.darthsystem.Item;
 import com.ark.darthsystem.database.Database1;
+import com.badlogic.gdx.maps.MapProperties;
 
 /**
  *
@@ -80,6 +81,11 @@ public class Pickup extends Event {
     
     public Item[] getAllItems() {
         return item;
+    }
+
+    @Override
+    public Event createFromMap(MapProperties prop) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

@@ -16,6 +16,7 @@ import com.badlogic.gdx.physics.box2d.Filter;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.RayCastCallback;
 import com.badlogic.gdx.utils.Array;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Optional;
@@ -24,17 +25,17 @@ import java.util.Optional;
  *
  * @author trankt1
  */
-public class ActorAI extends Player {
+public class ActorAI extends Player implements Serializable {
     
     private Vector2 patrolCoordinates = Vector2.Zero;
     private boolean patrolling = false;
     private float speed = .2f;
     private int vision = 10;
     private float stopInterval;
-    private State state;
+    private transient State state;
     private Player closestPlayer = null;
     private ArrayList<AI> aiData;
-    private RayCastCallback rayVision;
+    private transient RayCastCallback rayVision;
     
     public ActorAI(ArrayList<ActorBattler> getBattlers, float getX, float getY) {
         super(getBattlers, getX, getY);

@@ -10,6 +10,7 @@ import com.ark.darthsystem.Battler;
 import com.ark.darthsystem.Skill;
 import com.ark.darthsystem.graphics.ActorSprite.SpriteModeFace;
 import com.badlogic.gdx.graphics.g2d.Animation;
+import java.io.Serializable;
 
 import java.util.ArrayList;
 
@@ -17,10 +18,10 @@ import java.util.ArrayList;
  * The ActorBattler encapsulates the Battler so it can interact with the map.
  * @author Keven
  */
-public class ActorBattler {
+public class ActorBattler implements Serializable {
 
     private Battler battler;
-    private ActorSkill currentSkill;
+    private transient ActorSkill currentSkill;
     private transient ArrayList<ActorSkill> skillList = new ArrayList<>();
     private transient ActorSprite spriteSheet;
     private String spriteSheetName;

@@ -22,22 +22,23 @@ import com.badlogic.gdx.physics.box2d.Joint;
 import com.badlogic.gdx.physics.box2d.joints.WeldJoint;
 import com.badlogic.gdx.physics.box2d.joints.WeldJointDef;
 import com.badlogic.gdx.utils.Array;
+import java.io.Serializable;
 
 /**
  *
  * @author trankt1
  */
-public class ActorSkill extends ActorCollision {
+public class ActorSkill extends ActorCollision implements Serializable {
 
     private float aftercastDelay = 0;
     private Area area;
     private transient Actor battlerAnimation;
 
-    private transient Sound battlerSound = SoundDatabase.battlerSwordSound;
+    private transient Sound battlerSound;
     private float chargeTime = 0;
-    private transient Sound fieldSound = SoundDatabase.fieldSwordSound;
+    private transient Sound fieldSound;
     private transient Player invoker;
-    private WeldJoint joint;
+    private transient WeldJoint joint;
     private String originalBattlerImageName;
     private transient Sprite[] originalBattlerImage;
     private String originalFieldImageName;
@@ -54,6 +55,8 @@ public class ActorSkill extends ActorCollision {
             float delay,
             Skill getSkill) {
         super(img, getX, getY, delay, true);
+        this.fieldSound = SoundDatabase.fieldSwordSound;
+        this.battlerSound = SoundDatabase.battlerSwordSound;
         originalFieldImageName = img;
         originalBattlerImageName = "";
         try {
@@ -82,6 +85,8 @@ public class ActorSkill extends ActorCollision {
             Skill getSkill,
             String shape) {
         super(img, getX, getY, delay, true, shape);
+        this.fieldSound = SoundDatabase.fieldSwordSound;
+        this.battlerSound = SoundDatabase.battlerSwordSound;
         originalFieldImageName = img;
         originalBattlerImageName = "";
         try {
@@ -110,6 +115,8 @@ public class ActorSkill extends ActorCollision {
             Skill getSkill,
             Area getArea) {
         this(img, getX, getY, delay, getSkill);
+        this.fieldSound = SoundDatabase.fieldSwordSound;
+        this.battlerSound = SoundDatabase.battlerSwordSound;
         area = getArea;
     }
     public ActorSkill(String img,
@@ -120,6 +127,8 @@ public class ActorSkill extends ActorCollision {
             Area getArea,
             String shape) {
         this(img, getX, getY, delay, getSkill, shape);
+        this.fieldSound = SoundDatabase.fieldSwordSound;
+        this.battlerSound = SoundDatabase.battlerSwordSound;
         area = getArea;
     }
 
@@ -131,6 +140,8 @@ public class ActorSkill extends ActorCollision {
             Skill getSkill,
             Area getArea) {
         this(img, getX, getY, delay, getSkill, getArea);
+        this.fieldSound = SoundDatabase.fieldSwordSound;
+        this.battlerSound = SoundDatabase.battlerSwordSound;
         originalBattlerImageName = battlerImg;
         try {
             originalBattlerImage = GraphicsDriver.getMasterSheet().createSprites(battlerImg).toArray(Sprite.class);
@@ -154,6 +165,8 @@ public class ActorSkill extends ActorCollision {
             Area getArea,
             String shape) {
         this(img, getX, getY, delay, getSkill, getArea, shape);
+        this.fieldSound = SoundDatabase.fieldSwordSound;
+        this.battlerSound = SoundDatabase.battlerSwordSound;
         originalBattlerImageName = battlerImg;
         try {
             originalBattlerImage = GraphicsDriver.getMasterSheet().createSprites(battlerImg).toArray(Sprite.class);
@@ -177,6 +190,8 @@ public class ActorSkill extends ActorCollision {
             int delay,
             Skill getSkill) {
         this(img, getX, getY, delay, getSkill);
+        this.fieldSound = SoundDatabase.fieldSwordSound;
+        this.battlerSound = SoundDatabase.battlerSwordSound;
         this.translateX = translateX;
         this.translateY = translateY;
         area = Area.FRONT;
@@ -191,6 +206,8 @@ public class ActorSkill extends ActorCollision {
             Skill getSkill,
             Area getArea) {
         this(img, battlerImg, getX, getY, delay, getSkill, getArea);
+        this.fieldSound = SoundDatabase.fieldSwordSound;
+        this.battlerSound = SoundDatabase.battlerSwordSound;
         chargeTime = castTime;
     }
 
@@ -205,6 +222,8 @@ public class ActorSkill extends ActorCollision {
             Skill getSkill,
             Area getArea) {
         this(img, battlerImg, getX, getY, delay, castTime, getSkill, getArea);
+        this.fieldSound = SoundDatabase.fieldSwordSound;
+        this.battlerSound = SoundDatabase.battlerSwordSound;
         translateX = getTranslateX;
         translateY = getTranslateY;
     }
@@ -221,6 +240,8 @@ public class ActorSkill extends ActorCollision {
             Area getArea,
             String shape) {
         super(img, getX, getY, fps, true, shape);
+        this.fieldSound = SoundDatabase.fieldSwordSound;
+        this.battlerSound = SoundDatabase.battlerSwordSound;
         originalFieldImageName = img;
         try {
             originalFieldImage = GraphicsDriver.getMasterSheet().createSprites("skills/" + img + "/field/" + img).toArray(Sprite.class);
@@ -588,7 +609,6 @@ public class ActorSkill extends ActorCollision {
 //        setInvoker(player);
         ActorSkill tempSkill;
         tempSkill = clone();
-        System.out.println(tempSkill.getCurrentAnimation().getAnimationDuration());
         if (player.getCurrentBattler().activateCurrentSkill() != null) {
             if (player.getFacing().getX() == -1) {
                 Array<Sprite> s = new Array<>(Sprite.class);
@@ -603,6 +623,13 @@ public class ActorSkill extends ActorCollision {
             tempSkill.setX(player);
             tempSkill.setY(player);
             player.setAttacking(true);
+            try {
+                if (tempSkill.chargeTime > .5) {
+                    SoundDatabase.battlerCastingSound.play();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             player.addTimer(new GameTimer("Skill", tempSkill.getChargeTime() + tempSkill.getAftercastDelay() * 1000f) {
                 @Override
                 public void event(Actor a) {
@@ -641,6 +668,7 @@ public class ActorSkill extends ActorCollision {
                 }
                 
                 public void clear() {
+                    SoundDatabase.battlerCastingSound.stop();
                     player.setFieldState(ActorSprite.SpriteModeField.STAND);
                     player.setAttacking(false);
                 }

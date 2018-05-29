@@ -31,36 +31,6 @@ public class Equipment extends Item implements Cloneable {
         this.equipElement = Battle.Element.Physical;
     }
 
-//    /**
-//     *
-//     * @param getName
-//     * @param initializeType
-//     * @param invoke
-//     * @param useMP
-//     * @param initializeAttack
-//     * @param initializeDefense
-//     * @param initializeSpeed
-//     * @param initializeMagic
-//     */
-//    public Equipment(String getName,
-//            EquipmentType initializeType,
-//            Skill invoke,
-//            boolean useMP,
-//            int initializeAttack,
-//            int initializeDefense,
-//            int initializeSpeed,
-//            int initializeMagic) {
-//        super(getName, "", 0, false, invoke, useMP);
-//        this.equipElement = Battle.Element.Physical;
-//        equipmentSlot = initializeType;
-//        attack = initializeAttack;
-//        defense = initializeDefense;
-//        speed = initializeSpeed;
-//        magic = initializeMagic;
-//        equipElement = Battle.Element.Physical;
-//        animation = Database2.Sword();
-//    }
-
     /**
      *
      * @param getName

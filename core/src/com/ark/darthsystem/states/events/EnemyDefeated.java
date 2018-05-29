@@ -5,26 +5,27 @@
  */
 package com.ark.darthsystem.states.events;
 
-import com.ark.darthsystem.Item;
-import com.ark.darthsystem.database.ShopMenu;
-import com.ark.darthsystem.graphics.GraphicsDriver;
 import com.badlogic.gdx.maps.MapProperties;
 
 /**
  *
  * @author keven
  */
-public class Shopkeeper extends Event {
-    private Item[] inventory;
-    private ShopMenu menu;
-    public Shopkeeper(String img, float getX, float getY, float delay) {
+public class EnemyDefeated extends Event {
+
+    public EnemyDefeated(String img, int id, float getX, float getY, float delay) {
         super(img, getX, getY, delay);
-//        menu = new ShopMenu("", inventory, null);
     }
 
     @Override
     public void run() {
-        GraphicsDriver.addMenu(menu);
+
+    }
+    
+    @Override
+    public boolean isTriggered(Event.TriggerMethod method) {
+        boolean isDefeated = false;
+        return super.isTriggered(method) && isDefeated;
     }
 
     @Override

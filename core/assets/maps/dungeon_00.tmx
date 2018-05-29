@@ -17,7 +17,9 @@
     <property name="collision" value="TRUE"/>
     <property name="collisionType" value="wall"/>
     <property name="eventID" value="2"/>
+    <property name="eventName" value="Teleport"/>
     <property name="parameters" value="dungeon_02, 34, 11"/>
+    <property name="trigger" value="touch"/>
    </properties>
   </object>
   <object id="4" name="door_to_01" type="event" x="448" y="32" width="64" height="32">
@@ -25,7 +27,9 @@
     <property name="collision" value="TRUE"/>
     <property name="collisionType" value="wall"/>
     <property name="eventID" value="2"/>
+    <property name="eventName" value="Teleport"/>
     <property name="parameters" value="testRoom, 17, 21"/>
+    <property name="trigger" value="TOUCH"/>
    </properties>
   </object>
  </objectgroup>

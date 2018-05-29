@@ -13,6 +13,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
+import java.io.Serializable;
 import java.util.logging.Logger;
 
 /**
@@ -21,14 +22,14 @@ import java.util.logging.Logger;
  * movement.
  *
  */
-public class Actor {
+public class Actor implements Serializable {
     
 
     private transient Animation<Sprite> animation;
     private transient Sprite currentImage;
     private transient OverheadMap currentMap;
     private float delay;
-    private boolean destroyAfterAnimation = false;
+    private boolean destroyAfterAnimation;
     private float elapsed = 0f;
     private Facing facing;
     private transient Sprite[] images;
@@ -43,34 +44,46 @@ public class Actor {
     private Array<GameTimer> timers = new Array<>(GameTimer.class);
     private float x;
     private float y;
-    private Facing xFacingBias = Facing.DOWN;
+    private Facing xFacingBias;
     private String imageName;
-
-    public Actor(Sprite img,
-            float getX,
-            float getY) {
-        this.delay = 16;
-        x = getX;
-        y = getY;
-        currentImage = img;
+    
+    public Actor() {
+        this.xFacingBias = Facing.DOWN;
+        delay = 16/60f;
         isMovable = false;
         speed = 0;
         destroyAfterAnimation = false;
-        facing = Facing.RIGHT;
+        facing = Facing.DOWN;
         isRotate = false;
     }
+
+//    public Actor(Sprite img,
+//            float getX,
+//            float getY) {
+//        this.xFacingBias = Facing.DOWN;
+//        this.delay = 16;
+//        x = getX;
+//        y = getY;
+//        currentImage = img;
+//        isMovable = false;
+//        speed = 0;
+//        destroyAfterAnimation = false;
+//        facing = Facing.RIGHT;
+//        isRotate = false;
+//    }
 
     public Actor(String img,
             float getX,
             float getY,
             float delay) {
+        this.xFacingBias = Facing.DOWN;
         x = getX;
         y = getY;
         this.delay = delay;
         imageName = img;
         images = GraphicsDriver.getMasterSheet().createSprites(img).toArray(Sprite.class);
         if (images != null && images.length > 0) {
-            animation = new Animation<Sprite>(delay, new Array<Sprite>(images));
+            animation = new Animation<>(delay, new Array<>(images));
             animation.setPlayMode(PlayMode.LOOP);
             animation.setFrameDuration(delay);
             currentImage = (Sprite) animation.getKeyFrame(0);
@@ -96,6 +109,7 @@ public class Actor {
             float getX,
             float getY,
             float delay) {
+        this.xFacingBias = Facing.DOWN;
         sprite = img;
         x = getX;
         y = getY;

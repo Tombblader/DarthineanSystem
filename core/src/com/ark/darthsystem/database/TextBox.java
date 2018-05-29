@@ -36,6 +36,7 @@ public class TextBox extends Actor {
      */
     public TextBox(String img, float getX, float getY, float width, float height) {
         super(img, getX, getY, 12/60f);
+        this.subActors = new Array<>();
         patch = GraphicsDriver.getMasterSheet().createPatch(img);
         message = "";
         this.width = width;
@@ -44,6 +45,7 @@ public class TextBox extends Actor {
 
     public TextBox(String img, String message, float getX, float getY, float width, float height) {
         this(img, getX, getY, width, height);
+        this.subActors = new Array<>();
         this.message = message;
 
     }
@@ -59,6 +61,7 @@ public class TextBox extends Actor {
     @Override
     public void render(Batch batch) {
         patch.draw(batch, getX(), getY(), width, height);
+        batch.flush();
         Rectangle scissors = new Rectangle();
         Rectangle clipBounds = new Rectangle((int) getX() + PADDING_X, (int) getY() + PADDING_Y, (int) width - PADDING_X, (int) height - PADDING_Y);
         ScissorStack.calculateScissors(GraphicsDriver.getCamera(), batch.getTransformMatrix(), clipBounds, scissors);

@@ -7,6 +7,7 @@ package com.ark.darthsystem.states.events;
 
 import com.ark.darthsystem.graphics.ActorCollision;
 import static com.ark.darthsystem.states.events.Event.setID;
+import com.badlogic.gdx.maps.MapProperties;
 
 /**
  *
@@ -34,6 +35,11 @@ public class CreateShape extends Event {
     @Override
     public boolean isFinished() {
         return isFinished;
+    }
+
+    @Override
+    public Event createFromMap(MapProperties prop) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

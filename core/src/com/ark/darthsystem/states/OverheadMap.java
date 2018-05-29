@@ -68,10 +68,12 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
 
-    private float ppt = 0;
+    private transient float ppt = 0;
     private Fixture boundXMinFixture, boundYMinFixture, boundXMaxFixture, boundYMaxFixture;
     private boolean worldStep;
     private Array<Body> deleteQueue = new Array<>();
@@ -79,12 +81,12 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
     private Array<ActorCollision> createQueue = new Array<>();
     private String bgm;
     private ArrayList<String> message = new ArrayList<>();
-    private int elapsed = 0;
-    private final int MESSAGE_TIME = 3000;
+    private transient int elapsed = 0;
+    private transient final int MESSAGE_TIME = 3000;
     private Array<Actor> actorList;
     private final int DRAW_SPRITES_AFTER_LAYER = 2;
-    private World world;
-    private Box2DDebugRenderer debugRender = new Box2DDebugRenderer();
+    private transient World world;
+    private transient Box2DDebugRenderer debugRender = new Box2DDebugRenderer();
     private int width;
     private int height;
     private Body boundXMin, boundXMax, boundYMin, boundYMax;
@@ -116,173 +118,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
         height = prop.get("height", Integer.class) * prop.get("tileheight", Integer.class);
         actorList = new Array<>(Actor.class);
         world = new World(new Vector2(0, 0), true);
-        world.setContactListener(new ContactListener() {
-
-            @Override
-            public void beginContact(Contact contact) {
-                Fixture a = contact.getFixtureA();
-                Fixture b = contact.getFixtureB();
-                if (a.isSensor() || b.isSensor()) {
-                    if (a.getBody().getUserData() instanceof ActorSkill) {
-                        if (b.getBody().getUserData() instanceof Player) {
-                            renderCollision(b, a);
-                        }
-                    }
-                    if (b.getBody().getUserData() instanceof ActorSkill) {
-                        if (a.getBody().getUserData() instanceof Player) {
-                            renderCollision(a, b);
-                        }
-                    }
-                    if (a.getBody().getUserData() instanceof Player && b.getBody().getUserData() instanceof Player) {
-                        boolean isInBattle = false;
-                        for (State s : GraphicsDriver.getState()) {
-                            isInBattle |= s instanceof Battle;
-                        }
-                        if (!isInBattle) {
-                            battleStart();
-                        }
-                    }
-                    if (a.getBody().getUserData() instanceof Player && b.getBody().getUserData() instanceof Event) {
-                        renderEvent(a, b);
-                    }
-                    if (a.getBody().getUserData() instanceof Event && b.getBody().getUserData() instanceof Player) {
-                        renderEvent(b, a);
-                    }
-                }
-            }
-
-            @Override
-            public void endContact(Contact contact) {
-                Fixture a = contact.getFixtureA();
-                Fixture b = contact.getFixtureB();
-                if (a.isSensor() || b.isSensor()) {
-                    if (a.getBody().getUserData() instanceof Player && b.getBody().getUserData() instanceof Event) {
-                        endEvent(a, b);
-                    }
-                    if (a.getBody().getUserData() instanceof Event && b.getBody().getUserData() instanceof Player) {
-                        endEvent(b, a);
-                    }
-                }
-            }
-
-            @Override
-            public void preSolve(Contact cntct, Manifold mnfld) {
-//                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-
-            @Override
-            public void postSolve(Contact cntct, ContactImpulse ci) {
-//                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-
-            private void renderKnockback(Fixture a, Fixture b) {
-                final float DISTANCE = (float) (30f * ((Player) (b.getBody().getUserData())).getCurrentBattler().getBattler().getDefend());
-                Vector2 result
-                        = new Vector2(((Actor) (b.getBody().getUserData())).getX(), ((Actor) (b.getBody().getUserData())).getY())
-                                .sub(new Vector2(((ActorSkill) (a.getBody().getUserData())).getInvoker().getX(), ((ActorSkill) (a.getBody().getUserData())).getInvoker().getY()));
-                result.set(result.scl(DISTANCE));
-                ((Actor) (b.getBody().getUserData())).addTimer(new GameTimer("KNOCKBACK", 99999) {
-                    @Override
-                    public void event(Actor a) {
-                        b.getBody().setLinearVelocity(result);
-                    }
-
-                    public boolean isFinished() {
-                        return !world.isLocked();
-                    }
-
-                });
-                ((Player) (b.getBody().getUserData())).ouch();
-            }
-
-            private void renderCollision(Fixture a, Fixture b) {
-                renderKnockback(b, a);
-                Player tempActor = (Player) a.getBody().getUserData();
-                ActorSkill tempSkill = (ActorSkill) b.getBody().getUserData();
-                Action action;
-                if (tempSkill.getSkill() == null) {
-                    action = new Action(Battle.Command.Attack,
-                            tempSkill.getInvoker()
-                                    .getCurrentBattler().getBattler(),
-                            tempActor.getCurrentBattler().getBattler(),
-                            tempActor.getAllBattlers());
-                } else {
-                    action = new Action(Battle.Command.Skill,
-                            tempSkill.getSkill().overrideCost(0),
-                            tempSkill.getInvoker()
-                                    .getCurrentBattler().getBattler(),
-                            tempActor.getCurrentBattler().getBattler(),
-                            tempActor.getAllBattlers());
-                }
-                action.calculateDamage(new Battle(tempSkill.getInvoker().getAllActorBattlers(),
-                        tempActor.getAllActorBattlers(),
-                        Database1.inventory, null));
-                if (tempActor instanceof ActorAI && tempActor.totalPartyKill()) {
-                    createPickupFromActor(tempActor);
-                    tempSkill.getInvoker().getAllBattlers().forEach((battler) -> {
-                        ((ActorAI) (tempActor)).getAllBattlerAI().forEach((getBattlerAI) -> {
-                            battler.changeExperiencePoints(getBattlerAI.getExperienceValue());
-                        });
-                    });
-                    removeActor(tempActor);
-                }
-
-                //clear certain called events
-                for (int i = 0; i < actorList.size; i++) {
-                    Actor actors = actorList.get(i);
-                    if (actors instanceof ActorSkill) {
-                        if (((ActorSkill) (actors)).getInvoker().equals(tempActor)) {
-                            removeActor(actors);
-                            i--;
-                            ((ActorSkill) (actors)).stopFieldSound();
-                        }
-                    }
-                }
-                clearTempRunningTimers(tempActor);
-            }
-
-            private void renderEvent(Fixture a, Fixture b) {
-                Event tempEvent = (Event) b.getBody().getUserData();
-                Player tempPlayer = (Player) a.getBody().getUserData();
-
-                if (tempEvent.isTriggered(Event.TriggerMethod.TOUCH)) {
-                    tempEvent.run();
-                }
-                if (tempEvent.isTriggered(Event.TriggerMethod.PRESS)) {
-                    tempPlayer.addButtonEvent(tempEvent);
-                }
-            }
-
-            private void createPickupFromActor(Player a) {
-                ArrayList<Item> dropped = new ArrayList<>();
-                int money = 0;
-                for (Battler enemy1 : a.getAllBattlers()) {
-                    for (int i = 0; i < ((BattlerAI) enemy1).getDroppedItem().length; i++) {
-                        Item item = ((Math.random() < ((BattlerAI) enemy1).getDropRate()[i]) ? (Item) (((BattlerAI) enemy1).getDroppedItem()[i].clone()) : null);
-                        if (item != null && item.isStackable() && dropped.contains(item)) {
-                            dropped.get(dropped.indexOf(item)).increaseQuantity(((BattlerAI) enemy1).getDropNumber()[i]);
-                        } else if (item != null) {
-                            dropped.add(item);
-                        }
-                    }
-                    money += ((BattlerAI) (enemy1)).getMoney();
-                }
-//                if (dropped.get(0).getIcon())
-                if (!dropped.isEmpty() || money > 0) {
-                    new Pickup("items/potion/icon", a.getX(), a.getY(), 1 / 12, dropped.toArray(new Item[dropped.size()]), money).setMap(OverheadMap.this);
-                }
-            }
-
-            private void endEvent(Fixture a, Fixture b) {
-                Event tempEvent = (Event) b.getBody().getUserData();
-                Player tempPlayer = (Player) a.getBody().getUserData();
-                if (tempEvent.isTriggered(Event.TriggerMethod.PRESS)) {
-                    tempPlayer.removeButtonEvent(tempEvent);
-                }
-
-            }
-
-        });
+        world.setContactListener(new OverheadContactListener());
         generateBounds();
         generateObjects();
     }
@@ -327,13 +163,13 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
     }
 
     private ChainShape getPolyline(PolylineMapObject polylineObject) {
-        float[] vertices = polylineObject.getPolyline().getTransformedVertices();
-        Vector2[] worldVertices = new Vector2[vertices.length / 2];
+        float[] polyVertices = polylineObject.getPolyline().getTransformedVertices();
+        Vector2[] worldVertices = new Vector2[polyVertices.length / 2];
 
-        for (int i = 0; i < vertices.length / 2; ++i) {
+        for (int i = 0; i < polyVertices.length / 2; ++i) {
             worldVertices[i] = new Vector2();
-            worldVertices[i].x = vertices[i * 2] / ppt;
-            worldVertices[i].y = vertices[i * 2 + 1] / ppt;
+            worldVertices[i].x = polyVertices[i * 2] / ppt;
+            worldVertices[i].y = polyVertices[i * 2 + 1] / ppt;
         }
 
         ChainShape chain = new ChainShape();
@@ -349,6 +185,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
         return Math.round(height / PlayerCamera.PIXELS_TO_METERS);
     }
 
+    @Override
     public String getMusic() {
         return bgm;
     }
@@ -497,14 +334,19 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
         Event e = null;
         String[] parameters;
         String image;
+        try {
+            e = ((Event) (Class.forName("com.ark.darthsystem.states.events." + prop.get("eventName", String.class)).newInstance())).createFromMap(prop);
+            e.setMap(this);
+            return e;
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
+            Logger.getLogger(OverheadMap.class.getName()).log(Level.SEVERE, null, ex);
+        }
         switch (Integer.parseInt(prop.get("eventID").toString())) {
             case 0:
                 break;
             case 1: //NovelMode
                 parameters = prop.get("parameters", String.class).split(",* ");
                 image = prop.get("image", String.class);
-//                e = new NovelMode(EventDatabase.chapters(parameters),
-//                        image.length > 0 ? image : null,
                 e = new NovelMode(EventDatabase.chapters(parameters),
                         image,
                         (prop.get("x", Float.class) + prop.get("width", Float.class) / 2) / ppt,
@@ -514,8 +356,6 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
             case 2: //Teleport
                 parameters = prop.get("parameters", String.class).split(",* ");
                 image = prop.get("image", String.class);
-//                image = GraphicsDriver.getMasterSheet().createSprites(prop.get("image", String.class)).toArray(Sprite.class);
-//                e = new Teleport(image.length > 0 ? image : null,
                 e = new Teleport(image,
                         prop.get("x", Float.class),
                         prop.get("y", Float.class),
@@ -525,15 +365,12 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                         Integer.parseInt(parameters[2]));
                 break;
             case 3: //Treasure
-//                parameters = prop.get("parameters", String.class).split(",* ");
                 image = prop.get("image", String.class);
-//                image = GraphicsDriver.getMasterSheet().createSprites(prop.get("image", String.class)).toArray(Sprite.class);
-//                e = new Teleport(image.length > 0 ? image : null,
                 e = new Treasure(image,
                         prop.get("x", Float.class),
                         prop.get("y", Float.class),
                         6 / 60f,
-                        ItemDatabase.ITEM_LIST.get("TONIC"));
+                        ItemDatabase.ITEM_LIST.get(prop.get("parameters", String.class).toUpperCase()));
                 break;
             default:
                 break;
@@ -900,6 +737,159 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
         @Override
         public String toString() {
             return super.toString().toLowerCase();
+        }
+    }
+
+    private class OverheadContactListener implements ContactListener {
+
+        public OverheadContactListener() {
+        }
+
+        @Override
+        public void beginContact(Contact contact) {
+            Fixture a = contact.getFixtureA();
+            Fixture b = contact.getFixtureB();
+            if (a.isSensor() || b.isSensor()) {
+                if (a.getBody().getUserData() instanceof ActorSkill) {
+                    if (b.getBody().getUserData() instanceof Player) {
+                        renderCollision(b, a);
+                    }
+                }
+                if (b.getBody().getUserData() instanceof ActorSkill) {
+                    if (a.getBody().getUserData() instanceof Player) {
+                        renderCollision(a, b);
+                    }
+                }
+                if (a.getBody().getUserData() instanceof Player && b.getBody().getUserData() instanceof Player) {
+                    boolean isInBattle = false;
+                    for (State s : GraphicsDriver.getState()) {
+                        isInBattle |= s instanceof Battle;
+                    }
+                    if (!isInBattle) {
+                        battleStart();
+                    }
+                }
+                if (a.getBody().getUserData() instanceof Player && b.getBody().getUserData() instanceof Event) {
+                    renderEvent(a, b);
+                }
+                if (a.getBody().getUserData() instanceof Event && b.getBody().getUserData() instanceof Player) {
+                    renderEvent(b, a);
+                }
+            }
+        }
+
+        @Override
+        public void endContact(Contact contact) {
+            Fixture a = contact.getFixtureA();
+            Fixture b = contact.getFixtureB();
+            if (a.isSensor() || b.isSensor()) {
+                if (a.getBody().getUserData() instanceof Player && b.getBody().getUserData() instanceof Event) {
+                    endEvent(a, b);
+                }
+                if (a.getBody().getUserData() instanceof Event && b.getBody().getUserData() instanceof Player) {
+                    endEvent(b, a);
+                }
+            }
+        }
+
+        protected void renderKnockback(Fixture a, Fixture b) {
+            final float DISTANCE = (float) (30f * ((Player) (b.getBody().getUserData())).getCurrentBattler().getBattler().getDefend());
+            Vector2 result = new Vector2(((Actor) (b.getBody().getUserData())).getX(), ((Actor) (b.getBody().getUserData())).getY()).sub(new Vector2(((ActorSkill) (a.getBody().getUserData())).getInvoker().getX(), ((ActorSkill) (a.getBody().getUserData())).getInvoker().getY()));
+            result.set(result.scl(DISTANCE));
+            ((Actor) (b.getBody().getUserData())).addTimer(new GameTimer("KNOCKBACK", 99999) {
+                @Override
+                public void event(Actor a) {
+                    b.getBody().setLinearVelocity(result);
+                }
+
+                public boolean isFinished() {
+                    return !world.isLocked();
+                }
+            });
+            ((Player) (b.getBody().getUserData())).ouch();
+        }
+
+        protected void renderCollision(Fixture a, Fixture b) {
+            renderKnockback(b, a);
+            Player tempActor = (Player) a.getBody().getUserData();
+            ActorSkill tempSkill = (ActorSkill) b.getBody().getUserData();
+            Action action;
+            if (tempSkill.getSkill() == null) {
+                action = new Action(Battle.Command.Attack, tempSkill.getInvoker().getCurrentBattler().getBattler(), tempActor.getCurrentBattler().getBattler(), tempActor.getAllBattlers());
+            } else {
+                action = new Action(Battle.Command.Skill, tempSkill.getSkill().overrideCost(0), tempSkill.getInvoker().getCurrentBattler().getBattler(), tempActor.getCurrentBattler().getBattler(), tempActor.getAllBattlers());
+            }
+            action.calculateDamage(new Battle(tempSkill.getInvoker().getAllActorBattlers(), tempActor.getAllActorBattlers(), Database1.inventory, null));
+            if (tempActor instanceof ActorAI && tempActor.totalPartyKill()) {
+                createPickupFromActor(tempActor);
+                tempSkill.getInvoker().getAllBattlers().forEach((Battler battler) -> {
+                    ((ActorAI) (tempActor)).getAllBattlerAI().forEach((BattlerAI getBattlerAI) -> {
+                        battler.changeExperiencePoints(getBattlerAI.getExperienceValue());
+                    });
+                });
+                removeActor(tempActor);
+            }
+            //clear certain called events
+            for (int i = 0; i < actorList.size; i++) {
+                Actor actors = actorList.get(i);
+                if (actors instanceof ActorSkill) {
+                    if (((ActorSkill) (actors)).getInvoker().equals(tempActor)) {
+                        removeActor(actors);
+                        i--;
+                        ((ActorSkill) (actors)).stopFieldSound();
+                    }
+                }
+            }
+            clearTempRunningTimers(tempActor);
+        }
+
+        protected void renderEvent(Fixture a, Fixture b) {
+            Event tempEvent = (Event) b.getBody().getUserData();
+            Player tempPlayer = (Player) a.getBody().getUserData();
+            if (tempEvent.isTriggered(Event.TriggerMethod.TOUCH)) {
+                tempEvent.run();
+            }
+            if (tempEvent.isTriggered(Event.TriggerMethod.PRESS)) {
+                tempPlayer.addButtonEvent(tempEvent);
+            }
+        }
+
+        protected void createPickupFromActor(Player a) {
+            ArrayList<Item> dropped = new ArrayList<>();
+            int money = 0;
+            for (Battler enemy1 : a.getAllBattlers()) {
+                for (int i = 0; i < ((BattlerAI) enemy1).getDroppedItem().length; i++) {
+                    Item item = (Math.random() < ((BattlerAI) enemy1).getDropRate()[i]) ? (Item) (((BattlerAI) enemy1).getDroppedItem()[i].clone()) : null;
+                    if (item != null && item.isStackable() && dropped.contains(item)) {
+                        dropped.get(dropped.indexOf(item)).increaseQuantity(((BattlerAI) enemy1).getDropNumber()[i]);
+                    } else if (item != null) {
+                        dropped.add(item);
+                    }
+                }
+                money += ((BattlerAI) (enemy1)).getMoney();
+            }
+            //                if (dropped.get(0).getIcon())
+            if (!dropped.isEmpty() || money > 0) {
+                new Pickup("items/potion/icon", a.getX(), a.getY(), 1 / 12, dropped.toArray(new Item[dropped.size()]), money).setMap(OverheadMap.this);
+            }
+        }
+
+        protected void endEvent(Fixture a, Fixture b) {
+            Event tempEvent = (Event) b.getBody().getUserData();
+            Player tempPlayer = (Player) a.getBody().getUserData();
+            if (tempEvent.isTriggered(Event.TriggerMethod.PRESS)) {
+                tempPlayer.removeButtonEvent(tempEvent);
+            }
+        }
+
+        @Override
+        public void preSolve(Contact cntct, Manifold mnfld) {
+//            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+        @Override
+        public void postSolve(Contact cntct, ContactImpulse ci) {
+//            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         }
     }
 

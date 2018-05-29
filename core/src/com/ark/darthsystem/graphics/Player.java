@@ -33,6 +33,7 @@ import com.badlogic.gdx.physics.box2d.Filter;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.RayCastCallback;
 import com.badlogic.gdx.utils.Array;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -40,7 +41,7 @@ import java.util.Collections;
  *
  * @author Keven Tran
  */
-public class Player extends ActorCollision {
+public class Player extends ActorCollision implements Serializable {
     private static final float SPEED = .4f;
     private static final float DELAY =  1f/10f;
 
@@ -62,7 +63,7 @@ public class Player extends ActorCollision {
     private int menuButton = Keys.ENTER;
     private int jumpButton = Keys.V;
 
-    private ActorSkill attackAnimation;
+    private transient ActorSkill attackAnimation;
     private float speed = SPEED;
     private boolean canAttack = true;
     private boolean canSkill = true;
@@ -72,7 +73,7 @@ public class Player extends ActorCollision {
     private boolean canDodge = true;
     private boolean isWalking;
     private ActorSprite.SpriteModeField fieldState = ActorSprite.SpriteModeField.STAND;
-    private ActorSkill currentSkill;
+    private transient ActorSkill currentSkill;
 
     private transient Input playerInput;
     private transient BitmapFont font;
@@ -417,8 +418,8 @@ public class Player extends ActorCollision {
     }
 
     public void setMap(OverheadMap map, float x, float y) { 
-        setInitialX(x);
-        setInitialY(y);
+//        setInitialX(x);
+//        setInitialY(y);
         setX(x);
         setY(y);
         super.setMap(map);
@@ -512,9 +513,11 @@ public class Player extends ActorCollision {
     
     public void setInvulnerability(int time) {
         GameTimer tempTimer = new GameTimer("Invulnerable", time) {
+            @Override
             public void event(Actor a) {
                 setDefaultFilter();
             }
+            @Override
             public boolean update(float delta, Actor a) {
                 setMainFilter(ActorCollision.CATEGORY_PLAYER, ActorCollision.CATEGORY_WALLS);
                 setSensorFilter(ActorCollision.CATEGORY_PLAYER, (short) (ActorCollision.CATEGORY_AI | ActorCollision.CATEGORY_EVENT));
@@ -539,8 +542,8 @@ public class Player extends ActorCollision {
     
     @Override
     public void generateBody(OverheadMap map) {
-        setX(getInitialX());
-        setY(getInitialY());
+//        setX(getInitialX());
+//        setY(getInitialY());
         super.generateBody(map);
         Filter filter = new Filter();
         filter.categoryBits = ActorCollision.CATEGORY_PLAYER;

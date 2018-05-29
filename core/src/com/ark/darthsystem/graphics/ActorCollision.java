@@ -21,12 +21,13 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.joints.WeldJoint;
 import com.badlogic.gdx.physics.box2d.joints.WeldJointDef;
 import com.badlogic.gdx.utils.Array;
+import java.io.Serializable;
 
 /**
  *
  * @author Keven
  */
-public class ActorCollision extends Actor {
+public class ActorCollision extends Actor implements Serializable {
     public static final short CATEGORY_AI = 0x0002;
     public static final short CATEGORY_AI_SKILL = 0x0020;
     public static final short CATEGORY_EVENT = 0x0040;
@@ -75,21 +76,21 @@ public class ActorCollision extends Actor {
         shapeName = shape;
     }
 
-    public void setInitialX(float x) {
-        initialX = x;
-    }
-
-    public void setInitialY(float y) {
-        initialY = y;
-    }
-    
-    public float getInitialX() {
-        return initialX;
-    }
-
-    public float getInitialY() {
-        return initialY;
-    }
+//    public void setInitialX(float x) {
+//        initialX = x;
+//    }
+//
+//    public void setInitialY(float y) {
+//        initialY = y;
+//    }
+//    
+//    public float getInitialX() {
+//        return initialX;
+//    }
+//
+//    public float getInitialY() {
+//        return initialY;
+//    }
 
     public Joint getJoint() {
         return sensorJoint;

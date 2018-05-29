@@ -7,6 +7,7 @@ package com.ark.darthsystem.states.events;
 
 import com.ark.darthsystem.graphics.ActorCollision;
 import com.ark.darthsystem.states.OverheadMap;
+import com.badlogic.gdx.maps.MapProperties;
 
 /**
  *
@@ -28,6 +29,8 @@ public abstract class Event extends ActorCollision {
     public Event(String img, float getX, float getY, float delay) {
         super(img, getX, getY, delay);
     }
+
+    public abstract Event createFromMap(MapProperties prop);
 
     public enum TriggerMethod {
         TOUCH,
@@ -61,12 +64,14 @@ public abstract class Event extends ActorCollision {
         this.trigger = trigger;
     }    
 
+    @Override
     public void generateBody(OverheadMap map) {
         super.generateBody(map);
         setMainFilter(ActorCollision.CATEGORY_EVENT, (short) (0));
         setSensorFilter(ActorCollision.CATEGORY_EVENT, CATEGORY_PLAYER);
     }
     
+    @Override
     public void update(float delta) {
         super.update(delta);
         if (getTriggerMethod() == TriggerMethod.AUTO) {

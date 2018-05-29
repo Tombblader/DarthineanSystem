@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-up" width="32" height="24" tilewidth="32" tileheight="32" nextobjectid="16">
+<map version="1.0" tiledversion="1.1.3" orientation="orthogonal" renderorder="right-up" width="32" height="24" tilewidth="32" tileheight="32" infinite="0" nextobjectid="16">
  <properties>
   <property name="music" value="Forbidden Shrine of Heroes.mp3"/>
  </properties>
@@ -32,8 +32,10 @@
    <properties>
     <property name="collisionType" value="object"/>
     <property name="eventID" type="int" value="1"/>
+    <property name="eventName" value="NovelMode"/>
     <property name="image" value="characters/fire_spirit/field/stand/down"/>
     <property name="parameters" value="chapter1"/>
+    <property name="trigger" value="auto"/>
    </properties>
   </object>
   <object id="5" name="subwall1" type="wall" x="0" y="736" width="512" height="32"/>
@@ -44,7 +46,9 @@
     <property name="collision" type="bool" value="true"/>
     <property name="collisionType" value="wall"/>
     <property name="eventID" type="int" value="2"/>
+    <property name="eventName" value="Teleport"/>
     <property name="parameters" value="nowhere, 16, 3"/>
+    <property name="trigger" value="touch"/>
    </properties>
   </object>
   <object id="13" name="teleportComplex" type="event" x="544" y="32" width="32" height="64">
@@ -52,7 +56,9 @@
     <property name="collision" type="bool" value="true"/>
     <property name="collisionType" value="wall"/>
     <property name="eventID" type="int" value="2"/>
+    <property name="eventName" value="Teleport"/>
     <property name="parameters" value="eyeroom, 50, 99"/>
+    <property name="trigger" value="TOUCH"/>
    </properties>
   </object>
  </objectgroup>
