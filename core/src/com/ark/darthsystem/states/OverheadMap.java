@@ -75,21 +75,23 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
 
     private transient float ppt = 0;
     private Fixture boundXMinFixture, boundYMinFixture, boundXMaxFixture, boundYMaxFixture;
+    private transient OrthogonalTiledMapRenderer renderer;
+    private String mapName;
     private boolean worldStep;
-    private Array<Body> deleteQueue = new Array<>();
-    private Array<Joint> deleteJointQueue = new Array<>();
-    private Array<ActorCollision> createQueue = new Array<>();
+    private transient Array<Body> deleteQueue = new Array<>();
+    private transient Array<Joint> deleteJointQueue = new Array<>();
+    private transient Array<ActorCollision> createQueue = new Array<>();
     private String bgm;
-    private ArrayList<String> message = new ArrayList<>();
-    private transient int elapsed = 0;
-    private transient final int MESSAGE_TIME = 3000;
-    private Array<Actor> actorList;
+    private transient ArrayList<String> message = new ArrayList<>();
+    private int elapsed = 0;
+    private final int MESSAGE_TIME = 3000;
+    private transient Array<Actor> actorList;
     private final int DRAW_SPRITES_AFTER_LAYER = 2;
     private transient World world;
     private transient Box2DDebugRenderer debugRender = new Box2DDebugRenderer();
     private int width;
     private int height;
-    private Body boundXMin, boundXMax, boundYMin, boundYMax;
+    private transient Body boundXMin, boundXMax, boundYMin, boundYMax;
 
     public OverheadMap(String mapName, boolean isLoaded) {
         super((new TmxMapLoader().load(mapName, new Parameters() {
@@ -112,6 +114,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                 tiled.getTextureRegion().flip(false, true);
             }
         }
+        this.mapName = mapName;
         MapProperties prop = getMap().getProperties();
         updateProperties(prop);
         width = prop.get("width", Integer.class) * prop.get("tilewidth", Integer.class);
@@ -802,6 +805,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                     b.getBody().setLinearVelocity(result);
                 }
 
+                @Override
                 public boolean isFinished() {
                     return !world.isLocked();
                 }

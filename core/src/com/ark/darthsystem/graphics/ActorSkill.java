@@ -22,13 +22,12 @@ import com.badlogic.gdx.physics.box2d.Joint;
 import com.badlogic.gdx.physics.box2d.joints.WeldJoint;
 import com.badlogic.gdx.physics.box2d.joints.WeldJointDef;
 import com.badlogic.gdx.utils.Array;
-import java.io.Serializable;
 
 /**
  *
  * @author trankt1
  */
-public class ActorSkill extends ActorCollision implements Serializable {
+public class ActorSkill extends ActorCollision {
 
     private float aftercastDelay = 0;
     private Area area;

@@ -42,8 +42,8 @@ public class ActorCollision extends Actor implements Serializable {
     private transient Body sensorBody;
     private transient Fixture sensorFixture;
     private transient WeldJoint sensorJoint;
-    private float initialX;
-    private float initialY;
+//    private float initialX;
+//    private float initialY;
 
     public ActorCollision(String img, float getX, float getY, float delay) {
         super(img, getX, getY, delay);

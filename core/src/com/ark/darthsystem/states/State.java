@@ -19,4 +19,5 @@ public interface State {
 
     public void dispose();
     public String getMusic();
+    
 }

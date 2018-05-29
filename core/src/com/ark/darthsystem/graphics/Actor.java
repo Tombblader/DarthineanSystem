@@ -14,7 +14,6 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import java.io.Serializable;
-import java.util.logging.Logger;
 
 /**
  * The Actor class is the basic entity class that directly interacts with the
@@ -28,6 +27,7 @@ public class Actor implements Serializable {
     private transient Animation<Sprite> animation;
     private transient Sprite currentImage;
     private transient OverheadMap currentMap;
+    private transient String currentMapName;
     private float delay;
     private boolean destroyAfterAnimation;
     private float elapsed = 0f;
@@ -41,7 +41,7 @@ public class Actor implements Serializable {
     private int lastYFacing = 0;
     private float speed;
     private transient ActorSprite sprite;
-    private Array<GameTimer> timers = new Array<>(GameTimer.class);
+    private transient Array<GameTimer> timers = new Array<>(GameTimer.class);
     private float x;
     private float y;
     private Facing xFacingBias;
@@ -393,6 +393,20 @@ public class Actor implements Serializable {
     
     public Facing getFacingBias() {
         return xFacingBias;
+    }
+
+    /**
+     * @return the currentMapName
+     */
+    public String getCurrentMapName() {
+        return currentMapName;
+    }
+
+    /**
+     * @param currentMapName the currentMapName to set
+     */
+    public void setCurrentMapName(String currentMapName) {
+        this.currentMapName = currentMapName;
     }
     
     

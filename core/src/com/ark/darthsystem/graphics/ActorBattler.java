@@ -25,7 +25,7 @@ public class ActorBattler implements Serializable {
     private transient ArrayList<ActorSkill> skillList = new ArrayList<>();
     private transient ActorSprite spriteSheet;
     private String spriteSheetName;
-    private SpriteModeFace face = SpriteModeFace.NORMAL;
+    private transient SpriteModeFace face = SpriteModeFace.NORMAL;
 
     public ActorBattler(Battler b, ActorSprite s) {
         battler = b;
