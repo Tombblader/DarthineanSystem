@@ -12,6 +12,7 @@ import com.ark.darthsystem.graphics.PlayerCamera;
 import com.ark.darthsystem.states.OverheadMap;
 import com.ark.darthsystem.states.State;
 import com.badlogic.gdx.maps.MapProperties;
+import java.util.Objects;
 
 /**
  *
@@ -34,8 +35,8 @@ public class Teleport extends Event {
             float getDelay, String newMap, float xCoord, float yCoord) {
         super(img, getX, getY, getDelay);
         map = newMap;
-        newX = xCoord * 32 / PlayerCamera.PIXELS_TO_METERS + 16 / PlayerCamera.PIXELS_TO_METERS + GraphicsDriver.getCamera().getScreenPositionX();
-        newY = yCoord * 32 / PlayerCamera.PIXELS_TO_METERS + 16 / PlayerCamera.PIXELS_TO_METERS + GraphicsDriver.getCamera().getScreenPositionY();
+        newX = xCoord + 16 / PlayerCamera.PIXELS_TO_METERS + GraphicsDriver.getCamera().getScreenPositionX();
+        newY = yCoord + 16 / PlayerCamera.PIXELS_TO_METERS + GraphicsDriver.getCamera().getScreenPositionY();
         setTriggerMethod(TriggerMethod.TOUCH);
         setID(2);
     }
@@ -46,8 +47,8 @@ public class Teleport extends Event {
         super(img, getX, getY, getDelay);
         setTriggerMethod(TriggerMethod.TOUCH);
         map = newMap;
-        newX = xCoord * 32 / PlayerCamera.PIXELS_TO_METERS + 16 / PlayerCamera.PIXELS_TO_METERS + GraphicsDriver.getCamera().getScreenPositionX();
-        newY = yCoord * 32 / PlayerCamera.PIXELS_TO_METERS + 16 / PlayerCamera.PIXELS_TO_METERS + GraphicsDriver.getCamera().getScreenPositionY();
+        newX = xCoord + 16 / PlayerCamera.PIXELS_TO_METERS + GraphicsDriver.getCamera().getScreenPositionX();
+        newY = yCoord + 16 / PlayerCamera.PIXELS_TO_METERS + GraphicsDriver.getCamera().getScreenPositionY();
         setID(2);
     }
     
@@ -93,4 +94,36 @@ public class Teleport extends Event {
     public boolean isFinished() {
         return false;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Teleport other = (Teleport) obj;
+        if (Float.floatToIntBits(this.newX) != Float.floatToIntBits(other.newX)) {
+            return false;
+        }
+        if (Float.floatToIntBits(this.newY) != Float.floatToIntBits(other.newY)) {
+            return false;
+        }
+        if (!Objects.equals(this.map, other.map)) {
+            return false;
+        }
+        return super.equals(obj);
+    }
+
+    
 }

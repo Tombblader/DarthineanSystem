@@ -6,27 +6,30 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
- *
+ * A discrete action that an AI would take, depending on the priority or
+ * turn or other conditions.
  * @author Keven
  */
 public class AI implements Serializable {
 
     /**
-     *
+     * The type of the AI.  Flags for the BattlerAI to consider.
      */
     public enum Type {
-        Attack,
-        Nothing,
-        Defend,
-        Heal,
-        Revive,
-        AttackSkill,
-        SupportSkill,
-        MercilessAttack,
-        MercilessHeal,
-        Run;
+        Attack, //Attack
+        Nothing, //Do absolutely nothing
+        Defend, //Defend
+        Heal, //Prioritize healing
+        Revive, //Marks this BattlerAI as capable of resurrection
+        AttackSkill, //Prioritizes Attack Skills
+        SupportSkill, //Prioritizes non-attack skills
+        MercilessAttack, //Uses the most powerful attack skill available
+        MercilessHeal, //Uses the best healing skill available
+        Run; //Run away
     }
-    private static final int NO_FLAG = -1;
+    
+    //NO_FLAG means that the AI does not take this variable into consideration.
+    private static final int NO_FLAG = -1; 
     private Type AIType;
     private float disengageChance;
     private int disengageTurn;
@@ -114,6 +117,11 @@ public class AI implements Serializable {
         return (lowHP != (double) (NO_FLAG)) && isLow;
     }
 
+    /**
+     * Check if all battlers in a Battle State has this status.
+     * @param b The Battle State to check.
+     * @return True if the battlers is afflicted with the status associated with this action.
+     */
     public boolean checkStatus(Battle b) {
         boolean isAfflicted = false;
         for (int i = 0; i < b.getAlly().size(); i++) {
@@ -125,6 +133,11 @@ public class AI implements Serializable {
         return isAfflicted && checkStatus != null;
     }
 
+    /**
+     * Checks if the action is worth using.
+     * @param b The current battle context state.
+     * @return If the action should be done or not.
+     */
     public boolean worthUsing(Battle b) {
         boolean isUsable = checkStatus(b) ||
                 checkLowHP(b) ||
@@ -139,19 +152,33 @@ public class AI implements Serializable {
         return isUsable;
     }
     
+    /**
+     * Check if the HP is below a certain threshold.
+     * @param b The target Battler.
+     * @return true if the Battler's HP % is less than the AI data stored here.
+     */
     public boolean checkLowHP(Battler b) {
         boolean isLow = b.getHP() / b.getMaxHP() <= lowHP;
         return (lowHP != (double) (NO_FLAG)) && isLow;
     }
 
+    /**
+     * Check if the battler has this status.
+     * @param b The target Battler.
+     * @return True if the battler is afflicted with the status associated with this action.
+     */
     public boolean checkStatus(Battler b) {
         boolean isAfflicted =  b.getStatus(checkStatus);
         return isAfflicted && checkStatus != null;
     }
 
+    /**
+     * Checks if the action is worth using.
+     * @param b The target Battler to check against.
+     * @return If the action should be done or not.
+     */
     public boolean worthUsing(Battler b) {
-        boolean isUsable = checkStatus(b) ||
-                checkLowHP(b);
+        boolean isUsable = checkStatus(b) || checkLowHP(b);
         isUsable = isUsable ||
                 (checkStatus == null &&
                 lowHP == (double) (NO_FLAG) &&

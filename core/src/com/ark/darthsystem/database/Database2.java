@@ -38,7 +38,7 @@ public class Database2 {
         Database2.SkillToActor = new HashMap<Skill, ActorSkill>() {
             {
                 put(SkillDatabase.SKILL_LIST.get("CROSSCALL"),
-                        new ActorSkill("skills/wiccan_cross/field/wiccan_cross",
+                        new ActorSkill("skills/crosscall/field/crosscall",
                                 "skills/crosscall/battler/crosscall",
                                 1,
                                 1,
@@ -154,6 +154,10 @@ public class Database2 {
     
     public Database2() {
         this("");
+    }
+    
+    public void initialize() {
+        
     }
 
     public static HashMap<Skill, ActorSkill> SkillToActor;

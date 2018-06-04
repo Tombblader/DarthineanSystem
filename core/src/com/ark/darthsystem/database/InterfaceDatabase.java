@@ -17,6 +17,7 @@ public class InterfaceDatabase {
     public static NinePatch TEXT_BOX = GraphicsDriver.getMasterSheet().createPatch("interface/window");
 
     public static void dispose() {
+        
 //        TEXT_BOX.getTexture().dispose();
     }
 }

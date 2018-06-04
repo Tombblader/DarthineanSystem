@@ -8,13 +8,11 @@ import com.ark.darthsystem.states.State;
 import com.ark.darthsystem.states.OverheadMap;
 import com.ark.darthsystem.BattleDriver;
 import com.ark.darthsystem.database.CollisionDatabaseLoader;
-import com.ark.darthsystem.database.Database1;
 import com.ark.darthsystem.database.MapDatabase;
 
 import java.util.ArrayList;
 import com.ark.darthsystem.database.Database2;
 import com.ark.darthsystem.database.InterfaceDatabase;
-import com.ark.darthsystem.database.MonsterDatabase;
 import com.ark.darthsystem.database.SoundDatabase;
 
 import com.badlogic.gdx.Gdx;
@@ -250,10 +248,12 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
             if (backgroundMusic != null && backgroundMusic.isPlaying()) {
                 backgroundMusic.dispose();
             }
-            backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal(musicName));
-            backgroundMusic.setLooping(true);
-            backgroundMusicString = musicName;
-            backgroundMusic.play();
+            if (musicName != null && !"music/null".equals(musicName)) {
+                backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal(musicName));
+                backgroundMusic.setLooping(true);
+                backgroundMusicString = musicName;
+                backgroundMusic.play();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -319,6 +319,7 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
         states.add(new Title());
     }
     
+    @Override
     public void dispose() {
         super.dispose();
         InterfaceDatabase.dispose();
@@ -331,6 +332,7 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
     }
     
     
+    @Override
     public void render() {
         if (getPlayer() != null && getPlayer().totalPartyKill()) {
             BattleDriver.fullHeal(getPlayer().getAllBattlers());
@@ -379,6 +381,7 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
         Gdx.graphics.setTitle(Integer.toString(Gdx.graphics.getFramesPerSecond()));        
     }
     
+    @Override
     public void resize(int width,
             int height) {
         System.out.println(Gdx.app.getApplicationListener().

@@ -28,6 +28,7 @@
     <property name="collisionType" value="wall"/>
     <property name="eventID" value="3"/>
     <property name="eventName" value="Treasure"/>
+    <property name="image" value="event/chest/field/stand/down"/>
     <property name="parameters" value="Tonic"/>
     <property name="trigger" value="PRESS"/>
    </properties>

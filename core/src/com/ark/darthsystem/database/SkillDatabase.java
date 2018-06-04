@@ -6,6 +6,7 @@
 package com.ark.darthsystem.database;
 
 import com.ark.darthsystem.Skill;
+import com.ark.darthsystem.graphics.ActorSkill;
 import com.ark.darthsystem.states.Battle;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
@@ -17,6 +18,7 @@ import java.util.HashMap;
  */
 public class SkillDatabase {
     public static final HashMap<String, Skill> SKILL_LIST = new HashMap<>();
+    public static final HashMap<Skill, ActorSkill> ACTOR_SKILL_LIST = new HashMap<>();
     
     public SkillDatabase() {
         FileHandle file = Gdx.files.internal("databases/skills.tsv");

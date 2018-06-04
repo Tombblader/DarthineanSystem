@@ -27,6 +27,7 @@ public class Poison extends StatusEffect {
         setInitialTurnCount(turn);
     }
 
+    @Override
     public boolean checkStatus(Action action, Battle b) {
         printline(action.getCaster().getName() + " takes " + (action.getCaster().getMaxHP() / 20) + " damage from the poison.");
         if (action.getCaster().changeHP(action.getCaster().getMaxHP() / 20)) {

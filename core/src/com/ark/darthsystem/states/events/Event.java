@@ -8,6 +8,7 @@ package com.ark.darthsystem.states.events;
 import com.ark.darthsystem.graphics.ActorCollision;
 import com.ark.darthsystem.states.OverheadMap;
 import com.badlogic.gdx.maps.MapProperties;
+import java.util.Objects;
 
 /**
  *
@@ -86,5 +87,27 @@ public abstract class Event extends ActorCollision {
     public static void setID(int newID) {
         ID = newID;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Event other = (Event) obj;
+        return (!Objects.equals(this.getCurrentMapName(), other.getCurrentMapName()));
+    }
+
     
 }

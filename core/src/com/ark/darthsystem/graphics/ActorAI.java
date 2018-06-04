@@ -28,11 +28,12 @@ import java.util.Optional;
 public class ActorAI extends Player implements Serializable {
     
     private Vector2 patrolCoordinates = Vector2.Zero;
+    private Vector2 lastSeenPosition = Vector2.Zero;
     private boolean patrolling = false;
     private float speed = .2f;
     private int vision = 10;
     private float stopInterval;
-    private transient State state;
+    private State state;
     private Player closestPlayer = null;
     private ArrayList<AI> aiData;
     private transient RayCastCallback rayVision;
@@ -89,7 +90,7 @@ public class ActorAI extends Player implements Serializable {
             return -1;
         };
         getCurrentMap().getPhysicsWorld().rayCast(rayVision, getMainBody().getPosition(), new Vector2(closestPlayer.getMainBody().getPosition()));
-        return contacts.size == 0 && distance < range   ;
+        return contacts.size == 0 && distance < range;
     }
     
     public Player findClosestPlayer(float range, Player player) {
@@ -191,7 +192,9 @@ public class ActorAI extends Player implements Serializable {
     
     private void interpretAI(float delta) {
         closestPlayer = findClosestPlayer(vision, GraphicsDriver.getPlayer());
-        state = IDLE;
+        if (state == null) {
+            state = IDLE;
+        }
         Optional<AI> skillResult = aiData.stream().filter(obj -> 
                 obj.getType() == AI.Type.AttackSkill 
                 || AI.Type.SupportSkill == obj.getType()
@@ -209,8 +212,16 @@ public class ActorAI extends Player implements Serializable {
 //            moveTowardsPlayer(delta);
         }
         else if (!patrolling) {
-            state = PATROL;
+            if (state == PURSUIT) {
+                moveTowardsPoint(lastSeenPosition.x, lastSeenPosition.y, delta);
+                patrolling = true;
+                state = IDLE;
+            } else {
+                state = PATROL;
+            }
 //            patrol(delta);
+        } else {
+            state = IDLE;
         }
         interpretAIState(delta);
     }
@@ -238,6 +249,7 @@ public class ActorAI extends Player implements Serializable {
         if (closestPlayer == null) {
             return;
         }
+        patrolling = false;
         if ((closestPlayer.getX()) > (this.getX()) && (closestPlayer.getX()) - (this.getX()) > OFFSET) {
             changeX(1);
             getMainBody().setLinearVelocity(speed * (float) (delta), getMainBody().getLinearVelocity().y);
@@ -258,7 +270,9 @@ public class ActorAI extends Player implements Serializable {
         } else {
             changeY(0);
             getMainBody().setLinearVelocity(getMainBody().getLinearVelocity().x, 0);
-        }
+        }        
+        lastSeenPosition.x = closestPlayer.getX();
+        lastSeenPosition.y = closestPlayer.getY();
         setFacing();
         setFieldState(ActorSprite.SpriteModeField.WALK);
         applySprite();

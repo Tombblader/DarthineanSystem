@@ -11,6 +11,7 @@ import static com.ark.darthsystem.database.Database2.player;
 import com.ark.darthsystem.graphics.GraphicsDriver;
 import com.ark.darthsystem.Item;
 import com.ark.darthsystem.graphics.ActorBattler;
+import com.ark.darthsystem.graphics.ActorSkill;
 import com.ark.darthsystem.states.Battle;
 import com.ark.darthsystem.states.Menu;
 import com.ark.darthsystem.states.Title;
@@ -108,7 +109,18 @@ public class DefaultMenu extends Menu {
                         Menu menuTarget = new Menu("Select a Skill", skillList, true, true) {
                             @Override
                             public Object confirm(String choice) {
-                                caster.getSkillList().get(getCursorIndex()).activate(player);
+                                ActorSkill skill = caster.getSkillList().get(getCursorIndex());
+                                if (skill.getSkill().getAlly()) {
+                                    GraphicsDriver.addMenu(new Menu("Target?", Database2.player.getAllBattlers().toArray(new Battler[0])) {
+                                        @Override
+                                        public Object confirm(String choice) {
+                                            skill.activate(Database2.player, caster, Database2.player.getAllActorBattlers().get(getCursorIndex()));
+                                            return choice;
+                                        }
+                                    });
+                                } else {
+                                    caster.getSkillList().get(getCursorIndex()).activate(player);
+                                }
                                 return choice;
                             }
 

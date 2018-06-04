@@ -6,7 +6,7 @@
 package com.ark.darthsystem;
 
 /**
- *
+ * An interface that requires the class to have a name and description.
  * @author keven
  */
 public interface Nameable {

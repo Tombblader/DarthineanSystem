@@ -26,6 +26,7 @@ public class TextBox extends Actor {
     private float height = 0;
     private final int PADDING_X = 15;
     private final int PADDING_Y = 12;
+    private boolean enabled;
     /**
      * Create an empty text box.
      * @param img
@@ -41,6 +42,7 @@ public class TextBox extends Actor {
         message = "";
         this.width = width;
         this.height = height;
+        enabled = true;
     }
 
     public TextBox(String img, String message, float getX, float getY, float width, float height) {
@@ -58,34 +60,63 @@ public class TextBox extends Actor {
         subActors.add(a);
     }
     
+    public boolean isEnabled() {
+        return enabled;
+    }
+    
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+    
+    public void update(float delta) {
+        if (enabled) {
+            super.update(delta);
+            for (int i = 0; i < subActors.size; i++) {
+                subActors.get(i).update(delta);
+                if (subActors.get(i).isFinished()) {
+                    subActors.removeIndex(i);
+                    i--;
+                }
+            }
+        }
+    }
+    
     @Override
     public void render(Batch batch) {
-        patch.draw(batch, getX(), getY(), width, height);
-        batch.flush();
-        Rectangle scissors = new Rectangle();
-        Rectangle clipBounds = new Rectangle((int) getX() + PADDING_X, (int) getY() + PADDING_Y, (int) width - PADDING_X, (int) height - PADDING_Y);
-        ScissorStack.calculateScissors(GraphicsDriver.getCamera(), batch.getTransformMatrix(), clipBounds, scissors);
-        ScissorStack.pushScissors(scissors);
-        GraphicsDriver.drawMessage(batch, message, getX() + PADDING_X, getY() + PADDING_Y);
-        for (Actor a : subActors) {
-            a.render(batch);
-        }        
-        batch.flush();
-        ScissorStack.popScissors();
+        if (enabled) {
+            patch.draw(batch, getX(), getY(), width, height);
+            batch.flush();
+            Rectangle scissors = new Rectangle();
+            Rectangle clipBounds = new Rectangle((int) getX() + PADDING_X, (int) getY() + PADDING_Y, (int) width - PADDING_X, (int) height - PADDING_Y);
+            ScissorStack.calculateScissors(GraphicsDriver.getCamera(), batch.getTransformMatrix(), clipBounds, scissors);
+            ScissorStack.pushScissors(scissors);
+            GraphicsDriver.drawMessage(batch, message, getX() + PADDING_X, getY() + PADDING_Y);
+            for (Actor a : subActors) {
+                a.render(batch);
+            }        
+            batch.flush();
+            ScissorStack.popScissors();
+        }
     }
     
     public void render(Batch batch, String message) {
-        InterfaceDatabase.TEXT_BOX.draw(batch, getX(), getY(), width, height);
-        GraphicsDriver.drawMessage(batch, message, getX() + PADDING_X, getY() + PADDING_Y);
+        if (enabled) {
+            InterfaceDatabase.TEXT_BOX.draw(batch, getX(), getY(), width, height);
+            GraphicsDriver.drawMessage(batch, message, getX() + PADDING_X, getY() + PADDING_Y);
+        }
     }
     
     public void render(Batch batch, float x, float y, float width, float height) {
-        patch.draw(batch, x, y, width, height);
+        if (enabled) {
+            patch.draw(batch, x, y, width, height);
+        }
     }
 
     public void render(Batch batch, String message, float x, float y, float width, float height) {
-        patch.draw(batch, x, y, width, height);
-        GraphicsDriver.getFont().draw(batch, message, x + PADDING_X, y + PADDING_Y);
+        if (enabled) {
+            patch.draw(batch, x, y, width, height);
+            GraphicsDriver.getFont().draw(batch, message, x + PADDING_X, y + PADDING_Y);
+        }
     }
     
 }

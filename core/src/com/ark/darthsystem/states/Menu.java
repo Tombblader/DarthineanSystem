@@ -178,6 +178,7 @@ public abstract class Menu implements State {
 //        final int PADDING_Y = 10;
         final int MENU_WIDTH = 200;
         final int MENU_HEIGHT = 24 + choices.length * (int) (GraphicsDriver.getFont().getData().capHeight * GraphicsDriver.getFont().getData().scaleY + PADDING);
+        final int cursorPadding = 12;
         boolean isOverhead = false;
         State s = null;
         for (State states : GraphicsDriver.getState()) {
@@ -208,7 +209,7 @@ public abstract class Menu implements State {
         }
         batch.draw(cursorTexture,
                 (MENU_X - PADDING_X) + GraphicsDriver.getCamera().getScreenPositionX(),
-                (MENU_Y + cursorIndex * (font.getData().capHeight * font.getData().scaleY + PADDING)) + GraphicsDriver.getCamera().getScreenPositionY(),
+                (MENU_Y + cursorPadding + cursorIndex * (font.getData().capHeight * font.getData().scaleY + PADDING)) + GraphicsDriver.getCamera().getScreenPositionY(),
                     0,
                     0,
                     cursorTexture.getRegionWidth(),

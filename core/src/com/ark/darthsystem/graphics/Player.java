@@ -213,6 +213,7 @@ public class Player extends ActorCollision implements Serializable {
                             public void event(Actor a) {
                                 attacking = false;
                             }
+                            @Override
                             public boolean update(float delta, Actor a) {
                                 attacking = true;
                                 return super.update(delta, a);
@@ -254,6 +255,10 @@ public class Player extends ActorCollision implements Serializable {
         isWalking = walking;
     }
 
+    public void moving(float x, float y, float delta) {
+        getMainBody().setLinearVelocity(x * getSpeed() * delta, y * getSpeed() * delta);
+    }
+    
     public void moving(float delta) {
         setSpeed(getBaseSpeed());
         if (isJumping) {

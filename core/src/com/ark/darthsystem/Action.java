@@ -31,17 +31,17 @@ public class Action implements Serializable {
     private int damage;
 
     /**
-     *
-     * @param actionCommand
+     * An Action based on a command without any parameters.  Typically, only Run or Analyze would use this constructor.
+     * @param actionCommand The Command that this action uses.
      */
     public Action(Battle.Command actionCommand) {
         this.actionCommand = actionCommand;
     }
 
     /**
-     *
-     * @param command
-     * @param caster
+     * An action that has a caster, but no targets.  Typically, only Defend or Charge would use this constructor.
+     * @param command The Command this action uses.
+     * @param caster The person initiating this command.
      */
     public Action(Battle.Command command, Battler caster) {
         this(command);

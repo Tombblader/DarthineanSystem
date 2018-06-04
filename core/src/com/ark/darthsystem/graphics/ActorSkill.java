@@ -562,6 +562,7 @@ public class ActorSkill extends ActorCollision {
                     tempSkill.getCurrentAnimation().setPlayMode(Animation.PlayMode.LOOP);
                     invoker.getSensorBody().setUserData(tempSkill);
                     GameTimer tempTimer = new GameTimer("Skill", 1000) {
+                        @Override
                         public void event(Actor a) {
                             invoker.getSensorBody().setUserData(invoker);
                             invoker.setCanAttack(true);
@@ -571,6 +572,7 @@ public class ActorSkill extends ActorCollision {
                             invoker.resetSprite();
                         }
 
+                        @Override
                         public boolean update(float delta, Actor a) {
                             invoker.setFieldState(ActorSprite.SpriteModeField.CUSTOM);
                             invoker.getMainBody().setLinearVelocity(
@@ -605,10 +607,13 @@ public class ActorSkill extends ActorCollision {
     
     
     public void activate(Player player) {
-//        setInvoker(player);
+        activate(player, player.getCurrentBattler(), null);
+    }
+    
+    public void activate(Player player, ActorBattler caster, ActorBattler target) {
         ActorSkill tempSkill;
         tempSkill = clone();
-        if (player.getCurrentBattler().activateCurrentSkill() != null) {
+        if (caster.activateCurrentSkill() != null) {
             if (player.getFacing().getX() == -1) {
                 Array<Sprite> s = new Array<>(Sprite.class);
                 for (Object r : tempSkill.getCurrentAnimation().getKeyFrames()) {
@@ -651,9 +656,8 @@ public class ActorSkill extends ActorCollision {
                     if (tempSkill.getSkill().getAlly()) {
                         Action action = new Action(Battle.Command.Skill,
                                 tempSkill.getSkill().overrideCost(0),
-                                tempSkill.getInvoker()
-                                        .getCurrentBattler().getBattler(),
-                                tempSkill.getInvoker().getCurrentBattler().getBattler(),
+                                caster.getBattler(),
+                                target != null ? target.getBattler() : tempSkill.getInvoker().getCurrentBattler().getBattler(),
                                 player.getAllBattlers());
                         action.calculateDamage(new Battle(tempSkill.getInvoker().getAllActorBattlers(), player.getAllActorBattlers(), Database1.inventory, null));
                     }

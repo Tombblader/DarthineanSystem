@@ -44,6 +44,7 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.maps.tiled.tiles.AnimatedTiledMapTile;
 import com.badlogic.gdx.math.Ellipse;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
@@ -71,13 +72,13 @@ import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
+public class OverheadMap implements State {
 
     private transient float ppt = 0;
-    private Fixture boundXMinFixture, boundYMinFixture, boundXMaxFixture, boundYMaxFixture;
+    private transient Fixture boundXMinFixture, boundYMinFixture, boundXMaxFixture, boundYMaxFixture;
     private transient OrthogonalTiledMapRenderer renderer;
     private String mapName;
-    private boolean worldStep;
+    private transient boolean worldStep;
     private transient Array<Body> deleteQueue = new Array<>();
     private transient Array<Joint> deleteJointQueue = new Array<>();
     private transient Array<ActorCollision> createQueue = new Array<>();
@@ -94,12 +95,12 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
     private transient Body boundXMin, boundXMax, boundYMin, boundYMax;
 
     public OverheadMap(String mapName, boolean isLoaded) {
-        super((new TmxMapLoader().load(mapName, new Parameters() {
+        renderer = new OrthogonalTiledMapRenderer((new TmxMapLoader().load(mapName, new Parameters() {
             {
                 this.flipY = false;
             }
         })), 1f / PlayerCamera.PIXELS_TO_METERS);
-        for (MapLayer m : (getMap().getLayers())) {
+        for (MapLayer m : (renderer.getMap().getLayers())) {
             if (!(m instanceof TiledMapTileLayer)) {
                 for (MapObject mo : m.getObjects()) {
                     if (mo instanceof TextureMapObject) {
@@ -108,14 +109,14 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                 }
             }
         }
-        for (TiledMapTileSet tileset : getMap().getTileSets()) {
+        for (TiledMapTileSet tileset : renderer.getMap().getTileSets()) {
             for (Iterator iterator = tileset.iterator(); iterator.hasNext();) {
                 TiledMapTile tiled = (TiledMapTile) (iterator.next());
                 tiled.getTextureRegion().flip(false, true);
             }
         }
         this.mapName = mapName;
-        MapProperties prop = getMap().getProperties();
+        MapProperties prop = renderer.getMap().getProperties();
         updateProperties(prop);
         width = prop.get("width", Integer.class) * prop.get("tilewidth", Integer.class);
         height = prop.get("height", Integer.class) * prop.get("tileheight", Integer.class);
@@ -130,7 +131,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
         this(mapName, false);
         bgm = bgmName;
     }
-
+    
     private PolygonShape getRectangle(RectangleMapObject rectangleObject) {
         Rectangle rectangle = rectangleObject.getRectangle();
         PolygonShape polygon = new PolygonShape();
@@ -250,7 +251,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
         ppt = PlayerCamera.PIXELS_TO_METERS;
 //        MapObjects objects = map.getLayers().get("collision").getObjects();
         Array<Body> bodies = new Array<>();
-        for (MapLayer layer : map.getLayers()) {
+        for (MapLayer layer : renderer.getMap().getLayers()) {
             if (layer != null && layer instanceof TiledMapTileLayer) {
                 TiledMapTileLayer tileLayer = (TiledMapTileLayer) layer;
                 for (int x = 0; x < tileLayer.getWidth(); x++) {
@@ -391,6 +392,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
     }
 
     public void updatePartial(float delta) {
+        AnimatedTiledMapTile.updateAnimationBaseTime();
         for (int i = 0; i < actorList.size; i++) {
             Actor a = actorList.get(i);
             if (a instanceof ActorAI && ((ActorAI) (a)).totalPartyKill()) {
@@ -431,6 +433,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
 
     @Override
     public float update(float delta) {
+        AnimatedTiledMapTile.updateAnimationBaseTime();
         for (int i = 0; i < actorList.size; i++) {
             Actor a = actorList.get(i);
             if (a instanceof ActorAI && ((ActorAI) (a)).totalPartyKill()) {
@@ -562,30 +565,30 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                 width < GraphicsDriver.getWidth() ? GraphicsDriver.getWidth() : width,
                 height);
         GraphicsDriver.getPlayerCamera().update();
-        setView(GraphicsDriver.getPlayerCamera());
-        beginRender();
+        renderer.setView(GraphicsDriver.getPlayerCamera());
+        renderer.getBatch().begin();
         int currentLayer = 0;
-        for (MapLayer layer : map.getLayers()) {
+        for (MapLayer layer : renderer.getMap().getLayers()) {
             if (layer.isVisible()) {
                 if (layer instanceof TiledMapTileLayer) {
-                    renderTileLayer((TiledMapTileLayer) layer);
+                    renderer.renderTileLayer((TiledMapTileLayer) layer);
                     currentLayer++;
                     if (currentLayer == DRAW_SPRITES_AFTER_LAYER) {
                         for (Actor a : actorList) {
-                            a.render(this.batch);
+                            a.render(renderer.getBatch());
                         }
                     }
                 } else {
                     for (MapObject mo : layer.getObjects()) {
-                        renderObject(mo);
+                        renderer.renderObject(mo);
                     }
                 }
             }
         }
-        this.batch.setProjectionMatrix(GraphicsDriver.getCamera().combined);
-        GraphicsDriver.getPlayer().renderGlobalData(this.batch);
-        drawMessage(this.batch);
-        endRender();
+        renderer.getBatch().setProjectionMatrix(GraphicsDriver.getCamera().combined);
+        GraphicsDriver.getPlayer().renderGlobalData(renderer.getBatch());
+        drawMessage(renderer.getBatch());
+        renderer.getBatch().end();
 
         debugRender.render(world, GraphicsDriver.getCurrentCamera().combined);
         Array<Body> temp = new Array<>();
@@ -628,25 +631,8 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
     }
 
     @Override
-    public void renderObject(MapObject object) {
-        if (object instanceof TextureMapObject) {
-            TextureMapObject textureObject = (TextureMapObject) object;
-            this.batch.draw(textureObject.getTextureRegion(),
-                    textureObject.getX() / PlayerCamera.PIXELS_TO_METERS,
-                    textureObject.getY() / PlayerCamera.PIXELS_TO_METERS,
-                    textureObject.getOriginX(),
-                    textureObject.getOriginY(),
-                    textureObject.getTextureRegion().getRegionWidth(),
-                    textureObject.getTextureRegion().getRegionHeight(),
-                    textureObject.getScaleX() / PlayerCamera.PIXELS_TO_METERS,
-                    textureObject.getScaleY() / PlayerCamera.PIXELS_TO_METERS,
-                    textureObject.getRotation());
-        }
-    }
-
-    @Override
     public void dispose() {
-        super.dispose();
+        renderer.dispose();
         world.dispose();
         debugRender.dispose();
     }
@@ -670,7 +656,7 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                 tiled.getTextureRegion().flip(false, true);
             }
         }
-        this.setMap(tiledMap);
+        renderer.setMap(tiledMap);
         MapProperties prop = tiledMap.getProperties();
         width = prop.get("width", Integer.class) * prop.get("tilewidth", Integer.class);
         height = prop.get("height", Integer.class) * prop.get("tileheight", Integer.class);
@@ -728,6 +714,22 @@ public class OverheadMap extends OrthogonalTiledMapRenderer implements State {
                     ((PADDING_Y + GraphicsDriver.getHeight() - MESSAGE_HEIGHT + FONT_HEIGHT * i) + GraphicsDriver.getCamera().getScreenPositionY()));
             i++;
         }
+    }
+
+    public String getMapName() {
+        return mapName;
+    }
+
+    public void setMapName(String mapName) {
+        this.mapName = mapName;
+    }
+    
+    public Batch getBatch() {
+        return renderer.getBatch();
+    }
+    
+    public TiledMap getMap() {
+        return renderer.getMap();
     }
 
     private enum TileType {

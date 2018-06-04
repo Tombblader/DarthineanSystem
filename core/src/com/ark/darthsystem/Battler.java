@@ -242,16 +242,17 @@ public class Battler implements Serializable, Nameable, Cloneable {
     }
 
     /**
-     *
-     * @return
+     * Gets the name of the battler.
+     * @return The name.
      */
+    @Override
     public String getName() {
         return name;
     }
 
     /**
-     *
-     * @return
+     * Gets the battler's current level.
+     * @return The level of the battler.
      */
     public int getLevel() {
         return level;
@@ -463,12 +464,12 @@ public class Battler implements Serializable, Nameable, Cloneable {
      * @return
      */
     public int levelUp() {
-        hpTier = HP / 50.0 / (level + 1);
-        mpTier = MP / 50.0 / (level + 1);
-        attackTier = attack / 8.8 / (level + 1);
-        defenseTier = defense / 8.8 / (level + 1);
-        speedTier = speed / 8.8 / (level + 1);
-        magicTier = magic / 8.8 / (level + 1);
+//        hpTier = HP / 50.0 / (level + 1);
+//        mpTier = MP / 50.0 / (level + 1);
+//        attackTier = attack / 8.8 / (level + 1);
+//        defenseTier = defense / 8.8 / (level + 1);
+//        speedTier = speed / 8.8 / (level + 1);
+//        magicTier = magic / 8.8 / (level + 1);
 
         maxHP += (int) (0.7 *
                 (1 +
@@ -537,12 +538,12 @@ public class Battler implements Serializable, Nameable, Cloneable {
      * @return
      */
     public int levelUp(int level) {
-        hpTier = HP / 50.0 / (level + 1);
-        mpTier = MP / 50.0 / (level + 1);
-        attackTier = attack / 8.8 / (level + 1);
-        defenseTier = defense / 8.8 / (level + 1);
-        speedTier = speed / 8.8 / (level + 1);
-        magicTier = magic / 8.8 / (level + 1);
+//        hpTier = HP / 50.0 / (level + 1);
+//        mpTier = MP / 50.0 / (level + 1);
+//        attackTier = attack / 8.8 / (level + 1);
+//        defenseTier = defense / 8.8 / (level + 1);
+//        speedTier = speed / 8.8 / (level + 1);
+//        magicTier = magic / 8.8 / (level + 1);
 
         for (int i = 0; i < level; i++) {
 
@@ -876,8 +877,8 @@ public class Battler implements Serializable, Nameable, Cloneable {
     }
 
     /**
-     *
-     * @param newName
+     * Change the name of the Battler.  Beware that this doesn't change the database reference.
+     * @param newName The new name of the Battler.
      */
     public void rename(String newName) {
         name = newName;
@@ -915,9 +916,7 @@ public class Battler implements Serializable, Nameable, Cloneable {
                 StatusEffect temp = (StatusEffect) Class.forName("com.ark.darthsystem.statusEffects." + afflicted.get(i)).newInstance();
                 temp.setTurnCount(afflictedTurn.get(i));
                 isAfflicted.add(temp);
-            } catch (InstantiationException ex) {
-                Logger.getLogger(Battler.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IllegalAccessException ex) {
+            } catch (InstantiationException | IllegalAccessException ex) {
                 Logger.getLogger(Battler.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
