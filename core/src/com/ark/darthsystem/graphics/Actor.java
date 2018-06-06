@@ -46,6 +46,7 @@ public class Actor implements Serializable {
     private float y;
     private Facing xFacingBias;
     private String imageName;
+    private boolean isFinished = false;
     
     public Actor() {
         this.xFacingBias = Facing.DOWN;
@@ -101,7 +102,7 @@ public class Actor implements Serializable {
             boolean destroy) {
         this(img, getX, getY, delay);
         destroyAfterAnimation = destroy;
-        animation.setPlayMode(destroy ? PlayMode.LOOP : PlayMode.NORMAL);
+        animation.setPlayMode(destroy ? PlayMode.NORMAL : PlayMode.LOOP);
         isRotate = false;
     }
 
@@ -276,8 +277,10 @@ public class Actor implements Serializable {
     
     
     public boolean isFinished() {
-        return destroyAfterAnimation &&
-                animation.getKeyFrameIndex(elapsed) >= animation.getKeyFrames().length - 1;
+        return isFinished;
+//        return destroyAfterAnimation &&
+//                animation.getAnimationDuration() >= elapsed;
+//                animation.getKeyFrameIndex(elapsed) >= animation.getKeyFrames().length;
     }
 //    public boolean isInvulnerable() {
 //        return isInvulnerable;
@@ -350,6 +353,7 @@ public class Actor implements Serializable {
             }
         }
         if (animation != null && elapsed > animation.getAnimationDuration()) {
+            isFinished = destroyAfterAnimation;
             elapsed = 0;
         }
         setFacing();

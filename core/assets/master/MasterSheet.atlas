@@ -2096,14 +2096,14 @@ characters/water_spirit/field/walk/right
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 3
+  index: 1
 characters/water_spirit/field/walk/right
   rotate: false
   xy: 1628, 1222
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 1
+  index: 3
 characters/fire_spirit/field/walk/right
   rotate: false
   xy: 972, 652
@@ -2776,6 +2776,20 @@ monsters/eyesore/field/attack/left
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
+  index: 7
+monsters/eyesore/field/attack/left
+  rotate: false
+  xy: 774, 718
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+monsters/eyesore/field/attack/left
+  rotate: false
+  xy: 774, 718
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
   index: 3
 monsters/eyesore/field/attack/left
   rotate: false
@@ -2790,15 +2804,29 @@ monsters/eyesore/field/attack/left
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 4
-monsters/eyesore/field/attack/left
+  index: 2
+monsters/eyesore/field/cast/left
   rotate: false
   xy: 774, 718
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 2
-monsters/eyesore/field/attack/left
+monsters/eyesore/field/cast/left
+  rotate: false
+  xy: 774, 718
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+monsters/eyesore/field/cast/left
+  rotate: false
+  xy: 774, 718
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
+monsters/eyesore/field/cast/left
   rotate: false
   xy: 774, 718
   size: 64, 64
@@ -2812,41 +2840,6 @@ monsters/eyesore/field/cast/left
   orig: 64, 64
   offset: 0, 0
   index: 8
-monsters/eyesore/field/cast/left
-  rotate: false
-  xy: 774, 718
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 4
-monsters/eyesore/field/cast/left
-  rotate: false
-  xy: 774, 718
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 7
-monsters/eyesore/field/cast/left
-  rotate: false
-  xy: 774, 718
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 3
-monsters/eyesore/field/cast/left
-  rotate: false
-  xy: 774, 718
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 2
-monsters/eyesore/field/dead/left
-  rotate: false
-  xy: 774, 718
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 3
 monsters/eyesore/field/dead/left
   rotate: false
   xy: 774, 718
@@ -2867,8 +2860,22 @@ monsters/eyesore/field/dead/left
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
+  index: 3
+monsters/eyesore/field/dead/left
+  rotate: false
+  xy: 774, 718
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
   index: 2
 monsters/eyesore/field/dead/left
+  rotate: false
+  xy: 774, 718
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 8
+monsters/eyesore/field/jump/left
   rotate: false
   xy: 774, 718
   size: 64, 64
@@ -2895,13 +2902,6 @@ monsters/eyesore/field/jump/left
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 3
-monsters/eyesore/field/jump/left
-  rotate: false
-  xy: 774, 718
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
   index: 7
 monsters/eyesore/field/jump/left
   rotate: false
@@ -2909,21 +2909,7 @@ monsters/eyesore/field/jump/left
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 8
-monsters/eyesore/field/ouch/left
-  rotate: false
-  xy: 774, 718
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
   index: 3
-monsters/eyesore/field/ouch/left
-  rotate: false
-  xy: 774, 718
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 7
 monsters/eyesore/field/ouch/left
   rotate: false
   xy: 774, 718
@@ -2944,14 +2930,28 @@ monsters/eyesore/field/ouch/left
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
+  index: 7
+monsters/eyesore/field/ouch/left
+  rotate: false
+  xy: 774, 718
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
   index: 8
+monsters/eyesore/field/ouch/left
+  rotate: false
+  xy: 774, 718
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
 monsters/eyesore/field/stand/left
   rotate: false
   xy: 774, 718
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 7
+  index: 2
 monsters/eyesore/field/stand/left
   rotate: false
   xy: 774, 718
@@ -2965,13 +2965,6 @@ monsters/eyesore/field/stand/left
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 8
-monsters/eyesore/field/stand/left
-  rotate: false
-  xy: 774, 718
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
   index: 4
 monsters/eyesore/field/stand/left
   rotate: false
@@ -2979,15 +2972,8 @@ monsters/eyesore/field/stand/left
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 2
-monsters/eyesore/field/walk/left
-  rotate: false
-  xy: 774, 718
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
   index: 8
-monsters/eyesore/field/walk/left
+monsters/eyesore/field/stand/left
   rotate: false
   xy: 774, 718
   size: 64, 64
@@ -3000,7 +2986,7 @@ monsters/eyesore/field/walk/left
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 4
+  index: 8
 monsters/eyesore/field/walk/left
   rotate: false
   xy: 774, 718
@@ -3015,20 +3001,20 @@ monsters/eyesore/field/walk/left
   orig: 64, 64
   offset: 0, 0
   index: 2
-monsters/mouthsore/field/dead/left
+monsters/eyesore/field/walk/left
   rotate: false
   xy: 774, 718
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 8
-monsters/mouthsore/field/dead/left
+  index: 7
+monsters/eyesore/field/walk/left
   rotate: false
   xy: 774, 718
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 3
+  index: 4
 monsters/mouthsore/field/dead/left
   rotate: false
   xy: 774, 718
@@ -3042,7 +3028,7 @@ monsters/mouthsore/field/dead/left
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 2
+  index: 8
 monsters/mouthsore/field/dead/left
   rotate: false
   xy: 774, 718
@@ -3050,13 +3036,27 @@ monsters/mouthsore/field/dead/left
   orig: 64, 64
   offset: 0, 0
   index: 7
-monsters/mouthsore/field/jump/left
+monsters/mouthsore/field/dead/left
   rotate: false
   xy: 774, 718
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 3
+monsters/mouthsore/field/dead/left
+  rotate: false
+  xy: 774, 718
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+monsters/mouthsore/field/jump/left
+  rotate: false
+  xy: 774, 718
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
 monsters/mouthsore/field/jump/left
   rotate: false
   xy: 774, 718
@@ -3070,7 +3070,14 @@ monsters/mouthsore/field/jump/left
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 2
+  index: 4
+monsters/mouthsore/field/jump/left
+  rotate: false
+  xy: 774, 718
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
 monsters/mouthsore/field/jump/left
   rotate: false
   xy: 774, 718
@@ -3078,13 +3085,6 @@ monsters/mouthsore/field/jump/left
   orig: 64, 64
   offset: 0, 0
   index: 7
-monsters/mouthsore/field/jump/left
-  rotate: false
-  xy: 774, 718
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 4
 monsters/eyesore/Eyesoreback
   rotate: false
   xy: 840, 718
@@ -3098,7 +3098,7 @@ monsters/eyesore/field/attack/up
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 2
+  index: 3
 monsters/eyesore/field/attack/up
   rotate: false
   xy: 840, 718
@@ -3119,6 +3119,13 @@ monsters/eyesore/field/attack/up
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
+  index: 2
+monsters/eyesore/field/cast/up
+  rotate: false
+  xy: 840, 718
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
   index: 3
 monsters/eyesore/field/cast/up
   rotate: false
@@ -3127,13 +3134,6 @@ monsters/eyesore/field/cast/up
   orig: 64, 64
   offset: 0, 0
   index: 8
-monsters/eyesore/field/cast/up
-  rotate: false
-  xy: 840, 718
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 3
 monsters/eyesore/field/cast/up
   rotate: false
   xy: 840, 718
@@ -3154,14 +3154,7 @@ monsters/eyesore/field/dead/up
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 9
-monsters/eyesore/field/dead/up
-  rotate: false
-  xy: 840, 718
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 3
+  index: 2
 monsters/eyesore/field/dead/up
   rotate: false
   xy: 840, 718
@@ -3175,14 +3168,21 @@ monsters/eyesore/field/dead/up
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 2
-monsters/eyesore/field/jump/up
+  index: 3
+monsters/eyesore/field/dead/up
   rotate: false
   xy: 840, 718
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 9
+monsters/eyesore/field/jump/up
+  rotate: false
+  xy: 840, 718
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
 monsters/eyesore/field/jump/up
   rotate: false
   xy: 840, 718
@@ -3203,14 +3203,7 @@ monsters/eyesore/field/jump/up
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 3
-monsters/eyesore/field/ouch/up
-  rotate: false
-  xy: 840, 718
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 3
+  index: 9
 monsters/eyesore/field/ouch/up
   rotate: false
   xy: 840, 718
@@ -3232,6 +3225,20 @@ monsters/eyesore/field/ouch/up
   orig: 64, 64
   offset: 0, 0
   index: 9
+monsters/eyesore/field/ouch/up
+  rotate: false
+  xy: 840, 718
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
+monsters/eyesore/field/stand/up
+  rotate: false
+  xy: 840, 718
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
 monsters/eyesore/field/stand/up
   rotate: false
   xy: 840, 718
@@ -3246,13 +3253,6 @@ monsters/eyesore/field/stand/up
   orig: 64, 64
   offset: 0, 0
   index: 3
-monsters/eyesore/field/stand/up
-  rotate: false
-  xy: 840, 718
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 2
 monsters/eyesore/field/stand/up
   rotate: false
   xy: 840, 718
@@ -3294,13 +3294,6 @@ monsters/mouthsore/field/dead/up
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 2
-monsters/mouthsore/field/dead/up
-  rotate: false
-  xy: 840, 718
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
   index: 3
 monsters/mouthsore/field/dead/up
   rotate: false
@@ -3308,6 +3301,13 @@ monsters/mouthsore/field/dead/up
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
+  index: 9
+monsters/mouthsore/field/dead/up
+  rotate: false
+  xy: 840, 718
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
   index: 8
 monsters/mouthsore/field/dead/up
   rotate: false
@@ -3315,7 +3315,7 @@ monsters/mouthsore/field/dead/up
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 9
+  index: 2
 monsters/mouthsore/field/jump/up
   rotate: false
   xy: 840, 718
@@ -3323,13 +3323,6 @@ monsters/mouthsore/field/jump/up
   orig: 64, 64
   offset: 0, 0
   index: 8
-monsters/mouthsore/field/jump/up
-  rotate: false
-  xy: 840, 718
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 2
 monsters/mouthsore/field/jump/up
   rotate: false
   xy: 840, 718
@@ -3343,6 +3336,13 @@ monsters/mouthsore/field/jump/up
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
+  index: 2
+monsters/mouthsore/field/jump/up
+  rotate: false
+  xy: 840, 718
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
   index: 3
 monsters/eyesore/field/dead/down
   rotate: false
@@ -3357,20 +3357,13 @@ monsters/eyesore/field/attack/down
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 1
+  index: 10
 monsters/eyesore/field/attack/down
   rotate: false
   xy: 702, 616
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 10
-monsters/eyesore/field/cast/down
-  rotate: false
-  xy: 702, 616
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
   index: 1
 monsters/eyesore/field/cast/down
   rotate: false
@@ -3379,6 +3372,13 @@ monsters/eyesore/field/cast/down
   orig: 64, 64
   offset: 0, 0
   index: 10
+monsters/eyesore/field/cast/down
+  rotate: false
+  xy: 702, 616
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
 monsters/eyesore/field/dead/down
   rotate: false
   xy: 702, 616
@@ -3434,8 +3434,15 @@ monsters/eyesore/field/walk/down
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 10
+  index: 1
 monsters/eyesore/field/walk/down
+  rotate: false
+  xy: 702, 616
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 10
+monsters/mouthsore/field/dead/down
   rotate: false
   xy: 702, 616
   size: 64, 64
@@ -3448,8 +3455,8 @@ monsters/mouthsore/field/dead/down
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 1
-monsters/mouthsore/field/dead/down
+  index: 10
+monsters/mouthsore/field/jump/down
   rotate: false
   xy: 702, 616
   size: 64, 64
@@ -3463,28 +3470,7 @@ monsters/mouthsore/field/jump/down
   orig: 64, 64
   offset: 0, 0
   index: 1
-monsters/mouthsore/field/jump/down
-  rotate: false
-  xy: 702, 616
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 10
 monsters/eyesore/field/dead/down
-  rotate: false
-  xy: 218, 560
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 2
-monsters/eyesore/field/attack/down
-  rotate: false
-  xy: 218, 560
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 8
-monsters/eyesore/field/attack/down
   rotate: false
   xy: 218, 560
   size: 64, 64
@@ -3504,8 +3490,15 @@ monsters/eyesore/field/attack/down
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
+  index: 2
+monsters/eyesore/field/attack/down
+  rotate: false
+  xy: 218, 560
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
   index: 9
-monsters/eyesore/field/cast/down
+monsters/eyesore/field/attack/down
   rotate: false
   xy: 218, 560
   size: 64, 64
@@ -3532,6 +3525,13 @@ monsters/eyesore/field/cast/down
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
+  index: 8
+monsters/eyesore/field/cast/down
+  rotate: false
+  xy: 218, 560
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
   index: 9
 monsters/eyesore/field/dead/down
   rotate: false
@@ -3539,13 +3539,6 @@ monsters/eyesore/field/dead/down
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 9
-monsters/eyesore/field/dead/down
-  rotate: false
-  xy: 218, 560
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
   index: 8
 monsters/eyesore/field/dead/down
   rotate: false
@@ -3554,6 +3547,13 @@ monsters/eyesore/field/dead/down
   orig: 64, 64
   offset: 0, 0
   index: 3
+monsters/eyesore/field/dead/down
+  rotate: false
+  xy: 218, 560
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 9
 monsters/eyesore/field/jump/down
   rotate: false
   xy: 218, 560
@@ -3574,14 +3574,28 @@ monsters/eyesore/field/jump/down
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 3
+  index: 2
 monsters/eyesore/field/jump/down
   rotate: false
   xy: 218, 560
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 2
+  index: 3
+monsters/eyesore/field/ouch/down
+  rotate: false
+  xy: 218, 560
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
+monsters/eyesore/field/ouch/down
+  rotate: false
+  xy: 218, 560
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 8
 monsters/eyesore/field/ouch/down
   rotate: false
   xy: 218, 560
@@ -3595,21 +3609,7 @@ monsters/eyesore/field/ouch/down
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 8
-monsters/eyesore/field/ouch/down
-  rotate: false
-  xy: 218, 560
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
   index: 2
-monsters/eyesore/field/ouch/down
-  rotate: false
-  xy: 218, 560
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 3
 monsters/eyesore/field/stand/down
   rotate: false
   xy: 218, 560
@@ -3617,13 +3617,6 @@ monsters/eyesore/field/stand/down
   orig: 64, 64
   offset: 0, 0
   index: 3
-monsters/eyesore/field/stand/down
-  rotate: false
-  xy: 218, 560
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 8
 monsters/eyesore/field/stand/down
   rotate: false
   xy: 218, 560
@@ -3638,6 +3631,20 @@ monsters/eyesore/field/stand/down
   orig: 64, 64
   offset: 0, 0
   index: 2
+monsters/eyesore/field/stand/down
+  rotate: false
+  xy: 218, 560
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 8
+monsters/eyesore/field/walk/down
+  rotate: false
+  xy: 218, 560
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
 monsters/eyesore/field/walk/down
   rotate: false
   xy: 218, 560
@@ -3659,13 +3666,20 @@ monsters/eyesore/field/walk/down
   orig: 64, 64
   offset: 0, 0
   index: 9
-monsters/eyesore/field/walk/down
+monsters/mouthsore/field/dead/down
   rotate: false
   xy: 218, 560
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 3
+  index: 9
+monsters/mouthsore/field/dead/down
+  rotate: false
+  xy: 218, 560
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 8
 monsters/mouthsore/field/dead/down
   rotate: false
   xy: 218, 560
@@ -3680,27 +3694,13 @@ monsters/mouthsore/field/dead/down
   orig: 64, 64
   offset: 0, 0
   index: 2
-monsters/mouthsore/field/dead/down
-  rotate: false
-  xy: 218, 560
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 8
-monsters/mouthsore/field/dead/down
-  rotate: false
-  xy: 218, 560
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 9
 monsters/mouthsore/field/jump/down
   rotate: false
   xy: 218, 560
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 9
+  index: 3
 monsters/mouthsore/field/jump/down
   rotate: false
   xy: 218, 560
@@ -3721,8 +3721,15 @@ monsters/mouthsore/field/jump/down
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 3
+  index: 9
 monsters/eyesore/field/dead/down
+  rotate: false
+  xy: 350, 494
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+monsters/eyesore/field/attack/down
   rotate: false
   xy: 350, 494
   size: 64, 64
@@ -3743,13 +3750,6 @@ monsters/eyesore/field/attack/down
   orig: 64, 64
   offset: 0, 0
   index: 7
-monsters/eyesore/field/attack/down
-  rotate: false
-  xy: 350, 494
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 4
 monsters/eyesore/field/cast/down
   rotate: false
   xy: 350, 494
@@ -3763,21 +3763,14 @@ monsters/eyesore/field/cast/down
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 4
+  index: 6
 monsters/eyesore/field/cast/down
   rotate: false
   xy: 350, 494
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 6
-monsters/eyesore/field/dead/down
-  rotate: false
-  xy: 350, 494
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 6
+  index: 4
 monsters/eyesore/field/dead/down
   rotate: false
   xy: 350, 494
@@ -3785,7 +3778,7 @@ monsters/eyesore/field/dead/down
   orig: 64, 64
   offset: 0, 0
   index: 7
-monsters/eyesore/field/jump/down
+monsters/eyesore/field/dead/down
   rotate: false
   xy: 350, 494
   size: 64, 64
@@ -3799,6 +3792,13 @@ monsters/eyesore/field/jump/down
   orig: 64, 64
   offset: 0, 0
   index: 7
+monsters/eyesore/field/jump/down
+  rotate: false
+  xy: 350, 494
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 6
 monsters/eyesore/field/jump/down
   rotate: false
   xy: 350, 494
@@ -3833,6 +3833,13 @@ monsters/eyesore/field/stand/down
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
+  index: 4
+monsters/eyesore/field/stand/down
+  rotate: false
+  xy: 350, 494
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
   index: 6
 monsters/eyesore/field/stand/down
   rotate: false
@@ -3841,20 +3848,13 @@ monsters/eyesore/field/stand/down
   orig: 64, 64
   offset: 0, 0
   index: 7
-monsters/eyesore/field/stand/down
-  rotate: false
-  xy: 350, 494
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 4
 monsters/eyesore/field/walk/down
   rotate: false
   xy: 350, 494
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 7
+  index: 4
 monsters/eyesore/field/walk/down
   rotate: false
   xy: 350, 494
@@ -3868,7 +3868,7 @@ monsters/eyesore/field/walk/down
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 4
+  index: 7
 monsters/mouthsore/field/dead/down
   rotate: false
   xy: 350, 494
@@ -3896,7 +3896,7 @@ monsters/mouthsore/field/jump/down
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 7
+  index: 4
 monsters/mouthsore/field/jump/down
   rotate: false
   xy: 350, 494
@@ -3910,7 +3910,7 @@ monsters/mouthsore/field/jump/down
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 4
+  index: 7
 monsters/eyesore/field/dead/down
   rotate: false
   xy: 416, 560
@@ -3987,14 +3987,14 @@ monsters/eyesore/field/attack/left
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 1
+  index: 9
 monsters/eyesore/field/attack/left
   rotate: false
   xy: 614, 550
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 9
+  index: 1
 monsters/eyesore/field/cast/left
   rotate: false
   xy: 614, 550
@@ -4022,21 +4022,14 @@ monsters/eyesore/field/jump/left
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 1
+  index: 9
 monsters/eyesore/field/jump/left
   rotate: false
   xy: 614, 550
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 9
-monsters/eyesore/field/ouch/left
-  rotate: false
-  xy: 614, 550
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 9
+  index: 1
 monsters/eyesore/field/ouch/left
   rotate: false
   xy: 614, 550
@@ -4044,7 +4037,7 @@ monsters/eyesore/field/ouch/left
   orig: 64, 64
   offset: 0, 0
   index: 1
-monsters/eyesore/field/stand/left
+monsters/eyesore/field/ouch/left
   rotate: false
   xy: 614, 550
   size: 64, 64
@@ -4058,7 +4051,7 @@ monsters/eyesore/field/stand/left
   orig: 64, 64
   offset: 0, 0
   index: 1
-monsters/eyesore/field/walk/left
+monsters/eyesore/field/stand/left
   rotate: false
   xy: 614, 550
   size: 64, 64
@@ -4072,13 +4065,13 @@ monsters/eyesore/field/walk/left
   orig: 64, 64
   offset: 0, 0
   index: 1
-monsters/mouthsore/field/dead/left
+monsters/eyesore/field/walk/left
   rotate: false
   xy: 614, 550
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 1
+  index: 9
 monsters/mouthsore/field/dead/left
   rotate: false
   xy: 614, 550
@@ -4086,13 +4079,13 @@ monsters/mouthsore/field/dead/left
   orig: 64, 64
   offset: 0, 0
   index: 9
-monsters/mouthsore/field/jump/left
+monsters/mouthsore/field/dead/left
   rotate: false
   xy: 614, 550
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 9
+  index: 1
 monsters/mouthsore/field/jump/left
   rotate: false
   xy: 614, 550
@@ -4100,6 +4093,13 @@ monsters/mouthsore/field/jump/left
   orig: 64, 64
   offset: 0, 0
   index: 1
+monsters/mouthsore/field/jump/left
+  rotate: false
+  xy: 614, 550
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 9
 monsters/eyesore/field/dead/left
   rotate: false
   xy: 1802, 1598
@@ -4316,22 +4316,15 @@ monsters/eyesore/field/walk/right
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 1
+  index: 9
 monsters/eyesore/field/walk/right
   rotate: false
   xy: 774, 652
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 9
+  index: 1
 monsters/mouthsore/field/dead/right
-  rotate: false
-  xy: 774, 652
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 9
-monsters/mouthsore/field/jump/right
   rotate: false
   xy: 774, 652
   size: 64, 64
@@ -4345,6 +4338,13 @@ monsters/mouthsore/field/jump/right
   orig: 64, 64
   offset: 0, 0
   index: 1
+monsters/mouthsore/field/jump/right
+  rotate: false
+  xy: 774, 652
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 9
 monsters/eyesore/field/dead/right
   rotate: false
   xy: 152, 428
@@ -4358,21 +4358,14 @@ monsters/eyesore/field/attack/right
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 3
-monsters/eyesore/field/attack/right
-  rotate: false
-  xy: 152, 428
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 2
-monsters/eyesore/field/attack/right
-  rotate: false
-  xy: 152, 428
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
   index: 8
+monsters/eyesore/field/attack/right
+  rotate: false
+  xy: 152, 428
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
 monsters/eyesore/field/attack/right
   rotate: false
   xy: 152, 428
@@ -4386,14 +4379,21 @@ monsters/eyesore/field/attack/right
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 7
-monsters/eyesore/field/cast/right
-  rotate: false
-  xy: 152, 428
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
   index: 2
+monsters/eyesore/field/attack/right
+  rotate: false
+  xy: 152, 428
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 7
+monsters/eyesore/field/cast/right
+  rotate: false
+  xy: 152, 428
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
 monsters/eyesore/field/cast/right
   rotate: false
   xy: 152, 428
@@ -4401,6 +4401,13 @@ monsters/eyesore/field/cast/right
   orig: 64, 64
   offset: 0, 0
   index: 7
+monsters/eyesore/field/cast/right
+  rotate: false
+  xy: 152, 428
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
 monsters/eyesore/field/cast/right
   rotate: false
   xy: 152, 428
@@ -4414,8 +4421,15 @@ monsters/eyesore/field/cast/right
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 3
-monsters/eyesore/field/cast/right
+  index: 2
+monsters/eyesore/field/dead/right
+  rotate: false
+  xy: 152, 428
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 7
+monsters/eyesore/field/dead/right
   rotate: false
   xy: 152, 428
   size: 64, 64
@@ -4435,21 +4449,21 @@ monsters/eyesore/field/dead/right
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 7
-monsters/eyesore/field/dead/right
-  rotate: false
-  xy: 152, 428
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 4
-monsters/eyesore/field/dead/right
+  index: 8
+monsters/eyesore/field/jump/right
   rotate: false
   xy: 152, 428
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 8
+monsters/eyesore/field/jump/right
+  rotate: false
+  xy: 152, 428
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 7
 monsters/eyesore/field/jump/right
   rotate: false
   xy: 152, 428
@@ -4463,20 +4477,6 @@ monsters/eyesore/field/jump/right
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 8
-monsters/eyesore/field/jump/right
-  rotate: false
-  xy: 152, 428
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 3
-monsters/eyesore/field/jump/right
-  rotate: false
-  xy: 152, 428
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
   index: 4
 monsters/eyesore/field/jump/right
   rotate: false
@@ -4484,28 +4484,7 @@ monsters/eyesore/field/jump/right
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 7
-monsters/eyesore/field/ouch/right
-  rotate: false
-  xy: 152, 428
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 8
-monsters/eyesore/field/ouch/right
-  rotate: false
-  xy: 152, 428
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
   index: 3
-monsters/eyesore/field/ouch/right
-  rotate: false
-  xy: 152, 428
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 2
 monsters/eyesore/field/ouch/right
   rotate: false
   xy: 152, 428
@@ -4520,6 +4499,27 @@ monsters/eyesore/field/ouch/right
   orig: 64, 64
   offset: 0, 0
   index: 4
+monsters/eyesore/field/ouch/right
+  rotate: false
+  xy: 152, 428
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+monsters/eyesore/field/ouch/right
+  rotate: false
+  xy: 152, 428
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
+monsters/eyesore/field/ouch/right
+  rotate: false
+  xy: 152, 428
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 8
 monsters/eyesore/field/stand/right
   rotate: false
   xy: 152, 428
@@ -4527,6 +4527,13 @@ monsters/eyesore/field/stand/right
   orig: 64, 64
   offset: 0, 0
   index: 4
+monsters/eyesore/field/stand/right
+  rotate: false
+  xy: 152, 428
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
 monsters/eyesore/field/stand/right
   rotate: false
   xy: 152, 428
@@ -4547,14 +4554,21 @@ monsters/eyesore/field/stand/right
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 3
-monsters/eyesore/field/stand/right
+  index: 8
+monsters/eyesore/field/walk/right
   rotate: false
   xy: 152, 428
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 8
+monsters/eyesore/field/walk/right
+  rotate: false
+  xy: 152, 428
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
 monsters/eyesore/field/walk/right
   rotate: false
   xy: 152, 428
@@ -4568,13 +4582,6 @@ monsters/eyesore/field/walk/right
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 2
-monsters/eyesore/field/walk/right
-  rotate: false
-  xy: 152, 428
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
   index: 7
 monsters/eyesore/field/walk/right
   rotate: false
@@ -4582,21 +4589,7 @@ monsters/eyesore/field/walk/right
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 3
-monsters/eyesore/field/walk/right
-  rotate: false
-  xy: 152, 428
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 8
-monsters/mouthsore/field/dead/right
-  rotate: false
-  xy: 152, 428
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 3
+  index: 2
 monsters/mouthsore/field/dead/right
   rotate: false
   xy: 152, 428
@@ -4617,6 +4610,13 @@ monsters/mouthsore/field/dead/right
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
+  index: 7
+monsters/mouthsore/field/dead/right
+  rotate: false
+  xy: 152, 428
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
   index: 2
 monsters/mouthsore/field/dead/right
   rotate: false
@@ -4624,14 +4624,21 @@ monsters/mouthsore/field/dead/right
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 7
+  index: 3
 monsters/mouthsore/field/jump/right
   rotate: false
   xy: 152, 428
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 2
+  index: 3
+monsters/mouthsore/field/jump/right
+  rotate: false
+  xy: 152, 428
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 7
 monsters/mouthsore/field/jump/right
   rotate: false
   xy: 152, 428
@@ -4652,14 +4659,7 @@ monsters/mouthsore/field/jump/right
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 3
-monsters/mouthsore/field/jump/right
-  rotate: false
-  xy: 152, 428
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 7
+  index: 2
 monsters/eyesore/field/dead/right
   rotate: false
   xy: 548, 418
@@ -4834,20 +4834,13 @@ monsters/eyesore/field/jump/up
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 1
+  index: 10
 monsters/eyesore/field/jump/up
   rotate: false
   xy: 132, 296
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 10
-monsters/eyesore/field/ouch/up
-  rotate: false
-  xy: 132, 296
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
   index: 1
 monsters/eyesore/field/ouch/up
   rotate: false
@@ -4856,6 +4849,13 @@ monsters/eyesore/field/ouch/up
   orig: 64, 64
   offset: 0, 0
   index: 10
+monsters/eyesore/field/ouch/up
+  rotate: false
+  xy: 132, 296
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
 monsters/eyesore/field/stand/up
   rotate: false
   xy: 132, 296
@@ -4876,14 +4876,14 @@ monsters/eyesore/field/walk/up
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 10
+  index: 1
 monsters/eyesore/field/walk/up
   rotate: false
   xy: 132, 296
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 1
+  index: 10
 monsters/mouthsore/field/attack/up
   rotate: false
   xy: 132, 296
@@ -4904,14 +4904,14 @@ monsters/mouthsore/field/dead/up
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 1
+  index: 10
 monsters/mouthsore/field/dead/up
   rotate: false
   xy: 132, 296
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 10
+  index: 1
 monsters/mouthsore/field/jump/up
   rotate: false
   xy: 132, 296
@@ -5793,13 +5793,6 @@ skills/wiccan_cross/battler/wiccan_cross
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
-  index: 20
-skills/wiccan_cross/battler/wiccan_cross
-  rotate: false
-  xy: 1016, 490
-  size: 52, 52
-  orig: 52, 52
-  offset: 0, 0
   index: 21
 skills/wiccan_cross/battler/wiccan_cross
   rotate: false
@@ -5808,6 +5801,13 @@ skills/wiccan_cross/battler/wiccan_cross
   orig: 52, 52
   offset: 0, 0
   index: 19
+skills/wiccan_cross/battler/wiccan_cross
+  rotate: false
+  xy: 1016, 490
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 20
 skills/wiccan_cross/field/wiccan_cross
   rotate: false
   xy: 1016, 490

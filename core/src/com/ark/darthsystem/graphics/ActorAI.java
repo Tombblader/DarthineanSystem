@@ -51,6 +51,7 @@ public class ActorAI extends Player implements Serializable {
         return new ActorAI(temp, getX(), getY());
     }
         
+    @Override
     public void generateBody(OverheadMap map) {
         super.generateBody(map);
         Filter filter = new Filter();
@@ -103,6 +104,7 @@ public class ActorAI extends Player implements Serializable {
             public void event(Actor a) {
                 patrolling = false;
             }
+            @Override
             public boolean update(float delta, Actor a) {
                 final float OFFSET = 1.5f;
                 if (x > (getX()) && x - (getX()) > OFFSET) {
@@ -201,10 +203,21 @@ public class ActorAI extends Player implements Serializable {
                 || AI.Type.Heal == obj.getType()
         ).findFirst();
         if (skillResult.isPresent() && canSkill() && isInRange() && canAttack() && canMove()) {
+            for (int i = 0; i < getTimers().size; i++) {
+                if (getTimers().get(i).getName().equalsIgnoreCase("MOVE")) {
+                    getTimers().removeIndex(i);
+                    i--;
+                }
+            }
             state = SKILL;
         }
-        else
-            if (isInRange() && canAttack() && canMove()) {
+        else if (isInRange() && canAttack() && canMove()) {
+            for (int i = 0; i < getTimers().size; i++) {
+                if (getTimers().get(i).getName().equalsIgnoreCase("MOVE")) {
+                    getTimers().removeIndex(i);
+                    i--;
+                }
+            }
             state = ATTACK;
 //            attack();
         } else if (vision() && canMove()) {

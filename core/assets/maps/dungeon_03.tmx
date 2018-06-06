@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" tiledversion="1.1.3" orientation="orthogonal" renderorder="right-down" width="32" height="24" tilewidth="32" tileheight="32" infinite="0" nextobjectid="6">
- <tileset firstgid="1" source="TileSet.tsx"/>
+ <tileset firstgid="1" source="tileset.tsx"/>
  <layer name="background" width="32" height="24">
   <data encoding="base64" compression="zlib">
    eJxTZmA4oDyweAG5eqWAeqUo0A+1G4yZGBgY6ImR7R61f9T+UftHrv1SA2C/1CCyf6DDf9T+UftH7R/Z9itDxOiJB9JuuBsA8pGF2w==

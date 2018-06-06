@@ -351,8 +351,8 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
         else {
             getCurrentState().update(delta);
         }
-        Gdx.gl.glClearColor(0, 0, 0, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        Gdx.gl30.glClearColor(0, 0, 0, 1);
+        Gdx.gl30.glClear(GL20.GL_COLOR_BUFFER_BIT);
         if (!(getCurrentState() instanceof OverheadMap)) {
             camera.update();
             viewport.apply(true);

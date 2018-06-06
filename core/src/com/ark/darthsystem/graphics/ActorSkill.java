@@ -409,10 +409,6 @@ public class ActorSkill extends ActorCollision {
         }
     }
 
-    public void render(Batch batch) {
-        super.render(batch);
-    }
-
     public void setAnimationFacing() {
         getCurrentImage().setRotation(this.getFacing().getRotate());
     }
@@ -433,6 +429,7 @@ public class ActorSkill extends ActorCollision {
         }
     }
 
+    @Override
     public void update(float delta) {
         setFacing();
         if (translateX != 0) {
@@ -442,6 +439,21 @@ public class ActorSkill extends ActorCollision {
         setAnimationFacing();
     }
 
+    public enum Type {
+        LIGHTNING, // (Powers certain items.  Deals damage to all enemies in WATER tiles.)
+        WIND, // (Blows back enemy)
+        FIRE, // (Set certain things on fire, such as torches)
+        ICE, // (Freeze Water.  All Water spells put out fires.)
+        STONE, // (Creates a stone wall that acts as an obstacle)
+        SHINE, // (Temporarily removes darkness
+        PURIFY, // (Removes festering corruption)
+        CORRUPTION, // (Inflicts corruption on vulnerable creatures and items)
+        SLASH, // (Cuts down things)
+        PIERCE, // (bypass obstacles)
+        SMASH, // Break stone
+        EVENT // Call an Event instead.
+    }
+    
     public enum Area {
 
         ALL,

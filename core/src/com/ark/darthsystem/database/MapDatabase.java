@@ -57,6 +57,7 @@ public class MapDatabase {
         if (f.size > 0) {
             for (FileHandle file : f) {
                 if (file.extension().equalsIgnoreCase("tmx")) {
+                    System.out.println(file.name());
                     maps.put(file.nameWithoutExtension(), new OverheadMap(file.path(), false));
                 }
             }

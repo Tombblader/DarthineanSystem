@@ -48,7 +48,7 @@ public class SoundDatabase {
             while(entries.hasMoreElements()) {
                 final String name = entries.nextElement().getName();
                 if (name.startsWith("sounds/")) { //filter according to the path
-                    f.add(Gdx.files.internal(name));
+                    f.add(Gdx.files.classpath(name));
                 }
             }
             jar.close();
