@@ -101,6 +101,7 @@ public class BattleDriver {
         for (Battler group1 : group) {
             if (group1 != null) {
                 group1.fullHeal();
+                group1.getAllStatus().clear();
                 group1.changeStatus(new Normal());
             }
         }

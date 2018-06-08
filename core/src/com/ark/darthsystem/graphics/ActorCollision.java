@@ -36,6 +36,8 @@ public class ActorCollision extends Actor implements Serializable {
     public static final short CATEGORY_PLAYER_SKILL = 0x0010;
     public static final short CATEGORY_WALLS = 0x0004;
     
+    private static final long serialUID = 123524l;
+    
     private String shapeName;
     private transient Body body;
     private transient Fixture fixture;
@@ -66,15 +68,15 @@ public class ActorCollision extends Actor implements Serializable {
         shapeName = shape;
     }
 
-    public ActorCollision(ActorSprite img, float getX, float getY, float delay) {
-        super(img, getX, getY, delay);
-        shapeName = "basiccircle";
-    }
-
-    public ActorCollision(ActorSprite img, float getX, float getY, float delay, String shape) {
-        super(img, getX, getY, delay);
-        shapeName = shape;
-    }
+//    public ActorCollision(ActorSprite img, float getX, float getY, float delay) {
+//        super(img, getX, getY, delay);
+//        shapeName = "basiccircle";
+//    }
+//
+//    public ActorCollision(ActorSprite img, float getX, float getY, float delay, String shape) {
+//        super(img, getX, getY, delay);
+//        shapeName = shape;
+//    }
 
 //    public void setInitialX(float x) {
 //        initialX = x;
@@ -245,15 +247,26 @@ public class ActorCollision extends Actor implements Serializable {
         if (getCurrentMap() != null) {
             Array<Body> temp = new Array<>(Body.class);
             map.getPhysicsWorld().getBodies(temp);
-            for (Body b : temp) {
-                if (b.getUserData() != null && b.getUserData().equals(this)) {
-                    map.removeBody(b);
-                }
-            }
+            map.removeActor(this);
         }
         setCurrentMap(map);
         map.addBody(this);
     }
+
+    public void setMap(String map) {
+        OverheadMap newMap = MapDatabase.getMaps().get(map);
+        if (getCurrentMap() != null) {
+            Array<Body> temp = new Array<>(Body.class);
+            newMap.getPhysicsWorld().getBodies(temp);
+            for (Body b : temp) {
+                if (b.getUserData() != null && b.getUserData().equals(this)) {
+                    newMap.removeBody(b);
+                }
+            }
+        }
+        setCurrentMap(newMap);
+        newMap.addBody(this);
+    }    
     
     public void setSensorFilter(short category, short mask) {
         Filter f = new Filter();
@@ -265,14 +278,14 @@ public class ActorCollision extends Actor implements Serializable {
     public void update(float delta) {
         super.update(delta);
         if (body != null) {
-            setX(Math.round(body.getPosition().x * 1000f) / 1000f);
-            setY(Math.round(body.getPosition().y * 1000f) / 1000f);
+            setX(Math.round(body.getPosition().x * 32f) / 32f);
+            setY(Math.round(body.getPosition().y * 32f) / 32f);
         }
     }
     public void setBodyX(float x) {
-        body.getPosition().x = x;
+        body.setTransform(x, body.getPosition().y, body.getAngle());
     }
     public void setBodyY(float y) {
-        body.getPosition().y = y;
+        body.setTransform(body.getPosition().x, y, body.getAngle());
     }
 }

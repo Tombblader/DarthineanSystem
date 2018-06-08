@@ -33,6 +33,8 @@ import com.badlogic.gdx.physics.box2d.Filter;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.RayCastCallback;
 import com.badlogic.gdx.utils.Array;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -87,7 +89,7 @@ public class Player extends ActorCollision implements Serializable {
     private boolean hasEvent;
 
     public Player(ArrayList<ActorBattler> getBattler, float getX, float getY) {
-        super(getBattler.get(0).getSprite(), getX, getY, DELAY);
+        super(getBattler.get(0).getSprite().getMasterSpriteSheet() + "/field/stand/down", getX, getY, DELAY);
         party = getBattler;
         initialize();
     }
@@ -108,7 +110,8 @@ public class Player extends ActorCollision implements Serializable {
         font.setUseIntegerPositions(false);
         gen.dispose();
         checkStatusEffects();
-        setControls();        
+        setControls();
+//        setMap(getCurrentMapName());
     }
 
     
@@ -383,36 +386,6 @@ public class Player extends ActorCollision implements Serializable {
                         @Override
                         public boolean update(float delta, Actor a) {
                             stat.updateFieldStatus(Player.this, b, this, delta);
-        //                    switch (b.getStatus()) {
-        ////                        case Sleep:
-        ////                        case Paralyze:
-        ////                        case Stun:
-        ////                        case Petrify:
-        ////                            if (Player.this.getCurrentBattler().getBattler().equals(b)) {
-        ////                                Player.this.disableMovement();
-        ////                            } else {
-        ////                                Player.this.enableMovement();
-        ////                            }
-        ////                            
-        ////                            break;
-        //                        case Silence:
-        ////                            if (Player.this.getCurrentBattler().getBattler().equals(b)) {
-        ////                                Player.this.setCanSkill(false);                            
-        ////                            } else {
-        ////                                Player.this.setCanSkill(true);                            
-        ////                            }
-        //                            break;
-        //                        case Fog:
-        //                            break;
-        //                        case Confuse:
-        //                            int random = ((int)(Math.random() * 2)) - 1;
-        //                            Player.this.getMainBody().setLinearVelocity(random * getSpeed() * (float) (delta), Player.this.getMainBody().getLinearVelocity().y);
-        //                            Player.this.changeX(random);
-        //                            random = ((int)(Math.random() * 2)) - 1;
-        //                            Player.this.getMainBody().setLinearVelocity(Player.this.getMainBody().getLinearVelocity().x, random * getSpeed() * (float) (delta));
-        //                            Player.this.changeY(random);
-        //                            break;
-        //                    }
                             return super.update(delta, a);
                         }
 
@@ -427,17 +400,11 @@ public class Player extends ActorCollision implements Serializable {
     }
 
     public void setMap(OverheadMap map, float x, float y) { 
-//        setInitialX(x);
-//        setInitialY(y);
         setX(x);
         setY(y);
         super.setMap(map);
     }
     
-    public void render(Batch batch) {
-        super.render(batch);
-    }
-
     public float getBaseSpeed() {
         return SPEED;
     }
@@ -665,9 +632,9 @@ public class Player extends ActorCollision implements Serializable {
         if (totalPartyKill()) {
             return;
         }
-        currentBattlerIndex = index;
+//        currentBattlerIndex = index;
         if (!party.isEmpty()) {
-//            Collections.rotate(party, -1);
+            Collections.rotate(party, -index);
 
             while (!party.get(0).getBattler().isAlive()) {
                 Collections.rotate(party, -1);
@@ -782,6 +749,10 @@ public class Player extends ActorCollision implements Serializable {
         }); 
     }
     
+    public ActorSprite getSpriteSheet() {
+        return currentBattler.getSprite();
+    }
+    
     public void addButtonEvent(Event e) {
         eventQueue.add(e);
     }
@@ -833,6 +804,11 @@ public class Player extends ActorCollision implements Serializable {
 
     }
 
+    private void readObject(ObjectInputStream in) throws IOException,ClassNotFoundException {
+        in.defaultReadObject();
+        initialize();
+    }    
+    
     
     public void ouch() {
         fieldState = ActorSprite.SpriteModeField.OUCH;

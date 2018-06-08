@@ -478,12 +478,17 @@ public class OverheadMap implements State {
         if (a instanceof ActorCollision) {
             Array<Body> temp = new Array<>();
             world.getBodies(temp);
-            if (!deleteQueue.contains(((ActorCollision) (a)).getMainBody(), true) && temp.contains(((ActorCollision) (a)).getMainBody(), true)) {
-                deleteQueue.add(((ActorCollision) (a)).getMainBody());
+            for (Body b : temp) {
+                if (b.getUserData() != null && b.getUserData().equals(a)) {
+                    deleteQueue.add(b);
+                }
             }
-            if (!deleteQueue.contains(((ActorCollision) (a)).getSensorBody(), true) && temp.contains(((ActorCollision) (a)).getSensorBody(), true)) {
-                deleteQueue.add(((ActorCollision) (a)).getSensorBody());
-            }
+//            if (!deleteQueue.contains(((ActorCollision) (a)).getMainBody(), true) && temp.contains(((ActorCollision) (a)).getMainBody(), true)) {
+//                deleteQueue.add(((ActorCollision) (a)).getMainBody());
+//            }
+//            if (!deleteQueue.contains(((ActorCollision) (a)).getSensorBody(), true) && temp.contains(((ActorCollision) (a)).getSensorBody(), true)) {
+//                deleteQueue.add(((ActorCollision) (a)).getSensorBody());
+//            }
         }
     }
 

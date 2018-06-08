@@ -13,6 +13,8 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.Serializable;
 
 /**
@@ -27,7 +29,7 @@ public class Actor implements Serializable {
     private transient Animation<Sprite> animation;
     private transient Sprite currentImage;
     private transient OverheadMap currentMap;
-    private transient String currentMapName;
+    private String currentMapName;
     private float delay;
     private boolean destroyAfterAnimation;
     private float elapsed = 0f;
@@ -77,7 +79,7 @@ public class Actor implements Serializable {
             float getX,
             float getY,
             float delay) {
-        this.xFacingBias = Facing.DOWN;
+        this();
         x = getX;
         y = getY;
         this.delay = delay;
@@ -86,13 +88,10 @@ public class Actor implements Serializable {
         if (images != null && images.length > 0) {
             animation = new Animation<>(delay, new Array<>(images));
             animation.setPlayMode(PlayMode.LOOP);
-            animation.setFrameDuration(delay);
             currentImage = (Sprite) animation.getKeyFrame(0);
         }
-        speed = 0;
+        isMovable = true;
         destroyAfterAnimation = false;
-        facing = Facing.RIGHT;
-        isRotate = false;
     }
 
     public Actor(String img,
@@ -103,28 +102,27 @@ public class Actor implements Serializable {
         this(img, getX, getY, delay);
         destroyAfterAnimation = destroy;
         animation.setPlayMode(destroy ? PlayMode.NORMAL : PlayMode.LOOP);
-        isRotate = false;
     }
 
-    public Actor(ActorSprite img,
-            float getX,
-            float getY,
-            float delay) {
-        this.xFacingBias = Facing.DOWN;
-        sprite = img;
-        x = getX;
-        y = getY;
-        animation = sprite.getFieldAnimation(ActorSprite.SpriteModeField.STAND, Facing.DOWN);
-        animation.setPlayMode(PlayMode.LOOP);
-        animation.setFrameDuration(delay);        
-        currentImage = (Sprite) animation.getKeyFrame(elapsed);
-        isMovable = true;
-        speed = 0;
-        this.delay = delay;
-        destroyAfterAnimation = false;
-        facing = Facing.RIGHT;
-        isRotate = false;
-    }
+//    public Actor(ActorSprite img,
+//            float getX,
+//            float getY,
+//            float delay) {
+//        this.xFacingBias = Facing.DOWN;
+//        sprite = img;
+//        x = getX;
+//        y = getY;
+//        animation = sprite.getFieldAnimation(ActorSprite.SpriteModeField.STAND, Facing.DOWN);
+//        animation.setPlayMode(PlayMode.LOOP);
+//        animation.setFrameDuration(delay);        
+//        currentImage = (Sprite) animation.getKeyFrame(elapsed);
+//        isMovable = true;
+//        speed = 0;
+//        this.delay = delay;
+//        destroyAfterAnimation = false;
+//        facing = Facing.RIGHT;
+//        isRotate = false;
+//    }
 
     public void addTimer(GameTimer t) {
         timers.add(t);
@@ -253,9 +251,9 @@ public class Actor implements Serializable {
         this.speed = speed;
     }
 
-    public ActorSprite getSpriteSheet() {
-        return sprite;
-    }
+//    public ActorSprite getSpriteSheet() {
+//        return sprite;
+//    }
     public Array<GameTimer> getTimers() {
         return timers;
     }
@@ -282,12 +280,11 @@ public class Actor implements Serializable {
 //                animation.getAnimationDuration() >= elapsed;
 //                animation.getKeyFrameIndex(elapsed) >= animation.getKeyFrames().length;
     }
-//    public boolean isInvulnerable() {
-//        return isInvulnerable;
-//    }
+
     public boolean isRotate() {
         return isRotate;
     }
+    
     public void render(Batch batch) {
         if (currentImage != null) {
             batch.draw(currentImage,
@@ -302,6 +299,7 @@ public class Actor implements Serializable {
                     currentImage.getRotation());
         }
     }
+    
     public void resetAnimation() {
         if (images != null && images.length > 0) {
             elapsed = 0;
@@ -309,6 +307,7 @@ public class Actor implements Serializable {
             currentImage = (Sprite) animation.getKeyFrame(0);
         }
     }
+    
     public void setFacing() {
         if (lastXFacing > 0) {
             xFacingBias = Facing.RIGHT;
@@ -331,6 +330,7 @@ public class Actor implements Serializable {
     }
     
     public void setMap(OverheadMap map) {
+        currentMapName = map.getMapName();
         currentMap = map;
         setX(x);
         setY(y);
@@ -338,6 +338,10 @@ public class Actor implements Serializable {
     
     public void setCurrentMap(OverheadMap map) {
         currentMap = map;
+    }
+    
+    public void setMapName(String map) {
+        currentMapName = map;
     }
     
     public void update(float delta) {
@@ -413,6 +417,13 @@ public class Actor implements Serializable {
         this.currentMapName = currentMapName;
     }
     
-    
+    private void readObject(ObjectInputStream in) throws IOException,ClassNotFoundException {
+        in.defaultReadObject();
+        images = GraphicsDriver.getMasterSheet().createSprites(imageName).toArray(Sprite.class);
+        animation = new Animation<>(delay, images);
+        animation.setPlayMode(destroyAfterAnimation ? PlayMode.NORMAL : PlayMode.LOOP);
+        currentImage = (Sprite) animation.getKeyFrame(0);
+        
+    }    
 
 }

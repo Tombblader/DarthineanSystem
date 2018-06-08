@@ -76,7 +76,7 @@ public class ItemDatabase {
                     data[++i], //Description
                     Integer.parseInt(data[++i]), //Market Price
                     Integer.parseInt(data[++i]), //Charges
-                    SkillDatabase.SKILL_LIST.get(data[++i]), //Skill Effect
+                    SkillDatabase.SKILL_LIST.get(data[++i].toUpperCase()), //Skill Effect
                     Boolean.valueOf(data[++i].toLowerCase()) //Is All?
                     ));
             

@@ -13,7 +13,10 @@ import com.ark.darthsystem.graphics.Actor;
 import com.ark.darthsystem.*;
 import static com.ark.darthsystem.database.CharacterDatabase.*;
 import com.ark.darthsystem.states.events.*;
+import com.badlogic.gdx.Gdx;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -133,23 +136,37 @@ public class Database2 {
         if (!load.equals("")) {
             try {
                 Database1.load(load);
+                Database2.load(load);
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
                 new Database1();
+                new CharacterDatabase();
+                ActorBattler[] battlers;
+                battlers = new ActorBattler[]{
+                    Water_Spirit_Battler
+                };
+                player = new Player(new ArrayList<>(Arrays.asList(battlers)), 0, 0);
             }
         } else {
             new Database1();
+            new CharacterDatabase();
+            ActorBattler[] battlers;
+            battlers = new ActorBattler[]{
+                Water_Spirit_Battler
+            };
+            player = new Player(new ArrayList<>(Arrays.asList(battlers)), 0, 0);
         }
         new CharacterDatabase();
         new MonsterDatabase();
         
-//        Database2.ProtoxAI = new ActorAI(new ArrayList<>(Arrays.asList(new ActorBattler[]{new ActorBattler(new BattlerAI("Protox Toxorp", Database1.Protox, Scenario.Standard, 50, null, 0), DarthSprite)})), 500, 400);
-        ActorBattler[] battlers;
-
-        battlers = new ActorBattler[]{
-            Water_Spirit_Battler
-        };
-        player = new Player(new ArrayList<>(Arrays.asList(battlers)), 0, 0);
+    }
+    
+    public static void load(String fileName)
+            throws FileNotFoundException, IOException, ClassNotFoundException {
+        try (ObjectInputStream objectStream
+                = new ObjectInputStream(Gdx.files.local(fileName).read())) {
+            player = (Player) objectStream.readObject();
+        }        
     }
     
     public Database2() {
