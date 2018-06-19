@@ -248,9 +248,11 @@ public class ActorAI extends Player implements Serializable {
                 moveTowardsPlayer(delta);
                 break;
             case ATTACK:
+                setFacing();
                 attack();
                 break;
             case SKILL:
+                setFacing();
                 skill();
             case RECHARGE:
                 break;

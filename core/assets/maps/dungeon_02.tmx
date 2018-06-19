@@ -47,7 +47,7 @@
  <objectgroup name="collisionactors"/>
  <layer name="overlay" width="38" height="24">
   <data encoding="base64" compression="zlib">
-   eJztzrENADAMw7AMfaT/P5m1H9QGSEC7Znqc3wOPG1LLV4LULwAAaLEeTQjq
+   eJztzsEJAEAIBDFbkeu/R79eByskMP+p+r1VkrSvDunKV4LULwAAuGIASmIJuA==
   </data>
  </layer>
 </map>

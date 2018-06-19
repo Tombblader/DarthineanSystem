@@ -6,6 +6,7 @@
 package com.ark.darthsystem.graphics;
 
 import com.ark.darthsystem.Action;
+import com.ark.darthsystem.Nameable;
 import com.ark.darthsystem.database.SoundDatabase;
 import com.ark.darthsystem.Skill;
 import com.ark.darthsystem.database.Database1;
@@ -13,7 +14,6 @@ import com.ark.darthsystem.states.Battle;
 import com.ark.darthsystem.states.OverheadMap;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
@@ -22,24 +22,27 @@ import com.badlogic.gdx.physics.box2d.Joint;
 import com.badlogic.gdx.physics.box2d.joints.WeldJoint;
 import com.badlogic.gdx.physics.box2d.joints.WeldJointDef;
 import com.badlogic.gdx.utils.Array;
+import java.util.ArrayList;
 
 /**
  *
  * @author trankt1
  */
-public class ActorSkill extends ActorCollision {
+public class FieldSkill extends ActorCollision implements Nameable {
 
     private float aftercastDelay = 0;
     private Area area;
-    private transient Actor battlerAnimation;
-
-    private transient Sound battlerSound;
+//    private transient Actor battlerAnimation;
+    private String fieldSoundName;
+//    private String battlerSoundName;
+//    private transient Sound battlerSound;
     private float chargeTime = 0;
     private transient Sound fieldSound;
     private transient Player invoker;
     private transient WeldJoint joint;
-    private String originalBattlerImageName;
-    private transient Sprite[] originalBattlerImage;
+//    private String originalBattlerImageName;
+//    private transient Sprite[] originalBattlerImage;
+    private ArrayList<Type> tags;
     private String originalFieldImageName;
     private transient Sprite[] originalFieldImage;
     private float relX;
@@ -47,17 +50,20 @@ public class ActorSkill extends ActorCollision {
     private Skill skill;
     private float translateX;
     private float translateY;
+    private String name;
+    private String description;
+    private ActorSprite.SpriteModeField castImageName;
 
-    public ActorSkill(String img,
+    public FieldSkill(String img,
             float getX,
             float getY,
             float delay,
             Skill getSkill) {
         super(img, getX, getY, delay, true);
+        this.tags = new ArrayList<>();
         this.fieldSound = SoundDatabase.fieldSwordSound;
-        this.battlerSound = SoundDatabase.battlerSwordSound;
+//        this.battlerSound = SoundDatabase.battlerSwordSound;
         originalFieldImageName = img;
-        originalBattlerImageName = "";
         try {
             originalFieldImage = GraphicsDriver.getMasterSheet().createSprites(img).toArray(Sprite.class);
         } catch (Exception e) {
@@ -77,17 +83,17 @@ public class ActorSkill extends ActorCollision {
         area = Area.FRONT;
     }
     
-    public ActorSkill(String img,
+    public FieldSkill(String img,
             float getX,
             float getY,
             float delay,
             Skill getSkill,
             String shape) {
         super(img, getX, getY, delay, true, shape);
+        this.tags = new ArrayList<>();
         this.fieldSound = SoundDatabase.fieldSwordSound;
-        this.battlerSound = SoundDatabase.battlerSwordSound;
+//        this.battlerSound = SoundDatabase.battlerSwordSound;
         originalFieldImageName = img;
-        originalBattlerImageName = "";
         try {
             originalFieldImage = GraphicsDriver.getMasterSheet().createSprites(img).toArray(Sprite.class);
         } catch (Exception e) {
@@ -107,18 +113,18 @@ public class ActorSkill extends ActorCollision {
         area = Area.FRONT;
     }
 
-    public ActorSkill(String img,
+    public FieldSkill(String img,
             float getX,
             float getY,
             float delay,
             Skill getSkill,
             Area getArea) {
         this(img, getX, getY, delay, getSkill);
+        this.tags = new ArrayList<>();
         this.fieldSound = SoundDatabase.fieldSwordSound;
-        this.battlerSound = SoundDatabase.battlerSwordSound;
         area = getArea;
     }
-    public ActorSkill(String img,
+    public FieldSkill(String img,
             float getX,
             float getY,
             float delay,
@@ -126,12 +132,12 @@ public class ActorSkill extends ActorCollision {
             Area getArea,
             String shape) {
         this(img, getX, getY, delay, getSkill, shape);
+        this.tags = new ArrayList<>();
         this.fieldSound = SoundDatabase.fieldSwordSound;
-        this.battlerSound = SoundDatabase.battlerSwordSound;
         area = getArea;
     }
 
-    public ActorSkill(String img,
+    public FieldSkill(String img,
             String battlerImg,
             float getX,
             float getY,
@@ -139,23 +145,23 @@ public class ActorSkill extends ActorCollision {
             Skill getSkill,
             Area getArea) {
         this(img, getX, getY, delay, getSkill, getArea);
+        this.tags = new ArrayList<>();
         this.fieldSound = SoundDatabase.fieldSwordSound;
-        this.battlerSound = SoundDatabase.battlerSwordSound;
-        originalBattlerImageName = battlerImg;
-        try {
-            originalBattlerImage = GraphicsDriver.getMasterSheet().createSprites(battlerImg).toArray(Sprite.class);
-        } catch (Exception e) {
-            e.printStackTrace();
-            originalBattlerImage = GraphicsDriver.getMasterSheet().createSprites("skills/wiccan_cross/battler/wiccan_cross").toArray(Sprite.class);
-        }        
-        for (Sprite s : originalBattlerImage) {
-            s.setCenter(s.getWidth() / 2f, s.getHeight() / 2f);
-            s.setOriginCenter();
-        }
-        battlerAnimation = new Actor(originalBattlerImageName, 0, 0, delay, true);
+//        originalBattlerImageName = battlerImg;
+//        try {
+//            originalBattlerImage = GraphicsDriver.getMasterSheet().createSprites(battlerImg).toArray(Sprite.class);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            originalBattlerImage = GraphicsDriver.getMasterSheet().createSprites("skills/wiccan_cross/battler/wiccan_cross").toArray(Sprite.class);
+//        }        
+//        for (Sprite s : originalBattlerImage) {
+//            s.setCenter(s.getWidth() / 2f, s.getHeight() / 2f);
+//            s.setOriginCenter();
+//        }
+//        battlerAnimation = new Actor(originalBattlerImageName, 0, 0, delay, true);
     }
 
-    public ActorSkill(String img,
+    public FieldSkill(String img,
             String battlerImg,
             float getX,
             float getY,
@@ -164,24 +170,24 @@ public class ActorSkill extends ActorCollision {
             Area getArea,
             String shape) {
         this(img, getX, getY, delay, getSkill, getArea, shape);
+        this.tags = new ArrayList<>();
         this.fieldSound = SoundDatabase.fieldSwordSound;
-        this.battlerSound = SoundDatabase.battlerSwordSound;
-        originalBattlerImageName = battlerImg;
-        try {
-            originalBattlerImage = GraphicsDriver.getMasterSheet().createSprites(battlerImg).toArray(Sprite.class);
-        } catch (Exception e) {
-            e.printStackTrace();
-            originalBattlerImage = GraphicsDriver.getMasterSheet().createSprites("skills/wiccan_cross/battler/wiccan_cross").toArray(Sprite.class);
-        }        
-        for (Sprite s : originalBattlerImage) {
-            s.setCenter(s.getWidth() / 2f, s.getHeight() / 2f);
-            s.setOriginCenter();
-        }
-        battlerAnimation = new Actor(originalBattlerImageName, 0, 0, delay, true);
+//        originalBattlerImageName = battlerImg;
+//        try {
+//            originalBattlerImage = GraphicsDriver.getMasterSheet().createSprites(battlerImg).toArray(Sprite.class);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            originalBattlerImage = GraphicsDriver.getMasterSheet().createSprites("skills/wiccan_cross/battler/wiccan_cross").toArray(Sprite.class);
+//        }        
+//        for (Sprite s : originalBattlerImage) {
+//            s.setCenter(s.getWidth() / 2f, s.getHeight() / 2f);
+//            s.setOriginCenter();
+//        }
+//        battlerAnimation = new Actor(originalBattlerImageName, 0, 0, delay, true);
     }
     
     
-    public ActorSkill(String img,
+    public FieldSkill(String img,
             float getX,
             float getY,
             int translateX,
@@ -189,14 +195,15 @@ public class ActorSkill extends ActorCollision {
             int delay,
             Skill getSkill) {
         this(img, getX, getY, delay, getSkill);
+        this.tags = new ArrayList<>();
         this.fieldSound = SoundDatabase.fieldSwordSound;
-        this.battlerSound = SoundDatabase.battlerSwordSound;
+//        this.battlerSound = SoundDatabase.battlerSwordSound;
         this.translateX = translateX;
         this.translateY = translateY;
         area = Area.FRONT;
     }
 
-    public ActorSkill(String img,
+    public FieldSkill(String img,
             String battlerImg,
             float getX,
             float getY,
@@ -205,12 +212,12 @@ public class ActorSkill extends ActorCollision {
             Skill getSkill,
             Area getArea) {
         this(img, battlerImg, getX, getY, delay, getSkill, getArea);
+        this.tags = new ArrayList<>();
         this.fieldSound = SoundDatabase.fieldSwordSound;
-        this.battlerSound = SoundDatabase.battlerSwordSound;
         chargeTime = castTime;
     }
 
-    public ActorSkill(String img,
+    public FieldSkill(String img,
             String battlerImg,
             float getX,
             float getY,
@@ -222,12 +229,11 @@ public class ActorSkill extends ActorCollision {
             Area getArea) {
         this(img, battlerImg, getX, getY, delay, castTime, getSkill, getArea);
         this.fieldSound = SoundDatabase.fieldSwordSound;
-        this.battlerSound = SoundDatabase.battlerSwordSound;
         translateX = getTranslateX;
         translateY = getTranslateY;
     }
     
-    public ActorSkill(String img,
+    public FieldSkill(String img,
             float getX,
             float getY,
             float getTranslateX,
@@ -239,8 +245,9 @@ public class ActorSkill extends ActorCollision {
             Area getArea,
             String shape) {
         super(img, getX, getY, fps, true, shape);
+        this.tags = new ArrayList<>();
         this.fieldSound = SoundDatabase.fieldSwordSound;
-        this.battlerSound = SoundDatabase.battlerSwordSound;
+//        this.battlerSound = SoundDatabase.battlerSwordSound;
         originalFieldImageName = img;
         try {
             originalFieldImage = GraphicsDriver.getMasterSheet().createSprites("skills/" + img + "/field/" + img).toArray(Sprite.class);
@@ -252,16 +259,12 @@ public class ActorSkill extends ActorCollision {
             s.setCenter(s.getWidth() / 2f, s.getHeight() / 2f);
             s.setOriginCenter();
         }
-        try {
-            originalBattlerImage = GraphicsDriver.getMasterSheet().createSprites("skills/" + img + "/battler/" + img).toArray(Sprite.class);
-        } catch (Exception e) {
-            e.printStackTrace();
-            originalBattlerImage = GraphicsDriver.getMasterSheet().createSprites("skills/wiccan_cross/battler/wiccan_cross").toArray(Sprite.class);
-        }
-        for (Sprite s : originalFieldImage) {
-            s.setCenter(s.getWidth() / 2f, s.getHeight() / 2f);
-            s.setOriginCenter();
-        }
+//        try {
+//            originalBattlerImage = GraphicsDriver.getMasterSheet().createSprites("skills/" + img + "/battler/" + img).toArray(Sprite.class);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            originalBattlerImage = GraphicsDriver.getMasterSheet().createSprites("skills/wiccan_cross/battler/wiccan_cross").toArray(Sprite.class);
+//        }
         relX = getX;
         relY = getY;
         chargeTime = castTime;
@@ -271,6 +274,53 @@ public class ActorSkill extends ActorCollision {
         translateY = getTranslateY;
         area = getArea;
     }
+    
+    public FieldSkill(String name,
+            String castImg,
+            String img,
+            String fieldSoundName,
+            String[] tags,
+            float getX,
+            float getY,
+            float getTranslateX,
+            float getTranslateY,
+            float fps,
+            float castTime,
+            float delay,
+            Skill getSkill,
+            Area getArea,
+            String shape) {
+        this(img, getX, getY, getTranslateX, getTranslateY, fps, castTime, delay, getSkill, getArea, shape);
+        this.castImageName = ActorSprite.SpriteModeField.valueOf(castImg);
+        this.tags = new ArrayList<>();
+        for (String tag : tags) {
+            this.tags.add(Type.valueOf(tag));
+        }
+        this.fieldSoundName = fieldSoundName.toUpperCase();
+        fieldSound = SoundDatabase.SOUNDS.get(this.fieldSoundName);        
+    }
+    
+   public FieldSkill(String name,
+            ActorSprite.SpriteModeField castImg,
+            String img,
+            Sound fieldSound,
+            ArrayList<Type> tags,
+            float getX,
+            float getY,
+            float getTranslateX,
+            float getTranslateY,
+            float fps,
+            float castTime,
+            float delay,
+            Skill getSkill,
+            Area getArea,
+            String shape) {
+        this(img, getX, getY, getTranslateX, getTranslateY, fps, castTime, delay, getSkill, getArea, shape);
+        this.castImageName = castImg;
+        this.tags = tags;
+        this.fieldSound = fieldSound;        
+    }    
+    
     
     /**
      * Generate the physics body of this actor.
@@ -360,20 +410,6 @@ public class ActorSkill extends ActorCollision {
         return skill;
     }
 
-    public Actor getBattlerAnimation() {
-        return battlerAnimation;
-    }
-
-    public Actor getBattlerAnimation(float x, float y) {
-        battlerAnimation.setX(x);
-        battlerAnimation.setY(y);
-        return battlerAnimation;
-    }
-
-    public Sound getBattlerSound() {
-        return battlerSound;
-    }
-
     public void setX(ActorCollision a) {
         super.changeX(a.getFacing().getX());
         if (area != Area.SELF) {
@@ -392,14 +428,6 @@ public class ActorSkill extends ActorCollision {
         }
     }
 
-    public void playBattlerSound() {
-        try {
-            battlerSound.play();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
     public void playFieldSound() {
         try {
             fieldSound.stop();
@@ -411,14 +439,6 @@ public class ActorSkill extends ActorCollision {
 
     public void setAnimationFacing() {
         getCurrentImage().setRotation(this.getFacing().getRotate());
-    }
-
-    public void stopBattlerSound() {
-        try {
-            battlerSound.stop();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     public void stopFieldSound() {
@@ -439,69 +459,10 @@ public class ActorSkill extends ActorCollision {
         setAnimationFacing();
     }
 
-    public enum Type {
-        LIGHTNING, // (Powers certain items.  Deals damage to all enemies in WATER tiles.)
-        WIND, // (Blows back enemy)
-        FIRE, // (Set certain things on fire, such as torches)
-        ICE, // (Freeze Water.  All Water spells put out fires.)
-        STONE, // (Creates a stone wall that acts as an obstacle)
-        SHINE, // (Temporarily removes darkness
-        PURIFY, // (Removes festering corruption)
-        CORRUPTION, // (Inflicts corruption on vulnerable creatures and items)
-        SLASH, // (Cuts down things)
-        PIERCE, // (bypass obstacles)
-        SMASH, // Break stone
-        EVENT // Call an Event instead.
-    }
-    
-    public enum Area {
 
-        ALL,
-        BOOMERANG,
-        CONE,
-        CROSS,
-        FRONT,
-        LINE,
-        SELF,
-        SELF_BENEFIT,
-        RADIUS,
-        SPHERE;
-
-        private int translateX;
-        private int translateY;
-
-        float updateX(float delta, Facing f) {
-            switch (this) {
-                case SELF:
-                case SELF_BENEFIT:
-                    return 0;
-                case FRONT:
-                    return translateX * f.getX();
-                case LINE:
-                    return f.getX();
-                case RADIUS:
-                    break;
-                case CROSS:
-                    break;
-                case CONE:
-                    break;
-                case SPHERE:
-                    break;
-                case BOOMERANG:
-                    break;
-                default:
-                    while (true) {
-                        System.out.println("You shouldn't have done that.");
-                    }
-            }
-            return 0;
-        }
-
-    }
-
-    public ActorSkill clone() {
-        ActorSkill a = new ActorSkill(originalFieldImageName,
-                originalBattlerImageName,
+    public FieldSkill placeOnMap() {
+        FieldSkill a = new FieldSkill(originalFieldImageName,
+                originalFieldImageName,
                 relX,
                 relY,
                 translateX,
@@ -527,7 +488,7 @@ public class ActorSkill extends ActorCollision {
 
     public void activateRush(Player player) {
             setInvoker(invoker);
-            ActorSkill tempSkill = clone();
+            FieldSkill tempSkill = placeOnMap();
             Array<Sprite> s = new Array<>();
             Animation leftAnimation;
             for (Object r : tempSkill.getCurrentAnimation().getKeyFrames()) {
@@ -623,8 +584,8 @@ public class ActorSkill extends ActorCollision {
     }
     
     public void activate(Player player, ActorBattler caster, ActorBattler target) {
-        ActorSkill tempSkill;
-        tempSkill = clone();
+        FieldSkill tempSkill;
+        tempSkill = placeOnMap();
         if (caster.activateCurrentSkill() != null) {
             if (player.getFacing().getX() == -1) {
                 Array<Sprite> s = new Array<>(Sprite.class);
@@ -689,6 +650,74 @@ public class ActorSkill extends ActorCollision {
                 }
             });
         }
+    }
+
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public String getDescription() {
+        return skill != null ? skill.getDescription() : "";
+    }
+    public enum Type {
+        LIGHTNING, // (Powers certain items.  Deals damage to all enemies in WATER tiles.)
+        WIND, // (Blows back enemy)
+        FIRE, // (Set certain things on fire, such as torches)
+        ICE, // (Freeze Water.  All Water spells put out fires.)
+        STONE, // (Creates a stone wall that acts as an obstacle)
+        SHINE, // (Temporarily removes darkness
+        PURIFY, // (Removes festering corruption)
+        CORRUPTION, // (Inflicts corruption on vulnerable creatures and items)
+        SLASH, // (Cuts down things)
+        PIERCE, // (bypass obstacles)
+        SMASH, // Break stone
+        EVENT // Call an Event instead.
+    }
+    
+    public enum Area {        
+        ALL,
+        BOOMERANG,
+        CONE,
+        CROSS,
+        FRONT,
+        LINE,
+        SELF,
+        SELF_BENEFIT,
+        RADIUS,
+        SPHERE;
+        
+        private int translateX;
+        private int translateY;
+        
+        float updateX(float delta, Facing f) {
+            switch (this) {
+                case SELF:
+                case SELF_BENEFIT:
+                    return 0;
+                case FRONT:
+                    return translateX * f.getX();
+                case LINE:
+                    return f.getX();
+                case RADIUS:
+                    break;
+                case CROSS:
+                    break;
+                case CONE:
+                    break;
+                case SPHERE:
+                    break;
+                case BOOMERANG:
+                    break;
+                default:
+                    while (true) {
+                        System.out.println("You shouldn't have done that.");
+                    }
+            }
+            return 0;
+        }
+        
     }
 
 }

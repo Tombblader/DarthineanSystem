@@ -14,7 +14,7 @@ import com.ark.darthsystem.graphics.Actor;
 import com.ark.darthsystem.graphics.ActorAI;
 import com.ark.darthsystem.graphics.ActorBattler;
 import com.ark.darthsystem.graphics.ActorCollision;
-import com.ark.darthsystem.graphics.ActorSkill;
+import com.ark.darthsystem.graphics.FieldSkill;
 import com.ark.darthsystem.graphics.GameTimer;
 import com.ark.darthsystem.graphics.GraphicsDriver;
 import com.ark.darthsystem.graphics.Input;
@@ -251,8 +251,9 @@ public class OverheadMap implements State {
         ppt = PlayerCamera.PIXELS_TO_METERS;
 //        MapObjects objects = map.getLayers().get("collision").getObjects();
         Array<Body> bodies = new Array<>();
-        for (MapLayer layer : renderer.getMap().getLayers()) {
-            if (layer != null && layer instanceof TiledMapTileLayer) {
+        for (int i = 0; i < renderer.getMap().getLayers().size(); i++) {
+            MapLayer layer = renderer.getMap().getLayers().get(i);
+            if (layer != null && layer instanceof TiledMapTileLayer && i <= DRAW_SPRITES_AFTER_LAYER) {
                 TiledMapTileLayer tileLayer = (TiledMapTileLayer) layer;
                 for (int x = 0; x < tileLayer.getWidth(); x++) {
                     for (int y = 0; y < tileLayer.getHeight(); y++) {
@@ -261,7 +262,6 @@ public class OverheadMap implements State {
                                 if (object == null) {
                                     continue;
                                 }
-
                                 Body b = genTile(object);
                                 if (b != null) {
                                     b.setTransform(x, y, 0);
@@ -322,8 +322,8 @@ public class OverheadMap implements State {
             filter.maskBits = ActorCollision.CATEGORY_AI | ActorCollision.CATEGORY_PLAYER;
         } else if (properties.get("type", String.class).equalsIgnoreCase("event")) {
             body.setUserData(addEventFromMap(object));
-            filter.categoryBits = ActorCollision.CATEGORY_EVENT;
-            f.setSensor(true);
+            filter.categoryBits = (short) (ActorCollision.CATEGORY_EVENT | (properties.get("collisionType", String.class).equalsIgnoreCase("WALL") ? ActorCollision.CATEGORY_WALLS : 0));
+            f.setSensor(!properties.get("collisionType", String.class).equalsIgnoreCase("WALL"));
             filter.maskBits = ActorCollision.CATEGORY_PLAYER;
         }
 
@@ -468,6 +468,17 @@ public class OverheadMap implements State {
             actorList.add(a);
         }
     }
+    
+    public void clearTemporaryActors() {
+        for (int i = 0; i < actorList.size; i++) {
+            Actor actor = actorList.get(i);
+            if (actor instanceof FieldSkill) {
+                clearTempRunningTimers(((FieldSkill) actor).getInvoker());
+                removeActor(actor);
+                i--;
+            }
+        }
+    }
 
     public void removeActor(Actor a) {
         actorList.removeValue(a, true);
@@ -483,12 +494,6 @@ public class OverheadMap implements State {
                     deleteQueue.add(b);
                 }
             }
-//            if (!deleteQueue.contains(((ActorCollision) (a)).getMainBody(), true) && temp.contains(((ActorCollision) (a)).getMainBody(), true)) {
-//                deleteQueue.add(((ActorCollision) (a)).getMainBody());
-//            }
-//            if (!deleteQueue.contains(((ActorCollision) (a)).getSensorBody(), true) && temp.contains(((ActorCollision) (a)).getSensorBody(), true)) {
-//                deleteQueue.add(((ActorCollision) (a)).getSensorBody());
-//            }
         }
     }
 
@@ -513,24 +518,23 @@ public class OverheadMap implements State {
                 //clear certain called events
                 for (int i = 0; i < actorList.size; i++) {
                     Actor actors = actorList.get(i);
-                    if (actors instanceof ActorSkill) {
-                        if (((ActorSkill) (actors)).getInvoker().equals(tempAI)) {
-                            removeActor(actors);
-                            i--;
-                            ((ActorSkill) (actors)).stopFieldSound();
-                        }
+                    if (actors instanceof FieldSkill && ((FieldSkill) (actors)).getInvoker().equals(tempAI)) {
+                        removeActor(actors);
+                        i--;
+                        ((FieldSkill) (actors)).stopFieldSound();
                     }
+                    
                 }
                 clearTempRunningTimers(tempAI);
             }
 
             for (int i = 0; i < actorList.size; i++) {
                 Actor actors = actorList.get(i);
-                if (actors instanceof ActorSkill) {
-                    if (((ActorSkill) (actors)).getInvoker().equals(GraphicsDriver.getPlayer())) {
+                if (actors instanceof FieldSkill) {
+                    if (((FieldSkill) (actors)).getInvoker().equals(GraphicsDriver.getPlayer())) {
                         removeActor(actors);
                         i--;
-                        ((ActorSkill) (actors)).stopFieldSound();
+                        ((FieldSkill) (actors)).stopFieldSound();
                     }
                 }
             }
@@ -760,12 +764,12 @@ public class OverheadMap implements State {
             Fixture a = contact.getFixtureA();
             Fixture b = contact.getFixtureB();
             if (a.isSensor() || b.isSensor()) {
-                if (a.getBody().getUserData() instanceof ActorSkill) {
+                if (a.getBody().getUserData() instanceof FieldSkill) {
                     if (b.getBody().getUserData() instanceof Player) {
                         renderCollision(b, a);
                     }
                 }
-                if (b.getBody().getUserData() instanceof ActorSkill) {
+                if (b.getBody().getUserData() instanceof FieldSkill) {
                     if (a.getBody().getUserData() instanceof Player) {
                         renderCollision(a, b);
                     }
@@ -803,13 +807,14 @@ public class OverheadMap implements State {
         }
 
         protected void renderKnockback(Fixture a, Fixture b) {
-            final float DISTANCE = (float) (30f * ((Player) (b.getBody().getUserData())).getCurrentBattler().getBattler().getDefend());
-            Vector2 result = new Vector2(((Actor) (b.getBody().getUserData())).getX(), ((Actor) (b.getBody().getUserData())).getY()).sub(new Vector2(((ActorSkill) (a.getBody().getUserData())).getInvoker().getX(), ((ActorSkill) (a.getBody().getUserData())).getInvoker().getY()));
+            final float DISTANCE = (float) (5f * ((Player) (b.getBody().getUserData())).getCurrentBattler().getBattler().getDefend());
+            Vector2 result = new Vector2(((Actor) (b.getBody().getUserData())).getX(), ((Actor) (b.getBody().getUserData())).getY()).sub(new Vector2(((FieldSkill) (a.getBody().getUserData())).getInvoker().getX(), ((FieldSkill) (a.getBody().getUserData())).getInvoker().getY()));
             result.set(result.scl(DISTANCE));
             ((Actor) (b.getBody().getUserData())).addTimer(new GameTimer("KNOCKBACK", 99999) {
                 @Override
                 public void event(Actor a) {
-                    b.getBody().setLinearVelocity(result);
+//                    b.getBody().setLinearVelocity(result);
+                    b.getBody().applyLinearImpulse(result, b.getBody().getMassData().center, true);
                 }
 
                 @Override
@@ -823,7 +828,7 @@ public class OverheadMap implements State {
         protected void renderCollision(Fixture a, Fixture b) {
             renderKnockback(b, a);
             Player tempActor = (Player) a.getBody().getUserData();
-            ActorSkill tempSkill = (ActorSkill) b.getBody().getUserData();
+            FieldSkill tempSkill = (FieldSkill) b.getBody().getUserData();
             Action action;
             if (tempSkill.getSkill() == null) {
                 action = new Action(Battle.Command.Attack, tempSkill.getInvoker().getCurrentBattler().getBattler(), tempActor.getCurrentBattler().getBattler(), tempActor.getAllBattlers());
@@ -843,11 +848,11 @@ public class OverheadMap implements State {
             //clear certain called events
             for (int i = 0; i < actorList.size; i++) {
                 Actor actors = actorList.get(i);
-                if (actors instanceof ActorSkill) {
-                    if (((ActorSkill) (actors)).getInvoker().equals(tempActor)) {
+                if (actors instanceof FieldSkill) {
+                    if (((FieldSkill) (actors)).getInvoker().equals(tempActor)) {
                         removeActor(actors);
                         i--;
-                        ((ActorSkill) (actors)).stopFieldSound();
+                        ((FieldSkill) (actors)).stopFieldSound();
                     }
                 }
             }
@@ -865,23 +870,23 @@ public class OverheadMap implements State {
             }
         }
 
-        protected void createPickupFromActor(Player a) {
+        protected void createPickupFromActor(Player actor) {
             ArrayList<Item> dropped = new ArrayList<>();
             int money = 0;
-            for (Battler enemy1 : a.getAllBattlers()) {
-                for (int i = 0; i < ((BattlerAI) enemy1).getDroppedItem().length; i++) {
-                    Item item = (Math.random() < ((BattlerAI) enemy1).getDropRate()[i]) ? (Item) (((BattlerAI) enemy1).getDroppedItem()[i].clone()) : null;
+            for (Battler enemy : actor.getAllBattlers()) {
+                for (int i = 0; i < ((BattlerAI) enemy).getDroppedItem().length; i++) {
+                    Item item = (Math.random() < ((BattlerAI) enemy).getDropRate()[i]) ? (Item) (((BattlerAI) enemy).getDroppedItem()[i].clone()) : null;
                     if (item != null && item.isStackable() && dropped.contains(item)) {
-                        dropped.get(dropped.indexOf(item)).increaseQuantity(((BattlerAI) enemy1).getDropNumber()[i]);
+                        dropped.get(dropped.indexOf(item)).increaseQuantity(((BattlerAI) enemy).getDropNumber()[i]);
                     } else if (item != null) {
                         dropped.add(item);
                     }
                 }
-                money += ((BattlerAI) (enemy1)).getMoney();
+                money += ((BattlerAI) (enemy)).getMoney();
             }
             //                if (dropped.get(0).getIcon())
             if (!dropped.isEmpty() || money > 0) {
-                new Pickup("items/potion/icon", a.getX(), a.getY(), 1 / 12, dropped.toArray(new Item[dropped.size()]), money).setMap(OverheadMap.this);
+                new Pickup(dropped.isEmpty() ? "items/money/icon" : dropped.get(0).getIcon(), actor.getX(), actor.getY(), 1 / 12, dropped.toArray(new Item[dropped.size()]), money).setMap(OverheadMap.this);
             }
         }
 

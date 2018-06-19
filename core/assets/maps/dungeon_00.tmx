@@ -3,16 +3,16 @@
  <tileset firstgid="1" source="tileset.tsx"/>
  <layer name="background" width="32" height="24">
   <data encoding="base64" compression="zlib">
-   eJzF1kEOgCAMRNGGY7gzXJyjeDQ1bggp0EJnXMxOeT8kJmaRkr9d5JVmrvcPEXkX5Z/PWfUSeDMf3dD6SfGRDZrPbOj5rAavH90x8mcNEV0zf7XD2mL1UQ21fRiej25g+KMGz/0j7mDFj/w2dnxvB8r3tKB9Sw/T73Ww/d5dMH2tge23Dcr/p2vV/+fWOX/vBqBQuPs=
+   eJzl0zEOACEIRFHiMdzK7P3vuM1WRASUmcZiSvN+SOwi8pLX1bLvn39V/lBr4Hk+ukH7jdww85kNls9qyPrVHSvfa6jo8vzdjmhL1Ec1RG1UA8NfNWTuj7jBjl/5N078bAfKz7Sg/UgP07c62L51C6Y/a2D7ukH7N+8Du7kumQ==
   </data>
  </layer>
  <layer name="object" width="32" height="24">
   <data encoding="base64" compression="zlib">
-   eJztwQEBAAAAgiD/r25IQAEAAC8GDAAAAQ==
+   eJztwzENAAAIA7B5wL9XnhngJGmTJnfTAADALwvMCwAn
   </data>
  </layer>
  <objectgroup name="collisions">
-  <object id="2" name="door_to_02" type="event" x="32" y="352" width="32" height="64">
+  <object id="2" name="door_to_02" type="event" x="0" y="352" width="32" height="64">
    <properties>
     <property name="collision" value="TRUE"/>
     <property name="collisionType" value="wall"/>
@@ -22,7 +22,7 @@
     <property name="trigger" value="touch"/>
    </properties>
   </object>
-  <object id="4" name="door_to_01" type="event" x="448" y="32" width="64" height="32">
+  <object id="4" name="door_to_01" type="event" x="416" y="32" width="64" height="32">
    <properties>
     <property name="collision" value="TRUE"/>
     <property name="collisionType" value="wall"/>

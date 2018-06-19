@@ -28,6 +28,7 @@ public class Battler implements Serializable, Nameable, Cloneable {
     private int speed;
     private int magic;
     private ArrayList<Skill> skillList;
+    private ArrayList<String> skillListName;
     private Equipment[] equipmentList = new Equipment[5];
 //    private HashMap<StatusEffect, Boolean> isAfflicted;
 //    private Battle.Stats afflicted = Battle.Stats.Normal;

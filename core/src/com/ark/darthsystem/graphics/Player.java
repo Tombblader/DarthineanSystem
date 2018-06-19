@@ -65,7 +65,7 @@ public class Player extends ActorCollision implements Serializable {
     private int menuButton = Keys.ENTER;
     private int jumpButton = Keys.V;
 
-    private transient ActorSkill attackAnimation;
+    private transient FieldSkill attackAnimation;
     private float speed = SPEED;
     private boolean canAttack = true;
     private boolean canSkill = true;
@@ -75,7 +75,7 @@ public class Player extends ActorCollision implements Serializable {
     private boolean canDodge = true;
     private boolean isWalking;
     private ActorSprite.SpriteModeField fieldState = ActorSprite.SpriteModeField.STAND;
-    private transient ActorSkill currentSkill;
+    private transient FieldSkill currentSkill;
 
     private transient Input playerInput;
     private transient BitmapFont font;
@@ -96,12 +96,11 @@ public class Player extends ActorCollision implements Serializable {
     
     private void initialize() {
         currentBattler = party.get(0);
-        if (party.get(0).getBattler().getSkillList() != null && party.get(0).getBattler().getSkillList().size() != 0) {
+        if (party.get(0).getBattler().getSkillList() != null && !party.get(0).getBattler().getSkillList().isEmpty()) {
             currentSkill = Database2.SkillToActor(party.get(0).getBattler().getSkill(0));
         }
         setAttackAnimation();
-        FreeTypeFontGenerator gen = new FreeTypeFontGenerator(Gdx.files.internal(
-                "fonts/monofont.ttf"));
+        FreeTypeFontGenerator gen = new FreeTypeFontGenerator(Gdx.files.internal("fonts/monofont.ttf"));
         FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
         parameter.size = 24;
         parameter.flip = true;
@@ -124,7 +123,7 @@ public class Player extends ActorCollision implements Serializable {
         attackButton = Keys.SPACE;
         switchBattlerButton = Keys.A;
         skillButton = Keys.F;
-        switchSkill = Keys.E;
+        switchSkill = Keys.S;
         charge = Keys.C;
         defendButton = Keys.X;
         quitButton = Keys.ESCAPE;
@@ -158,8 +157,8 @@ public class Player extends ActorCollision implements Serializable {
     }
     
     
-    public ActorSkill getAttackAnimation() {
-        ActorSkill temp = attackAnimation.clone();
+    public FieldSkill getAttackAnimation() {
+        FieldSkill temp = attackAnimation.placeOnMap();
         if (getFacing().getX() == -1) {
             Array<Sprite> s = new Array<>(Sprite.class);
             for (TextureRegion r : temp.getCurrentAnimation().getKeyFrames()) {
@@ -181,8 +180,8 @@ public class Player extends ActorCollision implements Serializable {
         Equipment tempEquipment = getCurrentBattler().getBattler().getEquipment(0);
         if (tempEquipment != null) {
             try {
-                ActorSkill tempAnimation = tempEquipment.getAnimation();
-                attackAnimation = tempAnimation.clone();
+                FieldSkill tempAnimation = tempEquipment.getAnimation();
+                attackAnimation = tempAnimation.placeOnMap();
             } catch (Exception e) {
                 attackAnimation = Database2.Sword();
                 e.printStackTrace();
@@ -196,7 +195,7 @@ public class Player extends ActorCollision implements Serializable {
     public void attack() {
         if (!getCurrentMap().getPhysicsWorld().isLocked()) {
             attacking = true;
-            ActorSkill animation = getAttackAnimation();
+            FieldSkill animation = getAttackAnimation();
             animation.setX(this);
             animation.setY(this);
 //            setPause((int)((this.getDelay() * (this.getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.ATTACK, getFacing()).getKeyFrames().length - 1f)) * 1000f));
@@ -263,50 +262,63 @@ public class Player extends ActorCollision implements Serializable {
     }
     
     public void moving(float delta) {
-        setSpeed(getBaseSpeed());
+        boolean slowDown = Input.getKeyRepeat(slowButton) && !isJumping;
+        setSpeed(getBaseSpeed() * (slowDown ? .5f : 1));
         if (isJumping) {
             setSpeed(getBaseSpeed() * 1.5f);
         }
         
-        if (Input.getKeyPressed(jumpButton) && canDodge) {
+        if (Input.getKeyPressed(jumpButton) && canDodge && ! slowDown) {
             jump();
         }
 
         if (Input.getKeyRepeat(moveLeft)) {
             getMainBody().setLinearVelocity(-getSpeed() * (float) (delta), getMainBody().getLinearVelocity().y);
-            changeX(-1);
+            if (!slowDown) {
+                changeX(-1);
+            }
             setWalking(true);
             fieldState = ActorSprite.SpriteModeField.WALK;
         }
 
         if (Input.getKeyRepeat(moveRight)) {
             getMainBody().setLinearVelocity(getSpeed() * (float) (delta), getMainBody().getLinearVelocity().y);
-            changeX(1);
+            if (!slowDown) {
+                changeX(1);
+            }
             setWalking(true);
             fieldState = ActorSprite.SpriteModeField.WALK;
         }
 
         if (Input.getKeyRepeat(moveUp)) {
             getMainBody().setLinearVelocity(getMainBody().getLinearVelocity().x, -getSpeed() * (float) (delta));
-            changeY(-1);
+            if (!slowDown) {
+               changeY(-1);
+            }
             setWalking(true);
             fieldState = ActorSprite.SpriteModeField.WALK;
         }
         if (Input.getKeyRepeat(moveDown)) {
             getMainBody().setLinearVelocity(getMainBody().getLinearVelocity().x, getSpeed() * (float) (delta));
-            changeY(1);
+            if (!slowDown) {
+                changeY(1);
+            }
             setWalking(true);
             fieldState = ActorSprite.SpriteModeField.WALK;
         }
 
         if (!Input.getKeyRepeat(moveLeft) && !Input.getKeyRepeat(moveRight)) {
-            changeX(0);
+            if (!slowDown) {
+                changeX(0);
+            }
             getMainBody().setLinearVelocity(0, getMainBody().getLinearVelocity().y);
 
         }
 
         if (!Input.getKeyRepeat(moveUp) && !Input.getKeyRepeat(moveDown)) {
-            changeY(0);
+            if (!slowDown) {
+                changeY(0);
+            }
             getMainBody().setLinearVelocity(getMainBody().getLinearVelocity().x, 0);
         }
         
@@ -545,26 +557,27 @@ public class Player extends ActorCollision implements Serializable {
 
     private void attacking(float delta) {
         //Check for direction first
-        if (Input.getKeyRepeat(moveLeft)) {
+        boolean slowDown = Input.getKeyRepeat(slowButton);
+        if (Input.getKeyRepeat(moveLeft) && ! slowDown) {
             changeX(-1);
         }
 
-        if (Input.getKeyRepeat(moveRight)) {
+        if (Input.getKeyRepeat(moveRight) && ! slowDown) {
             changeX(1);
         }
 
-        if (Input.getKeyRepeat(moveUp)) {
+        if (Input.getKeyRepeat(moveUp) && ! slowDown) {
             changeY(-1);
         }
-        if (Input.getKeyRepeat(moveDown)) {
+        if (Input.getKeyRepeat(moveDown) && ! slowDown) {
             changeY(1);
         }
 
-        if (!Input.getKeyRepeat(moveLeft) && !Input.getKeyRepeat(moveRight)) {
+        if (!Input.getKeyRepeat(moveLeft) && !Input.getKeyRepeat(moveRight) && ! slowDown) {
             changeX(0);
         }
 
-        if (!Input.getKeyRepeat(moveUp) && !Input.getKeyRepeat(moveDown)) {
+        if (!Input.getKeyRepeat(moveUp) && !Input.getKeyRepeat(moveDown) && ! slowDown) {
             changeY(0);
         }
         setFacing();
@@ -648,7 +661,7 @@ public class Player extends ActorCollision implements Serializable {
     }    
 
     
-    public void switchSkill(ActorSkill skill) {
+    public void switchSkill(FieldSkill skill) {
 
     }
 

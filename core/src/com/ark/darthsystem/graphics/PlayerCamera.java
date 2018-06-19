@@ -10,7 +10,7 @@ public class PlayerCamera extends Camera {
     }
 
     public void followPlayer(float x, float y, float boundX, float boundY) {
-        final float Y_TOP_OFFSET = 74f;
+        final float Y_TOP_OFFSET = GraphicsDriver.getHeight() / 16f;
         final float Y_BOTTOM_OFFSET = GraphicsDriver.getHeight() / 8;
         float posX = x;
         float posY = y;

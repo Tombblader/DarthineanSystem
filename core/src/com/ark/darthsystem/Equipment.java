@@ -1,7 +1,8 @@
 package com.ark.darthsystem;
 
 import com.ark.darthsystem.database.Database2;
-import com.ark.darthsystem.graphics.ActorSkill;
+import com.ark.darthsystem.graphics.Actor;
+import com.ark.darthsystem.graphics.FieldSkill;
 import com.ark.darthsystem.states.Battle;
 import java.io.IOException;
 
@@ -17,8 +18,9 @@ public class Equipment extends Item implements Cloneable {
     private int attack, defense, speed, magic;
     private Battle.Element equipElement;
     private String animationName;
-    private transient ActorSkill animation;
-    private ActorSkill.Area areaName;
+    private transient FieldSkill animation;
+    private transient Actor battlerAnimation;
+    private FieldSkill.Area areaName;
     private String shapeName;
 
     /**
@@ -27,7 +29,7 @@ public class Equipment extends Item implements Cloneable {
     public Equipment() {
         super();
         this.shapeName = "basiccircle";
-        this.areaName = ActorSkill.Area.FRONT;
+        this.areaName = FieldSkill.Area.FRONT;
         this.equipElement = Battle.Element.Physical;
     }
 
@@ -61,7 +63,7 @@ public class Equipment extends Item implements Cloneable {
             int initializeMagic) {
         super(getName, getDescription, getMarketPrice, -1, invoke, useMP);
         this.shapeName = "basiccircle";
-        this.areaName = ActorSkill.Area.FRONT;
+        this.areaName = FieldSkill.Area.FRONT;
         this.equipElement = Battle.Element.Physical;
         this.type = new Type[type.length];
         for (int i = 0; i < this.type.length; i++) {
@@ -106,7 +108,7 @@ public class Equipment extends Item implements Cloneable {
             int initializeMagic) {
         super(getName, getDescription, getMarketPrice, -1, invoke, useMP);
         this.shapeName = "basiccircle";
-        this.areaName = ActorSkill.Area.FRONT;
+        this.areaName = FieldSkill.Area.FRONT;
         this.equipElement = Battle.Element.Physical;
         this.type = type;
         equipmentSlot = slot;
@@ -122,7 +124,7 @@ public class Equipment extends Item implements Cloneable {
     public Equipment(String getName,
             String getDescription,
             String getAnimation,
-            ActorSkill.Area getArea,
+            FieldSkill.Area getArea,
             String getShape,
             int getMarketPrice,
             Type[] type,
@@ -149,7 +151,7 @@ public class Equipment extends Item implements Cloneable {
         animationName = getAnimation;
         areaName = getArea;
         shapeName = getShape;
-        animation = new ActorSkill("items/equipment/" + getAnimation + "/field/" + getAnimation,
+        animation = new FieldSkill("items/equipment/" + getAnimation + "/field/" + getAnimation,
                     "items/equipment/" + getAnimation + "/battler/" + getAnimation, 
                     1, 1, 1.0f/12f, null, getArea, getShape);  
     }      
@@ -158,7 +160,7 @@ public class Equipment extends Item implements Cloneable {
         throws IOException, ClassNotFoundException {
         stream.defaultReadObject();
         
-        animation = new ActorSkill("items/equipment/" + animationName + "/field/" + animationName,
+        animation = new FieldSkill("items/equipment/" + animationName + "/field/" + animationName,
                        "items/equipment/" + animationName + "/battler/" + animationName, 
                        1, 1, 1.0f/12f, null, areaName, shapeName);
     }
@@ -219,11 +221,11 @@ public class Equipment extends Item implements Cloneable {
      *
      * @return
      */
-    public ActorSkill getAnimation() {
+    public FieldSkill getAnimation() {
         return animation;
     }
     
-    public void setAnimation(ActorSkill animation) {
+    public void setAnimation(FieldSkill animation) {
         this.animation = animation;
     }
 
@@ -235,11 +237,11 @@ public class Equipment extends Item implements Cloneable {
         this.animationName = animationName;
     }
 
-    public ActorSkill.Area getAreaName() {
+    public FieldSkill.Area getAreaName() {
         return areaName;
     }
 
-    public void setAreaName(ActorSkill.Area areaName) {
+    public void setAreaName(FieldSkill.Area areaName) {
         this.areaName = areaName;
     }
 
@@ -250,12 +252,15 @@ public class Equipment extends Item implements Cloneable {
     public void setShapeName(String shapeName) {
         this.shapeName = shapeName;
     }
-    
+
+    public Actor getBattlerAnimation() {
+        return battlerAnimation;
+    }
     
 
     public Equipment clone() {
         Equipment temp = new Equipment(getName(), getDescription(), getPrice(), type, equipmentSlot, getInvoke(), getElement(), useMP(), attack, defense, speed, magic);        
-        temp.animation = animation.clone();
+        temp.animation = animation.placeOnMap();
         temp.animationName = animationName;
         return temp;
     }

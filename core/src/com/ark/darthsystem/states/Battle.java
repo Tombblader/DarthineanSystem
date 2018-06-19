@@ -2,10 +2,8 @@ package com.ark.darthsystem.states;
 
 import com.ark.darthsystem.*;
 import com.ark.darthsystem.database.Database2;
-import com.ark.darthsystem.database.SoundDatabase;
 import com.ark.darthsystem.graphics.Actor;
 import com.ark.darthsystem.graphics.ActorBattler;
-import com.ark.darthsystem.graphics.ActorSkill;
 import com.ark.darthsystem.graphics.GameTimer;
 import com.ark.darthsystem.graphics.GraphicsDriver;
 import com.badlogic.gdx.Gdx;
@@ -202,16 +200,16 @@ public class Battle implements State {
     }
 
     private void addAnimationAndSound(Action currentAction) {
-        final float BATTLER_Y = 768 / 2;
-        int divider = (enemyActors.size() > 1) ? 1024 / (enemyActors.size() + 1) : 512;
+        final float BATTLER_Y = GraphicsDriver.getHeight() / 2f;
+        int divider = (enemyActors.size() > 1) ? GraphicsDriver.getWidth() / (enemyActors.size() + 1) : GraphicsDriver.getWidth() / 2;
         Battler tempBattler = currentAction.getTarget();
 
         if (currentAction.getCommand() == Command.Skill
                 && (currentAction.getTarget() instanceof BattlerAI)
                 && currentAction.getCaster().getMP() >= currentAction.getSkill().getCost()) {
-            ActorSkill tempSkill = Database2.SkillToActor(currentAction.getSkill());
-            sounds.add(tempSkill.getBattlerSound());
-            animations.add(tempSkill.getBattlerAnimation());
+            Skill tempSkill = currentAction.getSkill();
+            sounds.add(tempSkill.getSound());
+            animations.add(tempSkill.getAnimation());
 //            animations.get(animations.size() - 1).setX((float) ((GraphicsDriver.getWidth() + divider * (enemy.indexOf(tempBattler) - 1)) / 2 + divider * enemy.indexOf(tempBattler)));
             animations.get(animations.size() - 1).setX(divider * ((enemy.indexOf(tempBattler) + 1)));
             animations.get(animations.size() - 1).setY(BATTLER_Y);
@@ -220,24 +218,25 @@ public class Battle implements State {
                 && (currentAction.getSkill().getAll())
                 && (currentAction.getAllTargets().get(0) instanceof BattlerAI)
                 && currentAction.getCaster().getMP() >= currentAction.getSkill().getCost()) {
-            ActorSkill tempSkill = Database2.SkillToActor(currentAction.getSkill());
-            sounds.add(tempSkill.getBattlerSound());
-            animations.add(tempSkill.getBattlerAnimation());
+            Skill tempSkill = currentAction.getSkill();
+            sounds.add(tempSkill.getSound());
+            animations.add(tempSkill.getAnimation());
             animations.get(animations.size() - 1).setX((GraphicsDriver.getWidth() - animations.get(0).getWidth()) / 2);
             animations.get(animations.size() - 1).setY((GraphicsDriver.getHeight() - animations.get(0).getHeight()) / 2f);
         }
-        ActorSkill tempSkill;
+        Actor tempSkill;
         if (currentAction.getCommand() == Command.Attack
                 && currentAction.getTarget() instanceof BattlerAI) {
             try {
                 tempSkill = (currentAction.getCaster().
                         getEquipment(Equipment.Slot.OffHand.getSlot()).
-                        getAnimation());
+                        getBattlerAnimation());
             } catch (NullPointerException e) {
                 tempSkill = Database2.getDefaultUnarmedAnimation();
             }
-            sounds.add(tempSkill.getBattlerSound());
-            animations.add(tempSkill.getBattlerAnimation());
+            sounds.add(currentAction.getCaster().
+                        getEquipment(Equipment.Slot.OffHand.getSlot()).getSound());
+            animations.add(tempSkill);
             animations.get(animations.size() - 1).setX(divider * (enemy.indexOf(tempBattler) + 1));
             animations.get(animations.size() - 1).setY(BATTLER_Y);
         }

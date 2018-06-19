@@ -1,6 +1,6 @@
 package com.ark.darthsystem;
 
-import com.ark.darthsystem.graphics.ActorSkill;
+import com.ark.darthsystem.graphics.FieldSkill;
 import com.ark.darthsystem.states.Battle;
 import com.ark.darthsystem.statusEffects.Death;
 import com.ark.darthsystem.statusEffects.Normal;
@@ -233,7 +233,7 @@ public class BattlerAI extends Battler implements Nameable, Cloneable {
             int Speed,
             int Magic,
             ArrayList<Skill> skillList,
-            ActorSkill unarmedStrikeAnimation,
+            FieldSkill unarmedStrikeAnimation,
             AI[] AIData,
             int experience,
             int money,

@@ -1,6 +1,7 @@
 package com.ark.darthsystem;
 
 import com.ark.darthsystem.states.Battle;
+import com.badlogic.gdx.audio.Sound;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -22,11 +23,33 @@ public class Item implements Serializable, Cloneable, Nameable {
     private int price;
     private int maxCharges;
     private int charges;
+    private String iconName;
+    public Sound sound;
+
+    /**
+     * Get the value of sound
+     *
+     * @return the value of sound
+     */
+    public Sound getSound() {
+        return sound;
+    }
+
+    /**
+     * Set the value of sound
+     *
+     * @param sound new value of sound
+     */
+    public void setSound(Sound sound) {
+        this.sound = sound;
+    }
+
 
     /**
      *
      */
     public Item() {
+        this.iconName = "items/potion/icon";
     }
 
     /**
@@ -46,6 +69,7 @@ public class Item implements Serializable, Cloneable, Nameable {
             int initializeHP,
             int initializeMP,
             boolean all) {
+        this.iconName = "items/potion/icon";
         name = getName;
         description = getDescription;
         this.price = price;
@@ -72,6 +96,7 @@ public class Item implements Serializable, Cloneable, Nameable {
             int charges,
             Skill initializeSkill,
             boolean initializeUseMP) {
+        this.iconName = "items/potion/icon";
         name = getName;
         description = getDescription;
         this.price = price;
@@ -259,5 +284,15 @@ public class Item implements Serializable, Cloneable, Nameable {
 
     public void reset() {
         charges = 1;
-    }    
+    }
+
+    public String getIcon() {
+        return iconName;
+    }
+
+    public void setIcon(String iconName) {
+        this.iconName = iconName;
+    }
+    
+    
 }

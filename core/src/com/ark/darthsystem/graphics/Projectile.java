@@ -12,7 +12,7 @@ import com.ark.darthsystem.Skill;
  *
  * @author keven
  */
-public class Projectile extends ActorSkill {
+public class Projectile extends FieldSkill {
     private Battler battler;
     private float speed = .5f;
     

@@ -6,7 +6,8 @@
 package com.ark.darthsystem.database;
 
 import com.ark.darthsystem.Skill;
-import com.ark.darthsystem.graphics.ActorSkill;
+import com.ark.darthsystem.graphics.ActorSprite;
+import com.ark.darthsystem.graphics.FieldSkill;
 import com.ark.darthsystem.states.Battle;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
@@ -18,7 +19,7 @@ import java.util.HashMap;
  */
 public class SkillDatabase {
     public static final HashMap<String, Skill> SKILL_LIST = new HashMap<>();
-    public static final HashMap<Skill, ActorSkill> ACTOR_SKILL_LIST = new HashMap<>();
+    public static final HashMap<Skill, FieldSkill> ACTOR_SKILL_LIST = new HashMap<>();
     
     public SkillDatabase() {
         FileHandle file = Gdx.files.internal("databases/skills.tsv");
@@ -32,6 +33,11 @@ public class SkillDatabase {
             
             SKILL_LIST.put(data[i].toUpperCase(), new Skill(data[i], //Name
                     data[++i], //Description
+                    ActorSprite.SpriteModeBattler.valueOf(data[++i]),
+                    data[++i], 
+                    (float) Double.parseDouble(data[++i]),
+                    data[++i],
+                    data[++i],
                     Integer.parseInt(data[++i]), //Cost
                     Battle.Element.valueOf(data[++i]), //Element
                     Boolean.valueOf(data[++i]), //Targets ally?
@@ -60,6 +66,11 @@ public class SkillDatabase {
             int i = 0;
             SKILL_LIST.put(data[i].toUpperCase(), new Skill(data[i], //Name
                     data[++i], //Description
+                    ActorSprite.SpriteModeBattler.valueOf(data[++i]),
+                    data[++i], 
+                    (float) Double.parseDouble(data[++i]),
+                    data[++i],
+                    data[++i],
                     Integer.parseInt(data[++i]), //Cost
                     Battle.Element.valueOf(data[++i]), //Element
                     Boolean.valueOf(data[++i]), //Targets ally?

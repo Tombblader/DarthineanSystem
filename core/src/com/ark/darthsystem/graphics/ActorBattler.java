@@ -21,8 +21,8 @@ import java.util.ArrayList;
 public class ActorBattler implements Serializable {
 
     private Battler battler;
-    private transient ActorSkill currentSkill;
-    private transient ArrayList<ActorSkill> skillList = new ArrayList<>();
+    private transient FieldSkill currentSkill;
+    private transient ArrayList<FieldSkill> skillList = new ArrayList<>();
     private transient ActorSprite spriteSheet;
     private String spriteSheetName;
     private transient SpriteModeFace face = SpriteModeFace.NORMAL;
@@ -66,7 +66,7 @@ public class ActorBattler implements Serializable {
     }
     
 
-    public ActorSkill activateCurrentSkill() {
+    public FieldSkill activateCurrentSkill() {
         if (battler.getMP() >= currentSkill.getSkill().getCost()) {
             battler.changeMP(currentSkill.getSkill().getCost());
             return currentSkill;
@@ -74,7 +74,7 @@ public class ActorBattler implements Serializable {
         return null;
     }
 
-    public ActorSkill activateCurrentSkill(Player p) {
+    public FieldSkill activateCurrentSkill(Player p) {
         if (battler.getMP() >= currentSkill.getSkill().getCost()) {
             battler.changeMP(currentSkill.getSkill().getCost());
             currentSkill.setInvoker(p);
@@ -84,7 +84,7 @@ public class ActorBattler implements Serializable {
         return null;
     }
     
-    public final ActorSkill activateSkill(String s) {
+    public final FieldSkill activateSkill(String s) {
         if (battler.getMP() >= battler.getSkill(s).getCost()) {
             battler.changeMP(battler.getSkill(s).getCost());
             return currentSkill;
@@ -92,7 +92,7 @@ public class ActorBattler implements Serializable {
         return null;
     }
 
-    public final ActorSkill activateSkill(String s, Player p) {
+    public final FieldSkill activateSkill(String s, Player p) {
         if (battler.getMP() >= battler.getSkill(s).getCost()) {
             battler.changeMP(battler.getSkill(s).getCost());
             currentSkill.setInvoker(p);
@@ -123,14 +123,14 @@ public class ActorBattler implements Serializable {
         return (T) battler;
     }
     
-    public ActorSkill getCurrentSkill() {
+    public FieldSkill getCurrentSkill() {
         return currentSkill;
     }
     
-    public ArrayList<ActorSkill> getSkillList() {
-        ArrayList<ActorSkill> tempSkillList = new ArrayList<>();
+    public ArrayList<FieldSkill> getSkillList() {
+        ArrayList<FieldSkill> tempSkillList = new ArrayList<>();
         for (Skill skill : battler.getSkillList()) {
-            ActorSkill tempSkill = Database2.SkillToActor(skill);
+            FieldSkill tempSkill = Database2.SkillToActor(skill);
             if (tempSkill != null) {
                 tempSkillList.add(tempSkill);
             }

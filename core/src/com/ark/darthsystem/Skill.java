@@ -1,8 +1,13 @@
 package com.ark.darthsystem;
 
+import com.ark.darthsystem.database.SoundDatabase;
+import com.ark.darthsystem.graphics.Actor;
+import com.ark.darthsystem.graphics.ActorSprite;
 import com.ark.darthsystem.states.Battle;
 import com.ark.darthsystem.statusEffects.Normal;
 import com.ark.darthsystem.statusEffects.StatusEffect;
+import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -35,23 +40,35 @@ public class Skill implements Serializable, Cloneable, Nameable {
     private String description;
     private int cost;
     private static final long serialVersionUID = 558633274;
+    private String imageName;
+    private Actor image;
 //    private int level;
     private Battle.Element skillElement;
     private boolean isAlly;
     private boolean isAll;
     private transient StatusEffect statusEffect;
+    private String soundName;
+    private String castSoundName;
+    private Sound castSound;
+    private Sound sound;
+    private ActorSprite.SpriteModeBattler battlerMode;
 
     public Skill() {
 
     }
 
     /**
-     * A skill is a type of attack that has various parameters.
+     * A skill is a type of attack that has various parameters, and has a cost.
      * @param name The name of the Skill.
      * @param description A concise description of the Skill.
+     * @param battlerMode
+     * @param imageName
      * @param cost The MP cost of the Skill.
+     * @param fps
      * @param skillElement The Element of the skill.
+     * @param castSound
      * @param isAlly If true, affects allies instead of enemies.
+     * @param sound
      * @param isAll If true, targets all enemies or allies.
      * @param statusEffect The status effect to inflict.  Normal does not inflict a status effect.
      * @param base The base value of the skill.
@@ -69,6 +86,11 @@ public class Skill implements Serializable, Cloneable, Nameable {
      */
     public Skill(String name,
             String description,
+            ActorSprite.SpriteModeBattler battlerMode,
+            String imageName,
+            float fps,
+            String castSound,
+            String sound,
             int cost,
             Battle.Element skillElement,
             boolean isAlly,
@@ -88,6 +110,17 @@ public class Skill implements Serializable, Cloneable, Nameable {
             double finalizeRatio) {
         this.name = name;
         this.description = description;
+        this.battlerMode = battlerMode;
+        this.imageName = imageName;        
+        image = new Actor("items/equipment/" + imageName + "/field/" + imageName, 0, 0, fps, true);
+        for (Sprite s : image.getCurrentAnimation().getKeyFrames()) {
+            s.setCenter(s.getWidth() / 2f, s.getHeight() / 2f);
+            s.setOriginCenter();
+        }
+        this.castSoundName = castSound;
+        this.soundName = sound;
+        this.castSound = SoundDatabase.SOUNDS.get(castSound.toUpperCase());
+        this.sound = SoundDatabase.SOUNDS.get(sound.toUpperCase());
         this.cost = cost;
         this.skillElement = skillElement;
         this.isAlly = isAlly;
@@ -282,11 +315,59 @@ public class Skill implements Serializable, Cloneable, Nameable {
             return false;
         }
         final Skill other = (Skill) obj;
-        if (!Objects.equals(this.name, other.name)) {
-            return false;
-        }
-        return true;
+        return Objects.equals(this.name, other.name);
     }    
+    
+    public Actor getAnimation() {
+        return image;
+    }
+
+    public Actor getAnimation(float x, float y) {
+        image.setX(x);
+        image.setY(y);
+        return image;
+    }
+    
+    public Sound getSound() {
+        return sound;
+    }
+    
+    public void stopSound() {
+        try {
+            sound.stop();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void playSound() {
+        try {
+            sound.play();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Sound getCastSound() {
+        return castSound;
+    }
+    
+    public void stopCastSound() {
+        try {
+            castSound.stop();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void playCastSound() {
+        try {
+            castSound.play();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     
     private void readObject(ObjectInputStream in) throws IOException,ClassNotFoundException {
         in.defaultReadObject();

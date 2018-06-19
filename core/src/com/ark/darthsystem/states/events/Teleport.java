@@ -81,7 +81,8 @@ public class Teleport extends Event {
     public void run() {
         for (State s : GraphicsDriver.getState()) {
             if (s instanceof OverheadMap) {
-                GraphicsDriver.getPlayer().setFieldState(ActorSprite.SpriteModeField.STAND);
+                ((OverheadMap) s).clearTemporaryActors();
+                GraphicsDriver.getPlayer().setFieldState(ActorSprite.SpriteModeField.STAND);                
                 GraphicsDriver.getPlayer().setMap(MapDatabase.getMaps().get(map), newX, newY);
                 GraphicsDriver.transition();
                 GraphicsDriver.getState().set(GraphicsDriver.getState().indexOf(s, true), MapDatabase.getMaps().get(map));
@@ -98,6 +99,9 @@ public class Teleport extends Event {
     @Override
     public int hashCode() {
         int hash = 3;
+        hash = 73 * hash + Objects.hashCode(this.map);
+        hash = 73 * hash + Float.floatToIntBits(this.newX);
+        hash = 73 * hash + Float.floatToIntBits(this.newY);
         return hash;
     }
 
