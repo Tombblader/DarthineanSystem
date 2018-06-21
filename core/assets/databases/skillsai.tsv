@@ -1,4 +1,4 @@
-Eyebeam	An eyebeam.  Hits two squares away	0	Dark	FALSE	FALSE	Normal	0	0	0	0	0	0	11	0	0	0	6	5.5
-Bunny Kick	Erik hates the bunny kick.	0	Physical	FALSE	FALSE	Normal	0	0	0	0	0	11	0	0	3	3	0	5.5
-Mouthbeam	A mouthbeam.  Hits two squres away.	0	Dark	FALSE	FALSE	Silence	0	0	0	0	0	0	10	0	0	0	6	5.5
-Fire Breath	A fire breath attack.  Blows up a cone.	7	Fire	FALSE	TRUE	Normal	30	0	0	0	0	0	7	0	0	0	6	5
+Eyebeam	An eyebeam.  Hits two squares away	BATTLER	crosscall	12	cast	slash	0	Dark	FALSE	FALSE	Normal	0	0	0	0	0	0	11	0	0	0	6	5.5
+Bunny Kick	Erik hates the bunny kick.	BATTLER	red_spin	12	cast	slash	0	Physical	FALSE	FALSE	Normal	0	0	0	0	0	11	0	0	3	3	0	5.5
+Mouthbeam	A mouthbeam.  Hits two squres away.	BATTLER	crosscall	12	cast	cast	0	Dark	FALSE	FALSE	Silence	0	0	0	0	0	0	10	0	0	0	6	5.5
+Fire Breath	A fire breath attack.  Blows up a cone.	BATTLER	crosscall	12	cast	cast	7	Fire	FALSE	TRUE	Normal	30	0	0	0	0	0	7	0	0	0	6	5

@@ -3161,13 +3161,6 @@ monsters/eyesore/field/dead/up
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 2
-monsters/eyesore/field/dead/up
-  rotate: false
-  xy: 840, 718
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
   index: 3
 monsters/eyesore/field/dead/up
   rotate: false
@@ -3183,6 +3176,13 @@ monsters/eyesore/field/dead/up
   orig: 64, 64
   offset: 0, 0
   index: 8
+monsters/eyesore/field/dead/up
+  rotate: false
+  xy: 840, 718
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
 monsters/eyesore/field/jump/up
   rotate: false
   xy: 840, 718

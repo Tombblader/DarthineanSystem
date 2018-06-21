@@ -1,6 +1,6 @@
-Name	Description	Market Price	Charges	Skill	Use MP?
-Tonic	A tonic made from the Elemental Spring's water.  Revives a fallen ally.	100	1	Revivify	FALSE
-Wand of Fireball	A darkwood wand.  Fire symbols are carefully etched on the sides.  Invokes Fireball.	700	50	Fireball	FALSE
-Orb of Blindness	A pitch-black orb.  Looking at it makes you unaware of the world around you.  Inflicts Blindness.	1	1	Blindness	FALSE
-Orb of Silence	A white orb.  Looks strangely delicious.  Casts silence when thrown.	1	1	Silence	FALSE
-Illusion Break Wand	A grounded, dirty wand.  Parts of its handle are unusually smooth.  Casts Illusion Break.	700	0	Illusion Break	TRUE
+Name	Description	Image	Market Price	Charges	Skill	Use MP?
+Tonic	A tonic made from the Elemental Spring's water.  Revives a fallen ally.	potion	100	1	Revivify	FALSE
+Wand of Fireball	A darkwood wand.  Fire symbols are carefully etched on the sides.  Invokes Fireball.	potion	700	50	Fireball	FALSE
+Orb of Blindness	A pitch-black orb.  Looking at it makes you unaware of the world around you.  Inflicts Blindness.	potion	1	1	Blindness	FALSE
+Orb of Silence	A white orb.  Looks strangely delicious.  Casts silence when thrown.	potion	1	1	Silence	FALSE
+Illusion Break Wand	A grounded, dirty wand.  Parts of its handle are unusually smooth.  Casts Illusion Break.	potion	700	0	Illusion Break	TRUE

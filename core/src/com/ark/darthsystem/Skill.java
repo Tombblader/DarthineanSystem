@@ -112,7 +112,7 @@ public class Skill implements Serializable, Cloneable, Nameable {
         this.description = description;
         this.battlerMode = battlerMode;
         this.imageName = imageName;        
-        image = new Actor("items/equipment/" + imageName + "/field/" + imageName, 0, 0, fps, true);
+        image = new Actor("skills/" + imageName + "/battler/" + imageName, 0, 0, fps, true);
         for (Sprite s : image.getCurrentAnimation().getKeyFrames()) {
             s.setCenter(s.getWidth() / 2f, s.getHeight() / 2f);
             s.setOriginCenter();

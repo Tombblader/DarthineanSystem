@@ -30,7 +30,7 @@ public class ActorAI extends Player implements Serializable {
     private Vector2 patrolCoordinates = Vector2.Zero;
     private Vector2 lastSeenPosition = Vector2.Zero;
     private boolean patrolling = false;
-    private float speed = .2f;
+//    private float speed = .2f;
     private int vision = 10;
     private float stopInterval;
     private State state;
@@ -39,7 +39,8 @@ public class ActorAI extends Player implements Serializable {
     private transient RayCastCallback rayVision;
     
     public ActorAI(ArrayList<ActorBattler> getBattlers, float getX, float getY) {
-        super(getBattlers, getX, getY);
+        super(getBattlers, getX, getY);        
+        setSpeed(getBattlers.get(0).getSpeed());
         aiData = new ArrayList<>(Arrays.asList(((BattlerAI) (getBattlers.get(0).getBattler())).getAIData()));
     }
     
@@ -99,7 +100,7 @@ public class ActorAI extends Player implements Serializable {
     }
     
     public void moveTowardsPoint(float x, float y, float delta) {
-        addTimer(new GameTimer("MOVE", Math.abs((x - getX()) / (speed * delta)) + Math.abs((y - getY()) / (speed * delta)) / 2f * 1000f + 1000f) {
+        addTimer(new GameTimer("MOVE", Math.abs((x - getX()) / (getSpeed() * delta)) + Math.abs((y - getY()) / (getSpeed() * delta)) / 2f * 1000f + 1000f) {
             @Override
             public void event(Actor a) {
                 patrolling = false;
@@ -109,10 +110,10 @@ public class ActorAI extends Player implements Serializable {
                 final float OFFSET = 1.5f;
                 if (x > (getX()) && x - (getX()) > OFFSET) {
                     changeX(1);
-                    getMainBody().setLinearVelocity(speed * delta, getMainBody().getLinearVelocity().y);
+                    getMainBody().setLinearVelocity(getSpeed() * delta, getMainBody().getLinearVelocity().y);
                 } else if (x < (getX()) && (getX()) - x > OFFSET) {
                     changeX(-1);
-                    getMainBody().setLinearVelocity(-speed * delta, getMainBody().getLinearVelocity().y);
+                    getMainBody().setLinearVelocity(-getSpeed() * delta, getMainBody().getLinearVelocity().y);
                 } else {
                     changeX(0);
                     getMainBody().setLinearVelocity(0, getMainBody().getLinearVelocity().y);
@@ -120,10 +121,10 @@ public class ActorAI extends Player implements Serializable {
 
                 if (y > (getY()) && y - (getY()) > OFFSET) {
                     changeY(1);
-                   getMainBody().setLinearVelocity(getMainBody().getLinearVelocity().x, speed * (float) (delta));
+                   getMainBody().setLinearVelocity(getMainBody().getLinearVelocity().x, getSpeed() * (float) (delta));
                  } else if (y < (getY()) && (getY()) - y > OFFSET) {
                     changeY(-1);
-                    getMainBody().setLinearVelocity(getMainBody().getLinearVelocity().x, -speed * (float) (delta));
+                    getMainBody().setLinearVelocity(getMainBody().getLinearVelocity().x, -getSpeed() * (float) (delta));
                 } else {
                     changeY(0);
                     getMainBody().setLinearVelocity(getMainBody().getLinearVelocity().x, 0);
@@ -267,10 +268,10 @@ public class ActorAI extends Player implements Serializable {
         patrolling = false;
         if ((closestPlayer.getX()) > (this.getX()) && (closestPlayer.getX()) - (this.getX()) > OFFSET) {
             changeX(1);
-            getMainBody().setLinearVelocity(speed * (float) (delta), getMainBody().getLinearVelocity().y);
+            getMainBody().setLinearVelocity(getSpeed() * (float) (delta), getMainBody().getLinearVelocity().y);
         } else if ((closestPlayer.getX()) < (this.getX()) && (this.getX()) - (closestPlayer.getX()) > OFFSET) {
             changeX(-1);
-            getMainBody().setLinearVelocity(-speed * (float) (delta), getMainBody().getLinearVelocity().y);
+            getMainBody().setLinearVelocity(-getSpeed() * (float) (delta), getMainBody().getLinearVelocity().y);
         } else {
             changeX(0);
             getMainBody().setLinearVelocity(0, getMainBody().getLinearVelocity().y);
@@ -278,10 +279,10 @@ public class ActorAI extends Player implements Serializable {
         
         if ((closestPlayer.getY()) > (this.getY()) && (closestPlayer.getY()) - (this.getY()) > OFFSET) {
             changeY(1);
-            getMainBody().setLinearVelocity(getMainBody().getLinearVelocity().x, speed * (float) (delta));
+            getMainBody().setLinearVelocity(getMainBody().getLinearVelocity().x, getSpeed() * (float) (delta));
         } else if ((closestPlayer.getY()) < (this.getY()) && (this.getY()) - (closestPlayer.getY()) > OFFSET) {
             changeY(-1);
-            getMainBody().setLinearVelocity(getMainBody().getLinearVelocity().x, -speed * (float) (delta));
+            getMainBody().setLinearVelocity(getMainBody().getLinearVelocity().x, -getSpeed() * (float) (delta));
         } else {
             changeY(0);
             getMainBody().setLinearVelocity(getMainBody().getLinearVelocity().x, 0);

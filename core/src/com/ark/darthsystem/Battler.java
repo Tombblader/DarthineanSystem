@@ -120,9 +120,13 @@ public class Battler implements Serializable, Nameable, Cloneable {
         this.battlerClass = initialClass;
         try {
             this.skillList = new ArrayList<>();
+            this.skillListName = new ArrayList<>();
             for(int i = 1; i <= level; i++) {
                 if (this.battlerClass != null && this.battlerClass.getSkillList() != null && this.battlerClass.getSkillList().containsKey(i)) {
                     this.skillList.addAll(Arrays.asList(this.battlerClass.getSkillList().get(i)));
+                    for (Skill skills : this.battlerClass.getSkillList().get(i)) {
+                        skillListName.add(skills.getName());
+                    }
                 }
             }
             this.equipmentList = initialEquipment.clone();
@@ -525,6 +529,7 @@ public class Battler implements Serializable, Nameable, Cloneable {
         if (battlerClass.getSkillList().get(level) != null) {
             for(Skill s : battlerClass.getSkillList().get(level)) {
                 skillList.add(s);
+                skillListName.add(s.getName());
                 printline(name + " has learned " + s.getName() + "!");
             }
         }

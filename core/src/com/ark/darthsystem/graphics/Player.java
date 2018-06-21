@@ -89,14 +89,15 @@ public class Player extends ActorCollision implements Serializable {
     private boolean hasEvent;
 
     public Player(ArrayList<ActorBattler> getBattler, float getX, float getY) {
-        super(getBattler.get(0).getSprite().getMasterSpriteSheet() + "/field/stand/down", getX, getY, DELAY);
+        super(getBattler.get(0).getSprite().getMasterSpriteSheet() + "/field/stand/down", getX, getY, getBattler.get(0).getDelay(), getBattler.get(0).getShapeName());
         party = getBattler;
         initialize();
     }
     
     private void initialize() {
-        currentBattler = party.get(0);
-        if (party.get(0).getBattler().getSkillList() != null && !party.get(0).getBattler().getSkillList().isEmpty()) {
+        currentBattler = party.get(0);        
+        if (party.get(0).getBattler().getSkillList() != null 
+                && !party.get(0).getBattler().getSkillList().isEmpty()) {
             currentSkill = Database2.SkillToActor(party.get(0).getBattler().getSkill(0));
         }
         setAttackAnimation();
@@ -258,7 +259,7 @@ public class Player extends ActorCollision implements Serializable {
     }
 
     public void moving(float x, float y, float delta) {
-        getMainBody().setLinearVelocity(x * getSpeed() * delta, y * getSpeed() * delta);
+        getMainBody().setLinearVelocity(x * getBaseSpeed() * delta, y * getBaseSpeed() * delta);
     }
     
     public void moving(float delta) {
@@ -356,7 +357,7 @@ public class Player extends ActorCollision implements Serializable {
             attacking(delta);
         }
         super.update(delta);
-        speed = SPEED;
+        speed = currentBattler.getSpeed();
         applySprite();
     }
     
@@ -418,7 +419,7 @@ public class Player extends ActorCollision implements Serializable {
     }
     
     public float getBaseSpeed() {
-        return SPEED;
+        return currentBattler.getSpeed();
     }
 
     public void jump() {
@@ -634,6 +635,9 @@ public class Player extends ActorCollision implements Serializable {
                 Collections.rotate(party, -1);
             }
             currentBattler = party.get(0);
+            setDelay(currentBattler.getDelay());
+            setShape(currentBattler.getShapeName());
+            setMap(getCurrentMap());
             setAttackAnimation();
             currentSkill = currentBattler.getCurrentSkill();
             fieldState = ActorSprite.SpriteModeField.STAND;
@@ -653,6 +657,9 @@ public class Player extends ActorCollision implements Serializable {
                 Collections.rotate(party, -1);
             }
             currentBattler = party.get(0);
+            setDelay(currentBattler.getDelay());
+            setShape(currentBattler.getShapeName());
+            setMap(getCurrentMap());
             setAttackAnimation();
             currentSkill = currentBattler.getCurrentSkill();
             fieldState = ActorSprite.SpriteModeField.STAND;

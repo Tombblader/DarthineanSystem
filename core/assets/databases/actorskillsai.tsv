@@ -1,0 +1,71 @@
+Name	Cast Image	image	Cast Sound	Field Sound	Tag	RelativeX	RelativeY	TranslateX	TranslateY	FPS	Cast Time (seconds)	Aftercast Delay (seconds)	Skill	Area	Shape
+Eyebeam	attack	crosscall	cast	slash	SLASH, SHINE, PURIFY	1	1	0	0	24	0	2	Eyebeam	front	basiccircle
+Bunny Kick	attack	wiccan_cross	cast	slash	SLASH	1	1	0	0	24	0	6.66	Bunny Kick	front	basiccircle
+Mouthbeam	skill	wiccan_cross	cast	slash	SMASH	0	0	0	0	12	0.5	1	Mouthbeam	self_benefit	widecircle
+															
+															
+															
+															
+															
+															
+															
+															
+															
+															
+															
+															
+															
+															
+															
+															
+															
+															
+															
+															
+															
+															
+															
+															
+															
+															
+															
+															
+															
+															
+															
+															
+															
+															
+															
+															
+															
+															
+															
+															
+															
+															
+															
+															
+															
+															
+															
+															
+															
+															
+															
+															
+															
+															
+															
+															
+															
+															
+															
+															
+															
+															
+															
+Barrier															
+Summon Teruko															
+Get-Well Charm															
+Summon Diotima															

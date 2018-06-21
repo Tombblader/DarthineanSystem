@@ -26,7 +26,7 @@ public class Chapter02 extends Novel {
             BattleDriver.printline(Database2.player.getBattler(0), ActorSprite.SpriteModeFace.NORMAL, "What?");
         });
         chapters.add((Novel.Page) () -> {
-                    MonsterDatabase.monsters.get("Living Sword".toUpperCase()
+                    MonsterDatabase.MONSTER_LIST.get("Living Sword".toUpperCase()
                     ).clone().setMap(Database2.player.getCurrentMap(), 10, 11);
             
         });

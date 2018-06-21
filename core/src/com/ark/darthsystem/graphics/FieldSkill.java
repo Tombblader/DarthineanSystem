@@ -161,18 +161,18 @@ public class FieldSkill extends ActorCollision implements Nameable {
 //        battlerAnimation = new Actor(originalBattlerImageName, 0, 0, delay, true);
     }
 
-    public FieldSkill(String img,
-            String battlerImg,
-            float getX,
-            float getY,
-            float delay,
-            Skill getSkill,
-            Area getArea,
-            String shape) {
-        this(img, getX, getY, delay, getSkill, getArea, shape);
-        this.tags = new ArrayList<>();
-        this.fieldSound = SoundDatabase.fieldSwordSound;
-//        originalBattlerImageName = battlerImg;
+//    public FieldSkill(String img,
+//            String battlerImg,
+//            float getX,
+//            float getY,
+//            float delay,
+//            Skill getSkill,
+//            Area getArea,
+//            String shape) {
+//        this(img, getX, getY, delay, getSkill, getArea, shape);
+//        this.tags = new ArrayList<>();
+//        this.fieldSound = SoundDatabase.fieldSwordSound;
+////        originalBattlerImageName = battlerImg;
 //        try {
 //            originalBattlerImage = GraphicsDriver.getMasterSheet().createSprites(battlerImg).toArray(Sprite.class);
 //        } catch (Exception e) {
@@ -184,7 +184,7 @@ public class FieldSkill extends ActorCollision implements Nameable {
 //            s.setOriginCenter();
 //        }
 //        battlerAnimation = new Actor(originalBattlerImageName, 0, 0, delay, true);
-    }
+//    }
     
     
     public FieldSkill(String img,

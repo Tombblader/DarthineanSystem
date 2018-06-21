@@ -1,63 +1,70 @@
-CrossCall	Light Sword Tech.  Deals damage based on both ATK and MAG.	5	Light	FALSE	FALSE	Normal	0	0	0	6	0	0	6	0	3	0	3	5.5
-Witches' Cross	Dark Sword Tech.  Based on the Devil's Number.	6	Dark	FALSE	FALSE	Normal	6	0	0	6	0	6	6	0	5	5	5	6.66
-Leg Sweep	Spear Tech.  Deals damage based on how slow you are compared to your enemy.	5	Physical	FALSE	FALSE	Normal	0	1	0	0	0	-6	0	0	0	-10	0	6
-Red Spin	Sword Tech.  Deals damage to all enemies in a circle.	6	Physical	FALSE	TRUE	Normal	2	0.5	0	10	0	0	0	0	6	0	0	6
-Poison Edge	Dark Dagger Tech.  Weak attack that also poisons the enemy.	7	Dark	FALSE	FALSE	Poison	0	0	0	10	0	0	0	0	8	0	0	6
-Sap Shot	Water Magic Tech.  Fires a single shot of water at range.	4	Water	FALSE	FALSE	Normal	10	0	0	0	0	0	6	0	3	0	3	5
-Heal	Healing Magic Tech.  Heals at least 25 HP.	3	Heal	TRUE	FALSE	Normal	-20	0	0	0	0	0	-1	0	0	0	1	1
-Darce Fireball	Fire Darcy Magic Tech.  Fires a single shot of fire at range.	4	Fire	FALSE	FALSE	Normal	10	0	0	0	0	0	6	0	3	0	3	5
-Fireball	Fire Magic Tech.  Fires a single shot of fire at range.	4	Fire	FALSE	FALSE	Normal	10	0	0	0	0	0	7	0	0	0	5	5
-Red Flail	Sword Tech.  Deals more damage the less HP you currently have.	9	Physical	FALSE	FALSE	Normal	6	0	0.6	6	0	0	0	0	6	0	0	6
-Tiger Thrust	Spear Tech.  High physical attack damage skill that rushes the enemy.	10	Physical	FALSE	FALSE	Normal	0	0	0	12	0	0	0	0	6	0	0	5.5
-Ray Assassin	Dagger Tech.  Quick shot of Mana Power hits enemy at a range and improves the faster you are.	7	Physical	FALSE	FALSE	Normal	0	0	0	6	0	6	0	3	0	3	0	5.5
-Veather Report	Veather Tech.  Scans the enemy, but fogs up their judgment in the process.	10	Male	FALSE	FALSE	Fog	0	0	0	0	0	0	0	0	0	0	0	1
-Nutcracker	Physical attack.  An auto-crit against people with certain anatomies.	10	Female	FALSE	FALSE	Normal	0	0	0	1	0	0	0	1	-1	0	0	1
-Tornado Spin	Wind Sword Tech.  Deals damage to all enemies based on Attack, Magic, and Speed.	10	Wind	FALSE	TRUE	Normal	0	0	0	4	0	4	4	1	2	2	2	5.5
-Sword Dancer	Sword Tech.  Damages all enemies around you.	17	Physical	FALSE	TRUE	Normal	10	1	0	6	7	0	0	0	3	3	0	5.5
-Defense Rush	Shield Tech.  Deals damage based on your defense.	12	Physical	FALSE	FALSE	Normal	0	0	0	3	9	0	0	1	5	0	0	5.5
-Thunder Thrust	Wind Spear Tech.  Deals lots of damage.	18	Wind	FALSE	TRUE	Normal	0	1	0	11	0	0	0	0	3	0	3	5.5
-Red Slayer	Fire Sword Tech.  The less ATK the enemy has, the more damage this skill does.	9	Fire	FALSE	FALSE	Normal	0	0	0	10	0	0	0	5	0	0	0	5
-Veather Sprawl	Veather Tech.  Attack with your belly.	7	Male	FALSE	FALSE	Normal	0	0	0	1	0	0	3	0	2	0	-5	1.5
-Bladed Din	Axe Tech.  Silence target.	9	Physical	FALSE	TRUE	Silence	0	0	0	12	0	0	0	6	0	0	0	6.5
-Brainwashing Axe	Axe Tech.  Confuses target.	14	Physical	FALSE	FALSE	Confuse	0	0	0	10	0	0	0	0	4	0	4	4.5
-Burial Swipe	Earth Axe Tech.  Resisted by MAG as well.	9	Earth	FALSE	FALSE	Normal	0	0	0	6	0	0	2	0	3	0	1	3.5
-Frozen Miasama	Water Magic Tech.  Hits all enemies	12	Water	FALSE	TRUE	Normal	30	0	0	0	0	0	8	0	0	0	8	4
-Storm Gigas	Wind Magic Tech.  Hits all enemies.	13	Wind	FALSE	TRUE	Normal	45	0	0	0	0	0	1	0	0	0	1	1
-Mud Hand	Earth Magic Tech.  Slows enemy.	12	Earth	FALSE	FALSE	Normal	55	0	0	0	0	0	1	0	0	0	1	1
-Silver Flame	Fire Magic Tech.  Blinds enemy.	14	Fire	FALSE	FALSE	Fog	60	0	0	0	0	0	1	0	0	0	1	1
-Crystal Whirl	Water Magic Tech.	18	Water	FALSE	FALSE	Normal	80	0	0	0	0	0	1	0	0	0	1	1
-Thunderstorm	Wind Magic Tech.  Hits all enemies.	19	Wind	FALSE	TRUE	Normal	90	0	0	0	0	0	1	0	0	0	1	1
-Terra Wall	Earth Magic Tech.  Hits all enemies	20	Earth	FALSE	TRUE	Normal	67	0	0	0	0	0	6	0	3	0	3	6
-Inferno	Fire Magic Tech.  Hits all enemies.	17	Fire	FALSE	TRUE	Normal	120	0	0	0	0	0	1	0	0	0	1	1
-Sleep	Gray Magic Tech.  Puts one enemy to sleep.	3	Physical	FALSE	FALSE	Sleep	0	0	0	0	0	0	0	0	0	0	0	1
-Venomater	Gray Magic Tech.  Poisons one enemy.	4	Physical	FALSE	FALSE	Poison	0	0	0	0	0	0	0	0	0	0	0	1
-Hallucination	Gray Magic Tech.  Confuses one enemy.	9	Physical	FALSE	FALSE	Confuse	0	0	0	0	0	0	0	0	0	0	0	2
-Silence	Gray Magic Tech.  Silences one enemy.	18	Physical	FALSE	FALSE	Silence	0	0	0	0	0	0	3	0	0	0	2	2
-Petrify	Gray Magic Tech.  Petrify one enemy.	20	Earth	FALSE	FALSE	Petrify	0	0	0	0	0	0	3	0	0	0	2	2
-Veather Charm	Veather Tech.  Perform a one-liner on the enemy and hope it's not a dude, but that's okay, because it'd just confuse them anyways.	10	Male	FALSE	FALSE	Confuse	0	0	0	0	0	0	0	0	0	0	0	1
-Hypnosis Echo	Gray Magic Tech.  Puts all enemies to sleep.	10	Physical	FALSE	TRUE	Sleep	0	0	0	0	0	0	0	0	0	0	0	1
-Toxic River	Gray Magic Tech.  Poisons all enemies.	13	Physical	FALSE	TRUE	Poison	0	0	0	0	0	0	0	0	0	0	0	1
-Black Miasama	Gray Magic Tech.  Blinds all enemies	13	Dark	FALSE	TRUE	Fog	0	0	0	0	0	0	3	0	0	0	2	2
-White Curse	Gray Magic Tech.  Silences all enemies.	25	Light	FALSE	TRUE	Silence	0	0	0	0	0	0	0	0	0	0	0	1
-Mass Hallucination	Gray Magic Tech.  Confuses all enemies.	26	Physical	FALSE	TRUE	Confuse	0	0	0	0	0	0	0	0	0	0	0	1
-Fossilize	Gray Magic Tech.  Petrify one enemy.	40	Physical	FALSE	TRUE	Petrify	0	0	0	0	0	0	0	0	0	0	0	1
-HealMore	Healing Tech.  Heals for at least 70 HP.	7	Heal	TRUE	FALSE	Normal	-70	0	0	0	0	0	-6	0	0	0	6	6
-HealAll	Healing Tech.  Heals an ally fully (probably).	12	Heal	TRUE	FALSE	Normal	-999	0	0	0	0	0	0	0	0	0	0	1
-HealUs	Healing Tech.  Heals all alies.	15	Heal	TRUE	TRUE	Normal	-100	0	0	0	0	0	-6	0	0	0	6	6
-Antidote	Healing Tech.  Removes poison from one ally.	5	Heal	TRUE	FALSE	Poison	0	0	0	0	0	0	0	0	0	0	0	1
-Awaken	Healing Tech.  Awakens all allies.	7	Heal	TRUE	TRUE	Sleep	0	0	0	0	0	0	0	0	0	0	0	1
-Defog	Healing Tech.  Removes Blindness from all allies.	11	Heal	TRUE	TRUE	Fog	0	0	0	0	0	0	0	0	0	0	0	1
-Honey Voice	Healing Tech.  Removes silence from one ally.	9	Heal	TRUE	FALSE	Silence	0	0	0	0	0	0	0	0	0	0	0	1
-Illusion Break	Healing Tech.  Removes confusion from all allies	12	Heal	TRUE	TRUE	Confuse	0	0	0	0	0	0	0	0	0	0	0	1
-Cell Rejuvenation	Healing Tech.  Removes Petrify from one ally.	15	Heal	TRUE	FALSE	Petrify	0	0	0	0	0	0	0	0	0	0	0	1
-Revivify	Healing Tech.  Raises the dead with at least 30 HP.	20	Heal	TRUE	FALSE	Death	-30	0.3	0	0	0	0	-6	0	0	0	6	6
-Seal Breaker	Erik Tech.  Breaks barriers, and deals tons of damage to one enemy.	23	Physical	FALSE	FALSE	Normal	0	0	0	10	0	0	-4	0	7	0	-8	6
-Reign of Terror	Orly Tech.  Rains death on all enemies in a wide radius.	21	Physical	FALSE	TRUE	Normal	0	0	0	13	0	-7	0	0	7	-9	0	5.5
-Weapon Master	Gladia Tech.  Deals damage to all enemies.	7	Physical	FALSE	TRUE	Normal	0	0	0	6	0	6	0	0	3	3	0	5
-Entropy	Dark Darcy Tech.  Damage all enemies with darkness.	7	Dark	FALSE	TRUE	Normal	0	0.35	0	0	0	0	13	0	0	0	6	8
-Four's Fury	Light Darcy Tech.  Warp to nearby enemy and smite.	25	Light	FALSE	FALSE	Normal	0	0	0	7	0	0	7	0	3	0	4	7
-Axe Effect	Veather Tech.  Legendary Ladies' Mann technique inflicts all status effects except death.	25	Earth	FALSE	TRUE	Fog	0	0	0	7	0	0	-7	0	3	0	-3	5
-Fairy Circle	NULL	25	Light	FALSE	TRUE	Normal	0	0	0	7	0	7	7	0	3	3	4	5.5
-Darknite	Dark Karin Tech.  Karn Edikt	30	Dark	FALSE	FALSE	Normal	70	0	0	0	0	0	16	0	0	0	8	8
-Attack Boost	Red Magic Tech.  Boosts ATK.	5	Fire	TRUE	FALSE	AttackBoost	0	0	0	0	0	0	0	0	0	0	0	1
-Barrier	White Magic Tech.  Halves Damage.	5	Light	TRUE	FALSE	Barrier	0	0	0	0	0	0	0	0	0	0	0	1
+CrossCall	Light Sword Tech.  Deals damage based on both ATK and MAG.	BATTLER	crosscall	12	cast	slash	5	Light	FALSE	FALSE	Normal	0	0	0	6	0	0	6	0	3	0	3	5.5
+Spin Attack	Physical Sword Tech.  Attack all enemies in a circle.	BATTLER	red_spin	12	cast	slash	6	Physical	FALSE	TRUE	Normal	0	0	0	10	0	0	0	0	6	0	0	6
+Wide Slash	Physical Sword Tech.  Attacks with a quick, wide slash	BATTLER	red_spin	12	cast	slash	3	Physical	FALSE	FALSE	Normal	0	0	0	12	0	0	0	0	6	0	0	6
+Witches' Cross	Dark Sword Tech.  Based on the Witches' Number.	BATTLER	red_spin	12	cast	slash	6	Dark	FALSE	FALSE	Normal	6	0	0	6	0	6	6	0	5	5	5	6.66
+Leg Sweep	Spear Tech.  Deals damage based on how slow you are compared to your enemy.	BATTLER	red_spin	12	cast	slash	5	Physical	FALSE	FALSE	Normal	0	1	0	0	0	-6	0	0	0	-10	0	6
+Red Spin	Sword Tech.  Deals damage to all enemies in a circle.	BATTLER	red_spin	12	cast	slash	6	Physical	FALSE	TRUE	Normal	2	0.5	0	10	0	0	0	0	6	0	0	6
+Poison Edge	Dark Dagger Tech.  Weak attack that also poisons the enemy.	BATTLER	red_spin	12	cast	slash	7	Dark	FALSE	FALSE	Poison	0	0	0	10	0	0	0	0	8	0	0	6
+Sap Shot	Water Magic Tech.  Fires a single shot of water at range.	BATTLER	red_spin	12	cast	slash	4	Water	FALSE	FALSE	Normal	10	0	0	0	0	0	6	0	3	0	3	5
+Heal	Healing Magic Tech.  Heals at least 25 HP.	BATTLER	red_spin	12	cast	slash	3	Heal	TRUE	FALSE	Normal	-20	0	0	0	0	0	-1	0	0	0	1	1
+Darce Fireball	Fire Darcy Magic Tech.  Fires a single shot of fire at range.	BATTLER	red_spin	12	cast	slash	4	Fire	FALSE	FALSE	Normal	10	0	0	0	0	0	6	0	3	0	3	5
+Fireball	Fire Magic Tech.  Fires a single shot of fire at range.	BATTLER	red_spin	12	cast	slash	4	Fire	FALSE	FALSE	Normal	10	0	0	0	0	0	7	0	0	0	5	5
+Red Flail	Sword Tech.  Deals more damage the less HP you currently have.	BATTLER	red_spin	12	cast	slash	9	Physical	FALSE	FALSE	Normal	6	0	0.6	6	0	0	0	0	6	0	0	6
+Tiger Thrust	Spear Tech.  High physical attack damage skill that rushes the enemy.	BATTLER	red_spin	12	cast	slash	10	Physical	FALSE	FALSE	Normal	0	0	0	12	0	0	0	0	6	0	0	5.5
+Ray Assassin	Dagger Tech.  Quick shot of Mana Power hits enemy at a range and improves the faster you are.	BATTLER	red_spin	12	cast	slash	7	Physical	FALSE	FALSE	Normal	0	0	0	6	0	6	0	3	0	3	0	5.5
+Veather Report	Veather Tech.  Scans the enemy, but fogs up their judgment in the process.	BATTLER	red_spin	12	cast	slash	10	Male	FALSE	FALSE	Fog	0	0	0	0	0	0	0	0	0	0	0	1
+Nutcracker	Physical attack.  An auto-crit against people with certain anatomies.	BATTLER	red_spin	12	cast	slash	10	Female	FALSE	FALSE	Normal	0	0	0	1	0	0	0	1	-1	0	0	1
+Tornado Spin	Wind Sword Tech.  Deals damage to all enemies based on Attack, Magic, and Speed.	BATTLER	red_spin	12	cast	slash	10	Wind	FALSE	TRUE	Normal	0	0	0	4	0	4	4	1	2	2	2	5.5
+Sword Dancer	Sword Tech.  Damages all enemies around you.	BATTLER	red_spin	12	cast	slash	17	Physical	FALSE	TRUE	Normal	10	1	0	6	7	0	0	0	3	3	0	5.5
+Defense Rush	Shield Tech.  Deals damage based on your defense.	BATTLER	red_spin	12	cast	slash	12	Physical	FALSE	FALSE	Normal	0	0	0	3	9	0	0	1	5	0	0	5.5
+Thunder Thrust	Wind Spear Tech.  Deals lots of damage.	BATTLER	red_spin	12	cast	slash	18	Wind	FALSE	TRUE	Normal	0	1	0	11	0	0	0	0	3	0	3	5.5
+Red Slayer	Fire Sword Tech.  The less ATK the enemy has, the more damage this skill does.	BATTLER	red_spin	12	cast	slash	9	Fire	FALSE	FALSE	Normal	0	0	0	10	0	0	0	5	0	0	0	5
+Veather Sprawl	Veather Tech.  Attack with your belly.	BATTLER	red_spin	12	cast	slash	7	Male	FALSE	FALSE	Normal	0	0	0	1	0	0	3	0	2	0	-5	1.5
+Bladed Din	Axe Tech.  Silence target.	BATTLER	red_spin	12	cast	slash	9	Physical	FALSE	TRUE	Silence	0	0	0	12	0	0	0	6	0	0	0	6.5
+Brainwashing Axe	Axe Tech.  Confuses target.	BATTLER	red_spin	12	cast	slash	14	Physical	FALSE	FALSE	Confuse	0	0	0	10	0	0	0	0	4	0	4	4.5
+Burial Swipe	Earth Axe Tech.  Resisted by MAG as well.	BATTLER	red_spin	12	cast	slash	9	Earth	FALSE	FALSE	Normal	0	0	0	6	0	0	2	0	3	0	1	3.5
+Frozen Miasama	Water Magic Tech.  Hits all enemies	BATTLER	red_spin	12	cast	slash	12	Water	FALSE	TRUE	Normal	30	0	0	0	0	0	8	0	0	0	8	4
+Storm Gigas	Wind Magic Tech.  Hits all enemies.	BATTLER	red_spin	12	cast	slash	13	Wind	FALSE	TRUE	Normal	45	0	0	0	0	0	1	0	0	0	1	1
+Mud Hand	Earth Magic Tech.  Slows enemy.	BATTLER	red_spin	12	cast	slash	12	Earth	FALSE	FALSE	Normal	55	0	0	0	0	0	1	0	0	0	1	1
+Silver Flame	Fire Magic Tech.  Blinds enemy.	BATTLER	red_spin	12	cast	slash	14	Fire	FALSE	FALSE	Fog	60	0	0	0	0	0	1	0	0	0	1	1
+Crystal Whirl	Water Magic Tech.	BATTLER	red_spin	12	cast	slash	18	Water	FALSE	FALSE	Normal	80	0	0	0	0	0	1	0	0	0	1	1
+Thunderstorm	Wind Magic Tech.  Hits all enemies.	BATTLER	red_spin	12	cast	slash	19	Wind	FALSE	TRUE	Normal	90	0	0	0	0	0	1	0	0	0	1	1
+Terra Wall	Earth Magic Tech.  Hits all enemies	BATTLER	red_spin	12	cast	slash	20	Earth	FALSE	TRUE	Normal	67	0	0	0	0	0	6	0	3	0	3	6
+Inferno	Fire Magic Tech.  Hits all enemies.	BATTLER	red_spin	12	cast	slash	17	Fire	FALSE	TRUE	Normal	120	0	0	0	0	0	1	0	0	0	1	1
+Sleep	Gray Magic Tech.  Puts one enemy to sleep.	BATTLER	red_spin	12	cast	slash	3	Physical	FALSE	FALSE	Sleep	0	0	0	0	0	0	0	0	0	0	0	1
+Venomater	Gray Magic Tech.  Poisons one enemy.	BATTLER	red_spin	12	cast	slash	4	Physical	FALSE	FALSE	Poison	0	0	0	0	0	0	0	0	0	0	0	1
+Hallucination	Gray Magic Tech.  Confuses one enemy.	BATTLER	red_spin	12	cast	slash	9	Physical	FALSE	FALSE	Confuse	0	0	0	0	0	0	0	0	0	0	0	2
+Silence	Gray Magic Tech.  Silences one enemy.	BATTLER	red_spin	12	cast	slash	18	Physical	FALSE	FALSE	Silence	0	0	0	0	0	0	3	0	0	0	2	2
+Petrify	Gray Magic Tech.  Petrify one enemy.	BATTLER	red_spin	12	cast	slash	20	Earth	FALSE	FALSE	Petrify	0	0	0	0	0	0	3	0	0	0	2	2
+Veather Charm	Veather Tech.  Perform a one-liner on the enemy and hope it's not a dude, but that's okay, because it'd just confuse them anyways.	BATTLER	red_spin	12	cast	slash	10	Male	FALSE	FALSE	Confuse	0	0	0	0	0	0	0	0	0	0	0	1
+Veather Dance	Veather Tech.  You're Paralyzed!	BATTLER	red_spin	12	cast	slash	10	Male	FALSE	TRUE	Paralyze	0	0	0	0	0	0	0	0	0	0	0	1
+Belly Dance Hypnosis	Veather Tech.  Use your belly to give someone terrible nightmares.	BATTLER	red_spin	12	cast	slash	10	Male	FALSE	FALSE	Sleep	0	0	0	0	0	0	0	0	0	0	0	1
+Hypnosis Echo	Gray Magic Tech.  Puts all enemies to sleep.	BATTLER	red_spin	12	cast	slash	10	Physical	FALSE	TRUE	Sleep	0	0	0	0	0	0	0	0	0	0	0	1
+Toxic River	Gray Magic Tech.  Poisons all enemies.	BATTLER	red_spin	12	cast	slash	13	Physical	FALSE	TRUE	Poison	0	0	0	0	0	0	0	0	0	0	0	1
+Black Miasama	Gray Magic Tech.  Blinds all enemies	BATTLER	red_spin	12	cast	slash	13	Dark	FALSE	TRUE	Fog	0	0	0	0	0	0	3	0	0	0	2	2
+White Curse	Gray Magic Tech.  Silences all enemies.	BATTLER	red_spin	12	cast	slash	25	Light	FALSE	TRUE	Silence	0	0	0	0	0	0	0	0	0	0	0	1
+Mass Hallucination	Gray Magic Tech.  Confuses all enemies.	BATTLER	red_spin	12	cast	slash	26	Physical	FALSE	TRUE	Confuse	0	0	0	0	0	0	0	0	0	0	0	1
+Fossilize	Gray Magic Tech.  Petrify one enemy.	BATTLER	red_spin	12	cast	slash	40	Physical	FALSE	TRUE	Petrify	0	0	0	0	0	0	0	0	0	0	0	1
+HealMore	Healing Tech.  Heals for at least 70 HP.	BATTLER	red_spin	12	cast	slash	7	Heal	TRUE	FALSE	Normal	-70	0	0	0	0	0	-6	0	0	0	6	6
+HealAll	Healing Tech.  Heals an ally fully (probably).	BATTLER	red_spin	12	cast	slash	12	Heal	TRUE	FALSE	Normal	-999	0	0	0	0	0	0	0	0	0	0	1
+HealUs	Healing Tech.  Heals all alies.	BATTLER	red_spin	12	cast	slash	15	Heal	TRUE	TRUE	Normal	-100	0	0	0	0	0	-6	0	0	0	6	6
+Antidote	Healing Tech.  Removes poison from one ally.	BATTLER	red_spin	12	cast	slash	5	Heal	TRUE	FALSE	Poison	0	0	0	0	0	0	0	0	0	0	0	1
+Awaken	Healing Tech.  Awakens all allies.	BATTLER	red_spin	12	cast	slash	7	Heal	TRUE	TRUE	Sleep	0	0	0	0	0	0	0	0	0	0	0	1
+Defog	Healing Tech.  Removes Blindness from all allies.	BATTLER	red_spin	12	cast	slash	11	Heal	TRUE	TRUE	Fog	0	0	0	0	0	0	0	0	0	0	0	1
+Honey Voice	Healing Tech.  Removes silence from one ally.	BATTLER	red_spin	12	cast	slash	9	Heal	TRUE	FALSE	Silence	0	0	0	0	0	0	0	0	0	0	0	1
+Illusion Break	Healing Tech.  Removes confusion from all allies	BATTLER	red_spin	12	cast	slash	12	Heal	TRUE	TRUE	Confuse	0	0	0	0	0	0	0	0	0	0	0	1
+Cell Rejuvenation	Healing Tech.  Removes Petrify from one ally.	BATTLER	red_spin	12	cast	slash	15	Heal	TRUE	FALSE	Petrify	0	0	0	0	0	0	0	0	0	0	0	1
+Revivify	Healing Tech.  Raises the dead with at least 30 HP.	BATTLER	red_spin	12	cast	slash	20	Heal	TRUE	FALSE	Death	-30	0.3	0	0	0	0	-6	0	0	0	6	6
+Seal Breaker	Erik Tech.  Breaks barriers, and deals tons of damage to one enemy.	BATTLER	red_spin	12	cast	slash	23	Physical	FALSE	FALSE	Normal	0	0	0	10	0	0	-4	0	7	0	-8	6
+Reign of Terror	Orly Tech.  Rains death on all enemies in a wide radius.	BATTLER	red_spin	12	cast	slash	21	Physical	FALSE	TRUE	Normal	0	0	0	13	0	-7	0	0	7	-9	0	5.5
+Weapon Master	Gladia Tech.  Deals damage to all enemies.	BATTLER	red_spin	12	cast	slash	7	Physical	FALSE	TRUE	Normal	0	0	0	6	0	6	0	0	3	3	0	5
+Entropy	Dark Darcy Tech.  Damage all enemies with darkness.	BATTLER	red_spin	12	cast	slash	7	Dark	FALSE	TRUE	Normal	0	0.35	0	0	0	0	13	0	0	0	6	8
+Four's Fury	Light Darcy Tech.  Warp to nearby enemy and smite.	BATTLER	red_spin	12	cast	slash	25	Light	FALSE	FALSE	Normal	0	0	0	7	0	0	7	0	3	0	4	7
+Axe Effect	Veather Tech.  Legendary Ladies' Mann technique inflicts all status effects except death.	BATTLER	red_spin	12	cast	slash	25	Earth	FALSE	TRUE	Fog	0	0	0	7	0	0	-7	0	3	0	-3	5
+Fairy Circle	NULL	BATTLER	red_spin	12	cast	slash	25	Light	FALSE	TRUE	Normal	0	0	0	7	0	7	7	0	3	3	4	5.5
+Darknite	Dark Karin Tech.  Karn Edikt	BATTLER	red_spin	12	cast	slash	30	Dark	FALSE	FALSE	Normal	70	0	0	0	0	0	16	0	0	0	8	8
+Attack Boost	Red Magic Tech.  Boosts ATK.	BATTLER	red_spin	12	cast	slash	5	Fire	TRUE	FALSE	AttackBoost	0	0	0	0	0	0	0	0	0	0	0	1
+Barrier	White Magic Tech.  Halves Damage.	BATTLER	red_spin	12	cast	slash	5	Light	TRUE	FALSE	Barrier	0	0	0	0	0	0	0	0	0	0	0	1
+Summon Teruko	White Lavender Summon.  Summons Sun Deity's Servant Teruko to increase the defense of all allies.	BATTLER	red_spin	12	cast	slash	10	Light	TRUE	TRUE	DefenseBoost	0	0	0	0	0	0	0	0	0	0	0	1
+Get-Well Charm	Healing Lavender Magic.  Heals one ally and removes negative status effects.	BATTLER	red_spin	12	cast	slash	7	Heal	TRUE	FALSE	Panacea	-30	0	0	0	0	0	-2	0	0	0	2	5
+Summon Diotima	Healing Lavender Summon.  Summons Diotima, Illusionary Princess of True Love.  Heals all allies and removes negative status effects.	BATTLER	red_spin	12	cast	slash	16	Heal	TRUE	TRUE	Panacea	0	0	0	0	0	0	-12	0	0	0	6	6

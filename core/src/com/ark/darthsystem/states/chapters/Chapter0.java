@@ -6,6 +6,7 @@
 package com.ark.darthsystem.states.chapters;
 
 import com.ark.darthsystem.BattleDriver;
+import static com.ark.darthsystem.database.CharacterDatabase.CHARACTER_LIST;
 import com.ark.darthsystem.database.Database2;
 import com.ark.darthsystem.graphics.ActorSprite;
 import com.ark.darthsystem.graphics.GraphicsDriver;
@@ -18,14 +19,14 @@ public class Chapter0 extends Novel {
     
     public Chapter0() {
         chapters.add((Page) () -> {
-            BattleDriver.printline(Database2.player.getBattler(0), ActorSprite.SpriteModeFace.NORMAL, "I'm glad you've answered our call.  It seems like the vessel you were going to use crashed around here somewhere.");
-            BattleDriver.printline(Database2.player.getBattler(0), ActorSprite.SpriteModeFace.NORMAL, "Your consciousness seemed to have separated from your vessel.  That isn't a good sign, but not to worry.  I will lead you to your body.");
+            BattleDriver.printline(CHARACTER_LIST.get("BLUE LADY"), ActorSprite.SpriteModeFace.NORMAL, "I'm glad you've answered our call.  It seems like the vessel you were going to use crashed around here somewhere.");
+            BattleDriver.printline(CHARACTER_LIST.get("BLUE LADY"), ActorSprite.SpriteModeFace.NORMAL, "Your consciousness seemed to have separated from your vessel.  That isn't a good sign, but not to worry.  I will lead you to your body.");
         });
         chapters.add((Page) () -> {
             GraphicsDriver.pauseTime(1000);
         });
         chapters.add((Page) () -> {
-            BattleDriver.printline(Database2.player.getBattler(0), ActorSprite.SpriteModeFace.HAPPY, "Guide me to you.  I shall explain the rules of this world along the way.");
+            BattleDriver.printline(CHARACTER_LIST.get("BLUE LADY"), ActorSprite.SpriteModeFace.HAPPY, "Guide me to you.  I shall explain the rules of this world along the way.");
         });
     }
     

@@ -189,7 +189,9 @@ public class BattleDriver {
                 }
             }
             formattedMessage.add(formatted);
-            GraphicsDriver.setMessage(battler.getBattler().getName(), battler.getSprite().getFaceAnimation(faceMode), formattedMessage);
+            GraphicsDriver.setMessage(battler.getBattler().getName(), 
+                    battler.getSprite().getFaceAnimation(faceMode), 
+                    formattedMessage);
         }        
     }
     

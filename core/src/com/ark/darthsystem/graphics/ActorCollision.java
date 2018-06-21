@@ -121,6 +121,11 @@ public class ActorCollision extends Actor implements Serializable {
             };
         } else {
             fixtureDef.shape = CollisionDatabaseLoader.getShape(shapeName);
+            if (fixtureDef.shape == null) {
+                fixtureDef.shape = new CircleShape() {
+//                    setRadius(24f / GraphicsDriver.getPlayerCamera().getConversion());
+                };                
+            }
             if (fixtureDef.shape instanceof PolygonShape) {
                 float degrees = 0;
                 switch (this.getFacing()) {
@@ -153,6 +158,7 @@ public class ActorCollision extends Actor implements Serializable {
             }
         }
         body = map.getPhysicsWorld().createBody(genericBodyType);
+        System.out.println(fixtureDef.shape);
         fixtureDef.density = 0.1f; 
         fixtureDef.friction = 1.0f;
         fixtureDef.restitution = 0f;
@@ -167,14 +173,6 @@ public class ActorCollision extends Actor implements Serializable {
         sensorBody = null;
         sensorBody = map.getPhysicsWorld().createBody(genericBodyType2);
         FixtureDef fixtureDef2 = new FixtureDef();
-//        if (CollisionDatabaseLoader.getShape(shapeName) == null) {
-//            fixtureDef2.shape = new CircleShape();
-//            
-//        }
-//        else {
-//            fixtureDef2.shape = CollisionDatabaseLoader.getShape(shapeName);
-//            
-//        }
         if (CollisionDatabaseLoader.getShapes() == null || CollisionDatabaseLoader.getShapes().isEmpty()
                 || (!MapDatabase.getMaps().containsKey("skillshapes") && map.getMap().getLayers().get("collisions") == null)) {
             fixtureDef2.shape = new CircleShape() {
@@ -184,6 +182,9 @@ public class ActorCollision extends Actor implements Serializable {
             };
         } else {
             fixtureDef2.shape = CollisionDatabaseLoader.getShape(shapeName);
+            if (fixtureDef2.shape == null) {
+                fixtureDef2.shape = new CircleShape();
+            }
         }
         fixtureDef2.density = 0.1f; 
         fixtureDef2.friction = 1.0f;

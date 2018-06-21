@@ -11,6 +11,7 @@ import com.ark.darthsystem.graphics.FieldSkill;
 import com.ark.darthsystem.states.Battle;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
+import java.util.Arrays;
 import java.util.HashMap;
 
 /**
@@ -30,12 +31,11 @@ public class SkillDatabase {
                 continue;
             }
             int i = 0;
-            
             SKILL_LIST.put(data[i].toUpperCase(), new Skill(data[i], //Name
                     data[++i], //Description
                     ActorSprite.SpriteModeBattler.valueOf(data[++i]),
                     data[++i], 
-                    (float) Double.parseDouble(data[++i]),
+                    1 / (float) Double.parseDouble(data[++i]),
                     data[++i],
                     data[++i],
                     Integer.parseInt(data[++i]), //Cost
@@ -68,7 +68,7 @@ public class SkillDatabase {
                     data[++i], //Description
                     ActorSprite.SpriteModeBattler.valueOf(data[++i]),
                     data[++i], 
-                    (float) Double.parseDouble(data[++i]),
+                    1 / (float) Double.parseDouble(data[++i]),
                     data[++i],
                     data[++i],
                     Integer.parseInt(data[++i]), //Cost

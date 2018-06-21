@@ -171,8 +171,10 @@ public class Battle implements State {
     private void playSounds() {
         for (Iterator<Sound> it = sounds.iterator(); it.hasNext();) {
             Sound s = it.next();
-            s.stop();
-            s.play();
+            if (s != null) {
+                s.stop();
+                s.play();
+            }
             it.remove();
         }
     }
@@ -209,6 +211,7 @@ public class Battle implements State {
                 && currentAction.getCaster().getMP() >= currentAction.getSkill().getCost()) {
             Skill tempSkill = currentAction.getSkill();
             sounds.add(tempSkill.getSound());
+            tempSkill.getAnimation().resetAnimation();
             animations.add(tempSkill.getAnimation());
 //            animations.get(animations.size() - 1).setX((float) ((GraphicsDriver.getWidth() + divider * (enemy.indexOf(tempBattler) - 1)) / 2 + divider * enemy.indexOf(tempBattler)));
             animations.get(animations.size() - 1).setX(divider * ((enemy.indexOf(tempBattler) + 1)));
@@ -220,6 +223,7 @@ public class Battle implements State {
                 && currentAction.getCaster().getMP() >= currentAction.getSkill().getCost()) {
             Skill tempSkill = currentAction.getSkill();
             sounds.add(tempSkill.getSound());
+            tempSkill.getAnimation().resetAnimation();
             animations.add(tempSkill.getAnimation());
             animations.get(animations.size() - 1).setX((GraphicsDriver.getWidth() - animations.get(0).getWidth()) / 2);
             animations.get(animations.size() - 1).setY((GraphicsDriver.getHeight() - animations.get(0).getHeight()) / 2f);
@@ -229,13 +233,14 @@ public class Battle implements State {
                 && currentAction.getTarget() instanceof BattlerAI) {
             try {
                 tempSkill = (currentAction.getCaster().
-                        getEquipment(Equipment.Slot.OffHand.getSlot()).
+                        getEquipment(Equipment.Slot.MainHand.getSlot()).
                         getBattlerAnimation());
+                tempSkill.resetAnimation();                
+                sounds.add(currentAction.getCaster().
+                            getEquipment(Equipment.Slot.MainHand.getSlot()).getSound());
             } catch (NullPointerException e) {
-                tempSkill = Database2.getDefaultUnarmedAnimation();
+                tempSkill = Database2.getDefaultBattlerUnarmedAnimation();
             }
-            sounds.add(currentAction.getCaster().
-                        getEquipment(Equipment.Slot.OffHand.getSlot()).getSound());
             animations.add(tempSkill);
             animations.get(animations.size() - 1).setX(divider * (enemy.indexOf(tempBattler) + 1));
             animations.get(animations.size() - 1).setY(BATTLER_Y);

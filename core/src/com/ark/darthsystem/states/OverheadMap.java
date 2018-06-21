@@ -289,7 +289,7 @@ public class OverheadMap implements State {
     private Body genTile(MapObject object) {
         MapProperties properties = object.getProperties();
         if (properties.get("type", String.class) != null && properties.get("type", String.class).equalsIgnoreCase("actor")) {
-            MonsterDatabase.monsters.get(properties.get("parameters", String.class).toUpperCase())
+            MonsterDatabase.MONSTER_LIST.get(properties.get("parameters", String.class).toUpperCase())
                     .clone().setMap(this, properties.get("x", Float.class) / PlayerCamera.PIXELS_TO_METERS, properties.get("y", Float.class) / PlayerCamera.PIXELS_TO_METERS);
             return null;
         }

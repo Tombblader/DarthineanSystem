@@ -51,6 +51,7 @@ public class Equipment extends Item implements Cloneable {
      */
     public Equipment(String getName,
             String getDescription,
+            String imageName,
             int getMarketPrice,
             String[] type,
             Slot slot,
@@ -61,7 +62,7 @@ public class Equipment extends Item implements Cloneable {
             int initializeDefense,
             int initializeSpeed,
             int initializeMagic) {
-        super(getName, getDescription, getMarketPrice, -1, invoke, useMP);
+        super(getName, getDescription, imageName, getMarketPrice, -1, invoke, useMP);
         this.shapeName = "basiccircle";
         this.areaName = FieldSkill.Area.FRONT;
         this.equipElement = Battle.Element.Physical;
@@ -76,6 +77,7 @@ public class Equipment extends Item implements Cloneable {
         magic = initializeMagic;
         equipElement = initializeElement;
         animationName = "sword";
+        battlerAnimation = new Actor("items/equipment/sword/battler/battler", 0, 0, 1/12f, true);
         animation = Database2.Sword();
     }
 
@@ -96,6 +98,7 @@ public class Equipment extends Item implements Cloneable {
      */
     public Equipment(String getName,
             String getDescription,
+            String imageName,
             int getMarketPrice,
             Type[] type,
             Slot slot,
@@ -106,7 +109,7 @@ public class Equipment extends Item implements Cloneable {
             int initializeDefense,
             int initializeSpeed,
             int initializeMagic) {
-        super(getName, getDescription, getMarketPrice, -1, invoke, useMP);
+        super(getName, getDescription, imageName, getMarketPrice, -1, invoke, useMP);
         this.shapeName = "basiccircle";
         this.areaName = FieldSkill.Area.FRONT;
         this.equipElement = Battle.Element.Physical;
@@ -119,6 +122,8 @@ public class Equipment extends Item implements Cloneable {
         equipElement = initializeElement;
         animationName = "sword";
         animation = Database2.Sword();
+        battlerAnimation = new Actor("items/equipment/sword/battler/battler", 0, 0, 1/12f, true);
+
     }   
     
     public Equipment(String getName,
@@ -138,6 +143,7 @@ public class Equipment extends Item implements Cloneable {
             int initializeMagic) {
         this(getName, 
                 getDescription,
+                getAnimation,
                 getMarketPrice,
                 type,
                 slot,
@@ -151,17 +157,17 @@ public class Equipment extends Item implements Cloneable {
         animationName = getAnimation;
         areaName = getArea;
         shapeName = getShape;
+        battlerAnimation = new Actor("items/equipment/" + getAnimation + "/battler/battler", 0, 0, 1/12f, true);
         animation = new FieldSkill("items/equipment/" + getAnimation + "/field/" + getAnimation,
-                    "items/equipment/" + getAnimation + "/battler/" + getAnimation, 
+//                    "items/equipment/" + getAnimation + "/battler/" + getAnimation, 
                     1, 1, 1.0f/12f, null, getArea, getShape);  
     }      
     
     private void readObject(java.io.ObjectInputStream stream)
         throws IOException, ClassNotFoundException {
         stream.defaultReadObject();
-        
+        battlerAnimation = new Actor("items/equipment/" + animationName + "/battler/battler", 0, 0, 1/12f, true);        
         animation = new FieldSkill("items/equipment/" + animationName + "/field/" + animationName,
-                       "items/equipment/" + animationName + "/battler/" + animationName, 
                        1, 1, 1.0f/12f, null, areaName, shapeName);
     }
 
@@ -259,9 +265,8 @@ public class Equipment extends Item implements Cloneable {
     
 
     public Equipment clone() {
-        Equipment temp = new Equipment(getName(), getDescription(), getPrice(), type, equipmentSlot, getInvoke(), getElement(), useMP(), attack, defense, speed, magic);        
+        Equipment temp = new Equipment(getName(), getDescription(), animationName, getPrice(), type, equipmentSlot, getInvoke(), getElement(), useMP(), attack, defense, speed, magic);        
         temp.animation = animation.placeOnMap();
-        temp.animationName = animationName;
         return temp;
     }
     public enum Slot {

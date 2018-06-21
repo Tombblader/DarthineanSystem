@@ -262,6 +262,7 @@ public class BattlerAI extends Battler implements Nameable, Cloneable {
         this.money = 0;
         Equipment temp = new Equipment("Unarmed",
                 "",
+                "unarmed",
                 0,
                 new Equipment.Type[]{Equipment.Type.HAND},
                 Equipment.Slot.OffHand,

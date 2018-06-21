@@ -14,6 +14,7 @@ import com.ark.darthsystem.*;
 import static com.ark.darthsystem.database.CharacterDatabase.*;
 import com.ark.darthsystem.states.events.*;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -35,10 +36,6 @@ public class Database2 {
         new SoundDatabase();
         new SkillDatabase();  
         SkillToActor = new HashMap<>();
-//        for (Skill skills : SkillDatabase.SKILL_LIST.values()) {
-//            
-//            put(skills, new ActorSkill("skills/" + ""))
-//        }
         Database2.SkillToActor = new HashMap<Skill, FieldSkill>() {
             {
                 put(SkillDatabase.SKILL_LIST.get("CROSSCALL"),
@@ -51,7 +48,6 @@ public class Database2 {
                                 FieldSkill.Area.FRONT));
                 put(SkillDatabase.SKILL_LIST.get("RED SPIN"),
                         new FieldSkill("skills/red_spin/field/red_spin",
-                                "skills/red_spin/battler/red_spin",
                                 0,
                                 0,
                                 1.0f / 12.0f,
@@ -144,7 +140,7 @@ public class Database2 {
                 new CharacterDatabase();
                 ActorBattler[] battlers;
                 battlers = new ActorBattler[]{
-                    Water_Spirit_Battler
+                    CHARACTER_LIST.get("BLUE LADY")
                 };
                 player = new Player(new ArrayList<>(Arrays.asList(battlers)), 0, 0);
             }
@@ -153,11 +149,10 @@ public class Database2 {
             new CharacterDatabase();
             ActorBattler[] battlers;
             battlers = new ActorBattler[]{
-                Water_Spirit_Battler
+                CHARACTER_LIST.get("BLUE LADY")
             };
             player = new Player(new ArrayList<>(Arrays.asList(battlers)), 0, 0);
         }
-        new CharacterDatabase();
         new MonsterDatabase();
         
     }
@@ -192,7 +187,6 @@ public class Database2 {
 
     public static FieldSkill Sword() {
         return new FieldSkill("items/equipment/sword/field/field",
-                "items/equipment/sword/battler/battler",
                 1,
                 1,
                 1f/24f,
@@ -203,7 +197,6 @@ public class Database2 {
 
     public static FieldSkill getDefaultUnarmedAnimation() {
         return new FieldSkill("items/equipment/sword/field/field",
-                "items/equipment/sword/battler/battler",
                 1,
                 1,
                 1f/24f,
@@ -211,6 +204,19 @@ public class Database2 {
                 FieldSkill.Area.FRONT,
                 "widesword");        
     }
+
+    public static Actor getDefaultBattlerUnarmedAnimation() {
+        Actor a = new Actor("items/equipment/sword/battler/battler",
+                0,
+                0,
+                1f/24f, 
+                true); 
+        for (Sprite s : a.getCurrentAnimation().getKeyFrames()) {
+            s.setOriginCenter();
+        }
+        return a;
+    }
+
     
     //  public static GraphicsEvent Pickup;
     //This generates a skill list based on the skills available to the character.  It accepts an input of a battler, then assigns animations based on the index of each skill.

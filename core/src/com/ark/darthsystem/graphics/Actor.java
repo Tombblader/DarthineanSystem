@@ -42,10 +42,9 @@ public class Actor implements Serializable {
     private float lastY;
     private int lastYFacing = 0;
     private float speed;
-    private transient ActorSprite sprite;
+//    private transient ActorSprite sprite;
     private transient Array<GameTimer> timers = new Array<>(GameTimer.class);
-    private float x;
-    private float y;
+    private Vector2 position = Vector2.Zero;
     private Facing xFacingBias;
     private String imageName;
     private boolean isFinished = false;
@@ -80,8 +79,7 @@ public class Actor implements Serializable {
             float getY,
             float delay) {
         this();
-        x = getX;
-        y = getY;
+        position = new Vector2(getX, getY);
         this.delay = delay;
         imageName = img;
         images = GraphicsDriver.getMasterSheet().createSprites(img).toArray(Sprite.class);
@@ -143,15 +141,17 @@ public class Actor implements Serializable {
         animation = a;
         currentImage = (a.getKeyFrame(elapsed));
     }
+    
     public void changeX(float getX) {
-        lastX = x;
-        x += getX;        
-        lastXFacing = x > lastX ? 1 : x == lastX ? 0 : -1;
+        lastX = position.x;
+        position.x += getX;        
+        lastXFacing = position.x > lastX ? 1 : position.x == lastX ? 0 : -1;
     }
+    
     public void changeY(float getY) {
-        lastY = y;
-        y += getY;
-        lastYFacing = y > lastY ? 1 : y == lastY ? 0 : -1;
+        lastY = position.y;
+        position.y += getY;
+        lastYFacing = position.y > lastY ? 1 : position.y == lastY ? 0 : -1;
         
     }
 
@@ -184,6 +184,11 @@ public class Actor implements Serializable {
     public float getDelay() {
         return delay;
     }
+    
+    public void setDelay(float delay) {
+        this.delay = delay;
+    }
+    
     public void setElapsed(long elapsed) {
         this.elapsed = elapsed;
     }
@@ -261,16 +266,22 @@ public class Actor implements Serializable {
         return currentImage.getRegionWidth();
     }
     public float getX() {
-        return x;
+        return position.x;
     }
     public void setX(float getX) {
-        x = getX;
+        position.x = getX;
     }
     public float getY() {
-        return y;
+        return position.y;
     }
     public void setY(float getY) {
-        y = getY;
+        position.y = getY;
+    }
+    public Vector2 getPosition() {
+        return position;
+    }
+    public void setPosition(Vector2 position) {
+        this.position = position;
     }
     
     
@@ -305,6 +316,7 @@ public class Actor implements Serializable {
             elapsed = 0;
             animation = new Animation<>(delay, images);
             currentImage = (Sprite) animation.getKeyFrame(0);
+            isFinished = false;
         }
     }
     
@@ -332,8 +344,8 @@ public class Actor implements Serializable {
     public void setMap(OverheadMap map) {
         currentMapName = map.getMapName();
         currentMap = map;
-        setX(x);
-        setY(y);
+        setX(position.x);
+        setY(position.y);
     }
     
     public void setCurrentMap(OverheadMap map) {

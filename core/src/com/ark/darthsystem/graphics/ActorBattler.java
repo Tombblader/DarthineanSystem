@@ -26,10 +26,16 @@ public class ActorBattler implements Serializable {
     private transient ActorSprite spriteSheet;
     private String spriteSheetName;
     private transient SpriteModeFace face = SpriteModeFace.NORMAL;
+    private float delay;
+    private float speed;
+    private String shapeName;
 
     public ActorBattler(Battler b, ActorSprite s) {
         battler = b;
         spriteSheet = s;
+        speed = .4f;
+        delay = 1/6f;
+        shapeName = "basiccircle";
         b.getSkillList().stream().map((skill) -> {
             currentSkill = Database2.SkillToActor(skill);
             return skill;
@@ -46,17 +52,33 @@ public class ActorBattler implements Serializable {
     public ActorBattler(Battler b, String s) {
         battler = b;
         spriteSheetName = s;
+        speed = .4f;
+        delay = 1/6f;
+        shapeName = "basiccircle";
         initialize();
+    }
+    
+    public ActorBattler(Battler b, String s, float fps, String shapeName, float speed) {
+        this.shapeName = shapeName;
+        battler = b;
+        spriteSheetName = s;
+        this.speed = speed;
+        delay = fps;
+        initialize();        
     }
     
     private void initialize() {
         spriteSheet = new ActorSprite(spriteSheetName);
-        battler.getSkillList().stream().map((skill) -> {
-            currentSkill = Database2.SkillToActor(skill);
-            return skill;
-        }).filter((_item) -> (currentSkill != null)).forEachOrdered((_item) -> {
-            skillList.add(currentSkill);
-        });
+        for (Skill skills: battler.getSkillList()) {
+            try {
+                if (Database2.SkillToActor(skills) != null) {
+                    skillList.add(Database2.SkillToActor(skills));
+                }
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
         if (skillList != null && !skillList.isEmpty()) {
             currentSkill = skillList.get(0);
         } else {
@@ -116,7 +138,11 @@ public class ActorBattler implements Serializable {
 
 
     public ActorBattler clone() {
-        return new ActorBattler((Battler) battler.clone(), spriteSheet);
+        ActorBattler newBattler = new ActorBattler((Battler) battler.clone(), spriteSheet);
+        newBattler.delay = delay;
+        newBattler.shapeName = shapeName;
+        newBattler.speed = speed;
+        return newBattler;
     }
     
     public <T extends Battler> T getBattler() {
@@ -149,5 +175,26 @@ public class ActorBattler implements Serializable {
     public Animation getFace() {
         return spriteSheet.getFaceAnimation(face);
     }
+
+    public float getDelay() {
+        return delay;
+    }
+
+    public float getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(float speed) {
+        this.speed = speed;
+    }
+
+    public String getShapeName() {
+        return shapeName;
+    }
+
+    public void setShapeName(String shapeName) {
+        this.shapeName = shapeName;
+    }
+    
     
 }

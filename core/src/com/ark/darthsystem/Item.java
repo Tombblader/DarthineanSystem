@@ -1,5 +1,6 @@
 package com.ark.darthsystem;
 
+import com.ark.darthsystem.database.SoundDatabase;
 import com.ark.darthsystem.states.Battle;
 import com.badlogic.gdx.audio.Sound;
 import java.io.Serializable;
@@ -24,7 +25,7 @@ public class Item implements Serializable, Cloneable, Nameable {
     private int maxCharges;
     private int charges;
     private String iconName;
-    public Sound sound;
+    public Sound sound = SoundDatabase.fieldCastingSound;
 
     /**
      * Get the value of sound
@@ -32,7 +33,7 @@ public class Item implements Serializable, Cloneable, Nameable {
      * @return the value of sound
      */
     public Sound getSound() {
-        return sound;
+        return SoundDatabase.SOUNDS.get("SLASH");
     }
 
     /**
@@ -64,12 +65,13 @@ public class Item implements Serializable, Cloneable, Nameable {
      */
     public Item(String getName,
             String getDescription,
+            String imageName,
             int price,
             int charges,
             int initializeHP,
             int initializeMP,
             boolean all) {
-        this.iconName = "items/potion/icon";
+        this.iconName = imageName;
         name = getName;
         description = getDescription;
         this.price = price;
@@ -92,11 +94,12 @@ public class Item implements Serializable, Cloneable, Nameable {
      */
     public Item(String getName,
             String getDescription,
+            String imageName,
             int price,
             int charges,
             Skill initializeSkill,
             boolean initializeUseMP) {
-        this.iconName = "items/potion/icon";
+        this.iconName = imageName;
         name = getName;
         description = getDescription;
         this.price = price;
@@ -264,6 +267,7 @@ public class Item implements Serializable, Cloneable, Nameable {
         Item cloned = new Item();
         cloned.name = this.name;
         cloned.description = this.description;
+        cloned.iconName = iconName;
         cloned.price = this.price;
         cloned.HPValue = this.HPValue;
         cloned.MPValue = this.MPValue;
@@ -287,10 +291,10 @@ public class Item implements Serializable, Cloneable, Nameable {
     }
 
     public String getIcon() {
-        return iconName;
+        return "items/" + iconName + "/icon";
     }
 
-    public void setIcon(String iconName) {
+    public void setImage(String iconName) {
         this.iconName = iconName;
     }
     

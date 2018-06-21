@@ -32,6 +32,7 @@ public class ItemDatabase {
             
             EQUIPMENT_LIST.put(data[i].toUpperCase(), new Equipment(data[i], //Name
                     data[++i], //Description
+                    data[++i], //imageName
                     Integer.parseInt(data[++i]), //Market Price
                     data[++i].split(", "), //Equipment Types
                     Equipment.Slot.valueOf(data[++i]), //Slot
@@ -55,6 +56,7 @@ public class ItemDatabase {
             
             ITEM_LIST.put(data[i].toUpperCase(), new Item(data[i], //Name
                     data[++i], //Description
+                    data[++i], //Image
                     Integer.parseInt(data[++i]), //Market Price
                     Integer.parseInt(data[++i]), //Charges
                     Integer.parseInt(data[++i]), //HP Effect
@@ -74,6 +76,7 @@ public class ItemDatabase {
             
             ITEM_LIST.put(data[i].toUpperCase(), new Item(data[i], //Name
                     data[++i], //Description
+                    data[++i], //image;
                     Integer.parseInt(data[++i]), //Market Price
                     Integer.parseInt(data[++i]), //Charges
                     SkillDatabase.SKILL_LIST.get(data[++i].toUpperCase()), //Skill Effect
