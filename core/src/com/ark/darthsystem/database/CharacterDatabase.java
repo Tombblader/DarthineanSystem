@@ -5,13 +5,9 @@
  */
 package com.ark.darthsystem.database;
 
-import com.ark.darthsystem.Battler;
-import com.ark.darthsystem.Equipment;
 import com.ark.darthsystem.graphics.FieldBattler;
-import com.ark.darthsystem.states.Battle;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
-import java.util.Arrays;
 import java.util.HashMap;
 
 /**
@@ -19,10 +15,6 @@ import java.util.HashMap;
  * @author Keven
  */
 public class CharacterDatabase {
-    public static FieldBattler Fire_Spirit_Battler;
-    public static FieldBattler Water_Spirit_Battler;
-    public static FieldBattler Darth_Battler;
-    public static FieldBattler Erik_Battler;
     public static HashMap<String, FieldBattler> CHARACTER_LIST = new HashMap<>();
 
     public CharacterDatabase() {

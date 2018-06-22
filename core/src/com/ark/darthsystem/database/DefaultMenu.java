@@ -223,59 +223,6 @@ public class DefaultMenu extends Menu {
                         true,
                         true) {
                     StatusBox statusBox = new StatusBox();
-//                    TextBox statusBox = new TextBox("interface/window", 1024 / 4, 768 / 4, 1024 / 2, 768 / 2) {
-//                        public void update(float delta) {
-//                            setMessage(formatBattler(Database2.player.getBattler(getCursorIndex())));
-//                            super.update(delta);
-//                        }
-//
-//                        private String formatBattler(FieldBattler b) {
-//                            StringBuilder formatted = new StringBuilder();
-//                            Battler tempBattler = b.getBattler();
-//                            formatted.append(tempBattler.getName());
-//                            formatted.append('\n');
-//
-//                            if (tempBattler.getAllStatus().size() < 2) {
-//                                formatted.append(tempBattler.getAllStatus().get(0).getName());
-//                            } else {
-//                                for (int i = 0; i < tempBattler.getAllStatus().size(); i++) {
-//                                    StatusEffect effect = tempBattler.getAllStatus().get(i);
-//                                    if (!effect.getName().equals("Normal")) {
-//                                        formatted.append(effect.getName());
-//                                        if (i + 1 != tempBattler.getAllStatus().size()) {
-//                                            formatted.append(", ");
-//                                        }
-//                                    }
-//                                }
-//                            }
-//                            formatted.append('\n');
-//                            formatted.append("HP:  ");
-//                            formatted.append(tempBattler.getHP());
-//                            formatted.append(" / ");
-//                            formatted.append(tempBattler.getMaxHP());
-//                            formatted.append('\n');
-//                            formatted.append("MP:  ");
-//                            formatted.append(tempBattler.getMP());
-//                            formatted.append(" / ");
-//                            formatted.append(tempBattler.getMaxMP());
-//                            formatted.append('\n');
-//                            formatted.append("ATK: ");
-//                            formatted.append(tempBattler.getBaseAttack());
-//                            formatted.append('\n');
-//                            formatted.append("DEF: ");
-//                            formatted.append(tempBattler.getBaseDefense());
-//                            formatted.append('\n');
-//                            formatted.append("SPD: ");
-//                            formatted.append(tempBattler.getBaseSpeed());
-//                            formatted.append('\n');
-//                            formatted.append("MAG: ");
-//                            formatted.append(tempBattler.getBaseMagic());
-//                            formatted.append('\n');
-//                            return formatted.toString();
-//                        }
-//                    };
-                    String status = "";
-
                     {
                         {
                             addActor(statusBox);

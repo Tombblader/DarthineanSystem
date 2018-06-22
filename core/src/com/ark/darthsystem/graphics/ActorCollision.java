@@ -158,7 +158,6 @@ public class ActorCollision extends Actor implements Serializable {
             }
         }
         body = map.getPhysicsWorld().createBody(genericBodyType);
-        System.out.println(fixtureDef.shape);
         fixtureDef.density = 0.1f; 
         fixtureDef.friction = 1.0f;
         fixtureDef.restitution = 0f;

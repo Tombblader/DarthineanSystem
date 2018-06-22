@@ -57,7 +57,7 @@ public class SoundDatabase {
         if (f.size > 0) {
             for (FileHandle file : f) {
                 if (file.extension().equalsIgnoreCase("wav")) {
-                    SOUNDS.put(file.nameWithoutExtension(), Gdx.audio.newSound(file));
+                    SOUNDS.put(file.nameWithoutExtension().toUpperCase(), Gdx.audio.newSound(file));
                 }
             }
         } else {
@@ -69,7 +69,7 @@ public class SoundDatabase {
         FileHandle[] f = Gdx.files.internal("sounds").list(); //CANNOT LIST INSIDE JAR
         for (FileHandle file : f) {
              if (file.extension().equalsIgnoreCase("wav")) {
-                SOUNDS.put(file.nameWithoutExtension().toLowerCase(), Gdx.audio.newSound(file));
+                SOUNDS.put(file.nameWithoutExtension().toUpperCase(), Gdx.audio.newSound(file));
             }
         }
     }

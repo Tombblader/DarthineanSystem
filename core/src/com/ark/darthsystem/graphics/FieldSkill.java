@@ -298,9 +298,9 @@ public class FieldSkill extends ActorCollision implements Nameable {
         for (String tag : tags) {
             this.tags.add(Type.valueOf(tag));
         }
-        this.fieldSoundName = fieldSoundName.toLowerCase();
+        this.fieldSoundName = fieldSoundName.toUpperCase();
         fieldSound = SoundDatabase.SOUNDS.get(this.fieldSoundName);        
-        this.castSoundName = castSoundName.toLowerCase();
+        this.castSoundName = castSoundName.toUpperCase();
         castSound = SoundDatabase.SOUNDS.get(this.castSoundName);        
     }
     

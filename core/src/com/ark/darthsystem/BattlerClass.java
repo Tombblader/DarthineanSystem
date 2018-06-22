@@ -60,8 +60,8 @@ public class BattlerClass implements Serializable {
      */
     public boolean equippable(Equipment equipped) {
         boolean equippable = false;
-        for (Equipment.Type key : equipped.getType()) {
-            for (Equipment.Type value : equipmentList) {
+        for (Equipment.Type value : equipped.getType()) {
+            for (Equipment.Type key : equipmentList) {
                 equippable |=  key == value;
             }
         }

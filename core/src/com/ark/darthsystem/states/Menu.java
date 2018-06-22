@@ -24,6 +24,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.utils.Array;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.stream.Collectors;
 
 /**
@@ -262,6 +263,10 @@ public abstract class Menu implements State {
         }
         return 1;
     }
+    
+    public Menu getCurrentMenu() {
+        return subMenuList.get(menuIndex);
+    }
 
     public void updateMenu(float delta) {
         if (Input.getKeyPressed(UP_BUTTON)) {
@@ -309,6 +314,11 @@ public abstract class Menu implements State {
     
     public void setChoices(String[] choices) {
         this.choices = choices;
+    }
+    
+    public<T extends Nameable> void setChoices(Collection<T> choices) {
+        this.choices = choices.stream().map(i -> i.getName()).collect(Collectors.toList()).toArray(new String[0]);
+        
     }
     
     public void setHeader(String header) {

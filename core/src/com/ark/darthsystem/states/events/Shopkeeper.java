@@ -7,6 +7,7 @@ package com.ark.darthsystem.states.events;
 
 import com.ark.darthsystem.BattleDriver;
 import com.ark.darthsystem.Item;
+import com.ark.darthsystem.database.CharacterDatabase;
 import com.ark.darthsystem.database.ItemDatabase;
 import com.ark.darthsystem.database.ShopMenu;
 import com.ark.darthsystem.graphics.GraphicsDriver;
@@ -32,7 +33,7 @@ public class Shopkeeper extends Event {
             inventory[i] = ItemDatabase.ITEM_LIST.get(items[i].toUpperCase());
         }
         this.setTriggerMethod(TriggerMethod.PRESS);
-        menu = new ShopMenu("What did you want?", inventory, new String[]{"What would you like to buy?", "Anything else?"});
+        menu = new ShopMenu("What did you want?", inventory, new String[]{"What would you like to buy?", "What would you like to sell?"});
     }
 
     @Override
@@ -44,7 +45,7 @@ public class Shopkeeper extends Event {
                     return null;
                 }
                 {
-                    this.chapters.add(() -> BattleDriver.printline("Look... at... my wares..."));
+                    this.chapters.add(() -> BattleDriver.printline(CharacterDatabase.CHARACTER_LIST.get("GREEN LADY"), "Look... at... my wares..."));
                     this.chapters.add(() -> GraphicsDriver.addMenu(new ShopMenu("What did you want?", inventory, new String[]{"What would you like to buy?", "Anything else?"})));
                 }
                 });

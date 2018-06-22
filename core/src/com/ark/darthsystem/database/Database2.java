@@ -10,7 +10,6 @@ import com.ark.darthsystem.graphics.Player;
 import com.ark.darthsystem.graphics.FieldBattler;
 import com.ark.darthsystem.graphics.Input;
 import com.ark.darthsystem.graphics.Actor;
-import com.ark.darthsystem.*;
 import static com.ark.darthsystem.database.CharacterDatabase.*;
 import com.ark.darthsystem.states.events.*;
 import com.badlogic.gdx.Gdx;
@@ -21,7 +20,6 @@ import java.io.ObjectInputStream;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 
 /**
  *
@@ -41,6 +39,7 @@ public class Database2 {
         if (!load.equals("")) {
             try {
                 Database1.load(load);
+                new CharacterDatabase();
                 Database2.load(load);
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();

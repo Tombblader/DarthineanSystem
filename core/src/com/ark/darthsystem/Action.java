@@ -6,7 +6,6 @@ import java.io.Serializable;
 
 import static com.ark.darthsystem.BattleDriver.*;
 import com.ark.darthsystem.database.SoundDatabase;
-import com.ark.darthsystem.graphics.GraphicsDriver;
 import com.ark.darthsystem.statusEffects.*;
 
 
@@ -146,12 +145,14 @@ public class Action implements Serializable {
             switch (actionCommand) {
                 case Attack:
                     printline(caster.getName() + " attacks!");
+//                    b.addSounds(this.caster.getEquipment(Equipment.Slot.MainHand).getSound());
                     break;
                 case Defend:
                     printline(caster.getName() + " defends.");
                     break;
                 case Skill:
                     printline(caster.getName() + " activates " + actionSkill.getName() + "!");
+                    actionSkill.playCastSound();
                     break;
                 case Charge:
                     printline(caster.getName() + " charges MP!");
@@ -239,9 +240,7 @@ public class Action implements Serializable {
                     actionSkill = actionItem.getInvoke();
                     if ((actionItem.useMP() &&
                             actionSkill.getCost() > caster.getMP())) {
-                        print("However, " +
-                                caster.getName() +
-                                " doesn't have enough MP!");
+                        print("However, " + caster.getName() + " doesn't have enough MP!");
                     }
                     if (actionItem.getAll()) {
                         allDamageStep(b);
