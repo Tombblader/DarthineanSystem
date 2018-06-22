@@ -7,6 +7,7 @@ import com.ark.darthsystem.statusEffects.*;
 import java.io.*;
 import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.EnumMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -29,7 +30,8 @@ public class Battler implements Serializable, Nameable, Cloneable {
     private int magic;
     private ArrayList<Skill> skillList;
     private ArrayList<String> skillListName;
-    private Equipment[] equipmentList = new Equipment[5];
+//    private Equipment[] equipmentList = new Equipment[5];
+    private EnumMap<Equipment.Slot, Equipment> equipmentList;
 //    private HashMap<StatusEffect, Boolean> isAfflicted;
 //    private Battle.Stats afflicted = Battle.Stats.Normal;
     private transient ArrayList<StatusEffect> isAfflicted;
@@ -64,6 +66,7 @@ public class Battler implements Serializable, Nameable, Cloneable {
      * Creates an empty Battler Object with no values initialized.
      */
     public Battler() {
+        this.equipmentList = new EnumMap<>(Equipment.Slot.class);
         this.isAfflicted = new ArrayList<>();
         isAfflicted.add(new Normal());
     }
@@ -96,7 +99,8 @@ public class Battler implements Serializable, Nameable, Cloneable {
             int initialSpeed,
             int initialMagic,
             BattlerClass initialClass,
-            Equipment[] initialEquipment) {
+            EnumMap<Equipment.Slot, Equipment> initialEquipment) {
+        this.equipmentList = new EnumMap<>(Equipment.Slot.class);
         this.isAfflicted = new ArrayList<>();
         this.isAfflicted.add(new Normal());
         this.name = initialName;
@@ -155,7 +159,7 @@ public class Battler implements Serializable, Nameable, Cloneable {
             int initialDefenseTier,
             int initialSpeedTier,
             int initialMagicTier,
-            Equipment[] initialEquipment) {
+            EnumMap<Equipment.Slot, Equipment> initialEquipment) {
         this(initialName,
                 initialDescription,
                 initialElement,
@@ -169,6 +173,7 @@ public class Battler implements Serializable, Nameable, Cloneable {
                 initialMagic, 
                 initialClass, 
                 initialEquipment);
+        this.equipmentList = new EnumMap<>(Equipment.Slot.class);
         this.hpTier = initialHPTier;
         this.mpTier = initialMPTier;
         this.attackTier = initialAttackTier;
@@ -206,7 +211,7 @@ public class Battler implements Serializable, Nameable, Cloneable {
             int initialSpeed,
             int initialMagic,
             ArrayList<Skill> initialSkill,
-            Equipment[] initialEquipment) {
+            EnumMap<Equipment.Slot, Equipment> initialEquipment) {
          this.isAfflicted = new ArrayList<>();
         this.isAfflicted.add(new Normal());
        name = initialName;
@@ -403,15 +408,15 @@ public class Battler implements Serializable, Nameable, Cloneable {
      * @param equipmentSlot
      * @return
      */
-    public Equipment getEquipment(int equipmentSlot) {
-        return equipmentList[equipmentSlot];
+    public Equipment getEquipment(Equipment.Slot equipmentSlot) {
+        return equipmentList.get(equipmentSlot);
     }
 
     /**
      *
      * @return
      */
-    public Equipment[] getEquipmentList() {
+    public EnumMap<Equipment.Slot, Equipment> getEquipmentList() {
         return equipmentList;
     }
 
@@ -759,18 +764,18 @@ public class Battler implements Serializable, Nameable, Cloneable {
         }
         Equipment temp;
         try {
-            temp = equipmentList[newEquipment.getEquipmentType().getSlot()];
+            temp = equipmentList.get(newEquipment.getEquipmentType());
         } catch (Exception e) {
             temp = null;
         } finally {
-            equipmentList[newEquipment.getEquipmentType().getSlot()] = newEquipment;
+            equipmentList.put(newEquipment.getEquipmentType(), newEquipment);
         }
         return temp;
     }
 
     private int getEquipmentAttack() {
         int equipmentAttack = 0;
-        for (Equipment equipmentList1 : equipmentList) {
+        for (Equipment equipmentList1 : equipmentList.values()) {
             if (equipmentList1 != null) {
                 equipmentAttack += equipmentList1.getAttack();
             }
@@ -791,7 +796,7 @@ public class Battler implements Serializable, Nameable, Cloneable {
 
     private int getEquipmentDefense() {
         int equipmentDefense = 0;
-        for (Equipment equipmentList1 : equipmentList) {
+        for (Equipment equipmentList1 : equipmentList.values()) {
             if (equipmentList1 != null) {
                 equipmentDefense += equipmentList1.getDefense();
             }
@@ -811,7 +816,7 @@ public class Battler implements Serializable, Nameable, Cloneable {
     
     private int getEquipmentSpeed() {
         int equipmentSpeed = 0;
-        for (Equipment equipmentList1 : equipmentList) {
+        for (Equipment equipmentList1 : equipmentList.values()) {
             if (equipmentList1 != null) {
                 equipmentSpeed += equipmentList1.getSpeed();
             }
@@ -842,7 +847,7 @@ public class Battler implements Serializable, Nameable, Cloneable {
     
     private int getEquipmentMagic() {
         int equipmentMagic = 0;
-        for (Equipment equipmentList1 : equipmentList) {
+        for (Equipment equipmentList1 : equipmentList.values()) {
             if (equipmentList1 != null) {
                 equipmentMagic += equipmentList1.getMagic();
             }
@@ -899,7 +904,7 @@ public class Battler implements Serializable, Nameable, Cloneable {
                 tempEffect.add((StatusEffect) e.clone());
             }
             temp.skillList = (ArrayList<Skill>) skillList.clone();
-            temp.equipmentList = Arrays.copyOf(equipmentList, equipmentList.length);
+            temp.equipmentList = equipmentList.clone();
             temp.isAfflicted = tempEffect;
             return temp;
         }

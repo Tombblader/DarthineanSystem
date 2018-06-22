@@ -233,11 +233,11 @@ public class Battle implements State {
                 && currentAction.getTarget() instanceof BattlerAI) {
             try {
                 tempSkill = (currentAction.getCaster().
-                        getEquipment(Equipment.Slot.MainHand.getSlot()).
+                        getEquipment(Equipment.Slot.MainHand).
                         getBattlerAnimation());
                 tempSkill.resetAnimation();                
                 sounds.add(currentAction.getCaster().
-                            getEquipment(Equipment.Slot.MainHand.getSlot()).getSound());
+                            getEquipment(Equipment.Slot.MainHand).getSound());
             } catch (NullPointerException e) {
                 tempSkill = Database2.getDefaultBattlerUnarmedAnimation();
             }

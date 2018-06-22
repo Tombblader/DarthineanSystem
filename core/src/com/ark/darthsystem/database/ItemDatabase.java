@@ -82,8 +82,8 @@ public class ItemDatabase {
                     SkillDatabase.SKILL_LIST.get(data[++i].toUpperCase()), //Skill Effect
                     Boolean.valueOf(data[++i].toLowerCase()) //Is All?
                     ));
-            
         }
+        ITEM_LIST.putAll(EQUIPMENT_LIST);
     }
     
 }

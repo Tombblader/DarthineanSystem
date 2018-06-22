@@ -16,6 +16,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.EnumMap;
 import java.util.HashMap;
 
 /**
@@ -48,7 +49,7 @@ public class AIDatabase {
                     Integer.parseInt(data[++i]), //Speed
                     Integer.parseInt(data[++i]),  //Magic
                     new ArrayList<>(Arrays.asList(Arrays.stream(data[++i].split(", ")).map(j -> SkillDatabase.SKILL_LIST.get(j.toUpperCase())).toArray(Skill[] :: new))),
-                    new Equipment[5],
+                    new EnumMap<>(Equipment.Slot.class),
                     Scenario.AI_TYPE.get(data[++i].toUpperCase()),
                     Integer.parseInt(data[++i]), // XP
                     Integer.parseInt(data[++i]), // Money

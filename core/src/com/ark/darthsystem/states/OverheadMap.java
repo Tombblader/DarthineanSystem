@@ -339,7 +339,10 @@ public class OverheadMap implements State {
         String[] parameters;
         String image;
         try {
-            e = ((Event) (Class.forName("com.ark.darthsystem.states.events." + prop.get("eventName", String.class)).newInstance())).createFromMap(prop);
+            System.out.println(prop.get("eventName", String.class));
+            e = ((Event) (Class.forName("com.ark.darthsystem.states.events." + prop.get("eventName", String.class))
+                    .newInstance())).
+                    createFromMap(prop);
             e.setMap(this);
             return e;
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException ex) {

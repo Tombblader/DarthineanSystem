@@ -171,13 +171,13 @@ public class Skill implements Serializable, Cloneable, Nameable {
                 target.getMagic() * targetMagic)) /
                 finalizeRatio *
                 (this.getElement() == target.getElement().getWeakness() ? 2 : 1) *
-                (caster.getEquipment(Equipment.Slot.MainHand.getSlot()) != null &&
-                caster.getEquipment(Equipment.Slot.MainHand.getSlot()).getElement() != Battle.Element.Physical &&
+                (caster.getEquipment(Equipment.Slot.MainHand) != null &&
+                caster.getEquipment(Equipment.Slot.MainHand).getElement() != Battle.Element.Physical &&
                 this.getElement() == caster.getElement() ? 1.5 : 1) * (this.getElement() != Battle.Element.Physical &&
-                this.getElement() == target.getElement() ? -1 : 1) * (caster.getEquipment(Equipment.Slot.MainHand.getSlot()) != null &&
-                caster.getEquipment(Equipment.Slot.MainHand.getSlot()).getElement() != Battle.Element.Physical &&
-                target.getEquipment(Equipment.Slot.OffHand.getSlot()) != null &&
-                this.getElement() == target.getEquipment(Equipment.Slot.OffHand.getSlot()).getElement() ? .5 : 1)) * (.9 + Math.random() * .25));
+                this.getElement() == target.getElement() ? -1 : 1) * (caster.getEquipment(Equipment.Slot.MainHand) != null &&
+                caster.getEquipment(Equipment.Slot.MainHand).getElement() != Battle.Element.Physical &&
+                target.getEquipment(Equipment.Slot.OffHand) != null &&
+                this.getElement() == target.getEquipment(Equipment.Slot.OffHand).getElement() ? .5 : 1)) * (.9 + Math.random() * .25));
     }
 
     /**

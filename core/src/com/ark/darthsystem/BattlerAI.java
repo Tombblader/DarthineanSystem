@@ -5,6 +5,7 @@ import com.ark.darthsystem.states.Battle;
 import com.ark.darthsystem.statusEffects.Death;
 import com.ark.darthsystem.statusEffects.Normal;
 import java.util.ArrayList;
+import java.util.EnumMap;
 
 /**
  * A Battler, but also has AI data, Experience Points, Money, and Items dropped.
@@ -97,7 +98,7 @@ public class BattlerAI extends Battler implements Nameable, Cloneable {
             int Speed,
             int Magic,
             ArrayList<Skill> skillList,
-            Equipment[] equipment,
+            EnumMap<Equipment.Slot, Equipment> equipment,
             AI[] AIData,
             int experience,
             int money,
@@ -164,7 +165,7 @@ public class BattlerAI extends Battler implements Nameable, Cloneable {
             int Speed,
             int Magic,
             BattlerClass battlerClass,
-            Equipment[] equipment,
+            EnumMap<Equipment.Slot, Equipment> equipment,
             AI[] AIData,
             int experience,
             int money,
@@ -252,7 +253,7 @@ public class BattlerAI extends Battler implements Nameable, Cloneable {
                 Speed,
                 Magic,
                 skillList,
-                new Equipment[5], 
+                new EnumMap<Equipment.Slot, Equipment>(Equipment.Slot.class), 
                 AIData,
                 experience,
                 money,

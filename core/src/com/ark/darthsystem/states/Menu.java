@@ -95,6 +95,7 @@ public abstract class Menu implements State {
     }
 
     public void addSubMenu(Menu m) {
+//        m.destroyOnExit = true;
         subMenuList.add(m);
     }
     
@@ -110,11 +111,23 @@ public abstract class Menu implements State {
         }
         return "";
     }
+    
+    public void decreaseMenuIndex() {
+        menuIndex--;
+    }
+    
+    public void reverseMenu() {
+        cancelMenu();
+        menuIndex--;
+    }
 
     public void cancelMenu() {
         Menu currentMenu = ((Menu) (GraphicsDriver.getCurrentState()));
         if (currentMenu.menuIndex > 0) {
+            currentMenu.subMenuList.pop();
             currentMenu.menuIndex--;
+        } else {
+            removeMenu(currentMenu);
         }
     }
 

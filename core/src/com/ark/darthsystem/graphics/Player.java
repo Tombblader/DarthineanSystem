@@ -178,7 +178,7 @@ public class Player extends ActorCollision implements Serializable {
         }
     }
     public void setAttackAnimation() {
-        Equipment tempEquipment = getCurrentBattler().getBattler().getEquipment(0);
+        Equipment tempEquipment = getCurrentBattler().getBattler().getEquipment(Equipment.Slot.MainHand);
         if (tempEquipment != null) {
             try {
                 FieldSkill tempAnimation = tempEquipment.getAnimation();

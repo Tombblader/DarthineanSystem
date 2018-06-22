@@ -180,19 +180,19 @@ public class Action implements Serializable {
                         ATTACK_CONSTANT -
                         target.getDefense() * DEFENSE_CONSTANT) /
                         ATTACK_RATIO *
-                        (caster.getEquipment(Equipment.Slot.MainHand.getSlot()) != null &&
-                        caster.getEquipment(Equipment.Slot.MainHand.getSlot()).getElement() != Battle.Element.Physical &&
-                        caster.getEquipment(Equipment.Slot.MainHand.getSlot()).getElement() ==
-                        target.getElement().getWeakness() ? 2 : 1) * (caster.getEquipment(Equipment.Slot.MainHand.getSlot()) != null &&
-                        caster.getEquipment(Equipment.Slot.MainHand.getSlot()).getElement() != Battle.Element.Physical &&
-                        caster.getEquipment(Equipment.Slot.MainHand.getSlot()).getElement() ==
+                        (caster.getEquipment(Equipment.Slot.MainHand) != null &&
+                        caster.getEquipment(Equipment.Slot.MainHand).getElement() != Battle.Element.Physical &&
+                        caster.getEquipment(Equipment.Slot.MainHand).getElement() ==
+                        target.getElement().getWeakness() ? 2 : 1) * (caster.getEquipment(Equipment.Slot.MainHand) != null &&
+                        caster.getEquipment(Equipment.Slot.MainHand).getElement() != Battle.Element.Physical &&
+                        caster.getEquipment(Equipment.Slot.MainHand).getElement() ==
                         caster.getElement() ? 1.5 : 1) *
-                        (caster.getEquipment(Equipment.Slot.MainHand.getSlot()) != null &&
-                        caster.getEquipment(Equipment.Slot.MainHand.getSlot()).getElement() != Battle.Element.Physical &&
-                        caster.getEquipment(Equipment.Slot.MainHand.getSlot()).getElement() == target.getElement() ? -1 : 1) * (caster.getEquipment(Equipment.Slot.MainHand.getSlot()) !=null &&
-                        caster.getEquipment(Equipment.Slot.MainHand.getSlot()).getElement() != Battle.Element.Physical &&
-                        target.getEquipment(Equipment.Slot.OffHand.getSlot()) != null &&
-                        caster.getEquipment(Equipment.Slot.MainHand.getSlot()).getElement() == target.getEquipment(Equipment.Slot.OffHand.getSlot()).getElement() ? .5 : 1) * (.9 + Math.random() * .25));
+                        (caster.getEquipment(Equipment.Slot.MainHand) != null &&
+                        caster.getEquipment(Equipment.Slot.MainHand).getElement() != Battle.Element.Physical &&
+                        caster.getEquipment(Equipment.Slot.MainHand).getElement() == target.getElement() ? -1 : 1) * (caster.getEquipment(Equipment.Slot.MainHand) !=null &&
+                        caster.getEquipment(Equipment.Slot.MainHand).getElement() != Battle.Element.Physical &&
+                        target.getEquipment(Equipment.Slot.OffHand) != null &&
+                        caster.getEquipment(Equipment.Slot.MainHand).getElement() == target.getEquipment(Equipment.Slot.OffHand).getElement() ? .5 : 1) * (.9 + Math.random() * .25));
                 setNewTarget();
                 damageStep(b, damage);
                 break;

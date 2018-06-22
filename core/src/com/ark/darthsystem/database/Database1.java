@@ -11,6 +11,7 @@ import com.badlogic.gdx.files.FileHandle;
 import java.io.*;
 import java.util.HashMap;
 import java.util.ArrayList;
+import java.util.EnumMap;
 
 public class Database1 implements Serializable {
 
@@ -46,7 +47,7 @@ public class Database1 implements Serializable {
                     Integer.parseInt(data[++i]), //DefenseTier
                     Integer.parseInt(data[++i]), //SpeedTier
                     Integer.parseInt(data[++i]),  //MagicTier
-                    new Equipment[5]
+                    new EnumMap<Equipment.Slot, Equipment>(Equipment.Slot.class)
                     )); //Divider
         }//        Darth = new Battler("Darth",
 //                Battle.Element.Physical,
@@ -132,7 +133,7 @@ public class Database1 implements Serializable {
         
         
         inventory = new ArrayList<>();
-        money = 0;
+        money = 1000;
         karma = 0;
         switches = new HashMap<>();
         variables = new HashMap<>();

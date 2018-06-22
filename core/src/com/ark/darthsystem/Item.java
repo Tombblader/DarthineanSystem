@@ -80,7 +80,7 @@ public class Item implements Serializable, Cloneable, Nameable {
         isAll = all;
         maxCharges = charges;
         this.charges = maxCharges;
-        stackable = charges <= 1;
+        stackable = charges >= 1;
     }
 
     /**
@@ -107,7 +107,7 @@ public class Item implements Serializable, Cloneable, Nameable {
         invoke = initializeSkill;
         useMP = initializeUseMP;
         isAll = initializeSkill != null ? initializeSkill.getAll() : false;
-        stackable = maxCharges <= 1;
+        stackable = maxCharges >= 1;
         this.charges = maxCharges;
     }
 

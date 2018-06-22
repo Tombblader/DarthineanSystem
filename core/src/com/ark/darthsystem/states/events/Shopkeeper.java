@@ -5,9 +5,13 @@
  */
 package com.ark.darthsystem.states.events;
 
+import com.ark.darthsystem.BattleDriver;
 import com.ark.darthsystem.Item;
+import com.ark.darthsystem.database.ItemDatabase;
 import com.ark.darthsystem.database.ShopMenu;
 import com.ark.darthsystem.graphics.GraphicsDriver;
+import com.ark.darthsystem.graphics.PlayerCamera;
+import com.ark.darthsystem.states.chapters.Novel;
 import com.badlogic.gdx.maps.MapProperties;
 
 /**
@@ -17,14 +21,34 @@ import com.badlogic.gdx.maps.MapProperties;
 public class Shopkeeper extends Event {
     private Item[] inventory;
     private ShopMenu menu;
-    public Shopkeeper(String img, float getX, float getY, float delay) {
+    public Shopkeeper() {
+        super("", 0, 0, 6/60f);
+    }
+    
+    public Shopkeeper(String img, String[] items, float getX, float getY, float delay) {
         super(img, getX, getY, delay);
-//        menu = new ShopMenu("", inventory, null);
+        inventory = new Item[items.length];
+        for (int i = 0; i < inventory.length; i++) {
+            inventory[i] = ItemDatabase.ITEM_LIST.get(items[i].toUpperCase());
+        }
+        this.setTriggerMethod(TriggerMethod.PRESS);
+        menu = new ShopMenu("What did you want?", inventory, new String[]{"What would you like to buy?", "Anything else?"});
     }
 
     @Override
     public void run() {
-        GraphicsDriver.addMenu(menu);
+        if (!(GraphicsDriver.getCurrentState() instanceof Novel)) {
+            GraphicsDriver.addState(new Novel() {
+                @Override
+                public String getMusic() {
+                    return null;
+                }
+                {
+                    this.chapters.add(() -> BattleDriver.printline("Look... at... my wares..."));
+                    this.chapters.add(() -> GraphicsDriver.addMenu(new ShopMenu("What did you want?", inventory, new String[]{"What would you like to buy?", "Anything else?"})));
+                }
+                });
+        }
     }
 
     @Override
@@ -34,7 +58,14 @@ public class Shopkeeper extends Event {
 
     @Override
     public Event createFromMap(MapProperties prop) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String image = prop.get("image", String.class);
+        Shopkeeper s = new Shopkeeper(image,
+                prop.get("parameters", String.class).split(", *"),
+                (prop.get("x", Float.class) + prop.get("width", Float.class) / 2) / PlayerCamera.PIXELS_TO_METERS,
+                (prop.get("y", Float.class) + prop.get("height", Float.class) / 2) / PlayerCamera.PIXELS_TO_METERS,
+                6 / 60f);
+        s.setTriggerMethod(Event.TriggerMethod.valueOf(prop.get("trigger", String.class)));
+        return s;
     }
     
 }

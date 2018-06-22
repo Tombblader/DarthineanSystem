@@ -269,21 +269,27 @@ public class Equipment extends Item implements Cloneable {
         temp.animation = animation.placeOnMap();
         return temp;
     }
-    public enum Slot {
+    public enum Slot implements Nameable {
         
-        MainHand(0),
-        OffHand(1),
-        Body(2),
-        Head(3),
-        Accessory(4);
-        int slot;
+        MainHand("Main Hand"),
+        OffHand("Off Hand"),
+        Body("Body"),
+        Head("Head"),
+        Accessory("Accessory");
+        String slot;
         
-        private Slot(int setSlot) {
+        private Slot(String setSlot) {
             slot = setSlot;
         }
         
-        public int getSlot() {
+        @Override
+        public String getName() {
             return slot;
+        }
+
+        @Override
+        public String getDescription() {
+            return "";
         }
     }
     public enum Type {
