@@ -2,7 +2,7 @@ package com.ark.darthsystem;
 
 import com.ark.darthsystem.graphics.GraphicsDriver;
 import com.ark.darthsystem.graphics.ActorSprite;
-import com.ark.darthsystem.graphics.ActorBattler;
+import com.ark.darthsystem.graphics.FieldBattler;
 import com.ark.darthsystem.database.Database1;
 import static com.ark.darthsystem.BattleDriver.*;
 import com.ark.darthsystem.statusEffects.Normal;
@@ -139,7 +139,7 @@ public class BattleDriver {
      * @param battler
      * @param newMessage
      */
-    public static void printline(ActorBattler battler, String newMessage) {
+    public static void printline(FieldBattler battler, String newMessage) {
         if (!newMessage.equals("")) {
             ArrayList<String> formattedMessage = new ArrayList<>();
             StringTokenizer st = new StringTokenizer(newMessage, " \n", true);
@@ -170,7 +170,7 @@ public class BattleDriver {
      * @param faceMode
      * @param newMessage
      */
-    public static void printline(ActorBattler battler, ActorSprite.SpriteModeFace faceMode, String newMessage) {
+    public static void printline(FieldBattler battler, ActorSprite.SpriteModeFace faceMode, String newMessage) {
         if (!newMessage.equals("")) {
             ArrayList<String> formattedMessage = new ArrayList<>();
             StringTokenizer st = new StringTokenizer(newMessage, " \n", true);

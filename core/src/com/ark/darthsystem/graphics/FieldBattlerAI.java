@@ -7,7 +7,7 @@ package com.ark.darthsystem.graphics;
 
 import com.ark.darthsystem.AI;
 import com.ark.darthsystem.BattlerAI;
-import static com.ark.darthsystem.graphics.ActorAI.State.*;
+import static com.ark.darthsystem.graphics.FieldBattlerAI.State.*;
 import com.ark.darthsystem.states.OverheadMap;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -25,7 +25,7 @@ import java.util.Optional;
  *
  * @author trankt1
  */
-public class ActorAI extends Player implements Serializable {
+public class FieldBattlerAI extends Player implements Serializable {
     
     private Vector2 patrolCoordinates = Vector2.Zero;
     private Vector2 lastSeenPosition = Vector2.Zero;
@@ -38,18 +38,18 @@ public class ActorAI extends Player implements Serializable {
     private ArrayList<AI> aiData;
     private transient RayCastCallback rayVision;
     
-    public ActorAI(ArrayList<ActorBattler> getBattlers, float getX, float getY) {
+    public FieldBattlerAI(ArrayList<FieldBattler> getBattlers, float getX, float getY) {
         super(getBattlers, getX, getY);        
         setSpeed(getBattlers.get(0).getSpeed());
         aiData = new ArrayList<>(Arrays.asList(((BattlerAI) (getBattlers.get(0).getBattler())).getAIData()));
     }
     
-    public ActorAI clone() {
-        ArrayList<ActorBattler> temp = new ArrayList<>();
+    public FieldBattlerAI clone() {
+        ArrayList<FieldBattler> temp = new ArrayList<>();
         getAllActorBattlers().forEach((a) -> {
             temp.add(a.clone());
         });
-        return new ActorAI(temp, getX(), getY());
+        return new FieldBattlerAI(temp, getX(), getY());
     }
         
     @Override
@@ -65,7 +65,7 @@ public class ActorAI extends Player implements Serializable {
 
     public ArrayList<BattlerAI> getAllBattlerAI() {
         ArrayList<BattlerAI> allBattlers = new ArrayList<>();
-        for (ActorBattler b : this.getAllActorBattlers()) {
+        for (FieldBattler b : this.getAllActorBattlers()) {
             allBattlers.add((BattlerAI) (b.getBattler()));
         }
         return (allBattlers);

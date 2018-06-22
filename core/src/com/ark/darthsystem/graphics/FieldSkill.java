@@ -53,6 +53,8 @@ public class FieldSkill extends ActorCollision implements Nameable {
     private String name;
     private String description;
     private ActorSprite.SpriteModeField castImageName;
+    private String castSoundName;
+    private Sound castSound;
 
     public FieldSkill(String img,
             float getX,
@@ -244,7 +246,7 @@ public class FieldSkill extends ActorCollision implements Nameable {
             Skill getSkill,
             Area getArea,
             String shape) {
-        super(img, getX, getY, fps, true, shape);
+        super("skills/" + img + "/field/" + img, getX, getY, fps, true, shape);
         this.tags = new ArrayList<>();
         this.fieldSound = SoundDatabase.fieldSwordSound;
 //        this.battlerSound = SoundDatabase.battlerSwordSound;
@@ -278,6 +280,7 @@ public class FieldSkill extends ActorCollision implements Nameable {
     public FieldSkill(String name,
             String castImg,
             String img,
+            String castSoundName,
             String fieldSoundName,
             String[] tags,
             float getX,
@@ -291,18 +294,21 @@ public class FieldSkill extends ActorCollision implements Nameable {
             Area getArea,
             String shape) {
         this(img, getX, getY, getTranslateX, getTranslateY, fps, castTime, delay, getSkill, getArea, shape);
-        this.castImageName = ActorSprite.SpriteModeField.valueOf(castImg);
+        this.castImageName = ActorSprite.SpriteModeField.valueOf(castImg.toUpperCase());
         this.tags = new ArrayList<>();
         for (String tag : tags) {
             this.tags.add(Type.valueOf(tag));
         }
-        this.fieldSoundName = fieldSoundName.toUpperCase();
+        this.fieldSoundName = fieldSoundName.toLowerCase();
         fieldSound = SoundDatabase.SOUNDS.get(this.fieldSoundName);        
+        this.castSoundName = castSoundName.toLowerCase();
+        castSound = SoundDatabase.SOUNDS.get(this.castSoundName);        
     }
     
    public FieldSkill(String name,
             ActorSprite.SpriteModeField castImg,
             String img,
+            Sound castSound,
             Sound fieldSound,
             ArrayList<Type> tags,
             float getX,
@@ -318,7 +324,8 @@ public class FieldSkill extends ActorCollision implements Nameable {
         this(img, getX, getY, getTranslateX, getTranslateY, fps, castTime, delay, getSkill, getArea, shape);
         this.castImageName = castImg;
         this.tags = tags;
-        this.fieldSound = fieldSound;        
+        this.fieldSound = fieldSound;   
+        this.castSound = castSound;
     }    
     
     
@@ -336,10 +343,10 @@ public class FieldSkill extends ActorCollision implements Nameable {
             map.removeJoint(joint);
         }
         Filter filter = new Filter();
-        filter.categoryBits = !(getInvoker() instanceof ActorAI) ? ActorCollision.CATEGORY_PLAYER_SKILL : ActorCollision.CATEGORY_AI_SKILL;
-        filter.maskBits = (short) (ActorCollision.CATEGORY_WALLS | ActorCollision.CATEGORY_OBSTACLES | ((getInvoker() instanceof ActorAI) ? ActorCollision.CATEGORY_PLAYER_SKILL : ActorCollision.CATEGORY_AI_SKILL));
+        filter.categoryBits = !(getInvoker() instanceof FieldBattlerAI) ? ActorCollision.CATEGORY_PLAYER_SKILL : ActorCollision.CATEGORY_AI_SKILL;
+        filter.maskBits = (short) (ActorCollision.CATEGORY_WALLS | ActorCollision.CATEGORY_OBSTACLES | ((getInvoker() instanceof FieldBattlerAI) ? ActorCollision.CATEGORY_PLAYER_SKILL : ActorCollision.CATEGORY_AI_SKILL));
         getMainFixture().setFilterData(filter);
-        filter.maskBits = ((getInvoker() instanceof ActorAI) ? ActorCollision.CATEGORY_PLAYER : ActorCollision.CATEGORY_AI);
+        filter.maskBits = ((getInvoker() instanceof FieldBattlerAI) ? ActorCollision.CATEGORY_PLAYER : ActorCollision.CATEGORY_AI);
         getSensorFixture().setFilterData(filter);
         if (invoker.getMainBody() != null && (translateX == 0 && (area == Area.FRONT))) {
             WeldJointDef def = new WeldJointDef();
@@ -350,7 +357,7 @@ public class FieldSkill extends ActorCollision implements Nameable {
             setY(invoker); 
             def.initialize(invoker.getMainBody(), getMainBody(), new Vector2(getX(), getY()));
             joint = (WeldJoint) map.getPhysicsWorld().createJoint(def);
-        } else if (invoker.getMainBody() != null && (translateX == 0 && (area == Area.SELF_BENEFIT))) {
+        } else if (invoker.getMainBody() != null && (translateX == 0 && (area == Area.SELF_BENEFIT || area == Area.SELF))) {
             getMainBody().setTransform(invoker.getMainBody().getPosition(), getMainBody().getAngle());
             getSensorBody().setTransform(invoker.getSensorBody().getPosition(), getSensorBody().getAngle());
             WeldJointDef def = new WeldJointDef();
@@ -437,6 +444,17 @@ public class FieldSkill extends ActorCollision implements Nameable {
         }
     }
 
+    public void playCastSound() {
+        try {
+            castSound.stop();
+            castSound.play();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    
+    
     public void setAnimationFacing() {
         getCurrentImage().setRotation(this.getFacing().getRotate());
     }
@@ -448,6 +466,15 @@ public class FieldSkill extends ActorCollision implements Nameable {
             e.printStackTrace();
         }
     }
+    
+    public void stopCastSound() {
+        try {
+            castSound.stop();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
     @Override
     public void update(float delta) {
@@ -461,6 +488,25 @@ public class FieldSkill extends ActorCollision implements Nameable {
 
 
     public FieldSkill placeOnMap() {
+        if (getSkill() != null) {
+            return new FieldSkill(getName(),
+                    castImageName,
+                    originalFieldImageName,
+                    castSound,
+                    fieldSound,
+                    tags,
+                    relX,
+                    relY,
+                    translateX,
+                    translateY,
+                    getDelay(),
+                    chargeTime,
+                    aftercastDelay,
+                    skill,
+                    area,
+                    getShape()
+            );            
+        }
         FieldSkill a = new FieldSkill(originalFieldImageName,
                 originalFieldImageName,
                 relX,
@@ -563,10 +609,10 @@ public class FieldSkill extends ActorCollision implements Nameable {
                     invoker.setInvulnerability(1000);
                     invoker.addTimer(tempTimer);
                     Filter filter = new Filter();
-                    filter.categoryBits = !(getInvoker() instanceof ActorAI) ? ActorCollision.CATEGORY_PLAYER_SKILL : ActorCollision.CATEGORY_AI_SKILL;
-                    filter.maskBits = (short) (ActorCollision.CATEGORY_WALLS | ActorCollision.CATEGORY_OBSTACLES | ((getInvoker() instanceof ActorAI) ? ActorCollision.CATEGORY_PLAYER_SKILL : ActorCollision.CATEGORY_AI_SKILL));
+                    filter.categoryBits = !(getInvoker() instanceof FieldBattlerAI) ? ActorCollision.CATEGORY_PLAYER_SKILL : ActorCollision.CATEGORY_AI_SKILL;
+                    filter.maskBits = (short) (ActorCollision.CATEGORY_WALLS | ActorCollision.CATEGORY_OBSTACLES | ((getInvoker() instanceof FieldBattlerAI) ? ActorCollision.CATEGORY_PLAYER_SKILL : ActorCollision.CATEGORY_AI_SKILL));
                     invoker.getMainFixture().setFilterData(filter);
-                    filter.maskBits = ((getInvoker() instanceof ActorAI) ? ActorCollision.CATEGORY_PLAYER : ActorCollision.CATEGORY_AI);
+                    filter.maskBits = ((getInvoker() instanceof FieldBattlerAI) ? ActorCollision.CATEGORY_PLAYER : ActorCollision.CATEGORY_AI);
                     invoker.getSensorFixture().setFilterData(filter);
                 }
 
@@ -583,7 +629,7 @@ public class FieldSkill extends ActorCollision implements Nameable {
         activate(player, player.getCurrentBattler(), null);
     }
     
-    public void activate(Player player, ActorBattler caster, ActorBattler target) {
+    public void activate(Player player, FieldBattler caster, FieldBattler target) {
         FieldSkill tempSkill;
         tempSkill = placeOnMap();
         if (caster.activateCurrentSkill() != null) {
@@ -601,31 +647,41 @@ public class FieldSkill extends ActorCollision implements Nameable {
             tempSkill.setY(player);
             player.setAttacking(true);
             try {
-                if (tempSkill.chargeTime > .5) {
-                    SoundDatabase.battlerCastingSound.play();
-                }
+                tempSkill.playCastSound();
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            player.addTimer(new GameTimer("Skill", tempSkill.getChargeTime() + tempSkill.getAftercastDelay() * 1000f) {
+            player.addTimer(new GameTimer("Skill", tempSkill.getChargeTime() * 1000f + player.getSpriteSheet().getFieldAnimation(castImageName, player.getFacing()).getAnimationDuration() * 1000f + tempSkill.getAftercastDelay() * 1000f) {
                 @Override
                 public void event(Actor a) {
                     player.setCanSkill(true);
                 }
+                @Override
+                public boolean update(float delta, Actor a) {
+                    player.setCanSkill(false);
+                    return super.update(delta);
+                }
             });
             player.setPause((tempSkill.getChargeTime() * 1000f));
-            player.addTimer(new GameTimer("Skill", tempSkill.getAftercastDelay() + player.getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.ATTACK, player.getFacing()).getAnimationDuration() * 1000f) {
+            player.addTimer(new GameTimer("Skill", player.getSpriteSheet().getFieldAnimation(castImageName, player.getFacing()).getAnimationDuration() * 1000f) {
                 @Override
                 public void event(Actor a) {
                     player.setAttacking(false);
+                }
+                public boolean update(float delta, Actor a) {
+                    player.setFieldState(ActorSprite.SpriteModeField.SKILL);
+                    player.setAttacking(true);
+                    return super.update(delta);
                 }
             });
             player.addTimer(new GameTimer("Skill_Charge", tempSkill.getChargeTime() * 1000f) {
                 @Override
                 public void event(Actor a) {
+                    tempSkill.stopCastSound();
                     tempSkill.playFieldSound();
+                    player.setAttacking(false);
                     player.setFieldState(ActorSprite.SpriteModeField.SKILL);
-                    player.setPause((tempSkill.getAnimationDelay() * 1000f));
+                    player.setPause((tempSkill.getCurrentAnimation().getAnimationDuration() * 1000f));
                     if (tempSkill.getSkill().getAlly()) {
                         Action action = new Action(Battle.Command.Skill,
                                 tempSkill.getSkill().overrideCost(0),
@@ -637,7 +693,7 @@ public class FieldSkill extends ActorCollision implements Nameable {
                     tempSkill.setMap(player.getCurrentMap());
                 }
 
-                public boolean update(float delta) {
+                public boolean update(float delta, Actor a) {
                     player.setFieldState(ActorSprite.SpriteModeField.SKILL);
                     player.setAttacking(true);
                     return super.update(delta);
@@ -646,12 +702,31 @@ public class FieldSkill extends ActorCollision implements Nameable {
                 public void clear() {
                     SoundDatabase.battlerCastingSound.stop();
                     player.setFieldState(ActorSprite.SpriteModeField.STAND);
+                    player.setCanSkill(true);
                     player.setAttacking(false);
                 }
             });
         }
     }
 
+    public String getCastSoundName() {
+        return castSoundName;
+    }
+
+    public void setCastSoundName(String castSoundName) {
+        this.castSoundName = castSoundName;
+    }
+
+    public Sound getCastSound() {
+        return castSound;
+    }
+
+    public void setCastSound(Sound castSound) {
+        this.castSound = castSound;
+    }
+
+    
+    
     @Override
     public String getName() {
         return name;
@@ -666,10 +741,13 @@ public class FieldSkill extends ActorCollision implements Nameable {
         WIND, // (Blows back enemy)
         FIRE, // (Set certain things on fire, such as torches)
         ICE, // (Freeze Water.  All Water spells put out fires.)
+        WATER, // (Place Water on object.  Puts out fires or conducts electricity...)
+        HEAL, // Just some healing..
+        BUFF, // Just some buffing..
         STONE, // (Creates a stone wall that acts as an obstacle)
         SHINE, // (Temporarily removes darkness
         PURIFY, // (Removes festering corruption)
-        CORRUPTION, // (Inflicts corruption on vulnerable creatures and items)
+        CORRUPT, // (Inflicts corruption on vulnerable creatures and items)
         SLASH, // (Cuts down things)
         PIERCE, // (bypass obstacles)
         SMASH, // Break stone

@@ -7,7 +7,7 @@ package com.ark.darthsystem.states;
 
 import com.ark.darthsystem.graphics.GraphicsDriver;
 import com.ark.darthsystem.graphics.ActorSprite;
-import com.ark.darthsystem.graphics.ActorBattler;
+import com.ark.darthsystem.graphics.FieldBattler;
 import com.ark.darthsystem.graphics.Input;
 import com.ark.darthsystem.database.InterfaceDatabase;
 import com.ark.darthsystem.states.chapters.Novel;
@@ -72,7 +72,7 @@ public class Message implements State {
         gen.dispose();
     }
     
-    public Message(ActorBattler header, ArrayList<String> getMessage) {
+    public Message(FieldBattler header, ArrayList<String> getMessage) {
         this(getMessage);
         this.header = header.getBattler().getName();
         this.face = header.getSprite().getFaceAnimation(ActorSprite.SpriteModeFace.NORMAL);

@@ -11,8 +11,8 @@ import com.ark.darthsystem.database.InterfaceDatabase;
 import com.ark.darthsystem.database.ItemDatabase;
 import com.ark.darthsystem.database.MonsterDatabase;
 import com.ark.darthsystem.graphics.Actor;
-import com.ark.darthsystem.graphics.ActorAI;
-import com.ark.darthsystem.graphics.ActorBattler;
+import com.ark.darthsystem.graphics.FieldBattlerAI;
+import com.ark.darthsystem.graphics.FieldBattler;
 import com.ark.darthsystem.graphics.ActorCollision;
 import com.ark.darthsystem.graphics.FieldSkill;
 import com.ark.darthsystem.graphics.GameTimer;
@@ -395,7 +395,7 @@ public class OverheadMap implements State {
         AnimatedTiledMapTile.updateAnimationBaseTime();
         for (int i = 0; i < actorList.size; i++) {
             Actor a = actorList.get(i);
-            if (a instanceof ActorAI && ((ActorAI) (a)).totalPartyKill()) {
+            if (a instanceof FieldBattlerAI && ((FieldBattlerAI) (a)).totalPartyKill()) {
                 removeActor(a);
                 i--;
             } else {
@@ -436,7 +436,7 @@ public class OverheadMap implements State {
         AnimatedTiledMapTile.updateAnimationBaseTime();
         for (int i = 0; i < actorList.size; i++) {
             Actor a = actorList.get(i);
-            if (a instanceof ActorAI && ((ActorAI) (a)).totalPartyKill()) {
+            if (a instanceof FieldBattlerAI && ((FieldBattlerAI) (a)).totalPartyKill()) {
                 removeActor(a);
                 i--;
             } else {
@@ -498,12 +498,12 @@ public class OverheadMap implements State {
     }
 
     private void battleStart() {
-        Array<ActorAI> clear = new Array<>();
-        ArrayList<ActorBattler> encounters = new ArrayList<>();
+        Array<FieldBattlerAI> clear = new Array<>();
+        ArrayList<FieldBattler> encounters = new ArrayList<>();
         for (Actor enemyActors2 : actorList) {
-            if (enemyActors2 instanceof ActorAI && ((ActorAI) (enemyActors2)).vision()) {
-                encounters.addAll(((ActorAI) (enemyActors2)).getAllActorBattlers());
-                clear.add((ActorAI) enemyActors2);
+            if (enemyActors2 instanceof FieldBattlerAI && ((FieldBattlerAI) (enemyActors2)).vision()) {
+                encounters.addAll(((FieldBattlerAI) (enemyActors2)).getAllActorBattlers());
+                clear.add((FieldBattlerAI) enemyActors2);
             }
         }
         for (int i = 0; i < clear.size; i++) {
@@ -514,7 +514,7 @@ public class OverheadMap implements State {
         }
         if (clear.size > 0) {
 
-            for (ActorAI tempAI : clear) {
+            for (FieldBattlerAI tempAI : clear) {
                 //clear certain called events
                 for (int i = 0; i < actorList.size; i++) {
                     Actor actors = actorList.get(i);
@@ -836,10 +836,10 @@ public class OverheadMap implements State {
                 action = new Action(Battle.Command.Skill, tempSkill.getSkill().overrideCost(0), tempSkill.getInvoker().getCurrentBattler().getBattler(), tempActor.getCurrentBattler().getBattler(), tempActor.getAllBattlers());
             }
             action.calculateDamage(new Battle(tempSkill.getInvoker().getAllActorBattlers(), tempActor.getAllActorBattlers(), Database1.inventory, null));
-            if (tempActor instanceof ActorAI && tempActor.totalPartyKill()) {
+            if (tempActor instanceof FieldBattlerAI && tempActor.totalPartyKill()) {
                 createPickupFromActor(tempActor);
                 tempSkill.getInvoker().getAllBattlers().forEach((Battler battler) -> {
-                    ((ActorAI) (tempActor)).getAllBattlerAI().forEach((BattlerAI getBattlerAI) -> {
+                    ((FieldBattlerAI) (tempActor)).getAllBattlerAI().forEach((BattlerAI getBattlerAI) -> {
                         battler.changeExperiencePoints(getBattlerAI.getExperienceValue());
                     });
                 });

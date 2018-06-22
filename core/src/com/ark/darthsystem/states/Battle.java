@@ -3,7 +3,7 @@ package com.ark.darthsystem.states;
 import com.ark.darthsystem.*;
 import com.ark.darthsystem.database.Database2;
 import com.ark.darthsystem.graphics.Actor;
-import com.ark.darthsystem.graphics.ActorBattler;
+import com.ark.darthsystem.graphics.FieldBattler;
 import com.ark.darthsystem.graphics.GameTimer;
 import com.ark.darthsystem.graphics.GraphicsDriver;
 import com.badlogic.gdx.Gdx;
@@ -21,8 +21,8 @@ public class Battle implements State {
     private static final String BATTLE_MUSIC = "music/Forbidden Secret Unfolding.mp3";
     private ArrayList<Battler> party;
     private ArrayList<Battler> enemy;
-    private ArrayList<ActorBattler> partyActors;
-    private ArrayList<ActorBattler> enemyActors;
+    private ArrayList<FieldBattler> partyActors;
+    private ArrayList<FieldBattler> enemyActors;
     private ArrayList<Item> partyItems;
     private ArrayList<Action> partyAction;
     private ArrayList<Action> enemyAction;
@@ -37,8 +37,8 @@ public class Battle implements State {
     private String bgm;
     private ArrayList<Sound> sounds;
 
-    public Battle(ArrayList<ActorBattler> initializeParty,
-            ArrayList<ActorBattler> initializeEnemy,
+    public Battle(ArrayList<FieldBattler> initializeParty,
+            ArrayList<FieldBattler> initializeEnemy,
             ArrayList<Item> initializeItems,
             Scenario initializeScenario) {
         this.sounds = new ArrayList<>();
@@ -50,12 +50,12 @@ public class Battle implements State {
         this.partyAction = new ArrayList<>();
         partyActors = initializeParty;
         party = new ArrayList<>();
-        for (ActorBattler allies : initializeParty) {
+        for (FieldBattler allies : initializeParty) {
             party.add(allies.getBattler());
         }
         enemyActors = initializeEnemy;
         enemy = new ArrayList<>();
-        for (ActorBattler enemies : initializeEnemy) {
+        for (FieldBattler enemies : initializeEnemy) {
             enemy.add((enemies.getBattler()));
         }
         partyItems = initializeItems;
@@ -64,8 +64,8 @@ public class Battle implements State {
         bgm = BATTLE_MUSIC;
     }
 
-    public Battle(ArrayList<ActorBattler> initializeParty,
-            ArrayList<ActorBattler> initializeEnemy,
+    public Battle(ArrayList<FieldBattler> initializeParty,
+            ArrayList<FieldBattler> initializeEnemy,
             ArrayList<Item> initializeItems,
             Scenario initializeScenario,
             String initializeMusic) {
@@ -79,12 +79,12 @@ public class Battle implements State {
         bgm = initializeMusic;
         partyActors = initializeParty;
         party = new ArrayList<>();
-        for (ActorBattler allies : initializeParty) {
+        for (FieldBattler allies : initializeParty) {
             party.add(allies.getBattler());
         }
         enemyActors = initializeEnemy;
         enemy = new ArrayList<>();
-        for (ActorBattler enemies : initializeEnemy) {
+        for (FieldBattler enemies : initializeEnemy) {
             enemy.add((enemies.getBattler()));
         }
         partyItems = initializeItems;

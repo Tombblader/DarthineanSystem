@@ -18,9 +18,7 @@ import java.io.ObjectInputStream;
 import java.io.Serializable;
 
 /**
- * The Actor class is the basic entity class that directly interacts with the
- * game. It comes with basic graphics functions such as animation, facing,
- * movement.
+ * The Actor wraps the animation class to use with the game.
  *
  */
 public class Actor implements Serializable {

@@ -5,10 +5,8 @@
  */
 package com.ark.darthsystem.database;
 
-import static com.ark.darthsystem.database.CharacterDatabase.CHARACTER_LIST;
-import static com.ark.darthsystem.database.SpriteDatabase.*;
-import com.ark.darthsystem.graphics.ActorBattler;
-import com.ark.darthsystem.graphics.ActorAI;
+import com.ark.darthsystem.graphics.FieldBattler;
+import com.ark.darthsystem.graphics.FieldBattlerAI;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import java.util.ArrayList;
@@ -21,12 +19,12 @@ import java.util.HashMap;
  */
 public class MonsterDatabase {
 
-    public static ActorAI ProtoxAI;
-    public static ActorAI ErikAI;
-    public static ActorAI Eyesore_Actor;
-    public static ActorAI Mouthsore_Actor;
-    public static ActorAI Living_Sword_Actor;
-    public static HashMap<String, ActorAI> MONSTER_LIST = new HashMap<>();
+    public static FieldBattlerAI ProtoxAI;
+    public static FieldBattlerAI ErikAI;
+    public static FieldBattlerAI Eyesore_Actor;
+    public static FieldBattlerAI Mouthsore_Actor;
+    public static FieldBattlerAI Living_Sword_Actor;
+    public static HashMap<String, FieldBattlerAI> MONSTER_LIST = new HashMap<>();
 
     public MonsterDatabase() {
         FileHandle file = Gdx.files.internal("databases/actorbattlersai.tsv");
@@ -38,7 +36,7 @@ public class MonsterDatabase {
             }
             int i = 0;
             
-            MONSTER_LIST.put(data[i].toUpperCase(), new ActorAI(new ArrayList<>(Arrays.asList(new ActorBattler[]{new ActorBattler(AIDatabase.BATTLER_LIST.get(data[i].toUpperCase()), //Name
+            MONSTER_LIST.put(data[i].toUpperCase(), new FieldBattlerAI(new ArrayList<>(Arrays.asList(new FieldBattler[]{new FieldBattler(AIDatabase.BATTLER_LIST.get(data[i].toUpperCase()), //Name
                     "monsters/" + data[++i], //Sprite Name
                     (float) (1f / Double.parseDouble(data[++i])), //fps
                     data[++i], //ShapeName

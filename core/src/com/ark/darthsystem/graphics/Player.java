@@ -60,7 +60,7 @@ public class Player extends ActorCollision implements Serializable {
     private int switchSkill = Keys.E;
     private int charge = Keys.C;
     private int defendButton = Keys.X;
-//    private int confirmButton = Keys.ENTER;
+    private int confirmButton = Keys.SPACE;
     private int quitButton = Keys.ESCAPE;
     private int menuButton = Keys.ENTER;
     private int jumpButton = Keys.V;
@@ -79,16 +79,16 @@ public class Player extends ActorCollision implements Serializable {
 
     private transient Input playerInput;
     private transient BitmapFont font;
-    private transient ActorBattler currentBattler;
+    private transient FieldBattler currentBattler;
     private transient Array<Event> eventQueue = new Array<>();
     
 //    private boolean isJumping;
-    private ArrayList<ActorBattler> party = new ArrayList<>();
+    private ArrayList<FieldBattler> party = new ArrayList<>();
     private int currentBattlerIndex = 0;
     private transient RayCastCallback buttonPushFinder;
     private boolean hasEvent;
 
-    public Player(ArrayList<ActorBattler> getBattler, float getX, float getY) {
+    public Player(ArrayList<FieldBattler> getBattler, float getX, float getY) {
         super(getBattler.get(0).getSprite().getMasterSpriteSheet() + "/field/stand/down", getX, getY, getBattler.get(0).getDelay(), getBattler.get(0).getShapeName());
         party = getBattler;
         initialize();
@@ -98,7 +98,7 @@ public class Player extends ActorCollision implements Serializable {
         currentBattler = party.get(0);        
         if (party.get(0).getBattler().getSkillList() != null 
                 && !party.get(0).getBattler().getSkillList().isEmpty()) {
-            currentSkill = Database2.SkillToActor(party.get(0).getBattler().getSkill(0));
+            currentSkill = Database2.SkillToActor(party.get(0).getBattler().getSkill(0).getName());
         }
         setAttackAnimation();
         FreeTypeFontGenerator gen = new FreeTypeFontGenerator(Gdx.files.internal("fonts/monofont.ttf"));
@@ -227,6 +227,7 @@ public class Player extends ActorCollision implements Serializable {
                             public void event(Actor a) {
                                 fieldState = ActorSprite.SpriteModeField.STAND;
                             }
+                            @Override
                             public boolean update(float delta, Actor a) {
                                 fieldState = ActorSprite.SpriteModeField.ATTACK;
                                 return super.update(delta, a);
@@ -234,6 +235,7 @@ public class Player extends ActorCollision implements Serializable {
                         });
                     }
                 }
+                @Override
                 public boolean update(float delta, Actor a) {
                     attacking = true;
 //                    canAttack = false;
@@ -672,21 +674,21 @@ public class Player extends ActorCollision implements Serializable {
 
     }
 
-    public ActorBattler getCurrentBattler() {
+    public FieldBattler getCurrentBattler() {
         return currentBattler;
     }
 
-    public ActorBattler getBattler(int index) {
+    public FieldBattler getBattler(int index) {
         return party.get(index);
     }
 
-    public ArrayList<ActorBattler> getAllActorBattlers() {
+    public ArrayList<FieldBattler> getAllActorBattlers() {
         return party;
     }
 
     public ArrayList<Battler> getAllBattlers() {
         ArrayList<Battler> allBattlers = new ArrayList<>();
-        for (ActorBattler battler : party) {
+        for (FieldBattler battler : party) {
             allBattlers.add(battler.getBattler());
         }
         return allBattlers;
@@ -694,7 +696,7 @@ public class Player extends ActorCollision implements Serializable {
 
     public boolean totalPartyKill() {
         boolean isDead = true;
-        for (ActorBattler member : party) {
+        for (FieldBattler member : party) {
             isDead &= !member.getBattler().isAlive();
         }
         return isDead;
@@ -793,14 +795,14 @@ public class Player extends ActorCollision implements Serializable {
     }
 
     public void ouch(Battler b) {
-        ActorBattler ouchBattler = getAllActorBattlers().get(getAllBattlers().indexOf(b));
+        FieldBattler ouchBattler = getAllActorBattlers().get(getAllBattlers().indexOf(b));
         fieldState = ActorSprite.SpriteModeField.OUCH;
         ouchBattler.setFace(ActorSprite.SpriteModeFace.OUCH);
         setPause(250);
         setInvulnerability(550);
         SoundDatabase.ouchSound.play();
         addTimer(new GameTimer("OUCH", 250) {
-            ActorBattler ouchBattler2 = ouchBattler;
+            FieldBattler ouchBattler2 = ouchBattler;
             @Override
             public void event(Actor a) {
                 if (ouchBattler2.getBattler().isAlive()) {
@@ -837,7 +839,7 @@ public class Player extends ActorCollision implements Serializable {
         setInvulnerability(550);
         SoundDatabase.ouchSound.play();
         addTimer(new GameTimer("OUCH", 250) {
-            ActorBattler ouchBattler = Player.this.getCurrentBattler();
+            FieldBattler ouchBattler = Player.this.getCurrentBattler();
             @Override
             public void event(Actor a) {
                 if (ouchBattler.getBattler().isAlive()) {

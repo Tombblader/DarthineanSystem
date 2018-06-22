@@ -10,7 +10,7 @@ import static com.ark.darthsystem.database.Database1.inventory;
 import static com.ark.darthsystem.database.Database2.player;
 import com.ark.darthsystem.graphics.GraphicsDriver;
 import com.ark.darthsystem.Item;
-import com.ark.darthsystem.graphics.ActorBattler;
+import com.ark.darthsystem.graphics.FieldBattler;
 import com.ark.darthsystem.graphics.FieldSkill;
 import com.ark.darthsystem.states.Battle;
 import com.ark.darthsystem.states.Menu;
@@ -100,7 +100,7 @@ public class DefaultMenu extends Menu {
                     @Override
                     public Object confirm(String choice) {
                         final int sourceIndex = getCursorIndex();
-                        ActorBattler caster = Database2.player.getBattler(sourceIndex);
+                        FieldBattler caster = Database2.player.getBattler(sourceIndex);
                         String[] skillList = new String[caster.getSkillList().size()];
                         for (int i = 0; i < skillList.length; i++) {
                             skillList[i] = (i + 1) + ". " + caster.getSkillList().get(i).getSkill().getName() + " "
@@ -169,7 +169,7 @@ public class DefaultMenu extends Menu {
                 GraphicsDriver.addMenu(menuBattlers);
                 break;
             case "Status":
-                ArrayList<ActorBattler> actorParty = new ArrayList<>();
+                ArrayList<FieldBattler> actorParty = new ArrayList<>();
                 actorParty.addAll(Database2.player.getAllActorBattlers());
                 getPlayerList = new String[actorParty.size()];
                 for (int i = 0; i < getPlayerList.length; i++) {
@@ -197,7 +197,7 @@ public class DefaultMenu extends Menu {
                         statusBox.setMessage(formatBattler(actorParty.get(getCursorIndex())));
                     }
                     
-                    private String formatBattler(ActorBattler b) {
+                    private String formatBattler(FieldBattler b) {
                         StringBuilder formatted = new StringBuilder();
                         Battler tempBattler = b.getBattler();
                         formatted.append(tempBattler.getName());

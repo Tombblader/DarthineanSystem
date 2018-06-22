@@ -15,10 +15,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
- * The ActorBattler encapsulates the Battler so it can interact with the map.
+ * The FieldBattler encapsulates the Battler so it can interact with the map.
  * @author Keven
  */
-public class ActorBattler implements Serializable {
+public class FieldBattler implements Serializable {
 
     private Battler battler;
     private transient FieldSkill currentSkill;
@@ -30,14 +30,14 @@ public class ActorBattler implements Serializable {
     private float speed;
     private String shapeName;
 
-    public ActorBattler(Battler b, ActorSprite s) {
+    public FieldBattler(Battler b, ActorSprite s) {
         battler = b;
         spriteSheet = s;
         speed = .4f;
         delay = 1/6f;
         shapeName = "basiccircle";
         b.getSkillList().stream().map((skill) -> {
-            currentSkill = Database2.SkillToActor(skill);
+            currentSkill = Database2.SkillToActor(skill.getName());
             return skill;
         }).filter((_item) -> (currentSkill != null)).forEachOrdered((_item) -> {
             skillList.add(currentSkill);
@@ -49,7 +49,7 @@ public class ActorBattler implements Serializable {
         }
     }
     
-    public ActorBattler(Battler b, String s) {
+    public FieldBattler(Battler b, String s) {
         battler = b;
         spriteSheetName = s;
         speed = .4f;
@@ -58,7 +58,7 @@ public class ActorBattler implements Serializable {
         initialize();
     }
     
-    public ActorBattler(Battler b, String s, float fps, String shapeName, float speed) {
+    public FieldBattler(Battler b, String s, float fps, String shapeName, float speed) {
         this.shapeName = shapeName;
         battler = b;
         spriteSheetName = s;
@@ -71,8 +71,8 @@ public class ActorBattler implements Serializable {
         spriteSheet = new ActorSprite(spriteSheetName);
         for (Skill skills: battler.getSkillList()) {
             try {
-                if (Database2.SkillToActor(skills) != null) {
-                    skillList.add(Database2.SkillToActor(skills));
+                if (Database2.SkillToActor(skills.getName()) != null) {
+                    skillList.add(Database2.SkillToActor(skills.getName()));
                 }
             }
             catch (Exception e) {
@@ -137,8 +137,8 @@ public class ActorBattler implements Serializable {
     }
 
 
-    public ActorBattler clone() {
-        ActorBattler newBattler = new ActorBattler((Battler) battler.clone(), spriteSheet);
+    public FieldBattler clone() {
+        FieldBattler newBattler = new FieldBattler((Battler) battler.clone(), spriteSheet);
         newBattler.delay = delay;
         newBattler.shapeName = shapeName;
         newBattler.speed = speed;
@@ -156,7 +156,7 @@ public class ActorBattler implements Serializable {
     public ArrayList<FieldSkill> getSkillList() {
         ArrayList<FieldSkill> tempSkillList = new ArrayList<>();
         for (Skill skill : battler.getSkillList()) {
-            FieldSkill tempSkill = Database2.SkillToActor(skill);
+            FieldSkill tempSkill = Database2.SkillToActor(skill.getName());
             if (tempSkill != null) {
                 tempSkillList.add(tempSkill);
             }
