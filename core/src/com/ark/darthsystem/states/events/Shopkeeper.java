@@ -46,7 +46,7 @@ public class Shopkeeper extends Event {
                 }
                 {
                     this.chapters.add(() -> BattleDriver.printline(CharacterDatabase.CHARACTER_LIST.get("GREEN LADY"), "Look... at... my wares..."));
-                    this.chapters.add(() -> GraphicsDriver.addMenu(new ShopMenu("What did you want?", inventory, new String[]{"What would you like to buy?", "Anything else?"})));
+                    this.chapters.add(() -> GraphicsDriver.addMenu(new ShopMenu("What... would you like...?", inventory, new String[]{"Buying.. is good..", "I... don't like buying from you..."})));
                 }
                 });
         }

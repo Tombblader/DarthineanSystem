@@ -16,12 +16,9 @@ import java.util.Scanner;
 public class ChapterGenerator {
     public static Novel generateNovel(String filename) {
         FileHandle f = Gdx.files.internal(filename);
-        try (Scanner s = new Scanner(f.file(), ":");) {
+        try {
+            String[] massiveString = f.readString().split("(\r\n|\r|\n)");
             String input;
-            while (s.hasNextLine()) {
-                input = s.nextLine().trim();
-                
-            }
         } catch (Exception e) {
             e.printStackTrace();
         }

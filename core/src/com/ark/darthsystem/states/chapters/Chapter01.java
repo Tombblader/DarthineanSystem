@@ -7,7 +7,6 @@ package com.ark.darthsystem.states.chapters;
 
 import com.ark.darthsystem.BattleDriver;
 import static com.ark.darthsystem.database.CharacterDatabase.CHARACTER_LIST;
-import com.ark.darthsystem.database.Database2;
 import com.ark.darthsystem.graphics.ActorSprite;
 import com.ark.darthsystem.graphics.GraphicsDriver;
 

@@ -19,7 +19,6 @@ import com.ark.darthsystem.states.Menu;
 import com.ark.darthsystem.states.Title;
 import com.ark.darthsystem.statusEffects.StatusEffect;
 import java.io.IOException;
-
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -44,7 +43,7 @@ public class DefaultMenu extends Menu {
                 if (inventory != null && !inventory.isEmpty()) {
                     String[] getItemList = new String[inventory.size()];
                     for (int i = 0; i < getItemList.length; i++) {
-                        getItemList[i] = (i + 1) + ". " + inventory.get(i).getName() + " x" + inventory.get(i).getCharges();
+                        getItemList[i] = (i + 1) + ". " + inventory.get(i).getName() + (inventory.get(i).getCharges() > 0 ? " x" + inventory.get(i).getCharges() : "");
                     }
                     Menu menuItem = new Menu("Use which Item?",
                             getItemList,
@@ -77,6 +76,7 @@ public class DefaultMenu extends Menu {
                             return choice;
                         }
 
+                        @Override
                         public void updateMenu(float delta) {
                             super.updateMenu(delta);
                             setHeader(Database1.inventory.get(getCursorIndex()).getDescription());
@@ -142,39 +142,47 @@ public class DefaultMenu extends Menu {
                 addSubMenu(new Menu("Equip who?", Database2.player.getAllBattlers().toArray(new Battler[Database2.player.getAllBattlers().size()])) {
                     @Override
                     public Object confirm(String choice) {
-                            DefaultMenu.this.addSubMenu(new Menu("Which Slot", Equipment.Slot.values()) {
-                                @Override
-                                public Object confirm(String choice) {
-                                    Battler battler = Database2.player.getBattler(getCursorIndex()).getBattler();
-                                     ArrayList<Equipment> equippableItems = new ArrayList<>();
-                                     for (Item i : Database1.inventory) {
-                                         if (i instanceof Equipment && battler.getBattlerClass().equippable((Equipment)(i))) {
-                                             equippableItems.add((Equipment) i);
-                                         }
-                                     }
-                                     if (equippableItems.isEmpty()) {
-                                         reverseMenu();
-                                     } else {
-                                         DefaultMenu.this.addSubMenu(new Menu("Which Item?", equippableItems.toArray(new Equipment[equippableItems.size()])) {
-                                             @Override
-                                             public Object confirm(String choice) {
-                                                 Database1.inventory.remove(getCursorIndex());
-                                                 BattleDriver.addItem(battler.equip(equippableItems.get(getCursorIndex())));
-                                                 return null;
-                                             }
-                                             
-                                         });
-                                     }
-                                     
-                                     return null;
+                        FieldBattler b = Database2.player.getBattler(getCursorIndex());
+                        Battler battler = b.getBattler();
+                        DefaultMenu.this.addSubMenu(new Menu("Which Slot", Equipment.Slot.values()) {
+                            @Override
+                            public Object confirm(String choice) {
+
+                                ArrayList<Equipment> equippableItems = new ArrayList<>();
+                                for (Item i : Database1.inventory) {
+                                    if (i instanceof Equipment 
+                                            && battler.getBattlerClass().equippable((Equipment) (i)) 
+                                            && ((Equipment) (i)).getEquipmentType().getName().equalsIgnoreCase(choice)) {
+                                        equippableItems.add((Equipment) i);
+                                    }
                                 }
-                                {
-                                    addActor(status);
+                                if (equippableItems.isEmpty()) {
+                                    reverseMenu();
+                                } else {
+                                    DefaultMenu.this.addSubMenu(new Menu("Which Item?", equippableItems.toArray(new Equipment[equippableItems.size()])) {
+                                        @Override
+                                        public Object confirm(String choice) {
+                                            Database1.inventory.remove(getCursorIndex());
+                                            BattleDriver.addItem(battler.equip(equippableItems.get(getCursorIndex())));
+                                            return null;
+                                        }
+
+                                    });
                                 }
-                            });
-                            return null;
-                        }
-                    
+
+                                return null;
+                            }
+                            @Override
+                            public void updateMenu(float delta) {
+                                status.setMessage(status.formatBattler(b));
+                                super.updateMenu(delta);
+                            }
+                            {
+                                addActor(status);
+                            }
+                        });
+                        return null;
+                    }
 
                 });
                 break;
@@ -223,6 +231,7 @@ public class DefaultMenu extends Menu {
                         true,
                         true) {
                     StatusBox statusBox = new StatusBox();
+
                     {
                         {
                             addActor(statusBox);
@@ -271,17 +280,16 @@ public class DefaultMenu extends Menu {
         return choice;
     }
 
-    private class StatusBox extends TextBox {
+    protected class StatusBox extends TextBox {
 
         StatusBox() {
-            super("interface/window", 1024 / 4, 768 / 4, 1024 / 2, 768 / 2);
+            super("interface/window", GraphicsDriver.getWidth() / 4, GraphicsDriver.getHeight() / 4, GraphicsDriver.getWidth() / 2, GraphicsDriver.getHeight() / 2);
         }
 
         private String formatBattler(FieldBattler b) {
             StringBuilder formatted = new StringBuilder();
             Battler tempBattler = b.getBattler();
-            formatted.append(tempBattler.getName());
-            formatted.append('\n');
+            formatted.append(tempBattler.getName()).append('\n');
 
             if (tempBattler.getAllStatus().size() < 2) {
                 formatted.append(tempBattler.getAllStatus().get(0).getName());
@@ -297,28 +305,15 @@ public class DefaultMenu extends Menu {
                 }
             }
             formatted.append('\n');
-            formatted.append("HP:  ");
-            formatted.append(tempBattler.getHP());
-            formatted.append(" / ");
-            formatted.append(tempBattler.getMaxHP());
-            formatted.append('\n');
-            formatted.append("MP:  ");
-            formatted.append(tempBattler.getMP());
-            formatted.append(" / ");
-            formatted.append(tempBattler.getMaxMP());
-            formatted.append('\n');
-            formatted.append("ATK: ");
-            formatted.append(tempBattler.getBaseAttack());
-            formatted.append('\n');
-            formatted.append("DEF: ");
-            formatted.append(tempBattler.getBaseDefense());
-            formatted.append('\n');
-            formatted.append("SPD: ");
-            formatted.append(tempBattler.getBaseSpeed());
-            formatted.append('\n');
-            formatted.append("MAG: ");
-            formatted.append(tempBattler.getBaseMagic());
-            formatted.append('\n');
+            formatted.append("HP:  ").append(tempBattler.getHP()).append(" / ").append(tempBattler.getMaxHP()).append('\n');
+            formatted.append("MP:  ").append(tempBattler.getMP()).append(" / ").append(tempBattler.getMaxMP()).append('\n');
+            formatted.append("ATK: ").append(tempBattler.getBaseAttack()).append('\n');
+            formatted.append("DEF: ").append(tempBattler.getBaseDefense()).append('\n');
+            formatted.append("SPD: ").append(tempBattler.getBaseSpeed()).append('\n');
+            formatted.append("MAG: ").append(tempBattler.getBaseMagic()).append('\n');
+            for (Equipment.Slot slot : Equipment.Slot.values()) {
+                formatted.append(slot.getName()).append(": ").append(tempBattler.getEquipment(slot) != null ? tempBattler.getEquipment(slot).getName() : "").append("\n");
+            }
             return formatted.toString();
         }
     };

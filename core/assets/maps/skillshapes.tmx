@@ -34,7 +34,7 @@
   <object id="16" name="widesword" type="skill" x="256" y="94">
    <polygon points="0,2 0,-9 10.1569,-22.7804 23,-30 42,-30 54,-23 64,-9 64,2"/>
   </object>
-  <object id="30" name="monster" type="skill" x="320" y="192" width="352" height="352">
+  <object id="30" name="monster" type="skill" x="593" y="59" width="352" height="352">
    <ellipse/>
   </object>
   <object id="35" name="playerInteract" type="skill" x="160" y="384" width="32" height="64">

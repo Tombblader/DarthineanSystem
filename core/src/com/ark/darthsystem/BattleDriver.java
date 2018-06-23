@@ -240,11 +240,13 @@ public class BattleDriver {
      * @param newItem
      */
     public static void addItem(Item newItem) {
-        newItem = (Item) newItem.clone();
-        if (Database1.inventory.contains(newItem) && (newItem.isStackable())) {
-                Database1.inventory.get(Database1.inventory.indexOf(newItem)).increaseQuantity(newItem.getCharges());
-        } else {
-            Database1.inventory.add(newItem);
+        if (newItem != null) {
+            newItem = (Item) newItem.clone();
+            if (Database1.inventory.contains(newItem) && (newItem.isStackable())) {
+                    Database1.inventory.get(Database1.inventory.indexOf(newItem)).increaseQuantity(newItem.getCharges());
+            } else {
+                Database1.inventory.add(newItem);
+            }
         }
     }
     

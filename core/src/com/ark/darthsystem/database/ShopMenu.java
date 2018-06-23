@@ -120,7 +120,7 @@ public class ShopMenu extends Menu {
                         {
                             addActor(new TextBox("interface/window", 0, 0, GraphicsDriver.getWidth(), GraphicsDriver.getHeight() / 8) {
                                 public void update(float delta) {
-                                    this.setMessage(itemList[getCursorIndex()].getDescription());
+                                    this.setMessage(Database1.inventory.get(getCursorIndex()).getDescription());
                                     super.update(delta);
                                 }
                             });

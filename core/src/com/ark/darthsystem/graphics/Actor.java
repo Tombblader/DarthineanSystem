@@ -57,21 +57,6 @@ public class Actor implements Serializable {
         isRotate = false;
     }
 
-//    public Actor(Sprite img,
-//            float getX,
-//            float getY) {
-//        this.xFacingBias = Facing.DOWN;
-//        this.delay = 16;
-//        x = getX;
-//        y = getY;
-//        currentImage = img;
-//        isMovable = false;
-//        speed = 0;
-//        destroyAfterAnimation = false;
-//        facing = Facing.RIGHT;
-//        isRotate = false;
-//    }
-
     public Actor(String img,
             float getX,
             float getY,
@@ -99,26 +84,6 @@ public class Actor implements Serializable {
         destroyAfterAnimation = destroy;
         animation.setPlayMode(destroy ? PlayMode.NORMAL : PlayMode.LOOP);
     }
-
-//    public Actor(ActorSprite img,
-//            float getX,
-//            float getY,
-//            float delay) {
-//        this.xFacingBias = Facing.DOWN;
-//        sprite = img;
-//        x = getX;
-//        y = getY;
-//        animation = sprite.getFieldAnimation(ActorSprite.SpriteModeField.STAND, Facing.DOWN);
-//        animation.setPlayMode(PlayMode.LOOP);
-//        animation.setFrameDuration(delay);        
-//        currentImage = (Sprite) animation.getKeyFrame(elapsed);
-//        isMovable = true;
-//        speed = 0;
-//        this.delay = delay;
-//        destroyAfterAnimation = false;
-//        facing = Facing.RIGHT;
-//        isRotate = false;
-//    }
 
     public void addTimer(GameTimer t) {
         timers.add(t);
@@ -254,9 +219,6 @@ public class Actor implements Serializable {
         this.speed = speed;
     }
 
-//    public ActorSprite getSpriteSheet() {
-//        return sprite;
-//    }
     public Array<GameTimer> getTimers() {
         return timers;
     }
