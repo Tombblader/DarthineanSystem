@@ -404,7 +404,9 @@ public class OverheadMap implements State {
                 i--;
             } else {
                 Input.disableInput();
-                a.update(delta);
+                if (a instanceof Player) {
+                    ((Player) a).updatePartial(delta);
+                }
                 Input.enableInput();
                 if (a.isFinished()) {
                     removeActor(a);

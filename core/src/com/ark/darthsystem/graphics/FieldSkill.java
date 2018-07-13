@@ -148,45 +148,7 @@ public class FieldSkill extends ActorCollision implements Nameable {
         this(img, getX, getY, delay, getSkill, getArea);
         this.tags = new ArrayList<>();
         this.fieldSound = SoundDatabase.fieldSwordSound;
-//        originalBattlerImageName = battlerImg;
-//        try {
-//            originalBattlerImage = GraphicsDriver.getMasterSheet().createSprites(battlerImg).toArray(Sprite.class);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            originalBattlerImage = GraphicsDriver.getMasterSheet().createSprites("skills/wiccan_cross/battler/wiccan_cross").toArray(Sprite.class);
-//        }        
-//        for (Sprite s : originalBattlerImage) {
-//            s.setCenter(s.getWidth() / 2f, s.getHeight() / 2f);
-//            s.setOriginCenter();
-//        }
-//        battlerAnimation = new Actor(originalBattlerImageName, 0, 0, delay, true);
     }
-
-//    public FieldSkill(String img,
-//            String battlerImg,
-//            float getX,
-//            float getY,
-//            float delay,
-//            Skill getSkill,
-//            Area getArea,
-//            String shape) {
-//        this(img, getX, getY, delay, getSkill, getArea, shape);
-//        this.tags = new ArrayList<>();
-//        this.fieldSound = SoundDatabase.fieldSwordSound;
-////        originalBattlerImageName = battlerImg;
-//        try {
-//            originalBattlerImage = GraphicsDriver.getMasterSheet().createSprites(battlerImg).toArray(Sprite.class);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            originalBattlerImage = GraphicsDriver.getMasterSheet().createSprites("skills/wiccan_cross/battler/wiccan_cross").toArray(Sprite.class);
-//        }        
-//        for (Sprite s : originalBattlerImage) {
-//            s.setCenter(s.getWidth() / 2f, s.getHeight() / 2f);
-//            s.setOriginCenter();
-//        }
-//        battlerAnimation = new Actor(originalBattlerImageName, 0, 0, delay, true);
-//    }
-    
     
     public FieldSkill(String img,
             float getX,
@@ -474,7 +436,6 @@ public class FieldSkill extends ActorCollision implements Nameable {
         }
     }
 
-
     @Override
     public void update(float delta) {
         setFacing();
@@ -483,9 +444,8 @@ public class FieldSkill extends ActorCollision implements Nameable {
         }
         super.update(delta);
         setAnimationFacing();
-    }
-
-
+    }    
+    
     public FieldSkill placeOnMap() {
         if (getSkill() != null) {
             return new FieldSkill(getName(),

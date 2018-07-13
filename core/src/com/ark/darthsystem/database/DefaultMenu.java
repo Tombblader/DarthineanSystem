@@ -12,12 +12,17 @@ import static com.ark.darthsystem.database.Database1.inventory;
 import static com.ark.darthsystem.database.Database2.player;
 import com.ark.darthsystem.graphics.GraphicsDriver;
 import com.ark.darthsystem.Item;
+import com.ark.darthsystem.graphics.Actor;
+import com.ark.darthsystem.graphics.ActorSprite;
 import com.ark.darthsystem.graphics.FieldBattler;
 import com.ark.darthsystem.graphics.FieldSkill;
 import com.ark.darthsystem.states.Battle;
 import com.ark.darthsystem.states.Menu;
 import com.ark.darthsystem.states.Title;
 import com.ark.darthsystem.statusEffects.StatusEffect;
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -174,7 +179,8 @@ public class DefaultMenu extends Menu {
                             }
                             @Override
                             public void updateMenu(float delta) {
-                                status.setMessage(status.formatBattler(b));
+                                status.updateBattler(b);
+                                status.setMessage(status.formatBattler());
                                 super.updateMenu(delta);
                             }
                             {
@@ -226,25 +232,26 @@ public class DefaultMenu extends Menu {
                 for (int i = 0; i < getPlayerList.length; i++) {
                     getPlayerList[i] = actorParty.get(i).getBattler().getName();
                 }
+                StatusBox statusBox = new StatusBox();
                 DefaultMenu.this.addSubMenu(new Menu("Status",
                         getPlayerList,
                         true,
                         true) {
-                    StatusBox statusBox = new StatusBox();
-
                     {
-                        {
-                            addActor(statusBox);
-                            addActor(new TextBox("interface/window", 0, GraphicsDriver.getWidth() * 3 / 8f, GraphicsDriver.getWidth() / 8, GraphicsDriver.getHeight() / 8) {
-                                @Override
-                                public void update(float delta) {
-                                    this.setMessage(Database1.money + " gold");
-                                    statusBox.setMessage(statusBox.formatBattler(actorParty.get(getCursorIndex())));
-                                    super.update(delta);
-                                }
+                        TextBox moneyBox = new TextBox("interface/window", 0, GraphicsDriver.getWidth() * 3 / 8f, GraphicsDriver.getWidth() / 7, GraphicsDriver.getHeight() / 10) {
+                            @Override
+                            public void update(float delta) {
+                                this.setMessage(Database1.money + " gold");
+                                statusBox.updateBattler(actorParty.get(getCursorIndex()));
+                                statusBox.setMessage(statusBox.formatBattler());
+                                super.update(delta);
                             }
-                            );
-                        }
+                                {
+                                    addActor(new Actor("items/money/icon", getX() + getWidth() - 32, getY() + 16, 1/12f));
+                                }
+                        };
+                        addActor(moneyBox);
+                        addActor(statusBox);
                     }
 
                     @Override
@@ -281,14 +288,28 @@ public class DefaultMenu extends Menu {
     }
 
     protected class StatusBox extends TextBox {
-
+        
+        private FieldBattler currentBattler;
+        private Actor sprite;
+        
         StatusBox() {
             super("interface/window", GraphicsDriver.getWidth() / 4, GraphicsDriver.getHeight() / 4, GraphicsDriver.getWidth() / 2, GraphicsDriver.getHeight() / 2);
-        }
+        }        
 
-        private String formatBattler(FieldBattler b) {
+        private void updateBattler(FieldBattler b) {
+            if (currentBattler == null || currentBattler != b) {
+                currentBattler = b;
+                getActors().removeValue(sprite, true);                
+                sprite = new Actor(currentBattler.getSprite().getMasterSpriteSheet() + "/battler/battler", 
+                        200 + getX() + getWidth() + currentBattler.getSprite().getBattlerAnimation(ActorSprite.SpriteModeBattler.BATTLER).getKeyFrame(0).getWidth(),
+                        100 + getY() + getHeight() / 3, currentBattler.getDelay());
+                addActor(sprite);
+            }
+        }
+        
+        private String formatBattler() {
             StringBuilder formatted = new StringBuilder();
-            Battler tempBattler = b.getBattler();
+            Battler tempBattler = currentBattler.getBattler();
             formatted.append(tempBattler.getName()).append('\n');
 
             if (tempBattler.getAllStatus().size() < 2) {

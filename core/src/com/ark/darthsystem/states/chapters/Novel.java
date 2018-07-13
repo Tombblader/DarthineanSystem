@@ -9,6 +9,7 @@ import com.ark.darthsystem.graphics.GraphicsDriver;
 import com.ark.darthsystem.states.State;
 import com.ark.darthsystem.states.Menu;
 import com.ark.darthsystem.states.Message;
+import com.ark.darthsystem.states.OverheadMap;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import java.util.ArrayList;
@@ -55,7 +56,7 @@ public abstract class Novel implements State {
         }
     }
     
-    public float update(float delta) {
+    public float update(float delta) {        
         if (timers.isEmpty()) {
             if (chapters.size() <= pageIndex) {
                 GraphicsDriver.removeState(this);

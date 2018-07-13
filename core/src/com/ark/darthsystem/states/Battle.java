@@ -285,17 +285,6 @@ public class Battle implements State {
             }
             return 1;
         });
-//        for (int i = 0; i < allAction.size(); i++) {
-//            for (int j = 0; j < allAction.size(); j++) {
-//                if (!(allAction.get(i) == null ||  allAction.get(j) == null)) {
-//                    if (allAction.get(i).getCaster().getSpeed() > allAction.get(j).getCaster().getSpeed() ||
-//                            (allAction.get(j).getCaster().getSpeed() == allAction.get(j).getCaster().getSpeed() && 
-//                            Math.random() < .5)) {
-//                        Collections.swap(allAction, i, j);
-//                    }
-//                }
-//            }
-//        }
     }
 
     public void actionCalculator() {
@@ -614,19 +603,19 @@ public class Battle implements State {
         Item,
         Run;
 
-        public void run(final Battle b, final Battler caster) {
+        public void run(final Battle battle, final Battler caster) {
             caster.setDelaying(false);
             switch (this) {
                 case Attack:
-                    String[] temp = new String[b.getEnemy().size()];
+                    String[] temp = new String[battle.getEnemy().size()];
                     for (int i = 0; i < temp.length; i++) {
-                        temp[i] = b.getEnemy().get(i).getName();
+                        temp[i] = battle.getEnemy().get(i).getName();
                     }
 
                     Menu targetMenu = new Menu("Target?", temp, true, true) {
                         @Override
                         public Object confirm(String choice) {
-                            b.getPartyActions().add(new Action(Command.Attack, caster, (b.getEnemy().get(this.getCursorIndex())), b.getEnemy()));
+                            battle.getPartyActions().add(new Action(Command.Attack, caster, (battle.getEnemy().get(this.getCursorIndex())), battle.getEnemy()));
                             return choice;
                         }
                     };
@@ -634,7 +623,7 @@ public class Battle implements State {
                     break;
                 case Defend:
                     caster.defend();
-                    b.getPartyActions().add(new Action(this, caster));
+                    battle.getPartyActions().add(new Action(this, caster));
                     break;
                 case Skill:
                     final ArrayList<Skill> getSkillList = new ArrayList<>();
@@ -653,7 +642,7 @@ public class Battle implements State {
                                 @Override
                                 public Object confirm(String choice) {
                                     final Skill getSkill = getSkillList.get(getCursorIndex());
-                                    final ArrayList<Battler> targetList = (ArrayList<Battler>) (getSkill.getAlly() ? b.getAlly() : b.getEnemy());
+                                    final ArrayList<Battler> targetList = (ArrayList<Battler>) (getSkill.getAlly() ? battle.getAlly() : battle.getEnemy());
                                     if (getSkill.getCost() <= caster.getMP()) {
                                         if (!getSkill.getAll()) {
                                             String[] temp = new String[targetList.size()];
@@ -664,7 +653,7 @@ public class Battle implements State {
                                             Menu targetMenu = new Menu("Target?", temp, true, true) {
                                                 @Override
                                                 public Object confirm(String choice) {
-                                                    b.getPartyActions().add(new Action(Command.Skill,
+                                                    battle.getPartyActions().add(new Action(Command.Skill,
                                                             getSkill,
                                                             caster,
                                                             (targetList.get(this.getCursorIndex())),
@@ -674,7 +663,7 @@ public class Battle implements State {
                                             };
                                             GraphicsDriver.addMenu(targetMenu);
                                         } else {
-                                            b.getPartyActions().add(new Action(Command.Skill,
+                                            battle.getPartyActions().add(new Action(Command.Skill,
                                                     getSkill,
                                                     caster,
                                                     targetList));
@@ -694,13 +683,13 @@ public class Battle implements State {
                     }
                     break;
                 case Item:
-                    if (b.getItem() != null && b.getItem().size() > 0) {
-                        Menu menuItem = new Menu("Use which Item?", b.getItemNames(), true, true) {
+                    if (battle.getItem() != null && battle.getItem().size() > 0) {
+                        Menu menuItem = new Menu("Use which Item?", battle.getItemNames(), true, true) {
                             @Override
                             public Object confirm(String choice) {
                                 final Item useItem;
-                                useItem = b.getItem(this.getCursorIndex());
-                                final ArrayList<Battler> targetList = (ArrayList<Battler>) (useItem.getAlly() ? b.getAlly() : b.getEnemy());
+                                useItem = battle.getItem(this.getCursorIndex());
+                                final ArrayList<Battler> targetList = (ArrayList<Battler>) (useItem.getAlly() ? battle.getAlly() : battle.getEnemy());
                                 if (!useItem.getAll()) {
                                     String[] temp = new String[targetList.size()];
                                     for (int i = 0; i < temp.length; i++) {
@@ -709,7 +698,7 @@ public class Battle implements State {
                                     Menu menuTarget = new Menu("Target?", temp, true, true) {
                                         @Override
                                         public Object confirm(String choice) {
-                                            b.getPartyActions().add(useItem.use(caster,
+                                            battle.getPartyActions().add(useItem.use(caster,
                                                     targetList.get(getCursorIndex()),
                                                     targetList));
                                             return choice;
@@ -717,7 +706,7 @@ public class Battle implements State {
                                     };
                                     GraphicsDriver.addMenu(menuTarget);
                                 } else {
-                                    b.getPartyActions().add(useItem.use(caster, targetList));
+                                    battle.getPartyActions().add(useItem.use(caster, targetList));
                                 }
                                 return choice;
                             }
@@ -729,12 +718,12 @@ public class Battle implements State {
                     break;
                 case Charge:
                 case Analyze:
-                    b.getPartyActions().add(new Action(this, caster));
+                    battle.getPartyActions().add(new Action(this, caster));
                     break;
                 case Delay:
                     caster.setDelaying(true);
                 case Run:
-                    b.getPartyActions().add(new Action(this, caster));
+                    battle.getPartyActions().add(new Action(this, caster));
                     break;
             }
         }

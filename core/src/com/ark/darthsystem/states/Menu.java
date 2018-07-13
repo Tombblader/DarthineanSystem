@@ -210,6 +210,7 @@ public abstract class Menu implements State {
         if (isOverhead) {
             batch.begin();
             batch.setProjectionMatrix(GraphicsDriver.getCamera().combined);
+            GraphicsDriver.setCurrentCamera(GraphicsDriver.getCamera());
         }
 
         InterfaceDatabase.TEXT_BOX.draw(batch, MENU_X, MENU_Y, MENU_WIDTH, MENU_HEIGHT);
@@ -243,6 +244,8 @@ public abstract class Menu implements State {
         if (isOverhead) {
             batch.end();
             batch.setProjectionMatrix(GraphicsDriver.getPlayerCamera().combined);
+            GraphicsDriver.setCurrentCamera(GraphicsDriver.getPlayerCamera());
+            
         }
     }
 

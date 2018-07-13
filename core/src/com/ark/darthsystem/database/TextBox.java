@@ -60,6 +60,14 @@ public class TextBox extends Actor {
         subActors.add(a);
     }
     
+    public void removeActor(Actor a) {
+        subActors.removeValue(a, true);
+    }
+    
+    public Array<Actor> getActors() {
+        return subActors;
+    }
+    
     public boolean isEnabled() {
         return enabled;
     }
@@ -85,17 +93,17 @@ public class TextBox extends Actor {
     public void render(Batch batch) {
         if (enabled) {
             patch.draw(batch, getX(), getY(), width, height);
-            batch.flush();
-            Rectangle scissors = new Rectangle();
-            Rectangle clipBounds = new Rectangle((int) getX() + PADDING_X, (int) getY() + PADDING_Y, (int) width - PADDING_X, (int) height - PADDING_Y);
-            ScissorStack.calculateScissors(GraphicsDriver.getCamera(), batch.getTransformMatrix(), clipBounds, scissors);
-            ScissorStack.pushScissors(scissors);
+//            batch.flush();
+//            Rectangle scissors = new Rectangle();
+//            Rectangle clipBounds = new Rectangle((int) getX() + PADDING_X, (int) getY() + PADDING_Y, (int) width - PADDING_X * 2, (int) height - PADDING_Y * 2);
+//            ScissorStack.calculateScissors(GraphicsDriver.getCamera(), batch.getTransformMatrix(), clipBounds, scissors);
+//            ScissorStack.pushScissors(scissors);
             GraphicsDriver.drawMessage(batch, message, getX() + PADDING_X, getY() + PADDING_Y);
             for (Actor a : subActors) {
                 a.render(batch);
-            }        
-            batch.flush();
-            ScissorStack.popScissors();
+            }
+//            batch.flush();
+//            ScissorStack.popScissors();
         }
     }
     
@@ -103,12 +111,18 @@ public class TextBox extends Actor {
         if (enabled) {
             InterfaceDatabase.TEXT_BOX.draw(batch, getX(), getY(), width, height);
             GraphicsDriver.drawMessage(batch, message, getX() + PADDING_X, getY() + PADDING_Y);
+            for (Actor a : subActors) {
+                a.render(batch);
+            }        
         }
     }
     
     public void render(Batch batch, float x, float y, float width, float height) {
         if (enabled) {
             patch.draw(batch, x, y, width, height);
+            for (Actor a : subActors) {
+                a.render(batch);
+            }        
         }
     }
 
@@ -116,6 +130,9 @@ public class TextBox extends Actor {
         if (enabled) {
             patch.draw(batch, x, y, width, height);
             GraphicsDriver.getFont().draw(batch, message, x + PADDING_X, y + PADDING_Y);
+            for (Actor a : subActors) {
+                a.render(batch);
+            }        
         }
     }
     

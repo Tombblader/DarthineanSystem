@@ -164,6 +164,15 @@ public class Message implements State {
     }
 
     public float update(float delta) {
+        State ste = null;
+        for (State state : GraphicsDriver.getState()) {
+            if (state instanceof OverheadMap) {
+                ste = state;
+            }
+        }
+        if (ste != null) {
+            ((OverheadMap) ste).updatePartial(delta);
+        }
         if (messageIndex < message.currentMessage.size()) {
             elapsed += delta / 1000f * MESSAGE_SPEED;
         }

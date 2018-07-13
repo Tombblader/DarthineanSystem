@@ -18,7 +18,7 @@ public class CharacterDatabase {
     public static HashMap<String, FieldBattler> CHARACTER_LIST = new HashMap<>();
 
     public CharacterDatabase() {
-        FileHandle file = Gdx.files.internal("databases/actorbattlers.tsv");
+        FileHandle file = Gdx.files.internal("databases/fieldbattlers.tsv");
         String[] massiveString = file.readString().split("(\r\n|\r|\n)");
         for (String token : massiveString) {
             String[] data = token.split("\t");

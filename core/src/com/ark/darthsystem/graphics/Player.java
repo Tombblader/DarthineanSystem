@@ -348,7 +348,7 @@ public class Player extends ActorCollision implements Serializable {
             }
         }
         isWalking = false;
-        
+
         if (canMove()) {
             moving(delta);
         } else {
@@ -361,6 +361,20 @@ public class Player extends ActorCollision implements Serializable {
         super.update(delta);
         speed = currentBattler.getSpeed();
         applySprite();
+        
+    }
+    
+    public void updatePartial(float delta) {
+        isWalking = false;
+        fieldState = ActorSprite.SpriteModeField.STAND;
+        if (getMainBody() != null) {
+            getMainBody().setLinearVelocity(0, 0);
+        }
+        changeX(0);
+        changeY(0);
+        super.update(delta);
+        speed = currentBattler.getSpeed();
+        applySprite();        
     }
     
     public void checkStatusEffects() {

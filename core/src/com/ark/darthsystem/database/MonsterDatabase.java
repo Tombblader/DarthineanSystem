@@ -27,7 +27,7 @@ public class MonsterDatabase {
     public static HashMap<String, FieldBattlerAI> MONSTER_LIST = new HashMap<>();
 
     public MonsterDatabase() {
-        FileHandle file = Gdx.files.internal("databases/actorbattlersai.tsv");
+        FileHandle file = Gdx.files.internal("databases/fieldbattlersai.tsv");
         String[] massiveString = file.readString().split("(\r\n|\r|\n)");
         for (String token : massiveString) {
             String[] data = token.split("\t");

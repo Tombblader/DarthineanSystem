@@ -76,6 +76,8 @@ public class Input extends InputAdapter {
         return false;
     }
     
-    
+    public static boolean isEnabled() {
+        return canInput;
+    }
 
 }
