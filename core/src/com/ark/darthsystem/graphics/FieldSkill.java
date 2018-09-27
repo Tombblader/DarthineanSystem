@@ -48,8 +48,8 @@ public class FieldSkill extends ActorCollision implements Nameable {
     private float relX;
     private float relY;
     private Skill skill;
-    private float translateX;
-    private float translateY;
+    private float speed;
+    private float range;
     private String name;
     private ActorSprite.SpriteModeField castImageName;
     private String castSoundName;
@@ -79,8 +79,8 @@ public class FieldSkill extends ActorCollision implements Nameable {
         relY = getY;
         skill = getSkill;
         aftercastDelay = delay;
-        translateX = 0;
-        translateY = 0;
+        speed = 0;
+        range = 0;
         area = Area.FRONT;
     }
     
@@ -109,8 +109,8 @@ public class FieldSkill extends ActorCollision implements Nameable {
         relY = getY;
         skill = getSkill;
         aftercastDelay = delay;
-        translateX = 0;
-        translateY = 0;
+        speed = 0;
+        range = 0;
         area = Area.FRONT;
     }
 
@@ -153,16 +153,16 @@ public class FieldSkill extends ActorCollision implements Nameable {
     public FieldSkill(String img,
             float getX,
             float getY,
-            int translateX,
-            int translateY,
+            int speed,
+            int range,
             int delay,
             Skill getSkill) {
         this(img, getX, getY, delay, getSkill);
         this.tags = new ArrayList<>();
         this.fieldSound = SoundDatabase.fieldSwordSound;
 //        this.battlerSound = SoundDatabase.battlerSwordSound;
-        this.translateX = translateX;
-        this.translateY = translateY;
+        this.speed = speed;
+        this.range = range;
         area = Area.FRONT;
     }
 
@@ -192,8 +192,8 @@ public class FieldSkill extends ActorCollision implements Nameable {
             Area getArea) {
         this(img, battlerImg, getX, getY, delay, castTime, getSkill, getArea);
         this.fieldSound = SoundDatabase.fieldSwordSound;
-        translateX = getTranslateX;
-        translateY = getTranslateY;
+        speed = getTranslateX;
+        range = getTranslateY;
     }
     
     public FieldSkill(String img,
@@ -233,8 +233,8 @@ public class FieldSkill extends ActorCollision implements Nameable {
         chargeTime = castTime;
         skill = getSkill;
         aftercastDelay = delay;
-        translateX = getTranslateX;
-        translateY = getTranslateY;
+        speed = getTranslateX;
+        range = getTranslateY;
         area = getArea;
     }
     
@@ -309,7 +309,7 @@ public class FieldSkill extends ActorCollision implements Nameable {
         getMainFixture().setFilterData(filter);
         filter.maskBits = ((getInvoker() instanceof FieldBattlerAI) ? ActorCollision.CATEGORY_PLAYER : ActorCollision.CATEGORY_AI);
         getSensorFixture().setFilterData(filter);
-        if (invoker.getMainBody() != null && (translateX == 0 && (area == Area.FRONT))) {
+        if (invoker.getMainBody() != null && (speed == 0 && (area == Area.FRONT))) {
             WeldJointDef def = new WeldJointDef();
             def.dampingRatio = 1f;
             def.frequencyHz = 60;
@@ -318,7 +318,7 @@ public class FieldSkill extends ActorCollision implements Nameable {
             setY(invoker); 
             def.initialize(invoker.getMainBody(), getMainBody(), new Vector2(getX(), getY()));
             joint = (WeldJoint) map.getPhysicsWorld().createJoint(def);
-        } else if (invoker.getMainBody() != null && (translateX == 0 && (area == Area.SELF_BENEFIT || area == Area.SELF))) {
+        } else if (invoker.getMainBody() != null && (speed == 0 && (area == Area.SELF_BENEFIT || area == Area.SELF))) {
             getMainBody().setTransform(invoker.getMainBody().getPosition(), getMainBody().getAngle());
             getSensorBody().setTransform(invoker.getSensorBody().getPosition(), getSensorBody().getAngle());
             WeldJointDef def = new WeldJointDef();
@@ -327,7 +327,7 @@ public class FieldSkill extends ActorCollision implements Nameable {
             def.collideConnected = false;
             def.initialize(invoker.getMainBody(), getMainBody(), new Vector2(invoker.getX(), invoker.getY()));
             joint = (WeldJoint) map.getPhysicsWorld().createJoint(def);
-        } else if (translateX != 0) {
+        } else if (speed != 0) {
 
         }
 
@@ -439,8 +439,8 @@ public class FieldSkill extends ActorCollision implements Nameable {
     @Override
     public void update(float delta) {
         setFacing();
-        if (translateX != 0) {
-            getMainBody().setLinearVelocity(getFacing().getX() * translateX, getFacing().getY() * translateX);
+        if (speed != 0) {
+            getMainBody().setLinearVelocity(getFacing().getX() * speed, getFacing().getY() * speed);
         }
         super.update(delta);
         setAnimationFacing();
@@ -456,8 +456,8 @@ public class FieldSkill extends ActorCollision implements Nameable {
                     tags,
                     relX,
                     relY,
-                    translateX,
-                    translateY,
+                    speed,
+                    range,
                     getDelay(),
                     chargeTime,
                     aftercastDelay,
@@ -470,8 +470,8 @@ public class FieldSkill extends ActorCollision implements Nameable {
                 originalFieldImageName,
                 relX,
                 relY,
-                translateX,
-                translateY,
+                speed,
+                range,
                 getDelay(),
                 chargeTime,
                 skill,
@@ -532,7 +532,7 @@ public class FieldSkill extends ActorCollision implements Nameable {
                 public void event(Actor a) {
                     tempSkill.playFieldSound();
                     invoker.setFieldState(ActorSprite.SpriteModeField.CUSTOM);
-                    invoker.setPause(translateX == 0 ? tempSkill.getAnimationDelay() * 1000f : 400f);
+                    invoker.setPause(speed == 0 ? tempSkill.getAnimationDelay() * 1000f : 400f);
                     invoker.getSpriteSheet().setFieldAnimation(ActorSprite.SpriteModeField.CUSTOM, Facing.LEFT, leftAnimation);
                     invoker.getSpriteSheet().setFieldAnimation(ActorSprite.SpriteModeField.CUSTOM, Facing.RIGHT, tempSkill.getCurrentAnimation());
                     invoker.changeAnimation(tempSkill.getCurrentAnimation());

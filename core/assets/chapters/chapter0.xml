@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter>
+    <page>
+        <PrintLine name="BLUE LADY" face="NORMAL">
+            You are a complete buffoon.
+        </PrintLine>
+        <PrintLine name="BLUE LADY" face="ANGRY">
+            Truly, truly buffoonish.
+        </PrintLine>
+        <PrintLine name="BLUE LADY" face="NORMAL">
+            Again, I must reiterate.
+        </PrintLine>
+        <PrintLine name="BLUE LADY" face="NORMAL">
+            You are a complete buffoon.
+        </PrintLine>
+    </page>
+    <page>
+        <Condition name="BLUE LADY" face="NORMAL">Do you understand?
+            <Choice>Yes</Choice>
+            <Choice>No</Choice>
+        </Condition>
+    </page>
+    <page>
+        <Switch>
+            <Choice name="Yes">
+                <PrintLine name="BLUE LADY" face="NORMAL">Good.</PrintLine>
+            </Choice>
+            <Choice name="No">
+		        <PrintLine name="BLUE LADY" face="ANGRY">
+        		    Case In Point.  Let me reiterate it again.
+        		</PrintLine>
+            	<TurnPage>-3</TurnPage>
+            </Choice>
+        </Switch>
+    </page>
+</chapter>

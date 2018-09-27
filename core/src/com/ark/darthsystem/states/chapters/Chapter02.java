@@ -31,6 +31,8 @@ public class Chapter02 extends Novel {
             
         });
     }
+    
+    @Override
     public String getMusic() {
         return null;
     }

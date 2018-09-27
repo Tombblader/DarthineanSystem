@@ -17,7 +17,7 @@
   </data>
  </layer>
  <objectgroup name="collisions" offsetx="32" offsety="0">
-  <object id="1" name="basiccircle" type="skill" x="32" y="32" width="32" height="32">
+  <object id="1" name="basiccircle" type="skill" x="29" y="261" width="32" height="32">
    <ellipse/>
   </object>
   <object id="4" name="widecircle" type="skill" x="0" y="96" width="96" height="96">
@@ -31,8 +31,8 @@
   <object id="14" name="widespin" type="skill" x="96" y="160" width="160" height="160">
    <ellipse/>
   </object>
-  <object id="16" name="widesword" type="skill" x="256" y="94">
-   <polygon points="0,2 0,-9 10.1569,-22.7804 23,-30 42,-30 54,-23 64,-9 64,2"/>
+  <object id="16" name="widesword" type="skill" x="256" y="96">
+   <polygon points="0,2 0,-10 10.1569,-22.7804 22,-30 42,-30 53,-23 64,-10 64,2"/>
   </object>
   <object id="30" name="monster" type="skill" x="593" y="59" width="352" height="352">
    <ellipse/>

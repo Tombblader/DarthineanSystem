@@ -19,7 +19,8 @@ public class EventDatabase {
         Novel event = null;
         switch (parameters[0]) {
             case "chapter0":
-                event = new Chapter0();
+//                event = new Chapter0();
+                event = ChapterGenerator.generateNovel("chapters/chapter0.xml");
                 break;
             case "chapter01":
                 event = new Chapter01();

@@ -9,7 +9,7 @@ import com.ark.darthsystem.Battler;
 import com.ark.darthsystem.Skill;
 
 /**
- *
+ * 
  * @author keven
  */
 public class Projectile extends FieldSkill {
