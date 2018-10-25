@@ -8,6 +8,8 @@ package com.ark.darthsystem.states.events;
 import com.ark.darthsystem.BattleDriver;
 import com.ark.darthsystem.Item;
 import com.ark.darthsystem.database.Database1;
+import com.ark.darthsystem.database.ItemDatabase;
+import com.ark.darthsystem.graphics.PlayerCamera;
 import com.badlogic.gdx.maps.MapProperties;
 
 /**
@@ -85,7 +87,13 @@ public class Pickup extends Event {
 
     @Override
     public Event createFromMap(MapProperties prop) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String image = prop.get("image", String.class);
+        return new Pickup(image,
+                (prop.get("x", Float.class) + prop.get("width", Float.class) / 2) / PlayerCamera.PIXELS_TO_METERS,
+                (prop.get("y", Float.class) + prop.get("height", Float.class) / 2) / PlayerCamera.PIXELS_TO_METERS,
+                6 / 60f,
+                ItemDatabase.ITEM_LIST.get(prop.get("parameters", String.class).toUpperCase()));
+                
     }
 
 }

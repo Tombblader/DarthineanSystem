@@ -57,6 +57,15 @@ public abstract class Novel implements State {
     }
     
     public float update(float delta) {        
+        State ste = null;
+        for (State state : GraphicsDriver.getState()) {
+            if (state instanceof OverheadMap) {
+                ste = state;
+            }
+        }
+        if (ste != null) {
+            ((OverheadMap)(ste)).updatePartial(delta);
+        }
         if (timers.isEmpty()) {
             if (chapters.size() <= pageIndex) {
                 GraphicsDriver.removeState(this);

@@ -5,6 +5,7 @@ import com.ark.darthsystem.graphics.ActorSprite;
 import com.ark.darthsystem.graphics.FieldBattler;
 import com.ark.darthsystem.database.Database1;
 import static com.ark.darthsystem.BattleDriver.*;
+import com.ark.darthsystem.graphics.ActorSprite.SpriteModeFace;
 import com.ark.darthsystem.statusEffects.Normal;
 
 import java.util.ArrayList;
@@ -140,6 +141,10 @@ public class BattleDriver {
      * @param newMessage
      */
     public static void printline(FieldBattler battler, String newMessage) {
+        printline(battler, SpriteModeFace.NORMAL, newMessage);
+    }
+
+    public static void printline(String name, String newMessage) {
         if (!newMessage.equals("")) {
             ArrayList<String> formattedMessage = new ArrayList<>();
             StringTokenizer st = new StringTokenizer(newMessage, " \n", true);
@@ -158,11 +163,9 @@ public class BattleDriver {
                 }
             }
             formattedMessage.add(formatted);
-            GraphicsDriver.setMessage(battler.getBattler().getName(), battler.getSprite().getFaceAnimation(ActorSprite.SpriteModeFace.NORMAL), formattedMessage);
-        }        
+            GraphicsDriver.setMessage(name, formattedMessage);
+        }
     }
-
-    
     
     /**
      *

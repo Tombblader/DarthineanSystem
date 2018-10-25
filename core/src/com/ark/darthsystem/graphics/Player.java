@@ -106,6 +106,7 @@ public class Player extends ActorCollision implements Serializable {
         parameter.size = 24;
         parameter.flip = true;
         font = gen.generateFont(parameter);
+        font.getData().markupEnabled = true;        
         font.setColor(Color.WHITE);
         font.setUseIntegerPositions(false);
         gen.dispose();

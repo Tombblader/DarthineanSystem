@@ -21,7 +21,7 @@
         </Condition>
     </page>
     <page>
-        <Switch>
+        <if>
             <Choice name="Yes">
                 <PrintLine name="BLUE LADY" face="NORMAL">Good.</PrintLine>
             </Choice>
@@ -31,6 +31,10 @@
         		</PrintLine>
             	<TurnPage>-3</TurnPage>
             </Choice>
-        </Switch>
+        </if>
+    </page>
+    <page>
+    	<event name="Teleport" parameters="dungeon_00, 7, 7">
+    	</event>
     </page>
 </chapter>

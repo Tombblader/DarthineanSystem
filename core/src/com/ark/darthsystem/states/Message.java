@@ -69,12 +69,17 @@ public class Message implements State {
         parameter.borderColor = Color.BLACK;
         parameter.color = Color.WHITE;
         font = gen.generateFont(parameter);
+        font.getData().markupEnabled = true;
         gen.dispose();
     }
     
-    public Message(FieldBattler header, ArrayList<String> getMessage) {
+    public Message(String header, ArrayList<String> getMessage) {
         this(getMessage);
-        this.header = header.getBattler().getName();
+        this.header = header;
+    }
+
+    public Message(FieldBattler header, ArrayList<String> getMessage) {
+        this(header.getBattler().getName(), getMessage);
         this.face = header.getSprite().getFaceAnimation(ActorSprite.SpriteModeFace.NORMAL);
     }
     

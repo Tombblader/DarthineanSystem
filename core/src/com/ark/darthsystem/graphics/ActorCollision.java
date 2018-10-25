@@ -68,32 +68,6 @@ public class ActorCollision extends Actor implements Serializable {
         shapeName = shape;
     }
 
-//    public ActorCollision(ActorSprite img, float getX, float getY, float delay) {
-//        super(img, getX, getY, delay);
-//        shapeName = "basiccircle";
-//    }
-//
-//    public ActorCollision(ActorSprite img, float getX, float getY, float delay, String shape) {
-//        super(img, getX, getY, delay);
-//        shapeName = shape;
-//    }
-
-//    public void setInitialX(float x) {
-//        initialX = x;
-//    }
-//
-//    public void setInitialY(float y) {
-//        initialY = y;
-//    }
-//    
-//    public float getInitialX() {
-//        return initialX;
-//    }
-//
-//    public float getInitialY() {
-//        return initialY;
-//    }
-
     public Joint getJoint() {
         return sensorJoint;
     }

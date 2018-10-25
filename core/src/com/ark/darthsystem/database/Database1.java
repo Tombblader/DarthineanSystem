@@ -12,6 +12,7 @@ import java.io.*;
 import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.EnumMap;
+import java.util.Map;
 
 public class Database1 implements Serializable {
 
@@ -66,7 +67,7 @@ public class Database1 implements Serializable {
 
     public static HashMap<String, Boolean> switches;
 
-    public static HashMap<String, Integer> variables;
+    public static HashMap<String, String> variables;
 
     public static void save(String fileName) throws FileNotFoundException, IOException {
         try (ObjectOutputStream objectStream
@@ -90,7 +91,7 @@ public class Database1 implements Serializable {
             Database1.karma = objectStream.readInt();
             Database1.money = objectStream.readInt();
             Database1.switches = (HashMap<String, Boolean>) objectStream.readObject();
-            Database1.variables = (HashMap<String, Integer>) objectStream.readObject();
+            Database1.variables = (HashMap<String, String>) objectStream.readObject();
         }
     }
 }

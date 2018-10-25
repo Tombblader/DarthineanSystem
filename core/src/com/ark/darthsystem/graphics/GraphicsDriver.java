@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import com.ark.darthsystem.database.Database2;
 import com.ark.darthsystem.database.InterfaceDatabase;
 import com.ark.darthsystem.database.SoundDatabase;
+import com.ark.darthsystem.states.chapters.Novel;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Graphics.DisplayMode;
@@ -151,18 +152,18 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
         states.clear();
     }
     
-    public static void addMenu(Menu m) {
-        if (m.isPause() && !(getCurrentState() instanceof Menu)) {
-            states.add(m);
+    public static void addMenu(Menu menu) {
+        if (menu.isPause() && !(getCurrentState() instanceof Menu)) {
+            states.add(menu);
         } else {
-            ((Menu) (getCurrentState())).addSubMenu(m);
+            ((Menu) (getCurrentState())).addSubMenu(menu);
         }
     }
 
-    public static void addState(State getstates) {
-        states.add(getstates);
-        if (getstates.getMusic() != null) {
-            playMusic(getstates.getMusic());
+    public static void addState(State state) {
+        states.add(state);
+        if (state.getMusic() != null) {
+            playMusic(state.getMusic());
         }
     }
 
@@ -176,31 +177,46 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
         }
     }
 
-    public static void setMessage(String header, Animation<Sprite> face, ArrayList<String> getMessage) {
+    public static void setMessage(String header, ArrayList<String> message) {
         if (!(getCurrentState() instanceof Message) 
                 && !(getCurrentState() instanceof OverheadMap)
                 ) {
-            states.add(new Message(header, face, getMessage));
+            states.add(new Message(header, message));
         } else {
             if ((getCurrentState() instanceof Message)) {
-                ((Message) (getCurrentState())).addMessage(new Message(header, face, getMessage));
+                ((Message) (getCurrentState())).addMessage(new Message(header, message));
             }
             if ((getCurrentState() instanceof OverheadMap)) {
 //                ((OverheadMap) (getCurrentState())).appendMessage(getMessage);
             }
         }
     }
-    public static void setMessage(ArrayList<String> getMessage) {
+    
+    public static void setMessage(String header, Animation<Sprite> face, ArrayList<String> message) {
         if (!(getCurrentState() instanceof Message) 
                 && !(getCurrentState() instanceof OverheadMap)
                 ) {
-            states.add(new Message(getMessage));
+            states.add(new Message(header, face, message));
         } else {
             if ((getCurrentState() instanceof Message)) {
-                ((Message) (getCurrentState())).addMessage(getMessage);
+                ((Message) (getCurrentState())).addMessage(new Message(header, face, message));
             }
             if ((getCurrentState() instanceof OverheadMap)) {
-                ((OverheadMap) (getCurrentState())).appendMessage(getMessage);
+//                ((OverheadMap) (getCurrentState())).appendMessage(getMessage);
+            }
+        }
+    }
+    public static void setMessage(ArrayList<String> message) {
+        if (!(getCurrentState() instanceof Message) 
+                && !(getCurrentState() instanceof OverheadMap)
+                ) {
+            states.add(new Message(message));
+        } else {
+            if ((getCurrentState() instanceof Message)) {
+                ((Message) (getCurrentState())).addMessage(message);
+            }
+            if ((getCurrentState() instanceof OverheadMap)) {
+                ((OverheadMap) (getCurrentState())).appendMessage(message);
             }
         }
     }
@@ -248,7 +264,7 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
             if (backgroundMusic != null && backgroundMusic.isPlaying()) {
                 backgroundMusic.dispose();
             }
-            if (musicName != null && !"music/null".equals(musicName)) {
+            if (musicName != null && !musicName.equalsIgnoreCase("music/null")) {
                 backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal(musicName));
                 backgroundMusic.setLooping(true);
                 backgroundMusicString = musicName;
@@ -258,15 +274,19 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
             e.printStackTrace();
         }
     }
+    
     public static void pauseTime(int time) {
         transitions.add(new Transition(Transition.TransitionType.PAUSE, time));
     }
+    
     public static void transition() {
         transitions.add(new Transition(Transition.TransitionType.FADE_IN_OUT));
     }
+    
     public static void transition(Transition transition) {
         transitions.add(transition);
     }
+    
     public static void transition(Sprite s) {
         screenshot = s;
 //        transitions.add(new Transition());
@@ -277,12 +297,14 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
         }
         states.clear();
     }
+
     public static void flashScreen() {
         screenshot.setColor(1, 1, 1, 1);
     }
+
     private Input input;
 
-    private long diff, start = System.currentTimeMillis();
+    private long start = System.currentTimeMillis();
     
     @Override
     public void create() {
@@ -312,6 +334,7 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
         parameter.borderWidth = .1f;
         parameter.color = Color.WHITE;
         font = gen.generateFont(parameter);
+        font.getData().markupEnabled = true;
         gen.dispose();
         Gdx.input.setInputProcessor(input);
         states = new Array<>();
@@ -364,8 +387,14 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
         batch.begin();
         getCurrentState().render(batch);
         if (!transitions.isEmpty()) {
-            if (getCurrentState() instanceof OverheadMap) {
-                SpriteBatch tempBatch = (SpriteBatch) ((OverheadMap)(getCurrentState())).getBatch();
+            State ste = null;
+            for (State state : GraphicsDriver.getState()) {
+                if (state instanceof OverheadMap) {
+                    ste = state;
+                }
+            }
+            if (ste != null) {
+                SpriteBatch tempBatch = (SpriteBatch) ((OverheadMap)(ste)).getBatch();
                 tempBatch.setProjectionMatrix(camera.combined);
                 tempBatch.begin();
                 transitions.get(0).render(tempBatch);
@@ -381,8 +410,7 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
     }
     
     @Override
-    public void resize(int width,
-            int height) {
+    public void resize(int width, int height) {
         System.out.println(Gdx.app.getApplicationListener().
                 toString() +
                 " Resize: " +

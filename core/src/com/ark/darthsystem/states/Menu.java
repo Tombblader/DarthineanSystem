@@ -90,6 +90,7 @@ public abstract class Menu implements State {
         parameter.borderColor = Color.BLACK;
         parameter.color = Color.WHITE;
         font = gen.generateFont(parameter);
+        font.getData().markupEnabled = true;
         gen.dispose();
         MENU_X = GraphicsDriver.getWidth() - 200;
         MENU_Y = GraphicsDriver.getHeight() - MESSAGE_HEIGHT - (24 + choices.length * (int) (GraphicsDriver.getFont().getData().capHeight * GraphicsDriver.getFont().getData().scaleY + PADDING));
@@ -254,6 +255,15 @@ public abstract class Menu implements State {
     }
 
     public float update(float delta) {
+        State ste = null;
+        for (State state : GraphicsDriver.getState()) {
+            if (state instanceof OverheadMap) {
+                ste = state;
+            }
+        }
+        if (ste != null) {
+            ((OverheadMap)(ste)).updatePartial(delta);
+        }
         if (!(subMenuList.size == 0) && menuIndex < subMenuList.size) {
             subMenuList.get(menuIndex).updateMenu(delta);
         }
