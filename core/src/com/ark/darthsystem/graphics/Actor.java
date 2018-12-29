@@ -333,6 +333,19 @@ public class Actor implements Serializable {
         }
         setFacing();
     }
+    
+    public void updatePartial(float delta) {
+//        if (currentImage != null) {
+//            elapsed += delta / 1000f;
+//            currentImage = (Sprite) animation.getKeyFrame(elapsed);
+//        }
+//        if (animation != null && elapsed > animation.getAnimationDuration()) {
+//            isFinished = destroyAfterAnimation;
+//            elapsed = 0;
+//        }
+//        setFacing();
+    }
+    
     public enum Facing {
         
         UP(0, -1, 0),

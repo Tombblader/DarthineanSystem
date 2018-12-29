@@ -155,9 +155,7 @@ public class OverheadMap implements State {
     private PolygonShape getPolygon(PolygonMapObject polygonObject) {
         PolygonShape polygon = new PolygonShape();
         float[] vertices = polygonObject.getPolygon().getTransformedVertices();
-
         float[] worldVertices = new float[vertices.length];
-
         for (int i = 0; i < vertices.length; ++i) {
             worldVertices[i] = vertices[i] / ppt;
         }

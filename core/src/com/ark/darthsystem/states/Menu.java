@@ -254,6 +254,7 @@ public abstract class Menu implements State {
         cursorIndex = index;
     }
 
+    @Override
     public float update(float delta) {
         State ste = null;
         for (State state : GraphicsDriver.getState()) {

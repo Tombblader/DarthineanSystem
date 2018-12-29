@@ -256,6 +256,16 @@ public class ActorCollision extends Actor implements Serializable {
             setY(Math.round(body.getPosition().y * 32f) / 32f);
         }
     }
+    @Override
+    public void updatePartial(float delta) {
+        super.updatePartial(delta);
+        if (body != null) {
+            setX(Math.round(body.getPosition().x * 32f) / 32f);
+            setY(Math.round(body.getPosition().y * 32f) / 32f);
+        }
+    }
+    
+    
     public void setBodyX(float x) {
         body.setTransform(x, body.getPosition().y, body.getAngle());
     }

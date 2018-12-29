@@ -189,6 +189,7 @@ public class FieldBattlerAI extends Player implements Serializable {
         }
         setWalking(false);
     }
+    
         
     public boolean vision() {
         return isInRange(vision);

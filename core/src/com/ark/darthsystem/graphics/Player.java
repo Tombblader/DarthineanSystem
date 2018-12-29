@@ -211,8 +211,7 @@ public class Player extends ActorCollision implements Serializable {
                     changeAnimation(currentBattler.getSprite().getFieldAnimation(ActorSprite.SpriteModeField.ATTACK, getFacingBias()));
                     if (!getCurrentMap().getPhysicsWorld().isLocked()) {
                         animation.setMap(getCurrentMap());
-                        addTimer(new GameTimer("Attack", 
-                                1000f * (getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.ATTACK, getFacingBias()).getAnimationDuration() + animation.getAftercastDelay())) {
+                        addTimer(new GameTimer("Attack", 1000f * (getSpriteSheet().getFieldAnimation(ActorSprite.SpriteModeField.ATTACK, getFacingBias()).getAnimationDuration() + animation.getAftercastDelay())) {
                             @Override
                             public void event(Actor a) {
                                 attacking = false;
@@ -365,6 +364,7 @@ public class Player extends ActorCollision implements Serializable {
         
     }
     
+    @Override
     public void updatePartial(float delta) {
         isWalking = false;
         fieldState = ActorSprite.SpriteModeField.STAND;
@@ -373,7 +373,7 @@ public class Player extends ActorCollision implements Serializable {
         }
         changeX(0);
         changeY(0);
-        super.update(delta);
+        super.updatePartial(delta);
         speed = currentBattler.getSpeed();
         applySprite();        
     }
@@ -810,59 +810,40 @@ public class Player extends ActorCollision implements Serializable {
     }
 
     public void ouch(Battler b) {
-        FieldBattler ouchBattler = getAllActorBattlers().get(getAllBattlers().indexOf(b));
-        fieldState = ActorSprite.SpriteModeField.OUCH;
-        ouchBattler.setFace(ActorSprite.SpriteModeFace.OUCH);
-        setPause(250);
-        setInvulnerability(550);
-        SoundDatabase.ouchSound.play();
-        addTimer(new GameTimer("OUCH", 250) {
-            FieldBattler ouchBattler2 = ouchBattler;
-            @Override
-            public void event(Actor a) {
-                if (ouchBattler2.getBattler().isAlive()) {
-                    fieldState = ActorSprite.SpriteModeField.STAND;
-                    ouchBattler2.setFace(ActorSprite.SpriteModeFace.NORMAL);
-                }
-                else {
-
-                }
-            }
-
-            @Override
-            public boolean update(float delta, Actor a) {
-                if (ouchBattler.getBattler().isAlive()) {
-                    fieldState = ActorSprite.SpriteModeField.OUCH;
-                    ouchBattler.setFace(ActorSprite.SpriteModeFace.OUCH);
-                }
-                return super.update(delta, a);
-            }
-        });
-
-    }
-
-    private void readObject(ObjectInputStream in) throws IOException,ClassNotFoundException {
-        in.defaultReadObject();
-        initialize();
-    }    
-    
-    
-    public void ouch() {
+        FieldBattler ouchBattler = getBattler(getAllBattlers().indexOf(b));
         fieldState = ActorSprite.SpriteModeField.OUCH;
         getCurrentBattler().setFace(ActorSprite.SpriteModeFace.OUCH);
         setPause(250);
         setInvulnerability(550);
         SoundDatabase.ouchSound.play();
         addTimer(new GameTimer("OUCH", 250) {
-            FieldBattler ouchBattler = Player.this.getCurrentBattler();
             @Override
             public void event(Actor a) {
-                if (ouchBattler.getBattler().isAlive()) {
+                if (b.isAlive()) {
                     fieldState = ActorSprite.SpriteModeField.STAND;
                     ouchBattler.setFace(ActorSprite.SpriteModeFace.NORMAL);
                 }
                 else {
-                    
+                    addTimer(new GameTimer("DEAD", 9999) {
+                        @Override
+                        public boolean isFinished() {
+                            return ouchBattler.getBattler().isAlive();
+                        }
+                        @Override
+                        public void event(Actor a) {
+                            fieldState = ActorSprite.SpriteModeField.STAND;
+                            ouchBattler.setFace(ActorSprite.SpriteModeFace.NORMAL);                            
+                        }
+                        
+                        @Override
+                        public boolean update(float delta, Actor a) {
+                            if (!b.isAlive()) {
+                                fieldState = ActorSprite.SpriteModeField.OUCH;
+                                ouchBattler.setFace(ActorSprite.SpriteModeFace.OUCH);
+                            }
+                            return super.update(delta, a);
+                        }
+                    });
                 }
             }
             
@@ -874,6 +855,18 @@ public class Player extends ActorCollision implements Serializable {
                 }
                 return super.update(delta, a);
             }
+       
         });
+
+    }
+
+    private void readObject(ObjectInputStream in) throws IOException,ClassNotFoundException {
+        in.defaultReadObject();
+        initialize();
+    }    
+    
+    
+    public void ouch() {
+        ouch(currentBattler.getBattler());
     }    
 }
