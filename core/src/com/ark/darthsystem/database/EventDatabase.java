@@ -28,6 +28,11 @@ public class EventDatabase {
             case "chapter1":
                 event = new Chapter1();
         }
+        try {
+//            event = ChapterGenerator.generateNovel("chapters/" + parameters[0] + ".xml");
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
         return event;
     };
 }

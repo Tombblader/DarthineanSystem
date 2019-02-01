@@ -225,6 +225,7 @@ public class Message implements State {
         message.currentMessage.addAll(getMessage);
     }
     
+    @Override
     public String getMusic() {
         return null;
     }

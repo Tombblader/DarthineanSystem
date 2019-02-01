@@ -422,38 +422,6 @@ public class Action implements Serializable {
     public boolean checkStatus(Battle b) {
         boolean move = true;
         move = caster.getAllStatus().stream().map((status) -> status.checkStatus(this, b)).reduce(move, (accumulator, _item) -> accumulator & _item);
-        
-//        switch (caster.getStatus()) {
-//            case Sleep:
-//            case Paralyze:
-//            case Stun:
-//            case Petrify:
-//            case Death:
-//                move = false;
-//                break;
-//            case Silence:
-//                if (actionCommand == Battle.Command.Skill) {
-//                    move = false;
-//                }
-//                break;
-//            case Poison:
-//                printline(caster.getName() + " takes " + (caster.getMaxHP() / 20) + " damage from the poison.");
-//                if (caster.changeHP(caster.getMaxHP() / 20)) {
-//                    printline(caster.getName() + " has collapsed from the poison!");
-//                    move = false;
-//                }
-//                break;
-//            case Fog:
-//                break;
-//            case Confuse:
-//                target = (Math.random() > .5 ? b.getAlly((int) (Math.random() *
-//                        b.getAlly().size())) : b.getAlly((int) (Math.random() *
-//                        b.getAlly().size())));
-////                allTargets = (Math.random() > .5 ? b.getAlly() : (b.getEnemy()));
-//                actionSkill = caster.getSkill((int) (Math.random() * caster.getSkillList().size()));
-//                actionCommand = (Math.random() > .5 ? Battle.Command.Attack : Battle.Command.Skill);
-//                break;
-//        }
         return move;
     }
 

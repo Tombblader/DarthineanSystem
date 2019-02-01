@@ -147,6 +147,7 @@ public class FieldBattlerAI extends Player implements Serializable {
     }    
 
     
+    @Override
     public void render(Batch batch) {
         Sprite currentImage = getCurrentImage();
         batch.draw(currentImage,

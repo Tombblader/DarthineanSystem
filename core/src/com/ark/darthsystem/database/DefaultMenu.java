@@ -167,7 +167,13 @@ public class DefaultMenu extends Menu {
                                     DefaultMenu.this.addSubMenu(new Menu("Which Item?", equippableItems.toArray(new Equipment[equippableItems.size()])) {
                                         @Override
                                         public Object confirm(String choice) {
-                                            Database1.inventory.remove(getCursorIndex());
+                                            //Can't use the default remove operation.  Must remove only the same reference.
+                                            for (int i = 0; i < Database1.inventory.size(); i++) {
+                                                if (Database1.inventory.get(i) == equippableItems.get(getCursorIndex())) {
+                                                    Database1.inventory.remove(i);
+                                                    i = Database1.inventory.size(); // Ends the loop.
+                                                }
+                                            }
                                             BattleDriver.addItem(battler.equip(equippableItems.get(getCursorIndex())));
                                             return null;
                                         }

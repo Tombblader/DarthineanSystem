@@ -81,9 +81,9 @@ public class BattlerAI extends Battler implements Nameable, Cloneable {
      * @param equipment The equipment currently equipped.
      * @param AIData The flags and priorities that the AI uses.
      * @param experience The amount of experience points the BattlerAI gives when defeated.
-     * @param money
+     * @param money The amount of money the BattlerAI gives when defeated.
      * @param itemDrop The item dropped when defeated.
-     * @param dropRate
+     * @param dropRate The drop rate of the item.
      * @param itemQuantity The amount of items dropped when defeated.
      */
     public BattlerAI(String name,

@@ -3,7 +3,6 @@ package com.ark.darthsystem;
 import com.ark.darthsystem.states.Battle;
 import com.ark.darthsystem.statusEffects.StatusEffect;
 import java.io.Serializable;
-import java.util.ArrayList;
 
 /**
  * A discrete action that an AI would take, depending on the priority or
