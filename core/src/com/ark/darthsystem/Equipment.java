@@ -158,7 +158,7 @@ public class Equipment extends Item implements Cloneable {
         areaName = getArea;
         shapeName = getShape;
         battlerAnimation = new Actor("items/equipment/" + getAnimation + "/battler/battler", 0, 0, 1/12f, true);
-        animation = new FieldSkill("items/equipment/" + getAnimation + "/field/" + getAnimation,
+        animation = new FieldSkill("items/equipment/" + getAnimation + "/field/field",
 //                    "items/equipment/" + getAnimation + "/battler/" + getAnimation, 
                     1, 1, 1.0f/12f, null, getArea, getShape);  
     }      
@@ -167,7 +167,7 @@ public class Equipment extends Item implements Cloneable {
         throws IOException, ClassNotFoundException {
         stream.defaultReadObject();
         battlerAnimation = new Actor("items/equipment/" + animationName + "/battler/battler", 0, 0, 1/12f, true);        
-        animation = new FieldSkill("items/equipment/" + animationName + "/field/" + animationName,
+        animation = new FieldSkill("items/equipment/" + animationName + "/field/field",
                        1, 1, 1.0f/12f, null, areaName, shapeName);
     }
 

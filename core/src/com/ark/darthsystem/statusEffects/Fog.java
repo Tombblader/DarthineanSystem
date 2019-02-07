@@ -27,6 +27,11 @@ public class Fog extends StatusEffect {
     }
 
     @Override
+    public float getAccuracy() {
+        return .5f;
+    }
+
+    @Override
     public void checkFieldStatus(Player player, Battler battler, GameTimer timer) {
 
     }

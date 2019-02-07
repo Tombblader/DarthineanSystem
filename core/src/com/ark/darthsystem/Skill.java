@@ -49,8 +49,8 @@ public class Skill implements Serializable, Cloneable, Nameable {
     private transient StatusEffect statusEffect;
     private String soundName;
     private String castSoundName;
-    private Sound castSound;
-    private Sound sound;
+    private transient Sound castSound;
+    private transient Sound sound;
     private ActorSprite.SpriteModeBattler battlerMode;
 
     public Skill() {
@@ -378,6 +378,8 @@ public class Skill implements Serializable, Cloneable, Nameable {
         } catch (InstantiationException | IllegalAccessException ex) {
             Logger.getLogger(Battler.class.getName()).log(Level.SEVERE, null, ex);
         }
+        castSound = SoundDatabase.SOUNDS.get(castSoundName.toUpperCase());
+        sound = SoundDatabase.SOUNDS.get(soundName.toUpperCase());
         
     }
     

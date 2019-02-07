@@ -17,6 +17,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -71,10 +72,24 @@ public class Database2 {
             throws FileNotFoundException, IOException, ClassNotFoundException {
         try (ObjectInputStream objectStream
                 = new ObjectInputStream(Gdx.files.local(fileName).read())) {
+            Database1.load(fileName);
             player = (Player) objectStream.readObject();
-        }        
+        }
     }
     
+    public static void save(String fileName) throws FileNotFoundException, IOException {
+        Database1.save(fileName);
+        try (ObjectOutputStream objectStream
+                = new ObjectOutputStream(Gdx.files.local(fileName).write(true))) {
+//            objectStream.writeObject(BATTLER_LIST);
+//            objectStream.writeObject(inventory);
+//            objectStream.writeInt(karma);
+//            objectStream.writeInt(money);
+//            objectStream.writeObject(switches);
+//            objectStream.writeObject(variables);
+            objectStream.writeObject(player);
+        }
+    }    
     public Database2() {
         this("");
     }

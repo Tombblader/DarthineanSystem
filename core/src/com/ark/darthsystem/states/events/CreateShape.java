@@ -16,7 +16,6 @@ import com.badlogic.gdx.maps.MapProperties;
 public class CreateShape extends Event {
     private String openImage;
     private String shape;
-    private boolean isFinished;
     
     public CreateShape(String img, String openImage, float getX, float getY, float getDelay, String newMap, String shape) {
         super(img, getX, getY, getDelay);
@@ -29,13 +28,10 @@ public class CreateShape extends Event {
     public void run() {
         ActorCollision a = new ActorCollision(openImage, getX(), getY(), getDelay(), shape);
         a.setMap(getCurrentMap());
-        isFinished = true;
+        setFinished(true);
     }
     
-    @Override
-    public boolean isFinished() {
-        return isFinished;
-    }
+
 
     @Override
     public Event createFromMap(MapProperties prop) {

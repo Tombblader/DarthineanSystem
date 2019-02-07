@@ -29,7 +29,7 @@ public class Normal extends StatusEffect {
 
     @Override
     public String getDescription() {
-        return "";
+        return "You're a normie.  Congratulations.";
     }
     
     @Override

@@ -47,6 +47,10 @@ public class ActorCollision extends Actor implements Serializable {
 //    private float initialX;
 //    private float initialY;
 
+    public ActorCollision() {
+        super();
+    }
+    
     public ActorCollision(String img, float getX, float getY, float delay) {
         super(img, getX, getY, delay);
         shapeName = "basiccircle";

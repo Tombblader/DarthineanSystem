@@ -11,7 +11,7 @@ public interface State {
     /**
      * This is called at every frame.  Here, run the game logic.
      * @param delta The time since this method was called.
-     * @return 
+     * @return the delta parameter.
      */
     public float update(float delta);
 

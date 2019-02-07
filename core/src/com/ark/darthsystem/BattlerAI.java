@@ -21,6 +21,12 @@ public class BattlerAI extends Battler implements Nameable, Cloneable {
     private Item[] drop;
     private double[] dropPercent;
 
+    public BattlerAI() {
+        super();
+        experience = 0;
+        money = 0;        
+    }
+    
     /**
      * Creates a new instance of a BattlerAI based on a copy of a Battler.
      * @param name The name of the new BattlerAI

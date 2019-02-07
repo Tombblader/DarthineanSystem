@@ -29,6 +29,11 @@ public class FieldBattler implements Serializable {
     private float delay;
     private float speed;
     private String shapeName;
+    
+    public FieldBattler() {
+        skillList = new ArrayList<>();
+        face = SpriteModeFace.NORMAL;
+    }
 
     public FieldBattler(Battler b, ActorSprite s) {
         battler = b;

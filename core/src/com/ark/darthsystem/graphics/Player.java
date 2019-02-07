@@ -88,6 +88,10 @@ public class Player extends ActorCollision implements Serializable {
     private transient RayCastCallback buttonPushFinder;
     private boolean hasEvent;
 
+    public Player() {
+        
+    }
+    
     public Player(ArrayList<FieldBattler> getBattler, float getX, float getY) {
         super(getBattler.get(0).getSprite().getMasterSpriteSheet() + "/field/stand/down", getX, getY, getBattler.get(0).getDelay(), getBattler.get(0).getShapeName());
         party = getBattler;
@@ -112,7 +116,6 @@ public class Player extends ActorCollision implements Serializable {
         gen.dispose();
         checkStatusEffects();
         setControls();
-//        setMap(getCurrentMapName());
     }
 
     

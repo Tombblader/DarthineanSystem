@@ -4,6 +4,7 @@ import com.ark.darthsystem.BattleDriver;
 import com.ark.darthsystem.Item;
 import com.ark.darthsystem.database.Database1;
 import com.ark.darthsystem.database.ItemDatabase;
+import com.ark.darthsystem.graphics.GraphicsDriver;
 import com.ark.darthsystem.graphics.PlayerCamera;
 import com.badlogic.gdx.maps.MapProperties;
 
@@ -17,6 +18,10 @@ public class Pickup extends Event {
     private int money;
     private boolean isFinished;
 
+    public Pickup() {
+        super("", 0, 0, 6/60f);
+    }
+    
     public Pickup(String img, float getX,
             float getY,
             float getDelay,
@@ -83,12 +88,14 @@ public class Pickup extends Event {
     @Override
     public Event createFromMap(MapProperties prop) {
         String image = prop.get("image", String.class);
-        return new Pickup(image,
+        Pickup p = new Pickup(image,
                 (prop.get("x", Float.class) + prop.get("width", Float.class) / 2) / PlayerCamera.PIXELS_TO_METERS,
                 (prop.get("y", Float.class) + prop.get("height", Float.class) / 2) / PlayerCamera.PIXELS_TO_METERS,
-                6 / 60f,
-                ItemDatabase.ITEM_LIST.get(prop.get("parameters", String.class).toUpperCase()));
-                
+                1 / 12f,
+                ((Item) ItemDatabase.ITEM_LIST.get(prop.get("parameters", String.class).toUpperCase()).clone()));
+               
+        p.setTriggerMethod(TriggerMethod.valueOf(prop.get("trigger", String.class).toUpperCase()));
+        return p;
     }
 
 }

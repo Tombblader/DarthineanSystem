@@ -38,6 +38,9 @@ public class FieldBattlerAI extends Player implements Serializable {
     private ArrayList<AI> aiData;
     private transient RayCastCallback rayVision;
     
+    public FieldBattlerAI() {
+    }
+    
     public FieldBattlerAI(ArrayList<FieldBattler> getBattlers, float getX, float getY) {
         super(getBattlers, getX, getY);        
         setSpeed(getBattlers.get(0).getSpeed());

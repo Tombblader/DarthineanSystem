@@ -33,18 +33,27 @@ public class AI implements Serializable {
     private float disengageChance;
     private int disengageTurn;
     private int priority;
-    private double lowHP = NO_FLAG;
-    private int turn = NO_FLAG;
-    private int turnInterval = NO_FLAG;
+    private double lowHP;
+    private int turn;
+    private int turnInterval;
     private boolean dead;
     private StatusEffect checkStatus;
+    
+    public AI() {
+        lowHP = NO_FLAG;
+        turn = NO_FLAG;
+        turnInterval = NO_FLAG;
+        
+    }
 
     public AI(Type getType, int setPriority) {
+        this();
         AIType = getType;
         priority = setPriority;
     }
 
     public AI(Type getType, float disengageChance, int disengageTurn) {
+        this();
         AIType = getType;
         priority = 1;
         this.disengageChance = disengageChance;

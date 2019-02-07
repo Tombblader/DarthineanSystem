@@ -56,6 +56,7 @@
   <object id="13" name="potion" type="event" gid="20" x="816" y="302" width="32" height="32">
    <properties>
     <property name="collisionType" value="object"/>
+    <property name="eventName" value="Pickup"/>
     <property name="parameters" value="Potion"/>
     <property name="trigger" value="TOUCH"/>
    </properties>

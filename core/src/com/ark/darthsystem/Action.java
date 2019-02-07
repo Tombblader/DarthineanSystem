@@ -29,6 +29,10 @@ public class Action implements Serializable {
     private Battler target;
     private ArrayList<Battler> allTargets;
     private int damage;
+    
+    public Action() {
+        this.actionCommand = Battle.Command.Run;
+    }
 
     /**
      * An Action based on a command without any parameters.  Typically, only Run or Analyze would use this constructor.

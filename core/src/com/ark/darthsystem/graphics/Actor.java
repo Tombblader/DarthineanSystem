@@ -29,31 +29,37 @@ public class Actor implements Serializable {
     private String currentMapName;
     private float delay;
     private boolean destroyAfterAnimation;
-    private float elapsed = 0f;
+    private float elapsed;
     private Facing facing;
     private transient Sprite[] images;
-    private boolean isMovable = true;
+    private boolean isMovable;
     private boolean isRotate;
     private float lastX;
-    private int lastXFacing = 1;
+    private int lastXFacing;
     private float lastY;
-    private int lastYFacing = 0;
+    private int lastYFacing;
     private float speed;
 //    private transient ActorSprite sprite;
-    private transient Array<GameTimer> timers = new Array<>(GameTimer.class);
-    private Vector2 position = Vector2.Zero;
+    private transient Array<GameTimer> timers;// = new Array<>(GameTimer.class);
+    private Vector2 position;// = Vector2.Zero;
     private Facing xFacingBias;
     private String imageName;
-    private boolean isFinished = false;
+    private boolean isFinished;// = false;
     
     public Actor() {
         this.xFacingBias = Facing.DOWN;
         delay = 16/60f;
         isMovable = false;
         speed = 0;
+        elapsed = 0f;
+        lastXFacing = 0;
+        lastYFacing = 0;
         destroyAfterAnimation = false;
         facing = Facing.DOWN;
         isRotate = false;
+        timers = new Array<>(GameTimer.class);
+        position = Vector2.Zero;
+        isFinished = false;
     }
 
     public Actor(String img,
@@ -308,6 +314,7 @@ public class Actor implements Serializable {
     }
     
     public void setCurrentMap(OverheadMap map) {
+        currentMapName = map.getMapName();
         currentMap = map;
     }
     
@@ -346,6 +353,33 @@ public class Actor implements Serializable {
 //        setFacing();
     }
     
+    
+    public Facing getFacingBias() {
+        return xFacingBias;
+    }
+
+    /**
+     * @return the currentMapName
+     */
+    public String getCurrentMapName() {
+        return currentMapName;
+    }
+
+    /**
+     * @param currentMapName the currentMapName to set
+     */
+    public void setCurrentMapName(String currentMapName) {
+        this.currentMapName = currentMapName;
+    }
+    
+    private void readObject(ObjectInputStream in) throws IOException,ClassNotFoundException {
+        in.defaultReadObject();
+        images = GraphicsDriver.getMasterSheet().createSprites(imageName).toArray(Sprite.class);
+        animation = new Animation<>(delay, images);
+        animation.setPlayMode(destroyAfterAnimation ? PlayMode.NORMAL : PlayMode.LOOP);
+        currentImage = (Sprite) animation.getKeyFrame(0);
+        
+    }    
     public enum Facing {
         
         UP(0, -1, 0),
@@ -382,32 +416,5 @@ public class Actor implements Serializable {
             return rotate;
         }
     }
-    
-    public Facing getFacingBias() {
-        return xFacingBias;
-    }
-
-    /**
-     * @return the currentMapName
-     */
-    public String getCurrentMapName() {
-        return currentMapName;
-    }
-
-    /**
-     * @param currentMapName the currentMapName to set
-     */
-    public void setCurrentMapName(String currentMapName) {
-        this.currentMapName = currentMapName;
-    }
-    
-    private void readObject(ObjectInputStream in) throws IOException,ClassNotFoundException {
-        in.defaultReadObject();
-        images = GraphicsDriver.getMasterSheet().createSprites(imageName).toArray(Sprite.class);
-        animation = new Animation<>(delay, images);
-        animation.setPlayMode(destroyAfterAnimation ? PlayMode.NORMAL : PlayMode.LOOP);
-        currentImage = (Sprite) animation.getKeyFrame(0);
-        
-    }    
 
 }

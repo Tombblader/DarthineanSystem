@@ -1,5 +1,6 @@
 package com.ark.darthsystem.states.events;
 
+import com.ark.darthsystem.database.MapDatabase;
 import com.ark.darthsystem.graphics.ActorCollision;
 import com.ark.darthsystem.states.OverheadMap;
 import com.badlogic.gdx.maps.MapProperties;
@@ -11,17 +12,12 @@ import java.util.Objects;
  */
 public abstract class Event extends ActorCollision {
     private static int ID;
-    public enum LocalSwitch {
-
-        A,
-        B,
-        C,
-        D
-    }
-    private LocalSwitch localSwitch = LocalSwitch.A;
+    private static String eventName;
     private TriggerMethod trigger = null;
     private int eventID;
-    
+    private boolean isFinished;
+    protected LocalSwitch switches;
+
     public Event(String img, float getX, float getY, float delay) {
         super(img, getX, getY, delay);
     }
@@ -42,18 +38,17 @@ public abstract class Event extends ActorCollision {
     
     public abstract void run();
     
-    public abstract boolean isFinished();
+    @Override
+    public boolean isFinished() {
+        return isFinished;
+    }    
     
-    public final LocalSwitch getLocalSwitch() {
-        return localSwitch;
+    public void setFinished(boolean finished) {
+        isFinished = finished;
     }
 
     public final TriggerMethod getTriggerMethod() {
         return trigger;
-    }
-
-    public final void setLocalSwitch(LocalSwitch localSwitch) {
-        this.localSwitch = localSwitch;
     }
 
     public final void setTriggerMethod(TriggerMethod trigger) {
@@ -87,6 +82,23 @@ public abstract class Event extends ActorCollision {
     public int hashCode() {
         int hash = 7;
         return hash;
+    }
+    
+    public void setMap(OverheadMap map) {
+        super.setMap(map);
+//        try {
+//            switches = MapDatabase.getSwitchData(map.getMapName(), this);
+//        } catch (NullPointerException e) {
+//            e.printStackTrace();
+//        }
+        switches = new LocalSwitch(this.getClass().getSimpleName());
+        
+//        LocalSwitch switches = new LocalSwitch();
+        
+    }
+    
+    public void setMap(String map) {
+        super.setMap(map);
     }
 
     @Override

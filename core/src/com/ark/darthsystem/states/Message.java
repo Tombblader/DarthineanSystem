@@ -168,6 +168,7 @@ public class Message implements State {
         }
     }
 
+    @Override
     public float update(float delta) {
         State ste = null;
         for (State state : GraphicsDriver.getState()) {

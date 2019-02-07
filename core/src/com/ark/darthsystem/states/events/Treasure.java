@@ -38,7 +38,7 @@ public class Treasure extends Event {
             float getDelay,
             Item getItem) {
         super(img, getX, getY, getDelay);
-        setLocalSwitch(LocalSwitch.A);
+//        setLocalSwitch(LocalSwitch.A);
         opened = new Animation(getDelay, GraphicsDriver.getMasterSheet().createSprites("event/chest/field/custom/down"));
         item = new Item[1];
         item[0] = getItem;
@@ -104,14 +104,15 @@ public class Treasure extends Event {
     
     
     public void run() {
-        if (getLocalSwitch() == LocalSwitch.A) {
+        if (!switches.getSwitch(LocalSwitch.Switch.A)) {
             if (!GraphicsDriver.getState().contains(pickedUpMessage, true)) {
                 GraphicsDriver.addState(pickedUpMessage);
             }
-            setLocalSwitch(pickedUpMessage.isFinished() ? LocalSwitch.A : LocalSwitch.B);
+            switches.setSwitch(LocalSwitch.Switch.A, pickedUpMessage.isFinished());
         }
     }
 
+    @Override
     public boolean isFinished() {
         return isFinished;
     }

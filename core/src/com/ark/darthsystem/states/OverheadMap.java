@@ -247,7 +247,6 @@ public class OverheadMap implements State {
 
     private Array<Body> generateObjects() {
         ppt = PlayerCamera.PIXELS_TO_METERS;
-//        MapObjects objects = map.getLayers().get("collision").getObjects();
         Array<Body> bodies = new Array<>();
         for (int i = 0; i < renderer.getMap().getLayers().size(); i++) {
             MapLayer layer = renderer.getMap().getLayers().get(i);
@@ -344,6 +343,7 @@ public class OverheadMap implements State {
             return e;
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
             Logger.getLogger(OverheadMap.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(prop.get("eventName", String.class));
         }
         switch (Integer.parseInt(prop.get("eventID").toString())) {
             case 0:
@@ -888,9 +888,11 @@ public class OverheadMap implements State {
                 }
                 money += ((BattlerAI) (enemy)).getMoney();
             }
-            //                if (dropped.get(0).getIcon())
             if (!dropped.isEmpty() || money > 0) {
-                new Pickup(dropped.isEmpty() ? "items/money/icon" : dropped.get(0).getIcon(), actor.getX(), actor.getY(), 1 / 12, dropped.toArray(new Item[dropped.size()]), money).setMap(OverheadMap.this);
+                new Pickup(dropped.isEmpty() ? 
+                        "items/money/icon" : dropped.get(0).getIcon(), 
+                        actor.getX(), actor.getY(), 
+                        1 / 12, dropped.toArray(new Item[dropped.size()]), money).setMap(OverheadMap.this);
             }
         }
 

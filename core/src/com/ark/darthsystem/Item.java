@@ -25,11 +25,11 @@ public class Item implements Serializable, Cloneable, Nameable {
     private int maxCharges;
     private int charges;
     private String iconName;
-    public Sound sound = SoundDatabase.fieldCastingSound;
+    private String soundName;
+    public transient Sound sound;
 
     /**
      * Get the value of sound
-     *
      * @return the value of sound
      */
     public Sound getSound() {
@@ -38,7 +38,6 @@ public class Item implements Serializable, Cloneable, Nameable {
 
     /**
      * Set the value of sound
-     *
      * @param sound new value of sound
      */
     public void setSound(Sound sound) {
@@ -50,6 +49,7 @@ public class Item implements Serializable, Cloneable, Nameable {
      *
      */
     public Item() {
+        this.sound = SoundDatabase.fieldCastingSound;
         this.iconName = "items/potion/icon";
     }
 
@@ -71,6 +71,7 @@ public class Item implements Serializable, Cloneable, Nameable {
             int initializeHP,
             int initializeMP,
             boolean all) {
+        this.sound = SoundDatabase.fieldCastingSound;
         this.iconName = imageName;
         name = getName;
         description = getDescription;
@@ -99,6 +100,7 @@ public class Item implements Serializable, Cloneable, Nameable {
             int charges,
             Skill initializeSkill,
             boolean initializeUseMP) {
+        this.sound = SoundDatabase.fieldCastingSound;
         this.iconName = imageName;
         name = getName;
         description = getDescription;

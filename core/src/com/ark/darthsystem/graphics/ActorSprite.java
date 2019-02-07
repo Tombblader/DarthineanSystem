@@ -28,6 +28,10 @@ public class ActorSprite implements Serializable {
     private transient Animation<Sprite> currentFieldImage;
     private transient Animation<Sprite> currentBattlerImage;
     private transient Animation<Sprite> currentFaceImage;
+    
+    public ActorSprite() {
+        masterSpriteSheet = "";
+    }
 
     public ActorSprite(String imageName) {
         masterSpriteSheet = imageName;

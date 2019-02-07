@@ -12,8 +12,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * A battler represents a character in Battle mode.  It holds the character's
+ * A battler represents a character in Battle mode. It holds the character's
  * stats and abilities.
+ *
  * @author Keven
  */
 public class Battler implements Serializable, Nameable, Cloneable {
@@ -42,12 +43,16 @@ public class Battler implements Serializable, Nameable, Cloneable {
     private BattlerClass battlerClass;
     private double damageModifier = 1.0;
     private int experiencePoints = 0;
-    private double hpTier = HP / 50.0 / level;
-    private double mpTier = MP / 60.0 / level;
-    private double attackTier = attack / 8.0 / level;
-    private double defenseTier = defense / 8.0 / level;
-    private double speedTier = speed / 8.0 / level;
-    private double magicTier = magic / 8.0 / level;
+    private double hpTier;
+    //= HP / 50.0 / level;
+    private double mpTier;
+    // = MP / 60.0 / level;
+    private double attackTier;
+    //= attack / 8.0 / level;
+    private double defenseTier;
+    //= defense / 8.0 / level;
+    private double speedTier;// = speed / 8.0 / level;
+    private double magicTier;// = magic / 8.0 / level;
     private int tnl = 1000;
 
     @Override
@@ -66,9 +71,12 @@ public class Battler implements Serializable, Nameable, Cloneable {
      * Creates an empty Battler Object with no values initialized.
      */
     public Battler() {
+        damageModifier = 1.0;
+        experiencePoints = 0;
         this.equipmentList = new EnumMap<>(Equipment.Slot.class);
         this.isAfflicted = new ArrayList<>();
         isAfflicted.add(new Normal());
+        tnl = 1000;
     }
 
     /**
@@ -100,6 +108,7 @@ public class Battler implements Serializable, Nameable, Cloneable {
             int initialMagic,
             BattlerClass initialClass,
             EnumMap<Equipment.Slot, Equipment> initialEquipment) {
+        this();
         this.equipmentList = new EnumMap<>(Equipment.Slot.class);
         this.isAfflicted = new ArrayList<>();
         this.isAfflicted.add(new Normal());
@@ -125,7 +134,7 @@ public class Battler implements Serializable, Nameable, Cloneable {
         try {
             this.skillList = new ArrayList<>();
             this.skillListName = new ArrayList<>();
-            for(int i = 1; i <= level; i++) {
+            for (int i = 1; i <= level; i++) {
                 if (this.battlerClass != null && this.battlerClass.getSkillList() != null && this.battlerClass.getSkillList().containsKey(i)) {
                     this.skillList.addAll(Arrays.asList(this.battlerClass.getSkillList().get(i)));
                     for (Skill skills : this.battlerClass.getSkillList().get(i)) {
@@ -141,7 +150,7 @@ public class Battler implements Serializable, Nameable, Cloneable {
         this.battlerGender = initializeGender;
     }
 
-   public Battler(String initialName,
+    public Battler(String initialName,
             String initialDescription,
             BattlerClass initialClass,
             Battle.Element initialElement,
@@ -163,15 +172,15 @@ public class Battler implements Serializable, Nameable, Cloneable {
         this(initialName,
                 initialDescription,
                 initialElement,
-                initialGender, 
-                initialLevel, 
+                initialGender,
+                initialLevel,
                 initialHP,
                 initialMP,
-                initialAttack, 
-                initialDefense, 
-                initialSpeed, 
-                initialMagic, 
-                initialClass, 
+                initialAttack,
+                initialDefense,
+                initialSpeed,
+                initialMagic,
+                initialClass,
                 initialEquipment);
         this.equipmentList = new EnumMap<>(Equipment.Slot.class);
         this.hpTier = initialHPTier;
@@ -182,7 +191,7 @@ public class Battler implements Serializable, Nameable, Cloneable {
         this.magicTier = initialMagicTier;
 
     }
-    
+
     /**
      *
      * @param initialName
@@ -212,10 +221,11 @@ public class Battler implements Serializable, Nameable, Cloneable {
             int initialMagic,
             ArrayList<Skill> initialSkill,
             EnumMap<Equipment.Slot, Equipment> initialEquipment) {
-         this.isAfflicted = new ArrayList<>();
+        this();
+        this.isAfflicted = new ArrayList<>();
         this.isAfflicted.add(new Normal());
-       name = initialName;
-       description = getDescription;
+        name = initialName;
+        description = getDescription;
         battlerElement = initialElement;
         level = initialLevel;
         maxHP = initialHP;
@@ -253,6 +263,7 @@ public class Battler implements Serializable, Nameable, Cloneable {
 
     /**
      * Gets the name of the battler.
+     *
      * @return The name.
      */
     @Override
@@ -262,6 +273,7 @@ public class Battler implements Serializable, Nameable, Cloneable {
 
     /**
      * Gets the battler's current level.
+     *
      * @return The level of the battler.
      */
     public int getLevel() {
@@ -388,7 +400,6 @@ public class Battler implements Serializable, Nameable, Cloneable {
 //    public Skill[] getCurrentSkillList() {
 //        return (Skill[]) (skillList.toArray());
 //    }
-
     /**
      *
      * @param skill
@@ -397,8 +408,7 @@ public class Battler implements Serializable, Nameable, Cloneable {
     public Skill getSkill(String skill) {
         try {
             return skillList.get(skillList.indexOf(skill));
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             return null;
         }
     }
@@ -436,14 +446,6 @@ public class Battler implements Serializable, Nameable, Cloneable {
         return battlerElement;
     }
 
-//    /**
-//     *
-//     * @return
-//     */
-//    public Battle.Stats getStatus() {
-//        return afflicted;
-//    }
-
     public StatusEffect getStatus(int index) {
         return isAfflicted.get(index);
     }
@@ -459,8 +461,7 @@ public class Battler implements Serializable, Nameable, Cloneable {
         }
         return afflicted;
     }
-    
-    
+
     /**
      *
      * @return
@@ -481,65 +482,64 @@ public class Battler implements Serializable, Nameable, Cloneable {
 //        speedTier = speed / 8.8 / (level + 1);
 //        magicTier = magic / 8.8 / (level + 1);
 
-        maxHP += (int) (0.7 *
-                (1 +
-                hpTier *
-                2.71 *
-                level) +
-                Math.random() *
-                5 +
-                2);
-        maxMP += (int) (0.7 *
-                (1 +
-                mpTier *
-                2.71 *
-                level) +
-                Math.random() *
-                5);
-        attack += (int) (0.7 *
-                (1 +
-                attackTier *
-                2.71 *
-                level) +
-                Math.random() *
-                level /
-                10);
-        defense += (int) (0.7 *
-                (1 +
-                defenseTier *
-                2.71 *
-                level) +
-                Math.random() *
-                level /
-                10);
-        speed += (int) (0.7 *
-                (1 +
-                speedTier *
-                2.71 *
-                level) +
-                Math.random() *
-                level /
-                10);
-        magic += (int) (0.7 *
-                (1 +
-                magicTier *
-                2.71 *
-                level) +
-                Math.random() *
-                level /
-                10);
+        maxHP += (int) (0.7
+                * (1
+                + hpTier
+                * 2.71
+                * level)
+                + Math.random()
+                * 5
+                + 2);
+        maxMP += (int) (0.7
+                * (1
+                + mpTier
+                * 2.71
+                * level)
+                + Math.random()
+                * 5);
+        attack += (int) (0.7
+                * (1
+                + attackTier
+                * 2.71
+                * level)
+                + Math.random()
+                * level
+                / 10);
+        defense += (int) (0.7
+                * (1
+                + defenseTier
+                * 2.71
+                * level)
+                + Math.random()
+                * level
+                / 10);
+        speed += (int) (0.7
+                * (1
+                + speedTier
+                * 2.71
+                * level)
+                + Math.random()
+                * level
+                / 10);
+        magic += (int) (0.7
+                * (1
+                + magicTier
+                * 2.71
+                * level)
+                + Math.random()
+                * level
+                / 10);
         level++;
         printline(name + " gained a level!");
         printline(name + " is now level " + level + ".");
         if (battlerClass.getSkillList().get(level) != null) {
-            for(Skill s : battlerClass.getSkillList().get(level)) {
+            for (Skill s : battlerClass.getSkillList().get(level)) {
                 skillList.add(s);
                 skillListName.add(s.getName());
                 printline(name + " has learned " + s.getName() + "!");
             }
         }
-            
-        
+
         return level;
     }
 
@@ -558,53 +558,53 @@ public class Battler implements Serializable, Nameable, Cloneable {
 
         for (int i = 0; i < level; i++) {
 
-            maxHP += (int) (0.7 *
-                    (1 +
-                    hpTier *
-                    2.71 *
-                    level) +
-                    Math.random() *
-                    5 +
-                    2);
-            maxMP += (int) (0.7 *
-                    (1 +
-                    mpTier *
-                    2.71 *
-                    level) +
-                    Math.random() *
-                    5);
-            attack += (int) (0.7 *
-                    (1 +
-                    attackTier *
-                    2.71 *
-                    level) +
-                    Math.random() *
-                    level /
-                    10);
-            defense += (int) (0.7 *
-                    (1 +
-                    defenseTier *
-                    2.71 *
-                    level) +
-                    Math.random() *
-                    level /
-                    10);
-            speed += (int) (0.7 *
-                    (1 +
-                    speedTier *
-                    2.71 *
-                    level) +
-                    Math.random() *
-                    level /
-                    10);
-            magic += (int) (0.7 *
-                    (1 +
-                    magicTier *
-                    2.71 *
-                    level) +
-                    Math.random() *
-                    level /
-                    10);
+            maxHP += (int) (0.7
+                    * (1
+                    + hpTier
+                    * 2.71
+                    * level)
+                    + Math.random()
+                    * 5
+                    + 2);
+            maxMP += (int) (0.7
+                    * (1
+                    + mpTier
+                    * 2.71
+                    * level)
+                    + Math.random()
+                    * 5);
+            attack += (int) (0.7
+                    * (1
+                    + attackTier
+                    * 2.71
+                    * level)
+                    + Math.random()
+                    * level
+                    / 10);
+            defense += (int) (0.7
+                    * (1
+                    + defenseTier
+                    * 2.71
+                    * level)
+                    + Math.random()
+                    * level
+                    / 10);
+            speed += (int) (0.7
+                    * (1
+                    + speedTier
+                    * 2.71
+                    * level)
+                    + Math.random()
+                    * level
+                    / 10);
+            magic += (int) (0.7
+                    * (1
+                    + magicTier
+                    * 2.71
+                    * level)
+                    + Math.random()
+                    * level
+                    / 10);
             this.level++;
         }
         return level;
@@ -737,7 +737,7 @@ public class Battler implements Serializable, Nameable, Cloneable {
     public void defend() {
         damageModifier = DEFEND;
     }
-    
+
     /**
      *
      */
@@ -782,7 +782,7 @@ public class Battler implements Serializable, Nameable, Cloneable {
         }
         return equipmentAttack;
     }
-    
+
     private float getStatusAttack() {
         float statusAttack = 1f;
         for (StatusEffect status : isAfflicted) {
@@ -792,7 +792,6 @@ public class Battler implements Serializable, Nameable, Cloneable {
         }
         return statusAttack;
     }
-    
 
     private int getEquipmentDefense() {
         int equipmentDefense = 0;
@@ -803,7 +802,7 @@ public class Battler implements Serializable, Nameable, Cloneable {
         }
         return equipmentDefense;
     }
-    
+
     private float getStatusDefense() {
         float statusDefense = 1f;
         for (StatusEffect status : isAfflicted) {
@@ -813,7 +812,7 @@ public class Battler implements Serializable, Nameable, Cloneable {
         }
         return statusDefense;
     }
-    
+
     private int getEquipmentSpeed() {
         int equipmentSpeed = 0;
         for (Equipment equipmentList1 : equipmentList.values()) {
@@ -823,7 +822,7 @@ public class Battler implements Serializable, Nameable, Cloneable {
         }
         return equipmentSpeed;
     }
-    
+
     private float getStatusSpeed() {
         float statusSpeed = 1f;
         for (StatusEffect status : isAfflicted) {
@@ -843,8 +842,7 @@ public class Battler implements Serializable, Nameable, Cloneable {
         }
         return statusMagic;
     }
-    
-    
+
     private int getEquipmentMagic() {
         int equipmentMagic = 0;
         for (Equipment equipmentList1 : equipmentList.values()) {
@@ -854,7 +852,7 @@ public class Battler implements Serializable, Nameable, Cloneable {
         }
         return equipmentMagic;
     }
-    
+
     public float getStatusDamageModifier() {
         float statusDamage = 1;
         for (StatusEffect status : isAfflicted) {
@@ -862,7 +860,7 @@ public class Battler implements Serializable, Nameable, Cloneable {
                 statusDamage += status.getDamageModifier();
             }
         }
-        return statusDamage;        
+        return statusDamage;
     }
 
     /**
@@ -872,7 +870,6 @@ public class Battler implements Serializable, Nameable, Cloneable {
     public void learnSkill(Skill newSkill) {
         skillList.add(newSkill);
     }
-
 
     /**
      *
@@ -888,7 +885,9 @@ public class Battler implements Serializable, Nameable, Cloneable {
     }
 
     /**
-     * Change the name of the Battler.  Beware that this doesn't change the database reference.
+     * Change the name of the Battler. Beware that this doesn't change the
+     * database reference.
+     *
      * @param newName The new name of the Battler.
      */
     public void rename(String newName) {
@@ -907,8 +906,7 @@ public class Battler implements Serializable, Nameable, Cloneable {
             temp.equipmentList = equipmentList.clone();
             temp.isAfflicted = tempEffect;
             return temp;
-        }
-        catch (CloneNotSupportedException e) {
+        } catch (CloneNotSupportedException e) {
 
         }
         return null;
@@ -916,8 +914,9 @@ public class Battler implements Serializable, Nameable, Cloneable {
 
     public void reset() {
         fullHeal();
-    }    
-    private void readObject(ObjectInputStream in) throws IOException,ClassNotFoundException {
+    }
+
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
         in.defaultReadObject();
         ArrayList<String> afflicted = (ArrayList<String>) in.readObject();
         ArrayList<Integer> afflictedTurn = (ArrayList<Integer>) in.readObject();
@@ -931,9 +930,9 @@ public class Battler implements Serializable, Nameable, Cloneable {
                 Logger.getLogger(Battler.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
+
     }
-    
+
     private void writeObject(ObjectOutputStream out) throws IOException {
         out.defaultWriteObject();
         ArrayList<String> currentStatusEffects = new ArrayList<>();
