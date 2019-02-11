@@ -228,12 +228,6 @@ public class FieldSkill extends ActorCollision implements Nameable {
             s.setCenter(s.getWidth() / 2f, s.getHeight() / 2f);
             s.setOriginCenter();
         }
-//        try {
-//            originalBattlerImage = GraphicsDriver.getMasterSheet().createSprites("skills/" + img + "/battler/" + img).toArray(Sprite.class);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            originalBattlerImage = GraphicsDriver.getMasterSheet().createSprites("skills/wiccan_cross/battler/wiccan_cross").toArray(Sprite.class);
-//        }
         relX = getX;
         relY = getY;
         chargeTime = castTime;
@@ -275,8 +269,8 @@ public class FieldSkill extends ActorCollision implements Nameable {
    public FieldSkill(String name,
             ActorSprite.SpriteModeField castImg,
             String img,
-            Sound castSound,
-            Sound fieldSound,
+            String castSoundName,
+            String fieldSoundName,
             ArrayList<Type> tags,
             float getX,
             float getY,
@@ -291,8 +285,10 @@ public class FieldSkill extends ActorCollision implements Nameable {
         this(img, getX, getY, getTranslateX, getTranslateY, fps, castTime, delay, getSkill, getArea, shape);
         this.castImageName = castImg;
         this.tags = tags;
-        this.fieldSound = fieldSound;   
-        this.castSound = castSound;
+        this.fieldSoundName = fieldSoundName.toUpperCase();
+        fieldSound = SoundDatabase.SOUNDS.get(this.fieldSoundName);        
+        this.castSoundName = castSoundName.toUpperCase();
+        castSound = SoundDatabase.SOUNDS.get(this.castSoundName);        
     }    
     
     
@@ -413,6 +409,7 @@ public class FieldSkill extends ActorCollision implements Nameable {
 
     public void playCastSound() {
         try {
+            System.out.println(castSoundName);
             castSound.stop();
             castSound.play();
         } catch (Exception e) {
@@ -457,8 +454,8 @@ public class FieldSkill extends ActorCollision implements Nameable {
             return new FieldSkill(getName(),
                     castImageName,
                     originalFieldImageName,
-                    castSound,
-                    fieldSound,
+                    castSoundName,
+                    fieldSoundName,
                     tags,
                     relX,
                     relY,

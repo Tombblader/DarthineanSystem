@@ -10,6 +10,9 @@ import com.ark.darthsystem.Battler;
 import com.ark.darthsystem.Skill;
 import com.ark.darthsystem.graphics.ActorSprite.SpriteModeFace;
 import com.badlogic.gdx.graphics.g2d.Animation;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
 import java.util.ArrayList;
@@ -25,7 +28,7 @@ public class FieldBattler implements Serializable {
     private transient ArrayList<FieldSkill> skillList = new ArrayList<>();
     private transient ActorSprite spriteSheet;
     private String spriteSheetName;
-    private transient SpriteModeFace face = SpriteModeFace.NORMAL;
+    private SpriteModeFace face = SpriteModeFace.NORMAL;
     private float delay;
     private float speed;
     private String shapeName;
@@ -200,6 +203,16 @@ public class FieldBattler implements Serializable {
     public void setShapeName(String shapeName) {
         this.shapeName = shapeName;
     }
-    
+
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+        in.defaultReadObject();
+        face = SpriteModeFace.NORMAL;
+        skillList = new ArrayList<>();
+        initialize();
+    }
+
+    private void writeObject(ObjectOutputStream out) throws IOException {
+        out.defaultWriteObject();
+    }    
     
 }

@@ -16,20 +16,20 @@ import com.ark.darthsystem.graphics.ActorSprite;
  */
 public class Chapter02 extends Novel {
     public Chapter02() {
-        chapters.add((Novel.Page) () -> {
-            BattleDriver.printline(Database2.player.getBattler(0), ActorSprite.SpriteModeFace.NORMAL, "Oh, look, a sword.  We'll take this along so you can use it in your body.");
-            BattleDriver.printline(Database2.player.getBattler(1), ActorSprite.SpriteModeFace.NORMAL, "HEY!  LOOK OUT!.");
-        });
-        chapters.add((Novel.Page) () -> {
-            BattleDriver.printline(Database2.player.getBattler(0), ActorSprite.SpriteModeFace.NORMAL, "What?");
-            BattleDriver.printline(Database2.player.getBattler(0), ActorSprite.SpriteModeFace.NORMAL, "Ack!");
-            BattleDriver.printline(Database2.player.getBattler(0), ActorSprite.SpriteModeFace.NORMAL, "What?");
-        });
-        chapters.add((Novel.Page) () -> {
-                    MonsterDatabase.MONSTER_LIST.get("Living Sword".toUpperCase()
-                    ).clone().setMap(Database2.player.getCurrentMap(), 10, 11);
-            
-        });
+//        chapters.add((Novel.Page) () -> {
+//            BattleDriver.printline(Database2.player.getBattler(0), ActorSprite.SpriteModeFace.NORMAL, "Oh, look, a sword.  We'll take this along so you can use it in your body.");
+//            BattleDriver.printline(Database2.player.getBattler(1), ActorSprite.SpriteModeFace.NORMAL, "HEY!  LOOK OUT!.");
+//        });
+//        chapters.add((Novel.Page) () -> {
+//            BattleDriver.printline(Database2.player.getBattler(0), ActorSprite.SpriteModeFace.NORMAL, "What?");
+//            BattleDriver.printline(Database2.player.getBattler(0), ActorSprite.SpriteModeFace.NORMAL, "Ack!");
+//            BattleDriver.printline(Database2.player.getBattler(0), ActorSprite.SpriteModeFace.NORMAL, "What?");
+//        });
+//        chapters.add((Novel.Page) () -> {
+//                    MonsterDatabase.MONSTER_LIST.get("Living Sword".toUpperCase()
+//                    ).clone().setMap(Database2.player.getCurrentMap(), 10, 11);
+//            
+//        });
     }
     
     @Override

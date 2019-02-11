@@ -15,6 +15,7 @@ import com.badlogic.gdx.utils.Array;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  * The Actor wraps the animation class to use with the game.
@@ -40,7 +41,7 @@ public class Actor implements Serializable {
     private int lastYFacing;
     private float speed;
 //    private transient ActorSprite sprite;
-    private transient Array<GameTimer> timers;// = new Array<>(GameTimer.class);
+    private ArrayList<GameTimer> timers;// = new Array<>(GameTimer.class);
     private Vector2 position;// = Vector2.Zero;
     private Facing xFacingBias;
     private String imageName;
@@ -57,7 +58,7 @@ public class Actor implements Serializable {
         destroyAfterAnimation = false;
         facing = Facing.DOWN;
         isRotate = false;
-        timers = new Array<>(GameTimer.class);
+        timers = new ArrayList<>();
         position = Vector2.Zero;
         isFinished = false;
     }
@@ -224,7 +225,7 @@ public class Actor implements Serializable {
         this.speed = speed;
     }
 
-    public Array<GameTimer> getTimers() {
+    public ArrayList<GameTimer> getTimers() {
         return timers;
     }
     public float getWidth() {
@@ -327,10 +328,10 @@ public class Actor implements Serializable {
             elapsed += delta / 1000f;
             currentImage = (Sprite) animation.getKeyFrame(elapsed);
         }
-        for (int i = 0; i < timers.size; i++) {
+        for (int i = 0; i < timers.size(); i++) {
             GameTimer t = timers.get(i);
             if (t.update(delta, this)) {
-                timers.removeValue(t, true);
+                timers.remove(i);
                 i--;
             }
         }
@@ -416,5 +417,6 @@ public class Actor implements Serializable {
             return rotate;
         }
     }
+    
 
 }

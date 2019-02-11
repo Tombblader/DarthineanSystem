@@ -78,13 +78,16 @@ public class ChapterGenerator {
                     case "if":
                         for (XmlReader.Element choice : element.getChildrenByName("Choice")) {
                             if (choice.getAttribute("name").equalsIgnoreCase(novel.choices)) {
-                                novel.chapters.add(novel.pageIndex + 1, createPage(choice, novel));
+//                                novel.chapters.add(novel.pageIndex + 1, createPage(choice, novel));
+                                createPage(choice, novel).run();
                             }
                         }
                         for (XmlReader.Element choice : element.getChildrenByName("variable")) {
                             for(Entry<String, String> e : choice.getAttributes().iterator()) {
                                 if (Database1.variables.get(e.key).equals(e.value)) {
-                                    novel.chapters.add(novel.pageIndex + 1, createPage(choice, novel));
+                                    createPage(choice, novel).run();
+
+//                                    novel.chapters.add(novel.pageIndex + 1, createPage(choice, novel));
                                 }
                             }
                         }

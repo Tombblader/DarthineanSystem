@@ -4,7 +4,6 @@ import com.ark.darthsystem.BattleDriver;
 import com.ark.darthsystem.Item;
 import com.ark.darthsystem.database.Database1;
 import com.ark.darthsystem.database.ItemDatabase;
-import com.ark.darthsystem.graphics.GraphicsDriver;
 import com.ark.darthsystem.graphics.PlayerCamera;
 import com.badlogic.gdx.maps.MapProperties;
 
@@ -63,7 +62,7 @@ public class Pickup extends Event {
     
     public void run() {
         for (Item i : item) {
-            BattleDriver.printline("Obtained " + i.getCharges() + " " + i.getName() + "!");
+            BattleDriver.printline("Obtained" + (i.getCharges() > 0 ? " " + i.getCharges(): "") + " " + i.getName() + "!");
         }
         BattleDriver.addItems(item);
         if (money != 0) {
@@ -93,7 +92,6 @@ public class Pickup extends Event {
                 (prop.get("y", Float.class) + prop.get("height", Float.class) / 2) / PlayerCamera.PIXELS_TO_METERS,
                 1 / 12f,
                 ((Item) ItemDatabase.ITEM_LIST.get(prop.get("parameters", String.class).toUpperCase()).clone()));
-               
         p.setTriggerMethod(TriggerMethod.valueOf(prop.get("trigger", String.class).toUpperCase()));
         return p;
     }

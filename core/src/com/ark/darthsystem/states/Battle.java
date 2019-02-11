@@ -189,11 +189,11 @@ public class Battle implements State {
         enemyAction.clear();
         partyAction.clear();
         final int BATTLE_DELAY = 3000;
-        for (int i = 0; i < GraphicsDriver.getPlayer().getTimers().size; i++) {
+        for (int i = 0; i < GraphicsDriver.getPlayer().getTimers().size(); i++) {
             GameTimer t = GraphicsDriver.getPlayer().getTimers().get(i);
             if (t.getName().equalsIgnoreCase("Invulnerable") || t.getName().equalsIgnoreCase("Jump")) {
                 t.event(GraphicsDriver.getPlayer());
-                GraphicsDriver.getPlayer().getTimers().removeValue(t, true);
+                GraphicsDriver.getPlayer().getTimers().remove(i);
                 i--;
             }
         }

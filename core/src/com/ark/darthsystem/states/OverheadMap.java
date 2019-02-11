@@ -549,7 +549,7 @@ public class OverheadMap implements State {
     }
 
     private void clearTempRunningTimers(Player tempPlayer) {
-        for (int i = 0; i < tempPlayer.getTimers().size; i++) {
+        for (int i = 0; i < tempPlayer.getTimers().size(); i++) {
             GameTimer t = tempPlayer.getTimers().get(i);
             switch (t.getName().toUpperCase()) {
                 case "ATTACK":
@@ -560,7 +560,7 @@ public class OverheadMap implements State {
                     t.event(tempPlayer);
                 case "ATTACK_CHARGE":
                 case "SKILL_CHARGE":
-                    tempPlayer.getTimers().removeValue(t, true);
+                    tempPlayer.getTimers().remove(i);
                     i--;
                     t.clear();
                     break;

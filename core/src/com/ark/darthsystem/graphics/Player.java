@@ -44,6 +44,8 @@ import java.util.Collections;
  * @author Keven Tran
  */
 public class Player extends ActorCollision implements Serializable {
+    private static final long serialVersionUID = 553782345;    
+
     private static final float SPEED = .4f;
     private static final float DELAY =  1f/10f;
 
@@ -89,7 +91,8 @@ public class Player extends ActorCollision implements Serializable {
     private boolean hasEvent;
 
     public Player() {
-        
+        eventQueue = new Array<>();
+        party = new ArrayList<>();
     }
     
     public Player(ArrayList<FieldBattler> getBattler, float getX, float getY) {
@@ -99,6 +102,7 @@ public class Player extends ActorCollision implements Serializable {
     }
     
     private void initialize() {
+        eventQueue = new Array<>();
         currentBattler = party.get(0);        
         if (party.get(0).getBattler().getSkillList() != null 
                 && !party.get(0).getBattler().getSkillList().isEmpty()) {
@@ -276,63 +280,63 @@ public class Player extends ActorCollision implements Serializable {
         
         if (Input.getKeyPressed(jumpButton) && canDodge && ! slowDown) {
             jump();
-        }
-
-        if (Input.getKeyRepeat(moveLeft)) {
-            getMainBody().setLinearVelocity(-getSpeed() * (float) (delta), getMainBody().getLinearVelocity().y);
-            if (!slowDown) {
-                changeX(-1);
+        } else {
+            if (Input.getKeyRepeat(moveLeft)) {
+                getMainBody().setLinearVelocity(-getSpeed() * (float) (delta), getMainBody().getLinearVelocity().y);
+                if (!slowDown) {
+                    changeX(-1);
+                }
+                setWalking(true);
+                fieldState = ActorSprite.SpriteModeField.WALK;
             }
-            setWalking(true);
-            fieldState = ActorSprite.SpriteModeField.WALK;
-        }
 
-        if (Input.getKeyRepeat(moveRight)) {
-            getMainBody().setLinearVelocity(getSpeed() * (float) (delta), getMainBody().getLinearVelocity().y);
-            if (!slowDown) {
-                changeX(1);
+            if (Input.getKeyRepeat(moveRight)) {
+                getMainBody().setLinearVelocity(getSpeed() * (float) (delta), getMainBody().getLinearVelocity().y);
+                if (!slowDown) {
+                    changeX(1);
+                }
+                setWalking(true);
+                fieldState = ActorSprite.SpriteModeField.WALK;
             }
-            setWalking(true);
-            fieldState = ActorSprite.SpriteModeField.WALK;
-        }
 
-        if (Input.getKeyRepeat(moveUp)) {
-            getMainBody().setLinearVelocity(getMainBody().getLinearVelocity().x, -getSpeed() * (float) (delta));
-            if (!slowDown) {
-               changeY(-1);
+            if (Input.getKeyRepeat(moveUp)) {
+                getMainBody().setLinearVelocity(getMainBody().getLinearVelocity().x, -getSpeed() * (float) (delta));
+                if (!slowDown) {
+                   changeY(-1);
+                }
+                setWalking(true);
+                fieldState = ActorSprite.SpriteModeField.WALK;
             }
-            setWalking(true);
-            fieldState = ActorSprite.SpriteModeField.WALK;
-        }
-        if (Input.getKeyRepeat(moveDown)) {
-            getMainBody().setLinearVelocity(getMainBody().getLinearVelocity().x, getSpeed() * (float) (delta));
-            if (!slowDown) {
-                changeY(1);
+            if (Input.getKeyRepeat(moveDown)) {
+                getMainBody().setLinearVelocity(getMainBody().getLinearVelocity().x, getSpeed() * (float) (delta));
+                if (!slowDown) {
+                    changeY(1);
+                }
+                setWalking(true);
+                fieldState = ActorSprite.SpriteModeField.WALK;
             }
-            setWalking(true);
-            fieldState = ActorSprite.SpriteModeField.WALK;
-        }
 
-        if (!Input.getKeyRepeat(moveLeft) && !Input.getKeyRepeat(moveRight)) {
-            if (!slowDown) {
-                changeX(0);
-            }
-            getMainBody().setLinearVelocity(0, getMainBody().getLinearVelocity().y);
+            if (!Input.getKeyRepeat(moveLeft) && !Input.getKeyRepeat(moveRight)) {
+                if (!slowDown) {
+                    changeX(0);
+                }
+                getMainBody().setLinearVelocity(0, getMainBody().getLinearVelocity().y);
 
-        }
-
-        if (!Input.getKeyRepeat(moveUp) && !Input.getKeyRepeat(moveDown)) {
-            if (!slowDown) {
-                changeY(0);
             }
-            getMainBody().setLinearVelocity(getMainBody().getLinearVelocity().x, 0);
-        }
-        
-        if (Input.getKeyPressed(menuButton)) {
-            GraphicsDriver.addMenu(new DefaultMenu());
-        }
-        if (Input.getKeyPressed(quitButton)) {
-            throw new GameOverException();
+
+            if (!Input.getKeyRepeat(moveUp) && !Input.getKeyRepeat(moveDown)) {
+                if (!slowDown) {
+                    changeY(0);
+                }
+                getMainBody().setLinearVelocity(getMainBody().getLinearVelocity().x, 0);
+            }
+
+            if (Input.getKeyPressed(menuButton)) {
+                GraphicsDriver.addMenu(new DefaultMenu());
+            }
+            if (Input.getKeyPressed(quitButton)) {
+                throw new GameOverException();
+            }
         }
     }
 
@@ -528,7 +532,7 @@ public class Player extends ActorCollision implements Serializable {
             }
             @Override
             public boolean update(float delta, Actor a) {
-                setMainFilter(ActorCollision.CATEGORY_PLAYER, ActorCollision.CATEGORY_WALLS);
+                setMainFilter(ActorCollision.CATEGORY_PLAYER, (short) (ActorCollision.CATEGORY_WALLS | ActorCollision.CATEGORY_OBSTACLES));
                 setSensorFilter(ActorCollision.CATEGORY_PLAYER, (short) (ActorCollision.CATEGORY_AI | ActorCollision.CATEGORY_EVENT));
                 getMainBody().setAwake(true);
                 getSensorBody().setAwake(true);
@@ -537,7 +541,7 @@ public class Player extends ActorCollision implements Serializable {
             
         };
         addTimer(tempTimer);
-        setMainFilter(ActorCollision.CATEGORY_PLAYER, ActorCollision.CATEGORY_WALLS);
+        setMainFilter(ActorCollision.CATEGORY_PLAYER, (short) (ActorCollision.CATEGORY_WALLS | ActorCollision.CATEGORY_OBSTACLES));
         setSensorFilter(ActorCollision.CATEGORY_PLAYER, (short) (ActorCollision.CATEGORY_AI | ActorCollision.CATEGORY_EVENT));
     }
 

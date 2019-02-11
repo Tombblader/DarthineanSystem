@@ -276,7 +276,7 @@ public class DefaultMenu extends Menu {
                     @Override
                     public Object confirm(String choice) {
                         try {
-                            Database1.save("save" + getCursorIndex() + ".sav");
+                            Database2.save("save" + getCursorIndex() + ".sav");
                         } catch (IOException e) {
                             e.printStackTrace();
                         }

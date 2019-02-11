@@ -169,10 +169,10 @@ public class FieldBattlerAI extends Player implements Serializable {
     public void update(float delta) {
         setElapsedTime(getElapsedTime() + GraphicsDriver.getRawDelta());
         setCurrentImage((Sprite) getCurrentAnimation().getKeyFrame(getElapsedTime()));
-        for (int i = 0; i < getTimers().size; i++) {
+        for (int i = 0; i < getTimers().size(); i++) {
             GameTimer t = getTimers().get(i);
             if (t.update(delta, this)) {
-                getTimers().removeValue(t, true);
+                getTimers().remove(i);
                 i--;
             }
         }
@@ -210,18 +210,18 @@ public class FieldBattlerAI extends Player implements Serializable {
                 || AI.Type.Heal == obj.getType()
         ).findFirst();
         if (skillResult.isPresent() && canSkill() && isInRange() && canAttack() && canMove()) {
-            for (int i = 0; i < getTimers().size; i++) {
+            for (int i = 0; i < getTimers().size(); i++) {
                 if (getTimers().get(i).getName().equalsIgnoreCase("MOVE")) {
-                    getTimers().removeIndex(i);
+                    getTimers().remove(i);
                     i--;
                 }
             }
             state = SKILL;
         }
         else if (isInRange() && canAttack() && canMove()) {
-            for (int i = 0; i < getTimers().size; i++) {
+            for (int i = 0; i < getTimers().size(); i++) {
                 if (getTimers().get(i).getName().equalsIgnoreCase("MOVE")) {
-                    getTimers().removeIndex(i);
+                    getTimers().remove(i);
                     i--;
                 }
             }

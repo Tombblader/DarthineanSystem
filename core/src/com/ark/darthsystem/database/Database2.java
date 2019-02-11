@@ -5,6 +5,8 @@
  */
 package com.ark.darthsystem.database;
 
+import com.ark.darthsystem.Battler;
+import com.ark.darthsystem.Item;
 import com.ark.darthsystem.graphics.FieldSkill;
 import com.ark.darthsystem.graphics.Player;
 import com.ark.darthsystem.graphics.FieldBattler;
@@ -21,6 +23,7 @@ import java.io.ObjectOutputStream;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 
 /**
  *
@@ -39,7 +42,7 @@ public class Database2 {
         new AIDatabase();
         if (!load.equals("")) {
             try {
-                Database1.load(load);
+                new Database1();
                 new CharacterDatabase();
                 Database2.load(load);
             } catch (IOException | ClassNotFoundException e) {
@@ -72,21 +75,27 @@ public class Database2 {
             throws FileNotFoundException, IOException, ClassNotFoundException {
         try (ObjectInputStream objectStream
                 = new ObjectInputStream(Gdx.files.local(fileName).read())) {
-            Database1.load(fileName);
+            Database1.BATTLER_LIST.clear();
+            Database1.BATTLER_LIST.putAll((HashMap<String, Battler>) objectStream.readObject());
+            Database1.inventory = (ArrayList<Item>) objectStream.readObject();
+            Database1.karma = objectStream.readInt();
+            Database1.money = objectStream.readInt();
+            Database1.switches = (HashMap<String, Boolean>) objectStream.readObject();
+            Database1.variables = (HashMap<String, String>) objectStream.readObject();
             player = (Player) objectStream.readObject();
         }
     }
     
     public static void save(String fileName) throws FileNotFoundException, IOException {
-        Database1.save(fileName);
+//        Database1.save(fileName);
         try (ObjectOutputStream objectStream
-                = new ObjectOutputStream(Gdx.files.local(fileName).write(true))) {
-//            objectStream.writeObject(BATTLER_LIST);
-//            objectStream.writeObject(inventory);
-//            objectStream.writeInt(karma);
-//            objectStream.writeInt(money);
-//            objectStream.writeObject(switches);
-//            objectStream.writeObject(variables);
+                = new ObjectOutputStream(Gdx.files.local(fileName).write(false))) {
+            objectStream.writeObject(Database1.BATTLER_LIST);
+            objectStream.writeObject(Database1.inventory);
+            objectStream.writeInt(Database1.karma);
+            objectStream.writeInt(Database1.money);
+            objectStream.writeObject(Database1.switches);
+            objectStream.writeObject(Database1.variables);
             objectStream.writeObject(player);
         }
     }    

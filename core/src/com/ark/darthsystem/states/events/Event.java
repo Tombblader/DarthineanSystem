@@ -18,6 +18,10 @@ public abstract class Event extends ActorCollision {
     private boolean isFinished;
     protected LocalSwitch switches;
 
+    public Event() {
+        super();
+    }
+    
     public Event(String img, float getX, float getY, float delay) {
         super(img, getX, getY, delay);
     }

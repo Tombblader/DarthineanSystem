@@ -41,7 +41,8 @@ public class Skill implements Serializable, Cloneable, Nameable {
     private int cost;
     private static final long serialVersionUID = 558633274;
     private String imageName;
-    private Actor image;
+    private float fps;
+    private transient Actor image;
 //    private int level;
     private Battle.Element skillElement;
     private boolean isAlly;
@@ -111,7 +112,8 @@ public class Skill implements Serializable, Cloneable, Nameable {
         this.name = name;
         this.description = description;
         this.battlerMode = battlerMode;
-        this.imageName = imageName;        
+        this.imageName = imageName;
+        this.fps = fps;
         image = new Actor("skills/" + imageName + "/battler/" + imageName, 0, 0, fps, true);
         for (Sprite s : image.getCurrentAnimation().getKeyFrames()) {
             s.setCenter(s.getWidth() / 2f, s.getHeight() / 2f);
@@ -367,11 +369,15 @@ public class Skill implements Serializable, Cloneable, Nameable {
             e.printStackTrace();
         }
     }
-
     
     private void readObject(ObjectInputStream in) throws IOException,ClassNotFoundException {
         in.defaultReadObject();
         String afflicted = (String) in.readObject();
+        image = new Actor("skills/" + imageName + "/battler/" + imageName, 0, 0, fps, true);
+        for (Sprite s : image.getCurrentAnimation().getKeyFrames()) {
+            s.setCenter(s.getWidth() / 2f, s.getHeight() / 2f);
+            s.setOriginCenter();
+        }        
         try {
             StatusEffect temp = (StatusEffect) Class.forName("com.ark.darthsystem.statusEffects." + afflicted).newInstance();
             statusEffect = temp;
@@ -386,6 +392,6 @@ public class Skill implements Serializable, Cloneable, Nameable {
     private void writeObject(ObjectOutputStream out) throws IOException {
         out.defaultWriteObject();
         out.writeObject(statusEffect.getName());
-    }    
+    }
 
 }

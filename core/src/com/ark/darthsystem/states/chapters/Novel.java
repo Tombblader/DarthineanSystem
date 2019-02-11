@@ -100,6 +100,10 @@ public abstract class Novel implements State {
         public abstract void run();
     }
     
+    public abstract class tempPage implements Page {
+        public abstract void run();
+    }
+    
     public class Dialogue implements Page {
         private String textFile;
         public Dialogue(String text) {

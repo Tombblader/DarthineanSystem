@@ -99,17 +99,17 @@ public class SkillDatabase {
                     data[++i], //final image
                     data[++i], //cast sound
                     data[++i], //cast sound
-                    data[++i].split(", *"),
-                    (float) (Double.parseDouble(data[++i])),
-                    (float) (Double.parseDouble(data[++i])),
-                    (float) (Double.parseDouble(data[++i])),
-                    (float) (Double.parseDouble(data[++i])),
-                    (float) (1 / Double.parseDouble(data[++i])),
-                    (float) (Double.parseDouble(data[++i])),
-                    (float) (Double.parseDouble(data[++i])),
-                    SKILL_LIST.get(data[++i].toUpperCase()),
-                    FieldSkill.Area.valueOf(data[++i].toUpperCase()),
-                    data[++i]
+                    data[++i].split(", *"), //tag
+                    (float) (Double.parseDouble(data[++i])), //startx
+                    (float) (Double.parseDouble(data[++i])), //starty
+                    (float) (Double.parseDouble(data[++i])), //speed
+                    (float) (Double.parseDouble(data[++i])), //range
+                    (float) (1 / Double.parseDouble(data[++i])), //fps
+                    (float) (Double.parseDouble(data[++i])), //cast time
+                    (float) (Double.parseDouble(data[++i])), //aftercast delay
+                    SKILL_LIST.get(data[++i].toUpperCase()), //skill
+                    FieldSkill.Area.valueOf(data[++i].toUpperCase()), //area
+                    data[++i] //shape
             ));
         }
 

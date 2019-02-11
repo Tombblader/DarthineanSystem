@@ -24,12 +24,13 @@
         <if>
             <Choice name="Yes">
                 <PrintLine name="BLUE LADY" face="NORMAL">Good.</PrintLine>
+                <PrintLine name="BLUE LADY" face="NORMAL">We have an understanding.</PrintLine>
             </Choice>
             <Choice name="No">
-		        <PrintLine name="BLUE LADY" face="ANGRY">
-        		    Case In Point.  Let me reiterate it again.
-        		</PrintLine>
-            	<TurnPage>-3</TurnPage>
+	        	<PrintLine name="BLUE LADY" face="ANGRY">
+        		 	   Case In Point.  Let me reiterate it again.
+    			</PrintLine>
+        		<TurnPage>-3</TurnPage>
             </Choice>
         </if>
     </page>
