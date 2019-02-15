@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter>
+	<page>
+		<PrintLine name="BLUE LADY" face="NORMAL">Oh, it's you.</PrintLine>
+        <PrintLine name="RED LADY" face="NORMAL">HEY WHY'D YOU LEAVE ME BEHIND?!</PrintLine>
+		<PrintLine name="BLUE LADY" face="NORMAL">You're loud.</PrintLine>
+        <PrintLine name="RED LADY" face="NORMAL">ANSWER THE QUESTION!</PrintLine>
+		<PrintLine name="BLUE LADY" face="NORMAL">I just did.  The intern is here.  The Body is further ahead.</PrintLine>
+        <PrintLine name="RED LADY" face="NORMAL">'Sup intern!  Nice to meet you!</PrintLine>
+	</page>
+	<page>
+        <Condition>...
+            <Choice>Nice to meet you.</Choice>
+            <Choice>Loudmouth.</Choice>
+            <Choice>Hey Sexy.</Choice>
+        </Condition>
+    </page>
+    <page>
+    	<if>
+    		<Choice name="Nice to meet you.">
+		        <PrintLine name="RED LADY" face="NORMAL">How nice!  Unlike a certain Blue Idiot.</PrintLine>
+    		</Choice>
+    		<Choice name="Loudmouth.">
+		        <PrintLine name="RED LADY" face="NORMAL">HEY!  I'M NOT A LOUDMOUTH!</PrintLine>
+    		</Choice>
+    		<Choice name="Hey Sexy.">
+                    <PrintLine name="RED LADY" face="NORMAL">Did you just say...?</PrintLine>
+                    <PrintLine name="BLUE LADY" face="NORMAL">...Intern, one moment please.  Huddle.</PrintLine>
+                    <PrintLine name="BLUE LADY" face="NORMAL">...</PrintLine>
+                    <PrintLine name="RED LADY" face="NORMAL">Did you just hear what the intern said?</PrintLine>
+                    <PrintLine name="BLUE LADY" face="NORMAL">...Yes.  This could be a problem.  It's only been a few minutes and the Intern has already begun flirting, without a body no less.</PrintLine>
+                    <PrintLine name="RED LADY" face="NORMAL">I'm ALREADY dealing with a pervert.  Is it too late to return to sender?</PrintLine>
+                    <PrintLine name="BLUE LADY" face="NORMAL">I'm afraid so.  If someoneone had something like that's child, it would be difficult to explain..</PrintLine>
+                    <PrintLine name="RED LADY" face="NORMAL">Let's have a truce for now and keep an eye on the intern...</PrintLine>
+                    <PrintLine name="BLUE LADY" face="NORMAL">Come on, Intern.</PrintLine>
+    		</Choice>
+    	</if>
+    </page>
+    <page>
+    	<AddParty>RED LADY</AddParty>
+    </page>
+</chapter>

@@ -40,15 +40,15 @@ public class NovelMode extends Event {
 
     @Override
     public void run() {
-        if (!GraphicsDriver.getState().contains(novel, true)) {
+//        if (!GraphicsDriver.getState().contains(novel, true)) {
+        if (!isFinished()) {
             GraphicsDriver.addState(novel);
         }
-        isFinished = novel.isFinished();
     }
     
     @Override
     public boolean isFinished() {
-        return isFinished;
+        return novel.isFinished();
     }    
 
     @Override

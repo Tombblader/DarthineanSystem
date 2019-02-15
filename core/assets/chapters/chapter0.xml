@@ -35,6 +35,17 @@
         </if>
     </page>
     <page>
+        <if>
+            <Choice name="Yes">
+                <PrintLine name="BLUE LADY" face="NORMAL">Better.</PrintLine>
+                <PrintLine name="BLUE LADY" face="NORMAL">I expect better things from you.</PrintLine>
+            </Choice>
+            <Choice name="No">
+	        	<PrintLine name="BLUE LADY" face="ANGRY">Go drown in water.</PrintLine>
+            </Choice>
+        </if>
+    </page>
+    <page>
     	<event name="Teleport" parameters="dungeon_00, 7, 7">
     	</event>
     </page>

@@ -8,6 +8,7 @@ package com.ark.darthsystem.states.chapters;
 import com.ark.darthsystem.BattleDriver;
 import static com.ark.darthsystem.database.CharacterDatabase.CHARACTER_LIST;
 import com.ark.darthsystem.database.Database1;
+import com.ark.darthsystem.database.Database2;
 import com.ark.darthsystem.graphics.ActorSprite.SpriteModeFace;
 import com.ark.darthsystem.graphics.GraphicsDriver;
 import com.ark.darthsystem.states.chapters.Novel.Condition;
@@ -110,6 +111,9 @@ public class ChapterGenerator {
                         for(Entry<String, String> e : element.getAttributes().iterator()) {
                             Database1.variables.put(e.key, e.value);
                         }
+                        break;
+                    case "AddParty":
+                        Database2.player.getAllActorBattlers().add(CHARACTER_LIST.get(element.getText()));
                         break;
                     case "TurnPage":
                         if (element.getText().equalsIgnoreCase("BACK")) {

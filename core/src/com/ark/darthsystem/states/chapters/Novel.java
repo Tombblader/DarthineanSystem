@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.ark.darthsystem.states.chapters;
 
 import com.ark.darthsystem.graphics.GraphicsDriver;
@@ -24,7 +19,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public abstract class Novel implements State {
 
     public ArrayList<Page> chapters;
-    
+    private boolean isFinished = false;
     
     String choices;
     int pageIndex = 0;
@@ -56,7 +51,8 @@ public abstract class Novel implements State {
         }
     }
     
-    public float update(float delta) {        
+    @Override
+    public float update(float delta) {
         State ste = null;
         for (State state : GraphicsDriver.getState()) {
             if (state instanceof OverheadMap) {
@@ -69,6 +65,7 @@ public abstract class Novel implements State {
         if (timers.isEmpty()) {
             if (chapters.size() <= pageIndex) {
                 GraphicsDriver.removeState(this);
+                isFinished = true;
             }
             else {
                 chapters.get(pageIndex).run();
@@ -151,7 +148,8 @@ public abstract class Novel implements State {
         }
     }
     public boolean isFinished() {
-        return true;
+        return isFinished;
+//        return !(GraphicsDriver.getCurrentState() instanceof Novel || GraphicsDriver.getCurrentState() instanceof Message || GraphicsDriver.getCurrentState() instanceof Menu);
     }
 
 }
