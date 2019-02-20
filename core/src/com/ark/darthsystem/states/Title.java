@@ -56,6 +56,11 @@ public class Title implements State {
                 
                 return choice;
             }
+            @Override
+            public String cancel() {
+                setCursorIndex(0);
+                return "";
+            }
             
         };
     }

@@ -145,6 +145,10 @@ public abstract class Menu implements State {
     public int getCursorIndex() {
         return cursorIndex;
     }
+    
+    public void setCursorIndex(int index) {
+        cursorIndex = index;
+    }
 
     public void increaseMenuIndex() {
         menuIndex++;

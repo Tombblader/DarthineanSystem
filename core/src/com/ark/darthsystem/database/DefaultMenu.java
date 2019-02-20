@@ -67,14 +67,14 @@ public class DefaultMenu extends Menu {
                                 Menu menuTarget = new Menu("Target?", temp, true, true) {
                                     @Override
                                     public Object confirm(String choice) {
-                                        useItem.use(caster, targetList.get(getCursorIndex()), targetList).calculateDamage(new Battle(player.getAllActorBattlers(), player.getAllActorBattlers(), Database1.inventory, null));
+                                        useItem.use(caster, targetList.get(getCursorIndex()), targetList).calculateDamage(new Battle(player.getAllFieldBattlers(), player.getAllFieldBattlers(), Database1.inventory, null));
                                         return choice;
                                     }
                                 };
                                 DefaultMenu.this.addSubMenu(menuTarget);
                             } else {
-                                (useItem.use(caster, targetList)).calculateDamage(new Battle(player.getAllActorBattlers(),
-                                        player.getAllActorBattlers(),
+                                (useItem.use(caster, targetList)).calculateDamage(new Battle(player.getAllFieldBattlers(),
+                                        player.getAllFieldBattlers(),
                                         Database1.inventory,
                                         null));
                             }
@@ -121,7 +121,7 @@ public class DefaultMenu extends Menu {
                                     GraphicsDriver.addMenu(new Menu("Target?", Database2.player.getAllBattlers().toArray(new Battler[0])) {
                                         @Override
                                         public Object confirm(String choice) {
-                                            skill.activate(Database2.player, caster, Database2.player.getAllActorBattlers().get(getCursorIndex()));
+                                            skill.activate(Database2.player, caster, Database2.player.getAllFieldBattlers().get(getCursorIndex()));
                                             return choice;
                                         }
                                     });
@@ -216,7 +216,7 @@ public class DefaultMenu extends Menu {
                             @Override
                             public Object confirm(String choice) {
                                 if (Database2.player.getAllBattlers().get(getCursorIndex()).isAlive()) {
-                                    Collections.swap(Database2.player.getAllActorBattlers(), sourceIndex, getCursorIndex());
+                                    Collections.swap(Database2.player.getAllFieldBattlers(), sourceIndex, getCursorIndex());
                                     Database2.player.switchBattler(0);
                                 } else {
                                     reverseMenu();
@@ -233,7 +233,7 @@ public class DefaultMenu extends Menu {
                 break;
             case "Status":
                 ArrayList<FieldBattler> actorParty = new ArrayList<>();
-                actorParty.addAll(Database2.player.getAllActorBattlers());
+                actorParty.addAll(Database2.player.getAllFieldBattlers());
                 getPlayerList = new String[actorParty.size()];
                 for (int i = 0; i < getPlayerList.length; i++) {
                     getPlayerList[i] = actorParty.get(i).getBattler().getName();

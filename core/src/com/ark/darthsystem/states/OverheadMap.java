@@ -506,7 +506,7 @@ public class OverheadMap implements State {
         ArrayList<FieldBattler> encounters = new ArrayList<>();
         for (Actor enemyActors2 : actorList) {
             if (enemyActors2 instanceof FieldBattlerAI && ((FieldBattlerAI) (enemyActors2)).vision()) {
-                encounters.addAll(((FieldBattlerAI) (enemyActors2)).getAllActorBattlers());
+                encounters.addAll(((FieldBattlerAI) (enemyActors2)).getAllFieldBattlers());
                 clear.add((FieldBattlerAI) enemyActors2);
             }
         }
@@ -543,7 +543,7 @@ public class OverheadMap implements State {
                 }
             }
             clearTempRunningTimers(GraphicsDriver.getPlayer());
-            GraphicsDriver.addState(new Battle(GraphicsDriver.getPlayer().getAllActorBattlers(), encounters, Database1.inventory, null).start());
+            GraphicsDriver.addState(new Battle(GraphicsDriver.getPlayer().getAllFieldBattlers(), encounters, Database1.inventory, null).start());
             GraphicsDriver.getPlayer().setInvulnerability(1000);
         }
     }
@@ -839,7 +839,7 @@ public class OverheadMap implements State {
             } else {
                 action = new Action(Battle.Command.Skill, tempSkill.getSkill().overrideCost(0), tempSkill.getInvoker().getCurrentBattler().getBattler(), tempActor.getCurrentBattler().getBattler(), tempActor.getAllBattlers());
             }
-            action.calculateDamage(new Battle(tempSkill.getInvoker().getAllActorBattlers(), tempActor.getAllActorBattlers(), Database1.inventory, null));
+            action.calculateDamage(new Battle(tempSkill.getInvoker().getAllFieldBattlers(), tempActor.getAllFieldBattlers(), Database1.inventory, null));
             if (tempActor instanceof FieldBattlerAI && tempActor.totalPartyKill()) {
                 createPickupFromActor(tempActor);
                 tempSkill.getInvoker().getAllBattlers().forEach((Battler battler) -> {

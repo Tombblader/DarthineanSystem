@@ -23,7 +23,7 @@ public class Silence extends StatusEffect {
 
     @Override
     public boolean checkStatus(Action action, Battle b) {
-        return (action.getCommand() == Battle.Command.Skill);
+        return !(action.getCommand() == Battle.Command.Skill);
     }
 
     @Override

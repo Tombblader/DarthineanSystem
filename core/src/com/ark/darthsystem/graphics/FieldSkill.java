@@ -650,7 +650,7 @@ public class FieldSkill extends ActorCollision implements Nameable {
                                 caster.getBattler(),
                                 target != null ? target.getBattler() : tempSkill.getInvoker().getCurrentBattler().getBattler(),
                                 player.getAllBattlers());
-                        action.calculateDamage(new Battle(tempSkill.getInvoker().getAllActorBattlers(), player.getAllActorBattlers(), Database1.inventory, null));
+                        action.calculateDamage(new Battle(tempSkill.getInvoker().getAllFieldBattlers(), player.getAllFieldBattlers(), Database1.inventory, null));
                     }
                     tempSkill.setMap(player.getCurrentMap());
                 }

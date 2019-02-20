@@ -472,7 +472,9 @@ public class Battle implements State {
                                     if (currentAction.getSkill() == null || !currentAction.getSkill().getAll()) {
                                         currentAction.setNewTarget();
                                     }
-                                    addAnimationAndSound(currentAction);
+                                    if (currentAction.checkStatus(this)) {
+                                        addAnimationAndSound(currentAction);
+                                    }
 //                                    animations.add(Database2.SkillToActor(allAction.get(State.ACTION.getTicks() / 2).getSkill()).getBattlerAnimation());
                                 }
                             }

@@ -1,15 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.ark.darthsystem.graphics;
 
 import com.ark.darthsystem.AI;
 import com.ark.darthsystem.BattlerAI;
 import static com.ark.darthsystem.graphics.FieldBattlerAI.State.*;
 import com.ark.darthsystem.states.OverheadMap;
-import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Filter;
@@ -21,10 +15,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Optional;
 
-/**
- *
- * @author trankt1
- */
 public class FieldBattlerAI extends Player implements Serializable {
     
     private Vector2 patrolCoordinates = Vector2.Zero;
@@ -49,7 +39,7 @@ public class FieldBattlerAI extends Player implements Serializable {
     
     public FieldBattlerAI clone() {
         ArrayList<FieldBattler> temp = new ArrayList<>();
-        getAllActorBattlers().forEach((a) -> {
+        getAllFieldBattlers().forEach((a) -> {
             temp.add(a.clone());
         });
         return new FieldBattlerAI(temp, getX(), getY());
@@ -68,7 +58,7 @@ public class FieldBattlerAI extends Player implements Serializable {
 
     public ArrayList<BattlerAI> getAllBattlerAI() {
         ArrayList<BattlerAI> allBattlers = new ArrayList<>();
-        for (FieldBattler b : this.getAllActorBattlers()) {
+        for (FieldBattler b : this.getAllFieldBattlers()) {
             allBattlers.add((BattlerAI) (b.getBattler()));
         }
         return (allBattlers);
@@ -103,7 +93,7 @@ public class FieldBattlerAI extends Player implements Serializable {
     }
     
     public void moveTowardsPoint(float x, float y, float delta) {
-        addTimer(new GameTimer("MOVE", Math.abs((x - getX()) / (getSpeed() * delta)) + Math.abs((y - getY()) / (getSpeed() * delta)) / 2f * 1000f + 1000f) {
+        addTimer(new GameTimer("MOVE", Math.abs((x - getX()) / (getCurrentBattler().getSpeed() * delta)) + Math.abs((y - getY()) / (getCurrentBattler().getSpeed() * delta)) / 2f * 1000f + 1000f) {
             @Override
             public void event(Actor a) {
                 patrolling = false;
@@ -113,10 +103,10 @@ public class FieldBattlerAI extends Player implements Serializable {
                 final float OFFSET = 1.5f;
                 if (x > (getX()) && x - (getX()) > OFFSET) {
                     changeX(1);
-                    getMainBody().setLinearVelocity(getSpeed() * delta, getMainBody().getLinearVelocity().y);
+                    getMainBody().setLinearVelocity(getCurrentBattler().getSpeed() * delta, getMainBody().getLinearVelocity().y);
                 } else if (x < (getX()) && (getX()) - x > OFFSET) {
                     changeX(-1);
-                    getMainBody().setLinearVelocity(-getSpeed() * delta, getMainBody().getLinearVelocity().y);
+                    getMainBody().setLinearVelocity(-getCurrentBattler().getSpeed() * delta, getMainBody().getLinearVelocity().y);
                 } else {
                     changeX(0);
                     getMainBody().setLinearVelocity(0, getMainBody().getLinearVelocity().y);
@@ -124,10 +114,10 @@ public class FieldBattlerAI extends Player implements Serializable {
 
                 if (y > (getY()) && y - (getY()) > OFFSET) {
                     changeY(1);
-                   getMainBody().setLinearVelocity(getMainBody().getLinearVelocity().x, getSpeed() * (float) (delta));
+                   getMainBody().setLinearVelocity(getMainBody().getLinearVelocity().x, getCurrentBattler().getSpeed() * (float) (delta));
                  } else if (y < (getY()) && (getY()) - y > OFFSET) {
                     changeY(-1);
-                    getMainBody().setLinearVelocity(getMainBody().getLinearVelocity().x, -getSpeed() * (float) (delta));
+                    getMainBody().setLinearVelocity(getMainBody().getLinearVelocity().x, -getCurrentBattler().getSpeed() * (float) (delta));
                 } else {
                     changeY(0);
                     getMainBody().setLinearVelocity(getMainBody().getLinearVelocity().x, 0);
@@ -148,25 +138,12 @@ public class FieldBattlerAI extends Player implements Serializable {
             }
         });
     }    
-
-    
-    @Override
-    public void render(Batch batch) {
-        Sprite currentImage = getCurrentImage();
-        batch.draw(currentImage,
-                this.getX() - currentImage.getOriginX(),
-                this.getY() - currentImage.getOriginY(),
-                currentImage.getOriginX(),
-                currentImage.getOriginY(),
-                currentImage.getWidth(),
-                currentImage.getHeight(),
-                currentImage.getScaleX() / PlayerCamera.PIXELS_TO_METERS,
-                currentImage.getScaleY() / PlayerCamera.PIXELS_TO_METERS,
-                currentImage.getRotation());        
-    }
     
     @Override
     public void update(float delta) {
+        while (!getCurrentBattler().getBattler().isAlive()) {
+            switchBattler();
+        }
         setElapsedTime(getElapsedTime() + GraphicsDriver.getRawDelta());
         setCurrentImage((Sprite) getCurrentAnimation().getKeyFrame(getElapsedTime()));
         for (int i = 0; i < getTimers().size(); i++) {
@@ -286,10 +263,10 @@ public class FieldBattlerAI extends Player implements Serializable {
         patrolling = false;
         if ((closestX) > (getX()) && (closestX) - (getX()) > OFFSET) {
             changeX(1);
-            getMainBody().setLinearVelocity(getSpeed() * (float) (delta), getMainBody().getLinearVelocity().y);
+            getMainBody().setLinearVelocity(getCurrentBattler().getSpeed() * (float) (delta), getMainBody().getLinearVelocity().y);
         } else if ((closestX) < (getX()) && (getX()) - (closestX) > OFFSET) {
             changeX(-1);
-            getMainBody().setLinearVelocity(-getSpeed() * (float) (delta), getMainBody().getLinearVelocity().y);
+            getMainBody().setLinearVelocity(-getCurrentBattler().getSpeed() * (float) (delta), getMainBody().getLinearVelocity().y);
         } else {
             changeX(0);
             getMainBody().setLinearVelocity(0, getMainBody().getLinearVelocity().y);
@@ -297,10 +274,10 @@ public class FieldBattlerAI extends Player implements Serializable {
         
         if ((closestY) > (getY()) && (closestY) - (getY()) > OFFSET) {
             changeY(1);
-            getMainBody().setLinearVelocity(getMainBody().getLinearVelocity().x, getSpeed() * (float) (delta));
+            getMainBody().setLinearVelocity(getMainBody().getLinearVelocity().x, getCurrentBattler().getSpeed() * (float) (delta));
         } else if ((closestY) < (getY()) && (getY()) - (closestY) > OFFSET) {
             changeY(-1);
-            getMainBody().setLinearVelocity(getMainBody().getLinearVelocity().x, -getSpeed() * (float) (delta));
+            getMainBody().setLinearVelocity(getMainBody().getLinearVelocity().x, -getCurrentBattler().getSpeed() * (float) (delta));
         } else {
             changeY(0);
             getMainBody().setLinearVelocity(getMainBody().getLinearVelocity().x, 0);

@@ -171,6 +171,27 @@ public class Action implements Serializable {
                 case Run:
                     printline(caster.getName() + " runs away!");
             }
+        } else {
+            switch (actionCommand) {
+                case Attack:
+                    printline(caster.getName() + " tries to attack!");
+//                    b.addSounds(this.caster.getEquipment(Equipment.Slot.MainHand).getSound());
+                    break;
+                case Defend:
+                    break;
+                case Skill:
+                    printline(caster.getName() + " tries to activate " + actionSkill.getName() + "!");
+                    actionSkill.playCastSound();
+                    printline(caster.getName() + " can't...");
+                    break;
+                case Charge:
+                    break;
+                case Item:
+                    break;
+                case Analyze:
+                    break;
+                case Run:
+            }
         }
     }
 
@@ -425,7 +446,10 @@ public class Action implements Serializable {
 
     public boolean checkStatus(Battle b) {
         boolean move = true;
-        move = caster.getAllStatus().stream().map((status) -> status.checkStatus(this, b)).reduce(move, (accumulator, _item) -> accumulator & _item);
+        for (StatusEffect status : caster.getAllStatus()) {
+            move &= status.checkStatus(this, b);
+        }
+//        move = caster.getAllStatus().stream().map((status) -> status.checkStatus(this, b)).reduce(move, (accumulator, _item) -> accumulator & _item);
         return move;
     }
 

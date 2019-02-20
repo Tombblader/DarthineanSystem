@@ -704,7 +704,7 @@ public class Player extends ActorCollision implements Serializable {
         return party.get(index);
     }
 
-    public ArrayList<FieldBattler> getAllActorBattlers() {
+    public ArrayList<FieldBattler> getAllFieldBattlers() {
         return party;
     }
 
@@ -735,8 +735,8 @@ public class Player extends ActorCollision implements Serializable {
         final float NAME_X = 64f;
         final float NAME_Y = 10f;
         final float FONT_SIZE = GraphicsDriver.getFont().getCapHeight();
-        for (int i = 0; i < getAllActorBattlers().size(); i++) {
-            Sprite temp = (Sprite) (getAllActorBattlers().get(i).getFace().getKeyFrame(getElapsedTime()));
+        for (int i = 0; i < getAllFieldBattlers().size(); i++) {
+            Sprite temp = (Sprite) (getAllFieldBattlers().get(i).getFace().getKeyFrame(getElapsedTime()));
             InterfaceDatabase.TEXT_BOX.draw(batch, SUB_WIDTH * i + GraphicsDriver.getCamera().getScreenPositionX(), (GraphicsDriver.getCamera().getScreenPositionY()), SUB_WIDTH, STAT_HEIGHT);
             batch.draw(temp,
                     (SUB_WIDTH * i + GraphicsDriver.getCamera().getScreenPositionX() + 5),
@@ -749,20 +749,20 @@ public class Player extends ActorCollision implements Serializable {
                     temp.getScaleY(),
                     temp.getRotation());
             GraphicsDriver.drawMessage(batch, font,
-                    getAllActorBattlers().get(i).getBattler().getName(),
+                    getAllFieldBattlers().get(i).getBattler().getName(),
                     ((NAME_X + SUB_WIDTH * i) + GraphicsDriver.getCamera().getScreenPositionX()),
                     (NAME_Y + GraphicsDriver.getCamera().getScreenPositionY()));
             GraphicsDriver.drawMessage(batch, font,
-                    "HP: " + getAllActorBattlers().get(i).getBattler().getHP() + "/" + getAllActorBattlers().get(i).getBattler().getMaxHP(),
+                    "HP: " + getAllFieldBattlers().get(i).getBattler().getHP() + "/" + getAllFieldBattlers().get(i).getBattler().getMaxHP(),
                     ((NAME_X + SUB_WIDTH * i) + GraphicsDriver.getCamera().getScreenPositionX()),
                     ((NAME_Y + FONT_SIZE) + GraphicsDriver.getCamera().getScreenPositionY()
                             ));
             GraphicsDriver.drawMessage(batch, font,
-                    "MP: " + getAllActorBattlers().get(i).getBattler().getMP() + "/" + getAllActorBattlers().get(i).getBattler().getMaxMP(),
+                    "MP: " + getAllFieldBattlers().get(i).getBattler().getMP() + "/" + getAllFieldBattlers().get(i).getBattler().getMaxMP(),
                     ((NAME_X + SUB_WIDTH * i) + GraphicsDriver.getCamera().getScreenPositionX()),
                     ((NAME_Y + FONT_SIZE * 2f) + GraphicsDriver.getCamera().getScreenPositionY()));
             GraphicsDriver.drawMessage(batch, font,
-                    getAllActorBattlers().
+                    getAllFieldBattlers().
                             get(i).
                             getCurrentSkill().
                             getSkill().

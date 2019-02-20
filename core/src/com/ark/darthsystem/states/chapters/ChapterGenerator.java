@@ -113,7 +113,7 @@ public class ChapterGenerator {
                         }
                         break;
                     case "AddParty":
-                        Database2.player.getAllActorBattlers().add(CHARACTER_LIST.get(element.getText()));
+                        Database2.player.getAllFieldBattlers().add(CHARACTER_LIST.get(element.getText()));
                         break;
                     case "TurnPage":
                         if (element.getText().equalsIgnoreCase("BACK")) {
