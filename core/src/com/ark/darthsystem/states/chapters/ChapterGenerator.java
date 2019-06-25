@@ -52,11 +52,11 @@ public class ChapterGenerator {
         return (Page) () -> {
             for (int i = 0; i < page.getChildCount(); i++) {
                 XmlReader.Element element = page.getChild(i);
-                switch (element.getName()) {
+                switch (element.getName().toLowerCase()) {
                     case "page":
                         createPage(page, novel).run();
                         break;
-                    case "PrintLine":
+                    case "printline":
                         if (element.hasAttribute("name")) {
                             if (element.hasAttribute("face")) {
                                 BattleDriver.printline(CHARACTER_LIST.get(element.getAttribute("name")),
@@ -68,7 +68,7 @@ public class ChapterGenerator {
                             BattleDriver.printline(element.getText());
                         }
                         break;
-                    case "Condition":
+                    case "condition":
                         Array<XmlReader.Element> choices = element.getChildrenByName("Choice");
                         String[] s = new String[choices.size];
                         for (int j = 0; j < choices.size; j++) {
@@ -87,8 +87,6 @@ public class ChapterGenerator {
                             for(Entry<String, String> e : choice.getAttributes().iterator()) {
                                 if (Database1.variables.get(e.key).equals(e.value)) {
                                     createPage(choice, novel).run();
-
-//                                    novel.chapters.add(novel.pageIndex + 1, createPage(choice, novel));
                                 }
                             }
                         }
@@ -108,21 +106,21 @@ public class ChapterGenerator {
                         }
                         break;
                     case "set":
-                        for(Entry<String, String> e : element.getAttributes().iterator()) {
+                        for (Entry<String, String> e : element.getAttributes().iterator()) {
                             Database1.variables.put(e.key, e.value);
                         }
                         break;
-                    case "AddParty":
+                    case "addparty":
                         Database2.player.getAllFieldBattlers().add(CHARACTER_LIST.get(element.getText()));
                         break;
-                    case "TurnPage":
+                    case "turnpage":
                         if (element.getText().equalsIgnoreCase("BACK")) {
                             novel.pageIndex -= -2;
                         } else {
                             novel.pageIndex += Integer.parseInt(element.getText());
                         }
                         break;
-                    case "SetPage":
+                    case "setpage":
                         novel.pageIndex = Integer.parseInt(element.getText()) - 1;
                         break;
                     default:

@@ -20,7 +20,7 @@ public class NovelMode extends Event {
         super(img, getX, getY, delay);
         novel = n;
         setTriggerMethod(TriggerMethod.AUTO);
-        setID(0);
+//        setID(0);
     }
     
     public NovelMode() {
@@ -31,7 +31,7 @@ public class NovelMode extends Event {
         super(img, getX, getY, delay);
         novel = n;
         setTriggerMethod(t);
-        setID(0);
+//        setID(0);
     }
     
     private Novel novel;

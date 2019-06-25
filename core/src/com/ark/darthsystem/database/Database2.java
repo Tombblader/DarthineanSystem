@@ -44,33 +44,31 @@ public class Database2 {
             try {
                 new Database1();
                 new CharacterDatabase();
-                Database2.load(load);
+                load(load);
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
-                new Database1();
-                new CharacterDatabase();
-                FieldBattler[] battlers;
-                battlers = new FieldBattler[]{
-                    CHARACTER_LIST.get("BLUE LADY")
-                };
-                CHARACTER_LIST.get("BLUE LADY").getBattler().equip(ItemDatabase.EQUIPMENT_LIST.get("BRONZE SWORD"));
-
-                player = new Player(new ArrayList<>(Arrays.asList(battlers)), 0, 0);
+                newGame();
             }
         } else {
-            new Database1();
-            new CharacterDatabase();
-            FieldBattler[] battlers;
-            battlers = new FieldBattler[]{
-                CHARACTER_LIST.get("BLUE LADY")
-            };
-            CHARACTER_LIST.get("BLUE LADY").getBattler().equip(ItemDatabase.EQUIPMENT_LIST.get("BRONZE SWORD"));
-            player = new Player(new ArrayList<>(Arrays.asList(battlers)), 0, 0);
+            newGame();
         }
         new MonsterDatabase();
-        
+
     }
-    
+
+    public static void newGame() {
+        new Database1();
+        new CharacterDatabase();
+        FieldBattler[] battlers;
+        battlers = new FieldBattler[]{
+            CHARACTER_LIST.get("BLUE LADY")
+        };
+        CHARACTER_LIST.get("BLUE LADY").getBattler().equip(ItemDatabase.EQUIPMENT_LIST.get("BRONZE SWORD"));
+
+        player = new Player(new ArrayList<>(Arrays.asList(battlers)), 0, 0);
+
+    }
+
     public static void load(String fileName)
             throws FileNotFoundException, IOException, ClassNotFoundException {
         try (ObjectInputStream objectStream
@@ -85,7 +83,7 @@ public class Database2 {
             player = (Player) objectStream.readObject();
         }
     }
-    
+
     public static void save(String fileName) throws FileNotFoundException, IOException {
 //        Database1.save(fileName);
         try (ObjectOutputStream objectStream
@@ -98,17 +96,17 @@ public class Database2 {
             objectStream.writeObject(Database1.variables);
             objectStream.writeObject(player);
         }
-    }    
+    }
+
     public Database2() {
         this("");
     }
-    
+
     public void initialize() {
-        
+
     }
 
 //    public static HashMap<Skill, FieldSkill> SkillToActor;
-
     public static ArrayList<Actor> enemySampleMap;
     public static Pickup GraphicsPotion;
     public static NovelMode chapter1;
@@ -116,14 +114,14 @@ public class Database2 {
     public static final FieldSkill Spear = new FieldSkill("items/equipment/spear/field/field",
             1,
             1,
-            1f/24f,
+            1f / 24f,
             null);
 
     public static FieldSkill Sword() {
         return new FieldSkill("items/equipment/sword/field/field",
                 1,
                 1,
-                1f/24f,
+                1f / 24f,
                 null,
                 FieldSkill.Area.FRONT,
                 "widesword");
@@ -133,25 +131,24 @@ public class Database2 {
         return new FieldSkill("items/equipment/sword/field/field",
                 1,
                 1,
-                1f/24f,
+                1f / 24f,
                 null,
                 FieldSkill.Area.FRONT,
-                "widesword");        
+                "widesword");
     }
 
     public static Actor getDefaultBattlerUnarmedAnimation() {
         Actor a = new Actor("items/equipment/sword/battler/battler",
                 0,
                 0,
-                1f/24f, 
-                true); 
+                1f / 24f,
+                true);
         for (Sprite s : a.getCurrentAnimation().getKeyFrames()) {
             s.setOriginCenter();
         }
         return a;
     }
 
-    
     //This generates a skill list based on the skills available to the character.  It accepts an input of a battler, then assigns animations based on the index of each skill.
     public static FieldSkill SkillToActor(String s) {
         return SkillDatabase.FIELD_SKILL_LIST.get(s.toUpperCase());

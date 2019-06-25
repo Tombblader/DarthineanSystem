@@ -60,16 +60,18 @@ public class Pickup extends Event {
     }
     
     
-    public void run() {
-        for (Item i : item) {
-            BattleDriver.printline("Obtained" + (i.getCharges() > 0 ? " " + i.getCharges(): "") + " " + i.getName() + "!");
+    public void run() {      
+        if (!isFinished) {
+            for (Item i : item) {
+                BattleDriver.printline("Obtained" + (i.getCharges() > 0 ? " " + i.getCharges(): "") + " " + i.getName() + "!");
+            }
+            BattleDriver.addItems(item);
+            if (money != 0) {
+                BattleDriver.printline("Got " + money + " GP!");            
+                Database1.money += money;
+            }
+            isFinished = true;
         }
-        BattleDriver.addItems(item);
-        if (money != 0) {
-            BattleDriver.printline("Got " + money + " GP!");            
-            Database1.money += money;
-        }
-        isFinished = true;
     }
 
     public boolean isFinished() {

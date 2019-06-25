@@ -51,7 +51,6 @@ public class Teleport extends Event {
     public Event createFromMap(MapProperties prop) {
         String[] parameters = prop.get("parameters", String.class).split(",* ");
         String image = prop.get("image", String.class);
-//        this.setCurrentImage(GraphicsDriver.getMasterSheet().createSprite(image));
         setX(prop.get("x", Float.class));
         setY(prop.get("y", Float.class));
         map = parameters[0];
@@ -60,16 +59,6 @@ public class Teleport extends Event {
         Teleport t = new Teleport(image, prop.get("x", Float.class), prop.get("y", Float.class), 6 / 60f, map, newX, newY);
         t.setTriggerMethod(TriggerMethod.valueOf(prop.get("trigger", String.class).toUpperCase()));
         return t;
-//        return this;
-//                image = GraphicsDriver.getMasterSheet().createSprites(prop.get("image", String.class)).toArray(Sprite.class);
-//                e = new Teleport(image.length > 0 ? image : null,
-//         new Teleport(image,
-//                        prop.get("x", Float.class),
-//                        prop.get("y", Float.class),
-//                        6 / 60f,
-//                        parameters[0],
-//                        Integer.parseInt(parameters[1]),
-//                        Integer.parseInt(parameters[2]));        
     }
     
     @Override

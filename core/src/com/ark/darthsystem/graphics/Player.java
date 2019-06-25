@@ -784,6 +784,11 @@ public class Player extends ActorCollision implements Serializable {
                 attacking = false;
                 enableMovement();
             }
+            @Override
+            public boolean update(float delta, Actor a) {
+                disableMovement();
+                return super.update(delta, a);
+            }
             
             @Override
             public boolean isFinished() {
