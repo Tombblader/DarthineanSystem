@@ -1,5 +1,8 @@
 package com.ark.darthsystem.states.chapters;
 
+import com.ark.darthsystem.graphics.Actor;
+import com.ark.darthsystem.graphics.FieldBattlerAI;
+import com.ark.darthsystem.graphics.GameTimer;
 import com.ark.darthsystem.graphics.GraphicsDriver;
 import com.ark.darthsystem.states.State;
 import com.ark.darthsystem.states.Menu;
@@ -7,10 +10,10 @@ import com.ark.darthsystem.states.Message;
 import com.ark.darthsystem.states.OverheadMap;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.utils.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.StringTokenizer;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  *
@@ -19,13 +22,15 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public abstract class Novel implements State {
 
     public ArrayList<Page> chapters;
+    public Array<Actor> actorList;
     private boolean isFinished = false;
     
     String choices;
     int pageIndex = 0;
-    CopyOnWriteArrayList<TickEvent> timers = new CopyOnWriteArrayList<>();
+    ArrayList<GameTimer> timers = new ArrayList<>();
     public Novel() {
         this.chapters = new ArrayList<>();
+        this.actorList = new Array<>();
     }
 
 
@@ -49,6 +54,9 @@ public abstract class Novel implements State {
         if (ste != null) {
             ste.render(batch);
         }
+        for (Actor a : actorList) {
+            a.render(batch);
+        }
     }
     
     @Override
@@ -62,6 +70,19 @@ public abstract class Novel implements State {
         if (ste != null) {
             ((OverheadMap)(ste)).updatePartial(delta);
         }
+        for (int i = 0; i < actorList.size; i++) {
+            Actor a = actorList.get(i);
+            if (a instanceof FieldBattlerAI && ((FieldBattlerAI) (a)).totalPartyKill()) {
+                actorList.removeIndex(i);
+                i--;
+            } else {
+                a.update(delta);
+                if (a.isFinished()) {
+                    actorList.removeIndex(i);
+                    i--;
+                }
+            }
+        }        
         if (timers.isEmpty()) {
             if (chapters.size() <= pageIndex) {
                 GraphicsDriver.removeState(this);
@@ -73,7 +94,7 @@ public abstract class Novel implements State {
             }
         } else {
             for (int i = 0; i < timers.size(); i++) {
-                TickEvent t = timers.get(i);
+                GameTimer t = timers.get(i);
                 t.update(delta);
                 if (t.isFinished()) {
                     timers.remove(t);
@@ -101,6 +122,15 @@ public abstract class Novel implements State {
         public abstract void run();
     }
     
+    public class PlayActor implements Page {
+
+        @Override
+        public void run() {
+            
+        }
+        
+    }
+    
     public class Dialogue implements Page {
         private String textFile;
         public Dialogue(String text) {
@@ -124,6 +154,10 @@ public abstract class Novel implements State {
         public void run() {
             
         }
+    }
+    
+    public void addTimer(GameTimer t) {
+        timers.add(t);
     }
     
     public abstract class TickEvent {

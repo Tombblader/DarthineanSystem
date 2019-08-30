@@ -201,7 +201,8 @@ public class ActorSprite implements Serializable {
     public enum SpriteModeBattler {
         BATTLER,
         CUSTOM;
-        /*      ATTACK,
+        /*
+        ATTACK,
         CAST,
         */
         

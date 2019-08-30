@@ -76,6 +76,8 @@ public class Actor implements Serializable {
             animation = new Animation<>(delay, new Array<>(images));
             animation.setPlayMode(PlayMode.LOOP);
             currentImage = (Sprite) animation.getKeyFrame(0);
+        } else {
+            animation = new Animation<>(0, new Array<>());
         }
         isMovable = true;
         destroyAfterAnimation = false;

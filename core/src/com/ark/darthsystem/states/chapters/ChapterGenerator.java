@@ -9,7 +9,9 @@ import com.ark.darthsystem.BattleDriver;
 import static com.ark.darthsystem.database.CharacterDatabase.CHARACTER_LIST;
 import com.ark.darthsystem.database.Database1;
 import com.ark.darthsystem.database.Database2;
+import com.ark.darthsystem.graphics.Actor;
 import com.ark.darthsystem.graphics.ActorSprite.SpriteModeFace;
+import com.ark.darthsystem.graphics.GameTimer;
 import com.ark.darthsystem.graphics.GraphicsDriver;
 import com.ark.darthsystem.states.chapters.Novel.Condition;
 import com.ark.darthsystem.states.chapters.Novel.Page;
@@ -84,7 +86,7 @@ public class ChapterGenerator {
                             }
                         }
                         for (XmlReader.Element choice : element.getChildrenByName("variable")) {
-                            for(Entry<String, String> e : choice.getAttributes().iterator()) {
+                            for (Entry<String, String> e : choice.getAttributes().iterator()) {
                                 if (Database1.variables.get(e.key).equals(e.value)) {
                                     createPage(choice, novel).run();
                                 }
@@ -124,6 +126,25 @@ public class ChapterGenerator {
                         novel.pageIndex = Integer.parseInt(element.getText()) - 1;
                         break;
                     default:
+                        break;
+                    case "playanimation":
+                        Actor a = new Actor(element.getAttribute("name"), 
+                                (float) Double.parseDouble(element.getAttribute("x")), 
+                                (float) Double.parseDouble(element.getAttribute("y")),
+                                1f / (float) Double.parseDouble(element.getAttribute("fps")),
+                                true);
+                        GraphicsDriver.getPlayer().getCurrentMap().addActor(a);
+                        novel.actorList.add(a);
+                        novel.addTimer(new GameTimer(element.getAttribute("name"), 99999999) {
+                            @Override
+                            public void event(Actor a) {
+                            }
+
+                            @Override
+                            public boolean isFinished() {
+                                return a.isFinished();
+                            }
+                        });
                         break;
                 }
             }

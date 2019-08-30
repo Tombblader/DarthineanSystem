@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <chapter>
+	<page>
+		<PlayAnimation name="skills/red_spin/field/red_spin" x="14" y="18" fps="12">
+		</PlayAnimation>
+	</page>
     <page>
         <PrintLine name="BLUE LADY" face="NORMAL">
             You are a complete buffoon.

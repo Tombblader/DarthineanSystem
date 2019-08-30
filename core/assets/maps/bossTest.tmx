@@ -14,19 +14,7 @@
   </data>
  </layer>
  <objectgroup name="collisionActors"/>
- <objectgroup name="collisionEvents">
-  <object id="8" name="novel_veather_charm" type="event" x="992" y="1344" width="32" height="32">
-   <properties>
-    <property name="collision" value="FALSE"/>
-    <property name="collisionType" value="wall"/>
-    <property name="eventID" type="int" value="1"/>
-    <property name="eventName" value="NovelMode"/>
-    <property name="parameters" value="chapterVeather"/>
-    <property name="trigger" value="AUTO"/>
-   </properties>
-   <ellipse/>
-  </object>
- </objectgroup>
+ <objectgroup name="collisionEvents"/>
  <layer name="fringe" width="56" height="56">
   <data encoding="base64" compression="zlib">
    eJztwTEBAAAAwqD1T20ND6AAAAAAAAAAAAAAAAC+DTEAAAE=
