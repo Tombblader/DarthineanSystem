@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.ark.darthsystem.graphics;
 
 import com.ark.darthsystem.BattleDriver;
@@ -628,7 +623,8 @@ public class Player extends ActorCollision implements Serializable {
                     }
                     return -1;        
                 };
-                getCurrentMap().getPhysicsWorld().rayCast(buttonPushFinder, getMainBody().getPosition(), new Vector2(getFacing().getVector()).add(getMainBody().getPosition()));
+                getCurrentMap().getPhysicsWorld().rayCast(buttonPushFinder, getMainBody().getPosition(), 
+                        (new Vector2(getFacing().getVector()).add(getMainBody().getPosition())).add(getFacing().getVector().scl(.25f)));
                 
                 if (!hasEvent) {
                     attack();

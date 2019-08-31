@@ -121,16 +121,7 @@ public abstract class Novel implements State {
     public abstract class tempPage implements Page {
         public abstract void run();
     }
-    
-    public class PlayActor implements Page {
-
-        @Override
-        public void run() {
-            
-        }
         
-    }
-    
     public class Dialogue implements Page {
         private String textFile;
         public Dialogue(String text) {

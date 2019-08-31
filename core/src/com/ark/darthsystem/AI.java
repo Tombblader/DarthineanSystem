@@ -194,5 +194,5 @@ public class AI implements Serializable {
                 (turn == NO_FLAG &&
                 turnInterval == NO_FLAG));
         return isUsable;
-    }    
+    }
 }

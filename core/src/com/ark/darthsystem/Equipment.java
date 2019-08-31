@@ -39,7 +39,7 @@ public class Equipment extends Item implements Cloneable {
      * @param getDescription
      * @param getMarketPrice
      * @param type
-     * 
+     * @param imageName
      * @param slot
      * @param invoke
      * @param initializeElement

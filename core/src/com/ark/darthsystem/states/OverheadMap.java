@@ -603,7 +603,7 @@ public class OverheadMap implements State {
         drawMessage(renderer.getBatch());
         renderer.getBatch().end();
 
-//        debugRender.render(world, GraphicsDriver.getCurrentCamera().combined);
+        debugRender.render(world, GraphicsDriver.getCurrentCamera().combined);
         Array<Body> temp = new Array<>();
         world.getBodies(temp);
         for (int i = 0; i < deleteQueue.size; i++) {

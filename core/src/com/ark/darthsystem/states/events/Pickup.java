@@ -74,6 +74,7 @@ public class Pickup extends Event {
         }
     }
 
+    @Override
     public boolean isFinished() {
         return isFinished;
     }

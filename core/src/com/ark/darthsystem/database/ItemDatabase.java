@@ -36,7 +36,7 @@ public class ItemDatabase {
                     Integer.parseInt(data[++i]), //Market Price
                     data[++i].split(", "), //Equipment Types
                     Equipment.Slot.valueOf(data[++i]), //Slot
-                    SkillDatabase.SKILL_LIST.get(data[++i].toUpperCase()),
+                    SkillDatabase.SKILL_LIST.get(data[++i].toUpperCase()), //Skill Effect
                     Battle.Element.valueOf(data[++i]), //Element
                     Boolean.valueOf(data[++i].toLowerCase()), //Use MP?
                     Integer.parseInt(data[++i]), //Attack

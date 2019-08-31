@@ -17,8 +17,8 @@ import java.util.Optional;
 
 public class FieldBattlerAI extends Player implements Serializable {
     
-    private Vector2 patrolCoordinates = Vector2.Zero;
-    private Vector2 lastSeenPosition = Vector2.Zero;
+    private Vector2 patrolCoordinates = new Vector2(Vector2.Zero);
+    private Vector2 lastSeenPosition = new Vector2(Vector2.Zero);
     private boolean patrolling = false;
 //    private float speed = .2f;
     private int vision = 10;

@@ -3,29 +3,15 @@
  <properties>
   <property name="music" value="Forbidden Shrine of Heroes.mp3"/>
  </properties>
- <tileset firstgid="1" name="tileset" tilewidth="32" tileheight="32" tilecount="64" columns="8">
-  <image source="tileset.png" width="256" height="256"/>
-  <tile id="19">
-   <objectgroup draworder="index">
-    <properties>
-     <property name="collision" type="bool" value="true"/>
-     <property name="collisionType" value="obstacle"/>
-    </properties>
-    <object id="2" name="boulderWall" type="obstacle" x="0" y="0" width="32" height="32">
-     <ellipse/>
-    </object>
-   </objectgroup>
-  </tile>
- </tileset>
- <tileset firstgid="65" source="tileset.tsx"/>
+ <tileset firstgid="1" source="tileset.tsx"/>
  <layer name="background" width="32" height="24">
   <data encoding="base64" compression="zlib">
-   eJztzKERADAIBLA/xqhl/x0ZAlFBRGw6SfNNAQBwylvaPgMtcBUx
+   eJztwQEBAAAAgiD/r25IQAEAAC8GDAAAAQ==
   </data>
  </layer>
  <layer name="object" width="32" height="24">
   <data encoding="base64" compression="zlib">
-   eJxjYBj6QHiA7ZceYPtHwSgYBaNgJAGRgXbAKBgFo2AUDHEAAG0GAEM=
+   eJztzgEJAAAMA6CFeP+sjzEGmsAEAHZcOwAw7gF1oAAV
   </data>
  </layer>
  <objectgroup name="collision">

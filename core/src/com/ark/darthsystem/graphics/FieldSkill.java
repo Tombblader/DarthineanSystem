@@ -707,12 +707,19 @@ public class FieldSkill extends ActorCollision implements Nameable {
         HEAL, // Just some healing..
         BUFF, // Just some buffing..
         STONE, // (Creates a stone wall that acts as an obstacle)
-        SHINE, // (Temporarily removes darkness
+        SHINE, // (Temporarily removes darkness)
         PURIFY, // (Removes festering corruption)
         CORRUPT, // (Inflicts corruption on vulnerable creatures and items)
         SLASH, // (Cuts down things)
         PIERCE, // (bypass obstacles)
         SMASH, // Break stone
+        RED, // Red
+        BLUE, // Blue
+        YELLOW, // Yellow
+        GREEN, // Green
+        WHITE, // White
+        BLACK, // Black
+        PRISMATIC, // All Colors
         EVENT // Call an Event instead.
     }
     
