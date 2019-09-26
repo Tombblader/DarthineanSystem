@@ -36,7 +36,9 @@ public class MapDatabase {
     }
     
     public static OverheadMap getMap(String mapName) {
-        return null;
+        if (!maps.containsKey(mapName))
+            return new OverheadMap(mapName, false);
+        return maps.get(mapName);
     }
     
     private void setDefaultMap() {
@@ -76,7 +78,7 @@ public class MapDatabase {
         FileHandle[] f = Gdx.files.internal("maps").list(); //CANNOT LIST INSIDE JAR
         for (FileHandle file : f) {
              if (file.extension().equalsIgnoreCase("tmx")) {
-                maps.put(file.nameWithoutExtension(), new OverheadMap(file.path(), false));
+                mapNames.add(file.nameWithoutExtension());
             }
         }
     }

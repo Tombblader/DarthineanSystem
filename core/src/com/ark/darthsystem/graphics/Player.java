@@ -125,6 +125,7 @@ public class Player extends ActorCollision implements Serializable {
         moveRight = Keys.RIGHT;
         slowButton = Keys.SHIFT_LEFT;
         attackButton = Keys.SPACE;
+        confirmButton = Keys.SPACE;
         switchBattlerButton = Keys.A;
         skillButton = Keys.F;
         switchSkill = Keys.S;
@@ -846,7 +847,7 @@ public class Player extends ActorCollision implements Serializable {
                         @Override
                         public boolean update(float delta, Actor a) {
                             if (!b.isAlive()) {
-                                fieldState = ActorSprite.SpriteModeField.OUCH;
+//                                fieldState = ActorSprite.SpriteModeField.OUCH;
                                 ouchBattler.setFace(ActorSprite.SpriteModeFace.OUCH);
                             }
                             return super.update(delta, a);

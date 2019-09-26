@@ -204,6 +204,7 @@ public class ActorSprite implements Serializable {
         /*
         ATTACK,
         CAST,
+        OUCH
         */
         
     }

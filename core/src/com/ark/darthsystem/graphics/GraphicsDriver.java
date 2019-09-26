@@ -14,13 +14,16 @@ import java.util.ArrayList;
 import com.ark.darthsystem.database.Database2;
 import com.ark.darthsystem.database.InterfaceDatabase;
 import com.ark.darthsystem.database.SoundDatabase;
-import com.ark.darthsystem.states.chapters.Novel;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Graphics.DisplayMode;
+import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.assets.loaders.FileHandleResolver;
+import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -31,6 +34,9 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGeneratorLoader;
+import com.badlogic.gdx.graphics.g2d.freetype.FreetypeFontLoader;
+import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
@@ -56,6 +62,7 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
     private static Sprite screenshot;
     private static ArrayList<Transition> transitions = new ArrayList<>();
     private static final float FONT_SCALE = 1f;
+    private AssetManager assets;
     
     public static Player getPlayer() {
         return Database2.player;
@@ -308,6 +315,7 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
     
     @Override
     public void create() {
+        assets = new AssetManager();
         input = new Input();
         DisplayMode optimal = Gdx.graphics.getDisplayMode();
 //        Gdx.graphics.setFullscreenMode(optimal);
@@ -325,7 +333,6 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
                 t.flip(false, true);
             }
         }
-        
         FreeTypeFontGenerator gen = new FreeTypeFontGenerator(Gdx.files.internal("fonts/monofont.ttf"));
         FreeTypeFontParameter parameter = new FreeTypeFontParameter();
         parameter.size = 24;
@@ -339,6 +346,15 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
         Gdx.input.setInputProcessor(input);
         states = new Array<>();
         states.add(new Title());
+    }
+    
+    private void loadAssets() {
+        assets.load("master/MasterSheet.atlas", TextureAtlas.class);
+        assets.load("backgrounds/gameover.png", Texture.class);
+        assets.load("backgrounds/title.png", Texture.class);
+        assets.load("interface/window", Texture.class);
+//        assets.
+        SoundDatabase.load(assets);
     }
     
     @Override

@@ -5,6 +5,7 @@
  */
 package com.ark.darthsystem.states;
 
+import com.ark.darthsystem.database.MapDatabase;
 import com.ark.darthsystem.graphics.GraphicsDriver;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
@@ -40,7 +41,11 @@ public class GameOver implements State {
                             true) {
                         @Override
                         public Object confirm(String choice) {
-                            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                            GraphicsDriver.loadGame("save" + getCursorIndex() + ".sav");
+                            GraphicsDriver.addState((State) (MapDatabase.getMaps().get(MapDatabase.DEFAULT_MAP))); //Need to fix loaded map..
+                            GraphicsDriver.transition();
+                            ((OverheadMap) (GraphicsDriver.getCurrentState())).updatePartial(0);
+                            return choice;
                         }
                     });
                 }                

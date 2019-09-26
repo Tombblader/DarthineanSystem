@@ -3,13 +3,14 @@ package com.ark.darthsystem.states.events;
 import com.ark.darthsystem.graphics.ActorCollision;
 import com.ark.darthsystem.states.OverheadMap;
 import com.badlogic.gdx.maps.MapProperties;
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  *
  * @author Keven
  */
-public abstract class Event extends ActorCollision {
+public abstract class Event extends ActorCollision implements Serializable {
     private static int ID;
     private static String eventName;
     private TriggerMethod trigger = null;
@@ -87,6 +88,7 @@ public abstract class Event extends ActorCollision {
         return hash;
     }
     
+    @Override
     public void setMap(OverheadMap map) {
         super.setMap(map);
 //        try {

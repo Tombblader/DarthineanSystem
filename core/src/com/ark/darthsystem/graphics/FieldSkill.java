@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.ark.darthsystem.graphics;
 
 import com.ark.darthsystem.Action;
@@ -69,7 +64,6 @@ public class FieldSkill extends ActorCollision implements Nameable {
         super(img, getX, getY, delay, true);
         this.tags = new ArrayList<>();
         this.fieldSound = SoundDatabase.fieldSwordSound;
-//        this.battlerSound = SoundDatabase.battlerSwordSound;
         originalFieldImageName = img;
         try {
             originalFieldImage = GraphicsDriver.getMasterSheet().createSprites(img).toArray(Sprite.class);
@@ -99,7 +93,6 @@ public class FieldSkill extends ActorCollision implements Nameable {
         super(img, getX, getY, delay, true, shape);
         this.tags = new ArrayList<>();
         this.fieldSound = SoundDatabase.fieldSwordSound;
-//        this.battlerSound = SoundDatabase.battlerSwordSound;
         originalFieldImageName = img;
         try {
             originalFieldImage = GraphicsDriver.getMasterSheet().createSprites(img).toArray(Sprite.class);

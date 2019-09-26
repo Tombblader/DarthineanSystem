@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.ark.darthsystem.database;
 
 import com.badlogic.gdx.maps.MapLayer;
@@ -21,10 +16,6 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.Shape;
 import java.util.HashMap;
 
-/**
- *
- * @author Keven
- */
 public class CollisionDatabaseLoader {
     private static final float ppt = 32f;
     private static HashMap<String, Shape> shapes;

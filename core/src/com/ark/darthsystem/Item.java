@@ -57,6 +57,7 @@ public class Item implements Serializable, Cloneable, Nameable {
      *
      * @param getName
      * @param getDescription
+     * @param imageName
      * @param price
      * @param charges
      * @param initializeHP

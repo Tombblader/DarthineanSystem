@@ -32,6 +32,7 @@ import java.util.HashMap;
 public class Database2 {
 
     public static Player player;
+    
 //    public static HashMap<Skill, ActorSkill> SkillToActor;
 
     public Database2(String load) {

@@ -126,6 +126,39 @@ public class OverheadMap implements State {
         generateBounds();
         generateObjects();
     }
+    
+    public void reload() {
+        renderer = new OrthogonalTiledMapRenderer((new TmxMapLoader().load(mapName, new Parameters() {
+            {
+                this.flipY = false;
+            }
+        })), 1f / PlayerCamera.PIXELS_TO_METERS);
+        for (MapLayer m : (renderer.getMap().getLayers())) {
+            if (!(m instanceof TiledMapTileLayer)) {
+                for (MapObject mo : m.getObjects()) {
+                    if (mo instanceof TextureMapObject) {
+                        ((TextureMapObject) (mo)).getTextureRegion().flip(false, true);
+                    }
+                }
+            }
+        }
+        for (TiledMapTileSet tileset : renderer.getMap().getTileSets()) {
+            for (Iterator iterator = tileset.iterator(); iterator.hasNext();) {
+                TiledMapTile tiled = (TiledMapTile) (iterator.next());
+                tiled.getTextureRegion().flip(false, true);
+            }
+        }
+        this.mapName = mapName;
+        MapProperties prop = renderer.getMap().getProperties();
+        updateProperties(prop);
+        width = prop.get("width", Integer.class) * prop.get("tilewidth", Integer.class);
+        height = prop.get("height", Integer.class) * prop.get("tileheight", Integer.class);
+        actorList = new Array<>(Actor.class);
+        world = new World(new Vector2(0, 0), true);
+        world.setContactListener(new OverheadContactListener());
+        generateBounds();
+        generateObjects();
+    }
 
     public OverheadMap(String mapName, String bgmName) {
         this(mapName, false);

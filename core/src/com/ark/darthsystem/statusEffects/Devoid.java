@@ -16,22 +16,22 @@ import com.ark.darthsystem.states.Battle;
  *
  * @author keven
  */
-public class Poison extends StatusEffect {
+public class Devoid extends StatusEffect {
 
-    public Poison() {
-        super("Poison", 2, .25, .1, 0, false, " has been poisoned!");
+    public Devoid() {
+        super("Devoid", 2, .25, .1, 0, false, " has been corrupted...");
     }
     
-    public Poison(int turn) {
+    public Devoid(int turn) {
         this();
         setInitialTurnCount(turn);
     }
 
     @Override
     public boolean checkStatus(Action action, Battle b) {
-        printline(action.getCaster().getName() + " takes " + (action.getCaster().getMaxHP() / 33) + " damage from the poison.");
-        if (action.getCaster().changeHP(action.getCaster().getMaxHP() / 33)) {
-            printline(action.getCaster().getName() + " has collapsed from the poison!");
+        printline(action.getCaster().getName() + " takes " + (action.getCaster().getMaxHP() / 6) + " damage from the corruption.");
+        if (action.getCaster().changeHP(action.getCaster().getMaxHP() / 6)) {
+            printline(action.getCaster().getName() + " has collapsed from the corruption.");
             return false;
         }
         return true;
@@ -39,9 +39,9 @@ public class Poison extends StatusEffect {
     
     @Override
     public void checkFieldStatus(Player player, Battler battler, GameTimer timer) {
-        printline(battler.getName() + " takes " + (battler.getMaxHP() / 33) + " damage from the poison.");
-        if (battler.changeHP(battler.getMaxHP() / 33)) {
-            printline(battler.getName() + " has collapsed from the poison!");
+        printline(battler.getName() + " takes " + (battler.getMaxHP() / 6) + " damage from the corruption.");
+        if (battler.changeHP(battler.getMaxHP() / 6)) {
+            printline(battler.getName() + " has been fully corrupted.");
         }
     }
 
@@ -53,7 +53,7 @@ public class Poison extends StatusEffect {
     
     @Override
     public String getDescription() {
-        return "Victim takes damage each turn.";
+        return "Victim takes heavy damage each turn and becomes Dark element.";
     }
 
 }
