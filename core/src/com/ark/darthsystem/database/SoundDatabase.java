@@ -7,6 +7,8 @@ package com.ark.darthsystem.database;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.assets.loaders.SoundLoader;
+import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.Array;
@@ -44,11 +46,13 @@ public class SoundDatabase {
     }
 
     private static void initializeSoundsAssetManager(AssetManager assets) {
+        assets.setLoader(Sound.class, new SoundLoader(new InternalFileHandleResolver()));
         FileHandle[] f = Gdx.files.internal("sounds").list(); //CANNOT LIST INSIDE JAR
         for (FileHandle file : f) {
             if (file.extension().equalsIgnoreCase("wav")) {
-                assets.load(file.name(), Sound.class);
-                SOUNDS.put(file.nameWithoutExtension().toUpperCase(), assets.get(file.name()));
+                assets.load(file.path(), Sound.class);
+                assets.finishLoading();
+                SOUNDS.put(file.nameWithoutExtension().toUpperCase(), assets.get(file.path()));
             }
         }
     }

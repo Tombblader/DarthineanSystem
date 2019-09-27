@@ -9,6 +9,7 @@ import com.ark.darthsystem.database.Database2;
 import com.ark.darthsystem.database.EventDatabase;
 import com.ark.darthsystem.database.InterfaceDatabase;
 import com.ark.darthsystem.database.ItemDatabase;
+import com.ark.darthsystem.database.MapDatabase;
 import com.ark.darthsystem.database.MonsterDatabase;
 import com.ark.darthsystem.graphics.Actor;
 import com.ark.darthsystem.graphics.FieldBattlerAI;
@@ -27,6 +28,7 @@ import com.ark.darthsystem.states.events.Teleport;
 import com.ark.darthsystem.states.events.Treasure;
 
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.MapLayer;
@@ -95,26 +97,7 @@ public class OverheadMap implements State {
     private transient Body boundXMin, boundXMax, boundYMin, boundYMax;
 
     public OverheadMap(String mapName, boolean isLoaded) {
-        renderer = new OrthogonalTiledMapRenderer((new TmxMapLoader().load(mapName, new Parameters() {
-            {
-                this.flipY = false;
-            }
-        })), 1f / PlayerCamera.PIXELS_TO_METERS);
-        for (MapLayer m : (renderer.getMap().getLayers())) {
-            if (!(m instanceof TiledMapTileLayer)) {
-                for (MapObject mo : m.getObjects()) {
-                    if (mo instanceof TextureMapObject) {
-                        ((TextureMapObject) (mo)).getTextureRegion().flip(false, true);
-                    }
-                }
-            }
-        }
-        for (TiledMapTileSet tileset : renderer.getMap().getTileSets()) {
-            for (Iterator iterator = tileset.iterator(); iterator.hasNext();) {
-                TiledMapTile tiled = (TiledMapTile) (iterator.next());
-                tiled.getTextureRegion().flip(false, true);
-            }
-        }
+        renderer = new OrthogonalTiledMapRenderer(MapDatabase.getMap(mapName), 1f / PlayerCamera.PIXELS_TO_METERS);
         this.mapName = mapName;
         MapProperties prop = renderer.getMap().getProperties();
         updateProperties(prop);
@@ -127,39 +110,6 @@ public class OverheadMap implements State {
         generateObjects();
     }
     
-    public void reload() {
-        renderer = new OrthogonalTiledMapRenderer((new TmxMapLoader().load(mapName, new Parameters() {
-            {
-                this.flipY = false;
-            }
-        })), 1f / PlayerCamera.PIXELS_TO_METERS);
-        for (MapLayer m : (renderer.getMap().getLayers())) {
-            if (!(m instanceof TiledMapTileLayer)) {
-                for (MapObject mo : m.getObjects()) {
-                    if (mo instanceof TextureMapObject) {
-                        ((TextureMapObject) (mo)).getTextureRegion().flip(false, true);
-                    }
-                }
-            }
-        }
-        for (TiledMapTileSet tileset : renderer.getMap().getTileSets()) {
-            for (Iterator iterator = tileset.iterator(); iterator.hasNext();) {
-                TiledMapTile tiled = (TiledMapTile) (iterator.next());
-                tiled.getTextureRegion().flip(false, true);
-            }
-        }
-        this.mapName = mapName;
-        MapProperties prop = renderer.getMap().getProperties();
-        updateProperties(prop);
-        width = prop.get("width", Integer.class) * prop.get("tilewidth", Integer.class);
-        height = prop.get("height", Integer.class) * prop.get("tileheight", Integer.class);
-        actorList = new Array<>(Actor.class);
-        world = new World(new Vector2(0, 0), true);
-        world.setContactListener(new OverheadContactListener());
-        generateBounds();
-        generateObjects();
-    }
-
     public OverheadMap(String mapName, String bgmName) {
         this(mapName, false);
         bgm = bgmName;
@@ -678,34 +628,23 @@ public class OverheadMap implements State {
 
     @Override
     public void dispose() {
-        renderer.dispose();
+//        renderer.dispose();
         world.dispose();
         debugRender.dispose();
     }
 
     public void setMap(String mapName) {
-        Parameters parameters = new Parameters();
-        parameters.flipY = false;
-        TiledMap tiledMap = (new TmxMapLoader().load(mapName, parameters));
-        for (MapLayer m : (tiledMap.getLayers())) {
-            if (!(m instanceof TiledMapTileLayer)) {
-                for (MapObject mo : m.getObjects()) {
-                    if (mo instanceof TextureMapObject) {
-                        ((TextureMapObject) (mo)).getTextureRegion().flip(false, true);
-                    }
-                }
-            }
-        }
-        for (TiledMapTileSet tileset : tiledMap.getTileSets()) {
-            for (Iterator iterator = tileset.iterator(); iterator.hasNext();) {
-                TiledMapTile tiled = (TiledMapTile) (iterator.next());
-                tiled.getTextureRegion().flip(false, true);
-            }
-        }
-        renderer.setMap(tiledMap);
-        MapProperties prop = tiledMap.getProperties();
+        renderer = new OrthogonalTiledMapRenderer(MapDatabase.getMap(mapName), 1f / PlayerCamera.PIXELS_TO_METERS);
+        this.mapName = mapName;
+        MapProperties prop = renderer.getMap().getProperties();
+        updateProperties(prop);
         width = prop.get("width", Integer.class) * prop.get("tilewidth", Integer.class);
         height = prop.get("height", Integer.class) * prop.get("tileheight", Integer.class);
+        actorList = new Array<>(Actor.class);
+        world = new World(new Vector2(0, 0), true);
+        world.setContactListener(new OverheadContactListener());
+        generateBounds();
+        generateObjects();
     }
 
     public World getPhysicsWorld() {

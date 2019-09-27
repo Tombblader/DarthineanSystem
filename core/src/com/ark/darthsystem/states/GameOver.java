@@ -42,7 +42,7 @@ public class GameOver implements State {
                         @Override
                         public Object confirm(String choice) {
                             GraphicsDriver.loadGame("save" + getCursorIndex() + ".sav");
-                            GraphicsDriver.addState((State) (MapDatabase.getMaps().get(MapDatabase.DEFAULT_MAP))); //Need to fix loaded map..
+                            GraphicsDriver.addState((State) (MapDatabase.getMap(MapDatabase.DEFAULT_MAP))); //Need to fix loaded map..
                             GraphicsDriver.transition();
                             ((OverheadMap) (GraphicsDriver.getCurrentState())).updatePartial(0);
                             return choice;

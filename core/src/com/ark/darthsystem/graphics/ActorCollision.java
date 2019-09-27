@@ -227,18 +227,18 @@ public class ActorCollision extends Actor implements Serializable {
     }
 
     public void setMap(String map) {
-        OverheadMap newMap = MapDatabase.getMaps().get(map);
-        if (getCurrentMap() != null) {
-            Array<Body> temp = new Array<>(Body.class);
-            newMap.getPhysicsWorld().getBodies(temp);
-            for (Body b : temp) {
-                if (b.getUserData() != null && b.getUserData().equals(this)) {
-                    newMap.removeBody(b);
-                }
-            }
-        }
-        setCurrentMap(newMap);
-        newMap.addBody(this);
+//        OverheadMap newMap = MapDatabase.getMaps().get(map);
+//        if (getCurrentMap() != null) {
+//            Array<Body> temp = new Array<>(Body.class);
+//            newMap.getPhysicsWorld().getBodies(temp);
+//            for (Body b : temp) {
+//                if (b.getUserData() != null && b.getUserData().equals(this)) {
+//                    newMap.removeBody(b);
+//                }
+//            }
+//        }
+//        setCurrentMap(newMap);
+//        newMap.addBody(this);
     }    
     
     public void setSensorFilter(short category, short mask) {

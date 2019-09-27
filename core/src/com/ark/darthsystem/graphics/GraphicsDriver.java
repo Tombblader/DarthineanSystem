@@ -18,8 +18,6 @@ import com.ark.darthsystem.database.SoundDatabase;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Graphics.DisplayMode;
 import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.assets.loaders.FileHandleResolver;
-import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
@@ -28,15 +26,13 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
-import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGeneratorLoader;
-import com.badlogic.gdx.graphics.g2d.freetype.FreetypeFontLoader;
-import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
@@ -62,7 +58,7 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
     private static Sprite screenshot;
     private static ArrayList<Transition> transitions = new ArrayList<>();
     private static final float FONT_SCALE = 1f;
-    private AssetManager assets;
+    private static AssetManager assets;
     
     public static Player getPlayer() {
         return Database2.player;
@@ -309,6 +305,10 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
         screenshot.setColor(1, 1, 1, 1);
     }
 
+    public static AssetManager getAssets() {
+        return assets;
+    }
+
     private Input input;
 
     private long start = System.currentTimeMillis();
@@ -316,6 +316,8 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
     @Override
     public void create() {
         assets = new AssetManager();
+        loadAssets();
+        assets.finishLoading();
         input = new Input();
         DisplayMode optimal = Gdx.graphics.getDisplayMode();
 //        Gdx.graphics.setFullscreenMode(optimal);
@@ -327,7 +329,7 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
         playerViewport = new FitViewport(32, 24, playerCamera);
         currentCamera = camera;
         batch = new SpriteBatch();
-        masterSheet = new TextureAtlas(Gdx.files.internal("master/MasterSheet.atlas"));
+        masterSheet = assets.get("master/MasterSheet.atlas");
         for (AtlasRegion t : masterSheet.getRegions()) {
             if (t.splits == null) {
                 t.flip(false, true);
@@ -352,7 +354,8 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
         assets.load("master/MasterSheet.atlas", TextureAtlas.class);
         assets.load("backgrounds/gameover.png", Texture.class);
         assets.load("backgrounds/title.png", Texture.class);
-        assets.load("interface/window", Texture.class);
+//        assets.load("assets/interface/window.9.png", NinePatch.class);
+        assets.finishLoading();
 //        assets.
         SoundDatabase.load(assets);
     }
