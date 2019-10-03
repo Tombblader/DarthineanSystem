@@ -112,11 +112,6 @@ public class Database2 {
     public static Pickup GraphicsPotion;
     public static NovelMode chapter1;
 
-    public static final FieldSkill Spear = new FieldSkill("items/equipment/spear/field/field",
-            1,
-            1,
-            1f / 24f,
-            null);
 
     public static FieldSkill Sword() {
         return new FieldSkill("items/equipment/sword/field/field",

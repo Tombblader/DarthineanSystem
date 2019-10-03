@@ -6,9 +6,7 @@ import com.ark.darthsystem.BattlerAI;
 import com.ark.darthsystem.Item;
 import com.ark.darthsystem.database.Database1;
 import com.ark.darthsystem.database.Database2;
-import com.ark.darthsystem.database.EventDatabase;
 import com.ark.darthsystem.database.InterfaceDatabase;
-import com.ark.darthsystem.database.ItemDatabase;
 import com.ark.darthsystem.database.MapDatabase;
 import com.ark.darthsystem.database.MonsterDatabase;
 import com.ark.darthsystem.graphics.Actor;
@@ -22,13 +20,9 @@ import com.ark.darthsystem.graphics.Input;
 import com.ark.darthsystem.graphics.Player;
 import com.ark.darthsystem.graphics.PlayerCamera;
 import com.ark.darthsystem.states.events.Event;
-import com.ark.darthsystem.states.events.NovelMode;
 import com.ark.darthsystem.states.events.Pickup;
-import com.ark.darthsystem.states.events.Teleport;
-import com.ark.darthsystem.states.events.Treasure;
 
 import com.badlogic.gdx.Input.Keys;
-import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.MapLayer;
@@ -39,12 +33,8 @@ import com.badlogic.gdx.maps.objects.PolygonMapObject;
 import com.badlogic.gdx.maps.objects.PolylineMapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.objects.TextureMapObject;
-import com.badlogic.gdx.maps.tiled.TmxMapLoader.Parameters;
 import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
-import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
-import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.tiles.AnimatedTiledMapTile;
 import com.badlogic.gdx.math.Ellipse;
@@ -70,7 +60,6 @@ import com.badlogic.gdx.physics.box2d.Shape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -316,55 +305,56 @@ public class OverheadMap implements State {
     private Event addEventFromMap(MapObject object) {
         MapProperties prop = object.getProperties();
         Event e = null;
-        String[] parameters;
-        String image;
+//        String[] parameters;
+//        String image;
         try {
             e = ((Event) (Class.forName("com.ark.darthsystem.states.events." + prop.get("eventName", String.class))
                     .newInstance())).
                     createFromMap(prop);
+            e.setID(prop.get("id", Integer.class));
             e.setMap(this);
             return e;
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
             Logger.getLogger(OverheadMap.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println(prop.get("eventName", String.class));
         }
-        switch (Integer.parseInt(prop.get("eventID").toString())) {
-            case 0:
-                break;
-            case 1: //NovelMode
-                parameters = prop.get("parameters", String.class).split(",* ");
-                image = prop.get("image", String.class);
-                e = new NovelMode(EventDatabase.chapters(parameters),
-                        image,
-                        (prop.get("x", Float.class) + prop.get("width", Float.class) / 2) / ppt,
-                        (prop.get("y", Float.class) + prop.get("height", Float.class) / 2) / ppt,
-                        6 / 60f);
-                break;
-            case 2: //Teleport
-                parameters = prop.get("parameters", String.class).split(",* ");
-                image = prop.get("image", String.class);
-                e = new Teleport(image,
-                        prop.get("x", Float.class),
-                        prop.get("y", Float.class),
-                        6 / 60f,
-                        parameters[0],
-                        Integer.parseInt(parameters[1]),
-                        Integer.parseInt(parameters[2]));
-                break;
-            case 3: //Treasure
-                image = prop.get("image", String.class);
-                e = new Treasure(image,
-                        prop.get("x", Float.class),
-                        prop.get("y", Float.class),
-                        6 / 60f,
-                        ItemDatabase.ITEM_LIST.get(prop.get("parameters", String.class).toUpperCase()));
-                break;
-            default:
-                break;
-        }
-        if (e != null) {
-            e.setMap(this);
-        }
+//        switch (Integer.parseInt(prop.get("eventID").toString())) {
+//            case 0:
+//                break;
+//            case 1: //NovelMode
+//                parameters = prop.get("parameters", String.class).split(",* ");
+//                image = prop.get("image", String.class);
+//                e = new NovelMode(EventDatabase.chapters(parameters),
+//                        image,
+//                        (prop.get("x", Float.class) + prop.get("width", Float.class) / 2) / ppt,
+//                        (prop.get("y", Float.class) + prop.get("height", Float.class) / 2) / ppt,
+//                        6 / 60f);
+//                break;
+//            case 2: //Teleport
+//                parameters = prop.get("parameters", String.class).split(",* ");
+//                image = prop.get("image", String.class);
+//                e = new Teleport(image,
+//                        prop.get("x", Float.class),
+//                        prop.get("y", Float.class),
+//                        6 / 60f,
+//                        parameters[0],
+//                        Integer.parseInt(parameters[1]),
+//                        Integer.parseInt(parameters[2]));
+//                break;
+//            case 3: //Treasure
+//                image = prop.get("image", String.class);
+//                e = new Treasure(image,
+//                        prop.get("x", Float.class),
+//                        prop.get("y", Float.class),
+//                        6 / 60f,
+//                        ItemDatabase.ITEM_LIST.get(prop.get("parameters", String.class).toUpperCase()));
+//                break;
+//            default:
+//                break;
+//        }
+//        if (e != null) {
+//            e.setMap(this);
+//        }
         return e;
     }
 
@@ -628,23 +618,25 @@ public class OverheadMap implements State {
 
     @Override
     public void dispose() {
-//        renderer.dispose();
+        renderer.dispose();
         world.dispose();
         debugRender.dispose();
     }
 
     public void setMap(String mapName) {
-        renderer = new OrthogonalTiledMapRenderer(MapDatabase.getMap(mapName), 1f / PlayerCamera.PIXELS_TO_METERS);
-        this.mapName = mapName;
-        MapProperties prop = renderer.getMap().getProperties();
-        updateProperties(prop);
-        width = prop.get("width", Integer.class) * prop.get("tilewidth", Integer.class);
-        height = prop.get("height", Integer.class) * prop.get("tileheight", Integer.class);
-        actorList = new Array<>(Actor.class);
-        world = new World(new Vector2(0, 0), true);
-        world.setContactListener(new OverheadContactListener());
-        generateBounds();
-        generateObjects();
+        if (!this.mapName.equals(mapName)) {
+            renderer.setMap(MapDatabase.getMap(mapName));
+            this.mapName = mapName;
+            MapProperties prop = renderer.getMap().getProperties();
+            updateProperties(prop);
+            width = prop.get("width", Integer.class) * prop.get("tilewidth", Integer.class);
+            height = prop.get("height", Integer.class) * prop.get("tileheight", Integer.class);
+            actorList = new Array<>(Actor.class);
+            world = new World(new Vector2(0, 0), true);
+            world.setContactListener(new OverheadContactListener());
+            generateBounds();
+            generateObjects();
+        }
     }
 
     public World getPhysicsWorld() {
@@ -703,10 +695,6 @@ public class OverheadMap implements State {
 
     public String getMapName() {
         return mapName;
-    }
-
-    public void setMapName(String mapName) {
-        this.mapName = mapName;
     }
     
     public Batch getBatch() {

@@ -5,21 +5,12 @@
  */
 package com.ark.darthsystem.database;
 
+import com.ark.darthsystem.graphics.GraphicsDriver;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.assets.loaders.SoundLoader;
-import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.Array;
-import java.io.File;
-import java.io.IOException;
-import java.util.Enumeration;
 import java.util.HashMap;
-import java.util.jar.JarEntry;
-import java.util.jar.JarFile;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -37,73 +28,33 @@ public class SoundDatabase {
 
     public SoundDatabase() {
         SOUNDS = new HashMap<>();
-        initializeSounds();
-    }
-
-    public static void load(AssetManager assets) {
-        SOUNDS = new HashMap<>();
-        initializeSoundsAssetManager(assets);
+        fieldCastingSound = GraphicsDriver.getAssets().get("sounds/cast.wav");
+        battlerCastingSound = GraphicsDriver.getAssets().get("sounds/cast.wav");
+        buffingSound = GraphicsDriver.getAssets().get("sounds/buff.wav");
+        fieldSwordSound = GraphicsDriver.getAssets().get("sounds/slash.wav");
+        battlerSwordSound = GraphicsDriver.getAssets().get("sounds/slash.wav");
+        ouchSound = GraphicsDriver.getAssets().get("sounds/ouch.wav");
+        initializeSoundsAssetManager(GraphicsDriver.getAssets());
+//        initializeSounds();
     }
 
     private static void initializeSoundsAssetManager(AssetManager assets) {
-        assets.setLoader(Sound.class, new SoundLoader(new InternalFileHandleResolver()));
-        FileHandle[] f = Gdx.files.internal("sounds").list(); //CANNOT LIST INSIDE JAR
-        for (FileHandle file : f) {
-            if (file.extension().equalsIgnoreCase("wav")) {
-                assets.load(file.path(), Sound.class);
-                assets.finishLoading();
-                SOUNDS.put(file.nameWithoutExtension().toUpperCase(), assets.get(file.path()));
-            }
-        }
-    }
-
-    private void initializeSounds() {
-//        File f = new File(Gdx.files.internal("maps").file().toURI()); //CANNOT LIST INSIDE JAR
-        Array<FileHandle> f = new Array<>();
-        final File jarFile = new File(getClass().getProtectionDomain().getCodeSource().getLocation().getPath());
-        final JarFile jar;
-        try {
-            jar = new JarFile(jarFile);
-            final Enumeration<JarEntry> entries = jar.entries(); //gives ALL entries in jar
-            while (entries.hasMoreElements()) {
-                final String name = entries.nextElement().getName();
-                if (name.startsWith("sounds/")) { //filter according to the path
-                    f.add(Gdx.files.classpath(name));
-                }
-            }
-            jar.close();
-        } catch (IOException ex) {
-            Logger.getLogger(MapDatabase.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        if (f.size > 0) {
-            for (FileHandle file : f) {
-                if (file.extension().equalsIgnoreCase("wav")) {
-                    SOUNDS.put(file.nameWithoutExtension().toUpperCase(), Gdx.audio.newSound(file));
-                }
-            }
-        } else {
-            initializeSoundsAlt();
-        }
-    }
-
-    private void initializeSoundsAlt() {
-        FileHandle[] f = Gdx.files.internal("sounds").list(); //CANNOT LIST INSIDE JAR
-        for (FileHandle file : f) {
-            if (file.extension().equalsIgnoreCase("wav")) {
-                SOUNDS.put(file.nameWithoutExtension().toUpperCase(), Gdx.audio.newSound(file));
-            }
+        Array<Sound> temp = new Array<>();
+        assets.getAll(Sound.class, temp);
+        for (Sound s : temp) {
+            SOUNDS.put(assets.getAssetFileName(s).substring(7, assets.getAssetFileName(s).length() - 4).toUpperCase(), s);
         }
     }
 
     public static void dispose() {
-        fieldCastingSound.dispose();
-        battlerCastingSound.dispose();
-        buffingSound.dispose();
-        fieldSwordSound.dispose();
-        battlerSwordSound.dispose();
-        ouchSound.dispose();
-        for (Sound s : SOUNDS.values()) {
-            s.dispose();
-        }
+//        fieldCastingSound.dispose();
+//        battlerCastingSound.dispose();
+//        buffingSound.dispose();
+//        fieldSwordSound.dispose();
+//        battlerSwordSound.dispose();
+//        ouchSound.dispose();
+//        for (Sound s : SOUNDS.values()) {
+//            s.dispose();
+//        }
     }
 }

@@ -22,6 +22,7 @@ public class PlayerCamera extends Camera {
         this.position.set(cameraPosX, cameraPosY, 0);
     }
     
+    @Override
     public float getConversion() {
         return PIXELS_TO_METERS;
     }

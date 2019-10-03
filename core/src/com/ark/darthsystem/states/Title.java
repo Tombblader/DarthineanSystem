@@ -7,7 +7,6 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.ark.darthsystem.GameOverException;
 import com.ark.darthsystem.database.MapDatabase;
 import com.ark.darthsystem.graphics.GraphicsDriver;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 
 /**
@@ -20,7 +19,7 @@ public class Title implements State {
     private final String BGM = null;
     
     public Title() {
-        titleTexture = new TextureRegion(new Texture(Gdx.files.internal("backgrounds/title.png"))) {
+        titleTexture = new TextureRegion(GraphicsDriver.getAssets().get("backgrounds/title.png", Texture.class)) {
             {
                 this.flip(false, true);
             }
@@ -31,6 +30,7 @@ public class Title implements State {
                 if (choice.equals("Start")) {
                     GraphicsDriver.newGame();
                     GraphicsDriver.addState((State) (new OverheadMap(MapDatabase.DEFAULT_MAP, false)));
+                    GraphicsDriver.getPlayer().setMap(((OverheadMap) (GraphicsDriver.getCurrentState())), MapDatabase.DEFAULT_X, MapDatabase.DEFAULT_Y);
                     GraphicsDriver.transition();
                     ((OverheadMap) (GraphicsDriver.getCurrentState())).updatePartial(0);
                 }

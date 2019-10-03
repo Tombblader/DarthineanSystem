@@ -11,12 +11,11 @@ import java.util.Objects;
  * @author Keven
  */
 public abstract class Event extends ActorCollision implements Serializable {
-    private static int ID;
-    private static String eventName;
+    private int ID;
     private TriggerMethod trigger = null;
-    private int eventID;
     private boolean isFinished;
     protected LocalSwitch switches;
+    private boolean transience; //This determines if the event should be saved.
 
     public Event() {
         super();
@@ -74,11 +73,11 @@ public abstract class Event extends ActorCollision implements Serializable {
         }
     }
     
-    public static int getID() {
+    public int getID() {
         return ID;
     }
         
-    public static void setID(int newID) {
+    public void setID(int newID) {
         ID = newID;
     }
 

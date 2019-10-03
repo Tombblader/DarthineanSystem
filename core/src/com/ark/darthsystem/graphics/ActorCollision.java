@@ -86,7 +86,7 @@ public class ActorCollision extends Actor implements Serializable {
         genericBodyType.position.set(getX(), getY());
         FixtureDef fixtureDef = new FixtureDef();
         if (CollisionDatabaseLoader.getShapes() == null || CollisionDatabaseLoader.getShapes().isEmpty()
-                || (!MapDatabase.getMaps().containsKey("skillshapes") && map.getMap().getLayers().get("collisions") == null)) {
+                || (!MapDatabase.getMaps().contains("skillshapes", false) && map.getMap().getLayers().get("collisions") == null)) {
             fixtureDef.shape = new CircleShape() {
                 {
 //                    setRadius(24f / GraphicsDriver.getPlayerCamera().getConversion());
@@ -146,7 +146,7 @@ public class ActorCollision extends Actor implements Serializable {
         sensorBody = map.getPhysicsWorld().createBody(genericBodyType2);
         FixtureDef fixtureDef2 = new FixtureDef();
         if (CollisionDatabaseLoader.getShapes() == null || CollisionDatabaseLoader.getShapes().isEmpty()
-                || (!MapDatabase.getMaps().containsKey("skillshapes") && map.getMap().getLayers().get("collisions") == null)) {
+                || (!MapDatabase.getMaps().contains("skillshapes", false) && map.getMap().getLayers().get("collisions") == null)) {
             fixtureDef2.shape = new CircleShape() {
                 {
 //                    setRadius(24f / GraphicsDriver.getPlayerCamera().getConversion());

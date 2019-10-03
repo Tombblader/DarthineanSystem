@@ -12,7 +12,6 @@ import com.ark.darthsystem.database.ItemDatabase;
 import com.ark.darthsystem.graphics.GraphicsDriver;
 import com.ark.darthsystem.graphics.PlayerCamera;
 import com.ark.darthsystem.states.chapters.Novel;
-import static com.ark.darthsystem.states.events.Event.setID;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.maps.MapProperties;
 import java.util.Arrays;
