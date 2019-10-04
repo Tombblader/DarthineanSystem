@@ -24,7 +24,7 @@ public class GameOver implements State {
     private String BGM = "music/WhySuffering.mp3";
     
     public GameOver() {
-        gameOverTexture = new TextureRegion(new Texture(Gdx.files.internal("backgrounds/gameover.png"))) { {
+        gameOverTexture = new TextureRegion(GraphicsDriver.getAssets().get("backgrounds/gameover.png", Texture.class)) { {
                 this.flip(false, true);
                }
             };
@@ -69,7 +69,6 @@ public class GameOver implements State {
     
     @Override
     public void dispose() {
-        gameOverTexture.getTexture().dispose();        
     }
 
     @Override

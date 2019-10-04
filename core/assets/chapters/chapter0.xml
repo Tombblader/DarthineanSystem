@@ -49,8 +49,4 @@
             </Choice>
         </if>
     </page>
-    <page>
-    	<event name="Teleport" parameters="testRoom, 7, 7">
-    	</event>
-    </page>
 </chapter>

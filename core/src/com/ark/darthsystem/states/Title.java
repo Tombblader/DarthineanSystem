@@ -29,7 +29,7 @@ public class Title implements State {
             public String confirm(String choice) {
                 if (choice.equals("Start")) {
                     GraphicsDriver.newGame();
-                    GraphicsDriver.addState((State) (new OverheadMap(MapDatabase.DEFAULT_MAP, false)));
+                    GraphicsDriver.addState(new OverheadMap(MapDatabase.DEFAULT_MAP, false));
                     GraphicsDriver.getPlayer().setMap(((OverheadMap) (GraphicsDriver.getCurrentState())), MapDatabase.DEFAULT_X, MapDatabase.DEFAULT_Y);
                     GraphicsDriver.transition();
                     ((OverheadMap) (GraphicsDriver.getCurrentState())).updatePartial(0);
@@ -42,7 +42,9 @@ public class Title implements State {
                         @Override
                         public Object confirm(String choice) {
                             GraphicsDriver.loadGame("save" + getCursorIndex() + ".sav");
-                            GraphicsDriver.addState((State) (MapDatabase.getMap(MapDatabase.DEFAULT_MAP))); //Need to fix loaded map..
+                            GraphicsDriver.addState(new OverheadMap(GraphicsDriver.
+                                    getPlayer().getCurrentMapName(), false)); //Need to fix loaded map..
+                            GraphicsDriver.getPlayer().setMap(((OverheadMap) (GraphicsDriver.getCurrentState())), GraphicsDriver.getPlayer().getX(), GraphicsDriver.getPlayer().getY());
                             GraphicsDriver.transition();
                             ((OverheadMap) (GraphicsDriver.getCurrentState())).updatePartial(0);
                             return choice;
@@ -79,7 +81,7 @@ public class Title implements State {
     
     @Override
     public void dispose() {
-        titleTexture.getTexture().dispose();
+//        titleTexture.getTexture().dispose();
     }
 
     @Override

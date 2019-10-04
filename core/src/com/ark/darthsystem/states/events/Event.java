@@ -90,19 +90,7 @@ public abstract class Event extends ActorCollision implements Serializable {
     @Override
     public void setMap(OverheadMap map) {
         super.setMap(map);
-//        try {
-//            switches = MapDatabase.getSwitchData(map.getMapName(), this);
-//        } catch (NullPointerException e) {
-//            e.printStackTrace();
-//        }
-        switches = new LocalSwitch(this.getClass().getSimpleName());
-        
-//        LocalSwitch switches = new LocalSwitch();
-        
-    }
-    
-    public void setMap(String map) {
-        super.setMap(map);
+        switches = new LocalSwitch();
     }
 
     @Override

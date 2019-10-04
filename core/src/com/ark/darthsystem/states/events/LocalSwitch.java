@@ -5,11 +5,12 @@
  */
 package com.ark.darthsystem.states.events;
 
+import static com.ark.darthsystem.states.events.LocalSwitch.Switch.*;
 import java.io.Serializable;
 import java.util.EnumMap;
 
 /**
- *
+ * This is data that should be serialized.
  * @author keven
  */
 public class LocalSwitch implements Serializable, Cloneable {
@@ -17,24 +18,20 @@ public class LocalSwitch implements Serializable, Cloneable {
         A,
         B,
         C,
-        D
+        D,
+        FINISHED
     }
-    private String eventName;
+    
+    public boolean isFinished() {
+        return switches.get(FINISHED);
+    }
+    
     private EnumMap<Switch, Boolean> switches;
     
     public LocalSwitch() {
         switches = new EnumMap<>(Switch.class);
     }
-    
-    public LocalSwitch(String eventName) {
-        this();
-        this.eventName = eventName;
-    }
-    
-    public String getEventName() {
-        return eventName;
-    }
-    
+
     public void setSwitch(Switch s, boolean b) {
         switches.put(s, b);
     }

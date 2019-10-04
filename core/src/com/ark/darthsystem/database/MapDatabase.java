@@ -36,7 +36,7 @@ public class MapDatabase {
     }
 
     private void setDefaultMap() {
-        Database2.player.setMap(new OverheadMap(DEFAULT_MAP, false), DEFAULT_X, DEFAULT_Y);
+//        Database2.player.setMap(new OverheadMap(DEFAULT_MAP, false), DEFAULT_X, DEFAULT_Y);
     }
 
     private void initialize() {
@@ -116,6 +116,6 @@ public class MapDatabase {
 //    }
 
     public static void dispose() {
-        cachedMaps.forEach((k, v) -> v.dispose());
+//        cachedMaps.forEach((k, v) -> v.dispose());
     }
 }

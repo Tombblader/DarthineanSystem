@@ -254,7 +254,7 @@ public class Battle implements State {
 
     public Battle start() {
         GraphicsDriver.setCurrentCamera(GraphicsDriver.getCamera());
-        background = new Sprite(new Texture(Gdx.files.internal("backgrounds/title.png")));
+        background = new Sprite(GraphicsDriver.getAssets().get("backgrounds/battle.png", Texture.class));
         background.flip(false, true);
 
         state = State.START;
@@ -543,7 +543,7 @@ public class Battle implements State {
 
     @Override
     public void dispose() {
-        background.getTexture().dispose();
+//        background.getTexture().dispose();
     }
 
     public static enum Element {

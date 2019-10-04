@@ -9,6 +9,8 @@ import com.ark.darthsystem.database.SoundDatabase;
 import com.ark.darthsystem.Equipment;
 import com.ark.darthsystem.states.OverheadMap;
 import com.ark.darthsystem.GameOverException;
+import com.ark.darthsystem.database.CharacterDatabase;
+import com.ark.darthsystem.database.Database1;
 import com.ark.darthsystem.states.events.Event;
 import com.ark.darthsystem.statusEffects.Normal;
 import com.ark.darthsystem.statusEffects.StatusEffect;
@@ -30,6 +32,7 @@ import com.badlogic.gdx.physics.box2d.RayCastCallback;
 import com.badlogic.gdx.utils.Array;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -77,10 +80,9 @@ public class Player extends ActorCollision implements Serializable {
     private transient Input playerInput;
     private transient BitmapFont font;
     private transient FieldBattler currentBattler;
-    private transient Array<Event> eventQueue = new Array<>();
-    
+    private transient Array<Event> eventQueue;
 //    private boolean isJumping;
-    private ArrayList<FieldBattler> party = new ArrayList<>();
+    private transient ArrayList<FieldBattler> party;
     private int currentBattlerIndex = 0;
     private transient RayCastCallback buttonPushFinder;
     private boolean hasEvent;
@@ -92,6 +94,8 @@ public class Player extends ActorCollision implements Serializable {
     
     public Player(ArrayList<FieldBattler> getBattler, float getX, float getY) {
         super(getBattler.get(0).getSprite().getMasterSpriteSheet() + "/field/stand/down", getX, getY, getBattler.get(0).getDelay(), getBattler.get(0).getShapeName());
+        this.eventQueue = new Array<>();
+        this.party = new ArrayList<>();
         party = getBattler;
         initialize();
     }
@@ -871,9 +875,23 @@ public class Player extends ActorCollision implements Serializable {
 
     private void readObject(ObjectInputStream in) throws IOException,ClassNotFoundException {
         in.defaultReadObject();
+        ArrayList<String> partyNames = (ArrayList<String>) in.readObject();
+        party = new ArrayList<>();
+        for (String partyName : partyNames) {
+            party.add(CharacterDatabase.CHARACTER_LIST.get(partyName.toUpperCase()));
+        }
         initialize();
     }    
-    
+    private void writeObject(ObjectOutputStream out) throws IOException,ClassNotFoundException {
+        out.defaultWriteObject();
+        ArrayList<String> partyNames = new ArrayList<>();
+        for (FieldBattler f : party) {
+            partyNames.add(f.getBattler().getName());
+        }
+        out.writeObject(partyNames);
+        
+    }    
+        
     
     public void ouch() {
         ouch(currentBattler.getBattler());

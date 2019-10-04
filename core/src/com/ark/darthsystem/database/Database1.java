@@ -4,6 +4,7 @@ import com.ark.darthsystem.Battler;
 import com.ark.darthsystem.Equipment;
 import com.ark.darthsystem.states.Battle;
 import com.ark.darthsystem.Item;
+import com.ark.darthsystem.states.events.LocalSwitch;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
@@ -60,7 +61,7 @@ public class Database1 implements Serializable {
 
     public static ArrayList<Item> inventory;
     
-    public static HashMap<String, HashMap<Integer, Boolean>> mapStates;
+    public static HashMap<String, HashMap<Integer, LocalSwitch>> mapStates;
     
     public static int money;
 

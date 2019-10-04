@@ -1,6 +1,5 @@
 package com.ark.darthsystem.states.events;
 
-import com.ark.darthsystem.database.MapDatabase;
 import com.ark.darthsystem.graphics.ActorSprite;
 import com.ark.darthsystem.graphics.GraphicsDriver;
 import com.ark.darthsystem.graphics.PlayerCamera;

@@ -133,7 +133,10 @@ public class ChapterGenerator {
                                 (float) Double.parseDouble(element.getAttribute("y")),
                                 1f / (float) Double.parseDouble(element.getAttribute("fps")),
                                 true);
-                        GraphicsDriver.getPlayer().getCurrentMap().addActor(a);
+                        GraphicsDriver.
+                                getPlayer().
+                                getCurrentMap().
+                                addActor(a);
                         novel.actorList.add(a);
                         novel.addTimer(new GameTimer(element.getAttribute("name"), 99999999) {
                             @Override

@@ -48,7 +48,7 @@ public class FieldSkill extends ActorCollision implements Nameable {
     private String name;
     private ActorSprite.SpriteModeField castImageName;
     private String castSoundName;
-    private Sound castSound;
+    private transient Sound castSound;
     
     public FieldSkill() {
         super();
