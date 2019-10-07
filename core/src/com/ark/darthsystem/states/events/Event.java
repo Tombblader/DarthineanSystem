@@ -4,7 +4,6 @@ import com.ark.darthsystem.database.Database2;
 import com.ark.darthsystem.graphics.ActorCollision;
 import com.ark.darthsystem.states.OverheadMap;
 import com.badlogic.gdx.maps.MapProperties;
-import java.util.HashMap;
 import java.util.Objects;
 
 /**
@@ -99,7 +98,7 @@ public abstract class Event extends ActorCollision {
             Database2.mapStates.put(map.getMapName().toUpperCase()+ID, new LocalSwitch());
             switches = Database2.mapStates.get(map.getMapName().toUpperCase()+ID);
         } else {
-
+            System.out.println(switches.getSwitch(LocalSwitch.Switch.FINISHED));
         }
     }
 

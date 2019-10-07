@@ -40,8 +40,8 @@ public class NovelMode extends Event {
 //        if (!GraphicsDriver.getState().contains(novel, true)) {
         if (!isFinished()) {
             GraphicsDriver.addState(novel);
+            switches.setSwitch(LocalSwitch.Switch.FINISHED, novel.isFinished());
         }
-        switches.setSwitch(LocalSwitch.Switch.FINISHED, novel.isFinished());
     }
 
     @Override

@@ -92,6 +92,13 @@ public class ChapterGenerator {
                                 }
                             }
                         }
+                        for (XmlReader.Element choice : element.getChildrenByName("switch")) {
+                            for (Entry<String, String> e : choice.getAttributes().iterator()) {
+                                if (Database1.switches.get(e.key).equals(e.value)) {
+                                    createPage(choice, novel).run();
+                                }
+                            }
+                        }
                         break;
                     case "event":
                         try {
