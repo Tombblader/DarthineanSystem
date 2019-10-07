@@ -907,7 +907,7 @@ public class Battler implements Serializable, Nameable, Cloneable {
             temp.isAfflicted = tempEffect;
             return temp;
         } catch (CloneNotSupportedException e) {
-
+            e.printStackTrace();
         }
         return null;
     }

@@ -380,7 +380,8 @@ public class Actor implements Serializable {
         images = GraphicsDriver.getMasterSheet().createSprites(imageName).toArray(Sprite.class);
         animation = new Animation<>(delay, images);
         animation.setPlayMode(destroyAfterAnimation ? PlayMode.NORMAL : PlayMode.LOOP);
-        currentImage = (Sprite) animation.getKeyFrame(0);
+        if (images.length > 0)
+            currentImage = (Sprite) animation.getKeyFrame(0);
         
     }    
     public enum Facing {

@@ -335,6 +335,10 @@ public class FieldSkill extends ActorCollision implements Nameable {
     public float getAftercastDelay() {
         return aftercastDelay;
     }
+    
+    public Area getArea() {
+        return area;
+    }
 
     public float getAnimationDelay() {
         return ((float) (originalFieldImage.length) * (this.getDelay())) + aftercastDelay;

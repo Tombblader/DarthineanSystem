@@ -20,7 +20,6 @@ public class NovelMode extends Event {
         super(img, getX, getY, delay);
         novel = n;
         setTriggerMethod(TriggerMethod.AUTO);
-//        setID(0);
     }
     
     public NovelMode() {
@@ -31,11 +30,9 @@ public class NovelMode extends Event {
         super(img, getX, getY, delay);
         novel = n;
         setTriggerMethod(t);
-//        setID(0);
     }
     
     private Novel novel;
-    private boolean isFinished = false;
 
 
     @Override
@@ -44,12 +41,8 @@ public class NovelMode extends Event {
         if (!isFinished()) {
             GraphicsDriver.addState(novel);
         }
+        switches.setSwitch(LocalSwitch.Switch.FINISHED, novel.isFinished());
     }
-    
-    @Override
-    public boolean isFinished() {
-        return novel.isFinished();
-    }    
 
     @Override
     public Event createFromMap(MapProperties prop) {

@@ -1,28 +1,29 @@
 package com.ark.darthsystem.states.events;
 
+import com.ark.darthsystem.database.Database2;
 import com.ark.darthsystem.graphics.ActorCollision;
 import com.ark.darthsystem.states.OverheadMap;
 import com.badlogic.gdx.maps.MapProperties;
-import java.io.Serializable;
+import java.util.HashMap;
 import java.util.Objects;
 
 /**
  *
  * @author Keven
  */
-public abstract class Event extends ActorCollision implements Serializable {
+public abstract class Event extends ActorCollision {
     private int ID;
     private TriggerMethod trigger = null;
-    private boolean isFinished;
     protected LocalSwitch switches;
-    private boolean transience; //This determines if the event should be saved.
 
     public Event() {
         super();
+        switches = new LocalSwitch();
     }
     
     public Event(String img, float getX, float getY, float delay) {
         super(img, getX, getY, delay);
+        switches = new LocalSwitch();
     }
 
     public abstract Event createFromMap(MapProperties prop);
@@ -43,11 +44,11 @@ public abstract class Event extends ActorCollision implements Serializable {
     
     @Override
     public boolean isFinished() {
-        return isFinished;
-    }    
-    
+        return switches.isFinished();
+    }
+ 
     public void setFinished(boolean finished) {
-        isFinished = finished;
+        switches.setSwitch(LocalSwitch.Switch.FINISHED, finished);
     }
 
     public final TriggerMethod getTriggerMethod() {
@@ -87,10 +88,19 @@ public abstract class Event extends ActorCollision implements Serializable {
         return hash;
     }
     
-    @Override
+    /**
+     *
+     * @param map
+     */
     public void setMap(OverheadMap map) {
         super.setMap(map);
-        switches = new LocalSwitch();
+        switches = Database2.mapStates.getOrDefault(map.getMapName().toUpperCase() + ID, null);
+        if (switches == null) {
+            Database2.mapStates.put(map.getMapName().toUpperCase()+ID, new LocalSwitch());
+            switches = Database2.mapStates.get(map.getMapName().toUpperCase()+ID);
+        } else {
+
+        }
     }
 
     @Override

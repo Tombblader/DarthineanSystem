@@ -13,7 +13,7 @@ import java.util.EnumMap;
  * This is data that should be serialized.
  * @author keven
  */
-public class LocalSwitch implements Serializable, Cloneable {
+public class LocalSwitch implements Serializable {
     public enum Switch {
         A,
         B,
@@ -21,9 +21,9 @@ public class LocalSwitch implements Serializable, Cloneable {
         D,
         FINISHED
     }
-    
+        
     public boolean isFinished() {
-        return switches.get(FINISHED);
+        return switches.getOrDefault(FINISHED, false);
     }
     
     private EnumMap<Switch, Boolean> switches;
@@ -41,7 +41,7 @@ public class LocalSwitch implements Serializable, Cloneable {
     }
     
     public void switchToggle(Switch s) {
-        switches.put(s, !switches.get(s));
+        switches.put(s, !switches.getOrDefault(s, false));
     }
             
     public boolean getSwitch(Switch s) {

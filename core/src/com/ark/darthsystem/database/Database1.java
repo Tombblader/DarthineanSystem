@@ -61,7 +61,6 @@ public class Database1 implements Serializable {
 
     public static ArrayList<Item> inventory;
     
-    public static HashMap<String, HashMap<Integer, LocalSwitch>> mapStates;
     
     public static int money;
 
@@ -71,29 +70,29 @@ public class Database1 implements Serializable {
 
     public static HashMap<String, String> variables;
 
-    public static void save(String fileName) throws FileNotFoundException, IOException {
-        try (ObjectOutputStream objectStream
-                = new ObjectOutputStream(Gdx.files.local(fileName).write(false, 2*2*2*2*2*2*2*2*2*2*2*2*2))) {
-            objectStream.writeObject(BATTLER_LIST);
-            objectStream.writeObject(inventory);
-            objectStream.writeInt(karma);
-            objectStream.writeInt(money);
-            objectStream.writeObject(switches);
-            objectStream.writeObject(variables);
-        }
-    }
-
-    public static void load(String fileName)
-            throws FileNotFoundException, IOException, ClassNotFoundException {
-        try (ObjectInputStream objectStream
-                = new ObjectInputStream(Gdx.files.local(fileName).read(2*2*2*2*2*2*2*2*2*2*2*2*2))) {
-            Database1.BATTLER_LIST.clear();
-            Database1.BATTLER_LIST.putAll((HashMap<String, Battler>) objectStream.readObject());
-            Database1.inventory = (ArrayList<Item>) objectStream.readObject();
-            Database1.karma = objectStream.readInt();
-            Database1.money = objectStream.readInt();
-            Database1.switches = (HashMap<String, Boolean>) objectStream.readObject();
-            Database1.variables = (HashMap<String, String>) objectStream.readObject();
-        }
-    }
+//    public static void save(String fileName) throws FileNotFoundException, IOException {
+//        try (ObjectOutputStream objectStream
+//                = new ObjectOutputStream(Gdx.files.local(fileName).write(false, 2*2*2*2*2*2*2*2*2*2*2*2*2))) {
+//            objectStream.writeObject(BATTLER_LIST);
+//            objectStream.writeObject(inventory);
+//            objectStream.writeInt(karma);
+//            objectStream.writeInt(money);
+//            objectStream.writeObject(switches);
+//            objectStream.writeObject(variables);
+//        }
+//    }
+//
+//    public static void load(String fileName)
+//            throws FileNotFoundException, IOException, ClassNotFoundException {
+//        try (ObjectInputStream objectStream
+//                = new ObjectInputStream(Gdx.files.local(fileName).read(2*2*2*2*2*2*2*2*2*2*2*2*2))) {
+//            Database1.BATTLER_LIST.clear();
+//            Database1.BATTLER_LIST.putAll((HashMap<String, Battler>) objectStream.readObject());
+//            Database1.inventory = (ArrayList<Item>) objectStream.readObject();
+//            Database1.karma = objectStream.readInt();
+//            Database1.money = objectStream.readInt();
+//            Database1.switches = (HashMap<String, Boolean>) objectStream.readObject();
+//            Database1.variables = (HashMap<String, String>) objectStream.readObject();
+//        }
+//    }
 }

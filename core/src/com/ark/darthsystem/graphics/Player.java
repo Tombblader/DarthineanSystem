@@ -10,7 +10,6 @@ import com.ark.darthsystem.Equipment;
 import com.ark.darthsystem.states.OverheadMap;
 import com.ark.darthsystem.GameOverException;
 import com.ark.darthsystem.database.CharacterDatabase;
-import com.ark.darthsystem.database.Database1;
 import com.ark.darthsystem.states.events.Event;
 import com.ark.darthsystem.statusEffects.Normal;
 import com.ark.darthsystem.statusEffects.StatusEffect;

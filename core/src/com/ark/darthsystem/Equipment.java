@@ -1,16 +1,19 @@
 package com.ark.darthsystem;
 
 import com.ark.darthsystem.database.Database2;
+import com.ark.darthsystem.database.ItemDatabase;
+import com.ark.darthsystem.database.SkillDatabase;
 import com.ark.darthsystem.graphics.Actor;
 import com.ark.darthsystem.graphics.FieldSkill;
 import com.ark.darthsystem.states.Battle;
 import java.io.IOException;
+import java.io.Serializable;
 
 /**
  *
  * @author Keven
  */
-public class Equipment extends Item implements Cloneable {
+public class Equipment extends Item implements Cloneable, Serializable {
 
     private static final long serialVersionUID = 553786345;
     private Slot equipmentSlot;
@@ -63,7 +66,7 @@ public class Equipment extends Item implements Cloneable {
             int initializeSpeed,
             int initializeMagic) {
         super(getName, getDescription, imageName, getMarketPrice, -1, invoke, useMP);
-        this.shapeName = "basiccircle";
+        this.shapeName = "widesword";
         this.areaName = FieldSkill.Area.FRONT;
         this.equipElement = Battle.Element.Physical;
         this.type = new Type[type.length];
@@ -81,10 +84,43 @@ public class Equipment extends Item implements Cloneable {
         animation = Database2.Sword();
     }
 
+   public Equipment(String getName,
+            String getDescription,
+            String imageName,
+            String animationName,
+            int getMarketPrice,
+            String[] type,
+            Slot slot,
+            Skill invoke,
+            Battle.Element initializeElement,
+            boolean useMP,
+            int initializeAttack,
+            int initializeDefense,
+            int initializeSpeed,
+            int initializeMagic) {
+        super(getName, getDescription, imageName, getMarketPrice, -1, invoke, useMP);
+        this.type = new Type[type.length];
+        for (int i = 0; i < this.type.length; i++) {
+            this.type[i] = Type.valueOf(type[i].toUpperCase());
+        }
+        equipmentSlot = slot;
+        attack = initializeAttack;
+        defense = initializeDefense;
+        speed = initializeSpeed;
+        magic = initializeMagic;
+        equipElement = initializeElement;
+        this.animationName = animationName;
+        battlerAnimation = new Actor("items/equipment/" + animationName + "/battler/battler", 0, 0, 1/12f, true);
+        animation = SkillDatabase.FIELD_SKILL_LIST.get(animationName.toUpperCase());
+        this.shapeName = animation.getShape();
+        this.areaName = animation.getArea();
+    }    
+    
     /**
      *
      * @param getName
      * @param getDescription
+     * @param imageName
      * @param getMarketPrice
      * @param type
      * @param slot
@@ -123,8 +159,7 @@ public class Equipment extends Item implements Cloneable {
         animationName = "sword";
         animation = Database2.Sword();
         battlerAnimation = new Actor("items/equipment/sword/battler/battler", 0, 0, 1/12f, true);
-
-    }   
+    }
     
     public Equipment(String getName,
             String getDescription,
@@ -265,7 +300,7 @@ public class Equipment extends Item implements Cloneable {
     
 
     public Equipment clone() {
-        Equipment temp = new Equipment(getName(), getDescription(), animationName, getPrice(), type, equipmentSlot, getInvoke(), getElement(), useMP(), attack, defense, speed, magic);        
+        Equipment temp = new Equipment(getName(), getDescription(), animationName, areaName, shapeName, getPrice(), type, equipmentSlot, getInvoke(), getElement(), useMP(), attack, defense, speed, magic);        
         temp.animation = animation.placeOnMap();
         return temp;
     }

@@ -19,7 +19,7 @@ import static com.ark.darthsystem.database.Database1.karma;
 import static com.ark.darthsystem.database.Database1.money;
 import static com.ark.darthsystem.database.Database1.switches;
 import static com.ark.darthsystem.database.Database1.variables;
-import com.ark.darthsystem.states.events.*;
+import com.ark.darthsystem.states.events.LocalSwitch;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import java.io.FileNotFoundException;
@@ -38,9 +38,8 @@ import java.util.HashMap;
 public class Database2 {
 
     public static Player player;
+    public static HashMap<String, LocalSwitch> mapStates;
     
-//    public static HashMap<Skill, ActorSkill> SkillToActor;
-
     public Database2(String load) {
         new SoundDatabase();
         new SkillDatabase();
@@ -49,8 +48,8 @@ public class Database2 {
         new AIDatabase();
         if (!load.equals("")) {
             try {
-//                new Database1();
                 new Database1();
+                mapStates = new HashMap<>();
                 load(load);
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
@@ -71,7 +70,7 @@ public class Database2 {
             CHARACTER_LIST.get("BLUE LADY")
         };
         CHARACTER_LIST.get("BLUE LADY").getBattler().equip(ItemDatabase.EQUIPMENT_LIST.get("BRONZE SWORD"));
-
+        mapStates = new HashMap<>();
         player = new Player(new ArrayList<>(Arrays.asList(battlers)), 0, 0);
 
     }
@@ -87,6 +86,7 @@ public class Database2 {
             Database1.money = objectStream.readInt();
             Database1.switches = (HashMap<String, Boolean>) objectStream.readObject();
             Database1.variables = (HashMap<String, String>) objectStream.readObject();
+            mapStates = (HashMap<String, LocalSwitch>) objectStream.readObject();
             new CharacterDatabase();
             player = (Player) objectStream.readObject();
             
@@ -96,7 +96,6 @@ public class Database2 {
     }
 
     public static void save(String fileName) throws FileNotFoundException, IOException {
-//        Database1.save(fileName);
         try (ObjectOutputStream objectStream
                 = new ObjectOutputStream(Gdx.files.local(fileName).write(false, 2*2*2*2*2*2*2*2*2*2*2*2*2))) {
             objectStream.writeObject(BATTLER_LIST);
@@ -105,6 +104,7 @@ public class Database2 {
             objectStream.writeInt(money);
             objectStream.writeObject(switches);
             objectStream.writeObject(variables);
+            objectStream.writeObject(mapStates);
             objectStream.writeObject(player);
         }
         catch (Exception e) {
@@ -119,12 +119,6 @@ public class Database2 {
     public void initialize() {
 
     }
-
-//    public static HashMap<Skill, FieldSkill> SkillToActor;
-    public static ArrayList<Actor> enemySampleMap;
-    public static Pickup GraphicsPotion;
-    public static NovelMode chapter1;
-
 
     public static FieldSkill Sword() {
         return new FieldSkill("items/equipment/sword/field/field",
