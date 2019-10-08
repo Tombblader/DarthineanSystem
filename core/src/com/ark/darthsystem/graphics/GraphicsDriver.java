@@ -368,6 +368,7 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
         assets.load("master/MasterSheet.atlas", TextureAtlas.class);
         assets.load("backgrounds/gameover.png", Texture.class);
         assets.load("backgrounds/title.png", Texture.class);
+        assets.load("backgrounds/battle.png", Texture.class);
         FileHandle folder = f.resolve("").child("sounds");
         if (folder.list().length == 0) {
             loadAssetsInsideJar(f);
@@ -447,11 +448,6 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
         } catch (IOException ex) {
             Logger.getLogger(MapDatabase.class.getName()).log(Level.SEVERE, null, ex);
         }
-        for (FileHandle file : mapList) {
-            if (file.extension().equalsIgnoreCase("tmx")) {
-                GraphicsDriver.getAssets().load(file.path(), TiledMap.class, parameters);
-            }
-        }
         for (FileHandle file : soundList) {
             if (file.extension().equalsIgnoreCase("wav")) {
                 GraphicsDriver.getAssets().load(file.path(), Sound.class);
@@ -460,6 +456,12 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
         for (FileHandle file : musicList) {
             if (file.extension().equalsIgnoreCase("mp3")) {
                 GraphicsDriver.getAssets().load(file.path(), Music.class);
+            }
+        }
+        assets.setLoader(TiledMap.class, (new TmxMapLoader(f)));        
+        for (FileHandle file : mapList) {
+            if (file.extension().equalsIgnoreCase("tmx")) {
+                GraphicsDriver.getAssets().load(file.path(), TiledMap.class, parameters);
             }
         }
 

@@ -305,9 +305,9 @@ public class DefaultMenu extends Menu {
         private void updateBattler(FieldBattler b) {
             if (currentBattler == null || currentBattler != b) {
                 currentBattler = b;
-                getActors().removeValue(sprite, true);                
+                getActors().removeValue(sprite, true);
                 sprite = new Actor(currentBattler.getSprite().getMasterSpriteSheet() + "/battler/battler", 
-                        200 + getX() + getWidth() + currentBattler.getSprite().getBattlerAnimation(ActorSprite.SpriteModeBattler.BATTLER).getKeyFrame(0).getWidth(),
+                        200 + getX() + getWidth() - currentBattler.getSprite().getBattlerAnimation(ActorSprite.SpriteModeBattler.BATTLER).getKeyFrame(0).getWidth() / 8,
                         100 + getY() + getHeight() / 3, currentBattler.getDelay());
                 addActor(sprite);
             }

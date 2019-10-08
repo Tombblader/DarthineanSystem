@@ -11,6 +11,7 @@ import java.util.Objects;
  * @author Keven
  */
 public abstract class Event extends ActorCollision {
+
     private int ID;
     private TriggerMethod trigger = null;
     protected LocalSwitch switches;
@@ -19,7 +20,7 @@ public abstract class Event extends ActorCollision {
         super();
         switches = new LocalSwitch();
     }
-    
+
     public Event(String img, float getX, float getY, float delay) {
         super(img, getX, getY, delay);
         switches = new LocalSwitch();
@@ -38,14 +39,14 @@ public abstract class Event extends ActorCollision {
     public boolean isTriggered(TriggerMethod trigger) {
         return trigger == getTriggerMethod();
     }
-    
+
     public abstract void run();
-    
+
     @Override
     public boolean isFinished() {
         return switches.isFinished();
     }
- 
+
     public void setFinished(boolean finished) {
         switches.setSwitch(LocalSwitch.Switch.FINISHED, finished);
     }
@@ -56,7 +57,7 @@ public abstract class Event extends ActorCollision {
 
     public final void setTriggerMethod(TriggerMethod trigger) {
         this.trigger = trigger;
-    }    
+    }
 
     @Override
     public void generateBody(OverheadMap map) {
@@ -64,7 +65,7 @@ public abstract class Event extends ActorCollision {
         setMainFilter(ActorCollision.CATEGORY_EVENT, (short) (0));
         setSensorFilter(ActorCollision.CATEGORY_EVENT, CATEGORY_PLAYER);
     }
-    
+
     @Override
     public void update(float delta) {
         super.update(delta);
@@ -72,11 +73,11 @@ public abstract class Event extends ActorCollision {
             run();
         }
     }
-    
+
     public int getID() {
         return ID;
     }
-        
+
     public void setID(int newID) {
         ID = newID;
     }
@@ -86,19 +87,19 @@ public abstract class Event extends ActorCollision {
         int hash = 7;
         return hash;
     }
-    
+
     /**
      *
      * @param map
      */
     public void setMap(OverheadMap map) {
         super.setMap(map);
-        switches = Database2.mapStates.getOrDefault(map.getMapName().toUpperCase() + ID, null);
+        switches = Database2.mapStates.getOrDefault(map.getMapName().toUpperCase() + "_" + ID, null);
         if (switches == null) {
-            Database2.mapStates.put(map.getMapName().toUpperCase()+ID, new LocalSwitch());
-            switches = Database2.mapStates.get(map.getMapName().toUpperCase()+ID);
+            Database2.mapStates.put(map.getMapName().toUpperCase() + "_" + ID, new LocalSwitch());
+            switches = Database2.mapStates.get(map.getMapName().toUpperCase() + "_" + ID);
         } else {
-            System.out.println(switches.getSwitch(LocalSwitch.Switch.FINISHED));
+            
         }
     }
 
@@ -117,5 +118,4 @@ public abstract class Event extends ActorCollision {
         return (!Objects.equals(this.getCurrentMapName(), other.getCurrentMapName()));
     }
 
-    
 }
