@@ -45,16 +45,4 @@ public class SoundDatabase {
             SOUNDS.put(assets.getAssetFileName(s).substring(7, assets.getAssetFileName(s).length() - 4).toUpperCase(), s);
         }
     }
-
-    public static void dispose() {
-//        fieldCastingSound.dispose();
-//        battlerCastingSound.dispose();
-//        buffingSound.dispose();
-//        fieldSwordSound.dispose();
-//        battlerSwordSound.dispose();
-//        ouchSound.dispose();
-//        for (Sound s : SOUNDS.values()) {
-//            s.dispose();
-//        }
-    }
 }

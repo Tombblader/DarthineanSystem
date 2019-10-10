@@ -23,6 +23,7 @@ import java.io.Serializable;
  * @author Keven
  */
 public class ActorCollision extends Actor implements Serializable {
+
     public static final short CATEGORY_AI = 0x0002;
     public static final short CATEGORY_AI_SKILL = 0x0020;
     public static final short CATEGORY_EVENT = 0x0040;
@@ -30,9 +31,9 @@ public class ActorCollision extends Actor implements Serializable {
     public static final short CATEGORY_PLAYER = 0x0001;
     public static final short CATEGORY_PLAYER_SKILL = 0x0010;
     public static final short CATEGORY_WALLS = 0x0004;
-    
+
     private static final long serialUID = 123524l;
-    
+
     private String shapeName;
     private transient Body body;
     private transient Fixture fixture;
@@ -45,7 +46,7 @@ public class ActorCollision extends Actor implements Serializable {
     public ActorCollision() {
         super();
     }
-    
+
     public ActorCollision(String img, float getX, float getY, float delay) {
         super(img, getX, getY, delay);
         shapeName = "basiccircle";
@@ -55,13 +56,12 @@ public class ActorCollision extends Actor implements Serializable {
         super(img, getX, getY, delay);
         shapeName = shape;
     }
-    
-    
+
     public ActorCollision(String img, float getX, float getY, float delay, boolean destroy) {
         super(img, getX, getY, delay, destroy);
         shapeName = "basiccircle";
     }
-    
+
     public ActorCollision(String img, float getX, float getY, float delay, boolean destroy, String shape) {
         this(img, getX, getY, delay, destroy);
         shapeName = shape;
@@ -70,15 +70,15 @@ public class ActorCollision extends Actor implements Serializable {
     public Joint getJoint() {
         return sensorJoint;
     }
-    
+
     public void setShape(String name) {
         shapeName = name;
     }
-    
+
     public String getShape() {
         return shapeName;
     }
-    
+
     public void generateBody(OverheadMap map) {
         BodyDef genericBodyType = new BodyDef();
         genericBodyType.type = BodyDef.BodyType.DynamicBody;
@@ -97,7 +97,7 @@ public class ActorCollision extends Actor implements Serializable {
             if (fixtureDef.shape == null) {
                 fixtureDef.shape = new CircleShape() {
 //                    setRadius(24f / GraphicsDriver.getPlayerCamera().getConversion());
-                };                
+                };
             }
             if (fixtureDef.shape instanceof PolygonShape) {
                 float degrees = 0;
@@ -131,7 +131,7 @@ public class ActorCollision extends Actor implements Serializable {
             }
         }
         body = map.getPhysicsWorld().createBody(genericBodyType);
-        fixtureDef.density = 0.1f; 
+        fixtureDef.density = 0.1f;
         fixtureDef.friction = 1.0f;
         fixtureDef.restitution = 0f;
         fixture = body.createFixture(fixtureDef);
@@ -158,7 +158,7 @@ public class ActorCollision extends Actor implements Serializable {
                 fixtureDef2.shape = new CircleShape();
             }
         }
-        fixtureDef2.density = 0.1f; 
+        fixtureDef2.density = 0.1f;
         fixtureDef2.friction = 1.0f;
         fixtureDef2.restitution = 0f;
         sensorFixture = sensorBody.createFixture(fixtureDef2);
@@ -168,38 +168,37 @@ public class ActorCollision extends Actor implements Serializable {
         sensorJoint = null;
         def.dampingRatio = 1f;
         def.frequencyHz = 60;
-        def.collideConnected = false;   
-        if (sensorBody ==  body) {
+        def.collideConnected = false;
+        if (sensorBody == body) {
             System.out.println(body);
         }
         def.initialize(sensorBody, body, new Vector2(getX(), getY()));
-        sensorJoint = (WeldJoint) map.getPhysicsWorld().createJoint(def);        
+        sensorJoint = (WeldJoint) map.getPhysicsWorld().createJoint(def);
         fixtureDef.shape.dispose();
         fixtureDef2.shape.dispose();
     }
-    
-    
-    
+
     public Body getMainBody() {
         return body;
     }
-    
 
     public void setMainBody(Body body) {
         this.body = body;
     }
-    
-    
+
     public Fixture getMainFixture() {
         return fixture;
     }
+
     public void setPause(float pause) {
         super.setPause(pause);
         body.setLinearVelocity(0, 0);
     }
+
     public Body getSensorBody() {
         return sensorBody;
     }
+
     public void setSensorBody(Body body) {
         sensorBody = body;
     }
@@ -207,14 +206,14 @@ public class ActorCollision extends Actor implements Serializable {
     public Fixture getSensorFixture() {
         return sensorFixture;
     }
-    
+
     public void setMainFilter(short category, short mask) {
         Filter f = new Filter();
         f.categoryBits = category;
         f.maskBits = mask;
         fixture.setFilterData(f);
     }
-    
+
     @Override
     public void setMap(OverheadMap map) {
         if (getCurrentMap() != null) {
@@ -225,13 +224,14 @@ public class ActorCollision extends Actor implements Serializable {
         setCurrentMap(map);
         map.addBody(this);
     }
-    
+
     public void setSensorFilter(short category, short mask) {
         Filter f = new Filter();
         f.categoryBits = category;
         f.maskBits = mask;
         sensorFixture.setFilterData(f);
     }
+
     @Override
     public void update(float delta) {
         super.update(delta);
@@ -240,6 +240,7 @@ public class ActorCollision extends Actor implements Serializable {
             setY(Math.round(body.getPosition().y * 32f) / 32f);
         }
     }
+
     @Override
     public void updatePartial(float delta) {
         super.updatePartial(delta);
@@ -248,11 +249,11 @@ public class ActorCollision extends Actor implements Serializable {
             setY(Math.round(body.getPosition().y * 32f) / 32f);
         }
     }
-    
-    
+
     public void setBodyX(float x) {
         body.setTransform(x, body.getPosition().y, body.getAngle());
     }
+
     public void setBodyY(float y) {
         body.setTransform(body.getPosition().x, y, body.getAngle());
     }

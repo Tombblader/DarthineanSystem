@@ -12,9 +12,11 @@ import com.ark.darthsystem.graphics.ActorSprite;
  * @author keven
  */
 public class Message {
+
     private String name;
     private ActorSprite.SpriteModeFace face;
     private String message;
+
     public Message(String name, ActorSprite.SpriteModeFace face, String message) {
         this.name = name;
         this.face = face;

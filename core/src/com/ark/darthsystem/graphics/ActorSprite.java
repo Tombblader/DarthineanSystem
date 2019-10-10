@@ -20,7 +20,6 @@ import java.util.HashMap;
  */
 public class ActorSprite implements Serializable {
 
-
     private String masterSpriteSheet;
     private transient HashMap<SpriteModeFace, Animation<Sprite>> spriteSheetFace = new HashMap<>();
     private transient HashMap<SpriteModeBattler, Animation<Sprite>> spriteSheetBattler = new HashMap<>();
@@ -28,7 +27,7 @@ public class ActorSprite implements Serializable {
     private transient Animation<Sprite> currentFieldImage;
     private transient Animation<Sprite> currentBattlerImage;
     private transient Animation<Sprite> currentFaceImage;
-    
+
     public ActorSprite() {
         masterSpriteSheet = "";
     }
@@ -48,32 +47,31 @@ public class ActorSprite implements Serializable {
         setupFace();
         setupBattler();
     }
-    
+
     private void setupWalking() {
-        final float DELAY = 1/10f;
+        final float DELAY = 1 / 10f;
         for (SpriteModeField field : SpriteModeField.values()) {
             HashMap<Actor.Facing, Animation<Sprite>> tempAnimation = new HashMap<>();
             for (Actor.Facing direction : Actor.Facing.values()) {
                 try {
-                    Array<Sprite> tempSprites = GraphicsDriver.getMasterSheet().createSprites(getMasterSpriteSheet() +
-                                    "/field/" +
-                                    field.toString().toLowerCase() +
-                                    '/' +
-                                    direction.toString().toLowerCase());
+                    Array<Sprite> tempSprites = GraphicsDriver.getMasterSheet().createSprites(getMasterSpriteSheet()
+                            + "/field/"
+                            + field.toString().toLowerCase()
+                            + '/'
+                            + direction.toString().toLowerCase());
                     if (tempSprites.size == 0) {
-                        tempSprites = GraphicsDriver.getMasterSheet().createSprites("characters/darcy_alma" +
-                                    "/field/" +
-                                    field.toString().toLowerCase() +
-                                    '/' +
-                                    direction.toString().toLowerCase());
+                        tempSprites = GraphicsDriver.getMasterSheet().createSprites("characters/darcy_alma"
+                                + "/field/"
+                                + field.toString().toLowerCase()
+                                + '/'
+                                + direction.toString().toLowerCase());
                     }
                     for (Sprite s : tempSprites) {
                         s.setOriginCenter();
                     }
-                    tempAnimation.put(direction, new Animation<>(DELAY, tempSprites, 
-                            field == SpriteModeField.WALK || field == SpriteModeField.STAND ?
-                            Animation.PlayMode.LOOP : Animation.PlayMode.NORMAL
-                                    
+                    tempAnimation.put(direction, new Animation<>(DELAY, tempSprites,
+                            field == SpriteModeField.WALK || field == SpriteModeField.STAND
+                                    ? Animation.PlayMode.LOOP : Animation.PlayMode.NORMAL
                     ));
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -92,7 +90,7 @@ public class ActorSprite implements Serializable {
             try {
                 Array<Sprite> tempSprites = GraphicsDriver.getMasterSheet().createSprites(getMasterSpriteSheet() + "/face/" + face.toString().toLowerCase());
                 if (tempSprites.size == 0) {
-                    tempSprites = GraphicsDriver.getMasterSheet().createSprites("characters/darcy_alma" + "/face/" + face.toString().toLowerCase());                    
+                    tempSprites = GraphicsDriver.getMasterSheet().createSprites("characters/darcy_alma" + "/face/" + face.toString().toLowerCase());
                 }
                 spriteSheetFace.put(face,
                         new Animation<>(DELAY, tempSprites, Animation.PlayMode.LOOP));
@@ -107,13 +105,13 @@ public class ActorSprite implements Serializable {
         final int DELAY = 10;
         for (SpriteModeBattler battler : SpriteModeBattler.values()) {
             try {
-                Array<Sprite> tempSprites = GraphicsDriver.getMasterSheet().createSprites(getMasterSpriteSheet() + 
-                                "/battler/" + battler.toString().toLowerCase());
+                Array<Sprite> tempSprites = GraphicsDriver.getMasterSheet().createSprites(getMasterSpriteSheet()
+                        + "/battler/" + battler.toString().toLowerCase());
                 if (tempSprites.size == 0) {
-                    tempSprites = GraphicsDriver.getMasterSheet().createSprites("darcy_alma/" + 
-                                "/battler/" + battler.toString().toLowerCase());               
+                    tempSprites = GraphicsDriver.getMasterSheet().createSprites("darcy_alma/"
+                            + "/battler/" + battler.toString().toLowerCase());
                 }
-                spriteSheetBattler.put(battler, new Animation<>(DELAY, 
+                spriteSheetBattler.put(battler, new Animation<>(DELAY,
                         tempSprites,
                         Animation.PlayMode.LOOP));
             } catch (Exception e) {
@@ -178,7 +176,7 @@ public class ActorSprite implements Serializable {
         this.masterSpriteSheet = masterSpriteSheet;
         setupImage();
     }
-    
+
     public enum SpriteModeFace {
         ANGRY,
         HAPPY,
@@ -187,6 +185,7 @@ public class ActorSprite implements Serializable {
         SAD,
         CUSTOM;
     }
+
     public enum SpriteModeField {
         STAND,
         WALK,
@@ -198,6 +197,7 @@ public class ActorSprite implements Serializable {
         DEAD,
         CUSTOM;
     }
+
     public enum SpriteModeBattler {
         BATTLER,
         CUSTOM;
@@ -205,8 +205,8 @@ public class ActorSprite implements Serializable {
         ATTACK,
         CAST,
         OUCH
-        */
-        
+         */
+
     }
 
 }

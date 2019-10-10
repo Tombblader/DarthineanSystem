@@ -22,12 +22,13 @@ public class GameOver implements State {
     private final TextureRegion gameOverTexture;
 
     private String BGM = "music/WhySuffering.mp3";
-    
+
     public GameOver() {
-        gameOverTexture = new TextureRegion(GraphicsDriver.getAssets().get("backgrounds/gameover.png", Texture.class)) { {
+        gameOverTexture = new TextureRegion(GraphicsDriver.getAssets().get("backgrounds/gameover.png", Texture.class)) {
+            {
                 this.flip(false, true);
-               }
-            };
+            }
+        };
         gameOverMenu = new Menu("Continue?", new String[]{"Yes", "No"}) {
             @Override
             public String confirm(String choice) {
@@ -48,25 +49,25 @@ public class GameOver implements State {
                             return choice;
                         }
                     });
-                }                
+                }
                 return choice;
             }
-            
+
         };
     }
-    
+
     @Override
     public float update(float delta) {
         GraphicsDriver.setCurrentCamera(GraphicsDriver.getCamera());
         GraphicsDriver.addMenu(gameOverMenu);
         return delta;
     }
-    
+
     @Override
     public void render(SpriteBatch batch) {
         batch.draw(gameOverTexture, 0, 0);
     }
-    
+
     @Override
     public void dispose() {
     }
@@ -75,5 +76,5 @@ public class GameOver implements State {
     public String getMusic() {
         return BGM;
     }
-    
+
 }

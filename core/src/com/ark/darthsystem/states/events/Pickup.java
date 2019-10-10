@@ -15,12 +15,11 @@ public class Pickup extends Event {
 
     private Item[] item;
     private int money;
-    private boolean isFinished;
 
     public Pickup() {
-        super("", 0, 0, 6/60f);
+        super("", 0, 0, 6 / 60f);
     }
-    
+
     public Pickup(String img, float getX,
             float getY,
             float getDelay,
@@ -29,7 +28,6 @@ public class Pickup extends Event {
         item = new Item[1];
         item[0] = getItem;
         money = 0;
-        isFinished = false;
         setTriggerMethod(TriggerMethod.TOUCH);
         setID(1);
     }
@@ -41,7 +39,6 @@ public class Pickup extends Event {
         super(img, getX, getY, getDelay);
         item = getItems;
         money = 0;
-        isFinished = false;
         setTriggerMethod(TriggerMethod.TOUCH);
         setID(1);
     }
@@ -54,35 +51,28 @@ public class Pickup extends Event {
         super(img, getX, getY, getDelay);
         item = getItems;
         money = getMoney;
-        isFinished = false;
         setTriggerMethod(TriggerMethod.TOUCH);
         setID(1);
     }
-    
-    
-    public void run() {      
-        if (!isFinished) {
+
+    public void run() {
+        if (!switches.isFinished()) {
             for (Item i : item) {
-                BattleDriver.printline("Obtained" + (i.getCharges() > 0 ? " " + i.getCharges(): "") + " " + i.getName() + "!");
+                BattleDriver.printline("Obtained" + (i.getCharges() > 0 ? " " + i.getCharges() : "") + " " + i.getName() + "!");
             }
             BattleDriver.addItems(item);
             if (money != 0) {
-                BattleDriver.printline("Got " + money + " GP!");            
+                BattleDriver.printline("Got " + money + " GP!");
                 Database1.money += money;
             }
-            isFinished = true;
+            switches.switchOn(LocalSwitch.Switch.FINISHED);
         }
-    }
-
-    @Override
-    public boolean isFinished() {
-        return isFinished;
     }
 
     public Item getItem() {
         return item[0];
     }
-    
+
     public Item[] getAllItems() {
         return item;
     }

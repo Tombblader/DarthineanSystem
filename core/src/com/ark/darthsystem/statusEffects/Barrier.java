@@ -25,7 +25,7 @@ public class Barrier extends StatusEffect {
     public float getDamageModifier() {
         return -0.5f;
     }
-    
+
     @Override
     public boolean checkStatus(Action action, Battle b) {
         return true;
@@ -43,5 +43,5 @@ public class Barrier extends StatusEffect {
     public String getDescription() {
         return "Halves damage.  May break when hit with an attack.";
     }
-    
+
 }

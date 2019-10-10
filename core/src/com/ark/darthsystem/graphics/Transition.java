@@ -5,18 +5,31 @@
  */
 package com.ark.darthsystem.graphics;
 
-import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.ark.darthsystem.states.State;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 /**
  * Transition effects for the screen.
+ *
  * @author Keven
  */
-public class Transition {
+public class Transition implements State {
 
     private boolean isFinished;
     private float time;
+
+    @Override
+    public void dispose() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String getMusic() {
+        return null;
+    }
+
     public enum TransitionType {
         FADE,
         FADE_IN_OUT,
@@ -27,12 +40,12 @@ public class Transition {
         MOVE_RIGHT,
         PAUSE
     }
-    
+
     private Sprite screenshot;
     private Sprite screenshotClone;
     private TransitionType type;
     private float alpha;
-    
+
     public Transition(TransitionType type) {
         this.time = 1000;
         this.isFinished = false;
@@ -61,15 +74,19 @@ public class Transition {
                 break;
             default:
                 throw new AssertionError(type.name());
-            
+
         }
     }
-    
+
+    public Transition(TransitionType type, State state1, State state2) {
+
+    }
+
     public Transition(TransitionType type, float time) {
         this(type);
         this.time = time;
     }
-    
+
     private Sprite screenshot() {
         Sprite tempScreenshot = new Sprite(ScreenUtils.getFrameBufferTexture());
         tempScreenshot.flip(false, true);
@@ -102,11 +119,13 @@ public class Transition {
                 break;
             default:
                 throw new AssertionError(type.name());
-            
+
         }
     }
-    
+
     private boolean stepUp;
+
+    @Override
     public float update(float delta) {
         switch (type) {
             case FADE:
@@ -143,12 +162,13 @@ public class Transition {
                 break;
             default:
                 type = TransitionType.FADE;
-                
+
         }
         return delta;
     }
-    
-    public void render(Batch batch) {
+
+    @Override
+    public void render(SpriteBatch batch) {
         if (type == TransitionType.FADE_IN_OUT && screenshotClone != null) {
             screenshotClone.draw(batch);
             if (stepUp) {
@@ -158,16 +178,16 @@ public class Transition {
         if (type != TransitionType.PAUSE) {
             screenshot.draw(batch);
         }
-        
+
     }
-    
+
     public boolean isFinished() {
         return isFinished;
     }
-    
+
     public void reset() {
         screenshot = null;
-        screenshotClone = null;                
+        screenshotClone = null;
         alpha = 1;
         time = 1000;
         switch (type) {
@@ -191,7 +211,7 @@ public class Transition {
                 break;
             default:
                 throw new AssertionError(type.name());
-            
+
         }
     }
 }

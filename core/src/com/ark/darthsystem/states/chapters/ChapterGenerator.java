@@ -135,8 +135,8 @@ public class ChapterGenerator {
                     default:
                         break;
                     case "playanimation":
-                        Actor a = new Actor(element.getAttribute("name"), 
-                                (float) Double.parseDouble(element.getAttribute("x")), 
+                        Actor a = new Actor(element.getAttribute("name"),
+                                (float) Double.parseDouble(element.getAttribute("x")),
                                 (float) Double.parseDouble(element.getAttribute("y")),
                                 1f / (float) Double.parseDouble(element.getAttribute("fps")),
                                 true);

@@ -1,7 +1,6 @@
 package com.ark.darthsystem;
 
 import com.ark.darthsystem.database.Database2;
-import com.ark.darthsystem.database.ItemDatabase;
 import com.ark.darthsystem.database.SkillDatabase;
 import com.ark.darthsystem.graphics.Actor;
 import com.ark.darthsystem.graphics.FieldSkill;
@@ -25,6 +24,7 @@ public class Equipment extends Item implements Cloneable, Serializable {
     private transient Actor battlerAnimation;
     private FieldSkill.Area areaName;
     private String shapeName;
+    private float fps;
 
     /**
      *
@@ -80,11 +80,12 @@ public class Equipment extends Item implements Cloneable, Serializable {
         magic = initializeMagic;
         equipElement = initializeElement;
         animationName = "sword";
-        battlerAnimation = new Actor("items/equipment/sword/battler/battler", 0, 0, 1/12f, true);
+        battlerAnimation = new Actor("items/equipment/sword/battler/battler", 0, 0, 1 / 12f, true);
         animation = Database2.Sword();
+        fps = animation.getDelay();
     }
 
-   public Equipment(String getName,
+    public Equipment(String getName,
             String getDescription,
             String imageName,
             String animationName,
@@ -110,12 +111,13 @@ public class Equipment extends Item implements Cloneable, Serializable {
         magic = initializeMagic;
         equipElement = initializeElement;
         this.animationName = animationName;
-        battlerAnimation = new Actor("items/equipment/" + animationName + "/battler/battler", 0, 0, 1/12f, true);
+        battlerAnimation = new Actor("items/equipment/" + animationName + "/battler/battler", 0, 0, 1 / 12f, true);
         animation = SkillDatabase.FIELD_SKILL_LIST.get(animationName.toUpperCase());
+        fps = animation.getDelay();
         this.shapeName = animation.getShape();
         this.areaName = animation.getArea();
-    }    
-    
+    }
+
     /**
      *
      * @param getName
@@ -158,9 +160,10 @@ public class Equipment extends Item implements Cloneable, Serializable {
         equipElement = initializeElement;
         animationName = "sword";
         animation = Database2.Sword();
-        battlerAnimation = new Actor("items/equipment/sword/battler/battler", 0, 0, 1/12f, true);
+        battlerAnimation = new Actor("items/equipment/sword/battler/battler", 0, 0, 1 / 12f, true);
+        fps = animation.getDelay();
     }
-    
+
     public Equipment(String getName,
             String getDescription,
             String getAnimation,
@@ -176,7 +179,7 @@ public class Equipment extends Item implements Cloneable, Serializable {
             int initializeDefense,
             int initializeSpeed,
             int initializeMagic) {
-        this(getName, 
+        this(getName,
                 getDescription,
                 getAnimation,
                 getMarketPrice,
@@ -192,24 +195,25 @@ public class Equipment extends Item implements Cloneable, Serializable {
         animationName = getAnimation;
         areaName = getArea;
         shapeName = getShape;
-        battlerAnimation = new Actor("items/equipment/" + getAnimation + "/battler/battler", 0, 0, 1/12f, true);
+        battlerAnimation = new Actor("items/equipment/" + getAnimation + "/battler/battler", 0, 0, 1 / 12f, true);
         animation = new FieldSkill("items/equipment/" + getAnimation + "/field/field",
-//                    "items/equipment/" + getAnimation + "/battler/" + getAnimation, 
-                    1, 1, 1.0f/12f, null, getArea, getShape);  
-    }      
-    
+                //                    "items/equipment/" + getAnimation + "/battler/" + getAnimation, 
+                1, 1, 1 / 12f, null, getArea, getShape);
+        fps = 1 / 12f;
+    }
+
     private void readObject(java.io.ObjectInputStream stream)
-        throws IOException, ClassNotFoundException {
+            throws IOException, ClassNotFoundException {
         stream.defaultReadObject();
-        battlerAnimation = new Actor("items/equipment/" + animationName + "/battler/battler", 0, 0, 1/12f, true);        
+        battlerAnimation = new Actor("items/equipment/" + animationName + "/battler/battler", 0, 0, 1 / 12f, true);
         animation = new FieldSkill("items/equipment/" + animationName + "/field/field",
-                       1, 1, 1.0f/12f, null, areaName, shapeName);
+                1, 1, fps, null, areaName, shapeName);
     }
 
     public Type[] getType() {
         return type;
     }
-    
+
     /**
      *
      * @return
@@ -257,7 +261,7 @@ public class Equipment extends Item implements Cloneable, Serializable {
     public int getMagic() {
         return magic;
     }
-    
+
     /**
      *
      * @return
@@ -265,7 +269,7 @@ public class Equipment extends Item implements Cloneable, Serializable {
     public FieldSkill getAnimation() {
         return animation;
     }
-    
+
     public void setAnimation(FieldSkill animation) {
         this.animation = animation;
     }
@@ -297,26 +301,26 @@ public class Equipment extends Item implements Cloneable, Serializable {
     public Actor getBattlerAnimation() {
         return battlerAnimation;
     }
-    
 
     public Equipment clone() {
-        Equipment temp = new Equipment(getName(), getDescription(), animationName, areaName, shapeName, getPrice(), type, equipmentSlot, getInvoke(), getElement(), useMP(), attack, defense, speed, magic);        
+        Equipment temp = new Equipment(getName(), getDescription(), animationName, areaName, shapeName, getPrice(), type, equipmentSlot, getInvoke(), getElement(), useMP(), attack, defense, speed, magic);
         temp.animation = animation.placeOnMap();
         return temp;
     }
+
     public enum Slot implements Nameable {
-        
+
         MainHand("Main Hand"),
-        OffHand("Off Hand"),
+        OffHand("Off-Hand"),
         Body("Body"),
         Head("Head"),
         Accessory("Accessory");
         String slot;
-        
+
         private Slot(String setSlot) {
             slot = setSlot;
         }
-        
+
         @Override
         public String getName() {
             return slot;
@@ -327,6 +331,7 @@ public class Equipment extends Item implements Cloneable, Serializable {
             return "";
         }
     }
+
     public enum Type {
         HAND,
         SWORD,
@@ -355,6 +360,5 @@ public class Equipment extends Item implements Cloneable, Serializable {
         KARIN,
         VEATHER,
         LAVENDER
-        
     }
 }

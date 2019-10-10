@@ -7,22 +7,22 @@ public class Input extends InputAdapter {
     public static int[] keys = new int[65536];
     public static boolean[] keyPressed = new boolean[65536];
     private static boolean canInput = true;
+
     public enum Key {
         UP,
         DOWN,
         LEFT,
-        RIGHT,        
+        RIGHT,
         BUTTON1,
         BUTTON2,
         BUTTON3,
         BUTTON4;
     }
-    
+
     public Input() {
         super();
     }
-    
-    
+
     public void invoke(long window,
             int keycode,
             int scancode,
@@ -32,22 +32,22 @@ public class Input extends InputAdapter {
             keys[keycode] = action;
         }
     }
-    
+
     public static void enableInput() {
         canInput = true;
     }
-    
+
     public static void disableInput() {
         canInput = false;
     }
 
     public static void clearInput() {
-        for(int i = 0; i < keys.length; i++) {
+        for (int i = 0; i < keys.length; i++) {
             keys[i] = 0;
-            keyPressed[i] = false;            
+            keyPressed[i] = false;
         }
     }
-    
+
     public static boolean getKeyRepeat(int keycode) {
         return keyPressed[keycode];
     }
@@ -75,7 +75,7 @@ public class Input extends InputAdapter {
         keyPressed[keycode] = false;
         return false;
     }
-    
+
     public static boolean isEnabled() {
         return canInput;
     }

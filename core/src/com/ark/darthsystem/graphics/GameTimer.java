@@ -17,7 +17,7 @@ public abstract class GameTimer implements Serializable {
     public GameTimer() {
         this.name = "";
     }
-    
+
     public GameTimer(String name, float time) {
         this.currentTime = 0;
         this.time = time;
@@ -45,7 +45,7 @@ public abstract class GameTimer implements Serializable {
         }
         return false;
     }
-    
+
     public boolean update(float delta) {
         currentTime += delta;
         if (isFinished()) {
@@ -55,16 +55,15 @@ public abstract class GameTimer implements Serializable {
         }
         return false;
     }
-    
-    
+
     public boolean isFinished() {
         return currentTime >= time;
     }
-    
+
     public float getCurrentTime() {
         return currentTime;
     }
-    
+
     public void resetTimer() {
         currentTime = 0;
     }
@@ -72,6 +71,6 @@ public abstract class GameTimer implements Serializable {
     public abstract void event(Actor a);
 
     public void clear() {
-        
+
     }
 }

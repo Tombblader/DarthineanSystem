@@ -92,14 +92,15 @@ public abstract class Event extends ActorCollision {
      *
      * @param map
      */
+    @Override
     public void setMap(OverheadMap map) {
-        super.setMap(map);
         switches = Database2.mapStates.getOrDefault(map.getMapName().toUpperCase() + "_" + ID, null);
         if (switches == null) {
             Database2.mapStates.put(map.getMapName().toUpperCase() + "_" + ID, new LocalSwitch());
             switches = Database2.mapStates.get(map.getMapName().toUpperCase() + "_" + ID);
-        } else {
-            
+        }
+        if (!isFinished()) {
+            super.setMap(map);
         }
     }
 

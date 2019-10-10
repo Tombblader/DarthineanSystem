@@ -235,9 +235,9 @@ public class Battle implements State {
                 tempSkill = (currentAction.getCaster().
                         getEquipment(Equipment.Slot.MainHand).
                         getBattlerAnimation());
-                tempSkill.resetAnimation();                
+                tempSkill.resetAnimation();
                 sounds.add(currentAction.getCaster().
-                            getEquipment(Equipment.Slot.MainHand).getSound());
+                        getEquipment(Equipment.Slot.MainHand).getSound());
             } catch (NullPointerException e) {
                 tempSkill = Database2.getDefaultBattlerUnarmedAnimation();
             }

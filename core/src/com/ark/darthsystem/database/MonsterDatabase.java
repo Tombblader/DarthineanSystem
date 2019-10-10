@@ -35,15 +35,15 @@ public class MonsterDatabase {
                 continue;
             }
             int i = 0;
-            
+
             MONSTER_LIST.put(data[i].toUpperCase(), new FieldBattlerAI(new ArrayList<>(Arrays.asList(new FieldBattler[]{new FieldBattler(AIDatabase.BATTLER_LIST.get(data[i].toUpperCase()), //Name
-                    "monsters/" + data[++i], //Sprite Name
-                    (float) (1f / Double.parseDouble(data[++i])), //fps
-                    data[++i], //ShapeName
-                    (float) Double.parseDouble(data[++i]) //Speed
-                    
-            )})), 0, 0));
-        
+                "monsters/" + data[++i], //Sprite Name
+                (float) (1f / Double.parseDouble(data[++i])), //fps
+                data[++i], //ShapeName
+                (float) Double.parseDouble(data[++i]) //Speed
+
+                )})), 0, 0));
+
         }
     }
 }

@@ -16,16 +16,17 @@ import com.ark.darthsystem.states.Battle;
  * @author keven
  */
 public class Stun extends StatusEffect {
+
     public Stun() {
         super("Stun", 2, .5, 0, 1, true, " is stunned!");
         setInitialTurnCount(0);
     }
-    
+
     public Stun(int turn) {
         this();
         setInitialTurnCount(turn);
     }
-    
+
     @Override
     public boolean checkStatus(Action action, Battle b) {
         return false;
@@ -50,5 +51,5 @@ public class Stun extends StatusEffect {
         }
 
     }
-    
+
 }

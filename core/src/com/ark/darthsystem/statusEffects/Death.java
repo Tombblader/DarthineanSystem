@@ -16,15 +16,16 @@ import com.ark.darthsystem.states.Battle;
  * @author keven
  */
 public class Death extends StatusEffect {
-    
+
     public Death() {
         super("Death", 8, .10, 0.0, 0, true, " has instantly died!");
         setInitialTurnCount(0);
     }
+
     @Override
     public boolean checkStatus(Action action, Battle b) {
         return false;
-    }    
+    }
 
     @Override
     public String getDescription() {
@@ -35,7 +36,7 @@ public class Death extends StatusEffect {
     public void checkFieldStatus(Player player, Battler battler, GameTimer timer) {
 
     }
-    
+
     @Override
     public void updateFieldStatus(Player player, Battler battler, GameTimer timer, float delta) {
 

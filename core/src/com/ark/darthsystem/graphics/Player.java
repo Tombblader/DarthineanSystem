@@ -14,16 +14,12 @@ import com.ark.darthsystem.states.events.Event;
 import com.ark.darthsystem.statusEffects.Normal;
 import com.ark.darthsystem.statusEffects.StatusEffect;
 
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Filter;
 import com.badlogic.gdx.physics.box2d.Fixture;
@@ -41,10 +37,11 @@ import java.util.Collections;
  * @author Keven Tran
  */
 public class Player extends ActorCollision implements Serializable {
-    private static final long serialVersionUID = 553782345;    
+
+    private static final long serialVersionUID = 553782345;
 
     private static final float SPEED = .4f;
-    private static final float DELAY =  1f/10f;
+    private static final float DELAY = 1f / 10f;
 
     private int moveUp = Keys.UP;
     private int moveDown = Keys.DOWN;
@@ -77,7 +74,7 @@ public class Player extends ActorCollision implements Serializable {
     private transient FieldSkill currentSkill;
 
     private transient Input playerInput;
-    private transient BitmapFont font;
+//    private transient BitmapFont font;
     private transient FieldBattler currentBattler;
     private transient Array<Event> eventQueue;
 //    private boolean isJumping;
@@ -90,7 +87,7 @@ public class Player extends ActorCollision implements Serializable {
         eventQueue = new Array<>();
         party = new ArrayList<>();
     }
-    
+
     public Player(ArrayList<FieldBattler> getBattler, float getX, float getY) {
         super(getBattler.get(0).getSprite().getMasterSpriteSheet() + "/field/stand/down", getX, getY, getBattler.get(0).getDelay(), getBattler.get(0).getShapeName());
         this.eventQueue = new Array<>();
@@ -98,29 +95,28 @@ public class Player extends ActorCollision implements Serializable {
         party = getBattler;
         initialize();
     }
-    
+
     private void initialize() {
         eventQueue = new Array<>();
-        currentBattler = party.get(0);        
-        if (party.get(0).getBattler().getSkillList() != null 
+        currentBattler = party.get(0);
+        if (party.get(0).getBattler().getSkillList() != null
                 && !party.get(0).getBattler().getSkillList().isEmpty()) {
             currentSkill = Database2.SkillToActor(party.get(0).getBattler().getSkill(0).getName());
         }
         setAttackAnimation();
-        FreeTypeFontGenerator gen = new FreeTypeFontGenerator(Gdx.files.internal("fonts/monofont.ttf"));
-        FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
-        parameter.size = 24;
-        parameter.flip = true;
-        font = gen.generateFont(parameter);
-        font.getData().markupEnabled = true;        
-        font.setColor(Color.WHITE);
-        font.setUseIntegerPositions(false);
-        gen.dispose();
+//        FreeTypeFontGenerator gen = new FreeTypeFontGenerator(Gdx.files.internal("fonts/monofont.ttf"));
+//        FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+//        parameter.size = 24;
+//        parameter.flip = true;
+//        font = gen.generateFont(parameter);
+//        font.getData().markupEnabled = true;        
+//        font.setColor(Color.WHITE);
+//        font.setUseIntegerPositions(false);
+//        gen.dispose();
         checkStatusEffects();
         setControls();
     }
 
-    
     private void setControls() {
         moveUp = Keys.UP;
         moveDown = Keys.DOWN;
@@ -142,29 +138,27 @@ public class Player extends ActorCollision implements Serializable {
     public void setAttacking(boolean attacking) {
         this.attacking = attacking;
     }
-        
+
     public void setCanAttack(boolean canAttack) {
         this.canAttack = canAttack;
     }
-    
+
     public void setCanSkill(boolean canSkill) {
         this.canSkill = canSkill;
     }
 
-    
     public boolean isAttacking() {
         return attacking;
     }
-    
+
     public boolean canAttack() {
-        return canAttack;        
+        return canAttack;
     }
 
     public boolean canSkill() {
-        return canSkill;        
+        return canSkill;
     }
-    
-    
+
     public FieldSkill getAttackAnimation() {
         FieldSkill temp = attackAnimation.placeOnMap();
         if (getFacing().getX() == -1) {
@@ -179,11 +173,13 @@ public class Player extends ActorCollision implements Serializable {
         temp.setInvoker(this);
         return temp;
     }
+
     public void skill() {
         if (currentSkill != null) {
             currentSkill.activate(this);
         }
     }
+
     public void setAttackAnimation() {
         Equipment tempEquipment = getCurrentBattler().getBattler().getEquipment(Equipment.Slot.MainHand);
         if (tempEquipment != null) {
@@ -197,7 +193,7 @@ public class Player extends ActorCollision implements Serializable {
         } else {
             attackAnimation = Database2.Sword();
         }
-        attackAnimation.setInvoker(this);   
+        attackAnimation.setInvoker(this);
     }
 
     public void attack() {
@@ -222,6 +218,7 @@ public class Player extends ActorCollision implements Serializable {
                             public void event(Actor a) {
                                 attacking = false;
                             }
+
                             @Override
                             public boolean update(float delta, Actor a) {
                                 attacking = true;
@@ -233,6 +230,7 @@ public class Player extends ActorCollision implements Serializable {
                             public void event(Actor a) {
                                 fieldState = ActorSprite.SpriteModeField.STAND;
                             }
+
                             @Override
                             public boolean update(float delta, Actor a) {
                                 fieldState = ActorSprite.SpriteModeField.ATTACK;
@@ -241,6 +239,7 @@ public class Player extends ActorCollision implements Serializable {
                         });
                     }
                 }
+
                 @Override
                 public boolean update(float delta, Actor a) {
                     attacking = true;
@@ -248,12 +247,12 @@ public class Player extends ActorCollision implements Serializable {
 //                    fieldState = ActorSprite.SpriteModeField.ATTACK;
                     return super.update(delta, a);
                 }
-                
+
                 public void clear() {
                     attacking = false;
                     fieldState = ActorSprite.SpriteModeField.STAND;
                 }
-                
+
             });
         }
     }
@@ -269,15 +268,15 @@ public class Player extends ActorCollision implements Serializable {
     public void moving(float x, float y, float delta) {
         getMainBody().setLinearVelocity(x * getBaseSpeed() * delta, y * getBaseSpeed() * delta);
     }
-    
+
     public void moving(float delta) {
         boolean slowDown = Input.getKeyRepeat(slowButton) && !isJumping;
         setSpeed(getBaseSpeed() * (slowDown ? .5f : 1));
         if (isJumping) {
             setSpeed(getBaseSpeed() * 1.5f);
         }
-        
-        if (Input.getKeyPressed(jumpButton) && canDodge && ! slowDown) {
+
+        if (Input.getKeyPressed(jumpButton) && canDodge && !slowDown) {
             jump();
         } else {
             if (Input.getKeyRepeat(moveLeft)) {
@@ -301,7 +300,7 @@ public class Player extends ActorCollision implements Serializable {
             if (Input.getKeyRepeat(moveUp)) {
                 getMainBody().setLinearVelocity(getMainBody().getLinearVelocity().x, -getSpeed() * (float) (delta));
                 if (!slowDown) {
-                   changeY(-1);
+                    changeY(-1);
                 }
                 setWalking(true);
                 fieldState = ActorSprite.SpriteModeField.WALK;
@@ -367,9 +366,9 @@ public class Player extends ActorCollision implements Serializable {
         super.update(delta);
         speed = currentBattler.getSpeed();
         applySprite();
-        
+
     }
-    
+
     @Override
     public void updatePartial(float delta) {
         isWalking = false;
@@ -381,9 +380,9 @@ public class Player extends ActorCollision implements Serializable {
         changeY(0);
         super.updatePartial(delta);
         speed = currentBattler.getSpeed();
-        applySprite();        
+        applySprite();
     }
-    
+
     public void checkStatusEffects() {
         for (Battler b : getAllBattlers()) {
             for (StatusEffect status : b.getAllStatus()) {
@@ -399,6 +398,7 @@ public class Player extends ActorCollision implements Serializable {
                     }
                     addTimer(new GameTimer(b.toString() + status.getName(), 3000) {
                         StatusEffect stat = status;
+
                         @Override
                         public void event(Actor a) {
                             if (b.getStatus(stat) && stat.faded(b)) {
@@ -408,7 +408,7 @@ public class Player extends ActorCollision implements Serializable {
                                     b.changeStatus(new Normal());
                                 }
                                 Player.this.enableMovement();
-                                Player.this.setCanSkill(true);                            
+                                Player.this.setCanSkill(true);
                             } else {
                                 stat.checkFieldStatus(Player.this, b, this);
                                 if (!b.getStatus("Death")) {
@@ -435,12 +435,12 @@ public class Player extends ActorCollision implements Serializable {
         return isJumping;
     }
 
-    public void setMap(OverheadMap map, float x, float y) { 
+    public void setMap(OverheadMap map, float x, float y) {
         setX(x);
         setY(y);
         super.setMap(map);
     }
-    
+
     public float getBaseSpeed() {
         return currentBattler.getSpeed();
     }
@@ -453,7 +453,7 @@ public class Player extends ActorCollision implements Serializable {
                 public void event(Actor a) {
                     isJumping = false;
                     canAttack = true;
-                    setMainFilter(ActorCollision.CATEGORY_PLAYER, (short)(ActorCollision.CATEGORY_WALLS | ActorCollision.CATEGORY_OBSTACLES));
+                    setMainFilter(ActorCollision.CATEGORY_PLAYER, (short) (ActorCollision.CATEGORY_WALLS | ActorCollision.CATEGORY_OBSTACLES));
                     setSensorFilter(ActorCollision.CATEGORY_PLAYER, (short) (ActorCollision.CATEGORY_AI | ActorCollision.CATEGORY_AI_SKILL | ActorCollision.CATEGORY_EVENT));
                     fieldState = ActorSprite.SpriteModeField.STAND;
                     resetAnimation();
@@ -490,45 +490,46 @@ public class Player extends ActorCollision implements Serializable {
             canAttack = false;
         }
     }
-    
+
     protected void resetSprite() {
         if (currentBattler.getSprite().getFieldAnimation(fieldState, getFacingBias()) != null && currentBattler.getSprite().getFieldAnimation(fieldState, getFacingBias()).getKeyFrames().length > 0) {
-           changeAnimation(currentBattler.getSprite().getFieldAnimation(fieldState, getFacingBias()));
+            changeAnimation(currentBattler.getSprite().getFieldAnimation(fieldState, getFacingBias()));
         } else {
             changeAnimation(currentBattler.getSprite().getFieldAnimation(ActorSprite.SpriteModeField.STAND, getFacingBias()));
         }
 
     }
-    
+
     public void setDefaultFilter() {
-        setMainFilter(ActorCollision.CATEGORY_PLAYER, (short)(ActorCollision.CATEGORY_WALLS | ActorCollision.CATEGORY_OBSTACLES));
+        setMainFilter(ActorCollision.CATEGORY_PLAYER, (short) (ActorCollision.CATEGORY_WALLS | ActorCollision.CATEGORY_OBSTACLES));
         setSensorFilter(ActorCollision.CATEGORY_PLAYER, (short) (ActorCollision.CATEGORY_AI | ActorCollision.CATEGORY_AI_SKILL | ActorCollision.CATEGORY_EVENT));
     }
-    
-    
+
     public void setSuperInvulnerability(int time) {
         GameTimer tempTimer = new GameTimer("Invulnerable", time) {
             public void event(Actor a) {
                 setDefaultFilter();
             }
+
             public boolean update(float delta, Actor a) {
                 setMainFilter(ActorCollision.CATEGORY_PLAYER, ActorCollision.CATEGORY_WALLS);
                 setSensorFilter(ActorCollision.CATEGORY_PLAYER, ActorCollision.CATEGORY_EVENT);
                 return super.update(delta, a);
             }
-            
+
         };
         addTimer(tempTimer);
         setMainFilter(ActorCollision.CATEGORY_PLAYER, ActorCollision.CATEGORY_WALLS);
         setSensorFilter(ActorCollision.CATEGORY_PLAYER, ActorCollision.CATEGORY_EVENT);
-    }    
-    
+    }
+
     public void setInvulnerability(int time) {
         GameTimer tempTimer = new GameTimer("Invulnerable", time) {
             @Override
             public void event(Actor a) {
                 setDefaultFilter();
             }
+
             @Override
             public boolean update(float delta, Actor a) {
                 setMainFilter(ActorCollision.CATEGORY_PLAYER, (short) (ActorCollision.CATEGORY_WALLS | ActorCollision.CATEGORY_OBSTACLES));
@@ -537,7 +538,7 @@ public class Player extends ActorCollision implements Serializable {
                 getSensorBody().setAwake(true);
                 return super.update(delta, a);
             }
-            
+
         };
         addTimer(tempTimer);
         setMainFilter(ActorCollision.CATEGORY_PLAYER, (short) (ActorCollision.CATEGORY_WALLS | ActorCollision.CATEGORY_OBSTACLES));
@@ -547,11 +548,11 @@ public class Player extends ActorCollision implements Serializable {
     public void setFieldState(ActorSprite.SpriteModeField mode) {
         fieldState = mode;
     }
-    
+
     public ActorSprite.SpriteModeField getFieldState() {
         return fieldState;
     }
-    
+
     @Override
     public void generateBody(OverheadMap map) {
 //        setX(getInitialX());
@@ -565,43 +566,39 @@ public class Player extends ActorCollision implements Serializable {
         getSensorFixture().setFilterData(filter);
 
     }
-    
+
     protected void applySprite() {
-        if (currentBattler.getSprite().getFieldAnimation(fieldState, getFacingBias()) != null && 
-                currentBattler.getSprite().getFieldAnimation(fieldState, getFacingBias()).getKeyFrames().length > 0) {
+        if (currentBattler.getSprite().getFieldAnimation(fieldState, getFacingBias()) != null
+                && currentBattler.getSprite().getFieldAnimation(fieldState, getFacingBias()).getKeyFrames().length > 0) {
             changeDuringAnimation(currentBattler.getSprite().getFieldAnimation(fieldState, getFacingBias()));
         } else {
             changeDuringAnimation(currentBattler.getSprite().getFieldAnimation(ActorSprite.SpriteModeField.STAND, getFacingBias()));
         }
     }
-    
-    public BitmapFont getFont() {
-        return font;
-    }
 
     private void attacking(float delta) {
         //Check for direction first
         boolean slowDown = Input.getKeyRepeat(slowButton);
-        if (Input.getKeyRepeat(moveLeft) && ! slowDown) {
+        if (Input.getKeyRepeat(moveLeft) && !slowDown) {
             changeX(-1);
         }
 
-        if (Input.getKeyRepeat(moveRight) && ! slowDown) {
+        if (Input.getKeyRepeat(moveRight) && !slowDown) {
             changeX(1);
         }
 
-        if (Input.getKeyRepeat(moveUp) && ! slowDown) {
+        if (Input.getKeyRepeat(moveUp) && !slowDown) {
             changeY(-1);
         }
-        if (Input.getKeyRepeat(moveDown) && ! slowDown) {
+        if (Input.getKeyRepeat(moveDown) && !slowDown) {
             changeY(1);
         }
 
-        if (!Input.getKeyRepeat(moveLeft) && !Input.getKeyRepeat(moveRight) && ! slowDown) {
+        if (!Input.getKeyRepeat(moveLeft) && !Input.getKeyRepeat(moveRight) && !slowDown) {
             changeX(0);
         }
 
-        if (!Input.getKeyRepeat(moveUp) && !Input.getKeyRepeat(moveDown) && ! slowDown) {
+        if (!Input.getKeyRepeat(moveUp) && !Input.getKeyRepeat(moveDown) && !slowDown) {
             changeY(0);
         }
         setFacing();
@@ -625,11 +622,11 @@ public class Player extends ActorCollision implements Serializable {
                         Player.this.hasEvent = true;
                         return 1;
                     }
-                    return -1;        
+                    return -1;
                 };
-                getCurrentMap().getPhysicsWorld().rayCast(buttonPushFinder, getMainBody().getPosition(), 
+                getCurrentMap().getPhysicsWorld().rayCast(buttonPushFinder, getMainBody().getPosition(),
                         (new Vector2(getFacing().getVector()).add(getMainBody().getPosition())).add(getFacing().getVector().scl(.25f)));
-                
+
                 if (!hasEvent) {
                     attack();
                 }
@@ -642,7 +639,7 @@ public class Player extends ActorCollision implements Serializable {
                 setPause(200f);
             }
 
-        }        
+        }
     }
 
     public void switchBattler() {
@@ -668,7 +665,7 @@ public class Player extends ActorCollision implements Serializable {
             applySprite();
         }
     }
-    
+
     public void switchBattler(int index) {
         if (totalPartyKill()) {
             return;
@@ -689,9 +686,8 @@ public class Player extends ActorCollision implements Serializable {
             fieldState = ActorSprite.SpriteModeField.STAND;
             applySprite();
         }
-    }    
+    }
 
-    
     public void switchSkill(FieldSkill skill) {
 
     }
@@ -723,11 +719,11 @@ public class Player extends ActorCollision implements Serializable {
         }
         return isDead;
     }
-    
+
     public void renderGlobalData(Batch batch) {
         printStats(batch);
     }
-    
+
     public void printStats(Batch batch) {
         final int STAT_WIDTH = Gdx.graphics.getWidth();
         final int STAT_HEIGHT = 78;
@@ -748,20 +744,19 @@ public class Player extends ActorCollision implements Serializable {
                     temp.getScaleX(),
                     temp.getScaleY(),
                     temp.getRotation());
-            GraphicsDriver.drawMessage(batch, font,
+            GraphicsDriver.drawMessage(batch, GraphicsDriver.getFont(),
                     getAllFieldBattlers().get(i).getBattler().getName(),
                     ((NAME_X + SUB_WIDTH * i) + GraphicsDriver.getCamera().getScreenPositionX()),
                     (NAME_Y + GraphicsDriver.getCamera().getScreenPositionY()));
-            GraphicsDriver.drawMessage(batch, font,
+            GraphicsDriver.drawMessage(batch, GraphicsDriver.getFont(),
                     "HP: " + getAllFieldBattlers().get(i).getBattler().getHP() + "/" + getAllFieldBattlers().get(i).getBattler().getMaxHP(),
                     ((NAME_X + SUB_WIDTH * i) + GraphicsDriver.getCamera().getScreenPositionX()),
-                    ((NAME_Y + FONT_SIZE) + GraphicsDriver.getCamera().getScreenPositionY()
-                            ));
-            GraphicsDriver.drawMessage(batch, font,
+                    ((NAME_Y + FONT_SIZE) + GraphicsDriver.getCamera().getScreenPositionY()));
+            GraphicsDriver.drawMessage(batch, GraphicsDriver.getFont(),
                     "MP: " + getAllFieldBattlers().get(i).getBattler().getMP() + "/" + getAllFieldBattlers().get(i).getBattler().getMaxMP(),
                     ((NAME_X + SUB_WIDTH * i) + GraphicsDriver.getCamera().getScreenPositionX()),
                     ((NAME_Y + FONT_SIZE * 2f) + GraphicsDriver.getCamera().getScreenPositionY()));
-            GraphicsDriver.drawMessage(batch, font,
+            GraphicsDriver.drawMessage(batch, GraphicsDriver.getFont(),
                     getAllFieldBattlers().
                             get(i).
                             getCurrentSkill().
@@ -771,7 +766,7 @@ public class Player extends ActorCollision implements Serializable {
                     ((NAME_Y + FONT_SIZE * 3f) + GraphicsDriver.getCamera().getScreenPositionY()));
         }
     }
-    
+
     public void defend() {
         getCurrentBattler().getBattler().defend();
         disableMovement();
@@ -784,37 +779,38 @@ public class Player extends ActorCollision implements Serializable {
                 attacking = false;
                 enableMovement();
             }
+
             @Override
             public boolean update(float delta, Actor a) {
                 disableMovement();
                 return super.update(delta, a);
             }
-            
+
             @Override
             public boolean isFinished() {
                 return !Input.getKeyRepeat(defendButton);
             }
-            
-        }); 
+
+        });
     }
-    
+
     public ActorSprite getSpriteSheet() {
         return currentBattler.getSprite();
     }
-    
+
     public void addButtonEvent(Event e) {
         eventQueue.add(e);
     }
-    
+
     public void removeButtonEvent(Event e) {
-        eventQueue.removeValue(e, true);        
+        eventQueue.removeValue(e, true);
     }
-    
+
     public Event getClosestButtonEvent() {
         Event temp = eventQueue.size != 0 ? eventQueue.get(0) : null;
         for (Event e : eventQueue) {
-            if (Math.pow(e.getX() - getX(), 2) + Math.pow(e.getY() - getY(), 2) <
-                    Math.pow(temp.getX() - getX(), 2) + Math.pow(temp.getY() - getY(), 2)) {
+            if (Math.pow(e.getX() - getX(), 2) + Math.pow(e.getY() - getY(), 2)
+                    < Math.pow(temp.getX() - getX(), 2) + Math.pow(temp.getY() - getY(), 2)) {
                 temp = e;
             }
         }
@@ -834,19 +830,19 @@ public class Player extends ActorCollision implements Serializable {
                 if (b.isAlive()) {
                     fieldState = ActorSprite.SpriteModeField.STAND;
                     ouchBattler.setFace(ActorSprite.SpriteModeFace.NORMAL);
-                }
-                else {
+                } else {
                     addTimer(new GameTimer("DEAD", 9999) {
                         @Override
                         public boolean isFinished() {
                             return ouchBattler.getBattler().isAlive();
                         }
+
                         @Override
                         public void event(Actor a) {
                             fieldState = ActorSprite.SpriteModeField.STAND;
-                            ouchBattler.setFace(ActorSprite.SpriteModeFace.NORMAL);                            
+                            ouchBattler.setFace(ActorSprite.SpriteModeFace.NORMAL);
                         }
-                        
+
                         @Override
                         public boolean update(float delta, Actor a) {
                             if (!b.isAlive()) {
@@ -858,7 +854,7 @@ public class Player extends ActorCollision implements Serializable {
                     });
                 }
             }
-            
+
             @Override
             public boolean update(float delta, Actor a) {
                 if (ouchBattler.getBattler().isAlive()) {
@@ -867,12 +863,12 @@ public class Player extends ActorCollision implements Serializable {
                 }
                 return super.update(delta, a);
             }
-       
+
         });
 
     }
 
-    private void readObject(ObjectInputStream in) throws IOException,ClassNotFoundException {
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
         in.defaultReadObject();
         ArrayList<String> partyNames = (ArrayList<String>) in.readObject();
         party = new ArrayList<>();
@@ -880,19 +876,19 @@ public class Player extends ActorCollision implements Serializable {
             party.add(CharacterDatabase.CHARACTER_LIST.get(partyName.toUpperCase()));
         }
         initialize();
-    }    
-    private void writeObject(ObjectOutputStream out) throws IOException,ClassNotFoundException {
+    }
+
+    private void writeObject(ObjectOutputStream out) throws IOException, ClassNotFoundException {
         out.defaultWriteObject();
         ArrayList<String> partyNames = new ArrayList<>();
         for (FieldBattler f : party) {
             partyNames.add(f.getBattler().getName());
         }
         out.writeObject(partyNames);
-        
-    }    
-        
-    
+
+    }
+
     public void ouch() {
         ouch(currentBattler.getBattler());
-    }    
+    }
 }

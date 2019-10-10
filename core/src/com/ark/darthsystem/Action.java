@@ -9,12 +9,12 @@ import com.ark.darthsystem.database.SoundDatabase;
 import com.ark.darthsystem.graphics.GraphicsDriver;
 import com.ark.darthsystem.statusEffects.*;
 
-
 import java.util.ArrayList;
 
 /**
  * An action is a Battle object created when a battler declares an attack
  * against another battler.
+ *
  * @author Keven
  */
 public class Action implements Serializable {
@@ -29,13 +29,15 @@ public class Action implements Serializable {
     private Battler target;
     private ArrayList<Battler> allTargets;
     private int damage;
-    
+
     public Action() {
         this.actionCommand = Battle.Command.Run;
     }
 
     /**
-     * An Action based on a command without any parameters.  Typically, only Run or Analyze would use this constructor.
+     * An Action based on a command without any parameters. Typically, only Run
+     * or Analyze would use this constructor.
+     *
      * @param actionCommand The Command that this action uses.
      */
     public Action(Battle.Command actionCommand) {
@@ -43,7 +45,9 @@ public class Action implements Serializable {
     }
 
     /**
-     * An action that has a caster, but no targets.  Typically, only Defend or Charge would use this constructor.
+     * An action that has a caster, but no targets. Typically, only Defend or
+     * Charge would use this constructor.
+     *
      * @param command The Command this action uses.
      * @param caster The person initiating this command.
      */
@@ -203,23 +207,23 @@ public class Action implements Serializable {
         damage = 0;
         switch (actionCommand) {
             case Attack:
-                damage = (int) ((caster.getAttack() *
-                        ATTACK_CONSTANT -
-                        target.getDefense() * DEFENSE_CONSTANT) /
-                        ATTACK_RATIO *
-                        (caster.getEquipment(Equipment.Slot.MainHand) != null &&
-                        caster.getEquipment(Equipment.Slot.MainHand).getElement() != Battle.Element.Physical &&
-                        caster.getEquipment(Equipment.Slot.MainHand).getElement() ==
-                        target.getElement().getWeakness() ? 2 : 1) * (caster.getEquipment(Equipment.Slot.MainHand) != null &&
-                        caster.getEquipment(Equipment.Slot.MainHand).getElement() != Battle.Element.Physical &&
-                        caster.getEquipment(Equipment.Slot.MainHand).getElement() ==
-                        caster.getElement() ? 1.5 : 1) *
-                        (caster.getEquipment(Equipment.Slot.MainHand) != null &&
-                        caster.getEquipment(Equipment.Slot.MainHand).getElement() != Battle.Element.Physical &&
-                        caster.getEquipment(Equipment.Slot.MainHand).getElement() == target.getElement() ? -1 : 1) * (caster.getEquipment(Equipment.Slot.MainHand) !=null &&
-                        caster.getEquipment(Equipment.Slot.MainHand).getElement() != Battle.Element.Physical &&
-                        target.getEquipment(Equipment.Slot.OffHand) != null &&
-                        caster.getEquipment(Equipment.Slot.MainHand).getElement() == target.getEquipment(Equipment.Slot.OffHand).getElement() ? .5 : 1) * (.9 + Math.random() * .25));
+                damage = (int) ((caster.getAttack()
+                        * ATTACK_CONSTANT
+                        - target.getDefense() * DEFENSE_CONSTANT)
+                        / ATTACK_RATIO
+                        * (caster.getEquipment(Equipment.Slot.MainHand) != null
+                        && caster.getEquipment(Equipment.Slot.MainHand).getElement() != Battle.Element.Physical
+                        && caster.getEquipment(Equipment.Slot.MainHand).getElement()
+                        == target.getElement().getWeakness() ? 2 : 1) * (caster.getEquipment(Equipment.Slot.MainHand) != null
+                        && caster.getEquipment(Equipment.Slot.MainHand).getElement() != Battle.Element.Physical
+                        && caster.getEquipment(Equipment.Slot.MainHand).getElement()
+                        == caster.getElement() ? 1.5 : 1)
+                        * (caster.getEquipment(Equipment.Slot.MainHand) != null
+                        && caster.getEquipment(Equipment.Slot.MainHand).getElement() != Battle.Element.Physical
+                        && caster.getEquipment(Equipment.Slot.MainHand).getElement() == target.getElement() ? -1 : 1) * (caster.getEquipment(Equipment.Slot.MainHand) != null
+                        && caster.getEquipment(Equipment.Slot.MainHand).getElement() != Battle.Element.Physical
+                        && target.getEquipment(Equipment.Slot.OffHand) != null
+                        && caster.getEquipment(Equipment.Slot.MainHand).getElement() == target.getEquipment(Equipment.Slot.OffHand).getElement() ? .5 : 1) * (.9 + Math.random() * .25));
                 setNewTarget();
                 damageStep(b, damage);
                 break;
@@ -249,23 +253,23 @@ public class Action implements Serializable {
                         setNewTarget();
                     }
                     if (actionItem.getHPValue() > 0) {
-                        print(target.getName() +
-                                "'s HP is restored by " +
-                                actionItem.getHPValue() +
-                                "!");
+                        print(target.getName()
+                                + "'s HP is restored by "
+                                + actionItem.getHPValue()
+                                + "!");
                     }
                     if (actionItem.getMPValue() > 0) {
-                        print(target.getName() +
-                                "'s MP is restored by " +
-                                actionItem.getMPValue() +
-                                "!");
+                        print(target.getName()
+                                + "'s MP is restored by "
+                                + actionItem.getMPValue()
+                                + "!");
                     }
                     target.changeHP(-actionItem.getHPValue());
                     target.changeMP(-actionItem.getMPValue());
                 } else {
                     actionSkill = actionItem.getInvoke();
-                    if ((actionItem.useMP() &&
-                            actionSkill.getCost() > caster.getMP())) {
+                    if ((actionItem.useMP()
+                            && actionSkill.getCost() > caster.getMP())) {
                         print("However, " + caster.getName() + " doesn't have enough MP!");
                     }
                     if (actionItem.getAll()) {
@@ -292,7 +296,6 @@ public class Action implements Serializable {
                 b.exitBattle();
         }
 
-
     }
 
     private void damageStep(Battle b, int getDamage) {
@@ -304,9 +307,9 @@ public class Action implements Serializable {
             SoundDatabase.ouchSound.stop();
             SoundDatabase.ouchSound.play();
         }
-        String temp = ((actionSkill == null ||
-                !actionSkill.getAlly()) ? target.getName() +
-                        " took " + ((int) (getDamage * target.getDefend() * target.getStatusDamageModifier())) + " damage!" : "");
+        String temp = ((actionSkill == null
+                || !actionSkill.getAlly()) ? target.getName()
+                + " took " + ((int) (getDamage * target.getDefend() * target.getStatusDamageModifier())) + " damage!" : "");
         if (!temp.equals("")) {
             printline(temp);
         }
@@ -334,14 +337,14 @@ public class Action implements Serializable {
     private void allDamageStep(Battle b) {
         for (Battler allTarget : allTargets) {
             damage = actionSkill.calculateDamage(caster, allTarget);
-            if (allTarget.isAlive() ||
-                    (actionSkill.getStatusEffect() instanceof Death) &&
-                    actionSkill.getElement() == Battle.Element.Heal &&
-                    !allTarget.isAlive()) {
-                damage = damage <= 0 &&
-                        (actionSkill == null ||
-                        (actionSkill != null &&
-                        actionSkill.getElement() != Battle.Element.Heal)) ? 0 : damage;
+            if (allTarget.isAlive()
+                    || (actionSkill.getStatusEffect() instanceof Death)
+                    && actionSkill.getElement() == Battle.Element.Heal
+                    && !allTarget.isAlive()) {
+                damage = damage <= 0
+                        && (actionSkill == null
+                        || (actionSkill != null
+                        && actionSkill.getElement() != Battle.Element.Heal)) ? 0 : damage;
                 if (damage > 0) {
                     if ((b.getAlly()).contains(allTarget)) {
 //                        GraphicsDriver.getPlayer().hasTakenDamage(allTarget);
@@ -349,11 +352,11 @@ public class Action implements Serializable {
 
                     }
                 }
-                String tempMessage = ((actionSkill == null ||
-                        !actionSkill.getAlly()) ? 
-                        allTarget.getName() + " took " +
-                                ((int) (damage * allTarget.getDefend() * allTarget.getStatusDamageModifier())) +
-                                " damage!\n" : "");
+                String tempMessage = ((actionSkill == null
+                        || !actionSkill.getAlly())
+                        ? allTarget.getName() + " took "
+                        + ((int) (damage * allTarget.getDefend() * allTarget.getStatusDamageModifier()))
+                        + " damage!\n" : "");
                 if (!tempMessage.equals("\n") && !tempMessage.equals("")) {
                     print(tempMessage);
                 }
@@ -361,10 +364,10 @@ public class Action implements Serializable {
                 if (!tempMessage.equals("\n") && !tempMessage.equals("")) {
                     print(tempMessage);
                 }
-                for (int i = 0; i < allTarget.getAllStatus().size(); i++ ) {
+                for (int i = 0; i < allTarget.getAllStatus().size(); i++) {
                     if (damage > 0 && allTarget.getAllStatus().get(i).attackFaded()) {
                         printline(allTarget.getName() + "'s " + target.getStatus(i).getName() + " faded away.");
-                        allTarget.getAllStatus().remove(i);                        
+                        allTarget.getAllStatus().remove(i);
                         i--;
                     }
                 }
@@ -401,14 +404,14 @@ public class Action implements Serializable {
             allAlive = allAlive && allTarget.isAlive();
         }
         if (!allAlive) {
-            while ((actionSkill != null &&
-                    actionSkill.getStatusEffect() instanceof Death &&
-                    actionSkill.getElement() == Battle.Element.Heal &&
-                    target.isAlive()) ||
-                    (!target.isAlive() &&
-                    (actionSkill == null ||
-                    !(actionSkill.getStatusEffect() instanceof Death &&
-                    actionSkill.getElement() == Battle.Element.Heal)))) {
+            while ((actionSkill != null
+                    && actionSkill.getStatusEffect() instanceof Death
+                    && actionSkill.getElement() == Battle.Element.Heal
+                    && target.isAlive())
+                    || (!target.isAlive()
+                    && (actionSkill == null
+                    || !(actionSkill.getStatusEffect() instanceof Death
+                    && actionSkill.getElement() == Battle.Element.Heal)))) {
                 target = allTargets.get((int) (Math.random() * allTargets.size()));
             }
         }
@@ -423,11 +426,11 @@ public class Action implements Serializable {
     }
 
     private int criticalHit() {
-        if (damage > 0 &&
-                caster.getAttack() / 255f +
-                caster.getSpeed() / 255f +
-                caster.getMagic() / 510f >
-                Math.random()) {
+        if (damage > 0
+                && caster.getAttack() / 255f
+                + caster.getSpeed() / 255f
+                + caster.getMagic() / 510f
+                > Math.random()) {
             print("A critical hit!");
             return damage;
         }
@@ -435,9 +438,9 @@ public class Action implements Serializable {
     }
 
     private int dodge() {
-        if ((damage > 0) &&
-                (target != null) && 
-                ((target.getSpeed() - caster.getSpeed()) / 255f + target.getSpeed() * 2f / 512f > Math.random())) {
+        if ((damage > 0)
+                && (target != null)
+                && ((target.getSpeed() - caster.getSpeed()) / 255f + target.getSpeed() * 2f / 512f > Math.random())) {
             print("Miss!");
             return 0;
         }
@@ -460,7 +463,7 @@ public class Action implements Serializable {
     public Skill getSkill() {
         return actionSkill;
     }
-    
+
     public void setTarget(Battler target) {
         this.target = target;
     }

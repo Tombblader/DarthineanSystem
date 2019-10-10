@@ -16,14 +16,15 @@ import com.badlogic.gdx.maps.MapProperties;
  * @author Keven
  */
 public class NovelMode extends Event {
+
     public NovelMode(Novel n, String img, float getX, float getY, float delay) {
         super(img, getX, getY, delay);
         novel = n;
         setTriggerMethod(TriggerMethod.AUTO);
     }
-    
+
     public NovelMode() {
-        super("", 0, 0, 6/60f);
+        super("", 0, 0, 6 / 60f);
     }
 
     public NovelMode(Novel n, String img, float getX, float getY, float delay, TriggerMethod t) {
@@ -31,13 +32,11 @@ public class NovelMode extends Event {
         novel = n;
         setTriggerMethod(t);
     }
-    
-    private Novel novel;
 
+    private Novel novel;
 
     @Override
     public void run() {
-//        if (!GraphicsDriver.getState().contains(novel, true)) {
         if (!isFinished()) {
             GraphicsDriver.addState(novel);
             switches.setSwitch(LocalSwitch.Switch.FINISHED, novel.isFinished());

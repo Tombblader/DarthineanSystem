@@ -11,16 +11,16 @@ import com.ark.darthsystem.statusEffects.Normal;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
-
 /**
- * com.ark.darthsystem.BattleDriver
- * A list of helper static methods mainly used in Battle State.
+ * com.ark.darthsystem.BattleDriver A list of helper static methods mainly used
+ * in Battle State.
+ *
  * @author Keven Tran
  */
 public class BattleDriver {
 
     public static String textCondition = "";
-    public static final int WRAP_LENGTH = 80; 
+    public static final int WRAP_LENGTH = 80;
 
     /**
      *
@@ -134,7 +134,7 @@ public class BattleDriver {
             GraphicsDriver.setMessage(formattedMessage);
         }
     }
-    
+
     /**
      *
      * @param battler
@@ -166,7 +166,7 @@ public class BattleDriver {
             GraphicsDriver.setMessage(name, formattedMessage);
         }
     }
-    
+
     /**
      *
      * @param battler
@@ -192,12 +192,12 @@ public class BattleDriver {
                 }
             }
             formattedMessage.add(formatted);
-            GraphicsDriver.setMessage(battler.getBattler().getName(), 
-                    battler.getSprite().getFaceAnimation(faceMode), 
+            GraphicsDriver.setMessage(battler.getBattler().getName(),
+                    battler.getSprite().getFaceAnimation(faceMode),
                     formattedMessage);
-        }        
+        }
     }
-    
+
     /**
      *
      * @param newMessage
@@ -246,24 +246,24 @@ public class BattleDriver {
         if (newItem != null) {
             newItem = (Item) newItem.clone();
             if (Database1.inventory.contains(newItem) && (newItem.isStackable())) {
-                    Database1.inventory.get(Database1.inventory.indexOf(newItem)).increaseQuantity(newItem.getCharges());
+                Database1.inventory.get(Database1.inventory.indexOf(newItem)).increaseQuantity(newItem.getCharges());
             } else {
                 Database1.inventory.add(newItem);
             }
         }
     }
-    
-    public static void removeItem (Item newItem, int qty) {
+
+    public static void removeItem(Item newItem, int qty) {
         if ((newItem.isStackable())) {
-                Database1.inventory.get(Database1.inventory.indexOf(newItem)).decreaseQuantity(qty);
-                if (Database1.inventory.get(Database1.inventory.indexOf(newItem)).getCharges() <= 0) {
-                    Database1.inventory.remove(newItem);
-                }
+            Database1.inventory.get(Database1.inventory.indexOf(newItem)).decreaseQuantity(qty);
+            if (Database1.inventory.get(Database1.inventory.indexOf(newItem)).getCharges() <= 0) {
+                Database1.inventory.remove(newItem);
+            }
         } else {
             Database1.inventory.remove(newItem);
-        }        
+        }
     }
-    
+
     public static void addItems(Item[] item) {
         for (Item i : item) {
             addItem(i);
@@ -276,15 +276,15 @@ public class BattleDriver {
      */
     public static void printStats(Battler[] party) {
         for (Battler party1 : party) {
-            BattleDriver.printline(party1.getName() +
-                    "\t HP: " +
-                    party1.getHP() +
-                    "/" +
-                    party1.getMaxHP() +
-                    "\t MP: " +
-                    party1.getMP() +
-                    "/" +
-                    party1.getMaxMP());
+            BattleDriver.printline(party1.getName()
+                    + "\t HP: "
+                    + party1.getHP()
+                    + "/"
+                    + party1.getMaxHP()
+                    + "\t MP: "
+                    + party1.getMP()
+                    + "/"
+                    + party1.getMaxMP());
             BattleDriver.printline("Level: " + party1.getLevel());
             BattleDriver.printline("Attack: " + party1.getAttack());
             BattleDriver.printline("Defense: " + party1.getDefense());
@@ -297,7 +297,7 @@ public class BattleDriver {
      *
      */
     public BattleDriver() {
-        
+
     }
 
 }

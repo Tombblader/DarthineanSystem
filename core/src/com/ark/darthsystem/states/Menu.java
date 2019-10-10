@@ -9,14 +9,11 @@ import com.ark.darthsystem.graphics.Input;
 import static com.ark.darthsystem.graphics.GraphicsDriver.getCurrentState;
 import static com.ark.darthsystem.graphics.GraphicsDriver.removeCurrentState;
 import com.ark.darthsystem.states.chapters.Novel;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.utils.Array;
 import java.util.Arrays;
 import java.util.Collection;
@@ -27,6 +24,7 @@ import java.util.stream.Collectors;
  * @author Keven
  */
 public abstract class Menu implements State {
+
     private final int PADDING_X = 20;
     private final int PADDING = 3;
 
@@ -54,7 +52,7 @@ public abstract class Menu implements State {
         this(choices);
         this.subActors = new Array<>();
         this.header = header;
-     }
+    }
 
     public Menu(String header, String[] choices, boolean pause, boolean mutable) {
         this(header, choices);
@@ -62,7 +60,7 @@ public abstract class Menu implements State {
         isPause = pause;
         destroyOnExit = mutable;
     }
-    
+
     public <T extends Nameable> Menu(String header, T[] choices) {
         this(header, Arrays.stream(choices).map(i -> i.getName()).collect(Collectors.toList()).toArray(new String[0]));
         this.subActors = new Array<>();
@@ -78,15 +76,8 @@ public abstract class Menu implements State {
         subMenuList = new Array<>();
         subMenuList.add(this);
         cursorTexture = GraphicsDriver.getMasterSheet().createSprite("interface/cursor");
-        FreeTypeFontGenerator gen = new FreeTypeFontGenerator(Gdx.files.internal("fonts/monofont.ttf"));
-        FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
-        parameter.size = 24;
-        parameter.flip = true;
-        parameter.borderColor = Color.BLACK;
-        parameter.color = Color.WHITE;
-        font = gen.generateFont(parameter);
+        font = GraphicsDriver.getFont();
         font.getData().markupEnabled = true;
-        gen.dispose();
         MENU_X = GraphicsDriver.getWidth() - 200;
         MENU_Y = GraphicsDriver.getHeight() - MESSAGE_HEIGHT - (24 + choices.length * (int) (GraphicsDriver.getFont().getData().capHeight * GraphicsDriver.getFont().getData().scaleY + PADDING));
     }
@@ -95,7 +86,7 @@ public abstract class Menu implements State {
 //        m.destroyOnExit = true;
         subMenuList.add(m);
     }
-    
+
     public void addActor(Actor a) {
         subActors.add(a);
     }
@@ -108,11 +99,11 @@ public abstract class Menu implements State {
         }
         return "";
     }
-    
+
     public void decreaseMenuIndex() {
         menuIndex--;
     }
-    
+
     public void reverseMenu() {
         cancelMenu();
         menuIndex--;
@@ -145,7 +136,7 @@ public abstract class Menu implements State {
     public int getCursorIndex() {
         return cursorIndex;
     }
-    
+
     public void setCursorIndex(int index) {
         cursorIndex = index;
     }
@@ -192,7 +183,7 @@ public abstract class Menu implements State {
 //        final int PADDING_Y = 10;
         final int MENU_WIDTH = 200;
         final int MENU_HEIGHT = 24 + choices.length * (int) (GraphicsDriver.getFont().getData().capHeight * GraphicsDriver.getFont().getData().scaleY + PADDING);
-        final int cursorPadding = 12;
+        final int cursorPadding = 8;
         boolean isOverhead = false;
         State s = null;
         for (State states : GraphicsDriver.getState()) {
@@ -206,7 +197,7 @@ public abstract class Menu implements State {
             batch = ((OverheadMap) (s)).getBatch();
             isOverhead = true;
         }
-        
+
         if (isOverhead) {
             batch.begin();
             batch.setProjectionMatrix(GraphicsDriver.getCamera().combined);
@@ -214,26 +205,25 @@ public abstract class Menu implements State {
         }
 
         InterfaceDatabase.TEXT_BOX.draw(batch, MENU_X, MENU_Y, MENU_WIDTH, MENU_HEIGHT);
-        
-        
+
         for (int i = 0; i < choices.length; i++) {
             GraphicsDriver.drawMessage(batch, font,
                     choices[i],
-                    (10 + MENU_X) + GraphicsDriver.getCamera().getScreenPositionX(), 
+                    (10 + MENU_X) + GraphicsDriver.getCamera().getScreenPositionX(),
                     (MENU_Y + (font.getData().capHeight * font.getData().scaleY + PADDING) * (i + 1)) + GraphicsDriver.getCamera().getScreenPositionY());
         }
         batch.draw(cursorTexture,
                 (MENU_X - PADDING_X) + GraphicsDriver.getCamera().getScreenPositionX(),
                 (MENU_Y + cursorPadding + cursorIndex * (font.getData().capHeight * font.getData().scaleY + PADDING)) + GraphicsDriver.getCamera().getScreenPositionY(),
-                    0,
-                    0,
-                    cursorTexture.getRegionWidth(),
-                    cursorTexture.getRegionHeight(),
-                    cursorTexture.getScaleX(),
-                    cursorTexture.getScaleY(),
-                    cursorTexture.getRotation());
-        
-        InterfaceDatabase.TEXT_BOX.draw(batch, GraphicsDriver.getCamera().getScreenPositionX(), GraphicsDriver.getHeight() - MESSAGE_HEIGHT + GraphicsDriver.getCamera().getScreenPositionY(), GraphicsDriver.getWidth(), MESSAGE_HEIGHT);        
+                0,
+                0,
+                cursorTexture.getRegionWidth(),
+                cursorTexture.getRegionHeight(),
+                cursorTexture.getScaleX(),
+                cursorTexture.getScaleY(),
+                cursorTexture.getRotation());
+
+        InterfaceDatabase.TEXT_BOX.draw(batch, GraphicsDriver.getCamera().getScreenPositionX(), GraphicsDriver.getHeight() - MESSAGE_HEIGHT + GraphicsDriver.getCamera().getScreenPositionY(), GraphicsDriver.getWidth(), MESSAGE_HEIGHT);
         GraphicsDriver.drawMessage(batch, font,
                 header,
                 15 + GraphicsDriver.getCamera().getScreenPositionX(),
@@ -245,7 +235,7 @@ public abstract class Menu implements State {
             batch.end();
             batch.setProjectionMatrix(GraphicsDriver.getPlayerCamera().combined);
             GraphicsDriver.setCurrentCamera(GraphicsDriver.getPlayerCamera());
-            
+
         }
     }
 
@@ -262,7 +252,7 @@ public abstract class Menu implements State {
             }
         }
         if (ste != null) {
-            ((OverheadMap)(ste)).updatePartial(delta);
+            ((OverheadMap) (ste)).updatePartial(delta);
         }
         if (!(subMenuList.size == 0) && menuIndex < subMenuList.size) {
             subMenuList.get(menuIndex).updateMenu(delta);
@@ -276,7 +266,7 @@ public abstract class Menu implements State {
         }
         return 1;
     }
-    
+
     public Menu getCurrentMenu() {
         return subMenuList.get(menuIndex);
     }
@@ -312,32 +302,32 @@ public abstract class Menu implements State {
             }
         }
     }
-    
+
     public void addSubActors(Actor a) {
         subActors.add(a);
     }
-    
+
     public String getMusic() {
         return null;
     }
-    
+
     public String[] getChoices() {
         return choices;
     }
-    
+
     public void setChoices(String[] choices) {
         this.choices = choices;
     }
-    
-    public<T extends Nameable> void setChoices(Collection<T> choices) {
+
+    public <T extends Nameable> void setChoices(Collection<T> choices) {
         this.choices = choices.stream().map(i -> i.getName()).collect(Collectors.toList()).toArray(new String[0]);
-        
+
     }
-    
+
     public void setHeader(String header) {
         this.header = header;
     }
-    
+
     public void reset() {
         cursorIndex = 0;
         menuIndex = 0;

@@ -34,7 +34,7 @@ public class DefenseBoost extends StatusEffect {
     public void updateFieldStatus(Player player, Battler battler, GameTimer timer, float delta) {
 
     }
-    
+
     @Override
     public float getDefense() {
         return .3f;
@@ -44,5 +44,5 @@ public class DefenseBoost extends StatusEffect {
     public String getDescription() {
         return "Increases defense slightly.";
     }
-    
+
 }

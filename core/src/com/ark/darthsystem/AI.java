@@ -5,14 +5,15 @@ import com.ark.darthsystem.statusEffects.StatusEffect;
 import java.io.Serializable;
 
 /**
- * A discrete action that an AI would take, depending on the priority or
- * turn or other conditions.
+ * A discrete action that an AI would take, depending on the priority or turn or
+ * other conditions.
+ *
  * @author Keven
  */
 public class AI implements Serializable {
 
     /**
-     * The type of the AI.  Flags for the BattlerAI to consider.
+     * The type of the AI. Flags for the BattlerAI to consider.
      */
     public enum Type {
         Attack, //Attack
@@ -26,9 +27,9 @@ public class AI implements Serializable {
         MercilessHeal, //Uses the best healing skill available
         Run; //Run away
     }
-    
+
     //NO_FLAG means that the AI does not take this variable into consideration.
-    private static final int NO_FLAG = -1; 
+    private static final int NO_FLAG = -1;
     private Type AIType;
     private float disengageChance;
     private int disengageTurn;
@@ -38,12 +39,12 @@ public class AI implements Serializable {
     private int turnInterval;
     private boolean dead;
     private StatusEffect checkStatus;
-    
+
     public AI() {
         lowHP = NO_FLAG;
         turn = NO_FLAG;
         turnInterval = NO_FLAG;
-        
+
     }
 
     public AI(Type getType, int setPriority) {
@@ -59,11 +60,11 @@ public class AI implements Serializable {
         this.disengageChance = disengageChance;
         turnInterval = disengageTurn;
     }
-    
+
     public Type getType() {
         return AIType;
     }
-    
+
     public float getDisengageChance() {
         return disengageChance;
     }
@@ -97,10 +98,10 @@ public class AI implements Serializable {
     }
 
     public boolean turnCondition(Battle b) {
-        return !(turn == NO_FLAG &&
-                turnInterval == NO_FLAG) &&
-                (b.getTurnCount() == turn ||
-                b.getTurnCount() % turnInterval == 0);
+        return !(turn == NO_FLAG
+                && turnInterval == NO_FLAG)
+                && (b.getTurnCount() == turn
+                || b.getTurnCount() % turnInterval == 0);
     }
 
     public boolean thereIsDead(Battle b) {
@@ -127,8 +128,10 @@ public class AI implements Serializable {
 
     /**
      * Check if all battlers in a Battle State has this status.
+     *
      * @param b The Battle State to check.
-     * @return True if the battlers is afflicted with the status associated with this action.
+     * @return True if the battlers is afflicted with the status associated with
+     * this action.
      */
     public boolean checkStatus(Battle b) {
         boolean isAfflicted = false;
@@ -143,25 +146,27 @@ public class AI implements Serializable {
 
     /**
      * Checks if the action is worth using.
+     *
      * @param b The current battle context state.
      * @return If the action should be done or not.
      */
     public boolean worthUsing(Battle b) {
-        boolean isUsable = checkStatus(b) ||
-                checkLowHP(b) ||
-                thereIsDead(b) ||
-                turnCondition(b);
-        isUsable = isUsable ||
-                (checkStatus == null &&
-                lowHP == (double) (NO_FLAG) &&
-                !dead &&
-                (turn == NO_FLAG &&
-                turnInterval == NO_FLAG));
+        boolean isUsable = checkStatus(b)
+                || checkLowHP(b)
+                || thereIsDead(b)
+                || turnCondition(b);
+        isUsable = isUsable
+                || (checkStatus == null
+                && lowHP == (double) (NO_FLAG)
+                && !dead
+                && (turn == NO_FLAG
+                && turnInterval == NO_FLAG));
         return isUsable;
     }
-    
+
     /**
      * Check if the HP is below a certain threshold.
+     *
      * @param b The target Battler.
      * @return true if the Battler's HP % is less than the AI data stored here.
      */
@@ -172,27 +177,30 @@ public class AI implements Serializable {
 
     /**
      * Check if the battler has this status.
+     *
      * @param b The target Battler.
-     * @return True if the battler is afflicted with the status associated with this action.
+     * @return True if the battler is afflicted with the status associated with
+     * this action.
      */
     public boolean checkStatus(Battler b) {
-        boolean isAfflicted =  b.getStatus(checkStatus);
+        boolean isAfflicted = b.getStatus(checkStatus);
         return isAfflicted && checkStatus != null;
     }
 
     /**
      * Checks if the action is worth using.
+     *
      * @param b The target Battler to check against.
      * @return If the action should be done or not.
      */
     public boolean worthUsing(Battler b) {
         boolean isUsable = checkStatus(b) || checkLowHP(b);
-        isUsable = isUsable ||
-                (checkStatus == null &&
-                lowHP == (double) (NO_FLAG) &&
-                !dead &&
-                (turn == NO_FLAG &&
-                turnInterval == NO_FLAG));
+        isUsable = isUsable
+                || (checkStatus == null
+                && lowHP == (double) (NO_FLAG)
+                && !dead
+                && (turn == NO_FLAG
+                && turnInterval == NO_FLAG));
         return isUsable;
     }
 }

@@ -21,7 +21,7 @@ public class Devoid extends StatusEffect {
     public Devoid() {
         super("Devoid", 2, .25, .1, 0, false, " has been corrupted...");
     }
-    
+
     public Devoid(int turn) {
         this();
         setInitialTurnCount(turn);
@@ -36,7 +36,7 @@ public class Devoid extends StatusEffect {
         }
         return true;
     }
-    
+
     @Override
     public void checkFieldStatus(Player player, Battler battler, GameTimer timer) {
         printline(battler.getName() + " takes " + (battler.getMaxHP() / 6) + " damage from the corruption.");
@@ -49,8 +49,7 @@ public class Devoid extends StatusEffect {
     public void updateFieldStatus(Player player, Battler battler, GameTimer timer, float delta) {
 
     }
-    
-    
+
     @Override
     public String getDescription() {
         return "Victim takes heavy damage each turn and becomes Dark element.";

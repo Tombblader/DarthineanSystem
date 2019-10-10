@@ -29,9 +29,9 @@ public class Treasure extends Event {
     private Animation opened;
 
     public Treasure() {
-        super("event/chest/field/stand/down", 0, 0, 6/60f);
+        super("event/chest/field/stand/down", 0, 0, 6 / 60f);
     }
-    
+
     public Treasure(String img, float getX,
             float getY,
             float getDelay,
@@ -45,25 +45,26 @@ public class Treasure extends Event {
         isFinished = false;
         setTriggerMethod(TriggerMethod.PRESS);
         setID(3);
-        pickedUpMessage = new Novel() { 
+        pickedUpMessage = new Novel() {
             {
-            chapters.add((Novel.Page) () -> {
-                for (Item i : item) {
-                    BattleDriver.printline("Obtained " + i.getCharges() + " " + i.getName() + "!");
-                }
-                if (money != 0) {
-                    BattleDriver.printline("Got " + money + " GP!");            
-                    Database1.money += money;
-                }
-                BattleDriver.addItems(item);
-                Treasure.this.changeAnimation(opened);
-            });
-        }
+                chapters.add((Novel.Page) () -> {
+                    for (Item i : item) {
+                        BattleDriver.printline("Obtained " + i.getCharges() + " " + i.getName() + "!");
+                    }
+                    if (money != 0) {
+                        BattleDriver.printline("Got " + money + " GP!");
+                        Database1.money += money;
+                    }
+                    BattleDriver.addItems(item);
+                    Treasure.this.changeAnimation(opened);
+                });
+            }
+
             @Override
             public String getMusic() {
                 return null;
             }
-            
+
         };
 
     }
@@ -79,29 +80,29 @@ public class Treasure extends Event {
         isFinished = false;
         setTriggerMethod(TriggerMethod.PRESS);
         setID(3);
-        pickedUpMessage = new Novel() { 
+        pickedUpMessage = new Novel() {
             {
-            chapters.add((Novel.Page) () -> {
-                for (Item i : item) {
-                    BattleDriver.printline("Obtained " + i.getCharges() + " " + i.getName() + "!");
-                }
-                BattleDriver.addItems(item);
-                if (money != 0) {
-                    BattleDriver.printline("Got " + money + " GP!");            
-                    Database1.money += money;
-                }
-                Treasure.this.changeAnimation(opened);
-            });
-        }
+                chapters.add((Novel.Page) () -> {
+                    for (Item i : item) {
+                        BattleDriver.printline("Obtained " + i.getCharges() + " " + i.getName() + "!");
+                    }
+                    BattleDriver.addItems(item);
+                    if (money != 0) {
+                        BattleDriver.printline("Got " + money + " GP!");
+                        Database1.money += money;
+                    }
+                    Treasure.this.changeAnimation(opened);
+                });
+            }
+
             @Override
             public String getMusic() {
                 return null;
             }
-            
+
         };
     }
-    
-    
+
     public void run() {
         if (!switches.getSwitch(LocalSwitch.Switch.A)) {
             if (!GraphicsDriver.getState().contains(pickedUpMessage, true)) {
@@ -119,7 +120,7 @@ public class Treasure extends Event {
     public Item getItem() {
         return item[0];
     }
-    
+
     public Item[] getAllItems() {
         return item;
     }
@@ -163,5 +164,4 @@ public class Treasure extends Event {
         return super.equals(obj);
     }
 
-    
 }

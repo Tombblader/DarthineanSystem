@@ -21,5 +21,5 @@ public class TargetMenu extends Menu {
     public Object confirm(String choice) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }

@@ -60,6 +60,7 @@ public class Skill implements Serializable, Cloneable, Nameable {
 
     /**
      * A skill is a type of attack that has various parameters, and has a cost.
+     *
      * @param name The name of the Skill.
      * @param description A concise description of the Skill.
      * @param battlerMode
@@ -71,19 +72,30 @@ public class Skill implements Serializable, Cloneable, Nameable {
      * @param isAlly If true, affects allies instead of enemies.
      * @param sound
      * @param isAll If true, targets all enemies or allies.
-     * @param statusEffect The status effect to inflict.  Normal does not inflict a status effect.
+     * @param statusEffect The status effect to inflict. Normal does not inflict
+     * a status effect.
      * @param base The base value of the skill.
      * @param levelRatio How much the level difference affects the skill.
-     * @param casterHP How much influence the caster's HP difference affects the skill.
-     * @param casterAttack How much influence the caster's Attack affects the skill.
-     * @param casterDefense How much influence the caster's Defense affects the skill.
-     * @param casterSpeed How much influence the caster's Speed affects the skill.
-     * @param casterMagic How much influence the caster's Magic affects the skill.
-     * @param targetAttack How much influence the target's Attack affects the skill.
-     * @param targetDefense How much influence the target's Defense affects the skill.
-     * @param targetSpeed How much influence the target's Speed affects the skill.
-     * @param targetMagic How much influence the target's Magic affects the skill.
-     * @param finalizeRatio Take all of these values and divide it by what to equalize.
+     * @param casterHP How much influence the caster's HP difference affects the
+     * skill.
+     * @param casterAttack How much influence the caster's Attack affects the
+     * skill.
+     * @param casterDefense How much influence the caster's Defense affects the
+     * skill.
+     * @param casterSpeed How much influence the caster's Speed affects the
+     * skill.
+     * @param casterMagic How much influence the caster's Magic affects the
+     * skill.
+     * @param targetAttack How much influence the target's Attack affects the
+     * skill.
+     * @param targetDefense How much influence the target's Defense affects the
+     * skill.
+     * @param targetSpeed How much influence the target's Speed affects the
+     * skill.
+     * @param targetMagic How much influence the target's Magic affects the
+     * skill.
+     * @param finalizeRatio Take all of these values and divide it by what to
+     * equalize.
      */
     public Skill(String name,
             String description,
@@ -129,12 +141,10 @@ public class Skill implements Serializable, Cloneable, Nameable {
         this.isAll = isAll;
         try {
             this.statusEffect = (StatusEffect) Class.forName("com.ark.darthsystem.statusEffects." + statusEffect).newInstance();
-        }
-        catch (NullPointerException ex) {
+        } catch (NullPointerException ex) {
             System.out.println(statusEffect + " not found.");
             this.statusEffect = new Normal();
-        }
-        catch (ClassNotFoundException | IllegalAccessException | InstantiationException ex) {
+        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException ex) {
             ex.printStackTrace();
             this.statusEffect = new Normal();
         }
@@ -154,36 +164,37 @@ public class Skill implements Serializable, Cloneable, Nameable {
 
     /**
      * Calculates the damage dealt to a target.
+     *
      * @param caster The battler using the skill.
      * @param target The battler being the skill is being used on.
      * @return The damage that should be dealt to the target.
      */
     public int calculateDamage(Battler caster, Battler target) {
-        return (int) (base +
-                ((int) 
-                (((caster.getLevel() - target.getLevel()) * levelRatio) +
-                ((caster.getHP() / caster.getMaxHP() * casterHP) +
-                caster.getAttack() * casterAttack +
-                caster.getDefense() * casterDefense +
-                caster.getSpeed() * casterSpeed +
-                caster.getMagic() * casterMagic) -
-                (target.getAttack() * targetAttack +
-                target.getDefense() * targetDefense +
-                target.getSpeed() * targetSpeed +
-                target.getMagic() * targetMagic)) /
-                finalizeRatio *
-                (this.getElement() == target.getElement().getWeakness() ? 2 : 1) *
-                (caster.getEquipment(Equipment.Slot.MainHand) != null &&
-                caster.getEquipment(Equipment.Slot.MainHand).getElement() != Battle.Element.Physical &&
-                this.getElement() == caster.getElement() ? 1.5 : 1) * (this.getElement() != Battle.Element.Physical &&
-                this.getElement() == target.getElement() ? -1 : 1) * (caster.getEquipment(Equipment.Slot.MainHand) != null &&
-                caster.getEquipment(Equipment.Slot.MainHand).getElement() != Battle.Element.Physical &&
-                target.getEquipment(Equipment.Slot.OffHand) != null &&
-                this.getElement() == target.getEquipment(Equipment.Slot.OffHand).getElement() ? .5 : 1)) * (.9 + Math.random() * .25));
+        return (int) (base
+                + ((int) (((caster.getLevel() - target.getLevel()) * levelRatio)
+                + ((caster.getHP() / caster.getMaxHP() * casterHP)
+                + caster.getAttack() * casterAttack
+                + caster.getDefense() * casterDefense
+                + caster.getSpeed() * casterSpeed
+                + caster.getMagic() * casterMagic)
+                - (target.getAttack() * targetAttack
+                + target.getDefense() * targetDefense
+                + target.getSpeed() * targetSpeed
+                + target.getMagic() * targetMagic))
+                / finalizeRatio
+                * (this.getElement() == target.getElement().getWeakness() ? 2 : 1)
+                * (caster.getEquipment(Equipment.Slot.MainHand) != null
+                && caster.getEquipment(Equipment.Slot.MainHand).getElement() != Battle.Element.Physical
+                && this.getElement() == caster.getElement() ? 1.5 : 1) * (this.getElement() != Battle.Element.Physical
+                && this.getElement() == target.getElement() ? -1 : 1) * (caster.getEquipment(Equipment.Slot.MainHand) != null
+                && caster.getEquipment(Equipment.Slot.MainHand).getElement() != Battle.Element.Physical
+                && target.getEquipment(Equipment.Slot.OffHand) != null
+                && this.getElement() == target.getEquipment(Equipment.Slot.OffHand).getElement() ? .5 : 1)) * (.9 + Math.random() * .25));
     }
 
     /**
      * Get the MP cost of the skill.
+     *
      * @return The MP cost of the skill
      */
     public int getCost() {
@@ -192,6 +203,7 @@ public class Skill implements Serializable, Cloneable, Nameable {
 
     /**
      * Overrides the MP cost of the skill.
+     *
      * @param cost The new MP cost of the skill.
      */
     public void setCost(int cost) {
@@ -199,8 +211,9 @@ public class Skill implements Serializable, Cloneable, Nameable {
     }
 
     /**
-     * Overrides the MP cost of the skill.  Unlike setCost,
-     * overrideCost returns a new Skill object with the new cost.
+     * Overrides the MP cost of the skill. Unlike setCost, overrideCost returns
+     * a new Skill object with the new cost.
+     *
      * @param newCost The new MP cost of the skill.
      * @return A copy of the skill that has the new cost.
      * @see #setCost(int)
@@ -226,15 +239,16 @@ public class Skill implements Serializable, Cloneable, Nameable {
 //
     /**
      * Determines whether a status change is successful and changes the status.
+     *
      * @param caster The battler who used this Skill.
      * @param target The target who the Skill is being used on.
      * @return The string that notes the results of the attempted status change.
      */
     public String changeStatus(Battler caster, Battler target) {
         String message;
-        if (target.getStatus(0).getPriority() < statusEffect.getPriority() &&
-                statusEffect.isSuccessful(caster, target) &&
-                !(getElement() == Battle.Element.Heal)) {
+        if (target.getStatus(0).getPriority() < statusEffect.getPriority()
+                && statusEffect.isSuccessful(caster, target)
+                && !(getElement() == Battle.Element.Heal)) {
             target.changeStatus((StatusEffect) statusEffect.clone());
             message = target.getName() + statusEffect.getMessage();
         } else if ((target.getStatus(statusEffect)) && getElement() == Battle.Element.Heal) {
@@ -244,9 +258,9 @@ public class Skill implements Serializable, Cloneable, Nameable {
             } else {
                 target.getAllStatus().remove(statusEffect);
             }
-           if (target.getAllStatus().isEmpty()) {
-               target.changeStatus(new Normal());
-           }
+            if (target.getAllStatus().isEmpty()) {
+                target.changeStatus(new Normal());
+            }
         } else {
             message = (finalizeRatio > 0.0) ? "" : "But nothing happens!";
         }
@@ -255,6 +269,7 @@ public class Skill implements Serializable, Cloneable, Nameable {
 
     /**
      * Gets the name of the skill.
+     *
      * @return The name of the Skill.
      */
     public String getName() {
@@ -263,6 +278,7 @@ public class Skill implements Serializable, Cloneable, Nameable {
 
     /**
      * Checks if this skill affects allies.
+     *
      * @return True if it affects allies, false if it does not.
      */
     public boolean getAlly() {
@@ -271,6 +287,7 @@ public class Skill implements Serializable, Cloneable, Nameable {
 
     /**
      * Checks if this skill affects all on a side.
+     *
      * @return True if it affects all, false if it does not.
      */
     public boolean getAll() {
@@ -279,6 +296,7 @@ public class Skill implements Serializable, Cloneable, Nameable {
 
     /**
      * Gets the Element of the skill.
+     *
      * @return The element of the skill.
      */
     public Battle.Element getElement() {
@@ -287,6 +305,7 @@ public class Skill implements Serializable, Cloneable, Nameable {
 
     /**
      * Gets the status effect that the skill has a chance of inflicting.
+     *
      * @return The status effect of the skill.
      */
     public StatusEffect getStatusEffect() {
@@ -318,8 +337,8 @@ public class Skill implements Serializable, Cloneable, Nameable {
         }
         final Skill other = (Skill) obj;
         return Objects.equals(this.name, other.name);
-    }    
-    
+    }
+
     public Actor getAnimation() {
         return image;
     }
@@ -329,11 +348,11 @@ public class Skill implements Serializable, Cloneable, Nameable {
         image.setY(y);
         return image;
     }
-    
+
     public Sound getSound() {
         return sound;
     }
-    
+
     public void stopSound() {
         try {
             sound.stop();
@@ -353,7 +372,7 @@ public class Skill implements Serializable, Cloneable, Nameable {
     public Sound getCastSound() {
         return castSound;
     }
-    
+
     public void stopCastSound() {
         try {
             castSound.stop();
@@ -369,15 +388,15 @@ public class Skill implements Serializable, Cloneable, Nameable {
             e.printStackTrace();
         }
     }
-    
-    private void readObject(ObjectInputStream in) throws IOException,ClassNotFoundException {
+
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
         in.defaultReadObject();
         String afflicted = (String) in.readObject();
         image = new Actor("skills/" + imageName + "/battler/" + imageName, 0, 0, fps, true);
         for (Sprite s : image.getCurrentAnimation().getKeyFrames()) {
             s.setCenter(s.getWidth() / 2f, s.getHeight() / 2f);
             s.setOriginCenter();
-        }        
+        }
         try {
             StatusEffect temp = (StatusEffect) Class.forName("com.ark.darthsystem.statusEffects." + afflicted).newInstance();
             statusEffect = temp;
@@ -386,9 +405,9 @@ public class Skill implements Serializable, Cloneable, Nameable {
         }
         castSound = SoundDatabase.SOUNDS.get(castSoundName.toUpperCase());
         sound = SoundDatabase.SOUNDS.get(soundName.toUpperCase());
-        
+
     }
-    
+
     private void writeObject(ObjectOutputStream out) throws IOException {
         out.defaultWriteObject();
         out.writeObject(statusEffect.getName());

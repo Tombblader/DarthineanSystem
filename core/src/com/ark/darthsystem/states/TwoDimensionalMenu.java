@@ -10,9 +10,9 @@ package com.ark.darthsystem.states;
  * @author Keven
  */
 public abstract class TwoDimensionalMenu extends Menu {
-    
+
     public TwoDimensionalMenu(String header, String[][] choices) {
         super(header, choices[0]);
     }
-    
+
 }

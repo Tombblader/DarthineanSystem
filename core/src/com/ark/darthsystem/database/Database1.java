@@ -19,7 +19,7 @@ public class Database1 implements Serializable {
     public static final long serialVersionUID = 553786371;
 
     public static final HashMap<String, Battler> BATTLER_LIST = new HashMap<>();
-    
+
     public Database1() {
         FileHandle file = Gdx.files.internal("databases/battlers.tsv");
         String[] massiveString = file.readString().split("(\r\n|\r|\n)");
@@ -29,7 +29,7 @@ public class Database1 implements Serializable {
                 continue;
             }
             int i = 0;
-            
+
             BATTLER_LIST.put(data[i].toUpperCase(), new Battler(data[i], //Name
                     data[++i],
                     SystemDatabase.CLASS_LIST.get(data[++i].toUpperCase()), //Class
@@ -41,17 +41,17 @@ public class Database1 implements Serializable {
                     Integer.parseInt(data[++i]), //Attack
                     Integer.parseInt(data[++i]), //Defense
                     Integer.parseInt(data[++i]), //Speed
-                    Integer.parseInt(data[++i]),  //Magic
+                    Integer.parseInt(data[++i]), //Magic
                     Integer.parseInt(data[++i]), //HPTier
                     Integer.parseInt(data[++i]), //MPTier
                     Integer.parseInt(data[++i]), //AttackTier
                     Integer.parseInt(data[++i]), //DefenseTier
                     Integer.parseInt(data[++i]), //SpeedTier
-                    Integer.parseInt(data[++i]),  //MagicTier
+                    Integer.parseInt(data[++i]), //MagicTier
                     new EnumMap<>(Equipment.Slot.class)
-                    )); //Divider
+            )); //Divider
         }
-        
+
         inventory = new ArrayList<>();
         money = 1000;
         karma = 0;
@@ -60,8 +60,7 @@ public class Database1 implements Serializable {
     }
 
     public static ArrayList<Item> inventory;
-    
-    
+
     public static int money;
 
     public static int karma;//Positive Karma is good, Negative is bad.

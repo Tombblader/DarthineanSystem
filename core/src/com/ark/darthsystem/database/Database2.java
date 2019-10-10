@@ -39,7 +39,7 @@ public class Database2 {
 
     public static Player player;
     public static HashMap<String, LocalSwitch> mapStates;
-    
+
     public Database2(String load) {
         new SoundDatabase();
         new SkillDatabase();
@@ -79,7 +79,7 @@ public class Database2 {
     public static void load(String fileName)
             throws FileNotFoundException, IOException, ClassNotFoundException {
         try (ObjectInputStream objectStream
-                = new ObjectInputStream(Gdx.files.local(fileName).read(2*2*2*2*2*2*2*2*2*2*2*2*2))) {
+                = new ObjectInputStream(Gdx.files.local(fileName).read(2 * 2 * 2 * 2 * 2 * 2 * 2 * 2 * 2 * 2 * 2 * 2 * 2))) {
             Database1.BATTLER_LIST.clear();
             Database1.BATTLER_LIST.putAll((HashMap<String, Battler>) objectStream.readObject());
             Database1.inventory = (ArrayList<Item>) objectStream.readObject();
@@ -90,15 +90,15 @@ public class Database2 {
             mapStates = (HashMap<String, LocalSwitch>) objectStream.readObject();
             new CharacterDatabase();
             player = (Player) objectStream.readObject();
-            
-        } catch(Exception e) {
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     public static void save(String fileName) throws FileNotFoundException, IOException {
         try (ObjectOutputStream objectStream
-                = new ObjectOutputStream(Gdx.files.local(fileName).write(false, 2*2*2*2*2*2*2*2*2*2*2*2*2))) {
+                = new ObjectOutputStream(Gdx.files.local(fileName).write(false, 2 * 2 * 2 * 2 * 2 * 2 * 2 * 2 * 2 * 2 * 2 * 2 * 2))) {
             objectStream.writeObject(BATTLER_LIST);
             objectStream.writeObject(inventory);
             objectStream.writeInt(karma);
@@ -107,8 +107,7 @@ public class Database2 {
             objectStream.writeObject(variables);
             objectStream.writeObject(mapStates);
             objectStream.writeObject(player);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

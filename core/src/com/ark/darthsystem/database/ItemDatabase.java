@@ -17,9 +17,10 @@ import java.util.HashMap;
  * @author Keven
  */
 public class ItemDatabase {
+
     public static final HashMap<String, Equipment> EQUIPMENT_LIST = new HashMap<>();
     public static final HashMap<String, Item> ITEM_LIST = new HashMap<>();
-    
+
     public ItemDatabase() {
         FileHandle file = Gdx.files.internal("databases/equipment.tsv");
         String[] massiveString = file.readString().split("(\r\n|\r|\n)");
@@ -29,7 +30,7 @@ public class ItemDatabase {
                 continue;
             }
             int i = 0;
-            
+
             EQUIPMENT_LIST.put(data[i].toUpperCase(), new Equipment(data[i], //Name
                     data[++i], //Description
                     data[++i], //imageName
@@ -42,8 +43,8 @@ public class ItemDatabase {
                     Integer.parseInt(data[++i]), //Attack
                     Integer.parseInt(data[++i]), //Defense Multiplier
                     Integer.parseInt(data[++i]), //Speed Multiplier
-                    Integer.parseInt(data[++i])  //Magic Multiplier
-                    )); //Divider
+                    Integer.parseInt(data[++i]) //Magic Multiplier
+            )); //Divider
         }
         file = Gdx.files.internal("databases/items.tsv");
         massiveString = file.readString().split("(\r\n|\r|\n)");
@@ -53,7 +54,7 @@ public class ItemDatabase {
                 continue;
             }
             int i = 0;
-            
+
             ITEM_LIST.put(data[i].toUpperCase(), new Item(data[i], //Name
                     data[++i], //Description
                     data[++i], //Image
@@ -62,8 +63,8 @@ public class ItemDatabase {
                     Integer.parseInt(data[++i]), //HP Effect
                     Integer.parseInt(data[++i]), //MP Effect
                     Boolean.valueOf(data[++i].toLowerCase()) //Is All?
-                    ));
-            
+            ));
+
         }
         file = Gdx.files.internal("databases/special_items.tsv");
         massiveString = file.readString().split("(\r\n|\r|\n)");
@@ -73,7 +74,7 @@ public class ItemDatabase {
                 continue;
             }
             int i = 0;
-            
+
             ITEM_LIST.put(data[i].toUpperCase(), new Item(data[i], //Name
                     data[++i], //Description
                     data[++i], //image;
@@ -81,9 +82,9 @@ public class ItemDatabase {
                     Integer.parseInt(data[++i]), //Charges
                     SkillDatabase.SKILL_LIST.get(data[++i].toUpperCase()), //Skill Effect
                     Boolean.valueOf(data[++i].toLowerCase()) //Is All?
-                    ));
+            ));
         }
         ITEM_LIST.putAll(EQUIPMENT_LIST);
     }
-    
+
 }

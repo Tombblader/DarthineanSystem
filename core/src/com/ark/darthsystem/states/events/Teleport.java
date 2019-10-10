@@ -19,11 +19,9 @@ public class Teleport extends Event {
     private float newY;
 
     public Teleport() {
-        super("", 0, 0, 6/60f);
+        super("", 0, 0, 6 / 60f);
     }
-    
-    
-    
+
     public Teleport(String img, float getX,
             float getY,
             float getDelay, String newMap, float xCoord, float yCoord) {
@@ -34,7 +32,7 @@ public class Teleport extends Event {
         setTriggerMethod(TriggerMethod.TOUCH);
         setID(2);
     }
-    
+
     public Teleport(String img, float getX,
             float getY,
             float getDelay, String newMap, int xCoord, int yCoord) {
@@ -45,7 +43,7 @@ public class Teleport extends Event {
         newY = yCoord + 16 / PlayerCamera.PIXELS_TO_METERS + GraphicsDriver.getCamera().getScreenPositionY();
         setID(2);
     }
-    
+
     @Override
     public Event createFromMap(MapProperties prop) {
         String[] parameters = prop.get("parameters", String.class).split(",* ");
@@ -59,7 +57,7 @@ public class Teleport extends Event {
         t.setTriggerMethod(TriggerMethod.valueOf(prop.get("trigger", String.class).toUpperCase()));
         return t;
     }
-    
+
     @Override
     public void run() {
         for (State s : GraphicsDriver.getState()) {
@@ -76,7 +74,7 @@ public class Teleport extends Event {
             }
         }
     }
-    
+
     @Override
     public boolean isFinished() {
         return false;
@@ -115,5 +113,4 @@ public class Teleport extends Event {
         return super.equals(obj);
     }
 
-    
 }

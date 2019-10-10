@@ -18,7 +18,7 @@ import java.util.Objects;
  * @author keven
  */
 public abstract class StatusEffect implements Nameable, Cloneable {
-    
+
     private String name;
     private int priority;
     private double success;
@@ -46,13 +46,13 @@ public abstract class StatusEffect implements Nameable, Cloneable {
         message = getMessage;
         initialTurnCount = turnCount;
     }
-    
+
     public StatusEffect(String name, int setPriority,
-             double setSuccess,
-             double setFade,
-             int setTurnCount,
-             boolean restrictMove,
-             String getMessage) {
+            double setSuccess,
+            double setFade,
+            int setTurnCount,
+            boolean restrictMove,
+            String getMessage) {
         this.name = name;
         priority = setPriority;
         success = setSuccess;
@@ -62,8 +62,8 @@ public abstract class StatusEffect implements Nameable, Cloneable {
         this.restrictMove = restrictMove;
         message = getMessage;
         initialTurnCount = turnCount;
-     }
-       
+    }
+
     public int getPriority() {
         return priority;
     }
@@ -108,11 +108,11 @@ public abstract class StatusEffect implements Nameable, Cloneable {
     public String getMessage() {
         return message;
     }
-    
+
     public int getInitialTurnCount() {
         return initialTurnCount;
     }
-    
+
     public final void setInitialTurnCount(int turnCount) {
         initialTurnCount = turnCount;
     }
@@ -120,22 +120,22 @@ public abstract class StatusEffect implements Nameable, Cloneable {
     public void setTurnCount(int turnCount) {
         this.turnCount = turnCount;
     }
-    
-    
+
     public void reset() {
         turnCount = initialTurnCount;
     }
-    
+
     public void incrementTurn() {
-        if (initialTurnCount > 0)
+        if (initialTurnCount > 0) {
             turnCount--;
+        }
     }
-    
+
     @Override
     public String getName() {
         return name;
     }
-    
+
     public boolean canMove() {
         return !restrictMove;
     }
@@ -150,7 +150,7 @@ public abstract class StatusEffect implements Nameable, Cloneable {
     public boolean equals(String obj) {
         return name.equalsIgnoreCase(obj);
     }
-    
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -165,49 +165,49 @@ public abstract class StatusEffect implements Nameable, Cloneable {
         final StatusEffect other = (StatusEffect) obj;
         return Objects.equals(this.name, other.name);
     }
-    
+
     public float getAttack() {
         return 0;
     }
-    
+
     public float getDefense() {
         return 0;
     }
-    
+
     public float getSpeed() {
         return 0;
     }
-    
+
     public float getMagic() {
         return 0;
     }
-    
+
     public float getDodge() {
         return 0;
     }
-    
+
     public float getAccuracy() {
         return 0;
     }
-    
+
     public float getDamageModifier() {
         return 0;
     }
-    
+
     public abstract boolean checkStatus(Action action, Battle b);
 
     public abstract void checkFieldStatus(Player player, Battler battler, GameTimer timer);
-    
+
     public abstract void updateFieldStatus(Player player, Battler battler, GameTimer timer, float delta);
 
     @Override
     public Object clone() {
         try {
-            return (StatusEffect) super.clone(); 
+            return (StatusEffect) super.clone();
         } catch (CloneNotSupportedException e) {
             e.printStackTrace();
             return null;
         }
     }
-    
+
 }

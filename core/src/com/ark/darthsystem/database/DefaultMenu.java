@@ -20,9 +20,6 @@ import com.ark.darthsystem.states.Battle;
 import com.ark.darthsystem.states.Menu;
 import com.ark.darthsystem.states.Title;
 import com.ark.darthsystem.statusEffects.StatusEffect;
-import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -155,8 +152,8 @@ public class DefaultMenu extends Menu {
 
                                 ArrayList<Equipment> equippableItems = new ArrayList<>();
                                 for (Item i : Database1.inventory) {
-                                    if (i instanceof Equipment 
-                                            && battler.getBattlerClass().equippable((Equipment) (i)) 
+                                    if (i instanceof Equipment
+                                            && battler.getBattlerClass().equippable((Equipment) (i))
                                             && ((Equipment) (i)).getEquipmentType().getName().equalsIgnoreCase(choice)) {
                                         equippableItems.add((Equipment) i);
                                     }
@@ -183,12 +180,14 @@ public class DefaultMenu extends Menu {
 
                                 return null;
                             }
+
                             @Override
                             public void updateMenu(float delta) {
                                 status.updateBattler(b);
                                 status.setMessage(status.formatBattler());
                                 super.updateMenu(delta);
                             }
+
                             {
                                 addActor(status);
                             }
@@ -252,9 +251,10 @@ public class DefaultMenu extends Menu {
                                 statusBox.setMessage(statusBox.formatBattler());
                                 super.update(delta);
                             }
-                                {
-                                    addActor(new Actor("items/money/icon", getX() + getWidth() - 32, getY() + 16, 1/12f));
-                                }
+
+                            {
+                                addActor(new Actor("items/money/icon", getX() + getWidth() - 32, getY() + 16, 1 / 12f));
+                            }
                         };
                         addActor(moneyBox);
                         addActor(statusBox);
@@ -294,25 +294,25 @@ public class DefaultMenu extends Menu {
     }
 
     protected class StatusBox extends TextBox {
-        
+
         private FieldBattler currentBattler;
         private Actor sprite;
-        
+
         StatusBox() {
             super("interface/window", GraphicsDriver.getWidth() / 4, GraphicsDriver.getHeight() / 4, GraphicsDriver.getWidth() / 2, GraphicsDriver.getHeight() / 2);
-        }        
+        }
 
         private void updateBattler(FieldBattler b) {
             if (currentBattler == null || currentBattler != b) {
                 currentBattler = b;
                 getActors().removeValue(sprite, true);
-                sprite = new Actor(currentBattler.getSprite().getMasterSpriteSheet() + "/battler/battler", 
+                sprite = new Actor(currentBattler.getSprite().getMasterSpriteSheet() + "/battler/battler",
                         200 + getX() + getWidth() - currentBattler.getSprite().getBattlerAnimation(ActorSprite.SpriteModeBattler.BATTLER).getKeyFrame(0).getWidth() / 8,
                         100 + getY() + getHeight() / 3, currentBattler.getDelay());
                 addActor(sprite);
             }
         }
-        
+
         private String formatBattler() {
             StringBuilder formatted = new StringBuilder();
             Battler tempBattler = currentBattler.getBattler();

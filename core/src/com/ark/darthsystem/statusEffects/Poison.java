@@ -21,7 +21,7 @@ public class Poison extends StatusEffect {
     public Poison() {
         super("Poison", 2, .25, .1, 0, false, " has been poisoned!");
     }
-    
+
     public Poison(int turn) {
         this();
         setInitialTurnCount(turn);
@@ -36,7 +36,7 @@ public class Poison extends StatusEffect {
         }
         return true;
     }
-    
+
     @Override
     public void checkFieldStatus(Player player, Battler battler, GameTimer timer) {
         printline(battler.getName() + " takes " + (battler.getMaxHP() / 33) + " damage from the poison.");
@@ -49,8 +49,7 @@ public class Poison extends StatusEffect {
     public void updateFieldStatus(Player player, Battler battler, GameTimer timer, float delta) {
 
     }
-    
-    
+
     @Override
     public String getDescription() {
         return "Victim takes damage each turn.";

@@ -12,8 +12,6 @@ import com.ark.darthsystem.database.MapDatabase;
 
 import java.util.ArrayList;
 import com.ark.darthsystem.database.Database2;
-import com.ark.darthsystem.database.InterfaceDatabase;
-import com.ark.darthsystem.database.SoundDatabase;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Graphics.DisplayMode;
@@ -34,9 +32,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
-import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGeneratorLoader;
 import com.badlogic.gdx.graphics.g2d.freetype.FreetypeFontLoader;
+import com.badlogic.gdx.graphics.g2d.freetype.FreetypeFontLoader.FreeTypeFontLoaderParameter;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
@@ -223,8 +221,7 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
     }
 
     public static void setMessage(ArrayList<String> message) {
-        if (!(getCurrentState() instanceof Message)
-                && !(getCurrentState() instanceof OverheadMap)) {
+        if (!(getCurrentState() instanceof Message) && !(getCurrentState() instanceof OverheadMap)) {
             states.add(new Message(message));
         } else {
             if ((getCurrentState() instanceof Message)) {
@@ -347,16 +344,7 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
                 t.flip(false, true);
             }
         }
-        FreeTypeFontGenerator gen = new FreeTypeFontGenerator(Gdx.files.internal("fonts/monofont.ttf"));
-        FreeTypeFontParameter parameter = new FreeTypeFontParameter();
-        parameter.size = 24;
-        parameter.flip = true;
-        parameter.borderColor = Color.BLACK;
-        parameter.borderWidth = .1f;
-        parameter.color = Color.WHITE;
-        font = gen.generateFont(parameter);
-        font.getData().markupEnabled = true;
-        gen.dispose();
+        font = assets.get("fonts/monofont.ttf", BitmapFont.class);
         Gdx.input.setInputProcessor(input);
         states = new Array<>();
         states.add(new Title());
@@ -374,13 +362,13 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
             loadAssetsInsideJar(f);
         } else {
             for (FileHandle asset : folder.list()) {
-                if (asset.extension().equalsIgnoreCase("wav")) {
+                if (asset.extension().equalsIgnoreCase("wav") || asset.extension().equalsIgnoreCase("ogg")) {
                     assets.load(asset.path(), Sound.class);
                 }
             }
             folder = f.resolve("").child("music");
             for (FileHandle asset : folder.list()) {
-                if (asset.extension().equalsIgnoreCase("mp3")) {
+                if (asset.extension().equalsIgnoreCase("mp3") || asset.extension().equalsIgnoreCase("wav")) {
                     assets.load(asset.path(), Music.class);
                 }
             }
@@ -397,14 +385,11 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
                     assets.load(asset.path(), TiledMap.class, parameters);
                 }
             }
-            folder = f.resolve("").child("fonts");
-            assets.setLoader(FreeTypeFontGenerator.class, new FreeTypeFontGeneratorLoader(f));
-            assets.setLoader(BitmapFont.class, ".ttf", new FreetypeFontLoader(f));
-            for (FileHandle asset : folder.list()) {
-            }
         }
+        loadFonts(f);
         assets.finishLoading();
         //Post-Loading
+        font = assets.get("fonts/monofont.ttf", BitmapFont.class);
         Array<TiledMap> temp = new Array<>();
         assets.getAll(TiledMap.class, temp);
         for (TiledMap t : temp) {
@@ -415,10 +400,24 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
                 }
             }
         }
+    }
+
+    private void loadFonts(InternalFileHandleResolver f) {
+        final int FONT_SIZE = 24;
+        assets.setLoader(FreeTypeFontGenerator.class, new FreeTypeFontGeneratorLoader(f));
+        assets.setLoader(BitmapFont.class, ".ttf", new FreetypeFontLoader(f));
+        FreeTypeFontLoaderParameter fontParam = new FreeTypeFontLoaderParameter();
+        fontParam.fontFileName = "fonts/monofont.ttf";
+        fontParam.fontParameters.size = FONT_SIZE;
+        fontParam.fontParameters.flip = true;
+        fontParam.fontParameters.borderColor = Color.BLACK;
+        fontParam.fontParameters.borderWidth = .1f;
+        fontParam.fontParameters.color = Color.WHITE;
+        assets.load("fonts/monofont.ttf", BitmapFont.class, fontParam);
 
     }
 
-    public void loadAssetsInsideJar(InternalFileHandleResolver f) {
+    private void loadAssetsInsideJar(InternalFileHandleResolver f) {
         Array<FileHandle> mapList = new Array<>();
         Array<FileHandle> soundList = new Array<>();
         Array<FileHandle> musicList = new Array<>();
@@ -458,25 +457,21 @@ public class GraphicsDriver extends com.badlogic.gdx.Game {
                 GraphicsDriver.getAssets().load(file.path(), Music.class);
             }
         }
-        assets.setLoader(TiledMap.class, (new TmxMapLoader(f)));        
+        assets.setLoader(TiledMap.class, (new TmxMapLoader(f)));
         for (FileHandle file : mapList) {
             if (file.extension().equalsIgnoreCase("tmx")) {
                 GraphicsDriver.getAssets().load(file.path(), TiledMap.class, parameters);
             }
         }
+        loadFonts(f);
 
     }
 
     @Override
     public void dispose() {
         super.dispose();
-        InterfaceDatabase.dispose();
-        SoundDatabase.dispose();
-        MapDatabase.dispose();
         CollisionDatabaseLoader.dispose();
-        font.dispose();
         batch.dispose();
-        masterSheet.dispose();
         assets.dispose();
     }
 

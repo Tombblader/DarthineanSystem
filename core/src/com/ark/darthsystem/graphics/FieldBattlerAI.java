@@ -16,7 +16,7 @@ import java.util.Arrays;
 import java.util.Optional;
 
 public class FieldBattlerAI extends Player implements Serializable {
-    
+
     private Vector2 patrolCoordinates = new Vector2(Vector2.Zero);
     private Vector2 lastSeenPosition = new Vector2(Vector2.Zero);
     private boolean patrolling = false;
@@ -27,16 +27,16 @@ public class FieldBattlerAI extends Player implements Serializable {
     private Player closestPlayer = null;
     private ArrayList<AI> aiData;
     private transient RayCastCallback rayVision;
-    
+
     public FieldBattlerAI() {
     }
-    
+
     public FieldBattlerAI(ArrayList<FieldBattler> getBattlers, float getX, float getY) {
-        super(getBattlers, getX, getY);        
+        super(getBattlers, getX, getY);
         setSpeed(getBattlers.get(0).getSpeed());
         aiData = new ArrayList<>(Arrays.asList(((BattlerAI) (getBattlers.get(0).getBattler())).getAIData()));
     }
-    
+
     public FieldBattlerAI clone() {
         ArrayList<FieldBattler> temp = new ArrayList<>();
         getAllFieldBattlers().forEach((a) -> {
@@ -44,7 +44,7 @@ public class FieldBattlerAI extends Player implements Serializable {
         });
         return new FieldBattlerAI(temp, getX(), getY());
     }
-        
+
     @Override
     public void generateBody(OverheadMap map) {
         super.generateBody(map);
@@ -63,7 +63,7 @@ public class FieldBattlerAI extends Player implements Serializable {
         }
         return (allBattlers);
     }
-    
+
     public boolean isInRange() {
         final float RANGE = 2.2f;
         return isInRange(RANGE);
@@ -87,17 +87,18 @@ public class FieldBattlerAI extends Player implements Serializable {
         getCurrentMap().getPhysicsWorld().rayCast(rayVision, getMainBody().getPosition(), new Vector2(closestPlayer.getMainBody().getPosition()));
         return contacts.size == 0 && distance < range;
     }
-    
+
     public Player findClosestPlayer(float range, Player player) {
         return player;
     }
-    
+
     public void moveTowardsPoint(float x, float y, float delta) {
         addTimer(new GameTimer("MOVE", Math.abs((x - getX()) / (getCurrentBattler().getSpeed() * delta)) + Math.abs((y - getY()) / (getCurrentBattler().getSpeed() * delta)) / 2f * 1000f + 1000f) {
             @Override
             public void event(Actor a) {
                 patrolling = false;
             }
+
             @Override
             public boolean update(float delta, Actor a) {
                 final float OFFSET = 1.5f;
@@ -114,8 +115,8 @@ public class FieldBattlerAI extends Player implements Serializable {
 
                 if (y > (getY()) && y - (getY()) > OFFSET) {
                     changeY(1);
-                   getMainBody().setLinearVelocity(getMainBody().getLinearVelocity().x, getCurrentBattler().getSpeed() * (float) (delta));
-                 } else if (y < (getY()) && (getY()) - y > OFFSET) {
+                    getMainBody().setLinearVelocity(getMainBody().getLinearVelocity().x, getCurrentBattler().getSpeed() * (float) (delta));
+                } else if (y < (getY()) && (getY()) - y > OFFSET) {
                     changeY(-1);
                     getMainBody().setLinearVelocity(getMainBody().getLinearVelocity().x, -getCurrentBattler().getSpeed() * (float) (delta));
                 } else {
@@ -125,20 +126,20 @@ public class FieldBattlerAI extends Player implements Serializable {
                 setFacing();
                 if (!getMainBody().getLinearVelocity().isZero(.5f)) {
                     setFieldState(ActorSprite.SpriteModeField.WALK);
-                }
-                else {
-                    setFieldState(ActorSprite.SpriteModeField.STAND);                    
+                } else {
+                    setFieldState(ActorSprite.SpriteModeField.STAND);
                 }
                 applySprite();
-                setWalking(true);                
+                setWalking(true);
                 return super.update(delta, a);
             }
+
             public boolean isFinished() {
                 return super.isFinished() || getMainBody().getLinearVelocity().isZero(.5f);
             }
         });
-    }    
-    
+    }
+
     @Override
     public void update(float delta) {
         while (!getCurrentBattler().getBattler().isAlive()) {
@@ -158,7 +159,7 @@ public class FieldBattlerAI extends Player implements Serializable {
         }
         setX(getMainBody().getPosition().x);
         setY(getMainBody().getPosition().y);
-        
+
         if (!isWalking()) {
             getMainBody().setLinearVelocity(0, 0);
             if (!isAttacking()) {
@@ -170,19 +171,18 @@ public class FieldBattlerAI extends Player implements Serializable {
         }
         setWalking(false);
     }
-    
-        
+
     public boolean vision() {
         return isInRange(vision);
     }
-    
+
     private void interpretAI(float delta) {
         closestPlayer = findClosestPlayer(vision, GraphicsDriver.getPlayer());
         if (state == null) {
             state = IDLE;
         }
-        Optional<AI> skillResult = aiData.stream().filter(obj -> 
-                obj.getType() == AI.Type.AttackSkill 
+        Optional<AI> skillResult = aiData.stream().filter(obj
+                -> obj.getType() == AI.Type.AttackSkill
                 || AI.Type.SupportSkill == obj.getType()
                 || AI.Type.Heal == obj.getType()
         ).findFirst();
@@ -194,8 +194,7 @@ public class FieldBattlerAI extends Player implements Serializable {
                 }
             }
             state = SKILL;
-        }
-        else if (isInRange() && canAttack() && canMove()) {
+        } else if (isInRange() && canAttack() && canMove()) {
             for (int i = 0; i < getTimers().size(); i++) {
                 if (getTimers().get(i).getName().equalsIgnoreCase("MOVE")) {
                     getTimers().remove(i);
@@ -206,8 +205,7 @@ public class FieldBattlerAI extends Player implements Serializable {
         } else if (vision() && canMove()) {
             state = PURSUIT;
 //            moveTowardsPlayer(delta);
-        }
-        else if (!patrolling) {
+        } else if (!patrolling) {
             if (state == PURSUIT) {
                 moveTowardsPoint(lastSeenPosition.x, lastSeenPosition.y, delta);
                 patrolling = true;
@@ -221,7 +219,7 @@ public class FieldBattlerAI extends Player implements Serializable {
         }
         interpretAIState(delta);
     }
-    
+
     private void interpretAIState(float delta) {
         switch (state) {
             case PATROL:
@@ -241,7 +239,7 @@ public class FieldBattlerAI extends Player implements Serializable {
                 break;
         }
     }
-    
+
     private void moveTowardsPlayer(float delta) {
         final float OFFSET = 1f;
         if (closestPlayer == null) {
@@ -259,7 +257,6 @@ public class FieldBattlerAI extends Player implements Serializable {
         };
 //        getCurrentMap().getPhysicsWorld().rayCast(rayVision, getMainBody().getPosition().add(getMainFixture().getShape().getRadius()), new Vector2(closestPlayer.getMainBody().getPosition()));
 
-        
         patrolling = false;
         if ((closestX) > (getX()) && (closestX) - (getX()) > OFFSET) {
             changeX(1);
@@ -271,7 +268,7 @@ public class FieldBattlerAI extends Player implements Serializable {
             changeX(0);
             getMainBody().setLinearVelocity(0, getMainBody().getLinearVelocity().y);
         }
-        
+
         if ((closestY) > (getY()) && (closestY) - (getY()) > OFFSET) {
             changeY(1);
             getMainBody().setLinearVelocity(getMainBody().getLinearVelocity().x, getCurrentBattler().getSpeed() * (float) (delta));
@@ -281,7 +278,7 @@ public class FieldBattlerAI extends Player implements Serializable {
         } else {
             changeY(0);
             getMainBody().setLinearVelocity(getMainBody().getLinearVelocity().x, 0);
-        }        
+        }
         lastSeenPosition.x = closestX;
         lastSeenPosition.y = closestY;
         setFacing();
@@ -289,14 +286,13 @@ public class FieldBattlerAI extends Player implements Serializable {
         applySprite();
         this.setWalking(true);
     }
-    
+
     @Override
     public void setDefaultFilter() {
-        setMainFilter(ActorCollision.CATEGORY_AI, (short)(ActorCollision.CATEGORY_WALLS | ActorCollision.CATEGORY_OBSTACLES));
+        setMainFilter(ActorCollision.CATEGORY_AI, (short) (ActorCollision.CATEGORY_WALLS | ActorCollision.CATEGORY_OBSTACLES));
         setSensorFilter(ActorCollision.CATEGORY_AI, (short) (CATEGORY_PLAYER | ActorCollision.CATEGORY_PLAYER_SKILL));
     }
-    
-    
+
     @Override
     public void setInvulnerability(int time) {
         GameTimer tempTimer = new GameTimer("Invulnerable", time) {
@@ -304,6 +300,7 @@ public class FieldBattlerAI extends Player implements Serializable {
             public void event(Actor a) {
                 setDefaultFilter();
             }
+
             @Override
             public boolean update(float delta, Actor a) {
                 setMainFilter(ActorCollision.CATEGORY_AI, ActorCollision.CATEGORY_WALLS);
@@ -312,19 +309,20 @@ public class FieldBattlerAI extends Player implements Serializable {
                 getSensorBody().setAwake(true);
                 return super.update(delta, a);
             }
-            
+
         };
         addTimer(tempTimer);
         setMainFilter(ActorCollision.CATEGORY_AI, ActorCollision.CATEGORY_WALLS);
         setSensorFilter(ActorCollision.CATEGORY_AI, ActorCollision.CATEGORY_PLAYER);
-    }        
+    }
+
     private void patrol(float delta) {
         patrolling = true;
         final Actor.Facing direction = Actor.Facing.values()[(int) (Math.random() * Actor.Facing.values().length)];
         final float distance = 4;
         moveTowardsPoint(getX() + direction.getX() * distance, getY() + direction.getY() * distance, delta);
     }
-    
+
     public enum State {
         IDLE,
         PATROL,

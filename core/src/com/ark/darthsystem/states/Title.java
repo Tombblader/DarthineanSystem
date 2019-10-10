@@ -14,10 +14,11 @@ import com.badlogic.gdx.graphics.Texture;
  * @author Keven
  */
 public class Title implements State {
+
     private final Menu TITLE_MENU;
     private final TextureRegion titleTexture;
     private final String BGM = null;
-    
+
     public Title() {
         titleTexture = new TextureRegion(GraphicsDriver.getAssets().get("backgrounds/title.png", Texture.class)) {
             {
@@ -55,30 +56,31 @@ public class Title implements State {
                     GraphicsDriver.getState().get(0).dispose();
                     throw new GameOverException();
                 }
-                
+
                 return choice;
             }
+
             @Override
             public String cancel() {
                 setCursorIndex(0);
                 return "";
             }
-            
+
         };
     }
-    
+
     @Override
     public float update(float delta) {
         GraphicsDriver.setCurrentCamera(GraphicsDriver.getCamera());
         GraphicsDriver.addMenu(TITLE_MENU);
         return delta;
     }
-    
+
     @Override
     public void render(SpriteBatch batch) {
         batch.draw(titleTexture, 0, 0);
     }
-    
+
     @Override
     public void dispose() {
 //        titleTexture.getTexture().dispose();
@@ -88,5 +90,5 @@ public class Title implements State {
     public String getMusic() {
         return BGM;
     }
-    
+
 }

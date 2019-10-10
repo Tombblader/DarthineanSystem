@@ -24,30 +24,30 @@ public abstract class Novel implements State {
     public ArrayList<Page> chapters;
     public Array<Actor> actorList;
     private boolean isFinished = false;
-    
+
     String choices;
     int pageIndex = 0;
     ArrayList<GameTimer> timers = new ArrayList<>();
+
     public Novel() {
         this.chapters = new ArrayList<>();
         this.actorList = new Array<>();
     }
 
-
     public void dispose() {
 
     }
-    
+
     public void moveActor(float x, float y, float speed, int wait) {
-        
+
     }
+
     public void render(SpriteBatch batch) {
         State ste = null;
         for (State state : GraphicsDriver.getState()) {
             if (!(state instanceof Message)
                     && !(state instanceof Menu)
-                    && !(state instanceof Novel)
-                    ) {
+                    && !(state instanceof Novel)) {
                 ste = state;
             }
         }
@@ -58,7 +58,7 @@ public abstract class Novel implements State {
             a.render(batch);
         }
     }
-    
+
     @Override
     public float update(float delta) {
         State ste = null;
@@ -68,7 +68,7 @@ public abstract class Novel implements State {
             }
         }
         if (ste != null) {
-            ((OverheadMap)(ste)).updatePartial(delta);
+            ((OverheadMap) (ste)).updatePartial(delta);
         }
         for (int i = 0; i < actorList.size; i++) {
             Actor a = actorList.get(i);
@@ -82,13 +82,12 @@ public abstract class Novel implements State {
                     i--;
                 }
             }
-        }        
+        }
         if (timers.isEmpty()) {
             if (chapters.size() <= pageIndex) {
                 GraphicsDriver.removeState(this);
                 isFinished = true;
-            }
-            else {
+            } else {
                 chapters.get(pageIndex).run();
                 pageIndex++;
             }
@@ -104,26 +103,34 @@ public abstract class Novel implements State {
         }
         return delta;
     }
+
     public class Condition extends Menu {
+
         public Condition(String header, String[] choices) {
             super(header, choices, true, true);
         }
+
         @Override
         public Object confirm(String choice) {
             choices = choice;
             return choice;
         }
     }
+
     public interface Page {
+
         public abstract void run();
     }
-    
+
     public abstract class tempPage implements Page {
+
         public abstract void run();
     }
-        
+
     public class Dialogue implements Page {
+
         private String textFile;
+
         public Dialogue(String text) {
             textFile = text;
             try (Scanner s = new Scanner(Gdx.files.internal(text).read())) {
@@ -131,47 +138,55 @@ public abstract class Novel implements State {
                 while (s.hasNextLine()) {
                     String input = s.nextLine();
                     if (parser.countTokens() <= 1) {
-                        
+
                     } else {
-                    
+
                         while (parser.hasMoreTokens()) {
                             parser.nextToken();
                         }
                     }
                 }
-                
+
             }
         }
+
         public void run() {
-            
+
         }
     }
-    
+
     public void addTimer(GameTimer t) {
         timers.add(t);
     }
-    
+
     public abstract class TickEvent {
+
         private String name;
         private int frameTime;
         private int currentFrame;
+
         public TickEvent(String name, int frames) {
             this.name = name;
             frameTime = frames;
             currentFrame = 0;
         }
+
         public abstract void run();
+
         public void update(float delta) {
             run();
             currentFrame++;
         }
+
         public boolean isFinished() {
             return currentFrame >= frameTime;
         }
+
         public String getName() {
             return name;
         }
     }
+
     public boolean isFinished() {
         return isFinished;
 //        return !(GraphicsDriver.getCurrentState() instanceof Novel || GraphicsDriver.getCurrentState() instanceof Message || GraphicsDriver.getCurrentState() instanceof Menu);

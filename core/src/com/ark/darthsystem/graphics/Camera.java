@@ -19,7 +19,7 @@ public class Camera extends OrthographicCamera {
     public float getScreenPositionY() {
         return position.y - viewportHeight / 2f;
     }
-    
+
     public float getConversion() {
         return PIXELS_TO_METERS;
     }

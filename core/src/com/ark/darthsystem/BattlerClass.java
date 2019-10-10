@@ -50,8 +50,7 @@ public class BattlerClass implements Serializable {
         skillList = skillSet;
         growthList = new int[]{0, 0, 0, 0, 0, 0};
     }
-    
-    
+
     /**
      *
      * @param equipped
@@ -61,7 +60,7 @@ public class BattlerClass implements Serializable {
         boolean equippable = false;
         for (Equipment.Type value : equipped.getType()) {
             for (Equipment.Type key : equipmentList) {
-                equippable |=  key == value;
+                equippable |= key == value;
             }
         }
         return equippable;

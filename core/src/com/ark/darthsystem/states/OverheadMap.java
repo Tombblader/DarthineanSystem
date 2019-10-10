@@ -84,6 +84,7 @@ public class OverheadMap implements State {
     private int width;
     private int height;
     private transient Body boundXMin, boundXMax, boundYMin, boundYMax;
+    private Object dead = new Object();
 
     public OverheadMap(String mapName, boolean isLoaded) {
         renderer = new OrthogonalTiledMapRenderer(MapDatabase.getMap(mapName), 1f / PlayerCamera.PIXELS_TO_METERS);
@@ -98,12 +99,12 @@ public class OverheadMap implements State {
         generateBounds();
         generateObjects();
     }
-    
+
     public OverheadMap(String mapName, String bgmName) {
         this(mapName, false);
         bgm = bgmName;
     }
-    
+
     private PolygonShape getRectangle(RectangleMapObject rectangleObject) {
         Rectangle rectangle = rectangleObject.getRectangle();
         PolygonShape polygon = new PolygonShape();
@@ -290,7 +291,11 @@ public class OverheadMap implements State {
             filter.categoryBits = ActorCollision.CATEGORY_OBSTACLES;
             filter.maskBits = ActorCollision.CATEGORY_AI | ActorCollision.CATEGORY_PLAYER;
         } else if (properties.get("type", String.class).equalsIgnoreCase("event")) {
-            body.setUserData(addEventFromMap(object));
+            Object o = addEventFromMap(object);
+            if (o == null) {
+                o = dead;
+            }
+            body.setUserData(o);
             filter.categoryBits = (short) (ActorCollision.CATEGORY_EVENT | (properties.get("collisionType", String.class).equalsIgnoreCase("WALL") ? ActorCollision.CATEGORY_WALLS : 0));
             f.setSensor(!properties.get("collisionType", String.class).equalsIgnoreCase("WALL"));
             filter.maskBits = ActorCollision.CATEGORY_PLAYER;
@@ -305,56 +310,20 @@ public class OverheadMap implements State {
     private Event addEventFromMap(MapObject object) {
         MapProperties prop = object.getProperties();
         Event e = null;
-//        String[] parameters;
-//        String image;
         try {
             e = ((Event) (Class.forName("com.ark.darthsystem.states.events." + prop.get("eventName", String.class))
                     .newInstance())).
                     createFromMap(prop);
             e.setID(prop.get("id", Integer.class));
             e.setMap(this);
+            if (e.isFinished()) {
+                e = null;
+            }
             return e;
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
             Logger.getLogger(OverheadMap.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println(prop.get("eventName", String.class));
         }
-//        switch (Integer.parseInt(prop.get("eventID").toString())) {
-//            case 0:
-//                break;
-//            case 1: //NovelMode
-//                parameters = prop.get("parameters", String.class).split(",* ");
-//                image = prop.get("image", String.class);
-//                e = new NovelMode(EventDatabase.chapters(parameters),
-//                        image,
-//                        (prop.get("x", Float.class) + prop.get("width", Float.class) / 2) / ppt,
-//                        (prop.get("y", Float.class) + prop.get("height", Float.class) / 2) / ppt,
-//                        6 / 60f);
-//                break;
-//            case 2: //Teleport
-//                parameters = prop.get("parameters", String.class).split(",* ");
-//                image = prop.get("image", String.class);
-//                e = new Teleport(image,
-//                        prop.get("x", Float.class),
-//                        prop.get("y", Float.class),
-//                        6 / 60f,
-//                        parameters[0],
-//                        Integer.parseInt(parameters[1]),
-//                        Integer.parseInt(parameters[2]));
-//                break;
-//            case 3: //Treasure
-//                image = prop.get("image", String.class);
-//                e = new Treasure(image,
-//                        prop.get("x", Float.class),
-//                        prop.get("y", Float.class),
-//                        6 / 60f,
-//                        ItemDatabase.ITEM_LIST.get(prop.get("parameters", String.class).toUpperCase()));
-//                break;
-//            default:
-//                break;
-//        }
-//        if (e != null) {
-//            e.setMap(this);
-//        }
         return e;
     }
 
@@ -445,7 +414,7 @@ public class OverheadMap implements State {
             actorList.add(a);
         }
     }
-    
+
     public void clearTemporaryActors() {
         for (int i = 0; i < actorList.size; i++) {
             Actor actor = actorList.get(i);
@@ -466,8 +435,9 @@ public class OverheadMap implements State {
         if (a instanceof ActorCollision) {
             Array<Body> temp = new Array<>();
             world.getBodies(temp);
+            //Searches for bodies marked for deletion, and dead on arrival bodies.
             for (Body b : temp) {
-                if (b.getUserData() != null && b.getUserData().equals(a)) {
+                if ((b.getUserData() != null && b.getUserData().equals(a)) || b.getUserData() == dead) {
                     deleteQueue.add(b);
                 }
             }
@@ -500,7 +470,7 @@ public class OverheadMap implements State {
                         i--;
                         ((FieldSkill) (actors)).stopFieldSound();
                     }
-                    
+
                 }
                 clearTempRunningTimers(tempAI);
             }
@@ -686,7 +656,7 @@ public class OverheadMap implements State {
         int i = 0;
 
         for (String m : message) {
-            GraphicsDriver.drawMessage(batch, GraphicsDriver.getPlayer().getFont(), m,
+            GraphicsDriver.drawMessage(batch, GraphicsDriver.getFont(), m,
                     PADDING_X + GraphicsDriver.getCamera().getScreenPositionX(),
                     ((PADDING_Y + GraphicsDriver.getHeight() - MESSAGE_HEIGHT + FONT_HEIGHT * i) + GraphicsDriver.getCamera().getScreenPositionY()));
             i++;
@@ -696,11 +666,11 @@ public class OverheadMap implements State {
     public String getMapName() {
         return mapName;
     }
-    
+
     public Batch getBatch() {
         return renderer.getBatch();
     }
-    
+
     public TiledMap getMap() {
         return renderer.getMap();
     }
@@ -849,9 +819,9 @@ public class OverheadMap implements State {
                 money += ((BattlerAI) (enemy)).getMoney();
             }
             if (!dropped.isEmpty() || money > 0) {
-                new Pickup(dropped.isEmpty() ? 
-                        "items/money/icon" : dropped.get(0).getIcon(), 
-                        actor.getX(), actor.getY(), 
+                new Pickup(dropped.isEmpty()
+                        ? "items/money/icon" : dropped.get(0).getIcon(),
+                        actor.getX(), actor.getY(),
                         1 / 12, dropped.toArray(new Item[dropped.size()]), money).setMap(OverheadMap.this);
             }
         }

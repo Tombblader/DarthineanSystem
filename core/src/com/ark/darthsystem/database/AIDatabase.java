@@ -19,9 +19,9 @@ import java.util.HashMap;
  * @author Keven
  */
 public class AIDatabase {
-    
+
     public static final HashMap<String, Battler> BATTLER_LIST = new HashMap<>();
-    
+
     public AIDatabase() {
         FileHandle file = Gdx.files.internal("databases/battlerais.tsv");
         String[] massiveString = file.readString().split("(\r\n|\r|\n)");
@@ -31,7 +31,7 @@ public class AIDatabase {
                 continue;
             }
             int i = 0;
-            
+
             BATTLER_LIST.put(data[i].toUpperCase(), new BattlerAI(data[i], //Name
                     data[++i], //Description
                     Battle.Element.valueOf(data[++i]), //Element
@@ -42,16 +42,16 @@ public class AIDatabase {
                     Integer.parseInt(data[++i]), //Attack
                     Integer.parseInt(data[++i]), //Defense
                     Integer.parseInt(data[++i]), //Speed
-                    Integer.parseInt(data[++i]),  //Magic
-                    new ArrayList<>(Arrays.asList(Arrays.stream(data[++i].split(", ")).map(j -> SkillDatabase.SKILL_LIST.get(j.toUpperCase())).toArray(Skill[] :: new))),
+                    Integer.parseInt(data[++i]), //Magic
+                    new ArrayList<>(Arrays.asList(Arrays.stream(data[++i].split(", ")).map(j -> SkillDatabase.SKILL_LIST.get(j.toUpperCase())).toArray(Skill[]::new))),
                     new EnumMap<>(Equipment.Slot.class),
                     Scenario.AI_TYPE.get(data[++i].toUpperCase()),
                     Integer.parseInt(data[++i]), // XP
                     Integer.parseInt(data[++i]), // Money
-                    Arrays.stream(data[++i].split(", ")).map(j -> ItemDatabase.ITEM_LIST.get(j.toUpperCase())).toArray(Item[] :: new),
+                    Arrays.stream(data[++i].split(", ")).map(j -> ItemDatabase.ITEM_LIST.get(j.toUpperCase())).toArray(Item[]::new),
                     Arrays.stream(data[++i].split(", ")).mapToDouble(j -> Double.parseDouble(j)).toArray(),
                     Arrays.stream(data[++i].split(", ")).mapToInt(j -> Integer.parseInt(j)).toArray()
-                    ));
+            ));
         }
     }
 }

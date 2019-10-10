@@ -11,11 +11,12 @@ import com.ark.darthsystem.states.Battle;
  * @author keven
  */
 public class Confuse extends StatusEffect {
+
     public Confuse() {
         super("Confuse", 2, .25, 0.15, 5, 0.25, false, " has become confused!");
         setInitialTurnCount(0);
     }
-    
+
     public Confuse(int turn) {
         this();
         setInitialTurnCount(turn);
@@ -24,12 +25,12 @@ public class Confuse extends StatusEffect {
     @Override
     public boolean checkStatus(Action action, Battle b) {
 //        action
-                action.setTarget(Math.random() > .5 ? b.getAlly((int) (Math.random() *
-                        b.getAlly().size())) : b.getAlly((int) (Math.random() *
-                        b.getAlly().size())));
-                action.setAllTarget(Math.random() > .5 ? b.getAlly() : (b.getEnemy()));
-                action.setSkill(action.getCaster().getSkill((int) (Math.random() * action.getCaster().getSkillList().size())));
-                action.setCommand(Math.random() > .5 ? Battle.Command.Attack : Battle.Command.Skill);
+        action.setTarget(Math.random() > .5 ? b.getAlly((int) (Math.random()
+                * b.getAlly().size())) : b.getAlly((int) (Math.random()
+                * b.getAlly().size())));
+        action.setAllTarget(Math.random() > .5 ? b.getAlly() : (b.getEnemy()));
+        action.setSkill(action.getCaster().getSkill((int) (Math.random() * action.getCaster().getSkillList().size())));
+        action.setCommand(Math.random() > .5 ? Battle.Command.Attack : Battle.Command.Skill);
         return true;
     }
 
@@ -42,15 +43,15 @@ public class Confuse extends StatusEffect {
     public void checkFieldStatus(Player player, Battler battler, GameTimer timer) {
 
     }
-    
+
     @Override
     public void updateFieldStatus(Player player, Battler battler, GameTimer timer, float delta) {
-        int random = ((int)(Math.random() * 2)) - 1;
+        int random = ((int) (Math.random() * 2)) - 1;
         player.getMainBody()
                 .setLinearVelocity(random * player.getSpeed() * (float) (delta),
                         player.getMainBody().getLinearVelocity().y);
         player.changeX(random);
-        random = ((int)(Math.random() * 2)) - 1;
+        random = ((int) (Math.random() * 2)) - 1;
         player.getMainBody().setLinearVelocity(player.getMainBody().getLinearVelocity().x, random * player.getSpeed() * (float) (delta));
         player.changeY(random);
 

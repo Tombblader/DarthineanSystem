@@ -12,7 +12,7 @@ import java.util.ArrayList;
  */
 public class Item implements Serializable, Cloneable, Nameable {
 
-    private static final long serialVersionUID = 553786344;    
+    private static final long serialVersionUID = 553786344;
     private int HPValue;
     private int MPValue;
     private boolean stackable;
@@ -30,6 +30,7 @@ public class Item implements Serializable, Cloneable, Nameable {
 
     /**
      * Get the value of sound
+     *
      * @return the value of sound
      */
     public Sound getSound() {
@@ -38,12 +39,12 @@ public class Item implements Serializable, Cloneable, Nameable {
 
     /**
      * Set the value of sound
+     *
      * @param sound new value of sound
      */
     public void setSound(Sound sound) {
         this.sound = sound;
     }
-
 
     /**
      *
@@ -153,7 +154,7 @@ public class Item implements Serializable, Cloneable, Nameable {
     public int getCharges() {
         return charges;
     }
-    
+
     public int getPrice() {
         return price;
     }
@@ -260,7 +261,7 @@ public class Item implements Serializable, Cloneable, Nameable {
     public String getName() {
         return name;
     }
-    
+
     @Override
     public String getDescription() {
         return description;
@@ -301,6 +302,5 @@ public class Item implements Serializable, Cloneable, Nameable {
     public void setImage(String iconName) {
         this.iconName = iconName;
     }
-    
-    
+
 }

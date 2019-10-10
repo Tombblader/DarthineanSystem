@@ -19,6 +19,7 @@ import java.util.ArrayList;
 
 /**
  * The FieldBattler encapsulates the Battler so it can interact with the map.
+ *
  * @author Keven
  */
 public class FieldBattler implements Serializable {
@@ -32,7 +33,7 @@ public class FieldBattler implements Serializable {
     private float delay;
     private float speed;
     private String shapeName;
-    
+
     public FieldBattler() {
         skillList = new ArrayList<>();
         face = SpriteModeFace.NORMAL;
@@ -42,7 +43,7 @@ public class FieldBattler implements Serializable {
         battler = b;
         spriteSheet = s;
         speed = .4f;
-        delay = 1/6f;
+        delay = 1 / 6f;
         shapeName = "basiccircle";
         b.getSkillList().stream().map((skill) -> {
             currentSkill = Database2.SkillToActor(skill.getName());
@@ -56,34 +57,33 @@ public class FieldBattler implements Serializable {
             currentSkill = null;
         }
     }
-    
+
     public FieldBattler(Battler b, String s) {
         battler = b;
         spriteSheetName = s;
         speed = .4f;
-        delay = 1/6f;
+        delay = 1 / 6f;
         shapeName = "basiccircle";
         initialize();
     }
-    
+
     public FieldBattler(Battler b, String s, float fps, String shapeName, float speed) {
         this.shapeName = shapeName;
         battler = b;
         spriteSheetName = s;
         this.speed = speed;
         delay = fps;
-        initialize();        
+        initialize();
     }
-    
+
     private void initialize() {
         spriteSheet = new ActorSprite(spriteSheetName);
-        for (Skill skills: battler.getSkillList()) {
+        for (Skill skills : battler.getSkillList()) {
             try {
                 if (Database2.SkillToActor(skills.getName()) != null) {
                     skillList.add(Database2.SkillToActor(skills.getName()));
                 }
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
@@ -92,9 +92,8 @@ public class FieldBattler implements Serializable {
         } else {
             currentSkill = null;
         }
-        
+
     }
-    
 
     public FieldSkill activateCurrentSkill() {
         if (battler.getMP() >= currentSkill.getSkill().getCost()) {
@@ -113,7 +112,7 @@ public class FieldBattler implements Serializable {
         }
         return null;
     }
-    
+
     public final FieldSkill activateSkill(String s) {
         if (battler.getMP() >= battler.getSkill(s).getCost()) {
             battler.changeMP(battler.getSkill(s).getCost());
@@ -144,7 +143,6 @@ public class FieldBattler implements Serializable {
         currentSkill = getSkillList().get(currentIndex);
     }
 
-
     public FieldBattler clone() {
         FieldBattler newBattler = new FieldBattler((Battler) battler.clone(), spriteSheet);
         newBattler.delay = delay;
@@ -152,15 +150,15 @@ public class FieldBattler implements Serializable {
         newBattler.speed = speed;
         return newBattler;
     }
-    
+
     public <T extends Battler> T getBattler() {
         return (T) battler;
     }
-    
+
     public FieldSkill getCurrentSkill() {
         return currentSkill;
     }
-    
+
     public ArrayList<FieldSkill> getSkillList() {
         ArrayList<FieldSkill> tempSkillList = new ArrayList<>();
         for (Skill skill : battler.getSkillList()) {
@@ -171,11 +169,11 @@ public class FieldBattler implements Serializable {
         }
         return tempSkillList;
     }
-    
+
     public ActorSprite getSprite() {
         return spriteSheet;
     }
-    
+
     public void setFace(SpriteModeFace face) {
         this.face = face;
     }
@@ -213,6 +211,6 @@ public class FieldBattler implements Serializable {
 
     private void writeObject(ObjectOutputStream out) throws IOException {
         out.defaultWriteObject();
-    }    
-    
+    }
+
 }

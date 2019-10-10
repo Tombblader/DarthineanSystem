@@ -11,16 +11,17 @@ import com.ark.darthsystem.states.Battle;
  * @author keven
  */
 public class Paralyze extends StatusEffect {
+
     public Paralyze() {
         super("Paralyze", 2, .2, .5, 4, true, " is asleep!");
         setInitialTurnCount(0);
     }
-    
+
     public Paralyze(int turn) {
         this();
         setInitialTurnCount(turn);
     }
-    
+
     @Override
     public boolean checkStatus(Action action, Battle b) {
         return false;
@@ -45,5 +46,5 @@ public class Paralyze extends StatusEffect {
         }
 
     }
-    
+
 }

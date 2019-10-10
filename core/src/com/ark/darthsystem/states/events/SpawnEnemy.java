@@ -10,22 +10,20 @@ import com.badlogic.gdx.maps.MapProperties;
  * @author keven
  */
 public class SpawnEnemy extends Event {
-    
+
     private FieldBattlerAI enemy;
-    private boolean isFinished;
-    
+
     public SpawnEnemy() {
         super();
     }
-    
+
     public SpawnEnemy(String img, String[] ai, float getX, float getY, float delay) {
         super(img, getX, getY, delay);
         enemy = MonsterDatabase.MONSTER_LIST.get(ai[0].toUpperCase()).clone();
-        isFinished = false;
+        ;
         for (int i = 1; i < ai.length; i++) {
             enemy.getAllFieldBattlers().addAll(MonsterDatabase.MONSTER_LIST.get(ai[i].toUpperCase()).clone().getAllFieldBattlers());
         }
-        
     }
 
     @Override
@@ -42,15 +40,11 @@ public class SpawnEnemy extends Event {
 
     @Override
     public void run() {
-        enemy.setMap(this.getCurrentMap(), getX(), getY());
-        isFinished = true;
-//            MonsterDatabase.MONSTER_LIST.get(properties.get("parameters", String.class).toUpperCase())
-//                    .clone().setMap(this, properties.get("x", Float.class) / PlayerCamera.PIXELS_TO_METERS, properties.get("y", Float.class) / PlayerCamera.PIXELS_TO_METERS);
+        if (!isFinished() && enemy.getCurrentMap() != this.getCurrentMap()) {
+            enemy.setMap(this.getCurrentMap(), getX(), getY());
+        } else if (enemy.totalPartyKill()) {
+            switches.switchOn(LocalSwitch.Switch.FINISHED);
+        }
     }
-    
-    @Override
-    public boolean isFinished() {
-       return isFinished;
-    }
-    
+
 }

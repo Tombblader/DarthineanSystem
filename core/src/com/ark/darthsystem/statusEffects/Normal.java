@@ -11,7 +11,7 @@ import com.ark.darthsystem.states.Battle;
  * @author keven
  */
 public class Normal extends StatusEffect {
-    
+
     public Normal() {
         super("Normal", 1, 1.0, 0.0, 0, false, "'s wounds are healed!");
         setInitialTurnCount(0);
@@ -26,14 +26,15 @@ public class Normal extends StatusEffect {
     public String getDescription() {
         return "You're normal.  Congratulations.";
     }
-    
+
     @Override
     public void checkFieldStatus(Player player, Battler battler, GameTimer timer) {
 
     }
+
     @Override
     public void updateFieldStatus(Player player, Battler battler, GameTimer timer, float delta) {
 
     }
-    
+
 }

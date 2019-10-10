@@ -45,5 +45,5 @@ public class Fog extends StatusEffect {
     public String getDescription() {
         return "Victim is caught up by illusions.  50% chance of missing its target.";
     }
-    
+
 }

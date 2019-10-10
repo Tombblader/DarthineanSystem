@@ -15,12 +15,14 @@ import com.badlogic.gdx.maps.MapProperties;
  * @author keven
  */
 public class Shopkeeper extends Event {
+
     private Item[] inventory;
     private ShopMenu menu;
+
     public Shopkeeper() {
-        super("", 0, 0, 6/60f);
+        super("", 0, 0, 6 / 60f);
     }
-    
+
     public Shopkeeper(String img, String[] items, float getX, float getY, float delay) {
         super(img, getX, getY, delay);
         inventory = new Item[items.length];
@@ -39,11 +41,12 @@ public class Shopkeeper extends Event {
                 public String getMusic() {
                     return null;
                 }
+
                 {
                     this.chapters.add(() -> BattleDriver.printline(CharacterDatabase.CHARACTER_LIST.get("GREEN LADY"), "Look... at... my wares..."));
                     this.chapters.add(() -> GraphicsDriver.addMenu(new ShopMenu("What... would you like...?", inventory, new String[]{"Buying.. is good..", "I... don't like buying from you..."})));
                 }
-                });
+            });
         }
     }
 
@@ -63,5 +66,5 @@ public class Shopkeeper extends Event {
         s.setTriggerMethod(Event.TriggerMethod.valueOf(prop.get("trigger", String.class)));
         return s;
     }
-    
+
 }

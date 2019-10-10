@@ -12,7 +12,9 @@ import com.badlogic.gdx.maps.MapProperties;
  * @author Keven
  */
 public class ButtonPush extends Event {
+
     private Event event;
+
     public ButtonPush(String img, float getX, float getY, float delay) {
         super(img, getX, getY, delay);
     }
@@ -21,7 +23,6 @@ public class ButtonPush extends Event {
     public void run() {
         event.run();
     }
-    
 
     @Override
     public boolean isFinished() {
@@ -32,5 +33,5 @@ public class ButtonPush extends Event {
     public Event createFromMap(MapProperties prop) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }

@@ -22,7 +22,6 @@ import java.util.ArrayList;
  *
  */
 public class Actor implements Serializable {
-    
 
     private transient Animation<Sprite> animation;
     private transient Sprite currentImage;
@@ -46,10 +45,10 @@ public class Actor implements Serializable {
     private Facing xFacingBias;
     private String imageName;
     private boolean isFinished;// = false;
-    
+
     public Actor() {
         this.xFacingBias = Facing.DOWN;
-        delay = 16/60f;
+        delay = 16 / 60f;
         isMovable = false;
         speed = 0;
         elapsed = 0f;
@@ -100,30 +99,31 @@ public class Actor implements Serializable {
     public boolean canMove() {
         return isMovable;
     }
+
     public void changeAnimation(Animation<Sprite> a) {
         elapsed = 0;
         a.setFrameDuration(delay);
         animation = a;
         currentImage = (Sprite) a.getKeyFrame(0);
-    }    
-        
+    }
+
     public void changeDuringAnimation(Animation<Sprite> a) {
         a.setFrameDuration(delay);
         animation = a;
         currentImage = (a.getKeyFrame(elapsed));
     }
-    
+
     public void changeX(float getX) {
         lastX = position.x;
-        position.x += getX;        
+        position.x += getX;
         lastXFacing = position.x > lastX ? 1 : position.x == lastX ? 0 : -1;
     }
-    
+
     public void changeY(float getY) {
         lastY = position.y;
         position.y += getY;
         lastYFacing = position.y > lastY ? 1 : position.y == lastY ? 0 : -1;
-        
+
     }
 
     public void disableMovement() {
@@ -136,18 +136,23 @@ public class Actor implements Serializable {
     public void enableMovement() {
         isMovable = true;
     }
+
     public Animation<Sprite> getCurrentAnimation() {
         return animation;
     }
+
     public Sprite getCurrentImage() {
         return currentImage;
     }
+
     public void setCurrentImage(Sprite s) {
         currentImage = s;
     }
+
     public int getCurrentImageIndex() {
         return animation.getKeyFrameIndex(elapsed);
     }
+
     public OverheadMap getCurrentMap() {
         return currentMap;
     }
@@ -155,17 +160,19 @@ public class Actor implements Serializable {
     public float getDelay() {
         return delay;
     }
-    
+
     public void setDelay(float delay) {
         this.delay = delay;
     }
-    
+
     public void setElapsed(long elapsed) {
         this.elapsed = elapsed;
     }
+
     public float getElapsedTime() {
         return elapsed;
     }
+
     public void setElapsedTime(float delta) {
         elapsed = delta;
     }
@@ -181,7 +188,7 @@ public class Actor implements Serializable {
     public float getHeight() {
         return currentImage.getRegionHeight();
     }
-    
+
     public void setIsRotate(boolean getRotate) {
         isRotate = getRotate;
     }
@@ -202,7 +209,6 @@ public class Actor implements Serializable {
         return lastY;
     }
 
-
     public void setPause(float time) {
         GameTimer tempTimer = new GameTimer("Pause", time) {
             public void event(Actor a) {
@@ -217,11 +223,10 @@ public class Actor implements Serializable {
         timers.add(tempTimer);
         isMovable = false;
     }
-    
+
     public float getSpeed() {
         return speed;
     }
-
 
     public void setSpeed(float speed) {
         this.speed = speed;
@@ -230,29 +235,35 @@ public class Actor implements Serializable {
     public ArrayList<GameTimer> getTimers() {
         return timers;
     }
+
     public float getWidth() {
         return currentImage.getRegionWidth();
     }
+
     public float getX() {
         return position.x;
     }
+
     public void setX(float getX) {
         position.x = getX;
     }
+
     public float getY() {
         return position.y;
     }
+
     public void setY(float getY) {
         position.y = getY;
     }
+
     public Vector2 getPosition() {
         return position;
     }
+
     public void setPosition(Vector2 position) {
         this.position = position;
     }
-    
-    
+
     public boolean isFinished() {
         return isFinished;
 //        return destroyAfterAnimation &&
@@ -263,7 +274,7 @@ public class Actor implements Serializable {
     public boolean isRotate() {
         return isRotate;
     }
-    
+
     public void render(Batch batch) {
         if (currentImage != null) {
             batch.draw(currentImage,
@@ -278,7 +289,7 @@ public class Actor implements Serializable {
                     currentImage.getRotation());
         }
     }
-    
+
     public void resetAnimation() {
         if (images != null && images.length > 0) {
             elapsed = 0;
@@ -287,7 +298,7 @@ public class Actor implements Serializable {
             isFinished = false;
         }
     }
-    
+
     public void setFacing() {
         if (lastXFacing > 0) {
             xFacingBias = Facing.RIGHT;
@@ -308,23 +319,23 @@ public class Actor implements Serializable {
             }
         }
     }
-    
+
     public void setMap(OverheadMap map) {
         currentMapName = map.getMapName();
         currentMap = map;
         setX(position.x);
         setY(position.y);
     }
-    
+
     public void setCurrentMap(OverheadMap map) {
         currentMapName = map.getMapName();
         currentMap = map;
     }
-    
+
     public void setMapName(String map) {
         currentMapName = map;
     }
-    
+
     public void update(float delta) {
         if (currentImage != null) {
             elapsed += delta / 1000f;
@@ -343,7 +354,7 @@ public class Actor implements Serializable {
         }
         setFacing();
     }
-    
+
     public void updatePartial(float delta) {
 //        if (currentImage != null) {
 //            elapsed += delta / 1000f;
@@ -355,8 +366,7 @@ public class Actor implements Serializable {
 //        }
 //        setFacing();
     }
-    
-    
+
     public Facing getFacingBias() {
         return xFacingBias;
     }
@@ -374,18 +384,20 @@ public class Actor implements Serializable {
     public void setCurrentMapName(String currentMapName) {
         this.currentMapName = currentMapName;
     }
-    
-    private void readObject(ObjectInputStream in) throws IOException,ClassNotFoundException {
+
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
         in.defaultReadObject();
         images = GraphicsDriver.getMasterSheet().createSprites(imageName).toArray(Sprite.class);
         animation = new Animation<>(delay, images);
         animation.setPlayMode(destroyAfterAnimation ? PlayMode.NORMAL : PlayMode.LOOP);
-        if (images.length > 0)
+        if (images.length > 0) {
             currentImage = (Sprite) animation.getKeyFrame(0);
-        
-    }    
+        }
+
+    }
+
     public enum Facing {
-        
+
         UP(0, -1, 0),
         LEFT(-1, 0, 270),
         RIGHT(1, 0, 90),
@@ -394,32 +406,31 @@ public class Actor implements Serializable {
         RIGHT_DOWN(1, 1, 135),
         LEFT_UP(-1, -1, 315),
         RIGHT_UP(1, -1, 45);
-        
+
         float x, y;
         float rotate;
-        
+
         private Facing(int x, int y, float rotate) {
             this.x = x;
             this.y = y;
             this.rotate = rotate;
         }
-        
+
         public float getX() {
             return x;
         }
-        
+
         public float getY() {
             return y;
         }
-        
+
         public Vector2 getVector() {
             return new Vector2(x, y);
         }
-        
+
         public float getRotate() {
             return rotate;
         }
     }
-    
 
 }

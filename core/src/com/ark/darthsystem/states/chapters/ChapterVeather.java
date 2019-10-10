@@ -15,6 +15,7 @@ import com.ark.darthsystem.graphics.GraphicsDriver;
  * @author Keven
  */
 public class ChapterVeather extends Novel {
+
     public ChapterVeather() {
         chapters.add((Page) () -> {
             BattleDriver.printline("Hey sexy, do you love water?  That means you love 80% of me.");
@@ -38,14 +39,14 @@ public class ChapterVeather extends Novel {
         chapters.add((Page) () -> {
             if (choices.equals("I'll use this body anyways")) {
                 BattleDriver.printline(Database2.player.getBattler(0), ActorSprite.SpriteModeFace.HAPPY, "Very well.");
-            }
-            else {
+            } else {
                 BattleDriver.printline(Database2.player.getBattler(0), ActorSprite.SpriteModeFace.ANGRY, "...");
             }
         });
     }
+
     public String getMusic() {
         return null;
     }
-    
+
 }
