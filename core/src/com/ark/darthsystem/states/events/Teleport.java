@@ -30,7 +30,6 @@ public class Teleport extends Event {
         newX = xCoord + 16 / PlayerCamera.PIXELS_TO_METERS + GraphicsDriver.getCamera().getScreenPositionX();
         newY = yCoord + 16 / PlayerCamera.PIXELS_TO_METERS + GraphicsDriver.getCamera().getScreenPositionY();
         setTriggerMethod(TriggerMethod.TOUCH);
-        setID(2);
     }
 
     public Teleport(String img, float getX,
@@ -41,7 +40,6 @@ public class Teleport extends Event {
         map = newMap;
         newX = xCoord + 16 / PlayerCamera.PIXELS_TO_METERS + GraphicsDriver.getCamera().getScreenPositionX();
         newY = yCoord + 16 / PlayerCamera.PIXELS_TO_METERS + GraphicsDriver.getCamera().getScreenPositionY();
-        setID(2);
     }
 
     @Override

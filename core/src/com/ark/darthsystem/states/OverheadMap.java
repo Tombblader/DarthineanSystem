@@ -86,7 +86,7 @@ public class OverheadMap implements State {
     private transient Body boundXMin, boundXMax, boundYMin, boundYMax;
     private Object dead = new Object();
 
-    public OverheadMap(String mapName, boolean isLoaded) {
+    public OverheadMap(String mapName) {
         renderer = new OrthogonalTiledMapRenderer(MapDatabase.getMap(mapName), 1f / PlayerCamera.PIXELS_TO_METERS);
         this.mapName = mapName;
         MapProperties prop = renderer.getMap().getProperties();
@@ -101,7 +101,7 @@ public class OverheadMap implements State {
     }
 
     public OverheadMap(String mapName, String bgmName) {
-        this(mapName, false);
+        this(mapName);
         bgm = bgmName;
     }
 

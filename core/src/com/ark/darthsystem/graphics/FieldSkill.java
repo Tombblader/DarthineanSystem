@@ -27,16 +27,11 @@ public class FieldSkill extends ActorCollision implements Nameable {
 
     private float aftercastDelay = 0;
     private Area area;
-//    private transient Actor battlerAnimation;
     private String fieldSoundName;
-//    private String battlerSoundName;
-//    private transient Sound battlerSound;
     private float chargeTime = 0;
     private transient Sound fieldSound;
     private transient Player invoker;
     private transient WeldJoint joint;
-//    private String originalBattlerImageName;
-//    private transient Sprite[] originalBattlerImage;
     private ArrayList<Type> tags;
     private String originalFieldImageName;
     private transient Sprite[] originalFieldImage;

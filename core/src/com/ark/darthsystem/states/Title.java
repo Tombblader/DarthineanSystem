@@ -30,7 +30,7 @@ public class Title implements State {
             public String confirm(String choice) {
                 if (choice.equals("Start")) {
                     GraphicsDriver.newGame();
-                    GraphicsDriver.addState(new OverheadMap(MapDatabase.DEFAULT_MAP, false));
+                    GraphicsDriver.addState(new OverheadMap(MapDatabase.DEFAULT_MAP));
                     GraphicsDriver.getPlayer().setMap(((OverheadMap) (GraphicsDriver.getCurrentState())), MapDatabase.DEFAULT_X, MapDatabase.DEFAULT_Y);
                     GraphicsDriver.transition();
                     ((OverheadMap) (GraphicsDriver.getCurrentState())).updatePartial(0);
@@ -44,7 +44,7 @@ public class Title implements State {
                         public Object confirm(String choice) {
                             GraphicsDriver.loadGame("save" + getCursorIndex() + ".sav");
                             GraphicsDriver.addState(new OverheadMap(GraphicsDriver.
-                                    getPlayer().getCurrentMapName(), false)); //Need to fix loaded map..
+                                    getPlayer().getCurrentMapName())); //Need to fix loaded map..
                             GraphicsDriver.getPlayer().setMap(((OverheadMap) (GraphicsDriver.getCurrentState())), GraphicsDriver.getPlayer().getX(), GraphicsDriver.getPlayer().getY());
                             GraphicsDriver.transition();
                             ((OverheadMap) (GraphicsDriver.getCurrentState())).updatePartial(0);

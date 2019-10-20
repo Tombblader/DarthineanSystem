@@ -1,7 +1,6 @@
 package com.ark.darthsystem.database;
 
 import com.ark.darthsystem.graphics.GraphicsDriver;
-import com.ark.darthsystem.states.events.LocalSwitch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.utils.Array;
 import java.util.HashMap;

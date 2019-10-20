@@ -4,19 +4,15 @@ import com.ark.darthsystem.Battler;
 import com.ark.darthsystem.Equipment;
 import com.ark.darthsystem.states.Battle;
 import com.ark.darthsystem.Item;
-import com.ark.darthsystem.states.events.LocalSwitch;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 
-import java.io.*;
 import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.EnumMap;
 
-public class Database1 implements Serializable {
-
-    public static final long serialVersionUID = 553786371;
+public class Database1 {
 
     public static final HashMap<String, Battler> BATTLER_LIST = new HashMap<>();
 
@@ -68,30 +64,4 @@ public class Database1 implements Serializable {
     public static HashMap<String, Boolean> switches;
 
     public static HashMap<String, String> variables;
-
-//    public static void save(String fileName) throws FileNotFoundException, IOException {
-//        try (ObjectOutputStream objectStream
-//                = new ObjectOutputStream(Gdx.files.local(fileName).write(false, 2*2*2*2*2*2*2*2*2*2*2*2*2))) {
-//            objectStream.writeObject(BATTLER_LIST);
-//            objectStream.writeObject(inventory);
-//            objectStream.writeInt(karma);
-//            objectStream.writeInt(money);
-//            objectStream.writeObject(switches);
-//            objectStream.writeObject(variables);
-//        }
-//    }
-//
-//    public static void load(String fileName)
-//            throws FileNotFoundException, IOException, ClassNotFoundException {
-//        try (ObjectInputStream objectStream
-//                = new ObjectInputStream(Gdx.files.local(fileName).read(2*2*2*2*2*2*2*2*2*2*2*2*2))) {
-//            Database1.BATTLER_LIST.clear();
-//            Database1.BATTLER_LIST.putAll((HashMap<String, Battler>) objectStream.readObject());
-//            Database1.inventory = (ArrayList<Item>) objectStream.readObject();
-//            Database1.karma = objectStream.readInt();
-//            Database1.money = objectStream.readInt();
-//            Database1.switches = (HashMap<String, Boolean>) objectStream.readObject();
-//            Database1.variables = (HashMap<String, String>) objectStream.readObject();
-//        }
-//    }
 }

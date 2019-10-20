@@ -29,7 +29,6 @@ public class Pickup extends Event {
         item[0] = getItem;
         money = 0;
         setTriggerMethod(TriggerMethod.TOUCH);
-        setID(1);
     }
 
     public Pickup(String img, float getX,
@@ -40,7 +39,6 @@ public class Pickup extends Event {
         item = getItems;
         money = 0;
         setTriggerMethod(TriggerMethod.TOUCH);
-        setID(1);
     }
 
     public Pickup(String img, float getX,
@@ -52,11 +50,11 @@ public class Pickup extends Event {
         item = getItems;
         money = getMoney;
         setTriggerMethod(TriggerMethod.TOUCH);
-        setID(1);
     }
 
+    @Override
     public void run() {
-        if (!switches.isFinished()) {
+        if (!isFinished()) {
             for (Item i : item) {
                 BattleDriver.printline("Obtained" + (i.getCharges() > 0 ? " " + i.getCharges() : "") + " " + i.getName() + "!");
             }

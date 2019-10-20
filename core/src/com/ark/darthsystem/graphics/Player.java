@@ -104,15 +104,6 @@ public class Player extends ActorCollision implements Serializable {
             currentSkill = Database2.SkillToActor(party.get(0).getBattler().getSkill(0).getName());
         }
         setAttackAnimation();
-//        FreeTypeFontGenerator gen = new FreeTypeFontGenerator(Gdx.files.internal("fonts/monofont.ttf"));
-//        FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
-//        parameter.size = 24;
-//        parameter.flip = true;
-//        font = gen.generateFont(parameter);
-//        font.getData().markupEnabled = true;        
-//        font.setColor(Color.WHITE);
-//        font.setUseIntegerPositions(false);
-//        gen.dispose();
         checkStatusEffects();
         setControls();
     }

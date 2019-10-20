@@ -1,5 +1,6 @@
 package com.ark.darthsystem.graphics;
 
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputAdapter;
 
 public class Input extends InputAdapter {
@@ -9,14 +10,21 @@ public class Input extends InputAdapter {
     private static boolean canInput = true;
 
     public enum Key {
-        UP,
-        DOWN,
-        LEFT,
-        RIGHT,
-        BUTTON1,
-        BUTTON2,
-        BUTTON3,
-        BUTTON4;
+        UP(Keys.UP),
+        DOWN(Keys.DOWN),
+        LEFT(Keys.LEFT),
+        RIGHT(Keys.RIGHT),
+        BUTTON1(Keys.Z), //Attack/Confirm/A
+        BUTTON2(Keys.X), //Defend/Deny/B
+        BUTTON3(Keys.A), //Skill/X
+        BUTTON4(Keys.C), //Dodge/Y/
+        BUTTON5(Keys.D), //Change Skill/L1
+        BUTTON6(Keys.F), //Change Battler/L2
+        BUTTON7(Keys.SHIFT_LEFT); //Strafe?
+        private int keycode;
+        Key(int keycode) {
+            this.keycode = keycode;
+        }
     }
 
     public Input() {

@@ -26,7 +26,7 @@ public class CollisionDatabaseLoader {
 
     public CollisionDatabaseLoader() {
         shapes = new HashMap<>();
-        collisionMap = new OverheadMap("skillshapes", false);
+        collisionMap = new OverheadMap("skillshapes");
         layer = collisionMap.getMap().getLayers().get("collisions");
         for (MapObject object : layer.getObjects()) {
             Shape shape;
@@ -72,8 +72,8 @@ public class CollisionDatabaseLoader {
     private static PolygonShape getRectangle(RectangleMapObject rectangleObject) {
         Rectangle rectangle = rectangleObject.getRectangle();
         PolygonShape polygon = new PolygonShape();
-        Vector2 size = new Vector2((rectangle.x + rectangle.width * 0.5f) / ppt,
-                (rectangle.y + rectangle.height * 0.5f) / ppt);
+//        Vector2 size = new Vector2((rectangle.x + rectangle.width * 0.5f) / ppt,
+//                (rectangle.y + rectangle.height * 0.5f) / ppt);
         polygon.setAsBox(rectangle.width * 0.5f / ppt,
                 rectangle.height * 0.5f / ppt);
         return polygon;

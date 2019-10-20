@@ -9,8 +9,6 @@ import com.ark.darthsystem.graphics.Actor;
 import com.ark.darthsystem.graphics.GraphicsDriver;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.NinePatch;
-import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.scenes.scene2d.utils.ScissorStack;
 import com.badlogic.gdx.utils.Array;
 
 /**

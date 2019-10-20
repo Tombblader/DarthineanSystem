@@ -44,7 +44,6 @@ public class Treasure extends Event {
         money = 0;
         isFinished = false;
         setTriggerMethod(TriggerMethod.PRESS);
-        setID(3);
         pickedUpMessage = new Novel() {
             {
                 chapters.add((Novel.Page) () -> {
@@ -79,7 +78,6 @@ public class Treasure extends Event {
         money = 0;
         isFinished = false;
         setTriggerMethod(TriggerMethod.PRESS);
-        setID(3);
         pickedUpMessage = new Novel() {
             {
                 chapters.add((Novel.Page) () -> {

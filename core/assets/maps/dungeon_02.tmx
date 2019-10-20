@@ -16,7 +16,6 @@
    <properties>
     <property name="collision" value="TRUE"/>
     <property name="collisionType" value="wall"/>
-    <property name="eventID" value="2"/>
     <property name="eventName" value="Teleport"/>
     <property name="parameters" value="dungeon_00, 3, 11"/>
     <property name="trigger" value="TOUCH"/>
@@ -26,7 +25,6 @@
    <properties>
     <property name="collision" value="TRUE"/>
     <property name="collisionType" value="wall"/>
-    <property name="eventID" value="3"/>
     <property name="eventName" value="Treasure"/>
     <property name="image" value="event/chest/field/stand/down"/>
     <property name="parameters" value="Tonic"/>
@@ -37,7 +35,6 @@
    <properties>
     <property name="collision" value="TRUE"/>
     <property name="collisionType" value="wall"/>
-    <property name="eventID" value="2"/>
     <property name="eventName" value="Teleport"/>
     <property name="parameters" value="dungeon_03, 28, 11"/>
     <property name="trigger" value="PRESS"/>
@@ -47,7 +44,6 @@
    <properties>
     <property name="collision" value="FALSE"/>
     <property name="collisionType" value="OBSTACLE"/>
-    <property name="eventID" value="3"/>
     <property name="eventName" value="Pickup"/>
     <property name="image" value="items/eyekey/icon"/>
     <property name="parameters" value="Eye Key A"/>

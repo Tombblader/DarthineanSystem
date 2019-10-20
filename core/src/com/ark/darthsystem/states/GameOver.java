@@ -1,13 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.ark.darthsystem.states;
 
 import com.ark.darthsystem.database.MapDatabase;
 import com.ark.darthsystem.graphics.GraphicsDriver;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -51,6 +45,12 @@ public class GameOver implements State {
                     });
                 }
                 return choice;
+            }
+            @Override
+            public String cancel() {
+                GraphicsDriver.newGame();
+                GraphicsDriver.addState(new Title());
+                return "";
             }
 
         };

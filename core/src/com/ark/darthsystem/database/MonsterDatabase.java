@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.ark.darthsystem.database;
 
 import com.ark.darthsystem.graphics.FieldBattler;
@@ -19,11 +14,6 @@ import java.util.HashMap;
  */
 public class MonsterDatabase {
 
-    public static FieldBattlerAI ProtoxAI;
-    public static FieldBattlerAI ErikAI;
-    public static FieldBattlerAI Eyesore_Actor;
-    public static FieldBattlerAI Mouthsore_Actor;
-    public static FieldBattlerAI Living_Sword_Actor;
     public static HashMap<String, FieldBattlerAI> MONSTER_LIST = new HashMap<>();
 
     public MonsterDatabase() {
