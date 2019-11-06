@@ -23,7 +23,7 @@ public class AIDatabase {
     public static final HashMap<String, Battler> BATTLER_LIST = new HashMap<>();
 
     public AIDatabase() {
-        FileHandle file = Gdx.files.internal("databases/battlerais.tsv");
+        FileHandle file = Gdx.files.internal("databases/Database - BattlerAI.tsv");
         String[] massiveString = file.readString().split("(\r\n|\r|\n)");
         for (String token : massiveString) {
             String[] data = token.split("\t");

@@ -25,7 +25,7 @@ public class SystemDatabase {
     public static final HashMap<String, BattlerClass> CLASS_LIST = new HashMap<>();
 
     public SystemDatabase() {
-        FileHandle file = Gdx.files.internal("databases/classes.tsv");
+        FileHandle file = Gdx.files.internal("databases/Database - Class.tsv");
         String[] massiveString = file.readString().split("(\r\n|\r|\n)");
 
         ArrayList<String> relevantData = new ArrayList<>();

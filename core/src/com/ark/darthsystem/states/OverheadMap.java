@@ -822,7 +822,7 @@ public class OverheadMap implements State {
                 new Pickup(dropped.isEmpty()
                         ? "items/money/icon" : dropped.get(0).getIcon(),
                         actor.getX(), actor.getY(),
-                        1 / 12, dropped.toArray(new Item[dropped.size()]), money).setMap(OverheadMap.this);
+                        1 / 12, dropped.toArray(new Item[dropped.size()]), money).setTemporaryMap(OverheadMap.this);
             }
         }
 

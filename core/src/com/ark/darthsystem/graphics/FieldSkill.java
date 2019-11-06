@@ -18,6 +18,9 @@ import com.badlogic.gdx.physics.box2d.joints.WeldJoint;
 import com.badlogic.gdx.physics.box2d.joints.WeldJointDef;
 import com.badlogic.gdx.utils.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -412,7 +415,9 @@ public class FieldSkill extends ActorCollision implements Nameable {
     }
 
     public void setAnimationFacing() {
-        getCurrentImage().setRotation(this.getFacing().getRotate());
+        getCurrentImage().
+                setRotation(this.getFacing()
+                        .getRotate());
     }
 
     public void stopFieldSound() {
@@ -442,48 +447,23 @@ public class FieldSkill extends ActorCollision implements Nameable {
     }
 
     public FieldSkill placeOnMap() {
-        if (getSkill() != null) {
-            return new FieldSkill(getName(),
-                    castImageName,
-                    originalFieldImageName,
-                    castSoundName,
-                    fieldSoundName,
-                    tags,
-                    relX,
-                    relY,
-                    speed,
-                    range,
-                    getDelay(),
-                    chargeTime,
-                    aftercastDelay,
-                    skill,
-                    area,
-                    getShape()
+        return new FieldSkill(name, //Name
+                    castImageName, //castimage
+                    originalFieldImageName, //final image
+                    castSoundName, //cast sound
+                    fieldSoundName, //sound
+                    tags, //tag
+                    relX, //startx
+                    relY, //starty
+                    speed, //speed
+                    range, //range
+                    getDelay(), //fps
+                    chargeTime, //cast time
+                    aftercastDelay, //aftercast delay
+                    skill, //skill
+                    area, //area
+                    getShape() //shape
             );
-        }
-        FieldSkill a = new FieldSkill(originalFieldImageName,
-                originalFieldImageName,
-                relX,
-                relY,
-                speed,
-                range,
-                getDelay(),
-                chargeTime,
-                skill,
-                area);
-        a.setShape(getShape());
-//        ActorSkill a = new ActorSkill(originalFieldImageName,
-//                relX,
-//                relY,
-//                translateX,
-//                translateY,
-//                getDelay(),
-//                chargeTime,
-//                aftercastDelay,
-//                skill,
-//                area, 
-//                getShape());
-        return a;
     }
 
     public void activateRush(Player player) {

@@ -79,6 +79,7 @@ public class FieldBattler implements Serializable {
                     skillList.add(Database2.SkillToActor(skills.getName()));
                 }
             } catch (Exception e) {
+                System.out.println(battler.getName() + " : " + skills);
                 e.printStackTrace();
             }
         }

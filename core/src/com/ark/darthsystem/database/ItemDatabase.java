@@ -17,7 +17,7 @@ public class ItemDatabase {
     public static final HashMap<String, Item> ITEM_LIST = new HashMap<>();
 
     public ItemDatabase() {
-        FileHandle file = Gdx.files.internal("databases/equipment.tsv");
+        FileHandle file = Gdx.files.internal("databases/Database - Equipment.tsv");
         String[] massiveString = file.readString().split("(\r\n|\r|\n)");
         for (String token : massiveString) {
             String[] data = token.split("\t");
@@ -28,9 +28,11 @@ public class ItemDatabase {
 
             EQUIPMENT_LIST.put(data[i].toUpperCase(), new Equipment(data[i], //Name
                     data[++i], //Description
-                    data[++i], //imageName
+                    data[++i], //iconName
+                    data[++i], //field animation
+                    data[++i], //battlerAnimation
                     Integer.parseInt(data[++i]), //Market Price
-                    data[++i].split(", "), //Equipment Types
+                    data[++i].toUpperCase().split(", "), //Equipment Types
                     Equipment.Slot.valueOf(data[++i]), //Slot
                     SkillDatabase.SKILL_LIST.get(data[++i].toUpperCase()), //Skill Effect
                     Battle.Element.valueOf(data[++i]), //Element
@@ -41,7 +43,7 @@ public class ItemDatabase {
                     Integer.parseInt(data[++i]) //Magic Multiplier
             )); //Divider
         }
-        file = Gdx.files.internal("databases/items.tsv");
+        file = Gdx.files.internal("databases/Database - Items.tsv");
         massiveString = file.readString().split("(\r\n|\r|\n)");
         for (String token : massiveString) {
             String[] data = token.split("\t");
@@ -61,7 +63,7 @@ public class ItemDatabase {
             ));
 
         }
-        file = Gdx.files.internal("databases/special_items.tsv");
+        file = Gdx.files.internal("databases/Database - Special Items.tsv");
         massiveString = file.readString().split("(\r\n|\r|\n)");
         for (String token : massiveString) {
             String[] data = token.split("\t");

@@ -14,7 +14,7 @@ public class CharacterDatabase {
     public static HashMap<String, FieldBattler> CHARACTER_LIST = new HashMap<>();
 
     public CharacterDatabase() {
-        FileHandle file = Gdx.files.internal("databases/fieldbattlers.tsv");
+        FileHandle file = Gdx.files.internal("databases/Database - FieldBattler.tsv");
         String[] massiveString = file.readString().split("(\r\n|\r|\n)");
         for (String token : massiveString) {
             String[] data = token.split("\t");
@@ -27,7 +27,8 @@ public class CharacterDatabase {
                     "characters/" + data[++i], //Sprite Name
                     (float) (1f / Double.parseDouble(data[++i])), //fps
                     data[++i], //ShapeName
-                    (float) Double.parseDouble(data[++i]) //Speed
+                    (float) Double.parseDouble(data[++i]
+                            ) //Speed
             ));
         }
     }

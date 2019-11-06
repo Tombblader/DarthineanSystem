@@ -62,10 +62,10 @@ public class Database2 {
         new CharacterDatabase();
         FieldBattler[] battlers;
         battlers = new FieldBattler[]{
-            CHARACTER_LIST.get("GLADIA")
+            CHARACTER_LIST.get("BLUE LADY")
         };
-        CHARACTER_LIST.get("GLADIA").getBattler().equip(ItemDatabase.EQUIPMENT_LIST.get("BRONZE SWORD"));
-        CHARACTER_LIST.get("GLADIA").getBattler().equip(ItemDatabase.EQUIPMENT_LIST.get("BLACK DAGGER"));
+        CHARACTER_LIST.get("BLUE LADY").getBattler().equip(ItemDatabase.EQUIPMENT_LIST.get("BRONZE SWORD"));
+//zz        CHARACTER_LIST.get("GLADIA").getBattler().equip(ItemDatabase.EQUIPMENT_LIST.get("BLACK DAGGER"));
         mapStates = new HashMap<>();
         player = new Player(new ArrayList<>(Arrays.asList(battlers)), 0, 0);
 

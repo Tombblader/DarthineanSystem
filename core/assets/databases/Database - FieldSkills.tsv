@@ -1,0 +1,13 @@
+Name	Cast Image	Field Image	Cast Sound	Field Sound	Tag	StartX	StartY	Speed	Range	FPS	Cast Time (seconds)	Aftercast Delay (seconds)	Skill	Area	Shape
+Sword	attack	crosscall	attack	slash	SLASH	1	1	0	0	12	0	0.1		front	widesword
+Spear	attack	crosscall	attack	slash	SLASH	1	1	0	0	12	0	0.1		front	basiccircle
+Boomerang	attack	crosscall	attack	slash	SLASH	1	1	0	0	12	0	0.1		boomerang	basiccircle
+CrossCall	attack	crosscall	attack	slash	SLASH, SHINE, PURIFY	1	1	0	0	24	0	2	CrossCall	front	basiccircle
+Witches' Cross	attack	wiccan_cross	attack	slash	SLASH	1	1	0	0	24	0	6.66	Witches' Cross	front	basiccircle
+Heal	skill	wiccan_cross	cast	buff	HEAL	0	0	0	0	12	0.6	1	Heal	self_benefit	basiccircle
+Red Spin	skill	red_spin	fire_charge	slash	SLASH	0	0	0	0	12	0.3	4	Red Spin	self	widespin
+Poison Edge	attack	wiccan_cross	attack	slash	SLASH, CORRUPT	0	0	0	0	12	0.1	3	Poison Edge	self	basiccircle
+Sap Shot	skill	wiccan_cross	cast	slash	WATER	1	1	2	0	12	0.5	1	Sap Shot	front	basiccircle
+Fireball	skill	wiccan_cross	cast	slash	FIRE	1	1	2	0	12	0.5	1	Fireball	front	basiccircle
+Barrier	skill	wiccan_cross	cast	buff	BUFF	0	0	0	0	12	0.5	1	Barrier	self_benefit	basiccircle
+Attack Boost	skill	wiccan_cross	cast	buff	BUFF	0	0	0	0	12	0.5	1	Attack Boost	self_benefit	basiccircle

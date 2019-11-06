@@ -7,6 +7,7 @@ import com.ark.darthsystem.graphics.FieldSkill;
 import com.ark.darthsystem.states.Battle;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.Arrays;
 
 /**
  *
@@ -20,6 +21,7 @@ public class Equipment extends Item implements Cloneable, Serializable {
     private int attack, defense, speed, magic;
     private Battle.Element equipElement;
     private String animationName;
+    private String battlerAnimationName;
     private transient FieldSkill animation;
     private transient Actor battlerAnimation;
     private FieldSkill.Area areaName;
@@ -87,7 +89,7 @@ public class Equipment extends Item implements Cloneable, Serializable {
 
     public Equipment(String getName,
             String getDescription,
-            String imageName,
+            String icon,
             String animationName,
             int getMarketPrice,
             String[] type,
@@ -99,7 +101,7 @@ public class Equipment extends Item implements Cloneable, Serializable {
             int initializeDefense,
             int initializeSpeed,
             int initializeMagic) {
-        super(getName, getDescription, imageName, getMarketPrice, -1, invoke, useMP);
+        super(getName, getDescription, icon, getMarketPrice, -1, invoke, useMP);
         this.type = new Type[type.length];
         for (int i = 0; i < this.type.length; i++) {
             this.type[i] = Type.valueOf(type[i].toUpperCase());
@@ -166,9 +168,9 @@ public class Equipment extends Item implements Cloneable, Serializable {
 
     public Equipment(String getName,
             String getDescription,
-            String getAnimation,
-            FieldSkill.Area getArea,
-            String getShape,
+            String icon,
+            String fieldAnimation,
+            String battlerAnimation,
             int getMarketPrice,
             Type[] type,
             Slot slot,
@@ -181,7 +183,7 @@ public class Equipment extends Item implements Cloneable, Serializable {
             int initializeMagic) {
         this(getName,
                 getDescription,
-                getAnimation,
+                fieldAnimation,
                 getMarketPrice,
                 type,
                 slot,
@@ -192,22 +194,57 @@ public class Equipment extends Item implements Cloneable, Serializable {
                 initializeDefense,
                 initializeSpeed,
                 initializeMagic);
-        animationName = getAnimation;
-        areaName = getArea;
-        shapeName = getShape;
-        battlerAnimation = new Actor("items/equipment/" + getAnimation + "/battler/battler", 0, 0, 1 / 12f, true);
-        animation = new FieldSkill("items/equipment/" + getAnimation + "/field/field",
-                //                    "items/equipment/" + getAnimation + "/battler/" + getAnimation, 
-                1, 1, 1 / 12f, null, getArea, getShape);
-        fps = 1 / 12f;
+        animationName = fieldAnimation;
+        battlerAnimationName = battlerAnimation;
+        if (animationName == null || animationName.isEmpty()) {
+            animationName = "sword";
+        }
+        if (battlerAnimationName == null || battlerAnimationName.isEmpty()) {
+            battlerAnimationName = "sword";
+        }
+        this.battlerAnimation = new Actor("items/equipment/" + battlerAnimation + "/battler/battler", 0, 0, 1 / 12f, true);
+        animation = SkillDatabase.FIELD_SKILL_LIST.get(animationName.toUpperCase());
+        shapeName = animation.getShape();
+        areaName = animation.getArea();
+        fps = animation.getDelay();
     }
+    public Equipment(String getName,
+            String getDescription,
+            String icon,
+            String fieldAnimation,
+            String battlerAnimation,
+            int getMarketPrice,
+            String[] type,
+            Slot slot,
+            Skill invoke,
+            Battle.Element initializeElement,
+            boolean useMP,
+            int initializeAttack,
+            int initializeDefense,
+            int initializeSpeed,
+            int initializeMagic) {
+        this(getName,
+            getDescription,
+            icon,
+            fieldAnimation,
+            battlerAnimation,
+            getMarketPrice,
+            Arrays.stream(type).map(Type::valueOf).toArray(Type[]::new),
+            slot,
+            invoke,
+            initializeElement,
+            useMP,
+            initializeAttack,
+            initializeDefense,
+            initializeSpeed,
+            initializeMagic);
+    }    
 
     private void readObject(java.io.ObjectInputStream stream)
             throws IOException, ClassNotFoundException {
         stream.defaultReadObject();
-        battlerAnimation = new Actor("items/equipment/" + animationName + "/battler/battler", 0, 0, 1 / 12f, true);
-        animation = new FieldSkill("items/equipment/" + animationName + "/field/field",
-                1, 1, fps, null, areaName, shapeName);
+        this.battlerAnimation = new Actor("items/equipment/" + battlerAnimation + "/battler/battler", 0, 0, 1 / 12f, true);
+        animation = SkillDatabase.FIELD_SKILL_LIST.get(animationName.toUpperCase());
     }
 
     public Type[] getType() {
@@ -303,7 +340,7 @@ public class Equipment extends Item implements Cloneable, Serializable {
     }
 
     public Equipment clone() {
-        Equipment temp = new Equipment(getName(), getDescription(), animationName, areaName, shapeName, getPrice(), type, equipmentSlot, getInvoke(), getElement(), useMP(), attack, defense, speed, magic);
+        Equipment temp = new Equipment(getName(), getDescription(), super.getIcon(), animationName, battlerAnimationName, getPrice(), type, equipmentSlot, getInvoke(), getElement(), useMP(), attack, defense, speed, magic);
         temp.animation = animation.placeOnMap();
         return temp;
     }

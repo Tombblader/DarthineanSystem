@@ -6,21 +6,21 @@ filter: Nearest,Nearest
 repeat: none
 characters/darcy_alma/face/angry
   rotate: false
-  xy: 2, 2
+  xy: 1166, 894
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
   index: 1
 monsters/eyesore/face/angry
   rotate: false
-  xy: 2, 2
+  xy: 1166, 894
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
   index: 1
 monsters/mouthsore/face/angry
   rotate: false
-  xy: 2, 2
+  xy: 1166, 894
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
@@ -48,82 +48,250 @@ monsters/mouthsore/face/angry
   index: 2
 characters/darcy_alma/face/normal
   rotate: false
-  xy: 1430, 824
+  xy: 1430, 770
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
   index: 1
 monsters/eyesore/face/normal
   rotate: false
-  xy: 1430, 824
+  xy: 1430, 770
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
   index: 1
 monsters/mouthsore/face/normal
   rotate: false
-  xy: 1430, 824
+  xy: 1430, 770
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
   index: 1
 characters/darcy_alma/face/ouch
   rotate: false
-  xy: 1484, 770
+  xy: 269, 448
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
   index: 1
 monsters/eyesore/face/ouch
   rotate: false
-  xy: 1484, 770
+  xy: 269, 448
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
   index: 1
 monsters/mouthsore/face/ouch
   rotate: false
-  xy: 1484, 770
+  xy: 269, 448
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
   index: 1
-characters/erik_the_red/battler/battler
+characters/erik_teh_red/battler/battler
   rotate: false
   xy: 356, 763
   size: 188, 183
   orig: 188, 183
   offset: 0, 0
   index: 1
-characters/erik_the_red/face/happy
+characters/erik_teh_red/face/happy
   rotate: false
-  xy: 1099, 728
+  xy: 1426, 878
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
   index: 1
-characters/erik_the_red/face/normal
+characters/erik_teh_red/face/normal
+  rotate: false
+  xy: 1430, 824
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 1
+characters/erik_teh_red/face/ouch
+  rotate: false
+  xy: 1484, 716
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 1
+characters/erik_teh_red/face/sad
+  rotate: false
+  xy: 1618, 1310
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 1
+characters/fire_spirit/face/normal
+  rotate: false
+  xy: 192, 306
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/fire_spirit/field/attack/left
+  rotate: false
+  xy: 152, 200
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/fire_spirit/field/attack/left
+  rotate: false
+  xy: 836, 788
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+characters/fire_spirit/field/attack/left
+  rotate: false
+  xy: 968, 788
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
+characters/fire_spirit/field/attack/left
+  rotate: false
+  xy: 1100, 816
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+characters/fire_spirit/field/attack/right
+  rotate: false
+  xy: 578, 724
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/fire_spirit/field/attack/right
+  rotate: false
+  xy: 1232, 766
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+characters/fire_spirit/field/attack/right
+  rotate: false
+  xy: 1298, 744
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
+characters/fire_spirit/field/attack/right
+  rotate: false
+  xy: 1788, 1444
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+characters/fire_spirit/field/walk/down
+  rotate: false
+  xy: 1760, 1534
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/fire_spirit/field/stand/down
+  rotate: false
+  xy: 1760, 1534
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/fire_spirit/field/walk/down
+  rotate: false
+  xy: 1760, 1534
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
+characters/fire_spirit/field/walk/down
+  rotate: false
+  xy: 1892, 1576
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+characters/fire_spirit/field/walk/down
+  rotate: false
+  xy: 902, 854
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+characters/fire_spirit/field/walk/up
+  rotate: false
+  xy: 1920, 1442
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/fire_spirit/field/stand/up
+  rotate: false
+  xy: 1920, 1442
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/fire_spirit/field/walk/up
+  rotate: false
+  xy: 1920, 1442
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
+characters/fire_spirit/field/walk/up
+  rotate: false
+  xy: 478, 489
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+characters/fire_spirit/field/walk/up
+  rotate: false
+  xy: 644, 604
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+characters/karin_edikt/battler/battler
+  rotate: false
+  xy: 2, 672
+  size: 142, 274
+  orig: 142, 274
+  offset: 0, 0
+  index: 1
+characters/karin_edikt/face/angry
+  rotate: false
+  xy: 56, 2
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 1
+characters/karin_edikt/face/normal
   rotate: false
   xy: 1480, 878
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
   index: 1
-characters/erik_the_red/face/ouch
+characters/karin_edikt/face/ouch
   rotate: false
-  xy: 1484, 824
+  xy: 1484, 770
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
   index: 1
-characters/erik_the_red/face/sad
+characters/karin_edikt/face/sad
   rotate: false
   xy: 1986, 1346
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
   index: 1
-characters/fire_spirit/battler/battler
+characters/lavender_katz/battler/battler
   rotate: false
   xy: 2, 186
   size: 82, 237
@@ -137,7 +305,35 @@ characters/darcy_alma/battler/battler
   orig: 82, 237
   offset: 0, 0
   index: 1
+characters/earth_spirit/battler/battler
+  rotate: false
+  xy: 2, 186
+  size: 82, 237
+  orig: 82, 237
+  offset: 0, 0
+  index: 1
+characters/fire_spirit/battler/battler
+  rotate: false
+  xy: 2, 186
+  size: 82, 237
+  orig: 82, 237
+  offset: 0, 0
+  index: 1
+characters/naira_arum/battler/battler
+  rotate: false
+  xy: 2, 186
+  size: 82, 237
+  orig: 82, 237
+  offset: 0, 0
+  index: 1
 characters/water_spirit/battler/battler
+  rotate: false
+  xy: 2, 186
+  size: 82, 237
+  orig: 82, 237
+  offset: 0, 0
+  index: 1
+characters/wind_spirit/battler/battler
   rotate: false
   xy: 2, 186
   size: 82, 237
@@ -158,7 +354,28 @@ monsters/mouthsore/battler/battler
   orig: 82, 237
   offset: 0, 0
   index: 1
+characters/lavender_katz/face/angry
+  rotate: false
+  xy: 1960, 1772
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/earth_spirit/face/angry
+  rotate: false
+  xy: 1960, 1772
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
 characters/fire_spirit/face/angry
+  rotate: false
+  xy: 1960, 1772
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/naira_arum/face/angry
   rotate: false
   xy: 1960, 1772
   size: 64, 64
@@ -172,7 +389,35 @@ characters/water_spirit/face/angry
   orig: 64, 64
   offset: 0, 0
   index: 1
+characters/wind_spirit/face/angry
+  rotate: false
+  xy: 1960, 1772
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/lavender_katz/face/angry
+  rotate: false
+  xy: 86, 200
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+characters/earth_spirit/face/angry
+  rotate: false
+  xy: 86, 200
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
 characters/fire_spirit/face/angry
+  rotate: false
+  xy: 86, 200
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+characters/naira_arum/face/angry
   rotate: false
   xy: 86, 200
   size: 64, 64
@@ -186,7 +431,35 @@ characters/water_spirit/face/angry
   orig: 64, 64
   offset: 0, 0
   index: 2
+characters/wind_spirit/face/angry
+  rotate: false
+  xy: 86, 200
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+characters/lavender_katz/face/happy
+  rotate: false
+  xy: 1826, 1510
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/earth_spirit/face/happy
+  rotate: false
+  xy: 1826, 1510
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
 characters/fire_spirit/face/happy
+  rotate: false
+  xy: 1826, 1510
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/naira_arum/face/happy
   rotate: false
   xy: 1826, 1510
   size: 64, 64
@@ -200,14 +473,70 @@ characters/water_spirit/face/happy
   orig: 64, 64
   offset: 0, 0
   index: 1
-characters/fire_spirit/face/normal
+characters/wind_spirit/face/happy
   rotate: false
-  xy: 1722, 1456
+  xy: 1826, 1510
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/lavender_katz/face/normal
+  rotate: false
+  xy: 1722, 1390
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/earth_spirit/face/normal
+  rotate: false
+  xy: 1722, 1390
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/naira_arum/face/normal
+  rotate: false
+  xy: 1722, 1390
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/water_spirit/face/normal
+  rotate: false
+  xy: 1722, 1390
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/wind_spirit/face/normal
+  rotate: false
+  xy: 1722, 1390
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/lavender_katz/face/ouch
+  rotate: false
+  xy: 512, 697
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/earth_spirit/face/ouch
+  rotate: false
+  xy: 512, 697
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 1
 characters/fire_spirit/face/ouch
+  rotate: false
+  xy: 512, 697
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/naira_arum/face/ouch
   rotate: false
   xy: 512, 697
   size: 64, 64
@@ -221,63 +550,1232 @@ characters/water_spirit/face/ouch
   orig: 64, 64
   offset: 0, 0
   index: 1
-characters/fire_spirit/field/attack/left
+characters/wind_spirit/face/ouch
+  rotate: false
+  xy: 512, 697
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/lavender_katz/field/attack/down
+  rotate: false
+  xy: 704, 816
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/earth_spirit/field/attack/down
+  rotate: false
+  xy: 704, 816
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/naira_arum/field/attack/down
+  rotate: false
+  xy: 704, 816
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/water_spirit/field/attack/down
+  rotate: false
+  xy: 704, 816
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/wind_spirit/field/attack/down
+  rotate: false
+  xy: 704, 816
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/lavender_katz/field/attack/down
+  rotate: false
+  xy: 1826, 1576
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+characters/earth_spirit/field/attack/down
+  rotate: false
+  xy: 1826, 1576
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+characters/naira_arum/field/attack/down
+  rotate: false
+  xy: 1826, 1576
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+characters/water_spirit/field/attack/down
+  rotate: false
+  xy: 1826, 1576
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+characters/wind_spirit/field/attack/down
+  rotate: false
+  xy: 1826, 1576
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+characters/lavender_katz/field/attack/down
+  rotate: false
+  xy: 1958, 1574
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
+characters/earth_spirit/field/attack/down
+  rotate: false
+  xy: 1958, 1574
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
+characters/naira_arum/field/attack/down
+  rotate: false
+  xy: 1958, 1574
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
+characters/water_spirit/field/attack/down
+  rotate: false
+  xy: 1958, 1574
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
+characters/wind_spirit/field/attack/down
+  rotate: false
+  xy: 1958, 1574
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
+characters/lavender_katz/field/attack/down
+  rotate: false
+  xy: 770, 854
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+characters/earth_spirit/field/attack/down
+  rotate: false
+  xy: 770, 854
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+characters/naira_arum/field/attack/down
+  rotate: false
+  xy: 770, 854
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+characters/water_spirit/field/attack/down
+  rotate: false
+  xy: 770, 854
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+characters/wind_spirit/field/attack/down
+  rotate: false
+  xy: 770, 854
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+characters/lavender_katz/field/attack/left
   rotate: false
   xy: 1892, 1510
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 1
-characters/fire_spirit/field/attack/left
+characters/earth_spirit/field/attack/left
+  rotate: false
+  xy: 1892, 1510
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/naira_arum/field/attack/left
+  rotate: false
+  xy: 1892, 1510
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/water_spirit/field/attack/left
+  rotate: false
+  xy: 1892, 1510
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/wind_spirit/field/attack/left
+  rotate: false
+  xy: 1892, 1510
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/lavender_katz/field/attack/left
   rotate: false
   xy: 164, 2
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 2
-characters/fire_spirit/field/attack/left
+characters/earth_spirit/field/attack/left
+  rotate: false
+  xy: 164, 2
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+characters/naira_arum/field/attack/left
+  rotate: false
+  xy: 164, 2
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+characters/water_spirit/field/attack/left
+  rotate: false
+  xy: 164, 2
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+characters/wind_spirit/field/attack/left
+  rotate: false
+  xy: 164, 2
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+characters/lavender_katz/field/attack/left
   rotate: false
   xy: 902, 788
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 3
-characters/fire_spirit/field/attack/left
+characters/earth_spirit/field/attack/left
+  rotate: false
+  xy: 902, 788
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
+characters/naira_arum/field/attack/left
+  rotate: false
+  xy: 902, 788
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
+characters/water_spirit/field/attack/left
+  rotate: false
+  xy: 902, 788
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
+characters/wind_spirit/field/attack/left
+  rotate: false
+  xy: 902, 788
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
+characters/lavender_katz/field/attack/left
   rotate: false
   xy: 1034, 788
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 4
-characters/fire_spirit/field/attack/right
+characters/earth_spirit/field/attack/left
+  rotate: false
+  xy: 1034, 788
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+characters/naira_arum/field/attack/left
+  rotate: false
+  xy: 1034, 788
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+characters/water_spirit/field/attack/left
+  rotate: false
+  xy: 1034, 788
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+characters/wind_spirit/field/attack/left
+  rotate: false
+  xy: 1034, 788
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+characters/lavender_katz/field/attack/right
   rotate: false
   xy: 512, 631
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 1
-characters/fire_spirit/field/attack/right
+characters/earth_spirit/field/attack/right
+  rotate: false
+  xy: 512, 631
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/naira_arum/field/attack/right
+  rotate: false
+  xy: 512, 631
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/water_spirit/field/attack/right
+  rotate: false
+  xy: 512, 631
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/wind_spirit/field/attack/right
+  rotate: false
+  xy: 512, 631
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/lavender_katz/field/attack/right
   rotate: false
   xy: 218, 206
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 2
-characters/fire_spirit/field/attack/right
+characters/earth_spirit/field/attack/right
+  rotate: false
+  xy: 218, 206
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+characters/naira_arum/field/attack/right
+  rotate: false
+  xy: 218, 206
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+characters/water_spirit/field/attack/right
+  rotate: false
+  xy: 218, 206
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+characters/wind_spirit/field/attack/right
+  rotate: false
+  xy: 218, 206
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+characters/lavender_katz/field/attack/right
   rotate: false
   xy: 1364, 810
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 3
-characters/fire_spirit/field/attack/right
+characters/earth_spirit/field/attack/right
+  rotate: false
+  xy: 1364, 810
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
+characters/naira_arum/field/attack/right
+  rotate: false
+  xy: 1364, 810
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
+characters/water_spirit/field/attack/right
+  rotate: false
+  xy: 1364, 810
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
+characters/wind_spirit/field/attack/right
+  rotate: false
+  xy: 1364, 810
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
+characters/lavender_katz/field/attack/right
   rotate: false
   xy: 1364, 744
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 4
-characters/fire_spirit/field/dead/down
+characters/earth_spirit/field/attack/right
+  rotate: false
+  xy: 1364, 744
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+characters/naira_arum/field/attack/right
+  rotate: false
+  xy: 1364, 744
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+characters/water_spirit/field/attack/right
+  rotate: false
+  xy: 1364, 744
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+characters/wind_spirit/field/attack/right
+  rotate: false
+  xy: 1364, 744
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+characters/lavender_katz/field/walk/down
+  rotate: false
+  xy: 1760, 1600
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/earth_spirit/field/stand/down
+  rotate: false
+  xy: 1760, 1600
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/earth_spirit/field/walk/down
+  rotate: false
+  xy: 1760, 1600
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/earth_spirit/field/walk/down
+  rotate: false
+  xy: 1760, 1600
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
+characters/lavender_katz/field/stand/down
+  rotate: false
+  xy: 1760, 1600
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/lavender_katz/field/walk/down
+  rotate: false
+  xy: 1760, 1600
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
+characters/naira_arum/field/stand/down
+  rotate: false
+  xy: 1760, 1600
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/naira_arum/field/walk/down
+  rotate: false
+  xy: 1760, 1600
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/naira_arum/field/walk/down
+  rotate: false
+  xy: 1760, 1600
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
+characters/water_spirit/field/stand/down
+  rotate: false
+  xy: 1760, 1600
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/water_spirit/field/walk/down
+  rotate: false
+  xy: 1760, 1600
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
+characters/water_spirit/field/walk/down
+  rotate: false
+  xy: 1760, 1600
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/wind_spirit/field/stand/down
+  rotate: false
+  xy: 1760, 1600
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/wind_spirit/field/walk/down
+  rotate: false
+  xy: 1760, 1600
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
+characters/wind_spirit/field/walk/down
+  rotate: false
+  xy: 1760, 1600
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/lavender_katz/field/walk/down
+  rotate: false
+  xy: 1892, 1642
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+characters/earth_spirit/field/walk/down
+  rotate: false
+  xy: 1892, 1642
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+characters/naira_arum/field/walk/down
+  rotate: false
+  xy: 1892, 1642
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+characters/water_spirit/field/walk/down
+  rotate: false
+  xy: 1892, 1642
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+characters/wind_spirit/field/walk/down
+  rotate: false
+  xy: 1892, 1642
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+characters/lavender_katz/field/walk/down
+  rotate: false
+  xy: 836, 854
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+characters/earth_spirit/field/walk/down
+  rotate: false
+  xy: 836, 854
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+characters/naira_arum/field/walk/down
+  rotate: false
+  xy: 836, 854
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+characters/water_spirit/field/walk/down
+  rotate: false
+  xy: 836, 854
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+characters/wind_spirit/field/walk/down
+  rotate: false
+  xy: 836, 854
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+characters/lavender_katz/field/walk/left
+  rotate: false
+  xy: 1958, 1508
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/earth_spirit/field/stand/left
+  rotate: false
+  xy: 1958, 1508
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/earth_spirit/field/walk/left
+  rotate: false
+  xy: 1958, 1508
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/earth_spirit/field/walk/left
+  rotate: false
+  xy: 1958, 1508
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
+characters/fire_spirit/field/stand/left
+  rotate: false
+  xy: 1958, 1508
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/fire_spirit/field/walk/left
+  rotate: false
+  xy: 1958, 1508
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/fire_spirit/field/walk/left
+  rotate: false
+  xy: 1958, 1508
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
+characters/lavender_katz/field/stand/left
+  rotate: false
+  xy: 1958, 1508
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/lavender_katz/field/walk/left
+  rotate: false
+  xy: 1958, 1508
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
+characters/naira_arum/field/stand/left
+  rotate: false
+  xy: 1958, 1508
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/naira_arum/field/walk/left
+  rotate: false
+  xy: 1958, 1508
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/naira_arum/field/walk/left
+  rotate: false
+  xy: 1958, 1508
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
+characters/water_spirit/field/stand/left
+  rotate: false
+  xy: 1958, 1508
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/water_spirit/field/walk/left
+  rotate: false
+  xy: 1958, 1508
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/water_spirit/field/walk/left
+  rotate: false
+  xy: 1958, 1508
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
+characters/wind_spirit/field/stand/left
+  rotate: false
+  xy: 1958, 1508
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/wind_spirit/field/walk/left
+  rotate: false
+  xy: 1958, 1508
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
+characters/wind_spirit/field/walk/left
+  rotate: false
+  xy: 1958, 1508
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/lavender_katz/field/walk/left
+  rotate: false
+  xy: 770, 788
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+characters/earth_spirit/field/walk/left
+  rotate: false
+  xy: 770, 788
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+characters/fire_spirit/field/walk/left
+  rotate: false
+  xy: 770, 788
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+characters/naira_arum/field/walk/left
+  rotate: false
+  xy: 770, 788
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+characters/water_spirit/field/walk/left
+  rotate: false
+  xy: 770, 788
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+characters/wind_spirit/field/walk/left
+  rotate: false
+  xy: 770, 788
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+characters/lavender_katz/field/walk/left
+  rotate: false
+  xy: 1100, 882
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+characters/earth_spirit/field/walk/left
+  rotate: false
+  xy: 1100, 882
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+characters/fire_spirit/field/walk/left
+  rotate: false
+  xy: 1100, 882
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+characters/naira_arum/field/walk/left
+  rotate: false
+  xy: 1100, 882
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+characters/water_spirit/field/walk/left
+  rotate: false
+  xy: 1100, 882
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+characters/wind_spirit/field/walk/left
+  rotate: false
+  xy: 1100, 882
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+characters/lavender_katz/field/walk/right
+  rotate: false
+  xy: 508, 565
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/earth_spirit/field/stand/right
+  rotate: false
+  xy: 508, 565
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/earth_spirit/field/walk/right
+  rotate: false
+  xy: 508, 565
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/earth_spirit/field/walk/right
+  rotate: false
+  xy: 508, 565
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
+characters/fire_spirit/field/stand/right
+  rotate: false
+  xy: 508, 565
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/fire_spirit/field/walk/right
+  rotate: false
+  xy: 508, 565
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/fire_spirit/field/walk/right
+  rotate: false
+  xy: 508, 565
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
+characters/lavender_katz/field/stand/right
+  rotate: false
+  xy: 508, 565
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/lavender_katz/field/walk/right
+  rotate: false
+  xy: 508, 565
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
+characters/naira_arum/field/stand/right
+  rotate: false
+  xy: 508, 565
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/naira_arum/field/walk/right
+  rotate: false
+  xy: 508, 565
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
+characters/naira_arum/field/walk/right
+  rotate: false
+  xy: 508, 565
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/water_spirit/field/stand/right
+  rotate: false
+  xy: 508, 565
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/water_spirit/field/walk/right
+  rotate: false
+  xy: 508, 565
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
+characters/water_spirit/field/walk/right
+  rotate: false
+  xy: 508, 565
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/wind_spirit/field/stand/right
+  rotate: false
+  xy: 508, 565
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/wind_spirit/field/walk/right
+  rotate: false
+  xy: 508, 565
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
+characters/wind_spirit/field/walk/right
+  rotate: false
+  xy: 508, 565
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/lavender_katz/field/walk/right
+  rotate: false
+  xy: 1166, 762
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+characters/earth_spirit/field/walk/right
+  rotate: false
+  xy: 1166, 762
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+characters/fire_spirit/field/walk/right
+  rotate: false
+  xy: 1166, 762
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+characters/naira_arum/field/walk/right
+  rotate: false
+  xy: 1166, 762
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+characters/water_spirit/field/walk/right
+  rotate: false
+  xy: 1166, 762
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+characters/wind_spirit/field/walk/right
+  rotate: false
+  xy: 1166, 762
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+characters/lavender_katz/field/walk/right
+  rotate: false
+  xy: 710, 682
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+characters/earth_spirit/field/walk/right
+  rotate: false
+  xy: 710, 682
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+characters/fire_spirit/field/walk/right
+  rotate: false
+  xy: 710, 682
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+characters/naira_arum/field/walk/right
+  rotate: false
+  xy: 710, 682
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+characters/water_spirit/field/walk/right
+  rotate: false
+  xy: 710, 682
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+characters/wind_spirit/field/walk/right
+  rotate: false
+  xy: 710, 682
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+characters/lavender_katz/field/walk/up
+  rotate: false
+  xy: 1854, 1378
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/earth_spirit/field/stand/up
+  rotate: false
+  xy: 1854, 1378
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/earth_spirit/field/walk/up
+  rotate: false
+  xy: 1854, 1378
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
+characters/earth_spirit/field/walk/up
+  rotate: false
+  xy: 1854, 1378
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/lavender_katz/field/stand/up
+  rotate: false
+  xy: 1854, 1378
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/lavender_katz/field/walk/up
+  rotate: false
+  xy: 1854, 1378
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
+characters/naira_arum/field/stand/up
+  rotate: false
+  xy: 1854, 1378
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/naira_arum/field/walk/up
+  rotate: false
+  xy: 1854, 1378
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
+characters/naira_arum/field/walk/up
+  rotate: false
+  xy: 1854, 1378
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/water_spirit/field/stand/up
+  rotate: false
+  xy: 1854, 1378
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/water_spirit/field/walk/up
+  rotate: false
+  xy: 1854, 1378
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
+characters/water_spirit/field/walk/up
+  rotate: false
+  xy: 1854, 1378
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/wind_spirit/field/stand/up
+  rotate: false
+  xy: 1854, 1378
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/wind_spirit/field/walk/up
+  rotate: false
+  xy: 1854, 1378
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
+characters/wind_spirit/field/walk/up
+  rotate: false
+  xy: 1854, 1378
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/lavender_katz/field/walk/up
+  rotate: false
+  xy: 412, 489
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+characters/earth_spirit/field/walk/up
+  rotate: false
+  xy: 412, 489
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+characters/naira_arum/field/walk/up
+  rotate: false
+  xy: 412, 489
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+characters/water_spirit/field/walk/up
+  rotate: false
+  xy: 412, 489
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+characters/wind_spirit/field/walk/up
+  rotate: false
+  xy: 412, 489
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+characters/lavender_katz/field/walk/up
+  rotate: false
+  xy: 574, 558
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+characters/earth_spirit/field/walk/up
+  rotate: false
+  xy: 574, 558
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+characters/naira_arum/field/walk/up
+  rotate: false
+  xy: 574, 558
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+characters/water_spirit/field/walk/up
+  rotate: false
+  xy: 574, 558
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+characters/wind_spirit/field/walk/up
+  rotate: false
+  xy: 574, 558
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+characters/orly_rylo/battler/battler
+  rotate: false
+  xy: 2, 425
+  size: 118, 245
+  orig: 118, 245
+  offset: 0, 0
+  index: 1
+characters/orly_rylo/face/angry
+  rotate: false
+  xy: 2, 2
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 1
+characters/orly_rylo/face/happy
+  rotate: false
+  xy: 1099, 728
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 1
+characters/orly_rylo/face/ouch
+  rotate: false
+  xy: 1484, 824
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 1
+characters/orly_rylo/field/dead/down
   rotate: false
   xy: 358, 554
   size: 39, 52
@@ -333,6 +1831,83 @@ characters/darcy_alma/field/walk/down
   orig: 39, 52
   offset: 0, 0
   index: 1
+characters/earth_spirit/field/cast/down
+  rotate: false
+  xy: 358, 554
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/earth_spirit/field/dead/down
+  rotate: false
+  xy: 358, 554
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/earth_spirit/field/jump/down
+  rotate: false
+  xy: 358, 554
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/earth_spirit/field/ouch/down
+  rotate: false
+  xy: 358, 554
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/erik_teh_red/field/attack/down
+  rotate: false
+  xy: 358, 554
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/erik_teh_red/field/cast/down
+  rotate: false
+  xy: 358, 554
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/erik_teh_red/field/dead/down
+  rotate: false
+  xy: 358, 554
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/erik_teh_red/field/jump/down
+  rotate: false
+  xy: 358, 554
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/erik_teh_red/field/ouch/down
+  rotate: false
+  xy: 358, 554
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/erik_teh_red/field/stand/down
+  rotate: false
+  xy: 358, 554
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/erik_teh_red/field/walk/down
+  rotate: false
+  xy: 358, 554
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
 characters/fire_spirit/field/attack/down
   rotate: false
   xy: 358, 554
@@ -347,6 +1922,13 @@ characters/fire_spirit/field/cast/down
   orig: 39, 52
   offset: 0, 0
   index: 1
+characters/fire_spirit/field/dead/down
+  rotate: false
+  xy: 358, 554
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
 characters/fire_spirit/field/jump/down
   rotate: false
   xy: 358, 554
@@ -355,6 +1937,251 @@ characters/fire_spirit/field/jump/down
   offset: 0, 0
   index: 1
 characters/fire_spirit/field/ouch/down
+  rotate: false
+  xy: 358, 554
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/gladia_macabre/field/attack/down
+  rotate: false
+  xy: 358, 554
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/gladia_macabre/field/cast/down
+  rotate: false
+  xy: 358, 554
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/gladia_macabre/field/dead/down
+  rotate: false
+  xy: 358, 554
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/gladia_macabre/field/jump/down
+  rotate: false
+  xy: 358, 554
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/gladia_macabre/field/ouch/down
+  rotate: false
+  xy: 358, 554
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/gladia_macabre/field/stand/down
+  rotate: false
+  xy: 358, 554
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/gladia_macabre/field/walk/down
+  rotate: false
+  xy: 358, 554
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/karin_edikt/field/attack/down
+  rotate: false
+  xy: 358, 554
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/karin_edikt/field/cast/down
+  rotate: false
+  xy: 358, 554
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/karin_edikt/field/dead/down
+  rotate: false
+  xy: 358, 554
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/karin_edikt/field/jump/down
+  rotate: false
+  xy: 358, 554
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/karin_edikt/field/ouch/down
+  rotate: false
+  xy: 358, 554
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/karin_edikt/field/stand/down
+  rotate: false
+  xy: 358, 554
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/karin_edikt/field/walk/down
+  rotate: false
+  xy: 358, 554
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/lavender_katz/field/cast/down
+  rotate: false
+  xy: 358, 554
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/lavender_katz/field/dead/down
+  rotate: false
+  xy: 358, 554
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/lavender_katz/field/jump/down
+  rotate: false
+  xy: 358, 554
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/lavender_katz/field/ouch/down
+  rotate: false
+  xy: 358, 554
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/naira_arum/field/cast/down
+  rotate: false
+  xy: 358, 554
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/naira_arum/field/dead/down
+  rotate: false
+  xy: 358, 554
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/naira_arum/field/jump/down
+  rotate: false
+  xy: 358, 554
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/naira_arum/field/ouch/down
+  rotate: false
+  xy: 358, 554
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/orly_rylo/field/attack/down
+  rotate: false
+  xy: 358, 554
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/orly_rylo/field/cast/down
+  rotate: false
+  xy: 358, 554
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/orly_rylo/field/jump/down
+  rotate: false
+  xy: 358, 554
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/orly_rylo/field/ouch/down
+  rotate: false
+  xy: 358, 554
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/orly_rylo/field/stand/down
+  rotate: false
+  xy: 358, 554
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/orly_rylo/field/walk/down
+  rotate: false
+  xy: 358, 554
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/veather_mann/field/attack/down
+  rotate: false
+  xy: 358, 554
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/veather_mann/field/cast/down
+  rotate: false
+  xy: 358, 554
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/veather_mann/field/dead/down
+  rotate: false
+  xy: 358, 554
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/veather_mann/field/jump/down
+  rotate: false
+  xy: 358, 554
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/veather_mann/field/ouch/down
+  rotate: false
+  xy: 358, 554
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/veather_mann/field/stand/down
+  rotate: false
+  xy: 358, 554
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/veather_mann/field/walk/down
   rotate: false
   xy: 358, 554
   size: 39, 52
@@ -389,7 +2216,35 @@ characters/water_spirit/field/ouch/down
   orig: 39, 52
   offset: 0, 0
   index: 1
-characters/fire_spirit/field/dead/down
+characters/wind_spirit/field/cast/down
+  rotate: false
+  xy: 358, 554
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/wind_spirit/field/dead/down
+  rotate: false
+  xy: 358, 554
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/wind_spirit/field/jump/down
+  rotate: false
+  xy: 358, 554
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/wind_spirit/field/ouch/down
+  rotate: false
+  xy: 358, 554
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/orly_rylo/field/dead/down
   rotate: false
   xy: 1058, 734
   size: 39, 52
@@ -438,6 +2293,76 @@ characters/darcy_alma/field/walk/down
   orig: 39, 52
   offset: 0, 0
   index: 2
+characters/earth_spirit/field/cast/down
+  rotate: false
+  xy: 1058, 734
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/earth_spirit/field/dead/down
+  rotate: false
+  xy: 1058, 734
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/earth_spirit/field/jump/down
+  rotate: false
+  xy: 1058, 734
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/earth_spirit/field/ouch/down
+  rotate: false
+  xy: 1058, 734
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/erik_teh_red/field/attack/down
+  rotate: false
+  xy: 1058, 734
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/erik_teh_red/field/cast/down
+  rotate: false
+  xy: 1058, 734
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/erik_teh_red/field/dead/down
+  rotate: false
+  xy: 1058, 734
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/erik_teh_red/field/jump/down
+  rotate: false
+  xy: 1058, 734
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/erik_teh_red/field/ouch/down
+  rotate: false
+  xy: 1058, 734
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/erik_teh_red/field/walk/down
+  rotate: false
+  xy: 1058, 734
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
 characters/fire_spirit/field/attack/down
   rotate: false
   xy: 1058, 734
@@ -452,6 +2377,13 @@ characters/fire_spirit/field/cast/down
   orig: 39, 52
   offset: 0, 0
   index: 2
+characters/fire_spirit/field/dead/down
+  rotate: false
+  xy: 1058, 734
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
 characters/fire_spirit/field/jump/down
   rotate: false
   xy: 1058, 734
@@ -460,6 +2392,223 @@ characters/fire_spirit/field/jump/down
   offset: 0, 0
   index: 2
 characters/fire_spirit/field/ouch/down
+  rotate: false
+  xy: 1058, 734
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/gladia_macabre/field/attack/down
+  rotate: false
+  xy: 1058, 734
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/gladia_macabre/field/cast/down
+  rotate: false
+  xy: 1058, 734
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/gladia_macabre/field/dead/down
+  rotate: false
+  xy: 1058, 734
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/gladia_macabre/field/jump/down
+  rotate: false
+  xy: 1058, 734
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/gladia_macabre/field/ouch/down
+  rotate: false
+  xy: 1058, 734
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/gladia_macabre/field/walk/down
+  rotate: false
+  xy: 1058, 734
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/karin_edikt/field/attack/down
+  rotate: false
+  xy: 1058, 734
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/karin_edikt/field/cast/down
+  rotate: false
+  xy: 1058, 734
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/karin_edikt/field/dead/down
+  rotate: false
+  xy: 1058, 734
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/karin_edikt/field/jump/down
+  rotate: false
+  xy: 1058, 734
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/karin_edikt/field/ouch/down
+  rotate: false
+  xy: 1058, 734
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/karin_edikt/field/walk/down
+  rotate: false
+  xy: 1058, 734
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/lavender_katz/field/cast/down
+  rotate: false
+  xy: 1058, 734
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/lavender_katz/field/dead/down
+  rotate: false
+  xy: 1058, 734
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/lavender_katz/field/jump/down
+  rotate: false
+  xy: 1058, 734
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/lavender_katz/field/ouch/down
+  rotate: false
+  xy: 1058, 734
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/naira_arum/field/cast/down
+  rotate: false
+  xy: 1058, 734
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/naira_arum/field/dead/down
+  rotate: false
+  xy: 1058, 734
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/naira_arum/field/jump/down
+  rotate: false
+  xy: 1058, 734
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/naira_arum/field/ouch/down
+  rotate: false
+  xy: 1058, 734
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/orly_rylo/field/attack/down
+  rotate: false
+  xy: 1058, 734
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/orly_rylo/field/cast/down
+  rotate: false
+  xy: 1058, 734
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/orly_rylo/field/jump/down
+  rotate: false
+  xy: 1058, 734
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/orly_rylo/field/ouch/down
+  rotate: false
+  xy: 1058, 734
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/orly_rylo/field/walk/down
+  rotate: false
+  xy: 1058, 734
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/veather_mann/field/attack/down
+  rotate: false
+  xy: 1058, 734
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/veather_mann/field/cast/down
+  rotate: false
+  xy: 1058, 734
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/veather_mann/field/dead/down
+  rotate: false
+  xy: 1058, 734
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/veather_mann/field/jump/down
+  rotate: false
+  xy: 1058, 734
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/veather_mann/field/ouch/down
+  rotate: false
+  xy: 1058, 734
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/veather_mann/field/walk/down
   rotate: false
   xy: 1058, 734
   size: 39, 52
@@ -494,7 +2643,35 @@ characters/water_spirit/field/ouch/down
   orig: 39, 52
   offset: 0, 0
   index: 2
-characters/fire_spirit/field/dead/down
+characters/wind_spirit/field/cast/down
+  rotate: false
+  xy: 1058, 734
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/wind_spirit/field/dead/down
+  rotate: false
+  xy: 1058, 734
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/wind_spirit/field/jump/down
+  rotate: false
+  xy: 1058, 734
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/wind_spirit/field/ouch/down
+  rotate: false
+  xy: 1058, 734
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/orly_rylo/field/dead/down
   rotate: false
   xy: 1534, 878
   size: 39, 52
@@ -543,6 +2720,76 @@ characters/darcy_alma/field/walk/down
   orig: 39, 52
   offset: 0, 0
   index: 3
+characters/earth_spirit/field/cast/down
+  rotate: false
+  xy: 1534, 878
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/earth_spirit/field/dead/down
+  rotate: false
+  xy: 1534, 878
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/earth_spirit/field/jump/down
+  rotate: false
+  xy: 1534, 878
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/earth_spirit/field/ouch/down
+  rotate: false
+  xy: 1534, 878
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/erik_teh_red/field/attack/down
+  rotate: false
+  xy: 1534, 878
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/erik_teh_red/field/cast/down
+  rotate: false
+  xy: 1534, 878
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/erik_teh_red/field/dead/down
+  rotate: false
+  xy: 1534, 878
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/erik_teh_red/field/jump/down
+  rotate: false
+  xy: 1534, 878
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/erik_teh_red/field/ouch/down
+  rotate: false
+  xy: 1534, 878
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/erik_teh_red/field/walk/down
+  rotate: false
+  xy: 1534, 878
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
 characters/fire_spirit/field/attack/down
   rotate: false
   xy: 1534, 878
@@ -557,6 +2804,13 @@ characters/fire_spirit/field/cast/down
   orig: 39, 52
   offset: 0, 0
   index: 3
+characters/fire_spirit/field/dead/down
+  rotate: false
+  xy: 1534, 878
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
 characters/fire_spirit/field/jump/down
   rotate: false
   xy: 1534, 878
@@ -565,6 +2819,223 @@ characters/fire_spirit/field/jump/down
   offset: 0, 0
   index: 3
 characters/fire_spirit/field/ouch/down
+  rotate: false
+  xy: 1534, 878
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/gladia_macabre/field/attack/down
+  rotate: false
+  xy: 1534, 878
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/gladia_macabre/field/cast/down
+  rotate: false
+  xy: 1534, 878
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/gladia_macabre/field/dead/down
+  rotate: false
+  xy: 1534, 878
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/gladia_macabre/field/jump/down
+  rotate: false
+  xy: 1534, 878
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/gladia_macabre/field/ouch/down
+  rotate: false
+  xy: 1534, 878
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/gladia_macabre/field/walk/down
+  rotate: false
+  xy: 1534, 878
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/karin_edikt/field/attack/down
+  rotate: false
+  xy: 1534, 878
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/karin_edikt/field/cast/down
+  rotate: false
+  xy: 1534, 878
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/karin_edikt/field/dead/down
+  rotate: false
+  xy: 1534, 878
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/karin_edikt/field/jump/down
+  rotate: false
+  xy: 1534, 878
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/karin_edikt/field/ouch/down
+  rotate: false
+  xy: 1534, 878
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/karin_edikt/field/walk/down
+  rotate: false
+  xy: 1534, 878
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/lavender_katz/field/cast/down
+  rotate: false
+  xy: 1534, 878
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/lavender_katz/field/dead/down
+  rotate: false
+  xy: 1534, 878
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/lavender_katz/field/jump/down
+  rotate: false
+  xy: 1534, 878
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/lavender_katz/field/ouch/down
+  rotate: false
+  xy: 1534, 878
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/naira_arum/field/cast/down
+  rotate: false
+  xy: 1534, 878
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/naira_arum/field/dead/down
+  rotate: false
+  xy: 1534, 878
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/naira_arum/field/jump/down
+  rotate: false
+  xy: 1534, 878
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/naira_arum/field/ouch/down
+  rotate: false
+  xy: 1534, 878
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/orly_rylo/field/attack/down
+  rotate: false
+  xy: 1534, 878
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/orly_rylo/field/cast/down
+  rotate: false
+  xy: 1534, 878
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/orly_rylo/field/jump/down
+  rotate: false
+  xy: 1534, 878
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/orly_rylo/field/ouch/down
+  rotate: false
+  xy: 1534, 878
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/orly_rylo/field/walk/down
+  rotate: false
+  xy: 1534, 878
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/veather_mann/field/attack/down
+  rotate: false
+  xy: 1534, 878
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/veather_mann/field/cast/down
+  rotate: false
+  xy: 1534, 878
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/veather_mann/field/dead/down
+  rotate: false
+  xy: 1534, 878
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/veather_mann/field/jump/down
+  rotate: false
+  xy: 1534, 878
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/veather_mann/field/ouch/down
+  rotate: false
+  xy: 1534, 878
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/veather_mann/field/walk/down
   rotate: false
   xy: 1534, 878
   size: 39, 52
@@ -599,7 +3070,35 @@ characters/water_spirit/field/ouch/down
   orig: 39, 52
   offset: 0, 0
   index: 3
-characters/fire_spirit/field/dead/down
+characters/wind_spirit/field/cast/down
+  rotate: false
+  xy: 1534, 878
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/wind_spirit/field/dead/down
+  rotate: false
+  xy: 1534, 878
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/wind_spirit/field/jump/down
+  rotate: false
+  xy: 1534, 878
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/wind_spirit/field/ouch/down
+  rotate: false
+  xy: 1534, 878
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/orly_rylo/field/dead/down
   rotate: false
   xy: 1538, 824
   size: 39, 52
@@ -648,6 +3147,76 @@ characters/darcy_alma/field/walk/down
   orig: 39, 52
   offset: 0, 0
   index: 4
+characters/earth_spirit/field/cast/down
+  rotate: false
+  xy: 1538, 824
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/earth_spirit/field/dead/down
+  rotate: false
+  xy: 1538, 824
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/earth_spirit/field/jump/down
+  rotate: false
+  xy: 1538, 824
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/earth_spirit/field/ouch/down
+  rotate: false
+  xy: 1538, 824
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/erik_teh_red/field/attack/down
+  rotate: false
+  xy: 1538, 824
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/erik_teh_red/field/cast/down
+  rotate: false
+  xy: 1538, 824
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/erik_teh_red/field/dead/down
+  rotate: false
+  xy: 1538, 824
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/erik_teh_red/field/jump/down
+  rotate: false
+  xy: 1538, 824
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/erik_teh_red/field/ouch/down
+  rotate: false
+  xy: 1538, 824
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/erik_teh_red/field/walk/down
+  rotate: false
+  xy: 1538, 824
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
 characters/fire_spirit/field/attack/down
   rotate: false
   xy: 1538, 824
@@ -662,6 +3231,13 @@ characters/fire_spirit/field/cast/down
   orig: 39, 52
   offset: 0, 0
   index: 4
+characters/fire_spirit/field/dead/down
+  rotate: false
+  xy: 1538, 824
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
 characters/fire_spirit/field/jump/down
   rotate: false
   xy: 1538, 824
@@ -670,6 +3246,223 @@ characters/fire_spirit/field/jump/down
   offset: 0, 0
   index: 4
 characters/fire_spirit/field/ouch/down
+  rotate: false
+  xy: 1538, 824
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/gladia_macabre/field/attack/down
+  rotate: false
+  xy: 1538, 824
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/gladia_macabre/field/cast/down
+  rotate: false
+  xy: 1538, 824
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/gladia_macabre/field/dead/down
+  rotate: false
+  xy: 1538, 824
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/gladia_macabre/field/jump/down
+  rotate: false
+  xy: 1538, 824
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/gladia_macabre/field/ouch/down
+  rotate: false
+  xy: 1538, 824
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/gladia_macabre/field/walk/down
+  rotate: false
+  xy: 1538, 824
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/karin_edikt/field/attack/down
+  rotate: false
+  xy: 1538, 824
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/karin_edikt/field/cast/down
+  rotate: false
+  xy: 1538, 824
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/karin_edikt/field/dead/down
+  rotate: false
+  xy: 1538, 824
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/karin_edikt/field/jump/down
+  rotate: false
+  xy: 1538, 824
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/karin_edikt/field/ouch/down
+  rotate: false
+  xy: 1538, 824
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/karin_edikt/field/walk/down
+  rotate: false
+  xy: 1538, 824
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/lavender_katz/field/cast/down
+  rotate: false
+  xy: 1538, 824
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/lavender_katz/field/dead/down
+  rotate: false
+  xy: 1538, 824
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/lavender_katz/field/jump/down
+  rotate: false
+  xy: 1538, 824
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/lavender_katz/field/ouch/down
+  rotate: false
+  xy: 1538, 824
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/naira_arum/field/cast/down
+  rotate: false
+  xy: 1538, 824
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/naira_arum/field/dead/down
+  rotate: false
+  xy: 1538, 824
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/naira_arum/field/jump/down
+  rotate: false
+  xy: 1538, 824
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/naira_arum/field/ouch/down
+  rotate: false
+  xy: 1538, 824
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/orly_rylo/field/attack/down
+  rotate: false
+  xy: 1538, 824
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/orly_rylo/field/cast/down
+  rotate: false
+  xy: 1538, 824
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/orly_rylo/field/jump/down
+  rotate: false
+  xy: 1538, 824
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/orly_rylo/field/ouch/down
+  rotate: false
+  xy: 1538, 824
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/orly_rylo/field/walk/down
+  rotate: false
+  xy: 1538, 824
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/veather_mann/field/attack/down
+  rotate: false
+  xy: 1538, 824
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/veather_mann/field/cast/down
+  rotate: false
+  xy: 1538, 824
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/veather_mann/field/dead/down
+  rotate: false
+  xy: 1538, 824
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/veather_mann/field/jump/down
+  rotate: false
+  xy: 1538, 824
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/veather_mann/field/ouch/down
+  rotate: false
+  xy: 1538, 824
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/veather_mann/field/walk/down
   rotate: false
   xy: 1538, 824
   size: 39, 52
@@ -704,7 +3497,35 @@ characters/water_spirit/field/ouch/down
   orig: 39, 52
   offset: 0, 0
   index: 4
-characters/fire_spirit/field/dead/left
+characters/wind_spirit/field/cast/down
+  rotate: false
+  xy: 1538, 824
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/wind_spirit/field/dead/down
+  rotate: false
+  xy: 1538, 824
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/wind_spirit/field/jump/down
+  rotate: false
+  xy: 1538, 824
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/wind_spirit/field/ouch/down
+  rotate: false
+  xy: 1538, 824
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/orly_rylo/field/dead/left
   rotate: false
   xy: 1538, 770
   size: 39, 52
@@ -760,7 +3581,91 @@ characters/darcy_alma/field/walk/left
   orig: 39, 52
   offset: 0, 0
   index: 1
+characters/earth_spirit/field/cast/left
+  rotate: false
+  xy: 1538, 770
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/earth_spirit/field/dead/left
+  rotate: false
+  xy: 1538, 770
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/earth_spirit/field/jump/left
+  rotate: false
+  xy: 1538, 770
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/earth_spirit/field/ouch/left
+  rotate: false
+  xy: 1538, 770
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/erik_teh_red/field/attack/left
+  rotate: false
+  xy: 1538, 770
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/erik_teh_red/field/cast/left
+  rotate: false
+  xy: 1538, 770
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/erik_teh_red/field/dead/left
+  rotate: false
+  xy: 1538, 770
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/erik_teh_red/field/jump/left
+  rotate: false
+  xy: 1538, 770
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/erik_teh_red/field/ouch/left
+  rotate: false
+  xy: 1538, 770
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/erik_teh_red/field/stand/left
+  rotate: false
+  xy: 1538, 770
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/erik_teh_red/field/walk/left
+  rotate: false
+  xy: 1538, 770
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
 characters/fire_spirit/field/cast/left
+  rotate: false
+  xy: 1538, 770
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/fire_spirit/field/dead/left
   rotate: false
   xy: 1538, 770
   size: 39, 52
@@ -775,6 +3680,251 @@ characters/fire_spirit/field/jump/left
   offset: 0, 0
   index: 1
 characters/fire_spirit/field/ouch/left
+  rotate: false
+  xy: 1538, 770
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/gladia_macabre/field/attack/left
+  rotate: false
+  xy: 1538, 770
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/gladia_macabre/field/cast/left
+  rotate: false
+  xy: 1538, 770
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/gladia_macabre/field/dead/left
+  rotate: false
+  xy: 1538, 770
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/gladia_macabre/field/jump/left
+  rotate: false
+  xy: 1538, 770
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/gladia_macabre/field/ouch/left
+  rotate: false
+  xy: 1538, 770
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/gladia_macabre/field/stand/left
+  rotate: false
+  xy: 1538, 770
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/gladia_macabre/field/walk/left
+  rotate: false
+  xy: 1538, 770
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/karin_edikt/field/attack/left
+  rotate: false
+  xy: 1538, 770
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/karin_edikt/field/cast/left
+  rotate: false
+  xy: 1538, 770
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/karin_edikt/field/dead/left
+  rotate: false
+  xy: 1538, 770
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/karin_edikt/field/jump/left
+  rotate: false
+  xy: 1538, 770
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/karin_edikt/field/ouch/left
+  rotate: false
+  xy: 1538, 770
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/karin_edikt/field/stand/left
+  rotate: false
+  xy: 1538, 770
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/karin_edikt/field/walk/left
+  rotate: false
+  xy: 1538, 770
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/lavender_katz/field/cast/left
+  rotate: false
+  xy: 1538, 770
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/lavender_katz/field/dead/left
+  rotate: false
+  xy: 1538, 770
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/lavender_katz/field/jump/left
+  rotate: false
+  xy: 1538, 770
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/lavender_katz/field/ouch/left
+  rotate: false
+  xy: 1538, 770
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/naira_arum/field/cast/left
+  rotate: false
+  xy: 1538, 770
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/naira_arum/field/dead/left
+  rotate: false
+  xy: 1538, 770
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/naira_arum/field/jump/left
+  rotate: false
+  xy: 1538, 770
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/naira_arum/field/ouch/left
+  rotate: false
+  xy: 1538, 770
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/orly_rylo/field/attack/left
+  rotate: false
+  xy: 1538, 770
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/orly_rylo/field/cast/left
+  rotate: false
+  xy: 1538, 770
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/orly_rylo/field/jump/left
+  rotate: false
+  xy: 1538, 770
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/orly_rylo/field/ouch/left
+  rotate: false
+  xy: 1538, 770
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/orly_rylo/field/stand/left
+  rotate: false
+  xy: 1538, 770
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/orly_rylo/field/walk/left
+  rotate: false
+  xy: 1538, 770
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/veather_mann/field/attack/left
+  rotate: false
+  xy: 1538, 770
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/veather_mann/field/cast/left
+  rotate: false
+  xy: 1538, 770
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/veather_mann/field/dead/left
+  rotate: false
+  xy: 1538, 770
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/veather_mann/field/jump/left
+  rotate: false
+  xy: 1538, 770
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/veather_mann/field/ouch/left
+  rotate: false
+  xy: 1538, 770
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/veather_mann/field/stand/left
+  rotate: false
+  xy: 1538, 770
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/veather_mann/field/walk/left
   rotate: false
   xy: 1538, 770
   size: 39, 52
@@ -809,7 +3959,35 @@ characters/water_spirit/field/ouch/left
   orig: 39, 52
   offset: 0, 0
   index: 1
-characters/fire_spirit/field/dead/left
+characters/wind_spirit/field/cast/left
+  rotate: false
+  xy: 1538, 770
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/wind_spirit/field/dead/left
+  rotate: false
+  xy: 1538, 770
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/wind_spirit/field/jump/left
+  rotate: false
+  xy: 1538, 770
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/wind_spirit/field/ouch/left
+  rotate: false
+  xy: 1538, 770
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/orly_rylo/field/dead/left
   rotate: false
   xy: 1538, 716
   size: 39, 52
@@ -858,7 +4036,84 @@ characters/darcy_alma/field/walk/left
   orig: 39, 52
   offset: 0, 0
   index: 2
+characters/earth_spirit/field/cast/left
+  rotate: false
+  xy: 1538, 716
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/earth_spirit/field/dead/left
+  rotate: false
+  xy: 1538, 716
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/earth_spirit/field/jump/left
+  rotate: false
+  xy: 1538, 716
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/earth_spirit/field/ouch/left
+  rotate: false
+  xy: 1538, 716
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/erik_teh_red/field/attack/left
+  rotate: false
+  xy: 1538, 716
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/erik_teh_red/field/cast/left
+  rotate: false
+  xy: 1538, 716
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/erik_teh_red/field/dead/left
+  rotate: false
+  xy: 1538, 716
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/erik_teh_red/field/jump/left
+  rotate: false
+  xy: 1538, 716
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/erik_teh_red/field/ouch/left
+  rotate: false
+  xy: 1538, 716
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/erik_teh_red/field/walk/left
+  rotate: false
+  xy: 1538, 716
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
 characters/fire_spirit/field/cast/left
+  rotate: false
+  xy: 1538, 716
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/fire_spirit/field/dead/left
   rotate: false
   xy: 1538, 716
   size: 39, 52
@@ -873,6 +4128,223 @@ characters/fire_spirit/field/jump/left
   offset: 0, 0
   index: 2
 characters/fire_spirit/field/ouch/left
+  rotate: false
+  xy: 1538, 716
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/gladia_macabre/field/attack/left
+  rotate: false
+  xy: 1538, 716
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/gladia_macabre/field/cast/left
+  rotate: false
+  xy: 1538, 716
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/gladia_macabre/field/dead/left
+  rotate: false
+  xy: 1538, 716
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/gladia_macabre/field/jump/left
+  rotate: false
+  xy: 1538, 716
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/gladia_macabre/field/ouch/left
+  rotate: false
+  xy: 1538, 716
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/gladia_macabre/field/walk/left
+  rotate: false
+  xy: 1538, 716
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/karin_edikt/field/attack/left
+  rotate: false
+  xy: 1538, 716
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/karin_edikt/field/cast/left
+  rotate: false
+  xy: 1538, 716
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/karin_edikt/field/dead/left
+  rotate: false
+  xy: 1538, 716
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/karin_edikt/field/jump/left
+  rotate: false
+  xy: 1538, 716
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/karin_edikt/field/ouch/left
+  rotate: false
+  xy: 1538, 716
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/karin_edikt/field/walk/left
+  rotate: false
+  xy: 1538, 716
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/lavender_katz/field/cast/left
+  rotate: false
+  xy: 1538, 716
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/lavender_katz/field/dead/left
+  rotate: false
+  xy: 1538, 716
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/lavender_katz/field/jump/left
+  rotate: false
+  xy: 1538, 716
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/lavender_katz/field/ouch/left
+  rotate: false
+  xy: 1538, 716
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/naira_arum/field/cast/left
+  rotate: false
+  xy: 1538, 716
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/naira_arum/field/dead/left
+  rotate: false
+  xy: 1538, 716
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/naira_arum/field/jump/left
+  rotate: false
+  xy: 1538, 716
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/naira_arum/field/ouch/left
+  rotate: false
+  xy: 1538, 716
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/orly_rylo/field/attack/left
+  rotate: false
+  xy: 1538, 716
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/orly_rylo/field/cast/left
+  rotate: false
+  xy: 1538, 716
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/orly_rylo/field/jump/left
+  rotate: false
+  xy: 1538, 716
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/orly_rylo/field/ouch/left
+  rotate: false
+  xy: 1538, 716
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/orly_rylo/field/walk/left
+  rotate: false
+  xy: 1538, 716
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/veather_mann/field/attack/left
+  rotate: false
+  xy: 1538, 716
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/veather_mann/field/cast/left
+  rotate: false
+  xy: 1538, 716
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/veather_mann/field/dead/left
+  rotate: false
+  xy: 1538, 716
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/veather_mann/field/jump/left
+  rotate: false
+  xy: 1538, 716
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/veather_mann/field/ouch/left
+  rotate: false
+  xy: 1538, 716
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/veather_mann/field/walk/left
   rotate: false
   xy: 1538, 716
   size: 39, 52
@@ -907,7 +4379,35 @@ characters/water_spirit/field/ouch/left
   orig: 39, 52
   offset: 0, 0
   index: 2
-characters/fire_spirit/field/dead/left
+characters/wind_spirit/field/cast/left
+  rotate: false
+  xy: 1538, 716
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/wind_spirit/field/dead/left
+  rotate: false
+  xy: 1538, 716
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/wind_spirit/field/jump/left
+  rotate: false
+  xy: 1538, 716
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/wind_spirit/field/ouch/left
+  rotate: false
+  xy: 1538, 716
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/orly_rylo/field/dead/left
   rotate: false
   xy: 228, 424
   size: 39, 52
@@ -956,7 +4456,84 @@ characters/darcy_alma/field/walk/left
   orig: 39, 52
   offset: 0, 0
   index: 3
+characters/earth_spirit/field/cast/left
+  rotate: false
+  xy: 228, 424
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/earth_spirit/field/dead/left
+  rotate: false
+  xy: 228, 424
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/earth_spirit/field/jump/left
+  rotate: false
+  xy: 228, 424
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/earth_spirit/field/ouch/left
+  rotate: false
+  xy: 228, 424
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/erik_teh_red/field/attack/left
+  rotate: false
+  xy: 228, 424
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/erik_teh_red/field/cast/left
+  rotate: false
+  xy: 228, 424
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/erik_teh_red/field/dead/left
+  rotate: false
+  xy: 228, 424
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/erik_teh_red/field/jump/left
+  rotate: false
+  xy: 228, 424
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/erik_teh_red/field/ouch/left
+  rotate: false
+  xy: 228, 424
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/erik_teh_red/field/walk/left
+  rotate: false
+  xy: 228, 424
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
 characters/fire_spirit/field/cast/left
+  rotate: false
+  xy: 228, 424
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/fire_spirit/field/dead/left
   rotate: false
   xy: 228, 424
   size: 39, 52
@@ -971,6 +4548,223 @@ characters/fire_spirit/field/jump/left
   offset: 0, 0
   index: 3
 characters/fire_spirit/field/ouch/left
+  rotate: false
+  xy: 228, 424
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/gladia_macabre/field/attack/left
+  rotate: false
+  xy: 228, 424
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/gladia_macabre/field/cast/left
+  rotate: false
+  xy: 228, 424
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/gladia_macabre/field/dead/left
+  rotate: false
+  xy: 228, 424
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/gladia_macabre/field/jump/left
+  rotate: false
+  xy: 228, 424
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/gladia_macabre/field/ouch/left
+  rotate: false
+  xy: 228, 424
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/gladia_macabre/field/walk/left
+  rotate: false
+  xy: 228, 424
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/karin_edikt/field/attack/left
+  rotate: false
+  xy: 228, 424
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/karin_edikt/field/cast/left
+  rotate: false
+  xy: 228, 424
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/karin_edikt/field/dead/left
+  rotate: false
+  xy: 228, 424
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/karin_edikt/field/jump/left
+  rotate: false
+  xy: 228, 424
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/karin_edikt/field/ouch/left
+  rotate: false
+  xy: 228, 424
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/karin_edikt/field/walk/left
+  rotate: false
+  xy: 228, 424
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/lavender_katz/field/cast/left
+  rotate: false
+  xy: 228, 424
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/lavender_katz/field/dead/left
+  rotate: false
+  xy: 228, 424
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/lavender_katz/field/jump/left
+  rotate: false
+  xy: 228, 424
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/lavender_katz/field/ouch/left
+  rotate: false
+  xy: 228, 424
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/naira_arum/field/cast/left
+  rotate: false
+  xy: 228, 424
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/naira_arum/field/dead/left
+  rotate: false
+  xy: 228, 424
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/naira_arum/field/jump/left
+  rotate: false
+  xy: 228, 424
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/naira_arum/field/ouch/left
+  rotate: false
+  xy: 228, 424
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/orly_rylo/field/attack/left
+  rotate: false
+  xy: 228, 424
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/orly_rylo/field/cast/left
+  rotate: false
+  xy: 228, 424
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/orly_rylo/field/jump/left
+  rotate: false
+  xy: 228, 424
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/orly_rylo/field/ouch/left
+  rotate: false
+  xy: 228, 424
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/orly_rylo/field/walk/left
+  rotate: false
+  xy: 228, 424
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/veather_mann/field/attack/left
+  rotate: false
+  xy: 228, 424
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/veather_mann/field/cast/left
+  rotate: false
+  xy: 228, 424
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/veather_mann/field/dead/left
+  rotate: false
+  xy: 228, 424
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/veather_mann/field/jump/left
+  rotate: false
+  xy: 228, 424
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/veather_mann/field/ouch/left
+  rotate: false
+  xy: 228, 424
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/veather_mann/field/walk/left
   rotate: false
   xy: 228, 424
   size: 39, 52
@@ -1005,7 +4799,35 @@ characters/water_spirit/field/ouch/left
   orig: 39, 52
   offset: 0, 0
   index: 3
-characters/fire_spirit/field/dead/left
+characters/wind_spirit/field/cast/left
+  rotate: false
+  xy: 228, 424
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/wind_spirit/field/dead/left
+  rotate: false
+  xy: 228, 424
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/wind_spirit/field/jump/left
+  rotate: false
+  xy: 228, 424
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/wind_spirit/field/ouch/left
+  rotate: false
+  xy: 228, 424
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/orly_rylo/field/dead/left
   rotate: false
   xy: 1672, 1310
   size: 39, 52
@@ -1054,7 +4876,84 @@ characters/darcy_alma/field/walk/left
   orig: 39, 52
   offset: 0, 0
   index: 4
+characters/earth_spirit/field/cast/left
+  rotate: false
+  xy: 1672, 1310
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/earth_spirit/field/dead/left
+  rotate: false
+  xy: 1672, 1310
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/earth_spirit/field/jump/left
+  rotate: false
+  xy: 1672, 1310
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/earth_spirit/field/ouch/left
+  rotate: false
+  xy: 1672, 1310
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/erik_teh_red/field/attack/left
+  rotate: false
+  xy: 1672, 1310
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/erik_teh_red/field/cast/left
+  rotate: false
+  xy: 1672, 1310
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/erik_teh_red/field/dead/left
+  rotate: false
+  xy: 1672, 1310
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/erik_teh_red/field/jump/left
+  rotate: false
+  xy: 1672, 1310
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/erik_teh_red/field/ouch/left
+  rotate: false
+  xy: 1672, 1310
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/erik_teh_red/field/walk/left
+  rotate: false
+  xy: 1672, 1310
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
 characters/fire_spirit/field/cast/left
+  rotate: false
+  xy: 1672, 1310
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/fire_spirit/field/dead/left
   rotate: false
   xy: 1672, 1310
   size: 39, 52
@@ -1069,6 +4968,223 @@ characters/fire_spirit/field/jump/left
   offset: 0, 0
   index: 4
 characters/fire_spirit/field/ouch/left
+  rotate: false
+  xy: 1672, 1310
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/gladia_macabre/field/attack/left
+  rotate: false
+  xy: 1672, 1310
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/gladia_macabre/field/cast/left
+  rotate: false
+  xy: 1672, 1310
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/gladia_macabre/field/dead/left
+  rotate: false
+  xy: 1672, 1310
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/gladia_macabre/field/jump/left
+  rotate: false
+  xy: 1672, 1310
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/gladia_macabre/field/ouch/left
+  rotate: false
+  xy: 1672, 1310
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/gladia_macabre/field/walk/left
+  rotate: false
+  xy: 1672, 1310
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/karin_edikt/field/attack/left
+  rotate: false
+  xy: 1672, 1310
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/karin_edikt/field/cast/left
+  rotate: false
+  xy: 1672, 1310
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/karin_edikt/field/dead/left
+  rotate: false
+  xy: 1672, 1310
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/karin_edikt/field/jump/left
+  rotate: false
+  xy: 1672, 1310
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/karin_edikt/field/ouch/left
+  rotate: false
+  xy: 1672, 1310
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/karin_edikt/field/walk/left
+  rotate: false
+  xy: 1672, 1310
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/lavender_katz/field/cast/left
+  rotate: false
+  xy: 1672, 1310
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/lavender_katz/field/dead/left
+  rotate: false
+  xy: 1672, 1310
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/lavender_katz/field/jump/left
+  rotate: false
+  xy: 1672, 1310
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/lavender_katz/field/ouch/left
+  rotate: false
+  xy: 1672, 1310
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/naira_arum/field/cast/left
+  rotate: false
+  xy: 1672, 1310
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/naira_arum/field/dead/left
+  rotate: false
+  xy: 1672, 1310
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/naira_arum/field/jump/left
+  rotate: false
+  xy: 1672, 1310
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/naira_arum/field/ouch/left
+  rotate: false
+  xy: 1672, 1310
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/orly_rylo/field/attack/left
+  rotate: false
+  xy: 1672, 1310
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/orly_rylo/field/cast/left
+  rotate: false
+  xy: 1672, 1310
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/orly_rylo/field/jump/left
+  rotate: false
+  xy: 1672, 1310
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/orly_rylo/field/ouch/left
+  rotate: false
+  xy: 1672, 1310
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/orly_rylo/field/walk/left
+  rotate: false
+  xy: 1672, 1310
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/veather_mann/field/attack/left
+  rotate: false
+  xy: 1672, 1310
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/veather_mann/field/cast/left
+  rotate: false
+  xy: 1672, 1310
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/veather_mann/field/dead/left
+  rotate: false
+  xy: 1672, 1310
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/veather_mann/field/jump/left
+  rotate: false
+  xy: 1672, 1310
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/veather_mann/field/ouch/left
+  rotate: false
+  xy: 1672, 1310
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/veather_mann/field/walk/left
   rotate: false
   xy: 1672, 1310
   size: 39, 52
@@ -1103,7 +5219,35 @@ characters/water_spirit/field/ouch/left
   orig: 39, 52
   offset: 0, 0
   index: 4
-characters/fire_spirit/field/dead/right
+characters/wind_spirit/field/cast/left
+  rotate: false
+  xy: 1672, 1310
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/wind_spirit/field/dead/left
+  rotate: false
+  xy: 1672, 1310
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/wind_spirit/field/jump/left
+  rotate: false
+  xy: 1672, 1310
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/wind_spirit/field/ouch/left
+  rotate: false
+  xy: 1672, 1310
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/orly_rylo/field/dead/right
   rotate: false
   xy: 198, 146
   size: 39, 52
@@ -1159,7 +5303,91 @@ characters/darcy_alma/field/walk/right
   orig: 39, 52
   offset: 0, 0
   index: 1
+characters/earth_spirit/field/cast/right
+  rotate: false
+  xy: 198, 146
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/earth_spirit/field/dead/right
+  rotate: false
+  xy: 198, 146
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/earth_spirit/field/jump/right
+  rotate: false
+  xy: 198, 146
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/earth_spirit/field/ouch/right
+  rotate: false
+  xy: 198, 146
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/erik_teh_red/field/attack/right
+  rotate: false
+  xy: 198, 146
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/erik_teh_red/field/cast/right
+  rotate: false
+  xy: 198, 146
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/erik_teh_red/field/dead/right
+  rotate: false
+  xy: 198, 146
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/erik_teh_red/field/jump/right
+  rotate: false
+  xy: 198, 146
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/erik_teh_red/field/ouch/right
+  rotate: false
+  xy: 198, 146
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/erik_teh_red/field/stand/right
+  rotate: false
+  xy: 198, 146
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/erik_teh_red/field/walk/right
+  rotate: false
+  xy: 198, 146
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
 characters/fire_spirit/field/cast/right
+  rotate: false
+  xy: 198, 146
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/fire_spirit/field/dead/right
   rotate: false
   xy: 198, 146
   size: 39, 52
@@ -1174,6 +5402,251 @@ characters/fire_spirit/field/jump/right
   offset: 0, 0
   index: 1
 characters/fire_spirit/field/ouch/right
+  rotate: false
+  xy: 198, 146
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/gladia_macabre/field/attack/right
+  rotate: false
+  xy: 198, 146
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/gladia_macabre/field/cast/right
+  rotate: false
+  xy: 198, 146
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/gladia_macabre/field/dead/right
+  rotate: false
+  xy: 198, 146
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/gladia_macabre/field/jump/right
+  rotate: false
+  xy: 198, 146
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/gladia_macabre/field/ouch/right
+  rotate: false
+  xy: 198, 146
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/gladia_macabre/field/stand/right
+  rotate: false
+  xy: 198, 146
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/gladia_macabre/field/walk/right
+  rotate: false
+  xy: 198, 146
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/karin_edikt/field/attack/right
+  rotate: false
+  xy: 198, 146
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/karin_edikt/field/cast/right
+  rotate: false
+  xy: 198, 146
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/karin_edikt/field/dead/right
+  rotate: false
+  xy: 198, 146
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/karin_edikt/field/jump/right
+  rotate: false
+  xy: 198, 146
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/karin_edikt/field/ouch/right
+  rotate: false
+  xy: 198, 146
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/karin_edikt/field/stand/right
+  rotate: false
+  xy: 198, 146
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/karin_edikt/field/walk/right
+  rotate: false
+  xy: 198, 146
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/lavender_katz/field/cast/right
+  rotate: false
+  xy: 198, 146
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/lavender_katz/field/dead/right
+  rotate: false
+  xy: 198, 146
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/lavender_katz/field/jump/right
+  rotate: false
+  xy: 198, 146
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/lavender_katz/field/ouch/right
+  rotate: false
+  xy: 198, 146
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/naira_arum/field/cast/right
+  rotate: false
+  xy: 198, 146
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/naira_arum/field/dead/right
+  rotate: false
+  xy: 198, 146
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/naira_arum/field/jump/right
+  rotate: false
+  xy: 198, 146
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/naira_arum/field/ouch/right
+  rotate: false
+  xy: 198, 146
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/orly_rylo/field/attack/right
+  rotate: false
+  xy: 198, 146
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/orly_rylo/field/cast/right
+  rotate: false
+  xy: 198, 146
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/orly_rylo/field/jump/right
+  rotate: false
+  xy: 198, 146
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/orly_rylo/field/ouch/right
+  rotate: false
+  xy: 198, 146
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/orly_rylo/field/stand/right
+  rotate: false
+  xy: 198, 146
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/orly_rylo/field/walk/right
+  rotate: false
+  xy: 198, 146
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/veather_mann/field/attack/right
+  rotate: false
+  xy: 198, 146
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/veather_mann/field/cast/right
+  rotate: false
+  xy: 198, 146
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/veather_mann/field/dead/right
+  rotate: false
+  xy: 198, 146
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/veather_mann/field/jump/right
+  rotate: false
+  xy: 198, 146
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/veather_mann/field/ouch/right
+  rotate: false
+  xy: 198, 146
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/veather_mann/field/stand/right
+  rotate: false
+  xy: 198, 146
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/veather_mann/field/walk/right
   rotate: false
   xy: 198, 146
   size: 39, 52
@@ -1208,7 +5681,35 @@ characters/water_spirit/field/ouch/right
   orig: 39, 52
   offset: 0, 0
   index: 1
-characters/fire_spirit/field/dead/right
+characters/wind_spirit/field/cast/right
+  rotate: false
+  xy: 198, 146
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/wind_spirit/field/dead/right
+  rotate: false
+  xy: 198, 146
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/wind_spirit/field/jump/right
+  rotate: false
+  xy: 198, 146
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/wind_spirit/field/ouch/right
+  rotate: false
+  xy: 198, 146
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/orly_rylo/field/dead/right
   rotate: false
   xy: 198, 92
   size: 39, 52
@@ -1257,7 +5758,84 @@ characters/darcy_alma/field/walk/right
   orig: 39, 52
   offset: 0, 0
   index: 2
+characters/earth_spirit/field/cast/right
+  rotate: false
+  xy: 198, 92
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/earth_spirit/field/dead/right
+  rotate: false
+  xy: 198, 92
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/earth_spirit/field/jump/right
+  rotate: false
+  xy: 198, 92
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/earth_spirit/field/ouch/right
+  rotate: false
+  xy: 198, 92
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/erik_teh_red/field/attack/right
+  rotate: false
+  xy: 198, 92
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/erik_teh_red/field/cast/right
+  rotate: false
+  xy: 198, 92
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/erik_teh_red/field/dead/right
+  rotate: false
+  xy: 198, 92
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/erik_teh_red/field/jump/right
+  rotate: false
+  xy: 198, 92
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/erik_teh_red/field/ouch/right
+  rotate: false
+  xy: 198, 92
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/erik_teh_red/field/walk/right
+  rotate: false
+  xy: 198, 92
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
 characters/fire_spirit/field/cast/right
+  rotate: false
+  xy: 198, 92
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/fire_spirit/field/dead/right
   rotate: false
   xy: 198, 92
   size: 39, 52
@@ -1272,6 +5850,223 @@ characters/fire_spirit/field/jump/right
   offset: 0, 0
   index: 2
 characters/fire_spirit/field/ouch/right
+  rotate: false
+  xy: 198, 92
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/gladia_macabre/field/attack/right
+  rotate: false
+  xy: 198, 92
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/gladia_macabre/field/cast/right
+  rotate: false
+  xy: 198, 92
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/gladia_macabre/field/dead/right
+  rotate: false
+  xy: 198, 92
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/gladia_macabre/field/jump/right
+  rotate: false
+  xy: 198, 92
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/gladia_macabre/field/ouch/right
+  rotate: false
+  xy: 198, 92
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/gladia_macabre/field/walk/right
+  rotate: false
+  xy: 198, 92
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/karin_edikt/field/attack/right
+  rotate: false
+  xy: 198, 92
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/karin_edikt/field/cast/right
+  rotate: false
+  xy: 198, 92
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/karin_edikt/field/dead/right
+  rotate: false
+  xy: 198, 92
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/karin_edikt/field/jump/right
+  rotate: false
+  xy: 198, 92
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/karin_edikt/field/ouch/right
+  rotate: false
+  xy: 198, 92
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/karin_edikt/field/walk/right
+  rotate: false
+  xy: 198, 92
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/lavender_katz/field/cast/right
+  rotate: false
+  xy: 198, 92
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/lavender_katz/field/dead/right
+  rotate: false
+  xy: 198, 92
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/lavender_katz/field/jump/right
+  rotate: false
+  xy: 198, 92
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/lavender_katz/field/ouch/right
+  rotate: false
+  xy: 198, 92
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/naira_arum/field/cast/right
+  rotate: false
+  xy: 198, 92
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/naira_arum/field/dead/right
+  rotate: false
+  xy: 198, 92
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/naira_arum/field/jump/right
+  rotate: false
+  xy: 198, 92
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/naira_arum/field/ouch/right
+  rotate: false
+  xy: 198, 92
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/orly_rylo/field/attack/right
+  rotate: false
+  xy: 198, 92
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/orly_rylo/field/cast/right
+  rotate: false
+  xy: 198, 92
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/orly_rylo/field/jump/right
+  rotate: false
+  xy: 198, 92
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/orly_rylo/field/ouch/right
+  rotate: false
+  xy: 198, 92
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/orly_rylo/field/walk/right
+  rotate: false
+  xy: 198, 92
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/veather_mann/field/attack/right
+  rotate: false
+  xy: 198, 92
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/veather_mann/field/cast/right
+  rotate: false
+  xy: 198, 92
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/veather_mann/field/dead/right
+  rotate: false
+  xy: 198, 92
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/veather_mann/field/jump/right
+  rotate: false
+  xy: 198, 92
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/veather_mann/field/ouch/right
+  rotate: false
+  xy: 198, 92
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/veather_mann/field/walk/right
   rotate: false
   xy: 198, 92
   size: 39, 52
@@ -1306,7 +6101,35 @@ characters/water_spirit/field/ouch/right
   orig: 39, 52
   offset: 0, 0
   index: 2
-characters/fire_spirit/field/dead/right
+characters/wind_spirit/field/cast/right
+  rotate: false
+  xy: 198, 92
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/wind_spirit/field/dead/right
+  rotate: false
+  xy: 198, 92
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/wind_spirit/field/jump/right
+  rotate: false
+  xy: 198, 92
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/wind_spirit/field/ouch/right
+  rotate: false
+  xy: 198, 92
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/orly_rylo/field/dead/right
   rotate: false
   xy: 239, 152
   size: 39, 52
@@ -1355,7 +6178,84 @@ characters/darcy_alma/field/walk/right
   orig: 39, 52
   offset: 0, 0
   index: 3
+characters/earth_spirit/field/cast/right
+  rotate: false
+  xy: 239, 152
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/earth_spirit/field/dead/right
+  rotate: false
+  xy: 239, 152
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/earth_spirit/field/jump/right
+  rotate: false
+  xy: 239, 152
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/earth_spirit/field/ouch/right
+  rotate: false
+  xy: 239, 152
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/erik_teh_red/field/attack/right
+  rotate: false
+  xy: 239, 152
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/erik_teh_red/field/cast/right
+  rotate: false
+  xy: 239, 152
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/erik_teh_red/field/dead/right
+  rotate: false
+  xy: 239, 152
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/erik_teh_red/field/jump/right
+  rotate: false
+  xy: 239, 152
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/erik_teh_red/field/ouch/right
+  rotate: false
+  xy: 239, 152
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/erik_teh_red/field/walk/right
+  rotate: false
+  xy: 239, 152
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
 characters/fire_spirit/field/cast/right
+  rotate: false
+  xy: 239, 152
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/fire_spirit/field/dead/right
   rotate: false
   xy: 239, 152
   size: 39, 52
@@ -1370,6 +6270,223 @@ characters/fire_spirit/field/jump/right
   offset: 0, 0
   index: 3
 characters/fire_spirit/field/ouch/right
+  rotate: false
+  xy: 239, 152
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/gladia_macabre/field/attack/right
+  rotate: false
+  xy: 239, 152
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/gladia_macabre/field/cast/right
+  rotate: false
+  xy: 239, 152
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/gladia_macabre/field/dead/right
+  rotate: false
+  xy: 239, 152
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/gladia_macabre/field/jump/right
+  rotate: false
+  xy: 239, 152
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/gladia_macabre/field/ouch/right
+  rotate: false
+  xy: 239, 152
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/gladia_macabre/field/walk/right
+  rotate: false
+  xy: 239, 152
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/karin_edikt/field/attack/right
+  rotate: false
+  xy: 239, 152
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/karin_edikt/field/cast/right
+  rotate: false
+  xy: 239, 152
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/karin_edikt/field/dead/right
+  rotate: false
+  xy: 239, 152
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/karin_edikt/field/jump/right
+  rotate: false
+  xy: 239, 152
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/karin_edikt/field/ouch/right
+  rotate: false
+  xy: 239, 152
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/karin_edikt/field/walk/right
+  rotate: false
+  xy: 239, 152
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/lavender_katz/field/cast/right
+  rotate: false
+  xy: 239, 152
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/lavender_katz/field/dead/right
+  rotate: false
+  xy: 239, 152
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/lavender_katz/field/jump/right
+  rotate: false
+  xy: 239, 152
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/lavender_katz/field/ouch/right
+  rotate: false
+  xy: 239, 152
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/naira_arum/field/cast/right
+  rotate: false
+  xy: 239, 152
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/naira_arum/field/dead/right
+  rotate: false
+  xy: 239, 152
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/naira_arum/field/jump/right
+  rotate: false
+  xy: 239, 152
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/naira_arum/field/ouch/right
+  rotate: false
+  xy: 239, 152
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/orly_rylo/field/attack/right
+  rotate: false
+  xy: 239, 152
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/orly_rylo/field/cast/right
+  rotate: false
+  xy: 239, 152
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/orly_rylo/field/jump/right
+  rotate: false
+  xy: 239, 152
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/orly_rylo/field/ouch/right
+  rotate: false
+  xy: 239, 152
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/orly_rylo/field/walk/right
+  rotate: false
+  xy: 239, 152
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/veather_mann/field/attack/right
+  rotate: false
+  xy: 239, 152
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/veather_mann/field/cast/right
+  rotate: false
+  xy: 239, 152
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/veather_mann/field/dead/right
+  rotate: false
+  xy: 239, 152
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/veather_mann/field/jump/right
+  rotate: false
+  xy: 239, 152
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/veather_mann/field/ouch/right
+  rotate: false
+  xy: 239, 152
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/veather_mann/field/walk/right
   rotate: false
   xy: 239, 152
   size: 39, 52
@@ -1404,7 +6521,35 @@ characters/water_spirit/field/ouch/right
   orig: 39, 52
   offset: 0, 0
   index: 3
-characters/fire_spirit/field/dead/right
+characters/wind_spirit/field/cast/right
+  rotate: false
+  xy: 239, 152
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/wind_spirit/field/dead/right
+  rotate: false
+  xy: 239, 152
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/wind_spirit/field/jump/right
+  rotate: false
+  xy: 239, 152
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/wind_spirit/field/ouch/right
+  rotate: false
+  xy: 239, 152
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/orly_rylo/field/dead/right
   rotate: false
   xy: 239, 98
   size: 39, 52
@@ -1453,7 +6598,84 @@ characters/darcy_alma/field/walk/right
   orig: 39, 52
   offset: 0, 0
   index: 4
+characters/earth_spirit/field/cast/right
+  rotate: false
+  xy: 239, 98
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/earth_spirit/field/dead/right
+  rotate: false
+  xy: 239, 98
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/earth_spirit/field/jump/right
+  rotate: false
+  xy: 239, 98
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/earth_spirit/field/ouch/right
+  rotate: false
+  xy: 239, 98
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/erik_teh_red/field/attack/right
+  rotate: false
+  xy: 239, 98
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/erik_teh_red/field/cast/right
+  rotate: false
+  xy: 239, 98
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/erik_teh_red/field/dead/right
+  rotate: false
+  xy: 239, 98
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/erik_teh_red/field/jump/right
+  rotate: false
+  xy: 239, 98
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/erik_teh_red/field/ouch/right
+  rotate: false
+  xy: 239, 98
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/erik_teh_red/field/walk/right
+  rotate: false
+  xy: 239, 98
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
 characters/fire_spirit/field/cast/right
+  rotate: false
+  xy: 239, 98
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/fire_spirit/field/dead/right
   rotate: false
   xy: 239, 98
   size: 39, 52
@@ -1468,6 +6690,223 @@ characters/fire_spirit/field/jump/right
   offset: 0, 0
   index: 4
 characters/fire_spirit/field/ouch/right
+  rotate: false
+  xy: 239, 98
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/gladia_macabre/field/attack/right
+  rotate: false
+  xy: 239, 98
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/gladia_macabre/field/cast/right
+  rotate: false
+  xy: 239, 98
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/gladia_macabre/field/dead/right
+  rotate: false
+  xy: 239, 98
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/gladia_macabre/field/jump/right
+  rotate: false
+  xy: 239, 98
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/gladia_macabre/field/ouch/right
+  rotate: false
+  xy: 239, 98
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/gladia_macabre/field/walk/right
+  rotate: false
+  xy: 239, 98
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/karin_edikt/field/attack/right
+  rotate: false
+  xy: 239, 98
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/karin_edikt/field/cast/right
+  rotate: false
+  xy: 239, 98
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/karin_edikt/field/dead/right
+  rotate: false
+  xy: 239, 98
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/karin_edikt/field/jump/right
+  rotate: false
+  xy: 239, 98
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/karin_edikt/field/ouch/right
+  rotate: false
+  xy: 239, 98
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/karin_edikt/field/walk/right
+  rotate: false
+  xy: 239, 98
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/lavender_katz/field/cast/right
+  rotate: false
+  xy: 239, 98
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/lavender_katz/field/dead/right
+  rotate: false
+  xy: 239, 98
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/lavender_katz/field/jump/right
+  rotate: false
+  xy: 239, 98
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/lavender_katz/field/ouch/right
+  rotate: false
+  xy: 239, 98
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/naira_arum/field/cast/right
+  rotate: false
+  xy: 239, 98
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/naira_arum/field/dead/right
+  rotate: false
+  xy: 239, 98
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/naira_arum/field/jump/right
+  rotate: false
+  xy: 239, 98
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/naira_arum/field/ouch/right
+  rotate: false
+  xy: 239, 98
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/orly_rylo/field/attack/right
+  rotate: false
+  xy: 239, 98
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/orly_rylo/field/cast/right
+  rotate: false
+  xy: 239, 98
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/orly_rylo/field/jump/right
+  rotate: false
+  xy: 239, 98
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/orly_rylo/field/ouch/right
+  rotate: false
+  xy: 239, 98
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/orly_rylo/field/walk/right
+  rotate: false
+  xy: 239, 98
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/veather_mann/field/attack/right
+  rotate: false
+  xy: 239, 98
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/veather_mann/field/cast/right
+  rotate: false
+  xy: 239, 98
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/veather_mann/field/dead/right
+  rotate: false
+  xy: 239, 98
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/veather_mann/field/jump/right
+  rotate: false
+  xy: 239, 98
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/veather_mann/field/ouch/right
+  rotate: false
+  xy: 239, 98
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/veather_mann/field/walk/right
   rotate: false
   xy: 239, 98
   size: 39, 52
@@ -1502,7 +6941,35 @@ characters/water_spirit/field/ouch/right
   orig: 39, 52
   offset: 0, 0
   index: 4
-characters/fire_spirit/field/dead/up
+characters/wind_spirit/field/cast/right
+  rotate: false
+  xy: 239, 98
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/wind_spirit/field/dead/right
+  rotate: false
+  xy: 239, 98
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/wind_spirit/field/jump/right
+  rotate: false
+  xy: 239, 98
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/wind_spirit/field/ouch/right
+  rotate: false
+  xy: 239, 98
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/orly_rylo/field/dead/up
   rotate: false
   xy: 323, 414
   size: 39, 52
@@ -1558,6 +7025,90 @@ characters/darcy_alma/field/walk/up
   orig: 39, 52
   offset: 0, 0
   index: 1
+characters/earth_spirit/field/attack/up
+  rotate: false
+  xy: 323, 414
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/earth_spirit/field/cast/up
+  rotate: false
+  xy: 323, 414
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/earth_spirit/field/dead/up
+  rotate: false
+  xy: 323, 414
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/earth_spirit/field/jump/up
+  rotate: false
+  xy: 323, 414
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/earth_spirit/field/ouch/up
+  rotate: false
+  xy: 323, 414
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/erik_teh_red/field/attack/up
+  rotate: false
+  xy: 323, 414
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/erik_teh_red/field/cast/up
+  rotate: false
+  xy: 323, 414
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/erik_teh_red/field/dead/up
+  rotate: false
+  xy: 323, 414
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/erik_teh_red/field/jump/up
+  rotate: false
+  xy: 323, 414
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/erik_teh_red/field/ouch/up
+  rotate: false
+  xy: 323, 414
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/erik_teh_red/field/stand/up
+  rotate: false
+  xy: 323, 414
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/erik_teh_red/field/walk/up
+  rotate: false
+  xy: 323, 414
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
 characters/fire_spirit/field/attack/up
   rotate: false
   xy: 323, 414
@@ -1572,6 +7123,13 @@ characters/fire_spirit/field/cast/up
   orig: 39, 52
   offset: 0, 0
   index: 1
+characters/fire_spirit/field/dead/up
+  rotate: false
+  xy: 323, 414
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
 characters/fire_spirit/field/jump/up
   rotate: false
   xy: 323, 414
@@ -1580,6 +7138,265 @@ characters/fire_spirit/field/jump/up
   offset: 0, 0
   index: 1
 characters/fire_spirit/field/ouch/up
+  rotate: false
+  xy: 323, 414
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/gladia_macabre/field/attack/up
+  rotate: false
+  xy: 323, 414
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/gladia_macabre/field/cast/up
+  rotate: false
+  xy: 323, 414
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/gladia_macabre/field/dead/up
+  rotate: false
+  xy: 323, 414
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/gladia_macabre/field/jump/up
+  rotate: false
+  xy: 323, 414
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/gladia_macabre/field/ouch/up
+  rotate: false
+  xy: 323, 414
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/gladia_macabre/field/stand/up
+  rotate: false
+  xy: 323, 414
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/gladia_macabre/field/walk/up
+  rotate: false
+  xy: 323, 414
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/karin_edikt/field/attack/up
+  rotate: false
+  xy: 323, 414
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/karin_edikt/field/cast/up
+  rotate: false
+  xy: 323, 414
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/karin_edikt/field/dead/up
+  rotate: false
+  xy: 323, 414
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/karin_edikt/field/jump/up
+  rotate: false
+  xy: 323, 414
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/karin_edikt/field/ouch/up
+  rotate: false
+  xy: 323, 414
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/karin_edikt/field/stand/up
+  rotate: false
+  xy: 323, 414
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/karin_edikt/field/walk/up
+  rotate: false
+  xy: 323, 414
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/lavender_katz/field/attack/up
+  rotate: false
+  xy: 323, 414
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/lavender_katz/field/cast/up
+  rotate: false
+  xy: 323, 414
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/lavender_katz/field/dead/up
+  rotate: false
+  xy: 323, 414
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/lavender_katz/field/jump/up
+  rotate: false
+  xy: 323, 414
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/lavender_katz/field/ouch/up
+  rotate: false
+  xy: 323, 414
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/naira_arum/field/attack/up
+  rotate: false
+  xy: 323, 414
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/naira_arum/field/cast/up
+  rotate: false
+  xy: 323, 414
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/naira_arum/field/dead/up
+  rotate: false
+  xy: 323, 414
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/naira_arum/field/jump/up
+  rotate: false
+  xy: 323, 414
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/naira_arum/field/ouch/up
+  rotate: false
+  xy: 323, 414
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/orly_rylo/field/attack/up
+  rotate: false
+  xy: 323, 414
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/orly_rylo/field/cast/up
+  rotate: false
+  xy: 323, 414
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/orly_rylo/field/jump/up
+  rotate: false
+  xy: 323, 414
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/orly_rylo/field/ouch/up
+  rotate: false
+  xy: 323, 414
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/orly_rylo/field/stand/up
+  rotate: false
+  xy: 323, 414
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/orly_rylo/field/walk/up
+  rotate: false
+  xy: 323, 414
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/veather_mann/field/attack/up
+  rotate: false
+  xy: 323, 414
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/veather_mann/field/cast/up
+  rotate: false
+  xy: 323, 414
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/veather_mann/field/dead/up
+  rotate: false
+  xy: 323, 414
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/veather_mann/field/jump/up
+  rotate: false
+  xy: 323, 414
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/veather_mann/field/ouch/up
+  rotate: false
+  xy: 323, 414
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/veather_mann/field/stand/up
+  rotate: false
+  xy: 323, 414
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/veather_mann/field/walk/up
   rotate: false
   xy: 323, 414
   size: 39, 52
@@ -1621,7 +7438,42 @@ characters/water_spirit/field/ouch/up
   orig: 39, 52
   offset: 0, 0
   index: 1
-characters/fire_spirit/field/dead/up
+characters/wind_spirit/field/attack/up
+  rotate: false
+  xy: 323, 414
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/wind_spirit/field/cast/up
+  rotate: false
+  xy: 323, 414
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/wind_spirit/field/dead/up
+  rotate: false
+  xy: 323, 414
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/wind_spirit/field/jump/up
+  rotate: false
+  xy: 323, 414
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/wind_spirit/field/ouch/up
+  rotate: false
+  xy: 323, 414
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 1
+characters/orly_rylo/field/dead/up
   rotate: false
   xy: 830, 668
   size: 39, 52
@@ -1670,6 +7522,83 @@ characters/darcy_alma/field/walk/up
   orig: 39, 52
   offset: 0, 0
   index: 2
+characters/earth_spirit/field/attack/up
+  rotate: false
+  xy: 830, 668
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/earth_spirit/field/cast/up
+  rotate: false
+  xy: 830, 668
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/earth_spirit/field/dead/up
+  rotate: false
+  xy: 830, 668
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/earth_spirit/field/jump/up
+  rotate: false
+  xy: 830, 668
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/earth_spirit/field/ouch/up
+  rotate: false
+  xy: 830, 668
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/erik_teh_red/field/attack/up
+  rotate: false
+  xy: 830, 668
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/erik_teh_red/field/cast/up
+  rotate: false
+  xy: 830, 668
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/erik_teh_red/field/dead/up
+  rotate: false
+  xy: 830, 668
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/erik_teh_red/field/jump/up
+  rotate: false
+  xy: 830, 668
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/erik_teh_red/field/ouch/up
+  rotate: false
+  xy: 830, 668
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/erik_teh_red/field/walk/up
+  rotate: false
+  xy: 830, 668
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
 characters/fire_spirit/field/attack/up
   rotate: false
   xy: 830, 668
@@ -1684,6 +7613,13 @@ characters/fire_spirit/field/cast/up
   orig: 39, 52
   offset: 0, 0
   index: 2
+characters/fire_spirit/field/dead/up
+  rotate: false
+  xy: 830, 668
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
 characters/fire_spirit/field/jump/up
   rotate: false
   xy: 830, 668
@@ -1692,6 +7628,237 @@ characters/fire_spirit/field/jump/up
   offset: 0, 0
   index: 2
 characters/fire_spirit/field/ouch/up
+  rotate: false
+  xy: 830, 668
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/gladia_macabre/field/attack/up
+  rotate: false
+  xy: 830, 668
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/gladia_macabre/field/cast/up
+  rotate: false
+  xy: 830, 668
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/gladia_macabre/field/dead/up
+  rotate: false
+  xy: 830, 668
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/gladia_macabre/field/jump/up
+  rotate: false
+  xy: 830, 668
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/gladia_macabre/field/ouch/up
+  rotate: false
+  xy: 830, 668
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/gladia_macabre/field/walk/up
+  rotate: false
+  xy: 830, 668
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/karin_edikt/field/attack/up
+  rotate: false
+  xy: 830, 668
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/karin_edikt/field/cast/up
+  rotate: false
+  xy: 830, 668
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/karin_edikt/field/dead/up
+  rotate: false
+  xy: 830, 668
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/karin_edikt/field/jump/up
+  rotate: false
+  xy: 830, 668
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/karin_edikt/field/ouch/up
+  rotate: false
+  xy: 830, 668
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/karin_edikt/field/walk/up
+  rotate: false
+  xy: 830, 668
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/lavender_katz/field/attack/up
+  rotate: false
+  xy: 830, 668
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/lavender_katz/field/cast/up
+  rotate: false
+  xy: 830, 668
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/lavender_katz/field/dead/up
+  rotate: false
+  xy: 830, 668
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/lavender_katz/field/jump/up
+  rotate: false
+  xy: 830, 668
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/lavender_katz/field/ouch/up
+  rotate: false
+  xy: 830, 668
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/naira_arum/field/attack/up
+  rotate: false
+  xy: 830, 668
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/naira_arum/field/cast/up
+  rotate: false
+  xy: 830, 668
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/naira_arum/field/dead/up
+  rotate: false
+  xy: 830, 668
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/naira_arum/field/jump/up
+  rotate: false
+  xy: 830, 668
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/naira_arum/field/ouch/up
+  rotate: false
+  xy: 830, 668
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/orly_rylo/field/attack/up
+  rotate: false
+  xy: 830, 668
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/orly_rylo/field/cast/up
+  rotate: false
+  xy: 830, 668
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/orly_rylo/field/jump/up
+  rotate: false
+  xy: 830, 668
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/orly_rylo/field/ouch/up
+  rotate: false
+  xy: 830, 668
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/orly_rylo/field/walk/up
+  rotate: false
+  xy: 830, 668
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/veather_mann/field/attack/up
+  rotate: false
+  xy: 830, 668
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/veather_mann/field/cast/up
+  rotate: false
+  xy: 830, 668
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/veather_mann/field/dead/up
+  rotate: false
+  xy: 830, 668
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/veather_mann/field/jump/up
+  rotate: false
+  xy: 830, 668
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/veather_mann/field/ouch/up
+  rotate: false
+  xy: 830, 668
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/veather_mann/field/walk/up
   rotate: false
   xy: 830, 668
   size: 39, 52
@@ -1733,7 +7900,42 @@ characters/water_spirit/field/ouch/up
   orig: 39, 52
   offset: 0, 0
   index: 2
-characters/fire_spirit/field/dead/up
+characters/wind_spirit/field/attack/up
+  rotate: false
+  xy: 830, 668
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/wind_spirit/field/cast/up
+  rotate: false
+  xy: 830, 668
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/wind_spirit/field/dead/up
+  rotate: false
+  xy: 830, 668
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/wind_spirit/field/jump/up
+  rotate: false
+  xy: 830, 668
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/wind_spirit/field/ouch/up
+  rotate: false
+  xy: 830, 668
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 2
+characters/orly_rylo/field/dead/up
   rotate: false
   xy: 830, 614
   size: 39, 52
@@ -1782,6 +7984,83 @@ characters/darcy_alma/field/walk/up
   orig: 39, 52
   offset: 0, 0
   index: 3
+characters/earth_spirit/field/attack/up
+  rotate: false
+  xy: 830, 614
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/earth_spirit/field/cast/up
+  rotate: false
+  xy: 830, 614
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/earth_spirit/field/dead/up
+  rotate: false
+  xy: 830, 614
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/earth_spirit/field/jump/up
+  rotate: false
+  xy: 830, 614
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/earth_spirit/field/ouch/up
+  rotate: false
+  xy: 830, 614
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/erik_teh_red/field/attack/up
+  rotate: false
+  xy: 830, 614
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/erik_teh_red/field/cast/up
+  rotate: false
+  xy: 830, 614
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/erik_teh_red/field/dead/up
+  rotate: false
+  xy: 830, 614
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/erik_teh_red/field/jump/up
+  rotate: false
+  xy: 830, 614
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/erik_teh_red/field/ouch/up
+  rotate: false
+  xy: 830, 614
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/erik_teh_red/field/walk/up
+  rotate: false
+  xy: 830, 614
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
 characters/fire_spirit/field/attack/up
   rotate: false
   xy: 830, 614
@@ -1796,6 +8075,13 @@ characters/fire_spirit/field/cast/up
   orig: 39, 52
   offset: 0, 0
   index: 3
+characters/fire_spirit/field/dead/up
+  rotate: false
+  xy: 830, 614
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
 characters/fire_spirit/field/jump/up
   rotate: false
   xy: 830, 614
@@ -1804,6 +8090,237 @@ characters/fire_spirit/field/jump/up
   offset: 0, 0
   index: 3
 characters/fire_spirit/field/ouch/up
+  rotate: false
+  xy: 830, 614
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/gladia_macabre/field/attack/up
+  rotate: false
+  xy: 830, 614
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/gladia_macabre/field/cast/up
+  rotate: false
+  xy: 830, 614
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/gladia_macabre/field/dead/up
+  rotate: false
+  xy: 830, 614
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/gladia_macabre/field/jump/up
+  rotate: false
+  xy: 830, 614
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/gladia_macabre/field/ouch/up
+  rotate: false
+  xy: 830, 614
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/gladia_macabre/field/walk/up
+  rotate: false
+  xy: 830, 614
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/karin_edikt/field/attack/up
+  rotate: false
+  xy: 830, 614
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/karin_edikt/field/cast/up
+  rotate: false
+  xy: 830, 614
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/karin_edikt/field/dead/up
+  rotate: false
+  xy: 830, 614
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/karin_edikt/field/jump/up
+  rotate: false
+  xy: 830, 614
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/karin_edikt/field/ouch/up
+  rotate: false
+  xy: 830, 614
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/karin_edikt/field/walk/up
+  rotate: false
+  xy: 830, 614
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/lavender_katz/field/attack/up
+  rotate: false
+  xy: 830, 614
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/lavender_katz/field/cast/up
+  rotate: false
+  xy: 830, 614
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/lavender_katz/field/dead/up
+  rotate: false
+  xy: 830, 614
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/lavender_katz/field/jump/up
+  rotate: false
+  xy: 830, 614
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/lavender_katz/field/ouch/up
+  rotate: false
+  xy: 830, 614
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/naira_arum/field/attack/up
+  rotate: false
+  xy: 830, 614
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/naira_arum/field/cast/up
+  rotate: false
+  xy: 830, 614
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/naira_arum/field/dead/up
+  rotate: false
+  xy: 830, 614
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/naira_arum/field/jump/up
+  rotate: false
+  xy: 830, 614
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/naira_arum/field/ouch/up
+  rotate: false
+  xy: 830, 614
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/orly_rylo/field/attack/up
+  rotate: false
+  xy: 830, 614
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/orly_rylo/field/cast/up
+  rotate: false
+  xy: 830, 614
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/orly_rylo/field/jump/up
+  rotate: false
+  xy: 830, 614
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/orly_rylo/field/ouch/up
+  rotate: false
+  xy: 830, 614
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/orly_rylo/field/walk/up
+  rotate: false
+  xy: 830, 614
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/veather_mann/field/attack/up
+  rotate: false
+  xy: 830, 614
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/veather_mann/field/cast/up
+  rotate: false
+  xy: 830, 614
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/veather_mann/field/dead/up
+  rotate: false
+  xy: 830, 614
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/veather_mann/field/jump/up
+  rotate: false
+  xy: 830, 614
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/veather_mann/field/ouch/up
+  rotate: false
+  xy: 830, 614
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/veather_mann/field/walk/up
   rotate: false
   xy: 830, 614
   size: 39, 52
@@ -1845,7 +8362,42 @@ characters/water_spirit/field/ouch/up
   orig: 39, 52
   offset: 0, 0
   index: 3
-characters/fire_spirit/field/dead/up
+characters/wind_spirit/field/attack/up
+  rotate: false
+  xy: 830, 614
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/wind_spirit/field/cast/up
+  rotate: false
+  xy: 830, 614
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/wind_spirit/field/dead/up
+  rotate: false
+  xy: 830, 614
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/wind_spirit/field/jump/up
+  rotate: false
+  xy: 830, 614
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/wind_spirit/field/ouch/up
+  rotate: false
+  xy: 830, 614
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 3
+characters/orly_rylo/field/dead/up
   rotate: false
   xy: 871, 680
   size: 39, 52
@@ -1894,6 +8446,83 @@ characters/darcy_alma/field/walk/up
   orig: 39, 52
   offset: 0, 0
   index: 4
+characters/earth_spirit/field/attack/up
+  rotate: false
+  xy: 871, 680
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/earth_spirit/field/cast/up
+  rotate: false
+  xy: 871, 680
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/earth_spirit/field/dead/up
+  rotate: false
+  xy: 871, 680
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/earth_spirit/field/jump/up
+  rotate: false
+  xy: 871, 680
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/earth_spirit/field/ouch/up
+  rotate: false
+  xy: 871, 680
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/erik_teh_red/field/attack/up
+  rotate: false
+  xy: 871, 680
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/erik_teh_red/field/cast/up
+  rotate: false
+  xy: 871, 680
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/erik_teh_red/field/dead/up
+  rotate: false
+  xy: 871, 680
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/erik_teh_red/field/jump/up
+  rotate: false
+  xy: 871, 680
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/erik_teh_red/field/ouch/up
+  rotate: false
+  xy: 871, 680
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/erik_teh_red/field/walk/up
+  rotate: false
+  xy: 871, 680
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
 characters/fire_spirit/field/attack/up
   rotate: false
   xy: 871, 680
@@ -1908,6 +8537,13 @@ characters/fire_spirit/field/cast/up
   orig: 39, 52
   offset: 0, 0
   index: 4
+characters/fire_spirit/field/dead/up
+  rotate: false
+  xy: 871, 680
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
 characters/fire_spirit/field/jump/up
   rotate: false
   xy: 871, 680
@@ -1916,6 +8552,237 @@ characters/fire_spirit/field/jump/up
   offset: 0, 0
   index: 4
 characters/fire_spirit/field/ouch/up
+  rotate: false
+  xy: 871, 680
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/gladia_macabre/field/attack/up
+  rotate: false
+  xy: 871, 680
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/gladia_macabre/field/cast/up
+  rotate: false
+  xy: 871, 680
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/gladia_macabre/field/dead/up
+  rotate: false
+  xy: 871, 680
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/gladia_macabre/field/jump/up
+  rotate: false
+  xy: 871, 680
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/gladia_macabre/field/ouch/up
+  rotate: false
+  xy: 871, 680
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/gladia_macabre/field/walk/up
+  rotate: false
+  xy: 871, 680
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/karin_edikt/field/attack/up
+  rotate: false
+  xy: 871, 680
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/karin_edikt/field/cast/up
+  rotate: false
+  xy: 871, 680
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/karin_edikt/field/dead/up
+  rotate: false
+  xy: 871, 680
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/karin_edikt/field/jump/up
+  rotate: false
+  xy: 871, 680
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/karin_edikt/field/ouch/up
+  rotate: false
+  xy: 871, 680
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/karin_edikt/field/walk/up
+  rotate: false
+  xy: 871, 680
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/lavender_katz/field/attack/up
+  rotate: false
+  xy: 871, 680
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/lavender_katz/field/cast/up
+  rotate: false
+  xy: 871, 680
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/lavender_katz/field/dead/up
+  rotate: false
+  xy: 871, 680
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/lavender_katz/field/jump/up
+  rotate: false
+  xy: 871, 680
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/lavender_katz/field/ouch/up
+  rotate: false
+  xy: 871, 680
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/naira_arum/field/attack/up
+  rotate: false
+  xy: 871, 680
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/naira_arum/field/cast/up
+  rotate: false
+  xy: 871, 680
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/naira_arum/field/dead/up
+  rotate: false
+  xy: 871, 680
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/naira_arum/field/jump/up
+  rotate: false
+  xy: 871, 680
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/naira_arum/field/ouch/up
+  rotate: false
+  xy: 871, 680
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/orly_rylo/field/attack/up
+  rotate: false
+  xy: 871, 680
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/orly_rylo/field/cast/up
+  rotate: false
+  xy: 871, 680
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/orly_rylo/field/jump/up
+  rotate: false
+  xy: 871, 680
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/orly_rylo/field/ouch/up
+  rotate: false
+  xy: 871, 680
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/orly_rylo/field/walk/up
+  rotate: false
+  xy: 871, 680
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/veather_mann/field/attack/up
+  rotate: false
+  xy: 871, 680
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/veather_mann/field/cast/up
+  rotate: false
+  xy: 871, 680
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/veather_mann/field/dead/up
+  rotate: false
+  xy: 871, 680
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/veather_mann/field/jump/up
+  rotate: false
+  xy: 871, 680
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/veather_mann/field/ouch/up
+  rotate: false
+  xy: 871, 680
+  size: 39, 52
+  orig: 39, 52
+  offset: 0, 0
+  index: 4
+characters/veather_mann/field/walk/up
   rotate: false
   xy: 871, 680
   size: 39, 52
@@ -1957,216 +8824,48 @@ characters/water_spirit/field/ouch/up
   orig: 39, 52
   offset: 0, 0
   index: 4
-characters/fire_spirit/field/walk/down
+characters/wind_spirit/field/attack/up
   rotate: false
-  xy: 704, 816
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 1
-characters/fire_spirit/field/stand/down
-  rotate: false
-  xy: 704, 816
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 1
-characters/fire_spirit/field/walk/down
-  rotate: false
-  xy: 704, 816
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 3
-characters/fire_spirit/field/walk/down
-  rotate: false
-  xy: 1826, 1576
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 2
-characters/fire_spirit/field/walk/down
-  rotate: false
-  xy: 770, 854
-  size: 64, 64
-  orig: 64, 64
+  xy: 871, 680
+  size: 39, 52
+  orig: 39, 52
   offset: 0, 0
   index: 4
-characters/fire_spirit/field/walk/left
+characters/wind_spirit/field/cast/up
   rotate: false
-  xy: 1958, 1508
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 1
-characters/fire_spirit/field/stand/left
-  rotate: false
-  xy: 1958, 1508
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 1
-characters/fire_spirit/field/walk/left
-  rotate: false
-  xy: 1958, 1508
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 3
-characters/water_spirit/field/stand/left
-  rotate: false
-  xy: 1958, 1508
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 1
-characters/water_spirit/field/walk/left
-  rotate: false
-  xy: 1958, 1508
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 1
-characters/water_spirit/field/walk/left
-  rotate: false
-  xy: 1958, 1508
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 3
-characters/fire_spirit/field/walk/left
-  rotate: false
-  xy: 770, 788
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 2
-characters/water_spirit/field/walk/left
-  rotate: false
-  xy: 770, 788
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 2
-characters/fire_spirit/field/walk/left
-  rotate: false
-  xy: 1100, 882
-  size: 64, 64
-  orig: 64, 64
+  xy: 871, 680
+  size: 39, 52
+  orig: 39, 52
   offset: 0, 0
   index: 4
-characters/water_spirit/field/walk/left
+characters/wind_spirit/field/dead/up
   rotate: false
-  xy: 1100, 882
-  size: 64, 64
-  orig: 64, 64
+  xy: 871, 680
+  size: 39, 52
+  orig: 39, 52
   offset: 0, 0
   index: 4
-characters/fire_spirit/field/walk/right
+characters/wind_spirit/field/jump/up
   rotate: false
-  xy: 508, 565
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 1
-characters/fire_spirit/field/stand/right
-  rotate: false
-  xy: 508, 565
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 1
-characters/fire_spirit/field/walk/right
-  rotate: false
-  xy: 508, 565
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 3
-characters/water_spirit/field/stand/right
-  rotate: false
-  xy: 508, 565
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 1
-characters/water_spirit/field/walk/right
-  rotate: false
-  xy: 508, 565
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 3
-characters/water_spirit/field/walk/right
-  rotate: false
-  xy: 508, 565
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 1
-characters/fire_spirit/field/walk/right
-  rotate: false
-  xy: 1166, 762
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 2
-characters/water_spirit/field/walk/right
-  rotate: false
-  xy: 1166, 762
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 2
-characters/fire_spirit/field/walk/right
-  rotate: false
-  xy: 710, 682
-  size: 64, 64
-  orig: 64, 64
+  xy: 871, 680
+  size: 39, 52
+  orig: 39, 52
   offset: 0, 0
   index: 4
-characters/water_spirit/field/walk/right
+characters/wind_spirit/field/ouch/up
   rotate: false
-  xy: 710, 682
-  size: 64, 64
-  orig: 64, 64
+  xy: 871, 680
+  size: 39, 52
+  orig: 39, 52
   offset: 0, 0
   index: 4
-characters/fire_spirit/field/walk/up
+characters/veather_mann/battler/battler
   rotate: false
-  xy: 1854, 1378
-  size: 64, 64
-  orig: 64, 64
+  xy: 1550, 1732
+  size: 278, 314
+  orig: 278, 314
   offset: 0, 0
   index: 1
-characters/fire_spirit/field/stand/up
-  rotate: false
-  xy: 1854, 1378
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 1
-characters/fire_spirit/field/walk/up
-  rotate: false
-  xy: 1854, 1378
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 3
-characters/fire_spirit/field/walk/up
-  rotate: false
-  xy: 412, 489
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 2
-characters/fire_spirit/field/walk/up
-  rotate: false
-  xy: 574, 558
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 4
 characters/gladia_macabre/battler/battler
   rotate: false
   xy: 1550, 1732
@@ -2174,23 +8873,51 @@ characters/gladia_macabre/battler/battler
   orig: 278, 314
   offset: 0, 0
   index: 1
-characters/gladia_macabre/face/angry
+characters/veather_mann/face/angry
   rotate: false
-  xy: 56, 2
+  xy: 110, 2
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
   index: 1
-characters/gladia_macabre/face/normal
+characters/gladia_macabre/face/angry
   rotate: false
-  xy: 1722, 1390
+  xy: 110, 2
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 1
+characters/veather_mann/face/normal
+  rotate: false
+  xy: 1722, 1456
   size: 64, 64
   orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/gladia_macabre/face/normal
+  rotate: false
+  xy: 1722, 1456
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+characters/veather_mann/face/ouch
+  rotate: false
+  xy: 1430, 716
+  size: 52, 52
+  orig: 52, 52
   offset: 0, 0
   index: 1
 characters/gladia_macabre/face/ouch
   rotate: false
   xy: 1430, 716
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 1
+characters/veather_mann/face/sad
+  rotate: false
+  xy: 1564, 1310
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
@@ -2202,230 +8929,6 @@ characters/gladia_macabre/face/sad
   orig: 52, 52
   offset: 0, 0
   index: 1
-characters/magia_karnedit/battler/battler
-  rotate: false
-  xy: 2, 672
-  size: 142, 274
-  orig: 142, 274
-  offset: 0, 0
-  index: 1
-characters/magia_karnedit/face/angry
-  rotate: false
-  xy: 110, 2
-  size: 52, 52
-  orig: 52, 52
-  offset: 0, 0
-  index: 1
-characters/magia_karnedit/face/normal
-  rotate: false
-  xy: 1430, 770
-  size: 52, 52
-  orig: 52, 52
-  offset: 0, 0
-  index: 1
-characters/magia_karnedit/face/ouch
-  rotate: false
-  xy: 1484, 716
-  size: 52, 52
-  orig: 52, 52
-  offset: 0, 0
-  index: 1
-characters/magia_karnedit/face/sad
-  rotate: false
-  xy: 1618, 1310
-  size: 52, 52
-  orig: 52, 52
-  offset: 0, 0
-  index: 1
-characters/protox_toxorp/Battler/battler
-  rotate: false
-  xy: 2, 425
-  size: 118, 245
-  orig: 118, 245
-  offset: 0, 0
-  index: 1
-characters/protox_toxorp/Face/angry
-  rotate: false
-  xy: 1166, 894
-  size: 52, 52
-  orig: 52, 52
-  offset: 0, 0
-  index: 1
-characters/protox_toxorp/Face/happy
-  rotate: false
-  xy: 1426, 878
-  size: 52, 52
-  orig: 52, 52
-  offset: 0, 0
-  index: 1
-characters/protox_toxorp/Face/ouch
-  rotate: false
-  xy: 269, 448
-  size: 52, 52
-  orig: 52, 52
-  offset: 0, 0
-  index: 1
-characters/water_spirit/face/normal
-  rotate: false
-  xy: 192, 306
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 1
-characters/water_spirit/field/attack/down
-  rotate: false
-  xy: 1760, 1600
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 1
-characters/water_spirit/field/attack/down
-  rotate: false
-  xy: 1892, 1642
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 2
-characters/water_spirit/field/attack/down
-  rotate: false
-  xy: 1958, 1574
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 3
-characters/water_spirit/field/attack/down
-  rotate: false
-  xy: 836, 854
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 4
-characters/water_spirit/field/attack/left
-  rotate: false
-  xy: 152, 200
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 1
-characters/water_spirit/field/attack/left
-  rotate: false
-  xy: 836, 788
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 2
-characters/water_spirit/field/attack/left
-  rotate: false
-  xy: 968, 788
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 3
-characters/water_spirit/field/attack/left
-  rotate: false
-  xy: 1100, 816
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 4
-characters/water_spirit/field/attack/right
-  rotate: false
-  xy: 578, 724
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 1
-characters/water_spirit/field/attack/right
-  rotate: false
-  xy: 1232, 766
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 2
-characters/water_spirit/field/attack/right
-  rotate: false
-  xy: 1298, 744
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 3
-characters/water_spirit/field/attack/right
-  rotate: false
-  xy: 1788, 1444
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 4
-characters/water_spirit/field/walk/down
-  rotate: false
-  xy: 1760, 1534
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 1
-characters/water_spirit/field/stand/down
-  rotate: false
-  xy: 1760, 1534
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 1
-characters/water_spirit/field/walk/down
-  rotate: false
-  xy: 1760, 1534
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 3
-characters/water_spirit/field/walk/down
-  rotate: false
-  xy: 1892, 1576
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 2
-characters/water_spirit/field/walk/down
-  rotate: false
-  xy: 902, 854
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 4
-characters/water_spirit/field/walk/up
-  rotate: false
-  xy: 1920, 1442
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 1
-characters/water_spirit/field/stand/up
-  rotate: false
-  xy: 1920, 1442
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 1
-characters/water_spirit/field/walk/up
-  rotate: false
-  xy: 1920, 1442
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 3
-characters/water_spirit/field/walk/up
-  rotate: false
-  xy: 478, 489
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 2
-characters/water_spirit/field/walk/up
-  rotate: false
-  xy: 644, 604
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 4
 event/chest/field/custom/down
   rotate: false
   xy: 86, 391
@@ -2776,6 +9279,27 @@ items/eyekey/icon
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
+  index: 4
+items/eyekey/icon
+  rotate: false
+  xy: 323, 468
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 12
+items/eyekey/icon
+  rotate: false
+  xy: 323, 468
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 6
+items/eyekey/icon
+  rotate: false
+  xy: 323, 468
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
   index: 2
 items/eyekey/icon
   rotate: false
@@ -2790,7 +9314,21 @@ items/eyekey/icon
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
-  index: 6
+  index: 9
+items/eyekey/icon
+  rotate: false
+  xy: 323, 468
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 8
+items/eyekey/icon
+  rotate: false
+  xy: 323, 468
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 5
 items/eyekey/icon
   rotate: false
   xy: 323, 468
@@ -2811,42 +9349,7 @@ items/eyekey/icon
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
-  index: 5
-items/eyekey/icon
-  rotate: false
-  xy: 323, 468
-  size: 32, 32
-  orig: 32, 32
-  offset: 0, 0
-  index: 8
-items/eyekey/icon
-  rotate: false
-  xy: 323, 468
-  size: 32, 32
-  orig: 32, 32
-  offset: 0, 0
-  index: 9
-items/eyekey/icon
-  rotate: false
-  xy: 323, 468
-  size: 32, 32
-  orig: 32, 32
-  offset: 0, 0
-  index: 12
-items/eyekey/icon
-  rotate: false
-  xy: 323, 468
-  size: 32, 32
-  orig: 32, 32
-  offset: 0, 0
   index: 7
-items/eyekey/icon
-  rotate: false
-  xy: 323, 468
-  size: 32, 32
-  orig: 32, 32
-  offset: 0, 0
-  index: 4
 items/eyekey/icon
   rotate: false
   xy: 912, 700
@@ -2958,13 +9461,6 @@ monsters/eyesore/field/attack/left
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 4
-monsters/eyesore/field/attack/left
-  rotate: false
-  xy: 704, 882
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
   index: 7
 monsters/eyesore/field/attack/left
   rotate: false
@@ -2979,6 +9475,13 @@ monsters/eyesore/field/attack/left
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
+  index: 4
+monsters/eyesore/field/attack/left
+  rotate: false
+  xy: 704, 882
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
   index: 8
 monsters/eyesore/field/cast/left
   rotate: false
@@ -2986,7 +9489,7 @@ monsters/eyesore/field/cast/left
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 4
+  index: 7
 monsters/eyesore/field/cast/left
   rotate: false
   xy: 704, 882
@@ -3007,14 +9510,14 @@ monsters/eyesore/field/cast/left
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 2
+  index: 4
 monsters/eyesore/field/cast/left
   rotate: false
   xy: 704, 882
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 7
+  index: 2
 monsters/eyesore/field/dead/left
   rotate: false
   xy: 704, 882
@@ -3028,7 +9531,21 @@ monsters/eyesore/field/dead/left
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
+  index: 7
+monsters/eyesore/field/dead/left
+  rotate: false
+  xy: 704, 882
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
   index: 8
+monsters/eyesore/field/dead/left
+  rotate: false
+  xy: 704, 882
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
 monsters/eyesore/field/dead/left
   rotate: false
   xy: 704, 882
@@ -3036,41 +9553,6 @@ monsters/eyesore/field/dead/left
   orig: 64, 64
   offset: 0, 0
   index: 2
-monsters/eyesore/field/dead/left
-  rotate: false
-  xy: 704, 882
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 7
-monsters/eyesore/field/dead/left
-  rotate: false
-  xy: 704, 882
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 4
-monsters/eyesore/field/jump/left
-  rotate: false
-  xy: 704, 882
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 8
-monsters/eyesore/field/jump/left
-  rotate: false
-  xy: 704, 882
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 4
-monsters/eyesore/field/jump/left
-  rotate: false
-  xy: 704, 882
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 7
 monsters/eyesore/field/jump/left
   rotate: false
   xy: 704, 882
@@ -3085,6 +9567,34 @@ monsters/eyesore/field/jump/left
   orig: 64, 64
   offset: 0, 0
   index: 3
+monsters/eyesore/field/jump/left
+  rotate: false
+  xy: 704, 882
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 7
+monsters/eyesore/field/jump/left
+  rotate: false
+  xy: 704, 882
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+monsters/eyesore/field/jump/left
+  rotate: false
+  xy: 704, 882
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 8
+monsters/eyesore/field/ouch/left
+  rotate: false
+  xy: 704, 882
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 8
 monsters/eyesore/field/ouch/left
   rotate: false
   xy: 704, 882
@@ -3098,50 +9608,15 @@ monsters/eyesore/field/ouch/left
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 2
-monsters/eyesore/field/ouch/left
-  rotate: false
-  xy: 704, 882
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 3
-monsters/eyesore/field/ouch/left
-  rotate: false
-  xy: 704, 882
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 8
-monsters/eyesore/field/ouch/left
-  rotate: false
-  xy: 704, 882
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
   index: 7
-monsters/eyesore/field/stand/left
-  rotate: false
-  xy: 704, 882
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 8
-monsters/eyesore/field/stand/left
+monsters/eyesore/field/ouch/left
   rotate: false
   xy: 704, 882
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 2
-monsters/eyesore/field/stand/left
-  rotate: false
-  xy: 704, 882
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 7
-monsters/eyesore/field/stand/left
+monsters/eyesore/field/ouch/left
   rotate: false
   xy: 704, 882
   size: 64, 64
@@ -3155,6 +9630,34 @@ monsters/eyesore/field/stand/left
   orig: 64, 64
   offset: 0, 0
   index: 4
+monsters/eyesore/field/stand/left
+  rotate: false
+  xy: 704, 882
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
+monsters/eyesore/field/stand/left
+  rotate: false
+  xy: 704, 882
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+monsters/eyesore/field/stand/left
+  rotate: false
+  xy: 704, 882
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 7
+monsters/eyesore/field/stand/left
+  rotate: false
+  xy: 704, 882
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 8
 monsters/eyesore/field/walk/left
   rotate: false
   xy: 704, 882
@@ -3162,13 +9665,6 @@ monsters/eyesore/field/walk/left
   orig: 64, 64
   offset: 0, 0
   index: 7
-monsters/eyesore/field/walk/left
-  rotate: false
-  xy: 704, 882
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 3
 monsters/eyesore/field/walk/left
   rotate: false
   xy: 704, 882
@@ -3184,6 +9680,27 @@ monsters/eyesore/field/walk/left
   offset: 0, 0
   index: 2
 monsters/eyesore/field/walk/left
+  rotate: false
+  xy: 704, 882
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+monsters/eyesore/field/walk/left
+  rotate: false
+  xy: 704, 882
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
+monsters/mouthsore/field/dead/left
+  rotate: false
+  xy: 704, 882
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 8
+monsters/mouthsore/field/dead/left
   rotate: false
   xy: 704, 882
   size: 64, 64
@@ -3203,13 +9720,6 @@ monsters/mouthsore/field/dead/left
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 3
-monsters/mouthsore/field/dead/left
-  rotate: false
-  xy: 704, 882
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
   index: 7
 monsters/mouthsore/field/dead/left
   rotate: false
@@ -3217,8 +9727,22 @@ monsters/mouthsore/field/dead/left
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
+  index: 3
+monsters/mouthsore/field/jump/left
+  rotate: false
+  xy: 704, 882
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
   index: 4
-monsters/mouthsore/field/dead/left
+monsters/mouthsore/field/jump/left
+  rotate: false
+  xy: 704, 882
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
+monsters/mouthsore/field/jump/left
   rotate: false
   xy: 704, 882
   size: 64, 64
@@ -3231,7 +9755,7 @@ monsters/mouthsore/field/jump/left
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 3
+  index: 7
 monsters/mouthsore/field/jump/left
   rotate: false
   xy: 704, 882
@@ -3239,27 +9763,6 @@ monsters/mouthsore/field/jump/left
   orig: 64, 64
   offset: 0, 0
   index: 2
-monsters/mouthsore/field/jump/left
-  rotate: false
-  xy: 704, 882
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 4
-monsters/mouthsore/field/jump/left
-  rotate: false
-  xy: 704, 882
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 7
-monsters/mouthsore/field/jump/left
-  rotate: false
-  xy: 704, 882
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 8
 monsters/eyesore/Eyesoreback
   rotate: false
   xy: 1760, 1666
@@ -3273,7 +9776,7 @@ monsters/eyesore/field/attack/up
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 2
+  index: 8
 monsters/eyesore/field/attack/up
   rotate: false
   xy: 1760, 1666
@@ -3287,13 +9790,20 @@ monsters/eyesore/field/attack/up
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 9
+  index: 2
 monsters/eyesore/field/attack/up
   rotate: false
   xy: 1760, 1666
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
+  index: 9
+monsters/eyesore/field/cast/up
+  rotate: false
+  xy: 1760, 1666
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
   index: 8
 monsters/eyesore/field/cast/up
   rotate: false
@@ -3301,7 +9811,7 @@ monsters/eyesore/field/cast/up
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 9
+  index: 2
 monsters/eyesore/field/cast/up
   rotate: false
   xy: 1760, 1666
@@ -3315,21 +9825,14 @@ monsters/eyesore/field/cast/up
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 2
-monsters/eyesore/field/cast/up
-  rotate: false
-  xy: 1760, 1666
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 8
+  index: 9
 monsters/eyesore/field/dead/up
   rotate: false
   xy: 1760, 1666
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 2
+  index: 8
 monsters/eyesore/field/dead/up
   rotate: false
   xy: 1760, 1666
@@ -3350,21 +9853,14 @@ monsters/eyesore/field/dead/up
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 8
-monsters/eyesore/field/jump/up
-  rotate: false
-  xy: 1760, 1666
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 8
-monsters/eyesore/field/jump/up
-  rotate: false
-  xy: 1760, 1666
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
   index: 2
+monsters/eyesore/field/jump/up
+  rotate: false
+  xy: 1760, 1666
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 8
 monsters/eyesore/field/jump/up
   rotate: false
   xy: 1760, 1666
@@ -3379,13 +9875,20 @@ monsters/eyesore/field/jump/up
   orig: 64, 64
   offset: 0, 0
   index: 9
-monsters/eyesore/field/ouch/up
+monsters/eyesore/field/jump/up
   rotate: false
   xy: 1760, 1666
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 2
+monsters/eyesore/field/ouch/up
+  rotate: false
+  xy: 1760, 1666
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 9
 monsters/eyesore/field/ouch/up
   rotate: false
   xy: 1760, 1666
@@ -3399,7 +9902,7 @@ monsters/eyesore/field/ouch/up
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 9
+  index: 2
 monsters/eyesore/field/ouch/up
   rotate: false
   xy: 1760, 1666
@@ -3420,7 +9923,7 @@ monsters/eyesore/field/stand/up
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 2
+  index: 3
 monsters/eyesore/field/stand/up
   rotate: false
   xy: 1760, 1666
@@ -3434,21 +9937,7 @@ monsters/eyesore/field/stand/up
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 3
-monsters/eyesore/field/walk/up
-  rotate: false
-  xy: 1760, 1666
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 9
-monsters/eyesore/field/walk/up
-  rotate: false
-  xy: 1760, 1666
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 8
+  index: 2
 monsters/eyesore/field/walk/up
   rotate: false
   xy: 1760, 1666
@@ -3463,13 +9952,27 @@ monsters/eyesore/field/walk/up
   orig: 64, 64
   offset: 0, 0
   index: 2
+monsters/eyesore/field/walk/up
+  rotate: false
+  xy: 1760, 1666
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 8
+monsters/eyesore/field/walk/up
+  rotate: false
+  xy: 1760, 1666
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 9
 monsters/mouthsore/field/dead/up
   rotate: false
   xy: 1760, 1666
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 2
+  index: 9
 monsters/mouthsore/field/dead/up
   rotate: false
   xy: 1760, 1666
@@ -3483,14 +9986,28 @@ monsters/mouthsore/field/dead/up
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 3
+  index: 2
 monsters/mouthsore/field/dead/up
   rotate: false
   xy: 1760, 1666
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 9
+  index: 3
+monsters/mouthsore/field/jump/up
+  rotate: false
+  xy: 1760, 1666
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+monsters/mouthsore/field/jump/up
+  rotate: false
+  xy: 1760, 1666
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 8
 monsters/mouthsore/field/jump/up
   rotate: false
   xy: 1760, 1666
@@ -3505,20 +10022,6 @@ monsters/mouthsore/field/jump/up
   orig: 64, 64
   offset: 0, 0
   index: 9
-monsters/mouthsore/field/jump/up
-  rotate: false
-  xy: 1760, 1666
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 8
-monsters/mouthsore/field/jump/up
-  rotate: false
-  xy: 1760, 1666
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 2
 monsters/eyesore/field/dead/down
   rotate: false
   xy: 1960, 1706
@@ -3546,14 +10049,14 @@ monsters/eyesore/field/cast/down
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 10
+  index: 1
 monsters/eyesore/field/cast/down
   rotate: false
   xy: 1960, 1706
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 1
+  index: 10
 monsters/eyesore/field/dead/down
   rotate: false
   xy: 1960, 1706
@@ -3567,20 +10070,13 @@ monsters/eyesore/field/jump/down
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 10
+  index: 1
 monsters/eyesore/field/jump/down
   rotate: false
   xy: 1960, 1706
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 1
-monsters/eyesore/field/ouch/down
-  rotate: false
-  xy: 1960, 1706
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
   index: 10
 monsters/eyesore/field/ouch/down
   rotate: false
@@ -3589,7 +10085,7 @@ monsters/eyesore/field/ouch/down
   orig: 64, 64
   offset: 0, 0
   index: 1
-monsters/eyesore/field/stand/down
+monsters/eyesore/field/ouch/down
   rotate: false
   xy: 1960, 1706
   size: 64, 64
@@ -3603,7 +10099,7 @@ monsters/eyesore/field/stand/down
   orig: 64, 64
   offset: 0, 0
   index: 1
-monsters/eyesore/field/walk/down
+monsters/eyesore/field/stand/down
   rotate: false
   xy: 1960, 1706
   size: 64, 64
@@ -3617,13 +10113,13 @@ monsters/eyesore/field/walk/down
   orig: 64, 64
   offset: 0, 0
   index: 1
-monsters/mouthsore/field/dead/down
+monsters/eyesore/field/walk/down
   rotate: false
   xy: 1960, 1706
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 1
+  index: 10
 monsters/mouthsore/field/dead/down
   rotate: false
   xy: 1960, 1706
@@ -3631,7 +10127,7 @@ monsters/mouthsore/field/dead/down
   orig: 64, 64
   offset: 0, 0
   index: 10
-monsters/mouthsore/field/jump/down
+monsters/mouthsore/field/dead/down
   rotate: false
   xy: 1960, 1706
   size: 64, 64
@@ -3645,6 +10141,13 @@ monsters/mouthsore/field/jump/down
   orig: 64, 64
   offset: 0, 0
   index: 10
+monsters/mouthsore/field/jump/down
+  rotate: false
+  xy: 1960, 1706
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
 monsters/eyesore/field/dead/down
   rotate: false
   xy: 1958, 1640
@@ -3652,13 +10155,6 @@ monsters/eyesore/field/dead/down
   orig: 64, 64
   offset: 0, 0
   index: 2
-monsters/eyesore/field/attack/down
-  rotate: false
-  xy: 1958, 1640
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 9
 monsters/eyesore/field/attack/down
   rotate: false
   xy: 1958, 1640
@@ -3680,6 +10176,13 @@ monsters/eyesore/field/attack/down
   orig: 64, 64
   offset: 0, 0
   index: 3
+monsters/eyesore/field/attack/down
+  rotate: false
+  xy: 1958, 1640
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 9
 monsters/eyesore/field/cast/down
   rotate: false
   xy: 1958, 1640
@@ -3687,6 +10190,20 @@ monsters/eyesore/field/cast/down
   orig: 64, 64
   offset: 0, 0
   index: 9
+monsters/eyesore/field/cast/down
+  rotate: false
+  xy: 1958, 1640
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
+monsters/eyesore/field/cast/down
+  rotate: false
+  xy: 1958, 1640
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 8
 monsters/eyesore/field/cast/down
   rotate: false
   xy: 1958, 1640
@@ -3694,14 +10211,7 @@ monsters/eyesore/field/cast/down
   orig: 64, 64
   offset: 0, 0
   index: 2
-monsters/eyesore/field/cast/down
-  rotate: false
-  xy: 1958, 1640
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 3
-monsters/eyesore/field/cast/down
+monsters/eyesore/field/dead/down
   rotate: false
   xy: 1958, 1640
   size: 64, 64
@@ -3714,7 +10224,7 @@ monsters/eyesore/field/dead/down
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 8
+  index: 3
 monsters/eyesore/field/dead/down
   rotate: false
   xy: 1958, 1640
@@ -3722,13 +10232,6 @@ monsters/eyesore/field/dead/down
   orig: 64, 64
   offset: 0, 0
   index: 9
-monsters/eyesore/field/dead/down
-  rotate: false
-  xy: 1958, 1640
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 3
 monsters/eyesore/field/jump/down
   rotate: false
   xy: 1958, 1640
@@ -3742,7 +10245,7 @@ monsters/eyesore/field/jump/down
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 8
+  index: 3
 monsters/eyesore/field/jump/down
   rotate: false
   xy: 1958, 1640
@@ -3751,20 +10254,6 @@ monsters/eyesore/field/jump/down
   offset: 0, 0
   index: 2
 monsters/eyesore/field/jump/down
-  rotate: false
-  xy: 1958, 1640
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 3
-monsters/eyesore/field/ouch/down
-  rotate: false
-  xy: 1958, 1640
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 3
-monsters/eyesore/field/ouch/down
   rotate: false
   xy: 1958, 1640
   size: 64, 64
@@ -3785,13 +10274,20 @@ monsters/eyesore/field/ouch/down
   orig: 64, 64
   offset: 0, 0
   index: 9
-monsters/eyesore/field/stand/down
+monsters/eyesore/field/ouch/down
   rotate: false
   xy: 1958, 1640
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 3
+monsters/eyesore/field/ouch/down
+  rotate: false
+  xy: 1958, 1640
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 8
 monsters/eyesore/field/stand/down
   rotate: false
   xy: 1958, 1640
@@ -3813,13 +10309,20 @@ monsters/eyesore/field/stand/down
   orig: 64, 64
   offset: 0, 0
   index: 2
-monsters/eyesore/field/walk/down
+monsters/eyesore/field/stand/down
   rotate: false
   xy: 1958, 1640
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 3
+monsters/eyesore/field/walk/down
+  rotate: false
+  xy: 1958, 1640
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
 monsters/eyesore/field/walk/down
   rotate: false
   xy: 1958, 1640
@@ -3840,7 +10343,7 @@ monsters/eyesore/field/walk/down
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 2
+  index: 3
 monsters/mouthsore/field/dead/down
   rotate: false
   xy: 1958, 1640
@@ -3848,6 +10351,13 @@ monsters/mouthsore/field/dead/down
   orig: 64, 64
   offset: 0, 0
   index: 2
+monsters/mouthsore/field/dead/down
+  rotate: false
+  xy: 1958, 1640
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 9
 monsters/mouthsore/field/dead/down
   rotate: false
   xy: 1958, 1640
@@ -3862,13 +10372,6 @@ monsters/mouthsore/field/dead/down
   orig: 64, 64
   offset: 0, 0
   index: 8
-monsters/mouthsore/field/dead/down
-  rotate: false
-  xy: 1958, 1640
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 9
 monsters/mouthsore/field/jump/down
   rotate: false
   xy: 1958, 1640
@@ -3882,14 +10385,14 @@ monsters/mouthsore/field/jump/down
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 8
+  index: 9
 monsters/mouthsore/field/jump/down
   rotate: false
   xy: 1958, 1640
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 9
+  index: 8
 monsters/mouthsore/field/jump/down
   rotate: false
   xy: 1958, 1640
@@ -3904,13 +10407,6 @@ monsters/eyesore/field/dead/down
   orig: 64, 64
   offset: 0, 0
   index: 4
-monsters/eyesore/field/attack/down
-  rotate: false
-  xy: 968, 854
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 6
 monsters/eyesore/field/attack/down
   rotate: false
   xy: 968, 854
@@ -3925,6 +10421,13 @@ monsters/eyesore/field/attack/down
   orig: 64, 64
   offset: 0, 0
   index: 7
+monsters/eyesore/field/attack/down
+  rotate: false
+  xy: 968, 854
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 6
 monsters/eyesore/field/cast/down
   rotate: false
   xy: 968, 854
@@ -3952,21 +10455,14 @@ monsters/eyesore/field/dead/down
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 7
+  index: 6
 monsters/eyesore/field/dead/down
   rotate: false
   xy: 968, 854
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 6
-monsters/eyesore/field/jump/down
-  rotate: false
-  xy: 968, 854
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 4
+  index: 7
 monsters/eyesore/field/jump/down
   rotate: false
   xy: 968, 854
@@ -3981,13 +10477,13 @@ monsters/eyesore/field/jump/down
   orig: 64, 64
   offset: 0, 0
   index: 6
-monsters/eyesore/field/ouch/down
+monsters/eyesore/field/jump/down
   rotate: false
   xy: 968, 854
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 7
+  index: 4
 monsters/eyesore/field/ouch/down
   rotate: false
   xy: 968, 854
@@ -4001,8 +10497,8 @@ monsters/eyesore/field/ouch/down
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 4
-monsters/eyesore/field/stand/down
+  index: 7
+monsters/eyesore/field/ouch/down
   rotate: false
   xy: 968, 854
   size: 64, 64
@@ -4023,6 +10519,13 @@ monsters/eyesore/field/stand/down
   orig: 64, 64
   offset: 0, 0
   index: 7
+monsters/eyesore/field/stand/down
+  rotate: false
+  xy: 968, 854
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
 monsters/eyesore/field/walk/down
   rotate: false
   xy: 968, 854
@@ -4057,21 +10560,14 @@ monsters/mouthsore/field/dead/down
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 7
+  index: 4
 monsters/mouthsore/field/dead/down
   rotate: false
   xy: 968, 854
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 4
-monsters/mouthsore/field/jump/down
-  rotate: false
-  xy: 968, 854
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 4
+  index: 7
 monsters/mouthsore/field/jump/down
   rotate: false
   xy: 968, 854
@@ -4086,6 +10582,13 @@ monsters/mouthsore/field/jump/down
   orig: 64, 64
   offset: 0, 0
   index: 7
+monsters/mouthsore/field/jump/down
+  rotate: false
+  xy: 968, 854
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
 monsters/eyesore/field/dead/down
   rotate: false
   xy: 1034, 854
@@ -4176,14 +10679,14 @@ monsters/eyesore/field/cast/left
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 9
+  index: 1
 monsters/eyesore/field/cast/left
   rotate: false
   xy: 132, 134
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 1
+  index: 9
 monsters/eyesore/field/dead/left
   rotate: false
   xy: 132, 134
@@ -4225,21 +10728,14 @@ monsters/eyesore/field/stand/left
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 1
+  index: 9
 monsters/eyesore/field/stand/left
   rotate: false
   xy: 132, 134
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 9
-monsters/eyesore/field/walk/left
-  rotate: false
-  xy: 132, 134
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 9
+  index: 1
 monsters/eyesore/field/walk/left
   rotate: false
   xy: 132, 134
@@ -4247,6 +10743,13 @@ monsters/eyesore/field/walk/left
   orig: 64, 64
   offset: 0, 0
   index: 1
+monsters/eyesore/field/walk/left
+  rotate: false
+  xy: 132, 134
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 9
 monsters/mouthsore/field/dead/left
   rotate: false
   xy: 132, 134
@@ -4267,14 +10770,14 @@ monsters/mouthsore/field/jump/left
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 1
+  index: 9
 monsters/mouthsore/field/jump/left
   rotate: false
   xy: 132, 134
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 9
+  index: 1
 monsters/eyesore/field/dead/left
   rotate: false
   xy: 1166, 828
@@ -4449,14 +10952,14 @@ monsters/eyesore/field/jump/right
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 9
+  index: 1
 monsters/eyesore/field/jump/right
   rotate: false
   xy: 578, 658
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 1
+  index: 9
 monsters/eyesore/field/ouch/right
   rotate: false
   xy: 578, 658
@@ -4477,21 +10980,14 @@ monsters/eyesore/field/stand/right
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 1
+  index: 9
 monsters/eyesore/field/stand/right
   rotate: false
   xy: 578, 658
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 9
-monsters/eyesore/field/walk/right
-  rotate: false
-  xy: 578, 658
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 9
+  index: 1
 monsters/eyesore/field/walk/right
   rotate: false
   xy: 578, 658
@@ -4499,6 +10995,13 @@ monsters/eyesore/field/walk/right
   orig: 64, 64
   offset: 0, 0
   index: 1
+monsters/eyesore/field/walk/right
+  rotate: false
+  xy: 578, 658
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 9
 monsters/mouthsore/field/dead/right
   rotate: false
   xy: 578, 658
@@ -4533,7 +11036,7 @@ monsters/eyesore/field/attack/right
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 2
+  index: 7
 monsters/eyesore/field/attack/right
   rotate: false
   xy: 1298, 810
@@ -4554,8 +11057,15 @@ monsters/eyesore/field/attack/right
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 7
+  index: 8
 monsters/eyesore/field/attack/right
+  rotate: false
+  xy: 1298, 810
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+monsters/eyesore/field/cast/right
   rotate: false
   xy: 1298, 810
   size: 64, 64
@@ -4568,14 +11078,14 @@ monsters/eyesore/field/cast/right
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 3
+  index: 7
 monsters/eyesore/field/cast/right
   rotate: false
   xy: 1298, 810
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 7
+  index: 3
 monsters/eyesore/field/cast/right
   rotate: false
   xy: 1298, 810
@@ -4590,20 +11100,6 @@ monsters/eyesore/field/cast/right
   orig: 64, 64
   offset: 0, 0
   index: 4
-monsters/eyesore/field/cast/right
-  rotate: false
-  xy: 1298, 810
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 8
-monsters/eyesore/field/dead/right
-  rotate: false
-  xy: 1298, 810
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 7
 monsters/eyesore/field/dead/right
   rotate: false
   xy: 1298, 810
@@ -4625,14 +11121,7 @@ monsters/eyesore/field/dead/right
   orig: 64, 64
   offset: 0, 0
   index: 3
-monsters/eyesore/field/jump/right
-  rotate: false
-  xy: 1298, 810
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 4
-monsters/eyesore/field/jump/right
+monsters/eyesore/field/dead/right
   rotate: false
   xy: 1298, 810
   size: 64, 64
@@ -4646,6 +11135,20 @@ monsters/eyesore/field/jump/right
   orig: 64, 64
   offset: 0, 0
   index: 3
+monsters/eyesore/field/jump/right
+  rotate: false
+  xy: 1298, 810
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+monsters/eyesore/field/jump/right
+  rotate: false
+  xy: 1298, 810
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 7
 monsters/eyesore/field/jump/right
   rotate: false
   xy: 1298, 810
@@ -4659,7 +11162,14 @@ monsters/eyesore/field/jump/right
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 2
+  index: 4
+monsters/eyesore/field/ouch/right
+  rotate: false
+  xy: 1298, 810
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 7
 monsters/eyesore/field/ouch/right
   rotate: false
   xy: 1298, 810
@@ -4674,20 +11184,6 @@ monsters/eyesore/field/ouch/right
   orig: 64, 64
   offset: 0, 0
   index: 3
-monsters/eyesore/field/ouch/right
-  rotate: false
-  xy: 1298, 810
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 7
-monsters/eyesore/field/ouch/right
-  rotate: false
-  xy: 1298, 810
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 4
 monsters/eyesore/field/ouch/right
   rotate: false
   xy: 1298, 810
@@ -4695,13 +11191,20 @@ monsters/eyesore/field/ouch/right
   orig: 64, 64
   offset: 0, 0
   index: 8
+monsters/eyesore/field/ouch/right
+  rotate: false
+  xy: 1298, 810
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
 monsters/eyesore/field/stand/right
   rotate: false
   xy: 1298, 810
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 2
+  index: 4
 monsters/eyesore/field/stand/right
   rotate: false
   xy: 1298, 810
@@ -4709,6 +11212,20 @@ monsters/eyesore/field/stand/right
   orig: 64, 64
   offset: 0, 0
   index: 3
+monsters/eyesore/field/stand/right
+  rotate: false
+  xy: 1298, 810
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 7
+monsters/eyesore/field/stand/right
+  rotate: false
+  xy: 1298, 810
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
 monsters/eyesore/field/stand/right
   rotate: false
   xy: 1298, 810
@@ -4716,20 +11233,27 @@ monsters/eyesore/field/stand/right
   orig: 64, 64
   offset: 0, 0
   index: 8
-monsters/eyesore/field/stand/right
+monsters/eyesore/field/walk/right
+  rotate: false
+  xy: 1298, 810
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 8
+monsters/eyesore/field/walk/right
   rotate: false
   xy: 1298, 810
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 7
-monsters/eyesore/field/stand/right
+monsters/eyesore/field/walk/right
   rotate: false
   xy: 1298, 810
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 4
+  index: 3
 monsters/eyesore/field/walk/right
   rotate: false
   xy: 1298, 810
@@ -4744,21 +11268,14 @@ monsters/eyesore/field/walk/right
   orig: 64, 64
   offset: 0, 0
   index: 2
-monsters/eyesore/field/walk/right
-  rotate: false
-  xy: 1298, 810
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 3
-monsters/eyesore/field/walk/right
+monsters/mouthsore/field/dead/right
   rotate: false
   xy: 1298, 810
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: 7
-monsters/eyesore/field/walk/right
+monsters/mouthsore/field/dead/right
   rotate: false
   xy: 1298, 810
   size: 64, 64
@@ -4771,7 +11288,7 @@ monsters/mouthsore/field/dead/right
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 7
+  index: 2
 monsters/mouthsore/field/dead/right
   rotate: false
   xy: 1298, 810
@@ -4786,14 +11303,21 @@ monsters/mouthsore/field/dead/right
   orig: 64, 64
   offset: 0, 0
   index: 4
-monsters/mouthsore/field/dead/right
+monsters/mouthsore/field/jump/right
   rotate: false
   xy: 1298, 810
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 2
-monsters/mouthsore/field/dead/right
+  index: 3
+monsters/mouthsore/field/jump/right
+  rotate: false
+  xy: 1298, 810
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 7
+monsters/mouthsore/field/jump/right
   rotate: false
   xy: 1298, 810
   size: 64, 64
@@ -4814,27 +11338,6 @@ monsters/mouthsore/field/jump/right
   orig: 64, 64
   offset: 0, 0
   index: 2
-monsters/mouthsore/field/jump/right
-  rotate: false
-  xy: 1298, 810
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 8
-monsters/mouthsore/field/jump/right
-  rotate: false
-  xy: 1298, 810
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 7
-monsters/mouthsore/field/jump/right
-  rotate: false
-  xy: 1298, 810
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 3
 monsters/eyesore/field/dead/right
   rotate: false
   xy: 1854, 1444
@@ -4988,14 +11491,14 @@ monsters/eyesore/field/cast/up
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 1
+  index: 10
 monsters/eyesore/field/cast/up
   rotate: false
   xy: 1920, 1376
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 10
+  index: 1
 monsters/eyesore/field/dead/up
   rotate: false
   xy: 1920, 1376
@@ -5009,14 +11512,14 @@ monsters/eyesore/field/jump/up
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 10
+  index: 1
 monsters/eyesore/field/jump/up
   rotate: false
   xy: 1920, 1376
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 1
+  index: 10
 monsters/eyesore/field/ouch/up
   rotate: false
   xy: 1920, 1376
@@ -5093,14 +11596,14 @@ monsters/mouthsore/field/jump/up
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 1
+  index: 10
 monsters/mouthsore/field/jump/up
   rotate: false
   xy: 1920, 1376
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 10
+  index: 1
 monsters/mouthsore/field/ouch/up
   rotate: false
   xy: 1920, 1376
@@ -5968,13 +12471,6 @@ skills/wiccan_cross/battler/wiccan_cross
   size: 52, 52
   orig: 52, 52
   offset: 0, 0
-  index: 21
-skills/wiccan_cross/battler/wiccan_cross
-  rotate: false
-  xy: 269, 394
-  size: 52, 52
-  orig: 52, 52
-  offset: 0, 0
   index: 19
 skills/wiccan_cross/battler/wiccan_cross
   rotate: false
@@ -5983,6 +12479,13 @@ skills/wiccan_cross/battler/wiccan_cross
   orig: 52, 52
   offset: 0, 0
   index: 20
+skills/wiccan_cross/battler/wiccan_cross
+  rotate: false
+  xy: 269, 394
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: 21
 skills/wiccan_cross/field/wiccan_cross
   rotate: false
   xy: 269, 394

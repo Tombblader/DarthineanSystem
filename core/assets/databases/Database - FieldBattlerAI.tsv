@@ -1,0 +1,5 @@
+Name	Sprite	FPS	Shape	Speed	Vision
+Eyesore	eyesore	6	basiccircle	0.2	20
+Mouthsore	mouthsore	6	basiccircle	0.4	15
+Eye Face	eyesore	6	basiccircle	0	30
+Mouth Face	mouthsore	6	basiccircle	0	30

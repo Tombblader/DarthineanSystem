@@ -103,6 +103,10 @@ public abstract class Event extends ActorCollision {
             super.setMap(map);
         }
     }
+    
+    public void setTemporaryMap(OverheadMap map) {
+        super.setMap(map);
+    }
 
     @Override
     public boolean equals(Object obj) {

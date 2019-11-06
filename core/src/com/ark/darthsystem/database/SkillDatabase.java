@@ -18,7 +18,7 @@ public class SkillDatabase {
     public static final HashMap<String, FieldSkill> FIELD_SKILL_LIST = new HashMap<>();
 
     public SkillDatabase() {
-        FileHandle file = Gdx.files.internal("databases/skills.tsv");
+        FileHandle file = Gdx.files.internal("databases/Database - Skills.tsv");
         String[] massiveString = file.readString().split("(\r\n|\r|\n)");
         for (String token : massiveString) {
             String[] data = token.split("\t");
@@ -51,7 +51,7 @@ public class SkillDatabase {
                     Integer.parseInt(data[++i]), //Enemy Magic Multiplier
                     Double.parseDouble(data[++i]))); //Divider
         }
-        file = Gdx.files.internal("databases/skillsai.tsv");
+        file = Gdx.files.internal("databases/Database - SkillsAI.tsv");
         massiveString = file.readString().split("(\r\n|\r|\n)");
         for (String token : massiveString) {
             String[] data = token.split("\t");
@@ -61,11 +61,11 @@ public class SkillDatabase {
             int i = 0;
             SKILL_LIST.put(data[i].toUpperCase(), new Skill(data[i], //Name
                     data[++i], //Description
-                    ActorSprite.SpriteModeBattler.valueOf(data[++i]),
-                    data[++i],
-                    1 / (float) Double.parseDouble(data[++i]),
-                    data[++i],
-                    data[++i],
+                    ActorSprite.SpriteModeBattler.valueOf(data[++i]), //Sprite Mode
+                    data[++i], //Animation name
+                    1 / (float) Double.parseDouble(data[++i]), //FPS
+                    data[++i], //Cast Sound
+                    data[++i], //Sound
                     Integer.parseInt(data[++i]), //Cost
                     Battle.Element.valueOf(data[++i]), //Element
                     Boolean.valueOf(data[++i]), //Targets ally?
@@ -85,11 +85,11 @@ public class SkillDatabase {
                     Double.parseDouble(data[++i]))); //Divider
         }
 
-        file = Gdx.files.internal("databases/fieldskills.tsv");
+        file = Gdx.files.internal("databases/Database - FieldSkills.tsv");
         massiveString = file.readString().split("(\r\n|\r|\n)");
         for (String token : massiveString) {
             String[] data = token.split("\t");
-            if (data[0].equals("Name")) {
+            if (data.length == 0 || data[0].equals("Name")) {
                 continue;
             }
             int i = 0;
@@ -98,7 +98,7 @@ public class SkillDatabase {
                     data[++i], //castimage
                     data[++i], //final image
                     data[++i], //cast sound
-                    data[++i], //cast sound
+                    data[++i], //sound
                     data[++i].split(", *"), //tag
                     (float) (Double.parseDouble(data[++i])), //startx
                     (float) (Double.parseDouble(data[++i])), //starty
@@ -113,7 +113,7 @@ public class SkillDatabase {
             ));
         }
 
-        file = Gdx.files.internal("databases/fieldskillsai.tsv");
+        file = Gdx.files.internal("databases/Database - FieldSkillsAI.tsv");
         massiveString = file.readString().split("(\r\n|\r|\n)");
         for (String token : massiveString) {
             String[] data = token.split("\t");

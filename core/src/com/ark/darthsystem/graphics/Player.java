@@ -101,7 +101,7 @@ public class Player extends ActorCollision implements Serializable {
         currentBattler = party.get(0);
         if (party.get(0).getBattler().getSkillList() != null
                 && !party.get(0).getBattler().getSkillList().isEmpty()) {
-            currentSkill = Database2.SkillToActor(party.get(0).getBattler().getSkill(0).getName());
+            currentSkill = currentBattler.getCurrentSkill();
         }
         setAttackAnimation();
         checkStatusEffects();
