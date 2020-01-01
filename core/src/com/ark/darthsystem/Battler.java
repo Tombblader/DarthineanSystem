@@ -2,6 +2,7 @@ package com.ark.darthsystem;
 
 import com.ark.darthsystem.states.Battle;
 import static com.ark.darthsystem.BattleDriver.*;
+import com.ark.darthsystem.Equipment.Slot;
 import com.ark.darthsystem.statusEffects.*;
 
 import java.io.*;
@@ -422,6 +423,11 @@ public class Battler implements Serializable, Nameable, Cloneable {
         return equipmentList.get(equipmentSlot);
     }
 
+    public Weapon getWeapon() {
+        return (Weapon) equipmentList.get(Slot.MainHand);
+    }
+    
+    
     /**
      *
      * @return

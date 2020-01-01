@@ -6,7 +6,6 @@ import com.ark.darthsystem.graphics.Actor;
 import com.ark.darthsystem.graphics.FieldBattler;
 import com.ark.darthsystem.graphics.GameTimer;
 import com.ark.darthsystem.graphics.GraphicsDriver;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -233,7 +232,7 @@ public class Battle implements State {
                 && currentAction.getTarget() instanceof BattlerAI) {
             try {
                 tempSkill = (currentAction.getCaster().
-                        getEquipment(Equipment.Slot.MainHand).
+                        getWeapon().
                         getBattlerAnimation());
                 tempSkill.resetAnimation();
                 sounds.add(currentAction.getCaster().

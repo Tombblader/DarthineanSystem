@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.g2d.Animation.PlayMode;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -42,6 +43,7 @@ public class Actor implements Serializable {
 //    private transient ActorSprite sprite;
     private ArrayList<GameTimer> timers;// = new Array<>(GameTimer.class);
     private Vector2 position;// = Vector2.Zero;
+    private Vector3 position3D;
     private Facing xFacingBias;
     private String imageName;
     private boolean isFinished;// = false;
@@ -59,6 +61,7 @@ public class Actor implements Serializable {
         isRotate = false;
         timers = new ArrayList<>();
         position = Vector2.Zero;
+        position3D = Vector3.Zero;
         isFinished = false;
     }
 
@@ -68,6 +71,7 @@ public class Actor implements Serializable {
             float delay) {
         this();
         position = new Vector2(getX, getY);
+        position3D = new Vector3(getX, getY, 0);
         this.delay = delay;
         imageName = img;
         images = GraphicsDriver.getMasterSheet().createSprites(img).toArray(Sprite.class);
@@ -116,12 +120,14 @@ public class Actor implements Serializable {
     public void changeX(float getX) {
         lastX = position.x;
         position.x += getX;
+        position3D.x += getX;
         lastXFacing = position.x > lastX ? 1 : position.x == lastX ? 0 : -1;
     }
 
     public void changeY(float getY) {
         lastY = position.y;
         position.y += getY;
+        position3D.y += getY;
         lastYFacing = position.y > lastY ? 1 : position.y == lastY ? 0 : -1;
 
     }
@@ -246,6 +252,7 @@ public class Actor implements Serializable {
 
     public void setX(float getX) {
         position.x = getX;
+        position3D.x = getX;
     }
 
     public float getY() {
@@ -254,6 +261,7 @@ public class Actor implements Serializable {
 
     public void setY(float getY) {
         position.y = getY;
+        position3D.y = getY;
     }
 
     public Vector2 getPosition() {
@@ -261,7 +269,8 @@ public class Actor implements Serializable {
     }
 
     public void setPosition(Vector2 position) {
-        this.position = position;
+        this.position.set(position);
+        this.position3D.set(position, 0);
     }
 
     public boolean isFinished() {
@@ -337,7 +346,7 @@ public class Actor implements Serializable {
     }
 
     public void update(float delta) {
-        if (currentImage != null) {
+        if (currentImage != null && animation.getAnimationDuration() > 0.0) {
             elapsed += delta / 1000f;
             currentImage = (Sprite) animation.getKeyFrame(elapsed);
         }
@@ -348,7 +357,7 @@ public class Actor implements Serializable {
                 i--;
             }
         }
-        if (animation != null && elapsed > animation.getAnimationDuration()) {
+        if (animation != null && elapsed >= animation.getAnimationDuration()) {
             isFinished = destroyAfterAnimation;
             elapsed = 0;
         }
@@ -431,6 +440,13 @@ public class Actor implements Serializable {
         public float getRotate() {
             return rotate;
         }
+    }
+    
+    public boolean inCamera(Camera c) {
+        if (currentImage == null) {
+            return false;
+        }
+        return c.frustum.sphereInFrustumWithoutNearFar(position3D, getWidth() / c.getConversion() + 32f / c.getConversion());
     }
 
 }

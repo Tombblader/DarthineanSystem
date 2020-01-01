@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.3" orientation="orthogonal" renderorder="right-down" width="32" height="24" tilewidth="32" tileheight="32" infinite="0" nextobjectid="6">
+<map version="1.0" tiledversion="1.1.3" orientation="orthogonal" renderorder="right-down" width="32" height="24" tilewidth="32" tileheight="32" infinite="0" nextobjectid="7">
  <tileset firstgid="1" source="tileset.tsx"/>
  <layer name="background" width="32" height="24">
   <data encoding="base64" compression="zlib">
@@ -41,6 +41,16 @@
     <property name="parameters" value="Mouthsore"/>
    </properties>
    <ellipse/>
+  </object>
+  <object id="6" name="teleportComplex" type="event" x="481" y="23" width="63" height="41">
+   <properties>
+    <property name="collision" type="bool" value="true"/>
+    <property name="collisionType" value="wall"/>
+    <property name="eventID" type="int" value="2"/>
+    <property name="eventName" value="Teleport"/>
+    <property name="parameters" value="bigdungeon, 1, 1"/>
+    <property name="trigger" value="TOUCH"/>
+   </properties>
   </object>
  </objectgroup>
  <layer name="overlay" width="32" height="24">

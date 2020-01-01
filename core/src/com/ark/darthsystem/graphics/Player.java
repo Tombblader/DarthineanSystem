@@ -6,9 +6,9 @@ import com.ark.darthsystem.database.Database2;
 import com.ark.darthsystem.database.DefaultMenu;
 import com.ark.darthsystem.database.InterfaceDatabase;
 import com.ark.darthsystem.database.SoundDatabase;
-import com.ark.darthsystem.Equipment;
 import com.ark.darthsystem.states.OverheadMap;
 import com.ark.darthsystem.GameOverException;
+import com.ark.darthsystem.Weapon;
 import com.ark.darthsystem.database.CharacterDatabase;
 import com.ark.darthsystem.states.events.Event;
 import com.ark.darthsystem.statusEffects.Normal;
@@ -172,7 +172,7 @@ public class Player extends ActorCollision implements Serializable {
     }
 
     public void setAttackAnimation() {
-        Equipment tempEquipment = getCurrentBattler().getBattler().getEquipment(Equipment.Slot.MainHand);
+        Weapon tempEquipment = getCurrentBattler().getBattler().getWeapon();
         if (tempEquipment != null) {
             try {
                 FieldSkill tempAnimation = tempEquipment.getAnimation();
@@ -190,6 +190,7 @@ public class Player extends ActorCollision implements Serializable {
     public void attack() {
         if (!getCurrentMap().getPhysicsWorld().isLocked()) {
             attacking = true;
+            setAttackAnimation();
             FieldSkill animation = getAttackAnimation();
             animation.setX(this);
             animation.setY(this);

@@ -116,7 +116,7 @@ public class Database2 {
     }
 
     public static FieldSkill Sword() {
-        return new FieldSkill("items/equipment/sword/field/field",
+        return new FieldSkill("sword",
                 1,
                 1,
                 1f / 24f,
@@ -126,7 +126,7 @@ public class Database2 {
     }
 
     public static FieldSkill getDefaultUnarmedAnimation() {
-        return new FieldSkill("items/equipment/sword/field/field",
+        return new FieldSkill("sword",
                 1,
                 1,
                 1f / 24f,

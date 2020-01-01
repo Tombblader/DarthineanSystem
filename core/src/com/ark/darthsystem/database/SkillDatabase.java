@@ -123,10 +123,10 @@ public class SkillDatabase {
             int i = 0;
 
             FIELD_SKILL_LIST.put(data[i].toUpperCase(), new FieldSkill(data[i], //Name
-                    data[++i],
-                    data[++i],
-                    data[++i],
-                    data[++i],
+                    data[++i], //Cast Image
+                    data[++i], //Skill Image
+                    data[++i], //Cast Sound
+                    data[++i], //Skill Sound
                     data[++i].split(", *"),
                     (float) (Double.parseDouble(data[++i])),
                     (float) (Double.parseDouble(data[++i])),
@@ -137,9 +137,16 @@ public class SkillDatabase {
                     (float) (Double.parseDouble(data[++i])),
                     SKILL_LIST.get(data[++i].toUpperCase()),
                     FieldSkill.Area.valueOf(data[++i].toUpperCase()),
-                    data[++i]
+                    data[++i] //Shape
             ));
         }
+        FIELD_SKILL_LIST.put("UNARMED", new FieldSkill("items/equipment/sword/field/field",
+                1,
+                1,
+                1f / 24f,
+                null,
+                FieldSkill.Area.FRONT,
+                "widesword"));
 
     }
 }

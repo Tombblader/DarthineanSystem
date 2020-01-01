@@ -7,6 +7,7 @@ import static com.ark.darthsystem.database.Database1.inventory;
 import static com.ark.darthsystem.database.Database2.player;
 import com.ark.darthsystem.graphics.GraphicsDriver;
 import com.ark.darthsystem.Item;
+import com.ark.darthsystem.Weapon;
 import com.ark.darthsystem.graphics.Actor;
 import com.ark.darthsystem.graphics.ActorSprite;
 import com.ark.darthsystem.graphics.FieldBattler;
@@ -167,6 +168,10 @@ public class DefaultMenu extends Menu {
                                                 }
                                             }
                                             BattleDriver.addItem(battler.equip(equippableItems.get(getCursorIndex())));
+                                            if (equippableItems.get(getCursorIndex()) instanceof Weapon && Database2.player.getCurrentBattler().getBattler() == battler) {
+                                                Database2.player.setAttackAnimation();
+                                                
+                                            }
                                             return null;
                                         }
 

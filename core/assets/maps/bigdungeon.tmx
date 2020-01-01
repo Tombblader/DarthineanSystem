@@ -1,0 +1,2212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" tiledversion="1.1.3" orientation="orthogonal" renderorder="right-down" width="1000" height="1000" tilewidth="32" tileheight="32" infinite="0" nextobjectid="367">
+ <tileset firstgid="1" source="tileset.tsx"/>
+ <layer name="background" width="1000" height="1000">
+  <data encoding="base64" compression="zlib">
+   eJztwwEJAAAMBKHj+4dej6Hgqqmqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq8fYo2GQw==
+  </data>
+ </layer>
+ <layer name="object" width="1000" height="1000">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20PBxQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPBuDJMAAQ==
+  </data>
+ </layer>
+ <objectgroup name="object">
+  <object id="1" name="eyesore" type="actor" x="2874" y="5776" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="2" name="eyesore" type="actor" x="3030" y="5790" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="3" name="eyesore" type="actor" x="3115" y="5894" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="4" name="eyesore" type="actor" x="2980" y="5951" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="5" name="eyesore" type="actor" x="2883" y="5939" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="6" name="eyesore" type="actor" x="4529" y="5641" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="7" name="eyesore" type="actor" x="4529" y="5641" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="8" name="eyesore" type="actor" x="6105" y="5216" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="9" name="eyesore" type="actor" x="8489" y="4489" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="10" name="eyesore" type="actor" x="9560" y="5701" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="11" name="eyesore" type="actor" x="6832" y="6449" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="12" name="eyesore" type="actor" x="6024" y="4024" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="13" name="eyesore" type="actor" x="5499" y="2651" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="14" name="eyesore" type="actor" x="3964" y="3014" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="15" name="eyesore" type="actor" x="12267" y="2731" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="16" name="eyesore" type="actor" x="11984" y="3641" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="17" name="eyesore" type="actor" x="11560" y="5338" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="18" name="eyesore" type="actor" x="10489" y="5459" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="19" name="eyesore" type="actor" x="9964" y="2449" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="20" name="eyesore" type="actor" x="7903" y="2267" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="21" name="eyesore" type="actor" x="5600" y="2226" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="22" name="eyesore" type="actor" x="2469" y="2348" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="23" name="eyesore" type="actor" x="1883" y="3418" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="24" name="eyesore" type="actor" x="4166" y="5681" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="25" name="eyesore" type="actor" x="9277" y="4873" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="26" name="eyesore" type="actor" x="10226" y="3237" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="27" name="eyesore" type="actor" x="11317" y="4206" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="28" name="eyesore" type="actor" x="10206" y="5257" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="29" name="eyesore" type="actor" x="8873" y="5701" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="30" name="eyesore" type="actor" x="7762" y="5459" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="31" name="eyesore" type="actor" x="7600" y="5237" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="32" name="eyesore" type="actor" x="7176" y="3014" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="33" name="eyesore" type="actor" x="9156" y="2004" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="34" name="eyesore" type="actor" x="10832" y="3176" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="35" name="eyesore" type="actor" x="9439" y="6024" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="36" name="eyesore" type="actor" x="4711" y="4873" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="37" name="eyesore" type="actor" x="4287" y="3742" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="38" name="eyesore" type="actor" x="5035" y="2711" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="39" name="eyesore" type="actor" x="7317" y="1762" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="40" name="eyesore" type="actor" x="11035" y="1580" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="41" name="eyesore" type="actor" x="10327" y="7317" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="42" name="eyesore" type="actor" x="9257" y="7499" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="43" name="eyesore" type="actor" x="5944" y="6590" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="44" name="eyesore" type="actor" x="5600" y="6630" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="45" name="eyesore" type="actor" x="12731" y="6024" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="46" name="eyesore" type="actor" x="12731" y="6024" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="47" name="eyesore" type="actor" x="12812" y="6388" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="48" name="eyesore" type="actor" x="12853" y="6812" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="49" name="eyesore" type="actor" x="12428" y="6974" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="50" name="eyesore" type="actor" x="11964" y="7136" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="51" name="eyesore" type="actor" x="11317" y="6792" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="52" name="eyesore" type="actor" x="10853" y="6267" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="53" name="eyesore" type="actor" x="9600" y="6267" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="54" name="eyesore" type="actor" x="9095" y="6428" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="55" name="eyesore" type="actor" x="6893" y="6832" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="56" name="eyesore" type="actor" x="5944" y="7014" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="57" name="eyesore" type="actor" x="5479" y="7035" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="58" name="eyesore" type="actor" x="4974" y="7095" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="59" name="eyesore" type="actor" x="3580" y="7257" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="60" name="eyesore" type="actor" x="2307" y="7297" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="61" name="eyesore" type="actor" x="1903" y="6711" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="62" name="eyesore" type="actor" x="1439" y="5479" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="63" name="eyesore" type="actor" x="1540" y="4812" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="64" name="eyesore" type="actor" x="792" y="2529" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="65" name="eyesore" type="actor" x="1358" y="1762" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="66" name="eyesore" type="actor" x="3742" y="832" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="67" name="eyesore" type="actor" x="5944" y="428" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="68" name="eyesore" type="actor" x="6449" y="327" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="69" name="eyesore" type="actor" x="7822" y="509" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="70" name="eyesore" type="actor" x="9459" y="469" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="71" name="eyesore" type="actor" x="10893" y="469" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="72" name="eyesore" type="actor" x="12065" y="671" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="73" name="eyesore" type="actor" x="13075" y="1721" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="74" name="eyesore" type="actor" x="13136" y="2509" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="75" name="eyesore" type="actor" x="13883" y="5075" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="76" name="eyesore" type="actor" x="13681" y="5459" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="77" name="eyesore" type="actor" x="13398" y="6873" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="78" name="eyesore" type="actor" x="11863" y="7055" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="79" name="eyesore" type="actor" x="9439" y="4913" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="80" name="eyesore" type="actor" x="9378" y="4186" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="81" name="eyesore" type="actor" x="9156" y="3317" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="82" name="eyesore" type="actor" x="7903" y="3014" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="83" name="eyesore" type="actor" x="7014" y="4267" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="84" name="eyesore" type="actor" x="6792" y="4711" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="85" name="eyesore" type="actor" x="6469" y="5035" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="86" name="eyesore" type="actor" x="5580" y="5620" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="87" name="eyesore" type="actor" x="5095" y="5257" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="88" name="eyesore" type="actor" x="3358" y="4267" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="89" name="eyesore" type="actor" x="3216" y="2428" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="90" name="eyesore" type="actor" x="4105" y="1641" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="91" name="eyesore" type="actor" x="6307" y="1620" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="92" name="eyesore" type="actor" x="8388" y="3398" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="93" name="eyesore" type="actor" x="4065" y="5479" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="94" name="eyesore" type="actor" x="4772" y="2590" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="95" name="eyesore" type="actor" x="7984" y="1297" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="96" name="eyesore" type="actor" x="9701" y="3479" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="97" name="eyesore" type="actor" x="6550" y="6691" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="98" name="eyesore" type="actor" x="5802" y="6449" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="99" name="eyesore" type="actor" x="3540" y="5459" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="100" name="eyesore" type="actor" x="3035" y="2489" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="101" name="eyesore" type="actor" x="8550" y="913" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="102" name="eyesore" type="actor" x="10388" y="3136" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="103" name="eyesore" type="actor" x="9641" y="5843" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="104" name="eyesore" type="actor" x="7560" y="5459" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="105" name="eyesore" type="actor" x="8247" y="3883" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="106" name="eyesore" type="actor" x="13257" y="4125" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="107" name="eyesore" type="actor" x="13398" y="5095" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="108" name="eyesore" type="actor" x="12065" y="6307" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="109" name="eyesore" type="actor" x="8671" y="6529" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="110" name="eyesore" type="actor" x="7014" y="5641" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="111" name="eyesore" type="actor" x="6125" y="4146" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="112" name="eyesore" type="actor" x="9136" y="2691" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="113" name="eyesore" type="actor" x="10428" y="3903" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="114" name="eyesore" type="actor" x="10146" y="5883" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="115" name="eyesore" type="actor" x="7479" y="6691" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="116" name="eyesore" type="actor" x="7257" y="3681" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="117" name="eyesore" type="actor" x="9560" y="3075" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="118" name="eyesore" type="actor" x="11176" y="4792" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="119" name="eyesore" type="actor" x="7782" y="6651" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="120" name="eyesore" type="actor" x="5721" y="6570" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="121" name="eyesore" type="actor" x="3964" y="5338" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="122" name="eyesore" type="actor" x="5944" y="3600" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="123" name="eyesore" type="actor" x="9055" y="3843" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="124" name="eyesore" type="actor" x="9903" y="5742" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="125" name="eyesore" type="actor" x="4752" y="6610" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="126" name="eyesore" type="actor" x="3540" y="5540" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="127" name="eyesore" type="actor" x="2509" y="4954" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="128" name="eyesore" type="actor" x="2065" y="3317" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="129" name="eyesore" type="actor" x="3459" y="2933" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="130" name="eyesore" type="actor" x="3721" y="4206" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="131" name="eyesore" type="actor" x="3721" y="4792" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="132" name="eyesore" type="actor" x="6065" y="5257" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="133" name="eyesore" type="actor" x="8772" y="11237" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="134" name="eyesore" type="actor" x="9843" y="15216" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="135" name="eyesore" type="actor" x="3661" y="13923" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="136" name="eyesore" type="actor" x="9095" y="10247" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="137" name="eyesore" type="actor" x="3681" y="11398" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="138" name="eyesore" type="actor" x="9681" y="14691" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="139" name="eyesore" type="actor" x="9499" y="16307" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="140" name="eyesore" type="actor" x="3358" y="12590" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="141" name="eyesore" type="actor" x="8630" y="11277" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="142" name="eyesore" type="actor" x="10792" y="15923" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="143" name="eyesore" type="actor" x="10045" y="11055" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="144" name="eyesore" type="actor" x="10348" y="12691" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="145" name="eyesore" type="actor" x="6489" y="14590" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="146" name="eyesore" type="actor" x="5560" y="14247" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="147" name="eyesore" type="actor" x="4933" y="14267" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="148" name="eyesore" type="actor" x="7014" y="13923" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="149" name="eyesore" type="actor" x="10550" y="13560" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="150" name="eyesore" type="actor" x="10974" y="12065" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="151" name="eyesore" type="actor" x="10550" y="11903" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="152" name="eyesore" type="actor" x="9398" y="12287" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="153" name="eyesore" type="actor" x="9237" y="12772" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="154" name="eyesore" type="actor" x="8206" y="11560" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="155" name="eyesore" type="actor" x="8206" y="11560" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="156" name="eyesore" type="actor" x="8287" y="12651" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="157" name="eyesore" type="actor" x="4348" y="12691" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="158" name="eyesore" type="actor" x="4307" y="12610" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="159" name="eyesore" type="actor" x="4307" y="12630" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="160" name="eyesore" type="actor" x="4247" y="12610" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="161" name="eyesore" type="actor" x="4186" y="12590" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="162" name="eyesore" type="actor" x="4186" y="12590" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="163" name="eyesore" type="actor" x="4186" y="12590" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="164" name="eyesore" type="actor" x="4186" y="12590" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="165" name="eyesore" type="actor" x="8954" y="9661" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="166" name="eyesore" type="actor" x="12247" y="9923" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="167" name="eyesore" type="actor" x="11883" y="12913" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="168" name="eyesore" type="actor" x="7136" y="16590" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="169" name="eyesore" type="actor" x="4994" y="16428" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="170" name="eyesore" type="actor" x="1519" y="14287" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="171" name="eyesore" type="actor" x="2186" y="12105" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="172" name="eyesore" type="actor" x="4954" y="9095" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="173" name="eyesore" type="actor" x="11095" y="8630" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="174" name="eyesore" type="actor" x="12186" y="11358" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="175" name="eyesore" type="actor" x="8146" y="12186" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="176" name="eyesore" type="actor" x="2327" y="9984" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="177" name="eyesore" type="actor" x="9519" y="8933" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="178" name="eyesore" type="actor" x="11964" y="10772" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="179" name="eyesore" type="actor" x="11863" y="11297" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="180" name="eyesore" type="actor" x="11136" y="10408" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="181" name="eyesore" type="actor" x="11075" y="10388" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="182" name="eyesore" type="actor" x="11075" y="10388" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="183" name="eyesore" type="actor" x="11075" y="10388" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="184" name="eyesore" type="actor" x="10712" y="5099" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="185" name="eyesore" type="actor" x="10868" y="5113" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="186" name="eyesore" type="actor" x="10953" y="5217" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="187" name="eyesore" type="actor" x="10818" y="5274" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="188" name="eyesore" type="actor" x="10721" y="5262" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="189" name="eyesore" type="actor" x="12367" y="4964" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="190" name="eyesore" type="actor" x="12367" y="4964" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="191" name="eyesore" type="actor" x="13943" y="4539" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="192" name="eyesore" type="actor" x="16327" y="3812" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="193" name="eyesore" type="actor" x="17398" y="5024" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="194" name="eyesore" type="actor" x="14670" y="5772" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="195" name="eyesore" type="actor" x="13862" y="3347" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="196" name="eyesore" type="actor" x="13337" y="1974" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="197" name="eyesore" type="actor" x="11802" y="2337" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="198" name="eyesore" type="actor" x="20105" y="2054" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="199" name="eyesore" type="actor" x="19822" y="2964" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="200" name="eyesore" type="actor" x="19398" y="4661" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="201" name="eyesore" type="actor" x="18327" y="4782" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="202" name="eyesore" type="actor" x="17802" y="1772" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="203" name="eyesore" type="actor" x="15741" y="1590" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="204" name="eyesore" type="actor" x="13438" y="1549" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="205" name="eyesore" type="actor" x="10307" y="1671" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="206" name="eyesore" type="actor" x="9721" y="2741" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="207" name="eyesore" type="actor" x="12004" y="5004" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="208" name="eyesore" type="actor" x="17115" y="4196" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="209" name="eyesore" type="actor" x="18064" y="2560" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="210" name="eyesore" type="actor" x="19155" y="3529" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="211" name="eyesore" type="actor" x="18044" y="4580" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="212" name="eyesore" type="actor" x="16711" y="5024" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="213" name="eyesore" type="actor" x="15600" y="4782" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="214" name="eyesore" type="actor" x="15438" y="4560" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="215" name="eyesore" type="actor" x="15014" y="2337" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="216" name="eyesore" type="actor" x="16994" y="1327" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="217" name="eyesore" type="actor" x="18670" y="2499" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="218" name="eyesore" type="actor" x="17277" y="5347" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="219" name="eyesore" type="actor" x="12549" y="4196" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="220" name="eyesore" type="actor" x="12125" y="3065" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="221" name="eyesore" type="actor" x="12873" y="2034" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="222" name="eyesore" type="actor" x="15155" y="1085" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="223" name="eyesore" type="actor" x="18873" y="903" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="224" name="eyesore" type="actor" x="18165" y="6640" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="225" name="eyesore" type="actor" x="17095" y="6822" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="226" name="eyesore" type="actor" x="13782" y="5913" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="227" name="eyesore" type="actor" x="13438" y="5953" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="228" name="eyesore" type="actor" x="20569" y="5347" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="229" name="eyesore" type="actor" x="20569" y="5347" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="230" name="eyesore" type="actor" x="20650" y="5711" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="231" name="eyesore" type="actor" x="20691" y="6135" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="232" name="eyesore" type="actor" x="20266" y="6297" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="233" name="eyesore" type="actor" x="19802" y="6459" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="234" name="eyesore" type="actor" x="19155" y="6115" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="235" name="eyesore" type="actor" x="18691" y="5590" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="236" name="eyesore" type="actor" x="17438" y="5590" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="237" name="eyesore" type="actor" x="16933" y="5751" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="238" name="eyesore" type="actor" x="14731" y="6155" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="239" name="eyesore" type="actor" x="13782" y="6337" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="240" name="eyesore" type="actor" x="13317" y="6358" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="241" name="eyesore" type="actor" x="12812" y="6418" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="242" name="eyesore" type="actor" x="11418" y="6580" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="243" name="eyesore" type="actor" x="10145" y="6620" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="244" name="eyesore" type="actor" x="9741" y="6034" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="245" name="eyesore" type="actor" x="9277" y="4802" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="246" name="eyesore" type="actor" x="9378" y="4135" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="247" name="eyesore" type="actor" x="8630" y="1852" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="248" name="eyesore" type="actor" x="9196" y="1085" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="249" name="eyesore" type="actor" x="11580" y="155" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="250" name="eyesore" type="actor" x="13782" y="-249" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="251" name="eyesore" type="actor" x="14287" y="-350" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="252" name="eyesore" type="actor" x="15660" y="-168" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="253" name="eyesore" type="actor" x="17297" y="-208" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="254" name="eyesore" type="actor" x="18731" y="-208" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="255" name="eyesore" type="actor" x="19903" y="-6" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="256" name="eyesore" type="actor" x="20913" y="1044" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="257" name="eyesore" type="actor" x="20974" y="1832" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="258" name="eyesore" type="actor" x="21721" y="4398" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="259" name="eyesore" type="actor" x="21519" y="4782" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="260" name="eyesore" type="actor" x="21236" y="6196" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="261" name="eyesore" type="actor" x="19701" y="6378" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="262" name="eyesore" type="actor" x="17277" y="4236" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="263" name="eyesore" type="actor" x="17216" y="3509" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="264" name="eyesore" type="actor" x="16994" y="2640" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="265" name="eyesore" type="actor" x="15741" y="2337" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="266" name="eyesore" type="actor" x="14852" y="3590" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="267" name="eyesore" type="actor" x="14630" y="4034" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="268" name="eyesore" type="actor" x="14307" y="4358" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="269" name="eyesore" type="actor" x="13418" y="4943" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="270" name="eyesore" type="actor" x="12933" y="4580" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="271" name="eyesore" type="actor" x="11196" y="3590" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="272" name="eyesore" type="actor" x="11054" y="1751" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="273" name="eyesore" type="actor" x="11943" y="964" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="274" name="eyesore" type="actor" x="14145" y="943" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="275" name="eyesore" type="actor" x="16226" y="2721" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="276" name="eyesore" type="actor" x="11903" y="4802" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="277" name="eyesore" type="actor" x="12610" y="1913" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="278" name="eyesore" type="actor" x="15822" y="620" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="279" name="eyesore" type="actor" x="17539" y="2802" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="280" name="eyesore" type="actor" x="14388" y="6014" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="281" name="eyesore" type="actor" x="13640" y="5772" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="282" name="eyesore" type="actor" x="11378" y="4782" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="283" name="eyesore" type="actor" x="10873" y="1812" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="284" name="eyesore" type="actor" x="16388" y="236" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="285" name="eyesore" type="actor" x="18226" y="2459" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="286" name="eyesore" type="actor" x="17479" y="5166" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="287" name="eyesore" type="actor" x="15398" y="4782" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="288" name="eyesore" type="actor" x="16085" y="3206" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="289" name="eyesore" type="actor" x="21095" y="3448" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="290" name="eyesore" type="actor" x="21236" y="4418" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="291" name="eyesore" type="actor" x="19903" y="5630" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="292" name="eyesore" type="actor" x="16509" y="5852" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="293" name="eyesore" type="actor" x="14852" y="4964" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="294" name="eyesore" type="actor" x="13963" y="3469" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="295" name="eyesore" type="actor" x="16974" y="2014" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="296" name="eyesore" type="actor" x="18266" y="3226" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="297" name="eyesore" type="actor" x="17984" y="5206" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="298" name="eyesore" type="actor" x="15317" y="6014" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="299" name="eyesore" type="actor" x="15095" y="3004" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="300" name="eyesore" type="actor" x="17398" y="2398" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="301" name="eyesore" type="actor" x="19014" y="4115" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="302" name="eyesore" type="actor" x="15620" y="5974" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="303" name="eyesore" type="actor" x="13559" y="5893" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="304" name="eyesore" type="actor" x="11802" y="4661" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="305" name="eyesore" type="actor" x="13782" y="2923" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="306" name="eyesore" type="actor" x="16893" y="3166" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="307" name="eyesore" type="actor" x="17741" y="5065" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="308" name="eyesore" type="actor" x="12590" y="5933" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="309" name="eyesore" type="actor" x="11378" y="4863" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="310" name="eyesore" type="actor" x="10347" y="4277" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="311" name="eyesore" type="actor" x="9903" y="2640" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="312" name="eyesore" type="actor" x="11297" y="2256" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="313" name="eyesore" type="actor" x="11559" y="3529" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="314" name="eyesore" type="actor" x="11559" y="4115" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="315" name="eyesore" type="actor" x="13903" y="4580" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="316" name="eyesore" type="actor" x="16610" y="10560" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="317" name="eyesore" type="actor" x="17681" y="14539" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="318" name="eyesore" type="actor" x="11499" y="13246" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="319" name="eyesore" type="actor" x="16933" y="9570" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="320" name="eyesore" type="actor" x="11519" y="10721" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="321" name="eyesore" type="actor" x="17519" y="14014" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="322" name="eyesore" type="actor" x="17337" y="15630" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="323" name="eyesore" type="actor" x="11196" y="11913" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="324" name="eyesore" type="actor" x="16468" y="10600" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="325" name="eyesore" type="actor" x="18630" y="15246" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="326" name="eyesore" type="actor" x="17883" y="10378" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="327" name="eyesore" type="actor" x="18186" y="12014" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="328" name="eyesore" type="actor" x="14327" y="13913" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="329" name="eyesore" type="actor" x="13398" y="13570" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="330" name="eyesore" type="actor" x="12771" y="13590" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="331" name="eyesore" type="actor" x="14852" y="13246" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="332" name="eyesore" type="actor" x="18388" y="12883" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="333" name="eyesore" type="actor" x="18812" y="11388" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="334" name="eyesore" type="actor" x="18388" y="11226" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="335" name="eyesore" type="actor" x="17236" y="11610" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="336" name="eyesore" type="actor" x="17075" y="12095" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="337" name="eyesore" type="actor" x="16044" y="10883" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="338" name="eyesore" type="actor" x="16044" y="10883" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="339" name="eyesore" type="actor" x="16125" y="11974" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="340" name="eyesore" type="actor" x="12186" y="12014" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="341" name="eyesore" type="actor" x="12145" y="11933" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="342" name="eyesore" type="actor" x="12145" y="11953" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="343" name="eyesore" type="actor" x="12085" y="11933" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="344" name="eyesore" type="actor" x="12024" y="11913" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="345" name="eyesore" type="actor" x="12024" y="11913" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="346" name="eyesore" type="actor" x="12024" y="11913" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="347" name="eyesore" type="actor" x="12024" y="11913" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="348" name="eyesore" type="actor" x="16792" y="8984" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="349" name="eyesore" type="actor" x="20085" y="9246" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="350" name="eyesore" type="actor" x="19721" y="12236" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="351" name="eyesore" type="actor" x="14974" y="15913" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="352" name="eyesore" type="actor" x="12832" y="15751" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="353" name="eyesore" type="actor" x="9357" y="13610" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="354" name="eyesore" type="actor" x="10024" y="11428" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="355" name="eyesore" type="actor" x="12792" y="8418" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="356" name="eyesore" type="actor" x="18933" y="7953" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="357" name="eyesore" type="actor" x="20024" y="10681" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="358" name="eyesore" type="actor" x="15984" y="11509" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="359" name="eyesore" type="actor" x="10165" y="9307" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="360" name="eyesore" type="actor" x="17357" y="8256" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="361" name="eyesore" type="actor" x="19802" y="10095" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="362" name="eyesore" type="actor" x="19701" y="10620" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="363" name="eyesore" type="actor" x="18974" y="9731" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="364" name="eyesore" type="actor" x="18913" y="9711" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="365" name="eyesore" type="actor" x="18913" y="9711" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="366" name="eyesore" type="actor" x="18913" y="9711" width="32" height="32">
+   <properties>
+    <property name="parameters" value="Eyesore"/>
+   </properties>
+   <ellipse/>
+  </object>
+ </objectgroup>
+</map>

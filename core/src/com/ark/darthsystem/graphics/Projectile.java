@@ -17,10 +17,6 @@ public class Projectile extends FieldSkill {
     private Battler battler;
     private float speed = .5f;
 
-    public Projectile(String img, float getX, float getY, float delay, Skill getSkill) {
-        super(img, getX, getY, delay, getSkill);
-    }
-
     public Battler getBattler() {
         return battler;
     }

@@ -84,7 +84,7 @@ public class OverheadMap implements State {
     private int width;
     private int height;
     private transient Body boundXMin, boundXMax, boundYMin, boundYMax;
-    private Object dead = new Object();
+    private final Object DEAD = new Object(); //Flag object as to be removed.
 
     public OverheadMap(String mapName) {
         renderer = new OrthogonalTiledMapRenderer(MapDatabase.getMap(mapName), 1f / PlayerCamera.PIXELS_TO_METERS);
@@ -293,7 +293,7 @@ public class OverheadMap implements State {
         } else if (properties.get("type", String.class).equalsIgnoreCase("event")) {
             Object o = addEventFromMap(object);
             if (o == null) {
-                o = dead;
+                o = DEAD;
             }
             body.setUserData(o);
             filter.categoryBits = (short) (ActorCollision.CATEGORY_EVENT | (properties.get("collisionType", String.class).equalsIgnoreCase("WALL") ? ActorCollision.CATEGORY_WALLS : 0));
@@ -437,7 +437,7 @@ public class OverheadMap implements State {
             world.getBodies(temp);
             //Searches for bodies marked for deletion, and dead on arrival bodies.
             for (Body b : temp) {
-                if ((b.getUserData() != null && b.getUserData().equals(a)) || b.getUserData() == dead) {
+                if ((b.getUserData() != null && b.getUserData().equals(a)) || b.getUserData() == DEAD) {
                     deleteQueue.add(b);
                 }
             }
@@ -531,7 +531,9 @@ public class OverheadMap implements State {
                     currentLayer++;
                     if (currentLayer == DRAW_SPRITES_AFTER_LAYER) {
                         for (Actor a : actorList) {
-                            a.render(renderer.getBatch());
+                            if (a.inCamera(GraphicsDriver.getCurrentCamera())) {
+                                a.render(renderer.getBatch());
+                            }
                         }
                     }
                 } else {

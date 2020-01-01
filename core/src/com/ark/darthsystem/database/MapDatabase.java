@@ -20,7 +20,6 @@ public class MapDatabase {
         cachedMaps = new HashMap<>();
         initialize();
         new CollisionDatabaseLoader();
-        setDefaultMap();
     }
 
     public static Array<String> getMaps() {
@@ -29,10 +28,6 @@ public class MapDatabase {
 
     public static TiledMap getMap(String mapName) {
         return cachedMaps.get(mapName);
-    }
-
-    private void setDefaultMap() {
-//        Database2.player.setMap(new OverheadMap(DEFAULT_MAP, false), DEFAULT_X, DEFAULT_Y);
     }
 
     private void initialize() {

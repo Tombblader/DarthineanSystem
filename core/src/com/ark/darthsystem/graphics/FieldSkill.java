@@ -18,9 +18,6 @@ import com.badlogic.gdx.physics.box2d.joints.WeldJoint;
 import com.badlogic.gdx.physics.box2d.joints.WeldJointDef;
 import com.badlogic.gdx.utils.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -58,42 +55,28 @@ public class FieldSkill extends ActorCollision implements Nameable {
             float getX,
             float getY,
             float delay,
-            Skill getSkill) {
-        super(img, getX, getY, delay, true);
-        this.tags = new ArrayList<>();
-        this.fieldSound = SoundDatabase.fieldSwordSound;
-        originalFieldImageName = img;
-        try {
-            originalFieldImage = GraphicsDriver.getMasterSheet().createSprites(img).toArray(Sprite.class);
-        } catch (Exception e) {
-            e.printStackTrace();
-            originalFieldImage = GraphicsDriver.getMasterSheet().createSprites("skills/wiccan_cross/field/wiccan_cross").toArray(Sprite.class);
-        }
-        for (Sprite s : originalFieldImage) {
-            s.setCenter(s.getWidth() / 2f, s.getHeight() / 2f);
-            s.setOriginCenter();
-        }
-        relX = getX;
-        relY = getY;
-        skill = getSkill;
-        aftercastDelay = delay;
-        speed = 0;
-        range = 0;
-        area = Area.FRONT;
-    }
-
-    public FieldSkill(String img,
-            float getX,
-            float getY,
-            float delay,
             Skill getSkill,
             String shape) {
-        super(img, getX, getY, delay, true, shape);
+        super("skills/" + img + "/field/" + img, getX, getY, delay, true, shape);
         this.tags = new ArrayList<>();
         this.fieldSound = SoundDatabase.fieldSwordSound;
+        this.fieldSoundName = "SLASH";
         originalFieldImageName = img;
         try {
-            originalFieldImage = GraphicsDriver.getMasterSheet().createSprites(img).toArray(Sprite.class);
+            originalFieldImage = GraphicsDriver.getMasterSheet().createSprites("skills/" + img + "/field/" + img).toArray(Sprite.class);
+            if (originalFieldImage.length == 0) {
+                originalFieldImage = GraphicsDriver.getMasterSheet().createSprites("items/equipment/" + img + "/field/field").toArray(Sprite.class);
+                if (originalFieldImage.length == 0) {
+                    originalFieldImage = GraphicsDriver.getMasterSheet().createSprites(img).toArray(Sprite.class);
+                    if (originalFieldImage.length == 0) {
+                        throw new Exception("EMPTY" + originalFieldImageName);
+                    }
+                }
+                Animation<Sprite> a = new Animation<>(delay, originalFieldImage);
+                changeAnimation(a);
+                setCurrentImage(originalFieldImage[0]);
+            }
+            
         } catch (Exception e) {
             e.printStackTrace();
             originalFieldImage = GraphicsDriver.getMasterSheet().createSprites("skills/wiccan_cross/field/wiccan_cross").toArray(Sprite.class);
@@ -111,17 +94,6 @@ public class FieldSkill extends ActorCollision implements Nameable {
         area = Area.FRONT;
     }
 
-    public FieldSkill(String img,
-            float getX,
-            float getY,
-            float delay,
-            Skill getSkill,
-            Area getArea) {
-        this(img, getX, getY, delay, getSkill);
-        this.tags = new ArrayList<>();
-        this.fieldSound = SoundDatabase.fieldSwordSound;
-        area = getArea;
-    }
 
     public FieldSkill(String img,
             float getX,
@@ -133,65 +105,8 @@ public class FieldSkill extends ActorCollision implements Nameable {
         this(img, getX, getY, delay, getSkill, shape);
         this.tags = new ArrayList<>();
         this.fieldSound = SoundDatabase.fieldSwordSound;
+        this.fieldSoundName = "SLASH";
         area = getArea;
-    }
-
-    public FieldSkill(String img,
-            String battlerImg,
-            float getX,
-            float getY,
-            float delay,
-            Skill getSkill,
-            Area getArea) {
-        this(img, getX, getY, delay, getSkill, getArea);
-        this.tags = new ArrayList<>();
-        this.fieldSound = SoundDatabase.fieldSwordSound;
-    }
-
-    public FieldSkill(String img,
-            float getX,
-            float getY,
-            int speed,
-            int range,
-            int delay,
-            Skill getSkill) {
-        this(img, getX, getY, delay, getSkill);
-        this.tags = new ArrayList<>();
-        this.fieldSound = SoundDatabase.fieldSwordSound;
-//        this.battlerSound = SoundDatabase.battlerSwordSound;
-        this.speed = speed;
-        this.range = range;
-        area = Area.FRONT;
-    }
-
-    public FieldSkill(String img,
-            String battlerImg,
-            float getX,
-            float getY,
-            float delay,
-            float castTime,
-            Skill getSkill,
-            Area getArea) {
-        this(img, battlerImg, getX, getY, delay, getSkill, getArea);
-        this.tags = new ArrayList<>();
-        this.fieldSound = SoundDatabase.fieldSwordSound;
-        chargeTime = castTime;
-    }
-
-    public FieldSkill(String img,
-            String battlerImg,
-            float getX,
-            float getY,
-            float getTranslateX,
-            float getTranslateY,
-            float delay,
-            float castTime,
-            Skill getSkill,
-            Area getArea) {
-        this(img, battlerImg, getX, getY, delay, castTime, getSkill, getArea);
-        this.fieldSound = SoundDatabase.fieldSwordSound;
-        speed = getTranslateX;
-        range = getTranslateY;
     }
 
     public FieldSkill(String img,
@@ -212,9 +127,23 @@ public class FieldSkill extends ActorCollision implements Nameable {
         originalFieldImageName = img;
         try {
             originalFieldImage = GraphicsDriver.getMasterSheet().createSprites("skills/" + img + "/field/" + img).toArray(Sprite.class);
+            if (originalFieldImage.length == 0) {
+                originalFieldImage = GraphicsDriver.getMasterSheet().createSprites("items/equipment/" + img + "/field/field").toArray(Sprite.class);
+                if (originalFieldImage.length == 0) {
+                    originalFieldImage = GraphicsDriver.getMasterSheet().createSprites(img).toArray(Sprite.class);
+                    if (originalFieldImage.length == 0) {
+                        throw new Exception("EMPTY" + originalFieldImageName);
+                    }
+                }
+            }
+            Animation<Sprite> a = new Animation<>(delay, originalFieldImage);
+            changeAnimation(a);
+            setCurrentImage(originalFieldImage[0]);
         } catch (Exception e) {
             e.printStackTrace();
             originalFieldImage = GraphicsDriver.getMasterSheet().createSprites("skills/wiccan_cross/field/wiccan_cross").toArray(Sprite.class);
+            originalFieldImageName = "wiccan_cross";
+            setCurrentImage(originalFieldImage[0]);
         }
         for (Sprite s : originalFieldImage) {
             s.setCenter(s.getWidth() / 2f, s.getHeight() / 2f);
@@ -277,9 +206,9 @@ public class FieldSkill extends ActorCollision implements Nameable {
         this(img, getX, getY, getTranslateX, getTranslateY, fps, castTime, delay, getSkill, getArea, shape);
         this.castImageName = castImg;
         this.tags = tags;
-        this.fieldSoundName = fieldSoundName.toUpperCase();
+        this.fieldSoundName = fieldSoundName;
         fieldSound = SoundDatabase.SOUNDS.get(this.fieldSoundName);
-        this.castSoundName = castSoundName.toUpperCase();
+        this.castSoundName = castSoundName;
         castSound = SoundDatabase.SOUNDS.get(this.castSoundName);
     }
 
@@ -406,7 +335,6 @@ public class FieldSkill extends ActorCollision implements Nameable {
 
     public void playCastSound() {
         try {
-            System.out.println(castSoundName);
             castSound.stop();
             castSound.play();
         } catch (Exception e) {

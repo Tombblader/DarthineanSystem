@@ -2,6 +2,7 @@ package com.ark.darthsystem.database;
 
 import com.ark.darthsystem.Equipment;
 import com.ark.darthsystem.Item;
+import com.ark.darthsystem.Weapon;
 import com.ark.darthsystem.states.Battle;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
@@ -25,8 +26,8 @@ public class ItemDatabase {
                 continue;
             }
             int i = 0;
-
-            EQUIPMENT_LIST.put(data[i].toUpperCase(), new Equipment(data[i], //Name
+            if (data[7].equalsIgnoreCase("MainHand")) {
+            EQUIPMENT_LIST.put(data[i].toUpperCase(), new Weapon(data[i], //Name
                     data[++i], //Description
                     data[++i], //iconName
                     data[++i], //field animation
@@ -42,6 +43,23 @@ public class ItemDatabase {
                     Integer.parseInt(data[++i]), //Speed Multiplier
                     Integer.parseInt(data[++i]) //Magic Multiplier
             )); //Divider
+                
+            } else {
+            EQUIPMENT_LIST.put(data[i].toUpperCase(), new Equipment(data[i], //Name
+                    data[++i], //Description
+                    data[++i], //iconName
+                    Integer.parseInt(data[i = i + 3]), //Market Price
+                    data[++i].toUpperCase().split(", "), //Equipment Types
+                    Equipment.Slot.valueOf(data[++i]), //Slot
+                    SkillDatabase.SKILL_LIST.get(data[++i].toUpperCase()), //Skill Effect
+                    Battle.Element.valueOf(data[++i]), //Element
+                    Boolean.valueOf(data[++i].toLowerCase()), //Use MP?
+                    Integer.parseInt(data[++i]), //Attack
+                    Integer.parseInt(data[++i]), //Defense Multiplier
+                    Integer.parseInt(data[++i]), //Speed Multiplier
+                    Integer.parseInt(data[++i]) //Magic Multiplier
+            )); //Divider
+            }
         }
         file = Gdx.files.internal("databases/Database - Items.tsv");
         massiveString = file.readString().split("(\r\n|\r|\n)");

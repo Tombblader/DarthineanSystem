@@ -1,5 +1,6 @@
 package com.ark.darthsystem;
 
+import com.ark.darthsystem.database.Database2;
 import com.ark.darthsystem.graphics.FieldSkill;
 import com.ark.darthsystem.states.Battle;
 import com.ark.darthsystem.statusEffects.Death;
@@ -280,11 +281,13 @@ public class BattlerAI extends Battler implements Nameable, Cloneable {
                 dropRate,
                 itemQuantity);
         this.money = 0;
-        Equipment temp = new Equipment("Unarmed",
+        Weapon temp = new Weapon("Unarmed",
                 "",
                 "unarmed",
+                "unarmed",
+                "unarmed",
                 0,
-                new Equipment.Type[]{Equipment.Type.HAND},
+                new String[]{"HAND"},
                 Equipment.Slot.OffHand,
                 null,
                 Battle.Element.Physical,
@@ -293,7 +296,6 @@ public class BattlerAI extends Battler implements Nameable, Cloneable {
                 0,
                 0,
                 0);
-        temp.setAnimation(unarmedStrikeAnimation);
         equip(temp);
     }
 
