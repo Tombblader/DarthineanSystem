@@ -1,6 +1,7 @@
 package com.ark.darthsystem.states;
 
 import com.ark.darthsystem.database.MapDatabase;
+import com.ark.darthsystem.graphics.GameTimer;
 import com.ark.darthsystem.graphics.GraphicsDriver;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -75,6 +76,11 @@ public class GameOver implements State {
     @Override
     public String getMusic() {
         return BGM;
+    }
+
+    @Override
+    public void addTimer(GameTimer t) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

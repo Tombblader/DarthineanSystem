@@ -4,6 +4,7 @@ import com.ark.darthsystem.database.InterfaceDatabase;
 import com.ark.darthsystem.GameOverException;
 import com.ark.darthsystem.Nameable;
 import com.ark.darthsystem.graphics.Actor;
+import com.ark.darthsystem.graphics.GameTimer;
 import com.ark.darthsystem.graphics.GraphicsDriver;
 import com.ark.darthsystem.graphics.Input;
 import static com.ark.darthsystem.graphics.GraphicsDriver.getCurrentState;
@@ -15,6 +16,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.stream.Collectors;
@@ -28,6 +30,7 @@ public abstract class Menu implements State {
     private final int PADDING_X = 20;
     private final int PADDING = 3;
 
+    public ArrayList<GameTimer> timers = new ArrayList<>();
     private final int BACK_BUTTON = Keys.X;
     private String[] choices;
     private final int MESSAGE_HEIGHT;
@@ -333,5 +336,9 @@ public abstract class Menu implements State {
         menuIndex = 0;
         subMenuList.clear();
         subMenuList.add(this);
+    }
+    
+    public void addTimer(GameTimer t) {
+        timers.add(t);
     }
 }

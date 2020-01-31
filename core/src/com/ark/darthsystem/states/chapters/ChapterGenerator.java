@@ -8,6 +8,7 @@ import com.ark.darthsystem.graphics.Actor;
 import com.ark.darthsystem.graphics.ActorSprite.SpriteModeFace;
 import com.ark.darthsystem.graphics.GameTimer;
 import com.ark.darthsystem.graphics.GraphicsDriver;
+import com.ark.darthsystem.graphics.Player;
 import com.ark.darthsystem.states.chapters.Novel.Condition;
 import com.ark.darthsystem.states.chapters.Novel.Page;
 import com.ark.darthsystem.states.events.Event;
@@ -126,6 +127,21 @@ public class ChapterGenerator {
                         break;
                     case "setpage":
                         novel.pageIndex = Integer.parseInt(element.getText()) - 1;
+                        break;
+                    case "moveActor":
+                        Player moveActor = null;
+                        switch (element.getAttribute("name").toUpperCase()) {
+                            case "PLAYER":
+                                moveActor = GraphicsDriver.getPlayer();
+                                break;
+                            case "THIS":
+                                break;
+                                
+                        }
+                        float x = (float) Double.parseDouble(element.getAttribute("x"));
+                        float y = (float) Double.parseDouble(element.getAttribute("y"));
+                        moveActor.moveTowardsPoint(x, y, GraphicsDriver.getRawDelta());
+                        novel.actorList.add(moveActor);
                         break;
                     default:
                         break;

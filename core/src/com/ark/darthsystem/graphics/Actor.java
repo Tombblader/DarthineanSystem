@@ -97,6 +97,11 @@ public class Actor implements Serializable {
     }
 
     public void addTimer(GameTimer t) {
+//        timers.add(t);
+        GraphicsDriver.getCurrentState().addTimer(t);
+    }
+    
+    public void addLocalTimer(GameTimer t) {
         timers.add(t);
     }
 
@@ -218,15 +223,15 @@ public class Actor implements Serializable {
     public void setPause(float time) {
         GameTimer tempTimer = new GameTimer("Pause", time) {
             public void event(Actor a) {
-                a.isMovable = true;
+                isMovable = true;
             }
 
             public boolean update(float delta, Actor a) {
-                a.isMovable = false;
+                isMovable = false;
                 return super.update(delta, a);
             }
         };
-        timers.add(tempTimer);
+        addTimer(tempTimer);
         isMovable = false;
     }
 
@@ -352,7 +357,7 @@ public class Actor implements Serializable {
         }
         for (int i = 0; i < timers.size(); i++) {
             GameTimer t = timers.get(i);
-            if (t.update(delta, this)) {
+            if (t.update(delta)) {
                 timers.remove(i);
                 i--;
             }

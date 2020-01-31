@@ -37,6 +37,10 @@ public class FieldBattlerAI extends Player implements Serializable {
         aiData = new ArrayList<>(Arrays.asList(((BattlerAI) (getBattlers.get(0).getBattler())).getAIData()));
     }
 
+    public FieldBattlerAI(Player player) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public FieldBattlerAI clone() {
         ArrayList<FieldBattler> temp = new ArrayList<>();
         getAllFieldBattlers().forEach((a) -> {
@@ -92,6 +96,7 @@ public class FieldBattlerAI extends Player implements Serializable {
         return player;
     }
 
+    @Override
     public void moveTowardsPoint(float x, float y, float delta) {
         addTimer(new GameTimer("MOVE", Math.abs((x - getX()) / (getCurrentBattler().getSpeed() * delta)) + Math.abs((y - getY()) / (getCurrentBattler().getSpeed() * delta)) / 2f * 1000f + 1000f) {
             @Override
@@ -229,10 +234,12 @@ public class FieldBattlerAI extends Player implements Serializable {
                 moveTowardsPlayer(delta);
                 break;
             case ATTACK:
+                moveTowardsPlayer(0f);
                 setFacing();
                 attack();
                 break;
             case SKILL:
+                moveTowardsPlayer(0f);
                 setFacing();
                 skill();
             case RECHARGE:

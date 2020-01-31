@@ -10,6 +10,7 @@ import com.ark.darthsystem.graphics.ActorSprite;
 import com.ark.darthsystem.graphics.FieldBattler;
 import com.ark.darthsystem.graphics.Input;
 import com.ark.darthsystem.database.InterfaceDatabase;
+import com.ark.darthsystem.graphics.GameTimer;
 import com.ark.darthsystem.states.chapters.Novel;
 
 import java.util.ArrayList;
@@ -218,5 +219,9 @@ public class Message implements State {
     @Override
     public String getMusic() {
         return null;
+    }
+    
+    public void addTimer(GameTimer t) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.        
     }
 }

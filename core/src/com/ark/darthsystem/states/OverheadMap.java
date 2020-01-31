@@ -81,6 +81,7 @@ public class OverheadMap implements State {
     private final int DRAW_SPRITES_AFTER_LAYER = 2;
     private transient World world;
     private transient Box2DDebugRenderer debugRender = new Box2DDebugRenderer();
+    private Array<GameTimer> timers = new Array<>();
     private int width;
     private int height;
     private transient Body boundXMin, boundXMax, boundYMin, boundYMax;
@@ -380,6 +381,13 @@ public class OverheadMap implements State {
     @Override
     public float update(float delta) {
         AnimatedTiledMapTile.updateAnimationBaseTime();
+        for (int i = 0; i < timers.size; i++) {
+            GameTimer a = timers.get(i);
+            if (a.update(delta)) {
+                timers.removeValue(a, true);
+                i--;
+            }
+        }
         for (int i = 0; i < actorList.size; i++) {
             Actor a = actorList.get(i);
             if (a instanceof FieldBattlerAI && ((FieldBattlerAI) (a)).totalPartyKill()) {
@@ -393,6 +401,7 @@ public class OverheadMap implements State {
                 }
             }
         }
+
         if (Input.getKeyPressed(Keys.ESCAPE)) {
             GraphicsDriver.clearAllstates();
             GraphicsDriver.addState(new Title());
@@ -486,8 +495,8 @@ public class OverheadMap implements State {
                 }
             }
             clearTempRunningTimers(GraphicsDriver.getPlayer());
+            GraphicsDriver.getPlayer().setInvulnerability(1000);            
             GraphicsDriver.addState(new Battle(GraphicsDriver.getPlayer().getAllFieldBattlers(), encounters, Database1.inventory, null).start());
-            GraphicsDriver.getPlayer().setInvulnerability(1000);
         }
     }
 
@@ -845,6 +854,10 @@ public class OverheadMap implements State {
         public void postSolve(Contact cntct, ContactImpulse ci) {
 //            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         }
+    }
+    
+    public void addTimer(GameTimer t) {
+        timers.add(t);
     }
 
 }

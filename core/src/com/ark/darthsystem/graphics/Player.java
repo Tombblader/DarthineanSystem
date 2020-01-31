@@ -149,6 +149,54 @@ public class Player extends ActorCollision implements Serializable {
     public boolean canSkill() {
         return canSkill;
     }
+    
+    public void moveTowardsPoint(float x, float y, float delta) {
+        addTimer(new GameTimer("MOVE", Math.abs((x - getX()) / (getCurrentBattler().getSpeed() * delta)) + Math.abs((y - getY()) / (getCurrentBattler().getSpeed() * delta)) / 2f * 1000f + 1000f) {
+            @Override
+            public void event(Actor a) {
+                isWalking = false;
+            }
+
+            @Override
+            public boolean update(float delta, Actor a) {
+                final float OFFSET = 1.5f;
+                if (x > (getX()) && x - (getX()) > OFFSET) {
+                    changeX(1);
+                    getMainBody().setLinearVelocity(getCurrentBattler().getSpeed() * delta, getMainBody().getLinearVelocity().y);
+                } else if (x < (getX()) && (getX()) - x > OFFSET) {
+                    changeX(-1);
+                    getMainBody().setLinearVelocity(-getCurrentBattler().getSpeed() * delta, getMainBody().getLinearVelocity().y);
+                } else {
+                    changeX(0);
+                    getMainBody().setLinearVelocity(0, getMainBody().getLinearVelocity().y);
+                }
+
+                if (y > (getY()) && y - (getY()) > OFFSET) {
+                    changeY(1);
+                    getMainBody().setLinearVelocity(getMainBody().getLinearVelocity().x, getCurrentBattler().getSpeed() * (float) (delta));
+                } else if (y < (getY()) && (getY()) - y > OFFSET) {
+                    changeY(-1);
+                    getMainBody().setLinearVelocity(getMainBody().getLinearVelocity().x, -getCurrentBattler().getSpeed() * (float) (delta));
+                } else {
+                    changeY(0);
+                    getMainBody().setLinearVelocity(getMainBody().getLinearVelocity().x, 0);
+                }
+                setFacing();
+                if (!getMainBody().getLinearVelocity().isZero(.5f)) {
+                    setFieldState(ActorSprite.SpriteModeField.WALK);
+                } else {
+                    setFieldState(ActorSprite.SpriteModeField.STAND);
+                }
+                applySprite();
+                setWalking(true);
+                return super.update(delta, a);
+            }
+
+            public boolean isFinished() {
+                return super.isFinished() || getMainBody().getLinearVelocity().isZero(.5f);
+            }
+        });
+    }    
 
     public FieldSkill getAttackAnimation() {
         FieldSkill temp = attackAnimation.placeOnMap();
@@ -455,14 +503,16 @@ public class Player extends ActorCollision implements Serializable {
                 public boolean update(float delta, Actor a) {
                     isJumping = true;
                     canAttack = false;
-                    getMainBody().setLinearVelocity(3 * (getFacing().x - getFacing().x * Math.abs(getFacing().y) * (1 - .707f)) * getSpeed() * delta,
-                            3 * getSpeed() * delta * (getFacing().y - getFacing().y * Math.abs(getFacing().x) * (1 - .707f)));
+                    getMainBody().applyLinearImpulse(new Vector2((getFacing().x - getFacing().x * Math.abs(getFacing().y) * (1 - .707f)) * getSpeed() * delta,
+                            getSpeed() * delta * (getFacing().y - getFacing().y * Math.abs(getFacing().x) * (1 - .707f))).scl(.2f), getMainBody().getMassData().center, true);
+//                    getMainBody().setLinearVelocity(3 * (getFacing().x - getFacing().x * Math.abs(getFacing().y) * (1 - .707f)) * getSpeed() * delta,
+//                            3 * getSpeed() * delta * (getFacing().y - getFacing().y * Math.abs(getFacing().x) * (1 - .707f)));
                     changeX(getFacing().x);
                     changeY(getFacing().y);
                     return super.update(delta, a);
                 }
             };
-            addTimer(new GameTimer("JUMP_DELAY", 700) {
+            addLocalTimer(new GameTimer("JUMP_DELAY", 700) {
                 @Override
                 public void event(Actor a) {
                     canDodge = true;
@@ -474,7 +524,7 @@ public class Player extends ActorCollision implements Serializable {
                     return super.update(delta, a);
                 }
             });
-            addTimer(tempTimer);
+            addLocalTimer(tempTimer);
             setMainFilter(ActorCollision.CATEGORY_PLAYER, ActorCollision.CATEGORY_WALLS);
             setSensorFilter(ActorCollision.CATEGORY_PLAYER, (short) (ActorCollision.CATEGORY_AI | ActorCollision.CATEGORY_EVENT));
             isJumping = true;
@@ -510,7 +560,7 @@ public class Player extends ActorCollision implements Serializable {
             }
 
         };
-        addTimer(tempTimer);
+        addLocalTimer(tempTimer);
         setMainFilter(ActorCollision.CATEGORY_PLAYER, ActorCollision.CATEGORY_WALLS);
         setSensorFilter(ActorCollision.CATEGORY_PLAYER, ActorCollision.CATEGORY_EVENT);
     }

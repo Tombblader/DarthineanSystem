@@ -1,5 +1,6 @@
 package com.ark.darthsystem.states;
 
+import com.ark.darthsystem.graphics.GameTimer;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 /**
@@ -19,6 +20,8 @@ public interface State {
     public void render(SpriteBatch batch);
 
     public void dispose();
+    
+    public void addTimer(GameTimer t);
 
     public String getMusic();
 

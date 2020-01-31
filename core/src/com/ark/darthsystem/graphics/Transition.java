@@ -30,6 +30,11 @@ public class Transition implements State {
         return null;
     }
 
+    @Override
+    public void addTimer(GameTimer t) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public enum TransitionType {
         FADE,
         FADE_IN_OUT,

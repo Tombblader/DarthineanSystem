@@ -114,16 +114,18 @@ public class Battle implements State {
     private void renderTemporaryActors(SpriteBatch batch) {
         for (int i = 0; i < animations.size(); i++) {
             Sprite s = animations.get(i).getCurrentImage();
-            batch.draw(s,
-                    animations.get(i).getX(),
-                    animations.get(i).getY(),
-                    s.getOriginX(),
-                    s.getOriginY(),
-                    s.getWidth(),
-                    s.getHeight(),
-                    s.getScaleX(),
-                    s.getScaleY(),
-                    s.getRotation());
+            if (s != null) {
+                batch.draw(s,
+                        animations.get(i).getX(),
+                        animations.get(i).getY(),
+                        s.getOriginX(),
+                        s.getOriginY(),
+                        s.getWidth(),
+                        s.getHeight(),
+                        s.getScaleX(),
+                        s.getScaleY(),
+                        s.getRotation());
+            }
         }
 
     }
@@ -769,6 +771,11 @@ public class Battle implements State {
         private void setTicks(int i) {
             ticks = i;
         }
+    }
+    
+    @Override
+    public void addTimer(GameTimer t) {
+        
     }
 
 }

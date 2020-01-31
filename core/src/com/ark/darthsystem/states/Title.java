@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 import com.ark.darthsystem.GameOverException;
 import com.ark.darthsystem.database.MapDatabase;
+import com.ark.darthsystem.graphics.GameTimer;
 import com.ark.darthsystem.graphics.GraphicsDriver;
 import com.badlogic.gdx.graphics.Texture;
 
@@ -89,6 +90,10 @@ public class Title implements State {
     @Override
     public String getMusic() {
         return BGM;
+    }
+    
+    public void addTimer(GameTimer t) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.        
     }
 
 }

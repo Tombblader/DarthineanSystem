@@ -26,7 +26,7 @@ public class Projectile extends FieldSkill {
     }
 
     public void moveTowardsPoint(float x, float y, float delta) {
-        addTimer(new GameTimer("MOVE", Math.abs((x - getX()) / (speed * delta)) + Math.abs((y - getY()) / (speed * delta)) / 2f * 1000f + 1000f) {
+        addTimer(new GameTimer("MOVE", Math.abs((x - getX()) / (speed * delta)) + Math.abs((y - getY()) / (speed * delta)) / 2f * 1000f + 1000f, getInvoker()) {
             @Override
             public void event(Actor a) {
 //                patrolling = false;

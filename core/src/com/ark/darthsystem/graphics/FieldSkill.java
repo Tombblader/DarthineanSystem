@@ -521,7 +521,7 @@ public class FieldSkill extends ActorCollision implements Nameable {
                 @Override
                 public boolean update(float delta, Actor a) {
                     player.setCanSkill(false);
-                    return super.update(delta);
+                    return super.update(delta, a);
                 }
             });
             player.setPause((tempSkill.getChargeTime() * 1000f));
@@ -534,7 +534,7 @@ public class FieldSkill extends ActorCollision implements Nameable {
                 public boolean update(float delta, Actor a) {
                     player.setFieldState(ActorSprite.SpriteModeField.SKILL);
                     player.setAttacking(true);
-                    return super.update(delta);
+                    return super.update(delta, a);
                 }
             });
             player.addTimer(new GameTimer("Skill_Charge", tempSkill.getChargeTime() * 1000f) {
@@ -559,7 +559,7 @@ public class FieldSkill extends ActorCollision implements Nameable {
                 public boolean update(float delta, Actor a) {
                     player.setFieldState(ActorSprite.SpriteModeField.SKILL);
                     player.setAttacking(true);
-                    return super.update(delta);
+                    return super.update(delta, a);
                 }
 
                 public void clear() {
