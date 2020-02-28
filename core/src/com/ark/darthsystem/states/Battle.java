@@ -530,6 +530,7 @@ public class Battle implements State {
                 GraphicsDriver.addState(new GameOver());
             }
         }
+        GraphicsDriver.getPlayer().updateGlobal(delta);
         return delta;
     }
 

@@ -257,4 +257,47 @@ public class ActorCollision extends Actor implements Serializable {
     public void setBodyY(float y) {
         body.setTransform(body.getPosition().x, y, body.getAngle());
     }
+    
+    @Override
+    public void moveTowardsPoint(float x, float y, float speed, float delta) {
+        addTimer(new GameTimer("MOVE", Math.abs((x - getX()) / (speed * delta)) + Math.abs((y - getY()) / (speed * delta)) / 2f * 1000f + 1000f) {
+            @Override
+            public void event(Actor a) {
+//                isWalking = false;
+            }
+
+            @Override
+            public boolean update(float delta, Actor a) {
+                final float OFFSET = 1.5f;
+                if (x > (getX()) && x - (getX()) > OFFSET) {
+                    changeX(1);
+                    getMainBody().setLinearVelocity(speed * delta, getMainBody().getLinearVelocity().y);
+                } else if (x < (getX()) && (getX()) - x > OFFSET) {
+                    changeX(-1);
+                    getMainBody().setLinearVelocity(-speed * delta, getMainBody().getLinearVelocity().y);
+                } else {
+                    changeX(0);
+                    getMainBody().setLinearVelocity(0, getMainBody().getLinearVelocity().y);
+                }
+
+                if (y > (getY()) && y - (getY()) > OFFSET) {
+                    changeY(1);
+                    getMainBody().setLinearVelocity(getMainBody().getLinearVelocity().x, speed * (float) (delta));
+                } else if (y < (getY()) && (getY()) - y > OFFSET) {
+                    changeY(-1);
+                    getMainBody().setLinearVelocity(getMainBody().getLinearVelocity().x, -speed * (float) (delta));
+                } else {
+                    changeY(0);
+                    getMainBody().setLinearVelocity(getMainBody().getLinearVelocity().x, 0);
+                }
+                setFacing();
+                return super.update(delta, a);
+            }
+
+            public boolean isFinished() {
+                return super.isFinished() || getMainBody().getLinearVelocity().isZero(.5f);
+            }
+        });
+    }        
+    
 }

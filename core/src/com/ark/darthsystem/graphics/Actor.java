@@ -446,6 +446,41 @@ public class Actor implements Serializable {
             return rotate;
         }
     }
+
+    public void moveTowardsPoint(float x, float y, float speed, float delta) {
+        addTimer(new GameTimer("MOVE", Math.abs((x - getX()) / (speed * delta)) + Math.abs((y - getY()) / (speed * delta)) / 2f * 1000f + 1000f) {
+            @Override
+            public void event(Actor a) {
+//                isWalking = false;
+            }
+
+            @Override
+            public boolean update(float delta, Actor a) {
+                final float OFFSET = 1.5f;
+                if (x > (getX()) && x - (getX()) > OFFSET) {
+                    changeX(speed * delta);
+                } else if (x < (getX()) && (getX()) - x > OFFSET) {
+                    changeX(-speed * delta);
+                } else {
+                    changeX(0);
+                }
+
+                if (y > (getY()) && y - (getY()) > OFFSET) {
+                    changeY(speed * delta);
+                } else if (y < (getY()) && (getY()) - y > OFFSET) {
+                    changeY(-speed * delta);
+                } else {
+                    changeY(0);
+                }
+                setFacing();
+               return super.update(delta, a);
+            }
+
+            public boolean isFinished() {
+                return super.isFinished() || (lastX == 0 && lastY == 0);
+            }
+        });
+    }    
     
     public boolean inCamera(Camera c) {
         if (currentImage == null) {

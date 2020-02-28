@@ -32,6 +32,12 @@ public class Blind extends StatusEffect {
     }
 
     @Override
+    public float getDodge() {
+        return .5f;
+    }
+    
+
+    @Override
     public void checkFieldStatus(Player player, Battler battler, GameTimer timer) {
 
     }

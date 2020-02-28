@@ -129,21 +129,25 @@ public class ChapterGenerator {
                         novel.pageIndex = Integer.parseInt(element.getText()) - 1;
                         break;
                     case "moveActor":
-                        Player moveActor = null;
+                        Actor moveActor = null;
+                        float speed = 1;
                         switch (element.getAttribute("name").toUpperCase()) {
                             case "PLAYER":
                                 moveActor = GraphicsDriver.getPlayer();
+                                speed = GraphicsDriver.getPlayer().getBaseSpeed();
                                 break;
                             case "THIS":
+                                moveActor = novel.getMainActor();
+                                speed = (float) Double.parseDouble(element.getAttribute("speed"));
                                 break;
+                            default:
                                 
                         }
+                        
                         float x = (float) Double.parseDouble(element.getAttribute("x"));
                         float y = (float) Double.parseDouble(element.getAttribute("y"));
-                        moveActor.moveTowardsPoint(x, y, GraphicsDriver.getRawDelta());
+                        moveActor.moveTowardsPoint(x, y, speed, GraphicsDriver.getRawDelta());
                         novel.actorList.add(moveActor);
-                        break;
-                    default:
                         break;
                     case "playanimation":
                         Actor a = new Actor(element.getAttribute("name"),

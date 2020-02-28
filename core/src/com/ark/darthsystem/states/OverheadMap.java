@@ -576,9 +576,9 @@ public class OverheadMap implements State {
             if (!world.isLocked()) {
                 if (temp2.contains(deleteJointQueue.get(i), true)) {
                     world.destroyJoint(deleteJointQueue.get(i));
+                    deleteJointQueue.removeValue(deleteJointQueue.get(i), true);
+                    i--;
                 }
-                deleteJointQueue.removeValue(deleteJointQueue.get(i), true);
-                i--;
             }
         }
 

@@ -63,6 +63,7 @@ public class Player extends ActorCollision implements Serializable {
 
     private transient FieldSkill attackAnimation;
     private float speed = SPEED;
+    private Array<GameTimer> globalTimers = new Array<>();
     private boolean canAttack = true;
     private boolean canSkill = true;
     private boolean attacking;
@@ -404,6 +405,7 @@ public class Player extends ActorCollision implements Serializable {
             attacking(delta);
         }
         super.update(delta);
+        updateGlobal(delta);
         speed = currentBattler.getSpeed();
         applySprite();
 
@@ -419,8 +421,19 @@ public class Player extends ActorCollision implements Serializable {
         changeX(0);
         changeY(0);
         super.updatePartial(delta);
+        updateGlobal(delta);
         speed = currentBattler.getSpeed();
         applySprite();
+    }
+    
+    public void updateGlobal(float delta) {
+        for (int i = 0; i < globalTimers.size; i++) {
+            GameTimer t = globalTimers.get(i);
+            if (t.update(delta)) {
+                globalTimers.removeIndex(i);
+                i--;
+            }
+        }
     }
 
     public void checkStatusEffects() {
@@ -866,14 +879,14 @@ public class Player extends ActorCollision implements Serializable {
         setPause(250);
         setInvulnerability(550);
         SoundDatabase.ouchSound.play();
-        addTimer(new GameTimer("OUCH", 250) {
+        addGlobalTimer(new GameTimer("OUCH", 250) {
             @Override
             public void event(Actor a) {
                 if (b.isAlive()) {
                     fieldState = ActorSprite.SpriteModeField.STAND;
                     ouchBattler.setFace(ActorSprite.SpriteModeFace.NORMAL);
                 } else {
-                    addTimer(new GameTimer("DEAD", 9999) {
+                    addGlobalTimer(new GameTimer("DEAD", 9999) {
                         @Override
                         public boolean isFinished() {
                             return ouchBattler.getBattler().isAlive();
@@ -932,5 +945,9 @@ public class Player extends ActorCollision implements Serializable {
 
     public void ouch() {
         ouch(currentBattler.getBattler());
+    }
+
+    public void addGlobalTimer(GameTimer gameTimer) {
+        globalTimers.add(gameTimer);
     }
 }

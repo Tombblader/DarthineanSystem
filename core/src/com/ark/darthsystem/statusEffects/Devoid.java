@@ -26,7 +26,7 @@ public class Devoid extends StatusEffect {
     public boolean checkStatus(Action action, Battle b) {
         printline(action.getCaster().getName() + " takes " + (action.getCaster().getMaxHP() / 6) + " damage from the corruption.");
         if (action.getCaster().changeHP(action.getCaster().getMaxHP() / 6)) {
-            printline(action.getCaster().getName() + " has collapsed from the corruption.");
+            printline(action.getCaster().getName() + " has been fully corrupted.");
             return false;
         }
         return true;

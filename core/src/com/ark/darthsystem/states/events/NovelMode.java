@@ -37,7 +37,8 @@ public class NovelMode extends Event {
 
     @Override
     public void run() {
-        if (!isFinished()) {
+        if (!isFinished() && !GraphicsDriver.getState().contains(novel, true)) {
+            novel.actorList.add(this);
             GraphicsDriver.addState(novel);
             switches.setSwitch(LocalSwitch.Switch.FINISHED, novel.isFinished());
         }

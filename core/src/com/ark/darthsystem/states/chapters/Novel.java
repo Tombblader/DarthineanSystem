@@ -24,6 +24,7 @@ public abstract class Novel implements State {
     public ArrayList<Page> chapters;
     public Array<Actor> actorList;
     private boolean isFinished = false;
+    private Actor mainActor;
 
     String choices;
     int pageIndex = 0;
@@ -38,6 +39,13 @@ public abstract class Novel implements State {
 
     }
 
+    public void setMainActor(Actor a) {
+        mainActor = a;
+    }
+    
+    public Actor getMainActor() {
+        return mainActor;
+    }
     public void moveActor(float x, float y, float speed, int wait) {
 
     }
